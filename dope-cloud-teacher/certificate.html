@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Certificate</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #9333ea;
+      color: white;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #7e22ce;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎓 Generate Your Certificate</h1>
+  <p>Enter your name to create your custom Dope Cloud certificate:</p>
+  <input type="text" id="studentName" placeholder="Your Full Name" />
+  <button onclick="generatePDF()">Download Certificate</button>
+
+  <script>
+    async function generatePDF() {
+      const name = document.getElementById('studentName').value.trim();
+      if (!name) return alert('Please enter your full name.');
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(22);
+      doc.setTextColor('#4c1d95');
+      doc.text('Certificate of Completion', 105, 40, { align: 'center' });
+      doc.setFontSize(16);
+      doc.setTextColor('#000000');
+      doc.text(`This certifies that`, 105, 60, { align: 'center' });
+      doc.setFontSize(20);
+      doc.setTextColor('#9333ea');
+      doc.text(name, 105, 75, { align: 'center' });
+      doc.setFontSize(16);
+      doc.setTextColor('#000000');
+      doc.text('has successfully completed the', 105, 90, { align: 'center' });
+      doc.text('Cloud Computing Fundamentals Module', 105, 105, { align: 'center' });
+      doc.setFontSize(12);
+      const date = new Date().toLocaleDateString();
+      doc.text(`Awarded on: ${date}`, 105, 125, { align: 'center' });
+      doc.text('Instructor: DoGood, The Dope Cloud Teacher™', 105, 140, { align: 'center' });
+      doc.save(`${name.replace(/\s+/g, '_')}_DopeCloud_Certificate.pdf`);
+    }
+  </script>
+</body>
+</html>

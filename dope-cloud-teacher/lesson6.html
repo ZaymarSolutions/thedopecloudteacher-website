@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 6: Cloud Security Fundamentals</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #c084fc;
+      font-size: 2rem;
+      text-align: center;
+    }
+    iframe {
+      display: block;
+      margin: 30px auto;
+      max-width: 100%;
+      border: 4px solid #a855f7;
+      border-radius: 15px;
+    }
+    .content-block {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .quiz-section h2 {
+      color: #a855f7;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background: #9333ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7e22ce;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      color: #d8b4fe;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 6: Cloud Security Fundamentals</h1>
+
+  <div class="content-block">
+    <h2>Professional Overview</h2>
+    <p>Security is one of the most important—and complex—areas in cloud computing. From identity management to data protection, cloud environments introduce new attack surfaces and require modern strategies. Core pillars of cloud security include the shared responsibility model, identity and access management (IAM), encryption, network security, and compliance standards like HIPAA, GDPR, and FedRAMP.</p>
+    <p>The shared responsibility model means the cloud provider secures the infrastructure, but customers are responsible for data, applications, and configurations. Misconfigurations are one of the top causes of cloud breaches. That’s why role-based access control (RBAC), multi-factor authentication (MFA), and least-privilege access are foundational best practices.</p>
+    <p>Modern cloud providers offer security tools like Azure Security Center, AWS Security Hub, and Google Security Command Center. These platforms help with real-time monitoring, vulnerability scans, and policy enforcement. Encryption is critical—data should be encrypted at rest and in transit.</p>
+    <p>Understanding these fundamentals is essential for anyone working with cloud platforms. Whether you're deploying apps or managing cloud environments, security should be integrated—not bolted on.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Real-Life Scenarios</h2>
+    <p><strong>Scenario 1:</strong> A startup launches their app using a public cloud but skips MFA. A stolen admin password leads to a massive data leak. Lesson learned: convenience can’t come at the cost of security hygiene.</p>
+    <p><strong>Scenario 2:</strong> A federal contractor using Azure deploys government workloads with strict compliance requirements. They use RBAC, encrypted storage, and Azure Policy to enforce FedRAMP security controls. Everything’s auditable, tracked, and verified.</p>
+  </div>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/DH9d6cwHawk" title="Cloud Security Fundamentals - Animated Explainer" frameborder="0" allowfullscreen></iframe>
+
+  <div class="quiz-section">
+    <h2>Quick Quiz</h2>
+    <div class="question">
+      <p>1. Who is responsible for data security in the shared responsibility model?</p>
+      <label><input type="radio" name="q1" value="correct"> The customer</label>
+      <label><input type="radio" name="q1" value="wrong"> The cloud provider</label>
+      <label><input type="radio" name="q1" value="wrong"> The ISP</label>
+    </div>
+    <div class="question">
+      <p>2. What is RBAC used for?</p>
+      <label><input type="radio" name="q2" value="correct"> Controlling access based on user roles</label>
+      <label><input type="radio" name="q2" value="wrong"> Backing up data</label>
+      <label><input type="radio" name="q2" value="wrong"> Encrypting passwords</label>
+    </div>
+    <div class="question">
+      <p>3. Which tool helps scan cloud environments for threats?</p>
+      <label><input type="radio" name="q3" value="correct"> Azure Security Center</label>
+      <label><input type="radio" name="q3" value="wrong"> Microsoft Word</label>
+      <label><input type="radio" name="q3" value="wrong"> Chrome Extensions</label>
+    </div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <button onclick="resetQuiz()">Retake Quiz</button>
+    <div class="result" id="result"></div>
+    <div id="next-lesson-btn" style="display:none; margin-top: 20px; text-align: center;">
+      <a href="lesson7.html" style="background:#9333ea; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold; margin-right: 10px;">Go to Lesson 7</a>
+      <a href="index.html" style="background:#64748b; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold;">Return to Dashboard</a>
+    </div>
+  </div>
+
+  <p class="affirmation">Security isn’t an add-on. It’s the soul of smart cloud architecture.</p>
+
+  <script>
+    function submitQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      const correct = answers.filter(a => a.value === 'correct').length;
+      const result = document.getElementById('result');
+
+      if (correct === 3) {
+        result.textContent = '✅ Passed! Lesson unlocked.';
+        result.style.color = '#00ff99';
+        completeLesson('lesson6');
+        document.getElementById('next-lesson-btn').style.display = 'block';
+      } else {
+        result.textContent = '❌ Try again. You need all 3 correct.';
+        result.style.color = '#ff4444';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      document.getElementById('result').textContent = '';
+    }
+
+    function completeLesson(lessonKey) {
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
+      progress[lessonKey] = true;
+      localStorage.setItem('dopeProgress', JSON.stringify(progress));
+    }
+  </script>
+  <script src="js/progress-tracker.js"></script>
+</body>
+</html>

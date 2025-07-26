@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 4: Benefits and Challenges of Cloud Computing</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #c084fc;
+      font-size: 2rem;
+      text-align: center;
+    }
+    iframe {
+      display: block;
+      margin: 30px auto;
+      max-width: 100%;
+      border: 4px solid #a855f7;
+      border-radius: 15px;
+    }
+    .content-block {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .quiz-section h2 {
+      color: #a855f7;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background: #9333ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7e22ce;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      color: #d8b4fe;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 4: Benefits and Challenges of Cloud Computing</h1>
+
+  <div class="content-block">
+    <h2>Professional Overview</h2>
+    <p>Cloud computing brings a wide array of benefits, including scalability, cost efficiency, global accessibility, disaster recovery, and increased collaboration. Organizations can scale up or down based on demand, eliminating the need for large capital expenditures. With pay-as-you-go models, cloud reduces waste by charging only for resources consumed.</p>
+    <p>Collaboration becomes seamless, as teams can work across geographies using shared platforms and apps. Backup and disaster recovery processes improve with built-in replication and redundancy options. Additionally, cloud providers invest in state-of-the-art security, compliance, and monitoring that small companies couldn't achieve alone.</p>
+    <p>However, challenges do exist. Security and privacy are top concerns—especially when dealing with sensitive data in shared environments. There's also the risk of vendor lock-in, where migrating away from a cloud provider becomes technically and financially difficult. Downtime and outages, although rare, can still affect business continuity. Compliance with local and global regulations requires diligence, particularly in regulated industries.</p>
+    <p>To succeed in the cloud, professionals must balance the advantages with the potential risks. Choosing the right architecture, performing risk assessments, and maintaining governance policies are all part of a responsible cloud strategy.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Real-Life Scenarios</h2>
+    <p><strong>Scenario 1:</strong> A small accounting firm moves their operations to the cloud to accommodate hybrid work. Staff begin using Microsoft 365, QuickBooks Online, and Google Drive. Productivity soars. However, during tax season, an outage in their document management platform delays submissions. This highlights the benefit of flexibility, but the challenge of availability.</p>
+    <p><strong>Scenario 2:</strong> A nonprofit handling youth data uses a cloud CRM to track families and donors. While their software is affordable and scalable, a misconfigured access policy exposes personal info. They fix it fast—but learn the hard way about the importance of strong cloud security governance.</p>
+  </div>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/M988_fsOSWo" title="Cloud Computing Benefits and Risks - Animated Explainer" frameborder="0" allowfullscreen></iframe>
+
+  <div class="quiz-section">
+    <h2>Quick Quiz</h2>
+    <div class="question">
+      <p>1. What is a major financial benefit of cloud computing?</p>
+      <label><input type="radio" name="q1" value="correct"> Pay-as-you-go pricing</label>
+      <label><input type="radio" name="q1" value="wrong"> High up-front costs</label>
+      <label><input type="radio" name="q1" value="wrong"> Annual license fees</label>
+    </div>
+    <div class="question">
+      <p>2. Which of the following is a challenge in cloud computing?</p>
+      <label><input type="radio" name="q2" value="correct"> Vendor lock-in</label>
+      <label><input type="radio" name="q2" value="wrong"> Unlimited bandwidth</label>
+      <label><input type="radio" name="q2" value="wrong"> Guaranteed uptime</label>
+    </div>
+    <div class="question">
+      <p>3. Cloud improves disaster recovery by:</p>
+      <label><input type="radio" name="q3" value="correct"> Offering replication and redundancy</label>
+      <label><input type="radio" name="q3" value="wrong"> Eliminating the need for backups</label>
+      <label><input type="radio" name="q3" value="wrong"> Allowing free storage for all data</label>
+    </div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <button onclick="resetQuiz()">Retake Quiz</button>
+    <div class="result" id="result"></div>
+    <div id="next-lesson-btn" style="display:none; margin-top: 20px; text-align: center;">
+      <a href="lesson5.html" style="background:#9333ea; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold;">Go to Lesson 5</a>
+    </div>
+  </div>
+
+  <p class="affirmation">No platform is perfect—but informed decisions lead to empowered results.</p>
+
+  <script>
+    function submitQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      const correct = answers.filter(a => a.value === 'correct').length;
+      const result = document.getElementById('result');
+
+      if (correct === 3) {
+        result.textContent = '✅ Passed! Lesson unlocked.';
+        result.style.color = '#00ff99';
+        completeLesson('lesson4');
+        document.getElementById('next-lesson-btn').style.display = 'block';
+      } else {
+        result.textContent = '❌ Try again. You need all 3 correct.';
+        result.style.color = '#ff4444';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      document.getElementById('result').textContent = '';
+    }
+
+    function completeLesson(lessonKey) {
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
+      progress[lessonKey] = true;
+      localStorage.setItem('dopeProgress', JSON.stringify(progress));
+    }
+  </script>
+  <script src="js/progress-tracker.js"></script>
+</body>
+</html>

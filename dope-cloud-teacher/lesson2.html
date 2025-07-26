@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 2: Cloud Service Models</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #c084fc;
+      font-size: 2rem;
+      text-align: center;
+    }
+    iframe {
+      display: block;
+      margin: 30px auto;
+      max-width: 100%;
+      border: 4px solid #a855f7;
+      border-radius: 15px;
+    }
+    .content-block {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .quiz-section h2 {
+      color: #a855f7;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background: #9333ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7e22ce;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      color: #d8b4fe;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 2: Cloud Service Models</h1>
+
+  <div class="content-block">
+    <h2>Professional Overview</h2>
+    <p>Cloud computing service models define how services are delivered to users and organizations. These models simplify development, deployment, and infrastructure management. The three primary models are Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS).</p>
+    <p>IaaS provides virtualized computing resources over the internet, such as servers, storage, and networking. It's ideal for administrators and developers who want complete control over their environments. Think of Microsoft Azure, Amazon EC2, or Google Compute Engine.</p>
+    <p>PaaS abstracts much of the infrastructure layer and offers a platform for building and deploying applications. It provides tools, libraries, and development frameworks so developers can focus on code, not servers. Examples include Azure App Services, Heroku, and Google App Engine.</p>
+    <p>SaaS delivers fully functional software applications via the internet. These are subscription-based and require no setup or installation. Users simply log in and use the software. Think Office 365, Salesforce, and Google Workspace.</p>
+    <p>Choosing the right model depends on your business needs, control level, and internal IT expertise. Professionals must understand these distinctions to align services with strategy and avoid overspending or underutilizing resources.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Real-Life Scenarios</h2>
+    <p><strong>Scenario 1:</strong> A freelance designer uses Adobe Creative Cloud (SaaS) for editing graphics, Dropbox (SaaS) for file sharing, and occasionally uses AWS Lightsail (IaaS) to test hosting a portfolio site. She doesn’t worry about infrastructure or backend code—everything’s plug-and-play.</p>
+    <p><strong>Scenario 2:</strong> A local nonprofit gets a grant and wants to build a community app. Their developer uses Firebase (PaaS) to spin up the backend in a weekend, deploys it to Google App Engine, and links it to a simple website on Netlify. No servers to patch, no infrastructure to buy—just a complete solution deployed using service models tailored to small teams and fast delivery.</p>
+  </div>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ae_DKNwK_ms" title="Cloud Service Models - Animated Explainer" frameborder="0" allowfullscreen></iframe>
+
+  <div class="quiz-section">
+    <h2>Quick Quiz</h2>
+    <div class="question">
+      <p>1. Which service model gives you the most control over infrastructure?</p>
+      <label><input type="radio" name="q1" value="correct"> IaaS</label>
+      <label><input type="radio" name="q1" value="wrong"> SaaS</label>
+      <label><input type="radio" name="q1" value="wrong"> PaaS</label>
+    </div>
+    <div class="question">
+      <p>2. Which model best suits developers wanting to deploy code without managing servers?</p>
+      <label><input type="radio" name="q2" value="correct"> PaaS</label>
+      <label><input type="radio" name="q2" value="wrong"> IaaS</label>
+      <label><input type="radio" name="q2" value="wrong"> SaaS</label>
+    </div>
+    <div class="question">
+      <p>3. Gmail and Google Drive are examples of what cloud model?</p>
+      <label><input type="radio" name="q3" value="correct"> SaaS</label>
+      <label><input type="radio" name="q3" value="wrong"> IaaS</label>
+      <label><input type="radio" name="q3" value="wrong"> PaaS</label>
+    </div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <button onclick="resetQuiz()">Retake Quiz</button>
+    <div class="result" id="result"></div>
+<div id="next-lesson-btn" style="display:none; margin-top: 20px; text-align: center;">
+  <a href="lesson3.html" style="background:#9333ea; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold;">Go to Lesson 3</a>
+</div>
+  </div>
+
+<div class="interactive-check">
+  <h2>🔥 Real-World Checkpoint</h2>
+  <p>Can you match the following tools to their cloud model? Drag and drop or think it through mentally, then click to reveal answers:</p>
+  <ul>
+    <li><strong>Adobe Creative Cloud</strong> → <span id="check1">[ Click to Reveal ]</span></li>
+    <li><strong>Google App Engine</strong> → <span id="check2">[ Click to Reveal ]</span></li>
+    <li><strong>Azure Virtual Machines</strong> → <span id="check3">[ Click to Reveal ]</span></li>
+  </ul>
+</div>
+
+<script>
+  document.getElementById("check1").onclick = () => { document.getElementById("check1").textContent = "SaaS"; };
+  document.getElementById("check2").onclick = () => { document.getElementById("check2").textContent = "PaaS"; };
+  document.getElementById("check3").onclick = () => { document.getElementById("check3").textContent = "IaaS"; };
+</script>
+
+<p class="affirmation">Keep learning forward—your cloud journey is already inspiring someone else.</p>
+
+  <script>
+    function submitQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      const correct = answers.filter(a => a.value === 'correct').length;
+      const result = document.getElementById('result');
+
+      if (correct === 3) {
+        result.textContent = '✅ Passed! Lesson unlocked.';
+        result.style.color = '#00ff99';
+        completeLesson('lesson2');
+        document.getElementById('next-lesson-btn').style.display = 'block';
+      } else {
+        result.textContent = '❌ Try again. You need all 3 correct.';
+        result.style.color = '#ff4444';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      document.getElementById('result').textContent = '';
+    }
+
+    function completeLesson(lessonKey) {
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
+      progress[lessonKey] = true;
+      localStorage.setItem('dopeProgress', JSON.stringify(progress));
+    }
+  </script>
+  <script src="js/progress-tracker.js"></script>
+</body>
+</html>

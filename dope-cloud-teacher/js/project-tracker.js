@@ -1,0 +1,1 @@
+completeLesson('lesson1');

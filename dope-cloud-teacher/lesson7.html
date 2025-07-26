@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 7: Virtualization and Containers</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #c084fc;
+      font-size: 2rem;
+      text-align: center;
+    }
+    .content-block {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .quiz-section h2 {
+      color: #a855f7;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background: #9333ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7e22ce;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      color: #d8b4fe;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 7: Virtualization and Containers</h1>
+
+  <div class="content-block">
+    <h2>Professional Overview</h2>
+    <p>Virtualization and containers are foundational to modern cloud architecture. Virtualization allows multiple virtual machines (VMs) to run on a single physical server. These VMs are isolated and act like separate computers. Hypervisors like VMware, Hyper-V, and KVM enable this technology.</p>
+    <p>Containers, like those managed by Docker or Kubernetes, go a step further by virtualizing the OS. This makes them lighter and faster than traditional VMs. Containers package applications and their dependencies, ensuring they run consistently regardless of environment.</p>
+    <p>While VMs are ideal for OS-level isolation and legacy applications, containers are preferred for microservices, CI/CD, and scalable apps. Tools like Docker Compose, Helm, and Kubernetes provide orchestration, scaling, and networking features that enable developers to focus on delivery.</p>
+    <p>Professionals working in cloud should understand how virtualization powers IaaS and how containers revolutionize app deployment. Together, they enable rapid innovation, portability, and resource efficiency.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Real-Life Scenarios</h2>
+    <p><strong>Scenario 1:</strong> An IT team at a university uses virtual machines to run isolated lab environments for students. Each VM has its own OS and tools, avoiding system conflicts while saving hardware costs.</p>
+    <p><strong>Scenario 2:</strong> A startup builds a web app using Docker containers. Each microservice is containerized and deployed via Kubernetes. When traffic spikes, the app scales automatically across multiple containers—smooth and fast.</p>
+  </div>
+
+  <div class="quiz-section">
+    <h2>Quick Quiz</h2>
+    <div class="question">
+      <p>1. What does virtualization allow on a single physical server?</p>
+      <label><input type="radio" name="q1" value="correct"> Multiple isolated virtual machines</label>
+      <label><input type="radio" name="q1" value="wrong"> Only one OS at a time</label>
+      <label><input type="radio" name="q1" value="wrong"> Direct hardware execution</label>
+    </div>
+    <div class="question">
+      <p>2. What do containers package together?</p>
+      <label><input type="radio" name="q2" value="correct"> Applications and dependencies</label>
+      <label><input type="radio" name="q2" value="wrong"> Operating systems only</label>
+      <label><input type="radio" name="q2" value="wrong"> Password files</label>
+    </div>
+    <div class="question">
+      <p>3. Which tool is used to orchestrate containers?</p>
+      <label><input type="radio" name="q3" value="correct"> Kubernetes</label>
+      <label><input type="radio" name="q3" value="wrong"> Git</label>
+      <label><input type="radio" name="q3" value="wrong"> Hyper-V</label>
+    </div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <button onclick="resetQuiz()">Retake Quiz</button>
+    <div class="result" id="result"></div>
+    <div id="next-lesson-btn" style="display:none; margin-top: 20px; text-align: center;">
+      <a href="lesson8.html" style="background:#9333ea; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold; margin-right: 10px;">Go to Lesson 8</a>
+      <a href="index.html" style="background:#64748b; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold;">Return to Dashboard</a>
+    </div>
+  </div>
+
+  <p class="affirmation">Modern cloud engineers build lightweight. Keep it clean, keep it containerized.</p>
+
+  <script>
+    function submitQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      const correct = answers.filter(a => a.value === 'correct').length;
+      const result = document.getElementById('result');
+
+      if (correct === 3) {
+        result.textContent = '✅ Passed! Lesson unlocked.';
+        result.style.color = '#00ff99';
+        completeLesson('lesson7');
+        document.getElementById('next-lesson-btn').style.display = 'block';
+      } else {
+        result.textContent = '❌ Try again. You need all 3 correct.';
+        result.style.color = '#ff4444';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      document.getElementById('result').textContent = '';
+    }
+
+    function completeLesson(lessonKey) {
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
+      progress[lessonKey] = true;
+      localStorage.setItem('dopeProgress', JSON.stringify(progress));
+    }
+  </script>
+  <script src="js/progress-tracker.js"></script>
+</body>
+</html>

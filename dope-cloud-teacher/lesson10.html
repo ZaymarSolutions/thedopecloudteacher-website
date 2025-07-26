@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 10: Certification and Career Planning</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #c084fc;
+      font-size: 2rem;
+      text-align: center;
+    }
+    .content-block {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .quiz-section h2 {
+      color: #a855f7;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background: #9333ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7e22ce;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      color: #d8b4fe;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 10: Certification and Career Planning</h1>
+
+  <div class="content-block">
+    <h2>Professional Overview</h2>
+    <p>Cloud certifications validate your knowledge and open doors to high-paying careers. They demonstrate hands-on skills and understanding of platforms like AWS, Azure, and Google Cloud. Entry-level certifications include AWS Cloud Practitioner, Microsoft AZ-900, and Google Cloud Digital Leader.</p>
+    <p>Associate and professional-level certs like AWS Solutions Architect, Azure Administrator, and Google Associate Cloud Engineer are ideal for those ready to build, deploy, and manage cloud environments.</p>
+    <p>Certification is just one piece. You need a career plan: identify your goals (cloud engineer, architect, DevOps, security), choose a specialty (compute, data, networking), and start building a portfolio. Use GitHub, blogs, and LinkedIn to show your work and speak to your journey.</p>
+    <p>Also consider soft skills: communication, documentation, teamwork, and problem-solving are just as valuable. Be prepared to speak confidently about past projects, what you learned, and how you solved problems. Certifications will get you noticed. Experience—and how you share it—will get you hired.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Real-Life Scenarios</h2>
+    <p><strong>Scenario 1:</strong> A helpdesk technician sets a goal to become a cloud architect. She earns her AZ-900, then AZ-104, starts home labbing with Terraform and GitHub Actions, and eventually lands a job as a junior DevOps engineer. She shares her journey online and speaks at meetups.</p>
+    <p><strong>Scenario 2:</strong> A military veteran completes an AWS re/Start bootcamp, passes the Cloud Practitioner, and leverages his project work to land an internship. He builds his portfolio by recreating enterprise-grade environments in the cloud and gets hired full-time in 6 months.</p>
+  </div>
+
+  <div class="quiz-section">
+    <h2>Quick Quiz</h2>
+    <div class="question">
+      <p>1. What is a common entry-level cloud certification?</p>
+      <label><input type="radio" name="q1" value="correct"> AWS Cloud Practitioner / AZ-900</label>
+      <label><input type="radio" name="q1" value="wrong"> CISSP</label>
+      <label><input type="radio" name="q1" value="wrong"> PMP</label>
+    </div>
+    <div class="question">
+      <p>2. What should you include in your cloud portfolio?</p>
+      <label><input type="radio" name="q2" value="correct"> GitHub projects, labs, blogs</label>
+      <label><input type="radio" name="q2" value="wrong"> Gaming achievements</label>
+      <label><input type="radio" name="q2" value="wrong"> Passwords</label>
+    </div>
+    <div class="question">
+      <p>3. What can help you stand out during job interviews?</p>
+      <label><input type="radio" name="q3" value="correct"> Speaking confidently about projects</label>
+      <label><input type="radio" name="q3" value="wrong"> Complaining about exams</label>
+      <label><input type="radio" name="q3" value="wrong"> Listing every job you ever had</label>
+    </div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <button onclick="resetQuiz()">Retake Quiz</button>
+    <div class="result" id="result"></div>
+    <div id="next-lesson-btn" style="display:none; margin-top: 20px; text-align: center;">
+      <a href="index.html" style="background:#9333ea; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold;">Return to Dashboard</a>
+    </div>
+  </div>
+
+  <p class="affirmation">You didn’t just take 10 lessons. You built momentum. Let the world see you shine.</p>
+
+  <script>
+    function submitQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      const correct = answers.filter(a => a.value === 'correct').length;
+      const result = document.getElementById('result');
+
+      if (correct === 3) {
+        result.textContent = '✅ Congratulations! You’ve completed this module.';
+        result.style.color = '#00ff99';
+        completeLesson('lesson10');
+        document.getElementById('next-lesson-btn').style.display = 'block';
+      } else {
+        result.textContent = '❌ Try again. You need all 3 correct.';
+        result.style.color = '#ff4444';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      document.getElementById('result').textContent = '';
+    }
+
+    function completeLesson(lessonKey) {
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
+      progress[lessonKey] = true;
+      localStorage.setItem('dopeProgress', JSON.stringify(progress));
+    }
+  </script>
+  <script src="js/progress-tracker.js"></script>
+</body>
+</html>

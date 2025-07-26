@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | The Dope Cloud Teacher</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #301934, #000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #9333ea;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 300px;
+    }
+
+    .login-box h1 {
+      margin-bottom: 20px;
+      color: #c084fc;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    .login-box button {
+      background: #9333ea;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background: #7e22ce;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>Welcome!</h1>
+    <input type="text" id="name" placeholder="Your Name" />
+    <input type="email" id="email" placeholder="Your Email" />
+    <button onclick="login()">Start Learning</button>
+  </div>
+
+  <script>
+    function login() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name || !email) {
+        alert('Please enter both name and email!');
+        return;
+      }
+
+      localStorage.setItem('dopeUserName', name);
+      localStorage.setItem('dopeUserEmail', email);
+      localStorage.setItem('dopeProgress', JSON.stringify({ lesson1: false, lesson2: false, lesson3: false, lesson4: false, lesson5: false }));
+
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

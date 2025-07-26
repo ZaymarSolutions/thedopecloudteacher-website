@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 5: Getting Started with Cloud</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #c084fc;
+      font-size: 2rem;
+      text-align: center;
+    }
+    iframe {
+      display: block;
+      margin: 30px auto;
+      max-width: 100%;
+      border: 4px solid #a855f7;
+      border-radius: 15px;
+    }
+    .content-block {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .quiz-section h2 {
+      color: #a855f7;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background: #9333ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7e22ce;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      color: #d8b4fe;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 5: Getting Started with Cloud</h1>
+
+  <div class="content-block">
+    <h2>Professional Overview</h2>
+    <p>Starting your cloud journey involves choosing a provider, understanding your goals, and gaining hands-on experience with cloud platforms. Common entry points include learning platforms like Microsoft Learn, AWS Skill Builder, and Google Cloud Skills Boost. Begin by creating a free-tier account and exploring core services such as virtual machines, cloud storage, databases, and networking.</p>
+    <p>Focus on foundational certifications like the AZ-900 (Azure Fundamentals), AWS Cloud Practitioner, or Google Cloud Digital Leader. These provide a strong grasp of terminology, pricing models, and key concepts. Once comfortable, advance into more technical areas like IaaS/PaaS deployments, automation with IaC (Infrastructure as Code), and security best practices.</p>
+    <p>Hands-on labs, sandbox environments, and tutorials are essential to reinforce your skills. You can spin up virtual servers, build APIs, manage permissions, and run containers without needing to purchase physical equipment. Cloud learning is iterative and hands-on—don’t just read, do.</p>
+    <p>Professionals entering cloud roles should also embrace continuous learning through blogs, meetups, certifications, and community forums. The landscape evolves quickly, and those who stay curious stand out.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Real-Life Scenarios</h2>
+    <p><strong>Scenario 1:</strong> A career-changer starts studying cloud at night after work. They sign up for Azure’s free account and begin learning through Microsoft Learn’s sandbox. After 6 weeks, they pass the AZ-900 and use that momentum to land a junior support role at a cloud consulting firm.</p>
+    <p><strong>Scenario 2:</strong> A solopreneur wants to stop paying developers every time they need a website change. They take a course on AWS and build their own simple web app using S3, Lambda, and API Gateway. Cloud gave them control—and saved thousands.</p>
+  </div>
+
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/nHyI1a-02yA" title="Getting Started in the Cloud - Animated Guide" frameborder="0" allowfullscreen></iframe>
+
+  <div class="quiz-section">
+    <h2>Quick Quiz</h2>
+    <div class="question">
+      <p>1. What is a good first certification for cloud beginners?</p>
+      <label><input type="radio" name="q1" value="correct"> AZ-900 / AWS Cloud Practitioner</label>
+      <label><input type="radio" name="q1" value="wrong"> CCIE</label>
+      <label><input type="radio" name="q1" value="wrong"> PMP</label>
+    </div>
+    <div class="question">
+      <p>2. What can cloud sandboxes help you do?</p>
+      <label><input type="radio" name="q2" value="correct"> Practice with real tools in a safe environment</label>
+      <label><input type="radio" name="q2" value="wrong"> Purchase new hardware</label>
+      <label><input type="radio" name="q2" value="wrong"> Replace your ISP</label>
+    </div>
+    <div class="question">
+      <p>3. What mindset helps cloud professionals grow?</p>
+      <label><input type="radio" name="q3" value="correct"> Continuous learning</label>
+      <label><input type="radio" name="q3" value="wrong"> Avoiding certifications</label>
+      <label><input type="radio" name="q3" value="wrong"> Staying offline</label>
+    </div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <button onclick="resetQuiz()">Retake Quiz</button>
+    <div class="result" id="result"></div>
+    <div id="next-lesson-btn" style="display:none; margin-top: 20px; text-align: center;">
+  <a href="lesson6.html" style="background:#9333ea; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold; margin-right: 10px;">Go to Lesson 6</a>
+  <a href="index.html" style="background:#64748b; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold;">Return to Dashboard</a>
+</div>
+  </div>
+
+  <p class="affirmation">Your journey starts now. Study smart, apply often, and teach others when you can.</p>
+
+  <script>
+    function submitQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      const correct = answers.filter(a => a.value === 'correct').length;
+      const result = document.getElementById('result');
+
+      if (correct === 3) {
+        result.textContent = '✅ Passed! Module complete.';
+        result.style.color = '#00ff99';
+        completeLesson('lesson5');
+        document.getElementById('next-lesson-btn').style.display = 'block';
+      } else {
+        result.textContent = '❌ Try again. You need all 3 correct.';
+        result.style.color = '#ff4444';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      document.getElementById('result').textContent = '';
+    }
+
+    function completeLesson(lessonKey) {
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
+      progress[lessonKey] = true;
+      localStorage.setItem('dopeProgress', JSON.stringify(progress));
+    }
+  </script>
+  <script src="js/progress-tracker.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lesson 8: Networking in the Cloud</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #c084fc;
+      font-size: 2rem;
+      text-align: center;
+    }
+    .content-block {
+      margin: 30px 0;
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+    }
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 15px;
+    }
+    .quiz-section h2 {
+      color: #a855f7;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question label {
+      display: block;
+      margin: 5px 0;
+    }
+    button {
+      background: #9333ea;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #7e22ce;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      color: #d8b4fe;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 8: Networking in the Cloud</h1>
+
+  <div class="content-block">
+    <h2>Professional Overview</h2>
+    <p>Cloud networking enables resources to securely and efficiently communicate across global environments. Virtual networks (VNets in Azure, VPCs in AWS) are foundational to every cloud deployment. These provide IP ranges, subnets, and routing controls for traffic between services, datacenters, and the internet.</p>
+    <p>Key concepts include firewalls, load balancers, NAT gateways, private endpoints, and DNS. Load balancers ensure high availability by distributing traffic. Firewalls restrict unauthorized access. NAT gateways allow outbound traffic without exposing internal IPs. DNS resolves names to IPs, allowing services to discover and communicate with each other.</p>
+    <p>Zero Trust principles emphasize that nothing is trusted by default—every connection must be verified. This is why networking security policies and identity-based access play a central role in cloud architecture.</p>
+    <p>Professionals must understand how to plan IP addressing, implement secure peering, connect hybrid environments, and troubleshoot latency, throughput, or route issues.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Real-Life Scenarios</h2>
+    <p><strong>Scenario 1:</strong> A fintech company deploys web apps in AWS and uses load balancers to manage customer traffic. They configure VPCs with subnets, route tables, and security groups to ensure compliance and prevent unauthorized access.</p>
+    <p><strong>Scenario 2:</strong> A government agency links its on-prem datacenter to Azure using a VPN gateway. They use NSGs (Network Security Groups) and firewalls to limit exposure, enforce traffic rules, and segment services with private endpoints for internal-only APIs.</p>
+  </div>
+
+  <div class="quiz-section">
+    <h2>Quick Quiz</h2>
+    <div class="question">
+      <p>1. What does a load balancer do?</p>
+      <label><input type="radio" name="q1" value="correct"> Distributes incoming traffic across resources</label>
+      <label><input type="radio" name="q1" value="wrong"> Blocks DNS resolution</label>
+      <label><input type="radio" name="q1" value="wrong"> Encrypts user data</label>
+    </div>
+    <div class="question">
+      <p>2. What does VNet/VPC stand for?</p>
+      <label><input type="radio" name="q2" value="correct"> Virtual Network / Virtual Private Cloud</label>
+      <label><input type="radio" name="q2" value="wrong"> Virtualized Platform Container</label>
+      <label><input type="radio" name="q2" value="wrong"> Verified Node Tunnel</label>
+    </div>
+    <div class="question">
+      <p>3. What is a common use of NAT gateways?</p>
+      <label><input type="radio" name="q3" value="correct"> Enable outbound traffic without exposing internal IPs</label>
+      <label><input type="radio" name="q3" value="wrong"> Build dashboards</label>
+      <label><input type="radio" name="q3" value="wrong"> Replace routers</label>
+    </div>
+    <button onclick="submitQuiz()">Submit Quiz</button>
+    <button onclick="resetQuiz()">Retake Quiz</button>
+    <div class="result" id="result"></div>
+    <div id="next-lesson-btn" style="display:none; margin-top: 20px; text-align: center;">
+      <a href="lesson9.html" style="background:#9333ea; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold; margin-right: 10px;">Go to Lesson 9</a>
+      <a href="index.html" style="background:#64748b; padding:10px 20px; color:white; border-radius:10px; text-decoration:none; font-weight:bold;">Return to Dashboard</a>
+    </div>
+  </div>
+
+  <p class="affirmation">Strong networks don’t just connect apps—they secure the flow of trust.</p>
+
+  <script>
+    function submitQuiz() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked')
+      ];
+
+      if (answers.includes(null)) {
+        alert('Please answer all questions.');
+        return;
+      }
+
+      const correct = answers.filter(a => a.value === 'correct').length;
+      const result = document.getElementById('result');
+
+      if (correct === 3) {
+        result.textContent = '✅ Passed! Lesson unlocked.';
+        result.style.color = '#00ff99';
+        completeLesson('lesson8');
+        document.getElementById('next-lesson-btn').style.display = 'block';
+      } else {
+        result.textContent = '❌ Try again. You need all 3 correct.';
+        result.style.color = '#ff4444';
+      }
+    }
+
+    function resetQuiz() {
+      document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+      document.getElementById('result').textContent = '';
+    }
+
+    function completeLesson(lessonKey) {
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
+      progress[lessonKey] = true;
+      localStorage.setItem('dopeProgress', JSON.stringify(progress));
+    }
+  </script>
+  <script src="js/progress-tracker.js"></script>
+</body>
+</html>
