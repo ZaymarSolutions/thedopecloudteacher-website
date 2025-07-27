@@ -4,9 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Dope Cloud Teacher - Home</title>
+  <meta name="description" content="Your portal to Black excellence in cloud and DevOps tech. Empowering veterans and beginners with real-world skills and hands-on education.">
+  <meta name="keywords" content="Cloud, AWS, Azure, GCP, DevOps, IaC, Terraform, Bicep, Ansible, Chef, Puppet, Oracle Cloud, IBM Cloud, Black Tech, Veterans, Education">
   <link rel="stylesheet" href="styles/dashboard-theme.css">
   <link rel="stylesheet" href="styles/module-grid.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+  <!-- Font Awesome for major icons, Devicon for tech logos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -23,22 +27,32 @@
       align-items: center;
     }
     .logo {
-      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
       color: #ffcc00;
       text-decoration: none;
-      font-weight: bold;
     }
-    .nav-links a {
+    .logo-img {
+      height: 46px;
+      width: 46px;
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    nav.nav-links a {
       margin-left: 2rem;
       color: #fff;
       text-decoration: none;
       font-size: 1rem;
+      transition: color .2s;
     }
-    .nav-links a:hover {
+    nav.nav-links a:hover {
       color: #ffcc00;
     }
     .hero {
-      padding: 4rem 2rem;
+      padding: 4rem 2rem 2rem 2rem;
       text-align: center;
     }
     .hero h1 {
@@ -60,6 +74,7 @@
       font-weight: bold;
       cursor: pointer;
       text-decoration: none;
+      transition: background .2s;
     }
     .button:hover {
       background: #7e22ce;
@@ -77,6 +92,12 @@
       border: 1px solid #444;
       text-align: center;
       transition: 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     .module-card:hover {
       transform: translateY(-5px);
@@ -87,39 +108,66 @@
       color: #ffcc00;
     }
     .module-card p {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: #ddd;
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #aaa;
+    .resources-section {
+      margin-top: 2rem;
+      padding: 2rem 0 0 0;
+      background: rgba(28, 19, 60, 0.98);
       border-top: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .resources-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .resource-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.98rem;
+      width: 80px;
+    }
+    .resource-link i,
+    .resource-link img {
+      font-size: 2.5rem;
+      margin-bottom: 0.3rem;
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+    .resource-link:hover {
+      color: #ffcc00;
+      transform: scale(1.05);
+    }
+    footer {
+      padding: 1.5rem 1rem 2rem 1rem;
+      font-size: 0.93rem;
+      color: #aaa;
+      background: none;
+      text-align: center;
     }
   </style>
 </head>
 <body>
   <header>
-    <nav style="background:#2d1b69; padding:1rem 2rem; display:flex; align-items:center; justify-content:space-between;">
-      <a href="index.html" style="display:flex; align-items:center; text-decoration:none;">
-        <img src="dope_logo_thumbnail.png" alt="The Dope Cloud Teacher Logo" style="height:50px; border-radius:50%; margin-right:10px;">
-        <span style="color:#ffcc00; font-size:1.4rem; font-weight:bold;">The Dope Cloud Teacher</span>
-      </a>
-      <div>
-        <a href="dashboard.html" style="margin-left:2rem; color:#fff; text-decoration:none;">Dashboard</a>
-        <a href="certificate.html" style="margin-left:2rem; color:#fff; text-decoration:none;">Certificate</a>
-        <a href="comingsoon.html" style="margin-left:2rem; color:#fff; text-decoration:none;">More Courses</a>
-        <a href="shop.html" style="margin-left:2rem; color:#fff; text-decoration:none;">Shop</a>
-      </div>
-    </nav>
-  </header>
-  <header>
-    <a href="#" class="logo">The Dope Cloud Teacher</a>
-    <nav class="nav-links">
+    <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+      <img src="dope_logo_thumbnail.png" alt="The Dope Cloud Teacher Logo" class="logo-img">
+      The Dope Cloud Teacher
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
       <a href="dashboard.html">Dashboard</a>
       <a href="certificate.html">Certificate</a>
       <a href="comingsoon.html">More Courses</a>
+      <a href="shop.html">Shop</a>
     </nav>
   </header>
 
@@ -129,44 +177,98 @@
     <a href="dashboard.html" class="button">Enter Dashboard</a>
   </section>
 
-  <section class="modules-grid">
-    <a href="cloud-fundamentals.html" class="module-card" style="text-decoration: none; color: inherit;">
+  <section class="modules-grid" aria-label="Course modules">
+    <a href="cloud-fundamentals.html" class="module-card">
      <h3>Cloud Fundamentals</h3>
       <p>10 immersive lessons, real-life scenarios, quizzes & certification badge.</p>
     </a>
     <div class="module-card">
-      <h3>DevOps on Azure (Coming Soon)</h3>
+      <h3>DevOps on Azure <span style="font-size:0.81em;">(Coming Soon)</span></h3>
       <p>Hands-on pipelines, GitHub Actions, Terraform & real projects on the way.</p>
     </div>
     <div class="module-card">
-      <h3>Security in Practice (Coming Soon)</h3>
+      <h3>Security in Practice <span style="font-size:0.81em;">(Coming Soon)</span></h3>
       <p>Zero Trust, remediation strategies, and all things cyber. Stay tuned.</p>
+    </div>
+  </section>
+
+  <!-- Cloud Platforms & Tech Stack Resources -->
+  <section class="resources-section" aria-label="Cloud & Tech Stack Resources">
+    <h2 style="color:#ffcc00; font-size:1.4rem; margin:0 0 1rem 0;">Explore Cloud Platforms</h2>
+    <div class="resources-row">
+      <a href="https://aws.amazon.com/" class="resource-link" target="_blank" rel="noopener" aria-label="Amazon Web Services">
+        <i class="devicon-amazonwebservices-original colored" title="AWS"></i>
+        AWS
+      </a>
+      <a href="https://azure.microsoft.com/" class="resource-link" target="_blank" rel="noopener" aria-label="Microsoft Azure">
+        <i class="devicon-azure-plain colored" title="Azure"></i>
+        Azure
+      </a>
+      <a href="https://cloud.google.com/" class="resource-link" target="_blank" rel="noopener" aria-label="Google Cloud Platform">
+        <i class="devicon-googlecloud-plain colored" title="Google Cloud"></i>
+        GCP
+      </a>
+      <a href="https://www.oracle.com/cloud/" class="resource-link" target="_blank" rel="noopener" aria-label="Oracle Cloud">
+        <i class="devicon-oracle-original colored" title="Oracle Cloud"></i>
+        Oracle
+      </a>
+      <a href="https://www.ibm.com/cloud/" class="resource-link" target="_blank" rel="noopener" aria-label="IBM Cloud">
+        <i class="devicon-ibmcloud-original colored" title="IBM Cloud"></i>
+        IBM Cloud
+      </a>
+    </div>
+    <h2 style="color:#ffcc00; font-size:1.25rem; margin:2rem 0 1rem 0;">Infrastructure as Code & DevOps</h2>
+    <div class="resources-row">
+      <a href="https://www.terraform.io/" class="resource-link" target="_blank" rel="noopener" aria-label="Terraform">
+        <i class="devicon-terraform-original colored" title="Terraform"></i>
+        Terraform
+      </a>
+      <a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview" class="resource-link" target="_blank" rel="noopener" aria-label="ARM Templates">
+        <img src="https://learn.microsoft.com/en-us/media/logos/logo-azure.svg" alt="ARM Templates" title="ARM Templates"/>
+        ARM <span style="font-size:0.95em;">Templates</span>
+      </a>
+      <a href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview" class="resource-link" target="_blank" rel="noopener" aria-label="Bicep">
+        <img src="https://raw.githubusercontent.com/Azure/bicep/main/docs/media/bicep.svg" alt="Bicep Logo" title="Bicep" style="background:#fff; border-radius:5px; padding:2px;"/>
+        Bicep
+      </a>
+      <a href="https://www.ansible.com/" class="resource-link" target="_blank" rel="noopener" aria-label="Ansible">
+        <i class="devicon-ansible-original colored" title="Ansible"></i>
+        Ansible
+      </a>
+      <a href="https://www.chef.io/" class="resource-link" target="_blank" rel="noopener" aria-label="Chef">
+        <i class="devicon-chef-original colored" title="Chef"></i>
+        Chef
+      </a>
+      <a href="https://puppet.com/" class="resource-link" target="_blank" rel="noopener" aria-label="Puppet">
+        <i class="devicon-puppet-plain colored" title="Puppet"></i>
+        Puppet
+      </a>
     </div>
   </section>
 
   <footer>
     &copy; 2025 The Dope Cloud Teacher. All rights reserved.
   </footer>
-<!-- Narrator Bubble -->
-<div id="narrator" style="position:fixed; bottom:30px; right:30px; z-index:9999; display:flex; align-items:flex-end;">
-  <img src="dope_logo_thumbnail.png" alt="Narrator Avatar" style="height:120px; border-radius:50%; margin-right:15px;">
-  <div style="background:#fff; color:#000; padding:10px 15px; border-radius:15px; max-width:250px; font-size:0.9rem; box-shadow:0 0 15px rgba(0,0,0,0.3);">
-    <p id="narratorText">Hey superstar 👋🏽! You ready to unlock some dope knowledge?</p>
+  <!-- Narrator Bubble -->
+  <div id="narrator" style="position:fixed; bottom:30px; right:30px; z-index:9999; display:flex; align-items:flex-end;">
+    <img src="dope_logo_thumbnail.png" alt="Narrator Avatar" style="height:120px; border-radius:50%; margin-right:15px;">
+    <div style="background:#fff; color:#000; padding:10px 15px; border-radius:15px; max-width:250px; font-size:0.9rem; box-shadow:0 0 15px rgba(0,0,0,0.3);">
+      <p id="narratorText">Hey superstar 👋🏽! You ready to unlock some dope knowledge?</p>
+    </div>
   </div>
-</div>
-<script>
-  const narratorLines = [
-    "You got this! Let's go cloud-native! ☁️",
-    "Don't just watch — DO! Hands-on is everything.",
-    "Remember: practice beats perfection.",
-    "Ask questions. Google is your bestie.",
-    "Don’t be scared of CLI — it’s your tech sword!"
-  ];
-  let narratorIndex = 0;
-  setInterval(() => {
-    narratorIndex = (narratorIndex + 1) % narratorLines.length;
-    document.getElementById("narratorText").textContent = narratorLines[narratorIndex];
-  }, 7000);
-</script>
+  <script>
+    const narratorLines = [
+      "You got this! Let's go cloud-native! ☁️",
+      "Don't just watch — DO! Hands-on is everything.",
+      "Remember: practice beats perfection.",
+      "Ask questions. Google is your bestie.",
+      "Don’t be scared of CLI — it’s your tech sword!"
+    ];
+    let narratorIndex = 0;
+    setInterval(() => {
+      narratorIndex = (narratorIndex + 1) % narratorLines.length;
+      document.getElementById("narratorText").textContent = narratorLines[narratorIndex];
+    }, 7000);
+  </script>
 </body>
 </html>
