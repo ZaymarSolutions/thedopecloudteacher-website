@@ -28,6 +28,7 @@ db.exec(`
     phone TEXT,
     organization TEXT,
     role TEXT DEFAULT 'student',
+    stripe_customer_id TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     last_login DATETIME,
     email_verified BOOLEAN DEFAULT 0
@@ -95,6 +96,21 @@ db.exec(`
     verification_url TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE(user_id, course_id)
+  )
+`);
+
+// Subscriptions table
+db.exec(`
+  CREATE TABLE subscriptions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    plan_type TEXT NOT NULL,
+    stripe_subscription_id TEXT UNIQUE,
+    stripe_customer_id TEXT,
+    status TEXT DEFAULT 'active',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    canceled_at DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
   )
 `);
 

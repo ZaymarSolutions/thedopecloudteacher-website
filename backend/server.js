@@ -219,6 +219,75 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
   }
 });
 
+// Create subscription (recurring payments)
+app.post('/api/create-subscription', authenticateToken, async (req, res) => {
+  try {
+    const { planType, planName, price, interval } = req.body;
+
+    if (!planType || !planName || !price || !interval) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    // Create or retrieve Stripe customer
+    const user = db.prepare('SELECT email, stripe_customer_id FROM users WHERE id = ?').get(req.user.userId);
+    
+    let customerId = user.stripe_customer_id;
+    
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user.email,
+        metadata: {
+          userId: req.user.userId.toString()
+        }
+      });
+      
+      customerId = customer.id;
+      
+      // Save customer ID
+      db.prepare('UPDATE users SET stripe_customer_id = ? WHERE id = ?')
+        .run(customerId, req.user.userId);
+    }
+
+    // Create Stripe checkout session for subscription
+    const session = await stripe.checkout.sessions.create({
+      customer: customerId,
+      line_items: [{
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: planName,
+            description: `Access to all courses and premium features`,
+          },
+          unit_amount: Math.round(price * 100),
+          recurring: {
+            interval: interval,
+          },
+        },
+        quantity: 1,
+      }],
+      mode: 'subscription',
+      success_url: `${process.env.FRONTEND_URL}/dashboard.html?success=true&subscription=${planType}`,
+      cancel_url: `${process.env.FRONTEND_URL}/pricing.html?canceled=true`,
+      client_reference_id: req.user.userId.toString(),
+      metadata: {
+        planType,
+        userId: req.user.userId.toString()
+      },
+      subscription_data: {
+        metadata: {
+          planType,
+          userId: req.user.userId.toString()
+        }
+      }
+    });
+
+    res.json({ url: session.url, sessionId: session.id });
+  } catch (error) {
+    console.error('Subscription error:', error);
+    res.status(500).json({ error: 'Failed to create subscription' });
+  }
+});
+
 // Stripe webhook handler
 app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
@@ -239,16 +308,50 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     
-    // Grant course access
+    // Check if this is a subscription or one-time purchase
+    if (session.mode === 'subscription') {
+      // Handle subscription
+      db.prepare(`
+        INSERT OR REPLACE INTO subscriptions (user_id, plan_type, stripe_subscription_id, stripe_customer_id, status)
+        VALUES (?, ?, ?, ?, 'active')
+      `).run(
+        parseInt(session.metadata.userId),
+        session.metadata.planType,
+        session.subscription,
+        session.customer
+      );
+    } else {
+      // Grant course access (one-time purchase)
+      db.prepare(`
+        INSERT INTO purchases (user_id, product_type, product_id, stripe_payment_id, amount, status)
+        VALUES (?, 'course', ?, ?, ?, 'active')
+      `).run(
+        parseInt(session.metadata.userId),
+        session.metadata.courseId,
+        session.payment_intent,
+        session.amount_total / 100
+      );
+    }
+  }
+
+  // Handle subscription updates
+  if (event.type === 'customer.subscription.updated') {
+    const subscription = event.data.object;
     db.prepare(`
-      INSERT INTO purchases (user_id, product_type, product_id, stripe_payment_id, amount, status)
-      VALUES (?, 'course', ?, ?, ?, 'active')
-    `).run(
-      parseInt(session.metadata.userId),
-      session.metadata.courseId,
-      session.payment_intent,
-      session.amount_total / 100
-    );
+      UPDATE subscriptions 
+      SET status = ? 
+      WHERE stripe_subscription_id = ?
+    `).run(subscription.status, subscription.id);
+  }
+
+  // Handle subscription cancellations
+  if (event.type === 'customer.subscription.deleted') {
+    const subscription = event.data.object;
+    db.prepare(`
+      UPDATE subscriptions 
+      SET status = 'canceled', canceled_at = CURRENT_TIMESTAMP
+      WHERE stripe_subscription_id = ?
+    `).run(subscription.id);
   }
 
   res.json({ received: true });
