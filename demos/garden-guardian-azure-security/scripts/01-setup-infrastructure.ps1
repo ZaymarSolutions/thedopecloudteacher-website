@@ -87,7 +87,7 @@ az storage account create `
 # Step 5: Create Microsoft Purview Account
 Write-Host ""
 Write-Host "[5/7] Creating Microsoft Purview account..." -ForegroundColor Cyan
-Write-Host "   (This may take 5-10 minutes)" -ForegroundColor Yellow
+Write-Host "   This may take 5-10 minutes" -ForegroundColor Yellow
 az purview account create `
   --resource-group $RESOURCE_GROUP `
   --name $PURVIEW_ACCOUNT `
