@@ -219,16 +219,7 @@
     }
 
     function completeLesson(lessonKey) {
-  const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
-  progress[lessonKey] = true;
-  localStorage.setItem('dopeProgress', JSON.stringify(progress));
-}');
-  progress[lessonKey] = true;
-  localStorage.setItem('dopeProgress', JSON.stringify(progress));
-}');
-  progress[lessonKey] = true;
-  localStorage.setItem('dopeProgress', JSON.stringify(progress));
-}');
+      const progress = JSON.parse(localStorage.getItem('dopeProgress') || '{}');
       progress[lessonKey] = true;
       localStorage.setItem('dopeProgress', JSON.stringify(progress));
     }
