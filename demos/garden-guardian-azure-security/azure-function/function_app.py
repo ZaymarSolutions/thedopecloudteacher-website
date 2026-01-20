@@ -1,15 +1,20 @@
 """
 Garden Guardian - Azure Function for IoT Sensor Data Ingestion
-Demonstrates: HTTP Trigger, Anomaly Detection, Security Event Logging
+Demonstrates: HTTP Trigger, Anomaly Detection, Security Event Logging, Purview Integration
 """
 
 import azure.functions as func
 import logging
 import json
 import hashlib
+import os
 from datetime import datetime
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.FUNCTION)
+
+# Purview configuration (optional - will gracefully degrade if not configured)
+PURVIEW_ACCOUNT = os.environ.get('PURVIEW_ACCOUNT_NAME', '')
+PURVIEW_ENABLED = bool(PURVIEW_ACCOUNT)
 
 @app.route(route="IngestSensorData")
 def IngestSensorData(req: func.HttpRequest) -> func.HttpResponse:
@@ -93,6 +98,21 @@ def IngestSensorData(req: func.HttpRequest) -> func.HttpResponse:
         else:
             logging.info(json.dumps(security_event))
         
+        # Track data lineage in Purview (if enabled)
+        if PURVIEW_ENABLED:
+            try:
+                purview_lineage = {
+                    "source": f"IoT-Sensor-{sensor_id}",
+                    "destination": "Azure-Function-IngestSensorData",
+                    "timestamp": datetime.utcnow().isoformat() + "Z",
+                    "data_classification": "Public" if not security_event["anomaly_detected"] else "Security-Event",
+                    "process": "sensor-data-ingestion",
+                    "anomaly_detected": security_event["anomaly_detected"]
+                }
+                logging.info(f"PURVIEW_LINEAGE: {json.dumps(purview_lineage)}")
+            except Exception as purview_error:
+                logging.warning(f"Purview lineage tracking failed: {str(purview_error)}")
+        
         # Prepare response
         response_data = {
             "status": "success",
@@ -151,6 +171,19 @@ def AutoResponse(req: func.HttpRequest) -> func.HttpResponse:
         severity = req_body.get('severity')
         anomaly_type = req_body.get('anomaly_type')
         
+            
+            # Log Purview data governance event
+            if PURVIEW_ENABLED:
+                purview_audit = {
+                    "event_type": "security_incident",
+                    "incident_id": incident_id,
+                    "sensor_id": sensor_id,
+                    "severity": severity,
+                    "compliance_framework": "NIST-800-53",
+                    "control": "SI-4 (Information System Monitoring)",
+                    "timestamp": datetime.utcnow().isoformat() + "Z"
+                }
+                logging.info(f"PURVIEW_AUDIT: {json.dumps(purview_audit)}")
         # Autonomous decision logic
         actions_taken = []
         

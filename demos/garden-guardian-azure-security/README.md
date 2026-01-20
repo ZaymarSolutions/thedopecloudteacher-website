@@ -71,10 +71,10 @@ garden-guardian-azure-security/
 - Python 3.9+ installed
 - Azure Functions Core Tools (`func --version`)
 
-### Step 1: Deploy Infrastructure (3 min)
-```bash
+### Step 1: Deploy Infrastructure (5-10 min)
+```powershell
 cd scripts
-./01-setup-infrastructure.sh
+.\01-setup-infrastructure.ps1
 ```
 
 Creates:
@@ -83,15 +83,16 @@ Creates:
 - Application Insights: `garden-insights`
 - Storage Account: `stgardenguardian`
 - Function App: `func-garden-guardian`
+- **Microsoft Purview Account: `purview-garden-guardian`**
 
 ### Step 2: Deploy Azure Function (2 min)
-```bash
-./02-deploy-function.sh
+```powershell
+.\02-deploy-function.ps1
 ```
 
 ### Step 3: Configure Sentinel (3 min)
-```bash
-./03-configure-sentinel.sh
+```powershell
+.\03-configure-sentinel.ps1
 ```
 
 ### Step 4: Test with Simulator (2 min)
@@ -139,10 +140,11 @@ See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for step-by-step presentation guide.
 - Severity classification (Informational → Critical)
 - Alert generation for SOC teams
 
-### 4. **Compliance Tracking**
-- Data lineage from sensor → storage
-- Audit trail for all security events
-- Purview governance policies
+### 4. **Compliance Tracking (Microsoft Purview)**
+- **Automated data lineage tracking** from sensor → function → storage
+- Complete audit trail for all security events
+- Compliance with NIST 800-53, FISMA, CMMC frameworks
+- Real-time governance and data classification
 
 ---
 
@@ -275,12 +277,12 @@ Questions? Contact: **thedopecloudteacher@gmail.com**
 
 ## 🧹 Cleanup
 
-To avoid Azure charges:
-```bash
+To powershell
 cd scripts
-./cleanup.sh
+.\cleanup.ps1
 ```
 
+This deletes the entire resource group and all contained resources (Function App, Sentinel, Purview, Storage, etc.)
 This deletes the entire resource group and all contained resources.
 
 ---

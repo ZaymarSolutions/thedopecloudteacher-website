@@ -1,0 +1,69 @@
+// ============================================================
+// Purview Data Lineage Query
+// ============================================================
+// Purpose: Track data flow from sensors through the system
+//          Visualize data governance and compliance tracking
+// 
+// Use Case: Audit trail for regulatory compliance
+// ============================================================
+
+FunctionAppLogs
+| where TimeGenerated > ago(1h)
+| where Message contains "PURVIEW_LINEAGE"
+| extend LineageData = parse_json(substring(Message, indexof(Message, "PURVIEW_LINEAGE: ") + 17))
+| project 
+    TimeGenerated,
+    Source = tostring(LineageData.source),
+    Destination = tostring(LineageData.destination),
+    DataClassification = tostring(LineageData.data_classification),
+    Process = tostring(LineageData.process),
+    AnomalyDetected = tobool(LineageData.anomaly_detected)
+| summarize 
+    TotalDataFlows = count(),
+    NormalFlows = countif(AnomalyDetected == false),
+    AnomalyFlows = countif(AnomalyDetected == true),
+    UniqueSources = dcount(Source)
+    by bin(TimeGenerated, 5m), DataClassification
+| extend 
+    ComplianceScore = round((todouble(NormalFlows) / todouble(TotalDataFlows)) * 100, 2)
+| project
+    TimeGenerated,
+    DataClassification,
+    TotalDataFlows,
+    NormalFlows,
+    AnomalyFlows,
+    UniqueSources,
+    ["Compliance Score %"] = ComplianceScore
+| order by TimeGenerated desc
+
+// ============================================================
+// Purview Compliance Audit Trail
+// ============================================================
+
+FunctionAppLogs
+| where TimeGenerated > ago(24h)
+| where Message contains "PURVIEW_AUDIT"
+| extend AuditData = parse_json(substring(Message, indexof(Message, "PURVIEW_AUDIT: ") + 15))
+| project 
+    TimeGenerated,
+    EventType = tostring(AuditData.event_type),
+    IncidentId = tostring(AuditData.incident_id),
+    SensorId = tostring(AuditData.sensor_id),
+    Severity = tostring(AuditData.severity),
+    ComplianceFramework = tostring(AuditData.compliance_framework),
+    Control = tostring(AuditData.control)
+| extend 
+    ComplianceReport = strcat(
+        "Incident ", IncidentId, 
+        " on device ", SensorId, 
+        " - ", ComplianceFramework, 
+        " control ", Control
+    )
+| project
+    ["Timestamp"] = TimeGenerated,
+    ["Severity"] = Severity,
+    ["Device"] = SensorId,
+    ["Compliance Framework"] = ComplianceFramework,
+    ["Control ID"] = Control,
+    ["Audit Entry"] = ComplianceReport
+| order by TimeGenerated desc

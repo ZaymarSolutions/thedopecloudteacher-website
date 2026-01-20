@@ -168,20 +168,39 @@ FunctionAppLogs
 
 ---
 
-### Part 6: Compliance & Governance (12:00 - 14:00)
+### Part 6: Compliance & Governance with Microsoft Purview (12:00 - 14:00)
 
-**[Optional: If Purview is configured]**
+> "The final piece is compliance tracking with Microsoft Purview - and this is where government agencies really get excited."
 
-> "The final piece is compliance tracking with Microsoft Purview."
+**[Navigate to Log Analytics, run Purview lineage query]**
 
-**[Show Purview dashboard]**
+```kql
+FunctionAppLogs
+| where TimeGenerated > ago(1h)
+| where Message contains "PURVIEW_LINEAGE"
+| extend LineageData = parse_json(substring(Message, indexof(Message, "PURVIEW_LINEAGE: ") + 17))
+| project TimeGenerated, Source = tostring(LineageData.source), 
+          Destination = tostring(LineageData.destination),
+          DataClassification = tostring(LineageData.data_classification)
+```
+
+**[Show results]**
 
 > "Purview automatically tracks:
-> - **Data lineage:** Where did this sensor data come from? Where did it go?
-> - **Audit trail:** Complete history of all security events
-> - **Compliance reporting:** Automatic reports for auditors
+> - **Data lineage:** Every piece of sensor data from origin to destination
+> - **Data classification:** Normal activity vs. security events
+> - **Audit trail:** Complete history for regulatory auditors
+> - **Compliance reporting:** Automatic NIST 800-53 control mapping
 >
-> This is critical for government agencies that need to prove compliance with regulations like FISMA, NIST 800-53, or state security standards."
+> When auditors ask 'Where did this data come from?' or 'How did you handle this security incident?' - Purview has the answers, automatically documented."
+
+**[Key Talking Point for Government]**
+
+> "For PG Parks, this means:
+> - **Pass audits faster:** All evidence auto-collected
+> - **Meet FISMA requirements:** Complete audit trails
+> - **Reduce compliance costs:** No manual documentation
+> - **Prove accountability:** Timestamp every action"
 
 ---
 
