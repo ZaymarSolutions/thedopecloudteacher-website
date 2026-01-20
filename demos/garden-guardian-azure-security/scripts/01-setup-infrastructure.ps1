@@ -145,13 +145,13 @@ Write-Host "App Insights:       $APP_INSIGHTS"
 Write-Host "Storage Account:    $STORAGE_ACCOUNT"
 Write-Host "Purview Account:    $PURVIEW_ACCOUNT"
 Write-Host ""
-Write-Host "📝 Next Steps:" -ForegroundColor Yellow
+Write-Host "Next Steps:" -ForegroundColor Yellow
 Write-Host "  1. Run: .\02-deploy-function.ps1"
 Write-Host "  2. Run: .\03-configure-sentinel.ps1"
 Write-Host "  3. Update simulator\simulate_garden_sensors.py with Function URL and key"
 Write-Host ""
-Write-Host "🌐 Access your resources:" -ForegroundColor Yellow
+Write-Host "Access your resources:" -ForegroundColor Yellow
 $subscriptionId = az account show --query id -o tsv
 Write-Host "  Portal: https://portal.azure.com/#@/resource/subscriptions/$subscriptionId/resourceGroups/$RESOURCE_GROUP"
-Write-Host "  Purview Studio: https://web.purview.azure.com/resource/$PURVIEW_ACCOUNT"
+Write-Host "  Purview Studio: https://web.purview.azure.com/resource/$PURVIEW_ACCOUNT" -ForegroundColor Cyan
 Write-Host ""
