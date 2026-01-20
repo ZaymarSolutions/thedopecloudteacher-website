@@ -3,72 +3,439 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Certificate</title>
+  <title>Certificate - The Dope Cloud Teacher</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background: linear-gradient(135deg, #1f1147, #301934);
       color: white;
       font-family: 'Segoe UI', sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #2d1b69;
+      padding: 1rem 2rem;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 46px;
+      width: 46px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+    }
+
+    .certificate-card {
+      background: linear-gradient(135deg, #fff, #f9fafb);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+      border: 10px solid #9333ea;
+      position: relative;
+      color: #1f1147;
+    }
+
+    .certificate-card::before,
+    .certificate-card::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 3px solid #ffcc00;
+    }
+
+    .certificate-card::before {
+      top: 20px;
+      left: 20px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .certificate-card::after {
+      bottom: 20px;
+      right: 20px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .cert-header {
+      margin-bottom: 2rem;
+    }
+
+    .cert-icon {
+      font-size: 4rem;
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+
+    .cert-title {
+      font-size: 2.5rem;
+      color: #9333ea;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .cert-subtitle {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    .cert-body {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: rgba(147, 51, 234, 0.05);
+      border-radius: 15px;
+    }
+
+    .cert-recipient {
+      font-size: 1.3rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .cert-name {
+      font-size: 2.5rem;
+      color: #9333ea;
+      font-weight: bold;
+      margin: 1rem 0;
+      font-family: 'Georgia', serif;
+    }
+
+    .cert-course {
+      font-size: 1.5rem;
+      color: #1f1147;
+      margin: 1.5rem 0;
+      font-weight: bold;
+    }
+
+    .cert-footer {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid #9333ea;
+    }
+
+    .cert-signature {
       text-align: center;
     }
-    input {
-      padding: 10px;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 20px;
+
+    .signature-line {
+      width: 200px;
+      border-top: 2px solid #000;
+      margin: 0 auto 0.5rem;
     }
-    button {
-      background-color: #9333ea;
-      color: white;
-      font-size: 1rem;
-      padding: 10px 20px;
-      border: none;
+
+    .cert-date {
+      font-size: 1.1rem;
+      color: #666;
+      margin-top: 2rem;
+    }
+
+    .cert-code {
+      font-size: 0.9rem;
+      color: #999;
+      margin-top: 1rem;
+      font-family: monospace;
+    }
+
+    .actions {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #9333ea;
+      color: #fff;
+      text-decoration: none;
       border-radius: 10px;
+      margin: 0.5rem;
+      font-weight: bold;
+      border: none;
       cursor: pointer;
+      transition: all 0.3s;
     }
-    button:hover {
-      background-color: #7e22ce;
+
+    .btn:hover {
+      background: #7e22ce;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 2px solid #9333ea;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 4rem;
+      color: #ffcc00;
+      font-size: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      margin-top: 4rem;
+    }
+
+    @media print {
+      header, .actions, footer {
+        display: none;
+      }
+      body {
+        background: white;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>🎓 Generate Your Certificate</h1>
-  <p>Enter your name to create your custom Dope Cloud certificate:</p>
-  <input type="text" id="studentName" placeholder="Your Full Name" />
-  <button onclick="generatePDF()">Download Certificate</button>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="dope_logo_thumbnail.png" alt="Logo" class="logo-img">
+      The Dope Cloud Teacher
+    </a>
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="courses.html">Courses</a>
+    </nav>
+  </header>
 
+  <div class="container">
+    <div id="loadingState" class="loading">
+      <i class="fas fa-spinner fa-spin"></i><br>
+      Loading Certificate...
+    </div>
+
+    <div id="certificateContent" style="display: none;">
+      <div class="certificate-card" id="certificateCard">
+        <div class="cert-header">
+          <div class="cert-icon">🏆</div>
+          <div class="cert-title">Certificate of Completion</div>
+          <div class="cert-subtitle">The Dope Cloud Teacher</div>
+        </div>
+
+        <div class="cert-body">
+          <div class="cert-recipient">This certifies that</div>
+          <div class="cert-name" id="certName">Loading...</div>
+          <div class="cert-recipient">has successfully completed</div>
+          <div class="cert-course" id="certCourse">Cloud Computing Course</div>
+          <div class="cert-date" id="certDate">Date: --/--/----</div>
+          <div class="cert-code" id="certCode">Certificate Code: --------</div>
+        </div>
+
+        <div class="cert-footer">
+          <div class="cert-signature">
+            <div class="signature-line"></div>
+            <strong>DoGood</strong><br>
+            <small>Founder & Instructor</small>
+          </div>
+          <div class="cert-signature">
+            <div class="signature-line"></div>
+            <strong>The Dope Cloud Teacher</strong><br>
+            <small>Platform</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" onclick="downloadPDF()">
+          <i class="fas fa-download"></i> Download PDF
+        </button>
+        <button class="btn" onclick="window.print()">
+          <i class="fas fa-print"></i> Print
+        </button>
+        <a href="dashboard.html" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 The Dope Cloud Teacher. All rights reserved.
+  </footer>
+
+  <script src="js/auth-system.js"></script>
+  <script src="js/course-data.js"></script>
   <script>
-    async function generatePDF() {
-      const name = document.getElementById('studentName').value.trim();
-      if (!name) return alert('Please enter your full name.');
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFontSize(22);
-      doc.setTextColor('#4c1d95');
-      doc.text('Certificate of Completion', 105, 40, { align: 'center' });
-      doc.setFontSize(16);
-      doc.setTextColor('#000000');
-      doc.text(`This certifies that`, 105, 60, { align: 'center' });
-      doc.setFontSize(20);
-      doc.setTextColor('#9333ea');
-      doc.text(name, 105, 75, { align: 'center' });
-      doc.setFontSize(16);
-      doc.setTextColor('#000000');
-      doc.text('has successfully completed the', 105, 90, { align: 'center' });
-      doc.text('Cloud Computing Fundamentals Module', 105, 105, { align: 'center' });
-      doc.setFontSize(12);
-      const date = new Date().toLocaleDateString();
-      doc.text(`Awarded on: ${date}`, 105, 125, { align: 'center' });
-      doc.text('Instructor: DoGood, The Dope Cloud Teacher™', 105, 140, { align: 'center' });
-      doc.save(`${name.replace(/\s+/g, '_')}_DopeCloud_Certificate.pdf`);
+    async function loadCertificate() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const courseParam = urlParams.get('course');
+      const codeParam = urlParams.get('code');
+
+      if (codeParam) {
+        // Verify certificate by code
+        const result = await dopeCertificates.verifyCertificate(codeParam);
+        if (result.valid) {
+          displayCertificate(result.certificate);
+        } else {
+          alert('Certificate not found');
+          window.location.href = 'dashboard.html';
+        }
+      } else if (courseParam) {
+        // Generate new certificate
+        if (!dopeAuth.isAuthenticated()) {
+          showAuthModal('login');
+          return;
+        }
+
+        try {
+          const certificate = await dopeCertificates.generateCertificate(courseParam);
+          const user = await dopeAuth.getCurrentUser();
+          const course = COURSE_PATHWAYS[courseParam];
+          
+          displayCertificate({
+            ...certificate,
+            user_name: user.name,
+            course_title: course.title
+          });
+        } catch (error) {
+          alert(error.message);
+          window.location.href = 'dashboard.html';
+        }
+      } else {
+        // No parameters, redirect to dashboard
+        window.location.href = 'dashboard.html';
+      }
     }
+
+    function displayCertificate(cert) {
+      document.getElementById('certName').textContent = cert.user_name;
+      document.getElementById('certCourse').textContent = cert.course_title;
+      document.getElementById('certDate').textContent = `Issued: ${new Date(cert.issue_date || cert.issued_at).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      })}`;
+      document.getElementById('certCode').textContent = `Certificate Code: ${cert.certificate_code}`;
+
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('certificateContent').style.display = 'block';
+    }
+
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF('landscape');
+      
+      const name = document.getElementById('certName').textContent;
+      const course = document.getElementById('certCourse').textContent;
+      const date = document.getElementById('certDate').textContent;
+      const code = document.getElementById('certCode').textContent;
+
+      // Purple border
+      doc.setDrawColor(147, 51, 234);
+      doc.setLineWidth(3);
+      doc.rect(10, 10, 277, 190);
+
+      // Gold accent corners
+      doc.setDrawColor(255, 204, 0);
+      doc.setLineWidth(2);
+      doc.line(15, 15, 40, 15);
+      doc.line(15, 15, 15, 40);
+      doc.line(257, 15, 282, 15);
+      doc.line(282, 15, 282, 40);
+      doc.line(15, 195, 40, 195);
+      doc.line(15, 195, 15, 170);
+      doc.line(257, 195, 282, 195);
+      doc.line(282, 195, 282, 170);
+
+      // Title
+      doc.setFontSize(28);
+      doc.setTextColor(147, 51, 234);
+      doc.text('Certificate of Completion', 148.5, 40, { align: 'center' });
+
+      // Trophy emoji replacement
+      doc.setFontSize(40);
+      doc.text('🏆', 148.5, 55, { align: 'center' });
+
+      // Subtitle
+      doc.setFontSize(14);
+      doc.setTextColor(100, 100, 100);
+      doc.text('The Dope Cloud Teacher', 148.5, 65, { align: 'center' });
+
+      // Body text
+      doc.setFontSize(16);
+      doc.setTextColor(50, 50, 50);
+      doc.text('This certifies that', 148.5, 85, { align: 'center' });
+
+      // Name
+      doc.setFontSize(24);
+      doc.setTextColor(147, 51, 234);
+      doc.setFont(undefined, 'bold');
+      doc.text(name, 148.5, 100, { align: 'center' });
+
+      // Course text
+      doc.setFontSize(16);
+      doc.setTextColor(50, 50, 50);
+      doc.setFont(undefined, 'normal');
+      doc.text('has successfully completed', 148.5, 115, { align: 'center' });
+
+      // Course name
+      doc.setFontSize(20);
+      doc.setTextColor(31, 17, 71);
+      doc.setFont(undefined, 'bold');
+      doc.text(course, 148.5, 130, { align: 'center' });
+
+      // Date and code
+      doc.setFontSize(12);
+      doc.setTextColor(100, 100, 100);
+      doc.setFont(undefined, 'normal');
+      doc.text(date, 148.5, 150, { align: 'center' });
+      doc.text(code, 148.5, 158, { align: 'center' });
+
+      // Signatures
+      doc.setLineWidth(0.5);
+      doc.setDrawColor(0, 0, 0);
+      doc.line(60, 175, 110, 175);
+      doc.line(187, 175, 237, 175);
+
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text('DoGood', 85, 182, { align: 'center' });
+      doc.setFontSize(10);
+      doc.text('Founder & Instructor', 85, 188, { align: 'center' });
+
+      doc.setFontSize(12);
+      doc.text('The Dope Cloud Teacher', 212, 182, { align: 'center' });
+      doc.setFontSize(10);
+      doc.text('Platform', 212, 188, { align: 'center' });
+
+      doc.save(`${name.replace(/\s+/g, '_')}_Certificate.pdf`);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadCertificate);
   </script>
 </body>
 </html>

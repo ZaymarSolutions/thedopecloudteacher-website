@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson - The Dope Cloud Teacher</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1f1147, #301934);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #2d1b69;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 46px;
+      width: 46px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .breadcrumb {
+      padding: 1rem 2rem;
+      color: #aaa;
+    }
+
+    .breadcrumb a {
+      color: #9333ea;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #ffcc00;
+    }
+
+    .lesson-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .lesson-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .lesson-header h1 {
+      color: #c084fc;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .lesson-meta {
+      color: #aaa;
+      font-size: 1rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      margin: 2rem 0;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(147, 51, 234, 0.3);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .content-block {
+      margin: 30px 0;
+      padding: 25px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      border-left: 4px solid #9333ea;
+    }
+
+    .content-block h2 {
+      color: #a855f7;
+      margin-bottom: 1rem;
+    }
+
+    .content-block p {
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      color: #e0e0e0;
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .topic-card {
+      background: rgba(147, 51, 234, 0.2);
+      padding: 1rem;
+      border-radius: 10px;
+      border: 2px solid #9333ea;
+      text-align: center;
+    }
+
+    .quiz-section {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 15px;
+      border: 2px solid #9333ea;
+    }
+
+    .quiz-section h2 {
+      color: #a855f7;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+    }
+
+    .question {
+      margin: 25px 0;
+      padding: 20px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+
+    .question p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .question label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .question label:hover {
+      background: rgba(147, 51, 234, 0.3);
+    }
+
+    .question input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .btn-primary {
+      background: #9333ea;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: #7e22ce;
+      transform: translateY(-2px);
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .result.success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 2px solid #10b981;
+      color: #10b981;
+    }
+
+    .result.fail {
+      background: rgba(239, 68, 68, 0.2);
+      border: 2px solid #ef4444;
+      color: #ef4444;
+    }
+
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-nav {
+      padding: 1rem 2rem;
+      background: #2d1b69;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      border: 2px solid #9333ea;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .btn-nav:hover {
+      background: #9333ea;
+      transform: translateY(-2px);
+    }
+
+    .btn-complete {
+      background: #10b981;
+      border-color: #10b981;
+    }
+
+    .btn-complete:hover {
+      background: #059669;
+    }
+
+    .affirmation {
+      margin-top: 40px;
+      text-align: center;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #d8b4fe;
+      padding: 20px;
+      background: rgba(216, 180, 254, 0.1);
+      border-radius: 10px;
+    }
+
+    .locked-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(31, 17, 71, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .locked-content {
+      text-align: center;
+      max-width: 600px;
+      padding: 3rem;
+      background: linear-gradient(135deg, #2d1b69, #1f1147);
+      border-radius: 20px;
+      border: 3px solid #9333ea;
+    }
+
+    .locked-content i {
+      font-size: 5rem;
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+
+    .locked-content h2 {
+      color: #ffcc00;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .locked-content p {
+      color: #e0e0e0;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .locked-content .btn-primary {
+      background: #ffcc00;
+      color: #1f1147;
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="lockedOverlay" class="locked-overlay" style="display: none;">
+    <div class="locked-content">
+      <i class="fas fa-lock"></i>
+      <h2>Course Access Required</h2>
+      <p>This lesson is part of a premium course. Purchase the course or subscribe to access all content.</p>
+      <a href="pricing.html" class="btn-primary">View Pricing Options</a>
+    </div>
+  </div>
+
+  <header>
+    <a href="index.html" class="logo">
+      <img src="dope_logo_thumbnail.png" alt="Logo" class="logo-img">
+      The Dope Cloud Teacher
+    </a>
+    <nav class="nav-links">
+      <a href="courses.html">All Courses</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb" id="breadcrumb">
+    <a href="index.html">Home</a> &gt; 
+    <a href="courses.html" id="courseBreadcrumb">Course</a> &gt; 
+    <span id="lessonBreadcrumb">Lesson</span>
+  </div>
+
+  <div class="lesson-container" id="lessonContent">
+    <div class="lesson-header">
+      <h1 id="lessonTitle">Loading...</h1>
+      <div class="lesson-meta" id="lessonMeta">Duration: -- min</div>
+    </div>
+
+    <div class="topics-grid" id="topicsGrid">
+      <!-- Topics will be inserted here -->
+    </div>
+
+    <div class="video-wrapper" id="videoWrapper">
+      <!-- Video will be inserted here -->
+    </div>
+
+    <div class="content-block">
+      <h2>📖 Lesson Overview</h2>
+      <p id="lessonDescription">Loading lesson content...</p>
+    </div>
+
+    <div class="content-block">
+      <h2>💡 Real-World Application</h2>
+      <p id="realWorldContent">This lesson applies to real-world scenarios in cloud computing and technology careers...</p>
+    </div>
+
+    <div class="quiz-section" id="quizSection">
+      <!-- Quiz will be dynamically generated -->
+    </div>
+
+    <div id="quizResult" class="result" style="display: none;"></div>
+
+    <div class="affirmation">
+      <p>💪 "You're not just learning—you're leveling up. Keep going, you got this!"</p>
+    </div>
+
+    <div class="navigation-buttons">
+      <a href="#" id="prevLesson" class="btn-nav">
+        <i class="fas fa-arrow-left"></i> Previous Lesson
+      </a>
+      <button id="completeBtn" class="btn-nav btn-complete" onclick="completeLesson()">
+        Mark Complete <i class="fas fa-check"></i>
+      </button>
+      <a href="#" id="nextLesson" class="btn-nav">
+        Next Lesson <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 The Dope Cloud Teacher. All rights reserved.
+  </footer>
+
+  <script src="js/auth-system.js"></script>
+  <script src="js/course-data.js"></script>
+  <script>
+    let currentCourse = null;
+    let currentLesson = null;
+    let currentLessonIndex = 0;
+
+    async function loadLesson() {
+      const params = new URLSearchParams(window.location.search);
+      const courseId = params.get('course');
+      const lessonId = params.get('lesson');
+
+      if (!courseId || !lessonId) {
+        window.location.href = 'courses.html';
+        return;
+      }
+
+      currentCourse = COURSE_PATHWAYS[courseId];
+      if (!currentCourse) {
+        window.location.href = 'courses.html';
+        return;
+      }
+
+      // Check access
+      const hasAccess = await dopeCourses.hasCourseAccess(courseId);
+      if (!hasAccess) {
+        document.getElementById('lockedOverlay').style.display = 'flex';
+        return;
+      }
+
+      currentLessonIndex = currentCourse.lessons.findIndex(l => l.id === lessonId);
+      if (currentLessonIndex === -1) {
+        window.location.href = 'courses.html';
+        return;
+      }
+
+      currentLesson = currentCourse.lessons[currentLessonIndex];
+
+      // Update page content
+      document.title = `${currentLesson.title} - ${currentCourse.title}`;
+      document.getElementById('lessonTitle').textContent = currentLesson.title;
+      document.getElementById('lessonMeta').textContent = `Duration: ${currentLesson.duration} | Lesson ${currentLessonIndex + 1} of ${currentCourse.lessons.length}`;
+      document.getElementById('lessonDescription').textContent = currentLesson.description;
+      document.getElementById('courseBreadcrumb').textContent = currentCourse.title;
+      document.getElementById('courseBreadcrumb').href = `courses.html?course=${courseId}`;
+      document.getElementById('lessonBreadcrumb').textContent = currentLesson.title;
+
+      // Topics
+      const topicsGrid = document.getElementById('topicsGrid');
+      topicsGrid.innerHTML = currentLesson.topics.map(topic => `
+        <div class="topic-card">
+          <i class="fas fa-check-circle" style="color: #10b981; margin-right: 5px;"></i>
+          ${topic}
+        </div>
+      `).join('');
+
+      // Video
+      const videoWrapper = document.getElementById('videoWrapper');
+      videoWrapper.innerHTML = `<iframe src="${currentLesson.video}" allowfullscreen></iframe>`;
+
+      // Navigation buttons
+      const prevBtn = document.getElementById('prevLesson');
+      const nextBtn = document.getElementById('nextLesson');
+
+      if (currentLessonIndex > 0) {
+        const prevLesson = currentCourse.lessons[currentLessonIndex - 1];
+        prevBtn.href = `lesson.html?course=${courseId}&lesson=${prevLesson.id}`;
+        prevBtn.style.display = 'block';
+      } else {
+        prevBtn.style.display = 'none';
+      }
+
+      if (currentLessonIndex < currentCourse.lessons.length - 1) {
+        const nextLesson = currentCourse.lessons[currentLessonIndex + 1];
+        nextBtn.href = `lesson.html?course=${courseId}&lesson=${nextLesson.id}`;
+        nextBtn.style.display = 'block';
+      } else {
+        nextBtn.style.display = 'none';
+      }
+
+      // Generate quiz
+      generateQuiz();
+    }
+
+    function generateQuiz() {
+      const quizSection = document.getElementById('quizSection');
+      
+      quizSection.innerHTML = `
+        <h2>🧠 Knowledge Check</h2>
+        <div class="question">
+          <p>1. What is the main focus of this lesson?</p>
+          <label><input type="radio" name="q1" value="correct"> ${currentLesson.topics[0]}</label>
+          <label><input type="radio" name="q1" value="wrong"> Unrelated Topic A</label>
+          <label><input type="radio" name="q1" value="wrong"> Unrelated Topic B</label>
+        </div>
+        <div class="question">
+          <p>2. Which of these topics was covered in the video?</p>
+          <label><input type="radio" name="q2" value="correct"> ${currentLesson.topics[1] || currentLesson.topics[0]}</label>
+          <label><input type="radio" name="q2" value="wrong"> Something else</label>
+          <label><input type="radio" name="q2" value="wrong"> Different topic</label>
+        </div>
+        <button class="btn-primary" onclick="checkQuiz()">Submit Quiz</button>
+      `;
+    }
+
+    function checkQuiz() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+
+      if (!q1 || !q2) {
+        alert('Please answer all questions');
+        return;
+      }
+
+      const score = (q1.value === 'correct' ? 1 : 0) + (q2.value === 'correct' ? 1 : 0);
+      const percentage = (score / 2) * 100;
+
+      const resultDiv = document.getElementById('quizResult');
+      resultDiv.style.display = 'block';
+
+      if (percentage >= 50) {
+        resultDiv.className = 'result success';
+        resultDiv.innerHTML = `
+          <i class="fas fa-check-circle"></i>
+          Excellent! You scored ${percentage}%<br>
+          <small>Ready to move to the next lesson</small>
+        `;
+      } else {
+        resultDiv.className = 'result fail';
+        resultDiv.innerHTML = `
+          <i class="fas fa-times-circle"></i>
+          You scored ${percentage}%<br>
+          <small>Review the material and try again</small>
+        `;
+      }
+
+      resultDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function completeLesson() {
+      if (!dopeAuth.isAuthenticated()) {
+        alert('Please log in to track your progress');
+        return;
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const courseId = params.get('course');
+      const lessonId = params.get('lesson');
+
+      try {
+        await dopeProgress.completeLesson(courseId, lessonId, 100, 30);
+        alert('✅ Lesson marked as complete!');
+        
+        // Check if course is complete
+        const progress = await dopeProgress.getCourseProgress(courseId);
+        const completed = progress.filter(p => p.completed).length;
+        
+        if (completed === currentCourse.lessons.length) {
+          if (confirm('🎉 Congratulations! You\'ve completed the entire course! Generate your certificate?')) {
+            window.location.href = 'certificate.html?course=' + courseId;
+          }
+        } else if (currentLessonIndex < currentCourse.lessons.length - 1) {
+          // Move to next lesson
+          const nextLesson = currentCourse.lessons[currentLessonIndex + 1];
+          window.location.href = `lesson.html?course=${courseId}&lesson=${nextLesson.id}`;
+        }
+      } catch (error) {
+        alert('Error marking lesson complete: ' + error.message);
+      }
+    }
+
+    // Load lesson on page load
+    document.addEventListener('DOMContentLoaded', loadLesson);
+  </script>
+</body>
+</html>

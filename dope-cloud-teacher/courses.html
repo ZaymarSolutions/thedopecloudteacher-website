@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Courses - The Dope Cloud Teacher</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1f1147 0%, #301934 100%);
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #2d1b69;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 46px;
+      width: 46px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    nav.nav-links a {
+      margin-left: 2rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color .2s;
+    }
+
+    nav.nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    .filter-section {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 0.7rem 1.5rem;
+      background: rgba(147, 51, 234, 0.3);
+      color: #fff;
+      border: 2px solid #9333ea;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #9333ea;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(147, 51, 234, 0.4);
+    }
+
+    .courses-container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem 4rem;
+    }
+
+    .course-detail-view {
+      display: none;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .course-detail-view.active {
+      display: block;
+    }
+
+    .course-header {
+      background: linear-gradient(135deg, #2d1b69, #1f1147);
+      border: 2px solid #9333ea;
+      border-radius: 20px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .course-icon-large {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-header h2 {
+      font-size: 2.5rem;
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+
+    .course-header .subtitle {
+      font-size: 1.3rem;
+      color: #c084fc;
+      margin-bottom: 2rem;
+    }
+
+    .course-meta {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .meta-item {
+      background: rgba(255,255,255,0.1);
+      padding: 1rem 2rem;
+      border-radius: 10px;
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 1.8rem;
+      color: #ffcc00;
+    }
+
+    .lessons-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .lesson-card {
+      background: linear-gradient(135deg, #2d1b69, #1f1147);
+      border: 2px solid #9333ea;
+      border-radius: 15px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
+    }
+
+    .lesson-number {
+      font-size: 2rem;
+      color: #ffcc00;
+      font-weight: bold;
+      min-width: 60px;
+    }
+
+    .lesson-content {
+      flex: 1;
+    }
+
+    .lesson-content h3 {
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+
+    .lesson-content .duration {
+      color: #c084fc;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .lesson-content p {
+      color: #e0e0e0;
+      margin-bottom: 0.5rem;
+    }
+
+    .topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .topic-tag {
+      background: rgba(147, 51, 234, 0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      color: #c084fc;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, #9333ea, #7e22ce);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .cta-section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-enroll {
+      display: inline-block;
+      padding: 1.2rem 3rem;
+      background: #ffcc00;
+      color: #1f1147;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-enroll:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.4);
+    }
+
+    .btn-back {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      transition: all 0.3s;
+    }
+
+    .btn-back:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .lesson-card {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="dope_logo_thumbnail.png" alt="Logo" class="logo-img">
+      The Dope Cloud Teacher
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Courses</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#" id="authButton" onclick="showAuthModal('login')">Sign In</a>
+    </nav>
+  </header>
+
+  <div id="courseListView">
+    <div class="hero">
+      <h1>Professional Course Pathways</h1>
+      <p>Industry-competitive training designed to launch and advance your tech career. From cloud fundamentals to advanced specializations.</p>
+    </div>
+
+    <div class="filter-section">
+      <button class="filter-btn active" onclick="filterCourses('all')">All Courses</button>
+      <button class="filter-btn" onclick="filterCourses('Beginner')">Beginner</button>
+      <button class="filter-btn" onclick="filterCourses('Intermediate')">Intermediate</button>
+      <button class="filter-btn" onclick="filterCourses('Advanced')">Advanced</button>
+    </div>
+
+    <div class="courses-container" id="coursesGrid">
+      <!-- Courses will be dynamically inserted -->
+    </div>
+  </div>
+
+  <div id="courseDetailView" class="course-detail-view">
+    <!-- Course detail will be dynamically inserted -->
+  </div>
+
+  <footer>
+    &copy; 2025 The Dope Cloud Teacher. All rights reserved.
+  </footer>
+
+  <script src="js/auth-system.js"></script>
+  <script src="js/course-data.js"></script>
+  <script>
+    let currentFilter = 'all';
+
+    function renderCoursesList() {
+      const grid = document.getElementById('coursesGrid');
+      grid.innerHTML = '';
+
+      const filteredCourses = Object.values(COURSE_PATHWAYS).filter(course => {
+        if (currentFilter === 'all') return true;
+        return course.level === currentFilter;
+      });
+
+      filteredCourses.forEach(course => {
+        const card = document.createElement('div');
+        card.className = 'lesson-card';
+        card.style.cursor = 'pointer';
+        card.onclick = () => showCourseDetail(course.id);
+
+        card.innerHTML = `
+          <div class="lesson-number">${course.icon}</div>
+          <div class="lesson-content">
+            <h3>${course.title}</h3>
+            <div class="duration">${course.duration} • ${course.lessons.length} Lessons • ${course.level}</div>
+            <p>${course.description}</p>
+            <div class="topics">
+              ${course.skills.slice(0, 4).map(skill => `<span class="topic-tag">${skill}</span>`).join('')}
+              <span class="topic-tag" style="background: #10b981; color: #fff;">$${course.price}</span>
+            </div>
+          </div>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function filterCourses(level) {
+      currentFilter = level;
+      
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      renderCoursesList();
+    }
+
+    function showCourseDetail(courseId) {
+      const course = COURSE_PATHWAYS[courseId];
+      if (!course) return;
+
+      document.getElementById('courseListView').style.display = 'none';
+      const detailView = document.getElementById('courseDetailView');
+      detailView.classList.add('active');
+
+      detailView.innerHTML = `
+        <a href="#" onclick="showCourseList(); return false;" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Back to All Courses
+        </a>
+
+        <div class="course-header">
+          <div class="course-icon-large">${course.icon}</div>
+          <h2>${course.title}</h2>
+          <div class="subtitle">${course.subtitle}</div>
+          <p style="max-width: 800px; margin: 0 auto; color: #e0e0e0;">${course.description}</p>
+          
+          <div class="course-meta">
+            <div class="meta-item">
+              <strong>$${course.price}</strong>
+              <span>One-time</span>
+            </div>
+            <div class="meta-item">
+              <strong>${course.duration}</strong>
+              <span>Total Duration</span>
+            </div>
+            <div class="meta-item">
+              <strong>${course.lessons.length}</strong>
+              <span>Lessons</span>
+            </div>
+            <div class="meta-item">
+              <strong>${course.level}</strong>
+              <span>Level</span>
+            </div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 2rem; color: #ffcc00; margin-bottom: 1.5rem; text-align: center;">
+          📚 Course Curriculum
+        </h3>
+
+        <div class="lessons-grid">
+          ${course.lessons.map((lesson, index) => `
+            <div class="lesson-card">
+              <div class="lesson-number">${index + 1}</div>
+              <div class="lesson-content">
+                <h3>${lesson.title}</h3>
+                <div class="duration">${lesson.duration}</div>
+                <p>${lesson.description}</p>
+                <div class="topics">
+                  ${lesson.topics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="cta-section">
+          <h3>Ready to Start Learning?</h3>
+          <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+            Join thousands of students mastering ${course.title}
+          </p>
+          <button class="btn-enroll" onclick="enrollInCourse('${course.id}')">
+            Enroll Now for $${course.price}
+          </button>
+          <p style="margin-top: 1rem; font-size: 0.95rem;">
+            Or get access to ALL courses with a <a href="pricing.html" style="color: #ffcc00;">membership plan</a>
+          </p>
+        </div>
+      `;
+
+      window.scrollTo(0, 0);
+    }
+
+    function showCourseList() {
+      document.getElementById('courseListView').style.display = 'block';
+      document.getElementById('courseDetailView').classList.remove('active');
+      window.scrollTo(0, 0);
+    }
+
+    async function enrollInCourse(courseId) {
+      if (!dopeAuth.isAuthenticated()) {
+        showAuthModal('login');
+        return;
+      }
+
+      try {
+        await dopeCourses.purchaseCourse(courseId);
+      } catch (error) {
+        alert('Enrollment failed: ' + error.message);
+      }
+    }
+
+    // Check if there's a course parameter in URL
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const courseId = urlParams.get('course');
+
+      if (courseId && COURSE_PATHWAYS[courseId]) {
+        showCourseDetail(courseId);
+      } else {
+        renderCoursesList();
+      }
+    });
+  </script>
+</body>
+</html>

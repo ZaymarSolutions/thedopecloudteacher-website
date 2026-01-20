@@ -3,45 +3,451 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Module Complete</title>
+  <title>My Dashboard - The Dope Cloud Teacher</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #1f1147, #301934);
       color: #fff;
-      padding: 50px;
-      text-align: center;
+      min-height: 100vh;
     }
-    h1 {
-      color: #c084fc;
-      font-size: 2.5rem;
+
+    header {
+      background: #2d1b69;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
-    .options {
-      margin-top: 40px;
-    }
-    a.button {
-      display: inline-block;
-      background: #9333ea;
-      color: #fff;
-      padding: 15px 25px;
-      margin: 10px;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffcc00;
       text-decoration: none;
-      border-radius: 10px;
+    }
+
+    .logo-img {
+      height: 46px;
+      width: 46px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .user-name {
+      color: #ffcc00;
       font-weight: bold;
     }
-    a.button:hover {
+
+    .btn-logout {
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid #9333ea;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-logout:hover {
+      background: #9333ea;
+    }
+
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .welcome-section {
+      background: linear-gradient(135deg, #9333ea, #7e22ce);
+      padding: 2rem;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .welcome-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-section p {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, #2d1b69, #1f1147);
+      border: 2px solid #9333ea;
+      border-radius: 15px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-card i {
+      font-size: 3rem;
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card .label {
+      color: #c084fc;
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: #ffcc00;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .course-card {
+      background: linear-gradient(135deg, #2d1b69, #1f1147);
+      border: 2px solid #9333ea;
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(147, 51, 234, 0.4);
+    }
+
+    .course-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .course-card h3 {
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      border-radius: 10px;
+      transition: width 0.5s;
+    }
+
+    .progress-text {
+      color: #c084fc;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-continue {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: #9333ea;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      margin-top: 1rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-continue:hover {
       background: #7e22ce;
+    }
+
+    .btn-locked {
+      background: rgba(255,255,255,0.1);
+      color: #aaa;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      border: 2px dashed #9333ea;
+    }
+
+    .empty-state i {
+      font-size: 5rem;
+      color: #9333ea;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+      font-size: 1.8rem;
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state p {
+      color: #e0e0e0;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
-  <h1>🎉 You Finished the Module!</h1>
-  <p>You're officially on your way to being a certified Cloud Boss 💪🏽</p>
+  <header>
+    <a href="index.html" class="logo">
+      <img src="dope_logo_thumbnail.png" alt="Logo" class="logo-img">
+      The Dope Cloud Teacher
+    </a>
+    <div class="user-info">
+      <span class="user-name" id="userName">Loading...</span>
+      <button class="btn-logout" onclick="dopeAuth.logout()">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </button>
+    </div>
+  </header>
 
-  <div class="options">
-    <a class="button" href="certificate.html">🎓 Download Certificate</a>
-    <a class="button" href="comingsoon.html">🔧 DevOps on Azure (Coming Soon)</a>
-    <a class="button" href="comingsoon.html">🛡️ Security in Practice (Coming Soon)</a>
+  <div class="dashboard-container">
+    <div class="welcome-section">
+      <h1>Welcome Back, <span id="welcomeName">Student</span>! 🎉</h1>
+      <p>Continue your journey to cloud mastery</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-book-open"></i>
+        <div class="number" id="enrolledCount">0</div>
+        <div class="label">Enrolled Courses</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-check-circle"></i>
+        <div class="number" id="completedCount">0</div>
+        <div class="label">Lessons Completed</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-certificate"></i>
+        <div class="number" id="certificateCount">0</div>
+        <div class="label">Certificates Earned</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-clock"></i>
+        <div class="number" id="hoursSpent">0</div>
+        <div class="label">Hours Learned</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">
+      <i class="fas fa-graduation-cap"></i>
+      My Courses
+    </h2>
+
+    <div id="enrolledCourses" class="courses-grid">
+      <!-- Enrolled courses will be inserted here -->
+    </div>
+
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <i class="fas fa-rocket"></i>
+      <h3>Ready to Start Learning?</h3>
+      <p>You haven't enrolled in any courses yet. Browse our catalog and start your journey today!</p>
+      <a href="courses.html" class="btn-continue">Browse Courses</a>
+      <a href="pricing.html" class="btn-continue" style="background: #ffcc00; color: #1f1147; margin-left: 1rem;">View Pricing</a>
+    </div>
+
+    <h2 class="section-title">
+      <i class="fas fa-trophy"></i>
+      My Certificates
+    </h2>
+
+    <div id="certificatesList" class="courses-grid">
+      <!-- Certificates will be inserted here -->
+    </div>
   </div>
+
+  <footer>
+    &copy; 2025 The Dope Cloud Teacher. All rights reserved.
+  </footer>
+
+  <script src="js/auth-system.js"></script>
+  <script src="js/course-data.js"></script>
+  <script>
+    async function loadDashboard() {
+      // Check authentication
+      if (!dopeAuth.isAuthenticated()) {
+        showAuthModal('login');
+        return;
+      }
+
+      // Get user info
+      const user = await dopeAuth.getCurrentUser();
+      if (!user) {
+        showAuthModal('login');
+        return;
+      }
+
+      document.getElementById('userName').textContent = user.name;
+      document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+
+      // Get all courses
+      const allCourses = await dopeCourses.getAllCourses();
+      
+      // Get user's enrolled courses
+      const enrolledCourses = [];
+      for (const course of allCourses) {
+        const hasAccess = await dopeCourses.hasCourseAccess(course.id);
+        if (hasAccess) {
+          const progress = await dopeProgress.getCourseProgress(course.id);
+          const courseData = COURSE_PATHWAYS[course.id];
+          enrolledCourses.push({
+            ...course,
+            lessons: courseData.lessons,
+            progress: progress,
+            icon: courseData.icon
+          });
+        }
+      }
+
+      // Get certificates
+      const certificates = await dopeCertificates.getMyCertificates();
+
+      // Update stats
+      document.getElementById('enrolledCount').textContent = enrolledCourses.length;
+      
+      let totalCompleted = 0;
+      enrolledCourses.forEach(course => {
+        totalCompleted += course.progress.filter(p => p.completed).length;
+      });
+      document.getElementById('completedCount').textContent = totalCompleted;
+      document.getElementById('certificateCount').textContent = certificates.length;
+      
+      const hoursSpent = Math.round(totalCompleted * 1.5); // Estimate 1.5 hours per lesson
+      document.getElementById('hoursSpent').textContent = hoursSpent;
+
+      // Render enrolled courses
+      const coursesGrid = document.getElementById('enrolledCourses');
+      const emptyState = document.getElementById('emptyState');
+
+      if (enrolledCourses.length === 0) {
+        coursesGrid.style.display = 'none';
+        emptyState.style.display = 'block';
+      } else {
+        coursesGrid.style.display = 'grid';
+        emptyState.style.display = 'none';
+
+        coursesGrid.innerHTML = enrolledCourses.map(course => {
+          const completed = course.progress.filter(p => p.completed).length;
+          const total = course.lessons_count || course.lessons.length;
+          const percentage = Math.round((completed / total) * 100);
+          
+          // Find next lesson
+          const nextLesson = course.lessons.find((lesson, index) => {
+            const prog = course.progress.find(p => p.lesson_id === lesson.id);
+            return !prog || !prog.completed;
+          }) || course.lessons[0];
+
+          return `
+            <div class="course-card">
+              <div class="course-icon">${course.icon}</div>
+              <h3>${course.title}</h3>
+              <div class="progress-text">${completed} of ${total} lessons completed</div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${percentage}%"></div>
+              </div>
+              <p style="color: #e0e0e0; margin: 1rem 0;">${percentage}% Complete</p>
+              <a href="lesson.html?course=${course.id}&lesson=${nextLesson.id}" class="btn-continue">
+                ${completed === 0 ? 'Start Course' : 'Continue Learning'} →
+              </a>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Render certificates
+      const certificatesList = document.getElementById('certificatesList');
+      if (certificates.length > 0) {
+        certificatesList.innerHTML = certificates.map(cert => `
+          <div class="course-card">
+            <div class="course-icon">🏆</div>
+            <h3>${cert.course_title}</h3>
+            <p style="color: #10b981; margin: 1rem 0;">
+              <i class="fas fa-check-circle"></i> Completed
+            </p>
+            <p style="color: #aaa; font-size: 0.9rem;">Issued: ${new Date(cert.issue_date).toLocaleDateString()}</p>
+            <a href="certificate.html?code=${cert.certificate_code}" class="btn-continue">
+              View Certificate
+            </a>
+          </div>
+        `).join('');
+      } else {
+        certificatesList.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <i class="fas fa-award"></i>
+            <h3>No Certificates Yet</h3>
+            <p>Complete a course to earn your first certificate!</p>
+          </div>
+        `;
+      }
+    }
+
+    // Check for success message
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('success') === 'true') {
+      alert('🎉 Purchase successful! Welcome to your new course!');
+    }
+
+    // Load dashboard on page load
+    document.addEventListener('DOMContentLoaded', loadDashboard);
+  </script>
 </body>
 </html>
