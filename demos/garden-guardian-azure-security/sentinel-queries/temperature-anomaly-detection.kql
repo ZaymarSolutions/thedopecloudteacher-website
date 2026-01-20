@@ -1,0 +1,48 @@
+// ============================================================
+// Sentinel Analytics Rule: Temperature Anomaly Detection
+// ============================================================
+// Purpose: Detect sensor readings outside normal operating range
+//          Could indicate sensor malfunction or data manipulation
+// 
+// Severity: Medium
+// Tactics: Impact, Defense Evasion
+// Techniques: T1565 (Data Manipulation)
+// ============================================================
+
+FunctionAppLogs
+| where TimeGenerated > ago(1h)
+| where FunctionName == "IngestSensorData"
+| where Message contains "temperature_anomaly"
+| extend 
+    SensorId = tostring(parse_json(Message).sensor_id),
+    Temperature = toreal(parse_json(Message).temperature),
+    Severity = tostring(parse_json(Message).severity),
+    Timestamp = tostring(parse_json(Message).timestamp)
+| project 
+    TimeGenerated,
+    SensorId,
+    Temperature,
+    Severity,
+    Timestamp
+| summarize 
+    AnomalyCount = count(),
+    AvgTemp = avg(Temperature),
+    MaxTemp = max(Temperature),
+    MinTemp = min(Temperature)
+    by SensorId
+| where AnomalyCount >= 3  // Multiple anomalies indicate persistent issue
+| extend 
+    AlertDescription = strcat("Sensor '", SensorId, "' reported ", AnomalyCount, " temperature anomalies"),
+    RecommendedAction = case(
+        MaxTemp > 120, "Sensor may be overheating or tampered - inspect immediately",
+        MinTemp < -20, "Sensor may be malfunctioning - schedule maintenance",
+        "Unknown temperature issue - investigate sensor"
+    )
+| project
+    SensorId,
+    AnomalyCount,
+    AvgTemp,
+    MaxTemp,
+    MinTemp,
+    AlertDescription,
+    RecommendedAction

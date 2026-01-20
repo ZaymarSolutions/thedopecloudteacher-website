@@ -1,0 +1,42 @@
+// ============================================================
+// Sentinel Analytics Rule: Unauthorized Device Detection
+// ============================================================
+// Purpose: Detect IoT devices attempting to send data without 
+//          proper authorization (missing "GG-" prefix)
+// 
+// Severity: High
+// Tactics: Initial Access, Persistence
+// Techniques: T1078 (Valid Accounts), T1200 (Hardware Additions)
+// ============================================================
+
+FunctionAppLogs
+| where TimeGenerated > ago(1h)  // Last hour
+| where FunctionName == "IngestSensorData"
+| where Message contains "unauthorized_device"
+| extend SensorId = tostring(parse_json(Message).sensor_id)
+| extend EventType = tostring(parse_json(Message).event_type)
+| extend Severity = tostring(parse_json(Message).severity)
+| extend Timestamp = tostring(parse_json(Message).timestamp)
+| project 
+    TimeGenerated,
+    SensorId,
+    EventType,
+    Severity,
+    Timestamp,
+    Message
+| summarize 
+    FirstSeen = min(TimeGenerated),
+    LastSeen = max(TimeGenerated),
+    AttemptCount = count()
+    by SensorId
+| where AttemptCount >= 1  // Alert on first attempt
+| extend 
+    AlertDescription = strcat("Unauthorized device '", SensorId, "' attempted to send sensor data"),
+    RecommendedAction = "Block device from network and investigate source"
+| project
+    FirstSeen,
+    LastSeen,
+    SensorId,
+    AttemptCount,
+    AlertDescription,
+    RecommendedAction

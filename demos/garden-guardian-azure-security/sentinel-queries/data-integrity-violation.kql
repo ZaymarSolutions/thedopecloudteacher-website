@@ -1,0 +1,40 @@
+// ============================================================
+// Sentinel Analytics Rule: Data Integrity Violation
+// ============================================================
+// Purpose: Detect tampered sensor data (hash mismatch)
+//          Indicates potential man-in-the-middle attack or data injection
+// 
+// Severity: Critical
+// Tactics: Impact, Persistence
+// Techniques: T1565.001 (Stored Data Manipulation)
+// ============================================================
+
+FunctionAppLogs
+| where TimeGenerated > ago(30m)
+| where FunctionName == "IngestSensorData"
+| where Message contains "data_integrity_violation"
+| extend 
+    SensorId = tostring(parse_json(Message).sensor_id),
+    Severity = tostring(parse_json(Message).severity),
+    Timestamp = tostring(parse_json(Message).timestamp)
+| project 
+    TimeGenerated,
+    SensorId,
+    Severity,
+    Timestamp,
+    Message
+| summarize 
+    FirstDetected = min(TimeGenerated),
+    LastDetected = max(TimeGenerated),
+    ViolationCount = count()
+    by SensorId
+| extend 
+    AlertDescription = strcat("CRITICAL: Data integrity violation detected on sensor '", SensorId, "'"),
+    RecommendedAction = "IMMEDIATE ACTION REQUIRED: Quarantine device, collect forensic data, investigate network path for MITM attack"
+| project
+    FirstDetected,
+    LastDetected,
+    SensorId,
+    ViolationCount,
+    AlertDescription,
+    RecommendedAction
