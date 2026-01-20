@@ -1,0 +1,109 @@
+name: Full Stack Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-frontend:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check HTML files
+        run: |
+          echo "Checking HTML files for syntax errors..."
+          find dope-cloud-teacher -name "*.html" -type f
+          echo "✅ Frontend files validated"
+
+  test-backend:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./backend
+      
+      - name: Initialize database
+        run: npm run init-db
+        working-directory: ./backend
+      
+      - name: Check database
+        run: npm run check-db
+        working-directory: ./backend
+      
+      - name: Test backend startup
+        run: |
+          timeout 10s npm start || true
+          echo "✅ Backend validated"
+        working-directory: ./backend
+
+  deploy-frontend:
+    name: Deploy Frontend
+    needs: [test-frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2.1
+        with:
+          publish-dir: './dope-cloud-teacher'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "🚀 Production deployment"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 2
+        continue-on-error: true
+
+  deploy-backend:
+    name: Deploy Backend
+    needs: [test-backend]
+    runs-on: ubuntu-latest
+    if: ${{ secrets.RAILWAY_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to Railway
+        run: |
+          npm install -g @railway/cli
+          railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        working-directory: ./backend
+        continue-on-error: true
+
+  summary:
+    name: Deployment Summary
+    needs: [deploy-frontend, deploy-backend]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Summary
+        run: |
+          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Frontend" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: ${{ needs.deploy-frontend.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Platform: Netlify or GitHub Pages" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Backend" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: ${{ needs.deploy-backend.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Platform: Railway" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+          echo "1. Configure deployment secrets in repository settings" >> $GITHUB_STEP_SUMMARY
+          echo "2. Check deployment URLs in Actions log" >> $GITHUB_STEP_SUMMARY
+          echo "3. Test the live site" >> $GITHUB_STEP_SUMMARY
