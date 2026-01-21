@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloud Fundamentals Course - The Dope Cloud TeacHer</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       background: #1f1147;
       font-family: 'Segoe UI', sans-serif;
       color: white;
       padding: 2rem;
+      padding-top: 100px;
     }
     h1 {
       text-align: center;
@@ -49,6 +52,28 @@
   </style>
 </head>
 <body>
+  <!-- Main Navigation -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.svg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="courses.html">Courses</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="certificate.html">Certificates</a>
+        <a href="#" onclick="showAuthModal('login'); return false;" id="navAuthButton">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+  
   <h1>Cloud Fundamentals Course</h1>
   <p style="text-align:center; margin-top:0.5rem;">
     <a href="https://buy.stripe.com/test_bundle" target="_blank" style="display:inline-block; background:#ffcc00; color:#1f1147; padding:0.7rem 1.2rem; border-radius:10px; font-weight:bold; text-decoration:none;">💰 Enroll in All 10 Lessons – $200 Bundle</a>
@@ -122,5 +147,7 @@
 <a href="https://buy.stripe.com/test_lesson10" target="_blank">Enroll Now - $25</a>
     </div>
   </div>
+  
+  <script src="js/auth-system.js"></script>
 </body>
 </html>

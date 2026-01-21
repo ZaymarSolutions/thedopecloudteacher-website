@@ -3,15 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
+  <title>Coming Soon - The Dope Cloud Teacher</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       margin: 0;
       padding: 0;
+      padding-top: 80px;
       background: linear-gradient(135deg, #1f1147, #301934);
       font-family: 'Segoe UI', sans-serif;
       color: white;
-      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .content-wrapper {
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -63,6 +71,28 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.svg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="courses.html">Courses</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="certificate.html">Certificates</a>
+        <a href="#" onclick="showAuthModal('login'); return false;" id="navAuthButton">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="content-wrapper">
   <div class="message">
     <h1>🚧 Coming Soon 🚧</h1>
     <p>This course is in the works. We're building something amazing for you!</p>
@@ -72,5 +102,7 @@
       <div class="dot"></div>
     </div>
   </div>
+  </div>
+  <script src="js/auth-system.js"></script>
 </body>
 </html>

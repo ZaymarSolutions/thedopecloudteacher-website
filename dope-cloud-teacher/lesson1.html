@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lesson 1: Cloud Evolution Timeline</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     /* Navigation Bar */
     .lesson-nav {
@@ -65,7 +67,7 @@
       background: linear-gradient(135deg, #1f1147, #301934);
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
-      padding: 90px 30px 30px 30px;
+      padding: 150px 30px 30px 30px;
       margin: 0;
     }
     h1 {
@@ -129,7 +131,29 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <!-- Main Navigation -->
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.svg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="courses.html">Courses</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="certificate.html">Certificates</a>
+        <a href="#" onclick="showAuthModal('login'); return false;" id="navAuthButton">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Lesson Navigation -->
   <nav class="lesson-nav">
     <div class="lesson-nav-left">
       <a href="index.html">🏠 Home</a>

@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | The Dope Cloud Teacher</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
       background: linear-gradient(to right, #301934, #000);
       color: white;
       font-family: 'Segoe UI', sans-serif;
+      padding-top: 80px;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .page-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      min-height: calc(100vh - 80px);
     }
 
     .login-box {
@@ -55,13 +62,37 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.svg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="courses.html">Courses</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="certificate.html">Certificates</a>
+        <a href="#" onclick="showAuthModal('login'); return false;" id="navAuthButton">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="page-wrapper">
   <div class="login-box">
     <h1>Welcome!</h1>
     <input type="text" id="name" placeholder="Your Name" />
     <input type="email" id="email" placeholder="Your Email" />
     <button onclick="login()">Start Learning</button>
   </div>
+  </div>
 
+  <script src="js/auth-system.js"></script>
   <script>
     function login() {
       const name = document.getElementById('name').value.trim();
