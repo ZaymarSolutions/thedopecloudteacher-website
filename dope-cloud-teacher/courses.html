@@ -252,9 +252,45 @@
       list-style: none;
     }
 
+    .quiz-options {
+      list-style: none;
+      padding-left: 0;
+    }
+
     .quiz-options li {
-      color: #c084fc;
-      padding: 0.4rem 0;
+      color: #e0e0e0;
+      padding: 0.6rem 1rem;
+      margin: 0.3rem 0;
+      background: rgba(255,255,255,0.03);
+      border-radius: 5px;
+      border-left: 3px solid #9333ea;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .quiz-options li:hover {
+      background: rgba(147, 51, 234, 0.1);
+      transform: translateX(5px);
+    }
+
+    .quiz-option[data-correct="true"].revealed {
+      color: #10b981 !important;
+      font-weight: bold;
+      background: rgba(16, 185, 129, 0.15) !important;
+      border-left: 3px solid #10b981;
+      padding: 0.6rem 1rem;
+    }
+
+    .quiz-option[data-correct="true"].revealed::after {
+      content: ' ✓ Correct Answer';
+      color: #10b981;
+      font-weight: bold;
+      margin-left: 0.5rem;
+    }
+
+    .btn-reveal-answers:hover {
+      transform: scale(1.02);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
     }
 
     .expand-icon {
@@ -519,12 +555,23 @@
           </h3>
           <p style="text-align: center; color: #e0e0e0; margin-bottom: 1.5rem;">This course prepares you for:</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-            ${course.certifications.map(cert => `
-              <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; text-align: center;">
-                <strong style="color: #ffcc00;">${cert.name}</strong><br>
-                <span style="color: #c084fc; font-size: 0.9rem;">${cert.provider} • ${cert.code}</span>
-              </div>
-            `).join('')}
+            ${course.certifications.map(cert => {
+              let certUrl = '';
+              if (cert.code === 'CLF-C02') certUrl = 'https://aws.amazon.com/certification/certified-cloud-practitioner/';
+              else if (cert.code === 'AZ-900') certUrl = 'https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/';
+              else if (cert.code === 'Cloud Digital Leader') certUrl = 'https://cloud.google.com/learn/certification/cloud-digital-leader';
+              else if (cert.code === 'SAP-C02') certUrl = 'https://aws.amazon.com/certification/certified-solutions-architect-professional/';
+              else if (cert.code === 'AZ-305') certUrl = 'https://learn.microsoft.com/en-us/credentials/certifications/azure-solutions-architect/';
+              else if (cert.code === 'PCA') certUrl = 'https://cloud.google.com/learn/certification/cloud-architect';
+              return `
+              <a href="${certUrl}" target="_blank" style="text-decoration: none;">
+                <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; text-align: center; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
+                  <strong style="color: #ffcc00;">${cert.name}</strong><br>
+                  <span style="color: #c084fc; font-size: 0.9rem;">${cert.provider} • ${cert.code}</span><br>
+                  <span style="color: #10b981; font-size: 0.85rem; margin-top: 0.5rem; display: inline-block;">📚 View Certification →</span>
+                </div>
+              </a>
+            `}).join('')}
           </div>
         </div>
         ` : ''}
@@ -578,29 +625,52 @@
                   <div class="detail-section">
                     <h4>📚 Learning Materials</h4>
                     <ul class="materials-list">
-                      ${lesson.learningMaterials.map(material => `
-                        <li>
-                          <strong>${material.type === 'reading' ? '📖' : material.type === 'video' ? '🎬' : material.type === 'interactive' ? '💻' : '📄'} ${material.title}</strong>
-                          <span style="color: #9333ea; float: right;">${material.duration}</span>
+                      ${lesson.learningMaterials.map(material => {
+                        let materialUrl = '#';
+                        const icon = material.type === 'reading' ? '📖' : material.type === 'video' ? '🎬' : material.type === 'interactive' ? '💻' : material.type === 'case-study' ? '💼' : material.type === 'documentation' ? '📋' : material.type === 'checklist' ? '✅' : material.type === 'diagram' ? '📊' : material.type === 'calculator' ? '🧮' : material.type === 'template' ? '📝' : '📄';
+                        
+                        // Generate relevant URLs based on material title
+                        if (material.title.includes('White Paper') || material.title.includes('NIST')) {
+                          materialUrl = 'https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf';
+                        } else if (material.title.includes('AWS')) {
+                          materialUrl = 'https://aws.amazon.com/architecture/';
+                        } else if (material.title.includes('Azure')) {
+                          materialUrl = 'https://learn.microsoft.com/en-us/azure/architecture/';
+                        } else if (material.title.includes('GCP') || material.title.includes('Google')) {
+                          materialUrl = 'https://cloud.google.com/architecture';
+                        } else if (material.title.includes('Documentation')) {
+                          materialUrl = 'https://docs.aws.amazon.com/';
+                        }
+                        
+                        return `
+                        <li style="cursor: pointer; transition: background 0.3s;" onmouseover="this.style.background='rgba(147,51,234,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.02)'">
+                          <a href="${materialUrl}" target="_blank" style="text-decoration: none; color: inherit; display: flex; justify-content: space-between; align-items: center;">
+                            <strong>${icon} ${material.title}</strong>
+                            <span style="color: #9333ea;">${material.duration}</span>
+                          </a>
                         </li>
-                      `).join('')}
+                      `}).join('')}
                     </ul>
                   </div>
                   ` : ''}
 
                   ${lesson.quiz ? `
-                  <div class="detail-section">
+                  <div class="detail-section" data-lesson-quiz="${course.id}-${index}">
                     <h4>✅ Quiz (Passing Score: ${lesson.quiz.passingScore}%)</h4>
+                    <p style="color: #c084fc; font-size: 0.95rem; margin-bottom: 1rem;">💡 Try answering the questions below, then click "Reveal Answers" to check your knowledge!</p>
                     ${lesson.quiz.questions.map((q, qIndex) => `
                       <div class="quiz-question">
                         <p>Question ${qIndex + 1}: ${q.question}</p>
                         <ul class="quiz-options">
                           ${q.options.map((opt, optIndex) => `
-                            <li style="${optIndex === q.correctAnswer ? 'color: #10b981; font-weight: bold;' : ''}">${String.fromCharCode(65 + optIndex)}. ${opt}</li>
+                            <li class="quiz-option" data-correct="${optIndex === q.correctAnswer}">${String.fromCharCode(65 + optIndex)}. ${opt}</li>
                           `).join('')}
                         </ul>
                       </div>
                     `).join('')}
+                    <button class="btn-reveal-answers" onclick="revealAnswers(this, '${course.id}-${index}')" style="width: 100%; padding: 1rem; background: #10b981; color: white; border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 1rem; transition: all 0.3s;" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">
+                      <i class="fas fa-eye"></i> Reveal Answers
+                    </button>
                   </div>
                   ` : ''}
 
@@ -646,6 +716,20 @@
 
     function toggleLessonDetails(element, courseId, lessonIndex) {
       element.classList.toggle('expanded');
+    }
+
+    function revealAnswers(button, quizId) {
+      const quizSection = document.querySelector(`[data-lesson-quiz="${quizId}"]`);
+      const correctOptions = quizSection.querySelectorAll('.quiz-option[data-correct="true"]');
+      
+      correctOptions.forEach(option => {
+        option.classList.add('revealed');
+      });
+
+      button.innerHTML = '<i class="fas fa-check-circle"></i> Answers Revealed!';
+      button.style.background = '#059669';
+      button.disabled = true;
+      button.style.cursor = 'not-allowed';
     }
 
     function showCourseList() {
