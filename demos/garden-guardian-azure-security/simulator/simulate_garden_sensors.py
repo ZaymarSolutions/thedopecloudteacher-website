@@ -10,10 +10,11 @@ import random
 import hashlib
 import argparse
 from datetime import datetime
+import os
 
-# Configuration - UPDATE THESE AFTER DEPLOYING AZURE FUNCTION
+# Configuration - UPDATED WITH YOUR AZURE FUNCTION
 FUNCTION_URL = "https://func-garden-guardian.azurewebsites.net/api/IngestSensorData"
-FUNCTION_KEY = "YOUR_FUNCTION_KEY_HERE"  # Get from Azure Portal
+FUNCTION_KEY = os.environ.get("AZURE_FUNCTION_KEY", "YOUR_FUNCTION_KEY_HERE")
 
 # Legitimate sensor IDs (authorized devices)
 LEGITIMATE_SENSORS = [
