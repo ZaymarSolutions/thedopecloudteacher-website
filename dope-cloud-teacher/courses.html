@@ -401,7 +401,7 @@
           <div class="course-icon-large">${course.icon}</div>
           <h2>${course.title}</h2>
           <div class="subtitle">${course.subtitle}</div>
-          <p style="max-width: 800px; margin: 0 auto; color: #e0e0e0;">${course.description}</p>
+          <p style="max-width: 800px; margin: 0 auto; color: #e0e0e0; margin-bottom: 2rem;">${course.description}</p>
           
           <div class="course-meta">
             <div class="meta-item">
@@ -421,10 +421,52 @@
               <span>Level</span>
             </div>
           </div>
+
+          <button class="btn-enroll" onclick="enrollInCourse('${course.id}')" style="margin-top: 2rem; font-size: 1.5rem; padding: 1.5rem 4rem;">
+            🎓 Enroll Now for $${course.price}
+          </button>
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: #c084fc;">
+            Or get access to ALL courses with a <a href="pricing.html" style="color: #ffcc00; text-decoration: underline;">$14/month membership</a>
+          </p>
         </div>
 
-        <h3 style="font-size: 2rem; color: #ffcc00; margin-bottom: 1.5rem; text-align: center;">
-          📚 Course Curriculum
+        ${course.certifications ? `
+        <div style="background: rgba(16, 185, 129, 0.1); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+          <h3 style="font-size: 1.8rem; color: #10b981; margin-bottom: 1rem; text-align: center;">
+            🎖️ Certification Preparation
+          </h3>
+          <p style="text-align: center; color: #e0e0e0; margin-bottom: 1.5rem;">This course prepares you for:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            ${course.certifications.map(cert => `
+              <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; text-align: center;">
+                <strong style="color: #ffcc00;">${cert.name}</strong><br>
+                <span style="color: #c084fc; font-size: 0.9rem;">${cert.provider} • ${cert.code}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        ${course.careerPaths ? `
+        <div style="background: rgba(147, 51, 234, 0.1); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
+          <h3 style="font-size: 1.8rem; color: #9333ea; margin-bottom: 1rem; text-align: center;">
+            💼 Career Opportunities
+          </h3>
+          <p style="text-align: center; color: #e0e0e0; margin-bottom: 1.5rem;">Roles you'll be qualified for:</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+            ${course.careerPaths.map(career => `
+              <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 10px;">
+                <strong style="color: #ffcc00; font-size: 1.1rem;">${career.role}</strong><br>
+                <span style="color: #10b981; font-size: 1.2rem; font-weight: bold;">${career.avgSalary}</span><br>
+                <span style="color: #c084fc; font-size: 0.9rem;">Demand: ${career.demand}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+
+        <h3 style="font-size: 2rem; color: #ffcc00; margin-bottom: 1.5rem; margin-top: 3rem; text-align: center;">
+          📚 Course Curriculum (${course.lessons.length} Lessons)
         </h3>
 
         <div class="lessons-grid">
@@ -444,16 +486,21 @@
         </div>
 
         <div class="cta-section">
-          <h3>Ready to Start Learning?</h3>
-          <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+          <h3>🚀 Ready to Start Your Journey?</h3>
+          <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">
             Join thousands of students mastering ${course.title}
           </p>
-          <button class="btn-enroll" onclick="enrollInCourse('${course.id}')">
-            Enroll Now for $${course.price}
+          <button class="btn-enroll" onclick="enrollInCourse('${course.id}')" style="font-size: 1.5rem; padding: 1.5rem 4rem;">
+            💳 Enroll Now - $${course.price}
           </button>
-          <p style="margin-top: 1rem; font-size: 0.95rem;">
-            Or get access to ALL courses with a <a href="pricing.html" style="color: #ffcc00;">membership plan</a>
+          <p style="margin-top: 1.5rem; font-size: 1rem;">
+            ✨ Or save 95% with our <a href="pricing.html" style="color: #ffcc00; font-weight: bold; text-decoration: underline;">$14/month All-Access Membership</a>
           </p>
+          <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+            <div>✅ Lifetime Access</div>
+            <div>✅ Certificate of Completion</div>
+            <div>✅ 30-Day Money-Back Guarantee</div>
+          </div>
         </div>
       `;
 
