@@ -453,6 +453,9 @@
     &copy; 2025 The Dope Cloud Teacher. All rights reserved.
   </footer>
 
+  <!-- Gumroad Integration -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
   <script src="js/auth-system.js"></script>
   <script src="js/course-data.js"></script>
   <script>
@@ -594,6 +597,89 @@
         </div>
         ` : ''}
 
+        ${course.labSetup ? `
+        <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(59, 130, 246, 0.3);">
+          <h3 style="font-size: 1.8rem; color: #3b82f6; margin-bottom: 1rem; text-align: center;">
+            🧪 ${course.labSetup.title}
+          </h3>
+          <p style="text-align: center; color: #e0e0e0; margin-bottom: 2rem; font-size: 1.05rem;">${course.labSetup.description}</p>
+          
+          <div style="display: grid; gap: 1.5rem;">
+            ${course.labSetup.options.map((option, idx) => `
+              <details style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #3b82f6; cursor: pointer; transition: all 0.3s;" ${idx === 0 ? 'open' : ''}>
+                <summary style="font-size: 1.2rem; font-weight: bold; color: #ffcc00; cursor: pointer; user-select: none;">
+                  ${idx + 1}. ${option.name} 
+                  <span style="float: right; color: #10b981; font-size: 0.9rem;">⏱️ ${option.duration}</span>
+                </summary>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                  <p style="color: #9333ea; font-weight: bold; margin-bottom: 0.5rem;">💰 Cost: ${option.cost}</p>
+                  ${option.url ? `<p style="margin-bottom: 1rem;"><a href="${option.url}" target="_blank" style="color: #3b82f6; text-decoration: underline;">🔗 ${option.url}</a></p>` : ''}
+                  <p style="color: #c084fc; font-weight: bold; margin-bottom: 0.5rem;">📝 Setup Steps:</p>
+                  <ol style="color: #e0e0e0; line-height: 1.8; margin-left: 1.5rem;">
+                    ${option.steps.map(step => `<li>${step}</li>`).join('')}
+                  </ol>
+                </div>
+              </details>
+            `).join('')}
+          </div>
+
+          <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem; border: 1px solid rgba(16, 185, 129, 0.3);">
+            <p style="color: #10b981; font-weight: bold; margin-bottom: 0.8rem;">💡 Recommendations:</p>
+            <ul style="color: #e0e0e0; line-height: 1.8; margin-left: 1.5rem;">
+              ${course.labSetup.recommendations.map(rec => `<li>${rec}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+        ` : ''}
+
+        ${course.codingPrerequisites ? `
+        <div style="background: linear-gradient(135deg, rgba(251, 146, 60, 0.1), rgba(239, 68, 68, 0.1)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(251, 146, 60, 0.3);">
+          <h3 style="font-size: 1.8rem; color: #fb923c; margin-bottom: 1rem; text-align: center;">
+            💻 Coding Prerequisites ${course.codingPrerequisites.required ? '(Required)' : '(Optional)'}
+          </h3>
+          <p style="text-align: center; color: #e0e0e0; margin-bottom: 2rem; font-size: 1.05rem;">${course.codingPrerequisites.description}</p>
+          
+          <div style="display: grid; gap: 1.5rem;">
+            ${course.codingPrerequisites.languages.map((lang, idx) => `
+              <details style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #fb923c; cursor: pointer; transition: all 0.3s;" ${idx === 0 ? 'open' : ''}>
+                <summary style="font-size: 1.2rem; font-weight: bold; color: #ffcc00; cursor: pointer; user-select: none;">
+                  ${lang.name}
+                  <span style="float: right; color: #c084fc; font-size: 0.9rem;">📊 ${lang.skillLevel}</span>
+                </summary>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                  <p style="color: #fb923c; font-weight: bold; margin-bottom: 0.5rem;">🎯 Why Learn This?</p>
+                  <p style="color: #e0e0e0; margin-bottom: 1rem;">${lang.why}</p>
+                  
+                  <p style="color: #10b981; font-weight: bold; margin-bottom: 0.5rem;">📚 Learning Resources:</p>
+                  <ul style="color: #e0e0e0; line-height: 2;">
+                    ${lang.learningResources.map(res => `
+                      <li>
+                        <a href="${res.url}" target="_blank" style="color: #3b82f6; text-decoration: underline;">
+                          ${res.title}
+                        </a>
+                        <span style="color: #9333ea;"> • ${res.duration}</span>
+                        <span style="color: #10b981;"> • ${res.type}</span>
+                      </li>
+                    `).join('')}
+                  </ul>
+
+                  <p style="color: #fb923c; font-weight: bold; margin-bottom: 0.5rem; margin-top: 1rem;">⚡ Quick Start:</p>
+                  <ol style="color: #e0e0e0; line-height: 1.8; margin-left: 1.5rem;">
+                    ${lang.quickStart.map(step => `<li>${step}</li>`).join('')}
+                  </ol>
+                </div>
+              </details>
+            `).join('')}
+          </div>
+
+          ${course.codingPrerequisites.recommendation ? `
+          <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem; border: 1px solid rgba(16, 185, 129, 0.3);">
+            <p style="color: #e0e0e0; text-align: center;">${course.codingPrerequisites.recommendation}</p>
+          </div>
+          ` : ''}
+        </div>
+        ` : ''}
+
         <h3 style="font-size: 2rem; color: #ffcc00; margin-bottom: 1.5rem; margin-top: 3rem; text-align: center;">
           📚 Course Curriculum (${course.lessons.length} Lessons)
         </h3>
@@ -626,28 +712,24 @@
                     <h4>📚 Learning Materials</h4>
                     <ul class="materials-list">
                       ${lesson.learningMaterials.map(material => {
-                        let materialUrl = '#';
-                        const icon = material.type === 'reading' ? '📖' : material.type === 'video' ? '🎬' : material.type === 'interactive' ? '💻' : material.type === 'case-study' ? '💼' : material.type === 'documentation' ? '📋' : material.type === 'checklist' ? '✅' : material.type === 'diagram' ? '📊' : material.type === 'calculator' ? '🧮' : material.type === 'template' ? '📝' : '📄';
-                        
-                        // Generate relevant URLs based on material title
-                        if (material.title.includes('White Paper') || material.title.includes('NIST')) {
-                          materialUrl = 'https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf';
-                        } else if (material.title.includes('AWS')) {
-                          materialUrl = 'https://aws.amazon.com/architecture/';
-                        } else if (material.title.includes('Azure')) {
-                          materialUrl = 'https://learn.microsoft.com/en-us/azure/architecture/';
-                        } else if (material.title.includes('GCP') || material.title.includes('Google')) {
-                          materialUrl = 'https://cloud.google.com/architecture';
-                        } else if (material.title.includes('Documentation')) {
-                          materialUrl = 'https://docs.aws.amazon.com/';
-                        }
+                        const icon = material.type === 'reading' ? '📖' : material.type === 'video' ? '🎬' : material.type === 'interactive' ? '💻' : material.type === 'case-study' ? '💼' : material.type === 'documentation' ? '📋' : material.type === 'checklist' ? '✅' : material.type === 'diagram' ? '📊' : material.type === 'calculator' ? '🧮' : material.type === 'template' ? '📝' : material.type === 'tutorial' ? '🎓' : '📄';
                         
                         return `
-                        <li style="cursor: pointer; transition: background 0.3s;" onmouseover="this.style.background='rgba(147,51,234,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.02)'">
-                          <a href="${materialUrl}" target="_blank" style="text-decoration: none; color: inherit; display: flex; justify-content: space-between; align-items: center;">
-                            <strong>${icon} ${material.title}</strong>
-                            <span style="color: #9333ea;">${material.duration}</span>
+                        <li style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 3px solid #3b82f6; transition: all 0.3s;" onmouseover="this.style.background='rgba(59,130,246,0.1)'; this.style.transform='translateX(5px)';" onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.transform='translateX(0)';">
+                          <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem;">
+                            <div style="flex: 1;">
+                              <a href="${material.url || '#'}" target="_blank" style="text-decoration: none; color: inherit;">
+                                <strong style="color: #3b82f6; font-size: 1.05rem;">${icon} ${material.title}</strong>
+                                ${material.description ? `<p style="color: #c084fc; font-size: 0.9rem; margin-top: 0.3rem;">${material.description}</p>` : ''}
+                              </a>
+                            </div>
+                            <span style="color: #10b981; white-space: nowrap; font-weight: 600;">${material.duration}</span>
+                          </div>
+                          ${material.url ? `
+                          <a href="${material.url}" target="_blank" style="display: inline-block; margin-top: 0.5rem; color: #ffcc00; font-size: 0.85rem; text-decoration: none;">
+                            🔗 Open Resource →
                           </a>
+                          ` : ''}
                         </li>
                       `}).join('')}
                     </ul>

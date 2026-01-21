@@ -446,6 +446,9 @@
     &copy; 2025 The Dope Cloud Teacher. All rights reserved.
   </footer>
 
+  <!-- Gumroad Integration -->
+  <script src="https://gumroad.com/js/gumroad.js"></script>
+
   <script src="js/auth-system.js"></script>
   <script src="js/course-data.js"></script>
   <script>
@@ -537,61 +540,44 @@
     }
 
     async function purchaseCourse(courseId, isOneTime = true) {
-      if (!dopeAuth.isAuthenticated()) {
-        showAuthModal('login');
-        return;
-      }
-
-      try {
-        if (isOneTime) {
-          await dopeCourses.purchaseCourse(courseId);
-        } else {
-          const course = COURSE_PATHWAYS[courseId];
-          const monthlyPrice = Math.ceil(course.price / 10);
-          
-          const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-            body: JSON.stringify({
-              planType: 'course',
-              courseId: courseId,
-              planName: `${course.title} - Monthly Access`,
-              price: monthlyPrice,
-              interval: 'month'
-            })
-          });
-
-          const data = await response.json();
-          if (data.url) {
-            window.location.href = data.url;
-          } else {
-            alert(data.error || 'Failed to create subscription');
-          }
-        }
-      } catch (error) {
-        alert('Purchase failed: ' + error.message);
+      const course = COURSE_PATHWAYS[courseId];
+      
+      // Gumroad product links - UPDATE THESE after creating your Gumroad products
+      const gumroadLinks = {
+        'cloud-fundamentals-101': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/cloud-fundamentals-101' : 'https://thedopecloudteacher.gumroad.com/l/cloud-fundamentals-101-monthly',
+        'cloud-architect-pathway': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/cloud-architect' : 'https://thedopecloudteacher.gumroad.com/l/cloud-architect-monthly',
+        'cloud-security-engineer': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/cloud-security' : 'https://thedopecloudteacher.gumroad.com/l/cloud-security-monthly',
+        'devops-automation': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/devops-automation' : 'https://thedopecloudteacher.gumroad.com/l/devops-automation-monthly',
+        'intro-to-ai-ml': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/ai-ml-intro' : 'https://thedopecloudteacher.gumroad.com/l/ai-ml-intro-monthly',
+        'data-engineering-cloud': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/data-engineering' : 'https://thedopecloudteacher.gumroad.com/l/data-engineering-monthly',
+        'serverless-microservices': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/serverless-microservices' : 'https://thedopecloudteacher.gumroad.com/l/serverless-microservices-monthly'
+      };
+      
+      const link = gumroadLinks[courseId];
+      if (link) {
+        // Open Gumroad checkout - overlay mode keeps user on site
+        window.open(link, '_blank');
+      } else {
+        alert('Payment link not configured yet. Please contact support.');
       }
     }
 
     async function purchaseMembership(type) {
-      // Set toggle to one-time purchase by default
-      document.getElementById('paymentToggle').classList.add('annual');
-      if (!dopeAuth.isAuthenticated()) {
-        showAuthModal('login');
-        return;
+      // Gumroad membership links - UPDATE THESE after creating your Gumroad products
+      const membershipLinks = {
+        'student': 'https://thedopecloudteacher.gumroad.com/l/student-membership',
+        'pro': 'https://thedopecloudteacher.gumroad.com/l/pro-membership',
+        'career': 'https://thedopecloudteacher.gumroad.com/l/career-accelerator'
+      };
+      
+      const link = membershipLinks[type];
+      if (link) {
+        // Open Gumroad checkout
+        window.open(link, '_blank');
+      } else {
+        alert('Membership link not configured yet. Please contact support.');
       }
-
-      try {
-        const membershipPlans = {
-          'student': { price: 14, name: 'Student Membership - All-Access Monthly', interval: 'month' },
-          'pro': { price: 14, name: 'Pro Membership - With Mentorship', interval: 'month' },
-          'career': { price: 14, name: 'Career Accelerator - Ultimate Support', interval: 'month' }
-        };
-
-        const plan = membershipPlans[type];
+    }
         
         const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
           method: 'POST',

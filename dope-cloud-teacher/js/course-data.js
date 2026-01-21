@@ -13,6 +13,153 @@ const COURSE_PATHWAYS = {
     icon: '☁️',
     skills: ['Cloud Computing Basics', 'AWS Core Services', 'Azure Fundamentals', 'GCP Essentials', 'Cloud Security'],
     
+    // Lab Environment Setup Instructions
+    labSetup: {
+      title: 'Getting Your Lab Environment Ready',
+      description: 'You\'ll need access to cloud platforms to complete hands-on labs. Here are your options:',
+      options: [
+        {
+          name: 'AWS Free Tier (Recommended for Beginners)',
+          steps: [
+            'Visit https://aws.amazon.com/free/',
+            'Click "Create a Free Account"',
+            'Provide email, password, and AWS account name',
+            'Enter payment information (required but won\'t be charged for free tier usage)',
+            'Verify your phone number',
+            'Choose "Basic Support - Free" plan',
+            'Sign in to AWS Console at https://console.aws.amazon.com/',
+            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+          ],
+          duration: '10-15 minutes',
+          cost: 'Free for 12 months (with usage limits)',
+          url: 'https://aws.amazon.com/free/'
+        },
+        {
+          name: 'Azure Free Account',
+          steps: [
+            'Visit https://azure.microsoft.com/free/',
+            'Click "Start free"',
+            'Sign in with Microsoft account (or create one)',
+            'Enter personal information and phone verification',
+            'Add credit card for identity verification ($200 credit provided)',
+            'Complete identity verification',
+            'Access Azure Portal at https://portal.azure.com/',
+            '💡 Tip: Use Azure Cost Management to track your spending'
+          ],
+          duration: '10-15 minutes',
+          cost: '$200 credit for 30 days + 12 months of free services',
+          url: 'https://azure.microsoft.com/free/'
+        },
+        {
+          name: 'Google Cloud Free Tier',
+          steps: [
+            'Visit https://cloud.google.com/free/',
+            'Click "Get started for free"',
+            'Sign in with Google account',
+            'Enter billing information ($300 credit for 90 days)',
+            'Select country and accept terms',
+            'Access GCP Console at https://console.cloud.google.com/',
+            'Create your first project',
+            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+          ],
+          duration: '10 minutes',
+          cost: '$300 credit for 90 days + Always Free tier',
+          url: 'https://cloud.google.com/free/'
+        },
+        {
+          name: 'Use Your Existing Cloud Account',
+          steps: [
+            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            'Ensure you have permissions to create: VMs, storage, networks, and basic services',
+            'Check with your organization about cost allocation tags or budget limits',
+            'Use a separate resource group/project for course labs to keep things organized',
+            '🏷️ Tag all resources with "Course: Cloud Fundamentals 101" for easy cleanup'
+          ],
+          duration: '5 minutes',
+          cost: 'Depends on your organization\'s arrangement'
+        },
+        {
+          name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
+          steps: [
+            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
+          ],
+          duration: 'Instant access',
+          cost: 'Free (time-limited sessions)'
+        }
+      ],
+      recommendations: [
+        '🎯 Beginners: Start with free sandboxes (A Cloud Guru, Qwiklabs) to explore without risk',
+        '💳 Ready to commit: Sign up for all three free tiers (AWS, Azure, GCP) for maximum learning',
+        '🏢 Corporate learners: Check if your employer provides Azure/AWS subscriptions',
+        '🎓 Students: Look for GitHub Student Developer Pack (includes Azure credits)',
+        '⏰ Budget-conscious: Use sandboxes for practice, your own account only for capstone projects'
+      ]
+    },
+    
+    // Coding Prerequisites
+    codingPrerequisites: {
+      required: false,
+      description: 'While not required for this course, basic scripting knowledge enhances your cloud journey.',
+      languages: [
+        {
+          name: 'Python',
+          why: 'Most popular for cloud automation, AWS Lambda, data processing, and AI/ML',
+          skillLevel: 'Basic syntax and functions',
+          learningResources: [
+            { title: 'Python for Beginners - Microsoft', url: 'https://learn.microsoft.com/training/paths/beginner-python/', duration: '8 hours', type: 'free' },
+            { title: 'Python Tutorial - W3Schools', url: 'https://www.w3schools.com/python/', duration: 'Self-paced', type: 'free' },
+            { title: 'Learn Python - Codecademy', url: 'https://www.codecademy.com/learn/learn-python-3', duration: '25 hours', type: 'freemium' },
+            { title: 'Automate the Boring Stuff with Python', url: 'https://automatetheboringstuff.com/', duration: 'Book + Videos', type: 'free' }
+          ],
+          quickStart: [
+            'Install Python: https://www.python.org/downloads/',
+            'Try it online: https://repl.it/languages/python3',
+            'Learn basics: variables, functions, loops, lists (2-3 hours)',
+            'Practice: Write a script to calculate cloud costs'
+          ]
+        },
+        {
+          name: 'PowerShell',
+          why: 'Essential for Azure administration and Windows automation',
+          skillLevel: 'Basic cmdlets and scripting',
+          learningResources: [
+            { title: 'PowerShell 101 - Microsoft', url: 'https://learn.microsoft.com/powershell/scripting/learn/ps101/00-introduction', duration: '5 hours', type: 'free' },
+            { title: 'PowerShell Tutorial - TutorialsPoint', url: 'https://www.tutorialspoint.com/powershell/index.htm', duration: 'Self-paced', type: 'free' },
+            { title: 'Introduction to PowerShell - Pluralsight', url: 'https://www.pluralsight.com/courses/powershell-intro', duration: '3 hours', type: 'paid' },
+            { title: 'Learn PowerShell in a Month of Lunches', url: 'https://www.manning.com/books/learn-powershell-in-a-month-of-lunches', duration: 'Book', type: 'paid' }
+          ],
+          quickStart: [
+            'Already installed on Windows! Open "Windows PowerShell"',
+            'Mac/Linux: Install PowerShell Core from https://github.com/PowerShell/PowerShell',
+            'Learn basics: cmdlets (Get-, Set-, New-), variables, pipelines (2 hours)',
+            'Practice: Get-AzVM, Get-Service, basic automation'
+          ]
+        },
+        {
+          name: 'Bash/Shell Scripting',
+          why: 'Useful for Linux VMs, automation, and AWS CLI',
+          skillLevel: 'Basic commands and scripts',
+          learningResources: [
+            { title: 'Bash Scripting Tutorial', url: 'https://linuxconfig.org/bash-scripting-tutorial', duration: '4 hours', type: 'free' },
+            { title: 'Shell Scripting - Linux Journey', url: 'https://linuxjourney.com/lesson/the-shell', duration: 'Self-paced', type: 'free' },
+            { title: 'Bash Guide for Beginners', url: 'https://tldp.org/LDP/Bash-Beginners-Guide/html/', duration: 'Reference', type: 'free' }
+          ],
+          quickStart: [
+            'Mac/Linux: Already have it! Open Terminal',
+            'Windows: Use Git Bash (https://gitforwindows.org/) or WSL',
+            'Learn basics: ls, cd, grep, pipes, variables (1-2 hours)',
+            'Practice: Write a script to backup files'
+          ]
+        }
+      ],
+      recommendation: '💡 You can start the course today and learn coding alongside. Most lessons have step-by-step instructions that teach you as you go!'
+    },
+    
     // Certification Exam Preparation
     certifications: [
       { name: 'AWS Certified Cloud Practitioner', provider: 'AWS', code: 'CLF-C02' },
@@ -68,8 +215,27 @@ const COURSE_PATHWAYS = {
         topics: ['History of Cloud', 'Mainframes to Modern Cloud', 'Key Innovations'],
         description: 'Understand how cloud computing evolved from mainframes to today\'s cloud platforms.',
         learningMaterials: [
-          { type: 'reading', title: 'Cloud Computing History White Paper', duration: '15 min' },
-          { type: 'interactive', title: 'Cloud Evolution Timeline Interactive', duration: '10 min' }
+          { 
+            type: 'reading', 
+            title: 'NIST Cloud Computing Definition (Official)', 
+            duration: '15 min',
+            url: 'https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf',
+            description: 'The official NIST definition of cloud computing - essential reading'
+          },
+          { 
+            type: 'interactive', 
+            title: 'AWS Cloud Quest - Cloud Practitioner', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            description: 'Gamified learning environment to explore AWS basics (free, no credit card)'
+          },
+          { 
+            type: 'video', 
+            title: 'Cloud Computing Explained by IBM', 
+            duration: '10 min',
+            url: 'https://www.youtube.com/watch?v=RWgW-CgdIk0',
+            description: 'Excellent overview of cloud evolution and concepts'
+          }
         ],
         quiz: {
           questions: [
@@ -109,8 +275,27 @@ const COURSE_PATHWAYS = {
         topics: ['IaaS Deep Dive', 'PaaS Use Cases', 'SaaS Examples', 'Choosing the Right Model'],
         description: 'Learn the three fundamental cloud service models and when to use each.',
         learningMaterials: [
-          { type: 'reading', title: 'NIST Cloud Service Models Definition', duration: '20 min' },
-          { type: 'case-study', title: 'Real-world IaaS/PaaS/SaaS Examples', duration: '15 min' }
+          { 
+            type: 'reading', 
+            title: 'NIST Cloud Service Models - Official Definition', 
+            duration: '20 min',
+            url: 'https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf',
+            description: 'Pages 2-3 cover IaaS, PaaS, and SaaS definitions'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Azure Learn: IaaS vs PaaS vs SaaS', 
+            duration: '25 min',
+            url: 'https://learn.microsoft.com/training/modules/azure-compute-fundamentals/',
+            description: 'Hands-on Azure sandbox lab - no account needed, runs in browser'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Real Companies Using IaaS/PaaS/SaaS', 
+            duration: '15 min',
+            url: 'https://aws.amazon.com/solutions/case-studies/',
+            description: 'Browse case studies to see how Netflix (IaaS), Spotify (PaaS), etc. use cloud'
+          }
         ],
         quiz: {
           questions: [
@@ -156,9 +341,27 @@ const COURSE_PATHWAYS = {
         topics: ['AWS Console', 'EC2 Instances', 'S3 Storage', 'IAM Basics'],
         description: 'Get hands-on with Amazon Web Services and its core offerings.',
         learningMaterials: [
-          { type: 'reading', title: 'AWS Global Infrastructure Overview', duration: '25 min' },
-          { type: 'video', title: 'AWS Free Tier Navigation Guide', duration: '15 min' },
-          { type: 'documentation', title: 'EC2 Instance Types Reference', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'AWS Global Infrastructure Overview', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/about-aws/global-infrastructure/',
+            description: 'Official AWS documentation on regions, availability zones, and edge locations'
+          },
+          { 
+            type: 'video', 
+            title: 'AWS Free Tier Navigation Guide', 
+            duration: '15 min',
+            url: 'https://www.youtube.com/watch?v=Vq3d7uMYnRM',
+            description: 'Complete walkthrough of AWS Free Tier services and how to avoid charges'
+          },
+          { 
+            type: 'documentation', 
+            title: 'EC2 Instance Types Reference', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/ec2/instance-types/',
+            description: 'Comprehensive guide to choosing the right EC2 instance type for your workload'
+          }
         ],
         quiz: {
           questions: [
@@ -211,8 +414,20 @@ const COURSE_PATHWAYS = {
         topics: ['Azure Portal', 'Virtual Machines', 'Storage Accounts', 'Resource Groups'],
         description: 'Explore Microsoft Azure\'s cloud platform and key services.',
         learningMaterials: [
-          { type: 'reading', title: 'Azure Architecture Center', duration: '30 min' },
-          { type: 'interactive', title: 'Azure Portal Walkthrough', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Azure Architecture Center', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/azure/architecture/',
+            description: 'Microsoft\'s comprehensive resource for cloud architecture best practices and patterns'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Azure Portal Walkthrough', 
+            duration: '20 min',
+            url: 'https://learn.microsoft.com/training/modules/tour-azure-portal/',
+            description: 'Hands-on Microsoft Learn module with browser-based Azure sandbox (no account needed)'
+          }
         ],
         quiz: {
           questions: [
@@ -260,8 +475,20 @@ const COURSE_PATHWAYS = {
         topics: ['GCP Console', 'Compute Engine', 'Cloud Storage', 'Projects & Billing'],
         description: 'Navigate Google Cloud Platform and understand its unique offerings.',
         learningMaterials: [
-          { type: 'reading', title: 'GCP Solutions Architecture', duration: '25 min' },
-          { type: 'documentation', title: 'gcloud CLI Quickstart', duration: '15 min' }
+          { 
+            type: 'reading', 
+            title: 'GCP Solutions Architecture', 
+            duration: '25 min',
+            url: 'https://cloud.google.com/architecture',
+            description: 'Google Cloud architecture framework with reference architectures and best practices'
+          },
+          { 
+            type: 'documentation', 
+            title: 'gcloud CLI Quickstart', 
+            duration: '15 min',
+            url: 'https://cloud.google.com/sdk/gcloud',
+            description: 'Complete guide to installing and using the gcloud command-line tool'
+          }
         ],
         quiz: {
           questions: [
@@ -309,8 +536,20 @@ const COURSE_PATHWAYS = {
         topics: ['Object Storage', 'Block Storage', 'File Storage', 'Backup Strategies'],
         description: 'Master different storage types and best practices for data management.',
         learningMaterials: [
-          { type: 'reading', title: 'Cloud Storage Types Comparison', duration: '20 min' },
-          { type: 'case-study', title: 'Storage Architecture Patterns', duration: '15 min' }
+          { 
+            type: 'reading', 
+            title: 'Cloud Storage Types Comparison', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/products/storage/',
+            description: 'Detailed comparison of object, block, and file storage with use cases'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Storage Architecture Patterns', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/architecture/guide/technology-choices/data-store-overview',
+            description: 'Real-world storage architecture patterns and decision guide'
+          }
         ],
         quiz: {
           questions: [
@@ -352,8 +591,20 @@ const COURSE_PATHWAYS = {
         topics: ['Virtual Networks', 'Subnets', 'Load Balancers', 'CDN'],
         description: 'Understand cloud networking concepts and how to connect resources.',
         learningMaterials: [
-          { type: 'reading', title: 'VPC Design Best Practices', duration: '25 min' },
-          { type: 'diagram', title: 'Network Architecture Patterns', duration: '15 min' }
+          { 
+            type: 'reading', 
+            title: 'VPC Design Best Practices', 
+            duration: '25 min',
+            url: 'https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-design.html',
+            description: 'AWS VPC design patterns including subnets, routing, and security best practices'
+          },
+          { 
+            type: 'diagram', 
+            title: 'Network Architecture Patterns', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/',
+            description: 'Visual reference architectures for cloud networking with detailed diagrams'
+          }
         ],
         quiz: {
           questions: [
@@ -400,8 +651,20 @@ const COURSE_PATHWAYS = {
         topics: ['Identity & Access Management', 'Encryption', 'Firewalls', 'Best Practices'],
         description: 'Learn essential cloud security concepts to protect your infrastructure.',
         learningMaterials: [
-          { type: 'reading', title: 'Cloud Security Best Practices Guide', duration: '30 min' },
-          { type: 'checklist', title: 'Security Audit Checklist', duration: '10 min' }
+          { 
+            type: 'reading', 
+            title: 'Cloud Security Best Practices Guide', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/architecture/security-identity-compliance/',
+            description: 'AWS security best practices covering IAM, encryption, monitoring, and compliance'
+          },
+          { 
+            type: 'checklist', 
+            title: 'Security Audit Checklist', 
+            duration: '10 min',
+            url: 'https://www.cisecurity.org/benchmark/amazon_web_services',
+            description: 'CIS Security Benchmark for cloud platforms - industry-standard security checklist'
+          }
         ],
         quiz: {
           questions: [
@@ -449,8 +712,20 @@ const COURSE_PATHWAYS = {
         topics: ['Pricing Models', 'Cost Optimization', 'Budgeting Tools', 'Resource Tagging'],
         description: 'Control and optimize your cloud spending with proven strategies.',
         learningMaterials: [
-          { type: 'reading', title: 'Cloud Cost Optimization Strategies', duration: '20 min' },
-          { type: 'calculator', title: 'Cloud Pricing Calculator Tutorial', duration: '15 min' }
+          { 
+            type: 'reading', 
+            title: 'Cloud Cost Optimization Strategies', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/aws-cost-management/cost-optimization/',
+            description: 'Proven strategies for reducing cloud costs including right-sizing and reserved instances'
+          },
+          { 
+            type: 'calculator', 
+            title: 'Cloud Pricing Calculator Tutorial', 
+            duration: '15 min',
+            url: 'https://calculator.aws/',
+            description: 'Interactive AWS Pricing Calculator to estimate costs before deploying resources'
+          }
         ],
         quiz: {
           questions: [
@@ -493,8 +768,20 @@ const COURSE_PATHWAYS = {
         topics: ['Full Stack Deployment', 'CI/CD Basics', 'Monitoring', 'Troubleshooting'],
         description: 'Put everything together by deploying a real application to the cloud.',
         learningMaterials: [
-          { type: 'reading', title: 'Application Architecture Best Practices', duration: '25 min' },
-          { type: 'template', title: 'Deployment Checklist', duration: '10 min' }
+          { 
+            type: 'reading', 
+            title: 'Application Architecture Best Practices', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/architecture/well-architected/',
+            description: 'AWS Well-Architected Framework covering operational excellence, security, and reliability'
+          },
+          { 
+            type: 'template', 
+            title: 'Deployment Checklist', 
+            duration: '10 min',
+            url: 'https://learn.microsoft.com/azure/architecture/checklist/dev-ops',
+            description: 'Production deployment checklist covering testing, monitoring, and rollback procedures'
+          }
         ],
         quiz: {
           questions: [
@@ -545,6 +832,153 @@ const COURSE_PATHWAYS = {
     color: '#0ea5e9',
     icon: '🏗️',
     skills: ['Solution Architecture', 'Multi-Cloud Design', 'High Availability', 'Disaster Recovery', 'Cost Optimization'],
+    
+    // Lab Environment Setup Instructions
+    labSetup: {
+      title: 'Getting Your Lab Environment Ready',
+      description: 'You\'ll need access to cloud platforms to complete hands-on labs. Here are your options:',
+      options: [
+        {
+          name: 'AWS Free Tier (Recommended for Beginners)',
+          steps: [
+            'Visit https://aws.amazon.com/free/',
+            'Click "Create a Free Account"',
+            'Provide email, password, and AWS account name',
+            'Enter payment information (required but won\'t be charged for free tier usage)',
+            'Verify your phone number',
+            'Choose "Basic Support - Free" plan',
+            'Sign in to AWS Console at https://console.aws.amazon.com/',
+            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+          ],
+          duration: '10-15 minutes',
+          cost: 'Free for 12 months (with usage limits)',
+          url: 'https://aws.amazon.com/free/'
+        },
+        {
+          name: 'Azure Free Account',
+          steps: [
+            'Visit https://azure.microsoft.com/free/',
+            'Click "Start free"',
+            'Sign in with Microsoft account (or create one)',
+            'Enter personal information and phone verification',
+            'Add credit card for identity verification ($200 credit provided)',
+            'Complete identity verification',
+            'Access Azure Portal at https://portal.azure.com/',
+            '💡 Tip: Use Azure Cost Management to track your spending'
+          ],
+          duration: '10-15 minutes',
+          cost: '$200 credit for 30 days + 12 months of free services',
+          url: 'https://azure.microsoft.com/free/'
+        },
+        {
+          name: 'Google Cloud Free Tier',
+          steps: [
+            'Visit https://cloud.google.com/free/',
+            'Click "Get started for free"',
+            'Sign in with Google account',
+            'Enter billing information ($300 credit for 90 days)',
+            'Select country and accept terms',
+            'Access GCP Console at https://console.cloud.google.com/',
+            'Create your first project',
+            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+          ],
+          duration: '10 minutes',
+          cost: '$300 credit for 90 days + Always Free tier',
+          url: 'https://cloud.google.com/free/'
+        },
+        {
+          name: 'Use Your Existing Cloud Account',
+          steps: [
+            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            'Ensure you have permissions to create: VMs, storage, networks, and basic services',
+            'Check with your organization about cost allocation tags or budget limits',
+            'Use a separate resource group/project for course labs to keep things organized',
+            '🏷️ Tag all resources with "Course: Cloud Architect Pathway" for easy cleanup'
+          ],
+          duration: '5 minutes',
+          cost: 'Depends on your organization\'s arrangement'
+        },
+        {
+          name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
+          steps: [
+            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
+          ],
+          duration: 'Instant access',
+          cost: 'Free (time-limited sessions)'
+        }
+      ],
+      recommendations: [
+        '🏢 Enterprise learners: This course requires production-level access for architecture labs',
+        '💳 Recommended: Sign up for all three cloud platforms (AWS, Azure, GCP) for multi-cloud experience',
+        '💰 Budget tip: Most architecture labs use minimal resources; set $50-100/month budgets',
+        '🎓 Advanced users: Consider dedicated sandbox subscriptions for complex architecture designs',
+        '⏰ Time management: Some labs require resources to run for hours to demonstrate patterns'
+      ]
+    },
+    
+    // Coding Prerequisites
+    codingPrerequisites: {
+      required: false,
+      description: 'While not strictly required, scripting knowledge is helpful for automation and infrastructure as code.',
+      languages: [
+        {
+          name: 'Python',
+          why: 'Useful for cloud automation scripts and infrastructure management',
+          skillLevel: 'Basic syntax and functions',
+          learningResources: [
+            { title: 'Python for Beginners - Microsoft', url: 'https://learn.microsoft.com/training/paths/beginner-python/', duration: '8 hours', type: 'free' },
+            { title: 'Python Tutorial - W3Schools', url: 'https://www.w3schools.com/python/', duration: 'Self-paced', type: 'free' },
+            { title: 'Learn Python - Codecademy', url: 'https://www.codecademy.com/learn/learn-python-3', duration: '25 hours', type: 'freemium' },
+            { title: 'Automate the Boring Stuff with Python', url: 'https://automatetheboringstuff.com/', duration: 'Book + Videos', type: 'free' }
+          ],
+          quickStart: [
+            'Install Python: https://www.python.org/downloads/',
+            'Try it online: https://repl.it/languages/python3',
+            'Learn basics: variables, functions, loops, lists (2-3 hours)',
+            'Practice: Write a script to calculate cloud costs'
+          ]
+        },
+        {
+          name: 'PowerShell',
+          why: 'Essential for Azure administration and Windows automation',
+          skillLevel: 'Basic cmdlets and scripting',
+          learningResources: [
+            { title: 'PowerShell 101 - Microsoft', url: 'https://learn.microsoft.com/powershell/scripting/learn/ps101/00-introduction', duration: '5 hours', type: 'free' },
+            { title: 'PowerShell Tutorial - TutorialsPoint', url: 'https://www.tutorialspoint.com/powershell/index.htm', duration: 'Self-paced', type: 'free' },
+            { title: 'Introduction to PowerShell - Pluralsight', url: 'https://www.pluralsight.com/courses/powershell-intro', duration: '3 hours', type: 'paid' },
+            { title: 'Learn PowerShell in a Month of Lunches', url: 'https://www.manning.com/books/learn-powershell-in-a-month-of-lunches', duration: 'Book', type: 'paid' }
+          ],
+          quickStart: [
+            'Already installed on Windows! Open "Windows PowerShell"',
+            'Mac/Linux: Install PowerShell Core from https://github.com/PowerShell/PowerShell',
+            'Learn basics: cmdlets (Get-, Set-, New-), variables, pipelines (2 hours)',
+            'Practice: Get-AzVM, Get-Service, basic automation'
+          ]
+        },
+        {
+          name: 'Bash/Shell Scripting',
+          why: 'Useful for Linux VMs, automation, and AWS CLI',
+          skillLevel: 'Basic commands and scripts',
+          learningResources: [
+            { title: 'Bash Scripting Tutorial', url: 'https://linuxconfig.org/bash-scripting-tutorial', duration: '4 hours', type: 'free' },
+            { title: 'Shell Scripting - Linux Journey', url: 'https://linuxjourney.com/lesson/the-shell', duration: 'Self-paced', type: 'free' },
+            { title: 'Bash Guide for Beginners', url: 'https://tldp.org/LDP/Bash-Beginners-Guide/html/', duration: 'Reference', type: 'free' }
+          ],
+          quickStart: [
+            'Mac/Linux: Already have it! Open Terminal',
+            'Windows: Use Git Bash (https://gitforwindows.org/) or WSL',
+            'Learn basics: ls, cd, grep, pipes, variables (1-2 hours)',
+            'Practice: Write a script to backup files'
+          ]
+        }
+      ],
+      recommendation: '💡 As an architect, you\'ll read and review code more than write it. Focus on understanding patterns over syntax.'
+    },
     
     // Certification Exam Preparation
     certifications: [
@@ -603,9 +1037,27 @@ const COURSE_PATHWAYS = {
         topics: ['Well-Architected Framework', 'Design Patterns', 'Trade-offs', 'Best Practices'],
         description: 'Master the fundamental principles of designing scalable cloud architectures.',
         learningMaterials: [
-          { type: 'reading', title: 'AWS Well-Architected Framework Guide', duration: '30 min' },
-          { type: 'reading', title: 'Azure Architecture Center Overview', duration: '25 min' },
-          { type: 'case-study', title: 'Netflix Architecture Analysis', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'AWS Well-Architected Framework Guide', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/architecture/well-architected/',
+            description: 'Complete guide to the five pillars: operational excellence, security, reliability, performance, cost optimization'
+          },
+          { 
+            type: 'reading', 
+            title: 'Azure Architecture Center Overview', 
+            duration: '25 min',
+            url: 'https://learn.microsoft.com/azure/architecture/framework/',
+            description: 'Microsoft Azure Well-Architected Framework with design patterns and best practices'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Netflix Architecture Analysis', 
+            duration: '20 min',
+            url: 'https://netflixtechblog.com/tagged/cloud',
+            description: 'Netflix Tech Blog - learn how they architect for scale with AWS'
+          }
         ],
         quiz: {
           questions: [
@@ -653,9 +1105,27 @@ const COURSE_PATHWAYS = {
         topics: ['3-Tier Architecture', 'Microservices', 'Serverless', 'Hybrid Approaches'],
         description: 'Design complex applications with multiple tiers and components.',
         learningMaterials: [
-          { type: 'reading', title: 'Microservices Architecture Patterns', duration: '35 min' },
-          { type: 'video', title: 'When to Use Serverless vs Containers', duration: '20 min' },
-          { type: 'interactive', title: 'Application Architecture Decision Tree', duration: '15 min' }
+          { 
+            type: 'reading', 
+            title: 'Microservices Architecture Patterns', 
+            duration: '35 min',
+            url: 'https://microservices.io/patterns/index.html',
+            description: 'Comprehensive catalog of microservices patterns from Martin Fowler\'s team'
+          },
+          { 
+            type: 'video', 
+            title: 'When to Use Serverless vs Containers', 
+            duration: '20 min',
+            url: 'https://www.youtube.com/watch?v=W_VV2Fx32_Y',
+            description: 'AWS re:Invent talk comparing serverless and container architectures with real examples'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Application Architecture Decision Tree', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/architecture/guide/technology-choices/compute-decision-tree',
+            description: 'Interactive decision tree to help choose the right compute service'
+          }
         ],
         quiz: {
           questions: [
@@ -708,8 +1178,20 @@ const COURSE_PATHWAYS = {
         topics: ['Redundancy', 'Auto-scaling', 'Load Balancing', 'Failover Strategies'],
         description: 'Build systems that stay online even when components fail.',
         learningMaterials: [
-          { type: 'reading', title: 'High Availability Design Patterns', duration: '30 min' },
-          { type: 'case-study', title: 'AWS Multi-AZ Architectures', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'High Availability Design Patterns', 
+            duration: '30 min',
+            url: 'https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/high-availability-and-scalability-on-aws.html',
+            description: 'AWS whitepaper on designing highly available and fault-tolerant systems'
+          },
+          { 
+            type: 'case-study', 
+            title: 'AWS Multi-AZ Architectures', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/solutions/case-studies/',
+            description: 'Real-world case studies showing multi-AZ deployments and disaster recovery'
+          }
         ],
         quiz: {
           questions: [
@@ -751,9 +1233,27 @@ const COURSE_PATHWAYS = {
         topics: ['Backup Strategies', 'RTO & RPO', 'Multi-Region Design', 'Recovery Testing'],
         description: 'Create comprehensive disaster recovery plans for critical systems.',
         learningMaterials: [
-          { type: 'reading', title: 'Disaster Recovery Strategies Guide', duration: '30 min' },
-          { type: 'template', title: 'DR Plan Template', duration: '15 min' },
-          { type: 'case-study', title: 'Real-World DR Scenarios', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Disaster Recovery Strategies Guide', 
+            duration: '30 min',
+            url: 'https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html',
+            description: 'AWS whitepaper covering backup/restore, pilot light, warm standby, and multi-site strategies'
+          },
+          { 
+            type: 'template', 
+            title: 'DR Plan Template', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/reliability/disaster-recovery-overview',
+            description: 'Azure disaster recovery planning guide with templates and RTO/RPO calculations'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Real-World DR Scenarios', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/disaster-recovery/',
+            description: 'Case studies of organizations recovering from disasters using cloud DR solutions'
+          }
         ],
         quiz: {
           questions: [
@@ -801,8 +1301,20 @@ const COURSE_PATHWAYS = {
         topics: ['Active Directory', 'SSO', 'MFA', 'RBAC', 'Zero Trust'],
         description: 'Implement enterprise-grade identity and access management.',
         learningMaterials: [
-          { type: 'reading', title: 'Zero Trust Architecture Guide', duration: '30 min' },
-          { type: 'documentation', title: 'Azure AD and AWS IAM Integration', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'Zero Trust Architecture Guide', 
+            duration: '30 min',
+            url: 'https://www.nist.gov/publications/zero-trust-architecture',
+            description: 'NIST official publication on Zero Trust architecture principles (SP 800-207)'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Azure AD and AWS IAM Integration', 
+            duration: '25 min',
+            url: 'https://learn.microsoft.com/azure/active-directory/saas-apps/aws-single-sign-on-tutorial',
+            description: 'Step-by-step guide to integrate Azure AD with AWS using SAML federation'
+          }
         ],
         quiz: {
           questions: [
@@ -850,8 +1362,20 @@ const COURSE_PATHWAYS = {
         topics: ['VPN', 'VPC Peering', 'Transit Gateway', 'Firewall Rules', 'Network Segmentation'],
         description: 'Design secure, efficient network architectures in the cloud.',
         learningMaterials: [
-          { type: 'reading', title: 'Enterprise Network Design Best Practices', duration: '35 min' },
-          { type: 'diagram', title: 'Hub-and-Spoke Network Patterns', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Enterprise Network Design Best Practices', 
+            duration: '35 min',
+            url: 'https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/introduction.html',
+            description: 'AWS whitepaper on VPC connectivity options including Transit Gateway and VPN'
+          },
+          { 
+            type: 'diagram', 
+            title: 'Hub-and-Spoke Network Patterns', 
+            duration: '20 min',
+            url: 'https://learn.microsoft.com/azure/architecture/reference-architectures/hybrid-networking/hub-spoke',
+            description: 'Azure hub-spoke network topology with detailed architecture diagrams'
+          }
         ],
         quiz: {
           questions: [
@@ -899,8 +1423,20 @@ const COURSE_PATHWAYS = {
         topics: ['Data Lakes', 'Warehousing', 'ETL Pipelines', 'Analytics Services'],
         description: 'Architect scalable data solutions for enterprise analytics.',
         learningMaterials: [
-          { type: 'reading', title: 'Data Lake vs Data Warehouse Architecture', duration: '30 min' },
-          { type: 'case-study', title: 'Enterprise Data Platform Design', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'Data Lake vs Data Warehouse Architecture', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/big-data/datalakes-and-analytics/',
+            description: 'AWS guide on modern data architecture with lakes, warehouses, and analytics'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Enterprise Data Platform Design', 
+            duration: '25 min',
+            url: 'https://learn.microsoft.com/azure/architecture/data-guide/',
+            description: 'Azure data architecture guide with real-world reference architectures'
+          }
         ],
         quiz: {
           questions: [
@@ -943,9 +1479,27 @@ const COURSE_PATHWAYS = {
         topics: ['6 Rs of Migration', 'Assessment Tools', 'Migration Patterns', 'Cutover Planning'],
         description: 'Plan and execute successful cloud migration projects.',
         learningMaterials: [
-          { type: 'reading', title: 'AWS Migration Strategies (6 Rs)', duration: '30 min' },
-          { type: 'template', title: 'Migration Project Plan Template', duration: '15 min' },
-          { type: 'case-study', title: 'Large-Scale Migration Case Study', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'AWS Migration Strategies (6 Rs)', 
+            duration: '30 min',
+            url: 'https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-readiness/migration-strategies.html',
+            description: 'Official AWS guide to the 6 Rs: Rehost, Replatform, Repurchase, Refactor, Retire, Retain'
+          },
+          { 
+            type: 'template', 
+            title: 'Migration Project Plan Template', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/cloud-adoption-framework/migrate/',
+            description: 'Azure Cloud Adoption Framework with migration templates and checklists'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Large-Scale Migration Case Study', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/solutions/case-studies/enterprise-migration/',
+            description: 'Real-world enterprise migration case studies with lessons learned'
+          }
         ],
         quiz: {
           questions: [
@@ -993,8 +1547,20 @@ const COURSE_PATHWAYS = {
         topics: ['Reserved Instances', 'Spot Instances', 'Right-sizing', 'Cost Allocation'],
         description: 'Optimize cloud costs for large-scale deployments.',
         learningMaterials: [
-          { type: 'reading', title: 'FinOps Best Practices Guide', duration: '25 min' },
-          { type: 'calculator', title: 'TCO Calculator Workshop', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'FinOps Best Practices Guide', 
+            duration: '25 min',
+            url: 'https://www.finops.org/framework/',
+            description: 'FinOps Foundation framework for cloud financial management and optimization'
+          },
+          { 
+            type: 'calculator', 
+            title: 'TCO Calculator Workshop', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/tco-calculator/',
+            description: 'AWS Total Cost of Ownership calculator to compare cloud vs on-premises costs'
+          }
         ],
         quiz: {
           questions: [
@@ -1037,8 +1603,20 @@ const COURSE_PATHWAYS = {
         topics: ['Policies', 'Compliance Frameworks', 'Auditing', 'Documentation'],
         description: 'Implement governance and meet compliance requirements.',
         learningMaterials: [
-          { type: 'reading', title: 'Cloud Governance Framework Guide', duration: '30 min' },
-          { type: 'checklist', title: 'Compliance Requirements Checklist', duration: '15 min' }
+          { 
+            type: 'reading', 
+            title: 'Cloud Governance Framework Guide', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/azure/cloud-adoption-framework/govern/',
+            description: 'Azure Cloud Adoption Framework governance methodology with policies and guardrails'
+          },
+          { 
+            type: 'checklist', 
+            title: 'Compliance Requirements Checklist', 
+            duration: '15 min',
+            url: 'https://aws.amazon.com/compliance/programs/',
+            description: 'AWS compliance programs list covering HIPAA, PCI-DSS, SOC 2, and more'
+          }
         ],
         quiz: {
           questions: [
@@ -1081,8 +1659,20 @@ const COURSE_PATHWAYS = {
         topics: ['Caching', 'CDN', 'Database Optimization', 'Monitoring'],
         description: 'Optimize application performance in cloud environments.',
         learningMaterials: [
-          { type: 'reading', title: 'Performance Optimization Patterns', duration: '25 min' },
-          { type: 'case-study', title: 'High-Performance Architecture Examples', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Performance Optimization Patterns', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/architecture/performance-efficiency/',
+            description: 'AWS performance efficiency pillar with optimization patterns and caching strategies'
+          },
+          { 
+            type: 'case-study', 
+            title: 'High-Performance Architecture Examples', 
+            duration: '20 min',
+            url: 'https://learn.microsoft.com/azure/architecture/framework/scalability/performance-efficiency',
+            description: 'Azure performance architecture examples with CDN, caching, and database optimization'
+          }
         ],
         quiz: {
           questions: [
@@ -1125,8 +1715,20 @@ const COURSE_PATHWAYS = {
         topics: ['Requirements Gathering', 'Solution Design', 'Documentation', 'Presentation'],
         description: 'Design a complete enterprise cloud architecture from scratch.',
         learningMaterials: [
-          { type: 'template', title: 'Architecture Design Document Template', duration: '20 min' },
-          { type: 'checklist', title: 'Architecture Review Checklist', duration: '15 min' }
+          { 
+            type: 'template', 
+            title: 'Architecture Design Document Template', 
+            duration: '20 min',
+            url: 'https://c4model.com/',
+            description: 'C4 model for software architecture documentation with templates and examples'
+          },
+          { 
+            type: 'checklist', 
+            title: 'Architecture Review Checklist', 
+            duration: '15 min',
+            url: 'https://aws.amazon.com/architecture/well-architected/review/',
+            description: 'AWS Well-Architected Tool for conducting architecture reviews'
+          }
         ],
         quiz: {
           questions: [
@@ -1177,6 +1779,153 @@ const COURSE_PATHWAYS = {
     color: '#ef4444',
     icon: '🔐',
     skills: ['Cloud Security', 'Threat Detection', 'Compliance', 'Incident Response', 'Zero Trust'],
+    
+    // Lab Environment Setup Instructions
+    labSetup: {
+      title: 'Getting Your Lab Environment Ready',
+      description: 'You\'ll need access to cloud platforms to complete hands-on labs. Here are your options:',
+      options: [
+        {
+          name: 'AWS Free Tier (Recommended for Beginners)',
+          steps: [
+            'Visit https://aws.amazon.com/free/',
+            'Click "Create a Free Account"',
+            'Provide email, password, and AWS account name',
+            'Enter payment information (required but won\'t be charged for free tier usage)',
+            'Verify your phone number',
+            'Choose "Basic Support - Free" plan',
+            'Sign in to AWS Console at https://console.aws.amazon.com/',
+            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+          ],
+          duration: '10-15 minutes',
+          cost: 'Free for 12 months (with usage limits)',
+          url: 'https://aws.amazon.com/free/'
+        },
+        {
+          name: 'Azure Free Account',
+          steps: [
+            'Visit https://azure.microsoft.com/free/',
+            'Click "Start free"',
+            'Sign in with Microsoft account (or create one)',
+            'Enter personal information and phone verification',
+            'Add credit card for identity verification ($200 credit provided)',
+            'Complete identity verification',
+            'Access Azure Portal at https://portal.azure.com/',
+            '💡 Tip: Use Azure Cost Management to track your spending'
+          ],
+          duration: '10-15 minutes',
+          cost: '$200 credit for 30 days + 12 months of free services',
+          url: 'https://azure.microsoft.com/free/'
+        },
+        {
+          name: 'Google Cloud Free Tier',
+          steps: [
+            'Visit https://cloud.google.com/free/',
+            'Click "Get started for free"',
+            'Sign in with Google account',
+            'Enter billing information ($300 credit for 90 days)',
+            'Select country and accept terms',
+            'Access GCP Console at https://console.cloud.google.com/',
+            'Create your first project',
+            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+          ],
+          duration: '10 minutes',
+          cost: '$300 credit for 90 days + Always Free tier',
+          url: 'https://cloud.google.com/free/'
+        },
+        {
+          name: 'Use Your Existing Cloud Account',
+          steps: [
+            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            'Ensure you have permissions to create: VMs, storage, networks, and basic services',
+            'Check with your organization about cost allocation tags or budget limits',
+            'Use a separate resource group/project for course labs to keep things organized',
+            '🏷️ Tag all resources with "Course: Cloud Security Engineer" for easy cleanup'
+          ],
+          duration: '5 minutes',
+          cost: 'Depends on your organization\'s arrangement'
+        },
+        {
+          name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
+          steps: [
+            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
+          ],
+          duration: 'Instant access',
+          cost: 'Free (time-limited sessions)'
+        }
+      ],
+      recommendations: [
+        '🔒 Security learners: Use dedicated test accounts - NEVER practice on production systems',
+        '💳 Recommended: Create isolated AWS/Azure/GCP accounts specifically for security testing',
+        '🛡️ Important: Some security tools (scanners, monitoring) may incur costs - set alerts',
+        '🎯 Pro tip: Use AWS Security Hub, Azure Defender free trials for advanced labs',
+        '⚠️ Ethics: Only perform security tests on your own resources - unauthorized testing is illegal'
+      ]
+    },
+    
+    // Coding Prerequisites
+    codingPrerequisites: {
+      required: true,
+      description: 'Security automation, threat detection scripts, and compliance tools require programming skills.',
+      languages: [
+        {
+          name: 'Python',
+          why: 'Essential for security automation, threat detection scripts, and working with security APIs',
+          skillLevel: 'Intermediate - functions, APIs, file handling',
+          learningResources: [
+            { title: 'Python for Beginners - Microsoft', url: 'https://learn.microsoft.com/training/paths/beginner-python/', duration: '8 hours', type: 'free' },
+            { title: 'Python Tutorial - W3Schools', url: 'https://www.w3schools.com/python/', duration: 'Self-paced', type: 'free' },
+            { title: 'Learn Python - Codecademy', url: 'https://www.codecademy.com/learn/learn-python-3', duration: '25 hours', type: 'freemium' },
+            { title: 'Automate the Boring Stuff with Python', url: 'https://automatetheboringstuff.com/', duration: 'Book + Videos', type: 'free' }
+          ],
+          quickStart: [
+            'Install Python: https://www.python.org/downloads/',
+            'Try it online: https://repl.it/languages/python3',
+            'Learn basics: variables, functions, loops, lists (2-3 hours)',
+            'Practice: Write a script to parse security logs'
+          ]
+        },
+        {
+          name: 'PowerShell',
+          why: 'Critical for Azure security automation, security auditing, and compliance checks',
+          skillLevel: 'Intermediate - scripting, Azure cmdlets',
+          learningResources: [
+            { title: 'PowerShell 101 - Microsoft', url: 'https://learn.microsoft.com/powershell/scripting/learn/ps101/00-introduction', duration: '5 hours', type: 'free' },
+            { title: 'PowerShell Tutorial - TutorialsPoint', url: 'https://www.tutorialspoint.com/powershell/index.htm', duration: 'Self-paced', type: 'free' },
+            { title: 'Introduction to PowerShell - Pluralsight', url: 'https://www.pluralsight.com/courses/powershell-intro', duration: '3 hours', type: 'paid' },
+            { title: 'Learn PowerShell in a Month of Lunches', url: 'https://www.manning.com/books/learn-powershell-in-a-month-of-lunches', duration: 'Book', type: 'paid' }
+          ],
+          quickStart: [
+            'Already installed on Windows! Open "Windows PowerShell"',
+            'Mac/Linux: Install PowerShell Core from https://github.com/PowerShell/PowerShell',
+            'Learn basics: cmdlets (Get-, Set-, New-), variables, pipelines (2 hours)',
+            'Practice: Get-AzSecurityAlert, Test-AzNetworkWatcher'
+          ]
+        },
+        {
+          name: 'Bash/Shell Scripting',
+          why: 'Essential for Linux security hardening, log analysis, and incident response',
+          skillLevel: 'Intermediate - scripting, regex, awk/sed',
+          learningResources: [
+            { title: 'Bash Scripting Tutorial', url: 'https://linuxconfig.org/bash-scripting-tutorial', duration: '4 hours', type: 'free' },
+            { title: 'Shell Scripting - Linux Journey', url: 'https://linuxjourney.com/lesson/the-shell', duration: 'Self-paced', type: 'free' },
+            { title: 'Bash Guide for Beginners', url: 'https://tldp.org/LDP/Bash-Beginners-Guide/html/', duration: 'Reference', type: 'free' }
+          ],
+          quickStart: [
+            'Mac/Linux: Already have it! Open Terminal',
+            'Windows: Use Git Bash (https://gitforwindows.org/) or WSL',
+            'Learn basics: ls, cd, grep, pipes, variables (1-2 hours)',
+            'Practice: Parse logs with grep, awk, and regex'
+          ]
+        }
+      ],
+      recommendation: '🔒 Security automation is a core skill. Dedicate 2-3 weeks to Python fundamentals before starting this course.'
+    },
     
     // Certification Exam Preparation
     certifications: [
@@ -1234,9 +1983,27 @@ const COURSE_PATHWAYS = {
         topics: ['Shared Responsibility Model', 'Security Principles', 'Threat Landscape'],
         description: 'Understand the foundations of cloud security and common threats.',
         learningMaterials: [
-          { type: 'reading', title: 'Shared Responsibility Model Explained', duration: '20 min' },
-          { type: 'video', title: 'Cloud Threat Landscape Overview', duration: '25 min' },
-          { type: 'infographic', title: 'Security Principles Visual Guide', duration: '10 min' }
+          { 
+            type: 'reading', 
+            title: 'Shared Responsibility Model Explained', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/compliance/shared-responsibility-model/',
+            description: 'Official AWS documentation on security responsibilities in the cloud'
+          },
+          { 
+            type: 'video', 
+            title: 'Cloud Threat Landscape Overview', 
+            duration: '25 min',
+            url: 'https://www.youtube.com/watch?v=dxDg-aGh0Nc',
+            description: 'AWS re:Invent security talk covering current cloud security threats and defenses'
+          },
+          { 
+            type: 'infographic', 
+            title: 'Security Principles Visual Guide', 
+            duration: '10 min',
+            url: 'https://www.cisa.gov/sites/default/files/publications/cloud-security-basics.pdf',
+            description: 'CISA cloud security basics with visual representations of defense-in-depth'
+          }
         ],
         quiz: {
           questions: [
@@ -1284,9 +2051,27 @@ const COURSE_PATHWAYS = {
         topics: ['IAM Policies', 'Least Privilege', 'Service Accounts', 'Federation'],
         description: 'Master IAM concepts and implement secure access controls.',
         learningMaterials: [
-          { type: 'reading', title: 'IAM Best Practices Guide', duration: '30 min' },
-          { type: 'documentation', title: 'Policy Syntax and Examples', duration: '25 min' },
-          { type: 'tutorial', title: 'Implementing Least Privilege', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'IAM Best Practices Guide', 
+            duration: '30 min',
+            url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html',
+            description: 'AWS IAM security best practices including least privilege and MFA implementation'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Policy Syntax and Examples', 
+            duration: '25 min',
+            url: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html',
+            description: 'Complete IAM policy language reference with examples and troubleshooting'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Implementing Least Privilege', 
+            duration: '20 min',
+            url: 'https://learn.microsoft.com/azure/role-based-access-control/best-practices',
+            description: 'Microsoft Learn module on implementing least privilege with Azure RBAC'
+          }
         ],
         quiz: {
           questions: [
@@ -1339,8 +2124,20 @@ const COURSE_PATHWAYS = {
         topics: ['Encryption at Rest', 'Encryption in Transit', 'Key Management', 'Tokenization'],
         description: 'Protect sensitive data with encryption and key management.',
         learningMaterials: [
-          { type: 'reading', title: 'Encryption Best Practices', duration: '30 min' },
-          { type: 'documentation', title: 'Key Management Service (KMS) Guide', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'Encryption Best Practices', 
+            duration: '30 min',
+            url: 'https://docs.aws.amazon.com/whitepapers/latest/logical-separation/encrypting-data-at-rest-and--in-transit.html',
+            description: 'AWS whitepaper on encryption at rest and in transit with implementation patterns'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Key Management Service (KMS) Guide', 
+            duration: '25 min',
+            url: 'https://docs.aws.amazon.com/kms/latest/developerguide/overview.html',
+            description: 'Complete guide to AWS KMS including key policies, rotation, and envelope encryption'
+          }
         ],
         quiz: {
           questions: [
@@ -1388,9 +2185,27 @@ const COURSE_PATHWAYS = {
         topics: ['Firewalls', 'Security Groups', 'Network Monitoring', 'DDoS Protection'],
         description: 'Secure cloud networks and prevent unauthorized access.',
         learningMaterials: [
-          { type: 'reading', title: 'Cloud Network Security Architecture', duration: '30 min' },
-          { type: 'diagram', title: 'Network Security Zones', duration: '15 min' },
-          { type: 'case-study', title: 'DDoS Attack Mitigation', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Cloud Network Security Architecture', 
+            duration: '30 min',
+            url: 'https://docs.aws.amazon.com/whitepapers/latest/aws-best-practices-ddos-resiliency/welcome.html',
+            description: 'AWS DDoS resilience best practices and network security architecture'
+          },
+          { 
+            type: 'diagram', 
+            title: 'Network Security Zones', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/architecture/framework/security/design-network-segmentation',
+            description: 'Azure network segmentation and security zone architecture diagrams'
+          },
+          { 
+            type: 'case-study', 
+            title: 'DDoS Attack Mitigation', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/shield/features/',
+            description: 'AWS Shield features and real-world DDoS attack mitigation case studies'
+          }
         ],
         quiz: {
           questions: [
@@ -1438,8 +2253,20 @@ const COURSE_PATHWAYS = {
         topics: ['SIEM', 'Log Analysis', 'Anomaly Detection', 'Security Dashboards'],
         description: 'Detect and respond to security threats in real-time.',
         learningMaterials: [
-          { type: 'reading', title: 'SIEM Best Practices', duration: '30 min' },
-          { type: 'tutorial', title: 'Writing Security Queries', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'SIEM Best Practices', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/azure/sentinel/best-practices',
+            description: 'Microsoft Sentinel (SIEM) best practices for threat detection and hunting'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Writing Security Queries', 
+            duration: '25 min',
+            url: 'https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings.html',
+            description: 'AWS GuardDuty findings guide with examples of threat detection queries'
+          }
         ],
         quiz: {
           questions: [
@@ -1482,9 +2309,27 @@ const COURSE_PATHWAYS = {
         topics: ['HIPAA', 'PCI-DSS', 'SOC 2', 'GDPR', 'Audit Trails'],
         description: 'Ensure compliance with industry regulations and standards.',
         learningMaterials: [
-          { type: 'reading', title: 'Compliance Frameworks Overview', duration: '30 min' },
-          { type: 'checklist', title: 'GDPR Compliance Checklist', duration: '15 min' },
-          { type: 'template', title: 'Audit Documentation Templates', duration: '10 min' }
+          { 
+            type: 'reading', 
+            title: 'Compliance Frameworks Overview', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/compliance/programs/',
+            description: 'Complete overview of compliance programs: HIPAA, PCI-DSS, SOC 2, GDPR, and more'
+          },
+          { 
+            type: 'checklist', 
+            title: 'GDPR Compliance Checklist', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/compliance/regulatory/gdpr',
+            description: 'Microsoft GDPR compliance checklist with practical implementation steps'
+          },
+          { 
+            type: 'template', 
+            title: 'Audit Documentation Templates', 
+            duration: '10 min',
+            url: 'https://www.aicpa-cima.com/soc-for-cybersecurity',
+            description: 'AICPA SOC 2 compliance resources and documentation templates'
+          }
         ],
         quiz: {
           questions: [
@@ -1532,8 +2377,20 @@ const COURSE_PATHWAYS = {
         topics: ['Image Scanning', 'Runtime Security', 'Pod Security', 'Network Policies'],
         description: 'Secure containerized applications and Kubernetes clusters.',
         learningMaterials: [
-          { type: 'reading', title: 'Container Security Best Practices', duration: '30 min' },
-          { type: 'tutorial', title: 'Kubernetes Security Hardening', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'Container Security Best Practices', 
+            duration: '30 min',
+            url: 'https://kubernetes.io/docs/concepts/security/',
+            description: 'Official Kubernetes security best practices including pod security and RBAC'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Kubernetes Security Hardening', 
+            duration: '25 min',
+            url: 'https://learn.microsoft.com/azure/aks/operator-best-practices-cluster-security',
+            description: 'Azure AKS security best practices with hands-on configuration examples'
+          }
         ],
         quiz: {
           questions: [
@@ -1581,8 +2438,20 @@ const COURSE_PATHWAYS = {
         topics: ['Function Security', 'API Gateway', 'Secrets Management', 'Input Validation'],
         description: 'Implement security best practices for serverless architectures.',
         learningMaterials: [
-          { type: 'reading', title: 'Serverless Security Best Practices', duration: '25 min' },
-          { type: 'case-study', title: 'Serverless Security Incidents', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Serverless Security Best Practices', 
+            duration: '25 min',
+            url: 'https://docs.aws.amazon.com/lambda/latest/dg/lambda-security.html',
+            description: 'AWS Lambda security best practices covering IAM, VPC, and secrets management'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Serverless Security Incidents', 
+            duration: '20 min',
+            url: 'https://owasp.org/www-project-serverless-top-10/',
+            description: 'OWASP Serverless Top 10 security risks with real-world incident examples'
+          }
         ],
         quiz: {
           questions: [
@@ -1625,9 +2494,27 @@ const COURSE_PATHWAYS = {
         topics: ['Incident Response Plan', 'Forensic Analysis', 'Post-Incident Review'],
         description: 'Respond effectively to security incidents and breaches.',
         learningMaterials: [
-          { type: 'reading', title: 'Incident Response Framework', duration: '30 min' },
-          { type: 'template', title: 'Incident Response Runbook', duration: '15 min' },
-          { type: 'case-study', title: 'Real-World Incident Analysis', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'Incident Response Framework', 
+            duration: '30 min',
+            url: 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf',
+            description: 'NIST SP 800-61 Computer Security Incident Handling Guide - industry standard'
+          },
+          { 
+            type: 'template', 
+            title: 'Incident Response Runbook', 
+            duration: '15 min',
+            url: 'https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/welcome.html',
+            description: 'AWS Security Incident Response Guide with playbooks and runbook templates'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Real-World Incident Analysis', 
+            duration: '25 min',
+            url: 'https://www.cisa.gov/cybersecurity-advisories',
+            description: 'CISA cybersecurity advisories with real-world incident analysis and response'
+          }
         ],
         quiz: {
           questions: [
@@ -1675,8 +2562,20 @@ const COURSE_PATHWAYS = {
         topics: ['Security Assessment', 'Remediation Planning', 'Report Writing'],
         description: 'Conduct a comprehensive security audit of a cloud environment.',
         learningMaterials: [
-          { type: 'template', title: 'Security Audit Report Template', duration: '15 min' },
-          { type: 'checklist', title: 'Comprehensive Security Checklist', duration: '20 min' }
+          { 
+            type: 'template', 
+            title: 'Security Audit Report Template', 
+            duration: '15 min',
+            url: 'https://www.cisecurity.org/controls',
+            description: 'CIS Controls framework for comprehensive security audit coverage'
+          },
+          { 
+            type: 'checklist', 
+            title: 'Comprehensive Security Checklist', 
+            duration: '20 min',
+            url: 'https://www.cisecurity.org/benchmark/amazon_web_services',
+            description: 'CIS Amazon Web Services Foundations Benchmark - detailed security checklist'
+          }
         ],
         quiz: {
           questions: [
@@ -1727,6 +2626,153 @@ const COURSE_PATHWAYS = {
     color: '#10b981',
     icon: '⚙️',
     skills: ['CI/CD', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Jenkins'],
+    
+    // Lab Environment Setup Instructions
+    labSetup: {
+      title: 'Getting Your Lab Environment Ready',
+      description: 'You\'ll need access to cloud platforms to complete hands-on labs. Here are your options:',
+      options: [
+        {
+          name: 'AWS Free Tier (Recommended for Beginners)',
+          steps: [
+            'Visit https://aws.amazon.com/free/',
+            'Click "Create a Free Account"',
+            'Provide email, password, and AWS account name',
+            'Enter payment information (required but won\'t be charged for free tier usage)',
+            'Verify your phone number',
+            'Choose "Basic Support - Free" plan',
+            'Sign in to AWS Console at https://console.aws.amazon.com/',
+            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+          ],
+          duration: '10-15 minutes',
+          cost: 'Free for 12 months (with usage limits)',
+          url: 'https://aws.amazon.com/free/'
+        },
+        {
+          name: 'Azure Free Account',
+          steps: [
+            'Visit https://azure.microsoft.com/free/',
+            'Click "Start free"',
+            'Sign in with Microsoft account (or create one)',
+            'Enter personal information and phone verification',
+            'Add credit card for identity verification ($200 credit provided)',
+            'Complete identity verification',
+            'Access Azure Portal at https://portal.azure.com/',
+            '💡 Tip: Use Azure Cost Management to track your spending'
+          ],
+          duration: '10-15 minutes',
+          cost: '$200 credit for 30 days + 12 months of free services',
+          url: 'https://azure.microsoft.com/free/'
+        },
+        {
+          name: 'Google Cloud Free Tier',
+          steps: [
+            'Visit https://cloud.google.com/free/',
+            'Click "Get started for free"',
+            'Sign in with Google account',
+            'Enter billing information ($300 credit for 90 days)',
+            'Select country and accept terms',
+            'Access GCP Console at https://console.cloud.google.com/',
+            'Create your first project',
+            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+          ],
+          duration: '10 minutes',
+          cost: '$300 credit for 90 days + Always Free tier',
+          url: 'https://cloud.google.com/free/'
+        },
+        {
+          name: 'Use Your Existing Cloud Account',
+          steps: [
+            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            'Ensure you have permissions to create: VMs, storage, networks, and basic services',
+            'Check with your organization about cost allocation tags or budget limits',
+            'Use a separate resource group/project for course labs to keep things organized',
+            '🏷️ Tag all resources with "Course: DevOps Automation" for easy cleanup'
+          ],
+          duration: '5 minutes',
+          cost: 'Depends on your organization\'s arrangement'
+        },
+        {
+          name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
+          steps: [
+            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
+          ],
+          duration: 'Instant access',
+          cost: 'Free (time-limited sessions)'
+        }
+      ],
+      recommendations: [
+        '⚙️ DevOps learners: You\'ll need CI/CD tools (GitHub Actions, Jenkins) - free tiers available',
+        '💳 Recommended: AWS or Azure for Kubernetes clusters (costs ~$70-100/month if running 24/7)',
+        '💡 Cost-saving tip: Destroy clusters after each lab session - recreate with Infrastructure as Code',
+        '🐳 Docker: Free on your local machine - no cloud account needed for container basics',
+        '🎯 Pro strategy: Use GitHub Actions free tier (2000 minutes/month) for CI/CD labs'
+      ]
+    },
+    
+    // Coding Prerequisites
+    codingPrerequisites: {
+      required: true,
+      description: 'DevOps requires strong scripting skills for automation, CI/CD pipelines, and infrastructure as code.',
+      languages: [
+        {
+          name: 'Python',
+          why: 'Core language for automation scripts, infrastructure tools, and DevOps utilities',
+          skillLevel: 'Intermediate - scripting, APIs, file handling',
+          learningResources: [
+            { title: 'Python for Beginners - Microsoft', url: 'https://learn.microsoft.com/training/paths/beginner-python/', duration: '8 hours', type: 'free' },
+            { title: 'Python Tutorial - W3Schools', url: 'https://www.w3schools.com/python/', duration: 'Self-paced', type: 'free' },
+            { title: 'Learn Python - Codecademy', url: 'https://www.codecademy.com/learn/learn-python-3', duration: '25 hours', type: 'freemium' },
+            { title: 'Automate the Boring Stuff with Python', url: 'https://automatetheboringstuff.com/', duration: 'Book + Videos', type: 'free' }
+          ],
+          quickStart: [
+            'Install Python: https://www.python.org/downloads/',
+            'Try it online: https://repl.it/languages/python3',
+            'Learn basics: variables, functions, loops, lists (2-3 hours)',
+            'Practice: Write a deployment automation script'
+          ]
+        },
+        {
+          name: 'PowerShell',
+          why: 'Essential for Azure DevOps, Windows automation, and cross-platform scripting',
+          skillLevel: 'Intermediate - scripting, Azure cmdlets',
+          learningResources: [
+            { title: 'PowerShell 101 - Microsoft', url: 'https://learn.microsoft.com/powershell/scripting/learn/ps101/00-introduction', duration: '5 hours', type: 'free' },
+            { title: 'PowerShell Tutorial - TutorialsPoint', url: 'https://www.tutorialspoint.com/powershell/index.htm', duration: 'Self-paced', type: 'free' },
+            { title: 'Introduction to PowerShell - Pluralsight', url: 'https://www.pluralsight.com/courses/powershell-intro', duration: '3 hours', type: 'paid' },
+            { title: 'Learn PowerShell in a Month of Lunches', url: 'https://www.manning.com/books/learn-powershell-in-a-month-of-lunches', duration: 'Book', type: 'paid' }
+          ],
+          quickStart: [
+            'Already installed on Windows! Open "Windows PowerShell"',
+            'Mac/Linux: Install PowerShell Core from https://github.com/PowerShell/PowerShell',
+            'Learn basics: cmdlets (Get-, Set-, New-), variables, pipelines (2 hours)',
+            'Practice: Deploy-AzWebApp, automation workflows'
+          ]
+        },
+        {
+          name: 'Bash/Shell Scripting',
+          why: 'Critical for Linux automation, CI/CD pipelines, and container orchestration',
+          skillLevel: 'Advanced - scripting, pipelines, automation',
+          learningResources: [
+            { title: 'Bash Scripting Tutorial', url: 'https://linuxconfig.org/bash-scripting-tutorial', duration: '4 hours', type: 'free' },
+            { title: 'Shell Scripting - Linux Journey', url: 'https://linuxjourney.com/lesson/the-shell', duration: 'Self-paced', type: 'free' },
+            { title: 'Bash Guide for Beginners', url: 'https://tldp.org/LDP/Bash-Beginners-Guide/html/', duration: 'Reference', type: 'free' }
+          ],
+          quickStart: [
+            'Mac/Linux: Already have it! Open Terminal',
+            'Windows: Use Git Bash (https://gitforwindows.org/) or WSL',
+            'Learn basics: ls, cd, grep, pipes, variables (1-2 hours)',
+            'Practice: Write CI/CD pipeline scripts'
+          ]
+        }
+      ],
+      recommendation: '⚙️ Strong scripting skills are ESSENTIAL. If you\'re new to coding, complete a Python basics course first.'
+    },
     
     // Certification Exam Preparation
     certifications: [
@@ -1785,8 +2831,20 @@ const COURSE_PATHWAYS = {
         topics: ['DevOps Philosophy', 'CALMS Framework', 'Team Collaboration'],
         description: 'Understand the culture and principles behind successful DevOps.',
         learningMaterials: [
-          { type: 'reading', title: 'The DevOps Handbook Principles', duration: '25 min' },
-          { type: 'video', title: 'DevOps Culture Transformation', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'The DevOps Handbook Principles', 
+            duration: '25 min',
+            url: 'https://itrevolution.com/articles/the-three-ways-principles-underpinning-devops/',
+            description: 'The Three Ways principles from The DevOps Handbook by Gene Kim'
+          },
+          { 
+            type: 'video', 
+            title: 'DevOps Culture Transformation', 
+            duration: '20 min',
+            url: 'https://www.youtube.com/watch?v=UbtB4sMaaNM',
+            description: 'Google Cloud Next talk on transforming engineering culture with DevOps'
+          }
         ],
         quiz: {
           questions: [
@@ -1828,8 +2886,20 @@ const COURSE_PATHWAYS = {
         topics: ['Git Basics', 'Branching Strategies', 'Pull Requests', 'Git Workflow'],
         description: 'Master Git for version control and team collaboration.',
         learningMaterials: [
-          { type: 'interactive', title: 'Git Branching Interactive Tutorial', duration: '30 min' },
-          { type: 'reading', title: 'Git Workflow Best Practices', duration: '20 min' }
+          { 
+            type: 'interactive', 
+            title: 'Git Branching Interactive Tutorial', 
+            duration: '30 min',
+            url: 'https://learngitbranching.js.org/',
+            description: 'Interactive visual tutorial teaching Git branching concepts with hands-on practice'
+          },
+          { 
+            type: 'reading', 
+            title: 'Git Workflow Best Practices', 
+            duration: '20 min',
+            url: 'https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows',
+            description: 'Official Git documentation on distributed workflows and collaboration patterns'
+          }
         ],
         quiz: {
           questions: [
@@ -1877,9 +2947,27 @@ const COURSE_PATHWAYS = {
         topics: ['Continuous Integration', 'Continuous Deployment', 'Pipeline Design'],
         description: 'Build automated pipelines for testing and deploying code.',
         learningMaterials: [
-          { type: 'reading', title: 'CI/CD Best Practices Guide', duration: '30 min' },
-          { type: 'diagram', title: 'Pipeline Architecture Patterns', duration: '15 min' },
-          { type: 'case-study', title: 'Enterprise CI/CD Implementation', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'CI/CD Best Practices Guide', 
+            duration: '30 min',
+            url: 'https://docs.gitlab.com/ee/ci/introduction/',
+            description: 'GitLab CI/CD introduction covering pipelines, jobs, and deployment strategies'
+          },
+          { 
+            type: 'diagram', 
+            title: 'Pipeline Architecture Patterns', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture',
+            description: 'Azure DevOps pipeline architecture patterns with visual diagrams'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Enterprise CI/CD Implementation', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/devops/continuous-integration/',
+            description: 'AWS CI/CD implementation patterns with enterprise case studies'
+          }
         ],
         quiz: {
           questions: [
@@ -1927,8 +3015,20 @@ const COURSE_PATHWAYS = {
         topics: ['Workflows', 'Actions Marketplace', 'Secrets Management', 'Matrix Builds'],
         description: 'Automate workflows with GitHub Actions.',
         learningMaterials: [
-          { type: 'documentation', title: 'GitHub Actions Syntax Reference', duration: '25 min' },
-          { type: 'tutorial', title: 'Building Custom Actions', duration: '30 min' }
+          { 
+            type: 'documentation', 
+            title: 'GitHub Actions Syntax Reference', 
+            duration: '25 min',
+            url: 'https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions',
+            description: 'Complete GitHub Actions workflow syntax reference with all available options'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Building Custom Actions', 
+            duration: '30 min',
+            url: 'https://docs.github.com/en/actions/creating-actions',
+            description: 'Official GitHub tutorial on creating custom actions with JavaScript or Docker'
+          }
         ],
         quiz: {
           questions: [
@@ -1976,8 +3076,20 @@ const COURSE_PATHWAYS = {
         topics: ['Docker Basics', 'Dockerfile', 'Docker Compose', 'Image Optimization'],
         description: 'Package applications in containers for consistent deployment.',
         learningMaterials: [
-          { type: 'reading', title: 'Docker Best Practices', duration: '30 min' },
-          { type: 'tutorial', title: 'Multi-Stage Dockerfile Tutorial', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'Docker Best Practices', 
+            duration: '30 min',
+            url: 'https://docs.docker.com/develop/dev-best-practices/',
+            description: 'Official Docker best practices for building efficient and secure containers'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Multi-Stage Dockerfile Tutorial', 
+            duration: '25 min',
+            url: 'https://docs.docker.com/build/building/multi-stage/',
+            description: 'Hands-on tutorial for building smaller Docker images with multi-stage builds'
+          }
         ],
         quiz: {
           questions: [
@@ -2025,9 +3137,27 @@ const COURSE_PATHWAYS = {
         topics: ['K8s Architecture', 'Pods & Services', 'Deployments', 'Helm Charts'],
         description: 'Orchestrate containers at scale with Kubernetes.',
         learningMaterials: [
-          { type: 'reading', title: 'Kubernetes Concepts Overview', duration: '35 min' },
-          { type: 'interactive', title: 'Kubernetes Interactive Tutorial', duration: '30 min' },
-          { type: 'documentation', title: 'kubectl Command Reference', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Kubernetes Concepts Overview', 
+            duration: '35 min',
+            url: 'https://kubernetes.io/docs/concepts/',
+            description: 'Official Kubernetes documentation covering all core concepts from pods to services'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Kubernetes Interactive Tutorial', 
+            duration: '30 min',
+            url: 'https://kubernetes.io/docs/tutorials/kubernetes-basics/',
+            description: 'Free interactive Kubernetes tutorial with browser-based hands-on labs'
+          },
+          { 
+            type: 'documentation', 
+            title: 'kubectl Command Reference', 
+            duration: '20 min',
+            url: 'https://kubernetes.io/docs/reference/kubectl/cheatsheet/',
+            description: 'Complete kubectl cheat sheet with common commands and usage patterns'
+          }
         ],
         quiz: {
           questions: [
@@ -2080,9 +3210,27 @@ const COURSE_PATHWAYS = {
         topics: ['HCL Syntax', 'Providers', 'State Management', 'Modules'],
         description: 'Define and manage infrastructure with code using Terraform.',
         learningMaterials: [
-          { type: 'reading', title: 'Terraform Best Practices', duration: '35 min' },
-          { type: 'documentation', title: 'Terraform Provider Documentation', duration: '25 min' },
-          { type: 'tutorial', title: 'Building Reusable Modules', duration: '30 min' }
+          { 
+            type: 'reading', 
+            title: 'Terraform Best Practices', 
+            duration: '35 min',
+            url: 'https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html',
+            description: 'HashiCorp recommended practices for Terraform code organization and workflows'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Terraform Provider Documentation', 
+            duration: '25 min',
+            url: 'https://registry.terraform.io/browse/providers',
+            description: 'Terraform Registry with documentation for AWS, Azure, GCP, and 2000+ providers'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Building Reusable Modules', 
+            duration: '30 min',
+            url: 'https://developer.hashicorp.com/terraform/tutorials/modules',
+            description: 'HashiCorp tutorial on creating reusable Terraform modules with examples'
+          }
         ],
         quiz: {
           questions: [
@@ -2130,8 +3278,20 @@ const COURSE_PATHWAYS = {
         topics: ['Ansible', 'Puppet', 'Chef', 'Configuration Drift'],
         description: 'Manage server configurations at scale with automation.',
         learningMaterials: [
-          { type: 'reading', title: 'Configuration Management Comparison', duration: '25 min' },
-          { type: 'tutorial', title: 'Ansible Playbook Basics', duration: '30 min' }
+          { 
+            type: 'reading', 
+            title: 'Configuration Management Comparison', 
+            duration: '25 min',
+            url: 'https://www.ansible.com/overview/configuration-management',
+            description: 'Ansible overview and comparison with other configuration management tools'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Ansible Playbook Basics', 
+            duration: '30 min',
+            url: 'https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html',
+            description: 'Official Ansible playbook introduction with step-by-step examples'
+          }
         ],
         quiz: {
           questions: [
@@ -2174,8 +3334,20 @@ const COURSE_PATHWAYS = {
         topics: ['Prometheus', 'Grafana', 'ELK Stack', 'Application Monitoring'],
         description: 'Monitor applications and infrastructure for performance and issues.',
         learningMaterials: [
-          { type: 'reading', title: 'Observability Best Practices', duration: '30 min' },
-          { type: 'tutorial', title: 'Setting Up Prometheus and Grafana', duration: '30 min' }
+          { 
+            type: 'reading', 
+            title: 'Observability Best Practices', 
+            duration: '30 min',
+            url: 'https://opentelemetry.io/docs/concepts/observability-primer/',
+            description: 'OpenTelemetry observability primer covering metrics, logs, and traces'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Setting Up Prometheus and Grafana', 
+            duration: '30 min',
+            url: 'https://prometheus.io/docs/prometheus/latest/getting_started/',
+            description: 'Official Prometheus getting started guide with Grafana integration'
+          }
         ],
         quiz: {
           questions: [
@@ -2223,8 +3395,20 @@ const COURSE_PATHWAYS = {
         topics: ['GitOps Principles', 'ArgoCD', 'Flux', 'Declarative Config'],
         description: 'Implement GitOps for infrastructure and application management.',
         learningMaterials: [
-          { type: 'reading', title: 'GitOps Principles and Practices', duration: '25 min' },
-          { type: 'tutorial', title: 'ArgoCD Getting Started', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'GitOps Principles and Practices', 
+            duration: '25 min',
+            url: 'https://www.gitops.tech/',
+            description: 'Comprehensive GitOps resource covering principles, tools, and best practices'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'ArgoCD Getting Started', 
+            duration: '20 min',
+            url: 'https://argo-cd.readthedocs.io/en/stable/getting_started/',
+            description: 'Official ArgoCD tutorial for implementing GitOps in Kubernetes'
+          }
         ],
         quiz: {
           questions: [
@@ -2267,8 +3451,20 @@ const COURSE_PATHWAYS = {
         topics: ['Unit Testing', 'Integration Testing', 'Security Scanning', 'Test Automation'],
         description: 'Automate testing to ensure code quality and security.',
         learningMaterials: [
-          { type: 'reading', title: 'Testing Pyramid and Strategies', duration: '25 min' },
-          { type: 'tutorial', title: 'Automated Security Scanning', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Testing Pyramid and Strategies', 
+            duration: '25 min',
+            url: 'https://martinfowler.com/articles/practical-test-pyramid.html',
+            description: 'Martin Fowler\'s comprehensive guide to the testing pyramid'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Automated Security Scanning', 
+            duration: '20 min',
+            url: 'https://owasp.org/www-community/Source_Code_Analysis_Tools',
+            description: 'OWASP guide to security testing tools including SAST and DAST'
+          }
         ],
         quiz: {
           questions: [
@@ -2311,8 +3507,20 @@ const COURSE_PATHWAYS = {
         topics: ['End-to-End Pipeline', 'Multi-Environment', 'Rollback Strategy'],
         description: 'Build a complete DevOps pipeline from code to production.',
         learningMaterials: [
-          { type: 'template', title: 'DevOps Pipeline Blueprint', duration: '15 min' },
-          { type: 'checklist', title: 'Production Readiness Checklist', duration: '20 min' }
+          { 
+            type: 'template', 
+            title: 'DevOps Pipeline Blueprint', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/devops/pipelines/architectures/devops-pipelines-baseline-architecture',
+            description: 'Azure DevOps pipeline architecture blueprint with templates'
+          },
+          { 
+            type: 'checklist', 
+            title: 'Production Readiness Checklist', 
+            duration: '20 min',
+            url: 'https://gruntwork.io/devops-checklist/',
+            description: 'Comprehensive production readiness checklist for DevOps teams'
+          }
         ],
         quiz: {
           questions: [
@@ -2363,6 +3571,153 @@ const COURSE_PATHWAYS = {
     color: '#f59e0b',
     icon: '🤖',
     skills: ['Machine Learning', 'AI Services', 'Python', 'Model Training', 'ML Pipelines'],
+    
+    // Lab Environment Setup Instructions
+    labSetup: {
+      title: 'Getting Your Lab Environment Ready',
+      description: 'You\'ll need access to cloud platforms to complete hands-on labs. Here are your options:',
+      options: [
+        {
+          name: 'AWS Free Tier (Recommended for Beginners)',
+          steps: [
+            'Visit https://aws.amazon.com/free/',
+            'Click "Create a Free Account"',
+            'Provide email, password, and AWS account name',
+            'Enter payment information (required but won\'t be charged for free tier usage)',
+            'Verify your phone number',
+            'Choose "Basic Support - Free" plan',
+            'Sign in to AWS Console at https://console.aws.amazon.com/',
+            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+          ],
+          duration: '10-15 minutes',
+          cost: 'Free for 12 months (with usage limits)',
+          url: 'https://aws.amazon.com/free/'
+        },
+        {
+          name: 'Azure Free Account',
+          steps: [
+            'Visit https://azure.microsoft.com/free/',
+            'Click "Start free"',
+            'Sign in with Microsoft account (or create one)',
+            'Enter personal information and phone verification',
+            'Add credit card for identity verification ($200 credit provided)',
+            'Complete identity verification',
+            'Access Azure Portal at https://portal.azure.com/',
+            '💡 Tip: Use Azure Cost Management to track your spending'
+          ],
+          duration: '10-15 minutes',
+          cost: '$200 credit for 30 days + 12 months of free services',
+          url: 'https://azure.microsoft.com/free/'
+        },
+        {
+          name: 'Google Cloud Free Tier',
+          steps: [
+            'Visit https://cloud.google.com/free/',
+            'Click "Get started for free"',
+            'Sign in with Google account',
+            'Enter billing information ($300 credit for 90 days)',
+            'Select country and accept terms',
+            'Access GCP Console at https://console.cloud.google.com/',
+            'Create your first project',
+            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+          ],
+          duration: '10 minutes',
+          cost: '$300 credit for 90 days + Always Free tier',
+          url: 'https://cloud.google.com/free/'
+        },
+        {
+          name: 'Use Your Existing Cloud Account',
+          steps: [
+            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            'Ensure you have permissions to create: VMs, storage, networks, and basic services',
+            'Check with your organization about cost allocation tags or budget limits',
+            'Use a separate resource group/project for course labs to keep things organized',
+            '🏷️ Tag all resources with "Course: AI & Machine Learning" for easy cleanup'
+          ],
+          duration: '5 minutes',
+          cost: 'Depends on your organization\'s arrangement'
+        },
+        {
+          name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
+          steps: [
+            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
+          ],
+          duration: 'Instant access',
+          cost: 'Free (time-limited sessions)'
+        }
+      ],
+      recommendations: [
+        '🤖 AI/ML learners: Most cloud AI services have generous free tiers (perfect for learning)',
+        '💳 Budget-friendly: Start with Azure Cognitive Services or AWS AI services (free tier covers most labs)',
+        '💰 Training costs: GPU instances for custom models can be expensive (~$1-3/hour) - use only when needed',
+        '📊 Tip: Use managed AI services (Azure AI, AWS SageMaker) free tiers instead of training from scratch',
+        '🎓 Students: Apply for GitHub Education Pack or Azure for Students for extra AI/ML credits'
+      ]
+    },
+    
+    // Coding Prerequisites
+    codingPrerequisites: {
+      required: true,
+      description: 'Python is essential for AI/ML development, data processing, and working with ML frameworks.',
+      languages: [
+        {
+          name: 'Python',
+          why: 'Primary language for AI/ML - required for data processing, model training, and ML frameworks',
+          skillLevel: 'Intermediate - functions, libraries (numpy, pandas), basic OOP',
+          learningResources: [
+            { title: 'Python for Beginners - Microsoft', url: 'https://learn.microsoft.com/training/paths/beginner-python/', duration: '8 hours', type: 'free' },
+            { title: 'Python Tutorial - W3Schools', url: 'https://www.w3schools.com/python/', duration: 'Self-paced', type: 'free' },
+            { title: 'Learn Python - Codecademy', url: 'https://www.codecademy.com/learn/learn-python-3', duration: '25 hours', type: 'freemium' },
+            { title: 'Automate the Boring Stuff with Python', url: 'https://automatetheboringstuff.com/', duration: 'Book + Videos', type: 'free' }
+          ],
+          quickStart: [
+            'Install Python: https://www.python.org/downloads/',
+            'Try it online: https://repl.it/languages/python3',
+            'Learn basics: variables, functions, loops, lists (2-3 hours)',
+            'Practice: Load a dataset, calculate statistics'
+          ]
+        },
+        {
+          name: 'PowerShell',
+          why: 'Useful for Azure ML automation and deployment pipelines',
+          skillLevel: 'Basic - optional for Azure ML workflows',
+          learningResources: [
+            { title: 'PowerShell 101 - Microsoft', url: 'https://learn.microsoft.com/powershell/scripting/learn/ps101/00-introduction', duration: '5 hours', type: 'free' },
+            { title: 'PowerShell Tutorial - TutorialsPoint', url: 'https://www.tutorialspoint.com/powershell/index.htm', duration: 'Self-paced', type: 'free' },
+            { title: 'Introduction to PowerShell - Pluralsight', url: 'https://www.pluralsight.com/courses/powershell-intro', duration: '3 hours', type: 'paid' },
+            { title: 'Learn PowerShell in a Month of Lunches', url: 'https://www.manning.com/books/learn-powershell-in-a-month-of-lunches', duration: 'Book', type: 'paid' }
+          ],
+          quickStart: [
+            'Already installed on Windows! Open "Windows PowerShell"',
+            'Mac/Linux: Install PowerShell Core from https://github.com/PowerShell/PowerShell',
+            'Learn basics: cmdlets (Get-, Set-, New-), variables, pipelines (2 hours)',
+            'Practice: Invoke-AzMLWebService, deploy models'
+          ]
+        },
+        {
+          name: 'Bash/Shell Scripting',
+          why: 'Helpful for data preprocessing and ML pipeline automation',
+          skillLevel: 'Basic - optional for workflow automation',
+          learningResources: [
+            { title: 'Bash Scripting Tutorial', url: 'https://linuxconfig.org/bash-scripting-tutorial', duration: '4 hours', type: 'free' },
+            { title: 'Shell Scripting - Linux Journey', url: 'https://linuxjourney.com/lesson/the-shell', duration: 'Self-paced', type: 'free' },
+            { title: 'Bash Guide for Beginners', url: 'https://tldp.org/LDP/Bash-Beginners-Guide/html/', duration: 'Reference', type: 'free' }
+          ],
+          quickStart: [
+            'Mac/Linux: Already have it! Open Terminal',
+            'Windows: Use Git Bash (https://gitforwindows.org/) or WSL',
+            'Learn basics: ls, cd, grep, pipes, variables (1-2 hours)',
+            'Practice: Batch process data files'
+          ]
+        }
+      ],
+      recommendation: '🤖 Python is MANDATORY for this course. Complete a Python fundamentals course (20-30 hours) before starting.'
+    },
     
     // Certification Exam Preparation
     certifications: [
@@ -2420,8 +3775,20 @@ const COURSE_PATHWAYS = {
         topics: ['AI vs ML vs DL', 'Supervised Learning', 'Unsupervised Learning', 'Use Cases'],
         description: 'Understand the basics of artificial intelligence and machine learning.',
         learningMaterials: [
-          { type: 'reading', title: 'Introduction to Machine Learning', duration: '25 min' },
-          { type: 'video', title: 'AI Use Cases Across Industries', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Introduction to Machine Learning', 
+            duration: '25 min',
+            url: 'https://developers.google.com/machine-learning/crash-course/ml-intro',
+            description: 'Google Machine Learning Crash Course - beginner-friendly ML introduction'
+          },
+          { 
+            type: 'video', 
+            title: 'AI Use Cases Across Industries', 
+            duration: '20 min',
+            url: 'https://www.youtube.com/watch?v=ukzFI9rgwfU',
+            description: 'Real-world AI applications in healthcare, finance, retail, and manufacturing'
+          }
         ],
         quiz: {
           questions: [
@@ -2463,9 +3830,27 @@ const COURSE_PATHWAYS = {
         topics: ['NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn'],
         description: 'Learn essential Python libraries for machine learning.',
         learningMaterials: [
-          { type: 'tutorial', title: 'NumPy Arrays and Operations', duration: '30 min' },
-          { type: 'tutorial', title: 'Pandas DataFrames', duration: '35 min' },
-          { type: 'interactive', title: 'Matplotlib Visualization Gallery', duration: '20 min' }
+          { 
+            type: 'tutorial', 
+            title: 'NumPy Arrays and Operations', 
+            duration: '30 min',
+            url: 'https://numpy.org/doc/stable/user/quickstart.html',
+            description: 'Official NumPy quickstart tutorial covering arrays, operations, and indexing'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Pandas DataFrames', 
+            duration: '35 min',
+            url: 'https://pandas.pydata.org/docs/getting_started/intro_tutorials/index.html',
+            description: 'Interactive Pandas tutorials for data manipulation and analysis'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Matplotlib Visualization Gallery', 
+            duration: '20 min',
+            url: 'https://matplotlib.org/stable/gallery/index.html',
+            description: 'Visual gallery of Matplotlib charts with code examples'
+          }
         ],
         quiz: {
           questions: [
@@ -2513,8 +3898,20 @@ const COURSE_PATHWAYS = {
         topics: ['AWS AI Services', 'Azure Cognitive Services', 'Google AI Platform'],
         description: 'Explore pre-built AI services from major cloud providers.',
         learningMaterials: [
-          { type: 'reading', title: 'Cloud AI Services Comparison', duration: '25 min' },
-          { type: 'documentation', title: 'AI Service APIs Quick Start', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'Cloud AI Services Comparison', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/ai/services/',
+            description: 'AWS AI services overview covering vision, language, forecasting, and more'
+          },
+          { 
+            type: 'documentation', 
+            title: 'AI Service APIs Quick Start', 
+            duration: '20 min',
+            url: 'https://learn.microsoft.com/azure/cognitive-services/',
+            description: 'Azure Cognitive Services quickstart guides with API examples'
+          }
         ],
         quiz: {
           questions: [
@@ -2557,8 +3954,20 @@ const COURSE_PATHWAYS = {
         topics: ['Image Recognition', 'Object Detection', 'Face Detection', 'OCR'],
         description: 'Build applications that can see and understand images.',
         learningMaterials: [
-          { type: 'tutorial', title: 'Computer Vision API Tutorial', duration: '35 min' },
-          { type: 'case-study', title: 'Real-World Vision Applications', duration: '20 min' }
+          { 
+            type: 'tutorial', 
+            title: 'Computer Vision API Tutorial', 
+            duration: '35 min',
+            url: 'https://learn.microsoft.com/azure/cognitive-services/computer-vision/quickstarts-sdk/image-analysis-client-library',
+            description: 'Microsoft Learn computer vision quickstart with code samples'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Real-World Vision Applications', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/rekognition/customers/',
+            description: 'AWS Rekognition customer stories showing production vision applications'
+          }
         ],
         quiz: {
           questions: [
@@ -2606,8 +4015,20 @@ const COURSE_PATHWAYS = {
         topics: ['Text Analysis', 'Sentiment Analysis', 'Entity Extraction', 'Translation'],
         description: 'Process and understand human language with NLP.',
         learningMaterials: [
-          { type: 'reading', title: 'NLP Fundamentals', duration: '30 min' },
-          { type: 'tutorial', title: 'Text Processing with NLP APIs', duration: '30 min' }
+          { 
+            type: 'reading', 
+            title: 'NLP Fundamentals', 
+            duration: '30 min',
+            url: 'https://web.stanford.edu/~jurafsky/slp3/',
+            description: 'Stanford NLP book (free online) - comprehensive introduction to natural language processing'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Text Processing with NLP APIs', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/azure/cognitive-services/language-service/sentiment-opinion-mining/quickstart',
+            description: 'Azure sentiment analysis quickstart with hands-on examples'
+          }
         ],
         quiz: {
           questions: [
@@ -2655,9 +4076,27 @@ const COURSE_PATHWAYS = {
         topics: ['Data Preparation', 'Model Training', 'Evaluation', 'Hyperparameter Tuning'],
         description: 'Train your own machine learning models from scratch.',
         learningMaterials: [
-          { type: 'reading', title: 'ML Model Training Guide', duration: '35 min' },
-          { type: 'tutorial', title: 'Feature Engineering Techniques', duration: '30 min' },
-          { type: 'documentation', title: 'Scikit-learn Model Selection', duration: '20 min' }
+          { 
+            type: 'reading', 
+            title: 'ML Model Training Guide', 
+            duration: '35 min',
+            url: 'https://scikit-learn.org/stable/tutorial/index.html',
+            description: 'Official Scikit-learn tutorial covering model training, evaluation, and selection'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Feature Engineering Techniques', 
+            duration: '30 min',
+            url: 'https://www.kaggle.com/learn/feature-engineering',
+            description: 'Kaggle Learn course on feature engineering with hands-on notebooks'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Scikit-learn Model Selection', 
+            duration: '20 min',
+            url: 'https://scikit-learn.org/stable/model_selection.html',
+            description: 'Comprehensive guide to cross-validation and hyperparameter tuning'
+          }
         ],
         quiz: {
           questions: [
@@ -2711,8 +4150,20 @@ const COURSE_PATHWAYS = {
         topics: ['Model Serving', 'APIs', 'Monitoring', 'Retraining'],
         description: 'Deploy and maintain ML models in production.',
         learningMaterials: [
-          { type: 'reading', title: 'MLOps Best Practices', duration: '30 min' },
-          { type: 'tutorial', title: 'Model Deployment Guide', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'MLOps Best Practices', 
+            duration: '30 min',
+            url: 'https://ml-ops.org/content/mlops-principles',
+            description: 'MLOps principles for deploying and maintaining ML systems in production'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Model Deployment Guide', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/sagemaker/deploy/',
+            description: 'AWS SageMaker deployment guide for production ML models'
+          }
         ],
         quiz: {
           questions: [
@@ -2755,8 +4206,20 @@ const COURSE_PATHWAYS = {
         topics: ['AutoML Platforms', 'No-Code Solutions', 'Rapid Prototyping'],
         description: 'Build AI solutions without extensive coding or ML expertise.',
         learningMaterials: [
-          { type: 'reading', title: 'AutoML Platforms Comparison', duration: '20 min' },
-          { type: 'tutorial', title: 'Using Google AutoML', duration: '25 min' }
+          { 
+            type: 'reading', 
+            title: 'AutoML Platforms Comparison', 
+            duration: '20 min',
+            url: 'https://cloud.google.com/automl',
+            description: 'Google Cloud AutoML overview - train custom models without coding'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Using Google AutoML', 
+            duration: '25 min',
+            url: 'https://cloud.google.com/vertex-ai/docs/start/automl-users',
+            description: 'Hands-on tutorial for building ML models with Vertex AI AutoML'
+          }
         ],
         quiz: {
           questions: [
@@ -2799,8 +4262,20 @@ const COURSE_PATHWAYS = {
         topics: ['Chatbot Design', 'Intent Recognition', 'Dialogue Management'],
         description: 'Create intelligent chatbots and virtual assistants.',
         learningMaterials: [
-          { type: 'reading', title: 'Conversational AI Design Patterns', duration: '30 min' },
-          { type: 'tutorial', title: 'Building Chatbots with Dialogflow', duration: '30 min' }
+          { 
+            type: 'reading', 
+            title: 'Conversational AI Design Patterns', 
+            duration: '30 min',
+            url: 'https://cloud.google.com/dialogflow/docs/concepts',
+            description: 'Dialogflow concepts covering intents, entities, and conversation design'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Building Chatbots with Dialogflow', 
+            duration: '30 min',
+            url: 'https://cloud.google.com/dialogflow/docs/quick',
+            description: 'Google Dialogflow quickstart - build your first chatbot in minutes'
+          }
         ],
         quiz: {
           questions: [
@@ -2848,8 +4323,20 @@ const COURSE_PATHWAYS = {
         topics: ['Project Planning', 'Model Integration', 'UI/UX', 'Deployment'],
         description: 'Build and deploy a complete AI-powered application.',
         learningMaterials: [
-          { type: 'template', title: 'AI Project Blueprint', duration: '15 min' },
-          { type: 'checklist', title: 'AI Application Checklist', duration: '10 min' }
+          { 
+            type: 'template', 
+            title: 'AI Project Blueprint', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/architecture/data-guide/big-data/machine-learning-at-scale',
+            description: 'Azure ML architecture blueprint for production AI applications'
+          },
+          { 
+            type: 'checklist', 
+            title: 'AI Application Checklist', 
+            duration: '10 min',
+            url: 'https://developers.google.com/machine-learning/guides/rules-of-ml',
+            description: 'Google\'s Rules of Machine Learning - practical checklist for ML projects'
+          }
         ],
         quiz: {
           questions: [
@@ -2900,6 +4387,153 @@ const COURSE_PATHWAYS = {
     color: '#8b5cf6',
     icon: '📊',
     skills: ['Data Pipelines', 'ETL', 'Data Warehousing', 'Big Data', 'Analytics'],
+    
+    // Lab Environment Setup Instructions
+    labSetup: {
+      title: 'Getting Your Lab Environment Ready',
+      description: 'You\'ll need access to cloud platforms to complete hands-on labs. Here are your options:',
+      options: [
+        {
+          name: 'AWS Free Tier (Recommended for Beginners)',
+          steps: [
+            'Visit https://aws.amazon.com/free/',
+            'Click "Create a Free Account"',
+            'Provide email, password, and AWS account name',
+            'Enter payment information (required but won\'t be charged for free tier usage)',
+            'Verify your phone number',
+            'Choose "Basic Support - Free" plan',
+            'Sign in to AWS Console at https://console.aws.amazon.com/',
+            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+          ],
+          duration: '10-15 minutes',
+          cost: 'Free for 12 months (with usage limits)',
+          url: 'https://aws.amazon.com/free/'
+        },
+        {
+          name: 'Azure Free Account',
+          steps: [
+            'Visit https://azure.microsoft.com/free/',
+            'Click "Start free"',
+            'Sign in with Microsoft account (or create one)',
+            'Enter personal information and phone verification',
+            'Add credit card for identity verification ($200 credit provided)',
+            'Complete identity verification',
+            'Access Azure Portal at https://portal.azure.com/',
+            '💡 Tip: Use Azure Cost Management to track your spending'
+          ],
+          duration: '10-15 minutes',
+          cost: '$200 credit for 30 days + 12 months of free services',
+          url: 'https://azure.microsoft.com/free/'
+        },
+        {
+          name: 'Google Cloud Free Tier',
+          steps: [
+            'Visit https://cloud.google.com/free/',
+            'Click "Get started for free"',
+            'Sign in with Google account',
+            'Enter billing information ($300 credit for 90 days)',
+            'Select country and accept terms',
+            'Access GCP Console at https://console.cloud.google.com/',
+            'Create your first project',
+            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+          ],
+          duration: '10 minutes',
+          cost: '$300 credit for 90 days + Always Free tier',
+          url: 'https://cloud.google.com/free/'
+        },
+        {
+          name: 'Use Your Existing Cloud Account',
+          steps: [
+            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            'Ensure you have permissions to create: VMs, storage, networks, and basic services',
+            'Check with your organization about cost allocation tags or budget limits',
+            'Use a separate resource group/project for course labs to keep things organized',
+            '🏷️ Tag all resources with "Course: Data Engineering Cloud" for easy cleanup'
+          ],
+          duration: '5 minutes',
+          cost: 'Depends on your organization\'s arrangement'
+        },
+        {
+          name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
+          steps: [
+            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
+          ],
+          duration: 'Instant access',
+          cost: 'Free (time-limited sessions)'
+        }
+      ],
+      recommendations: [
+        '📊 Data engineers: Storage and data transfer can incur costs - monitor BigQuery, Redshift usage',
+        '💳 Recommended: GCP for BigQuery free tier (1TB queries/month) or AWS for Athena',
+        '💰 Cost warning: Spark clusters and data warehouses can be expensive - terminate after labs',
+        '🎯 Pro tip: Use serverless data services (BigQuery, Athena, Synapse Serverless) to minimize costs',
+        '📈 Dataset tip: Use public datasets (Google Public Datasets, AWS Open Data) - free to query'
+      ]
+    },
+    
+    // Coding Prerequisites
+    codingPrerequisites: {
+      required: true,
+      description: 'Python and SQL are essential for data engineering - ETL scripts, data transformations, and pipeline development.',
+      languages: [
+        {
+          name: 'Python',
+          why: 'Core language for data engineering - ETL scripts, Spark/PySpark, data processing pipelines',
+          skillLevel: 'Advanced - pandas, PySpark, data manipulation',
+          learningResources: [
+            { title: 'Python for Beginners - Microsoft', url: 'https://learn.microsoft.com/training/paths/beginner-python/', duration: '8 hours', type: 'free' },
+            { title: 'Python Tutorial - W3Schools', url: 'https://www.w3schools.com/python/', duration: 'Self-paced', type: 'free' },
+            { title: 'Learn Python - Codecademy', url: 'https://www.codecademy.com/learn/learn-python-3', duration: '25 hours', type: 'freemium' },
+            { title: 'Automate the Boring Stuff with Python', url: 'https://automatetheboringstuff.com/', duration: 'Book + Videos', type: 'free' }
+          ],
+          quickStart: [
+            'Install Python: https://www.python.org/downloads/',
+            'Try it online: https://repl.it/languages/python3',
+            'Learn basics: variables, functions, loops, lists (2-3 hours)',
+            'Practice: Read CSV, transform data, write to database'
+          ]
+        },
+        {
+          name: 'PowerShell',
+          why: 'Useful for Azure Data Factory, Synapse automation, and data pipeline orchestration',
+          skillLevel: 'Basic - optional for Azure data services',
+          learningResources: [
+            { title: 'PowerShell 101 - Microsoft', url: 'https://learn.microsoft.com/powershell/scripting/learn/ps101/00-introduction', duration: '5 hours', type: 'free' },
+            { title: 'PowerShell Tutorial - TutorialsPoint', url: 'https://www.tutorialspoint.com/powershell/index.htm', duration: 'Self-paced', type: 'free' },
+            { title: 'Introduction to PowerShell - Pluralsight', url: 'https://www.pluralsight.com/courses/powershell-intro', duration: '3 hours', type: 'paid' },
+            { title: 'Learn PowerShell in a Month of Lunches', url: 'https://www.manning.com/books/learn-powershell-in-a-month-of-lunches', duration: 'Book', type: 'paid' }
+          ],
+          quickStart: [
+            'Already installed on Windows! Open "Windows PowerShell"',
+            'Mac/Linux: Install PowerShell Core from https://github.com/PowerShell/PowerShell',
+            'Learn basics: cmdlets (Get-, Set-, New-), variables, pipelines (2 hours)',
+            'Practice: Invoke-AzDataFactoryPipeline, manage data services'
+          ]
+        },
+        {
+          name: 'Bash/Shell Scripting',
+          why: 'Essential for data pipeline orchestration, Spark job submission, and Linux data processing',
+          skillLevel: 'Intermediate - scripting, cron jobs, automation',
+          learningResources: [
+            { title: 'Bash Scripting Tutorial', url: 'https://linuxconfig.org/bash-scripting-tutorial', duration: '4 hours', type: 'free' },
+            { title: 'Shell Scripting - Linux Journey', url: 'https://linuxjourney.com/lesson/the-shell', duration: 'Self-paced', type: 'free' },
+            { title: 'Bash Guide for Beginners', url: 'https://tldp.org/LDP/Bash-Beginners-Guide/html/', duration: 'Reference', type: 'free' }
+          ],
+          quickStart: [
+            'Mac/Linux: Already have it! Open Terminal',
+            'Windows: Use Git Bash (https://gitforwindows.org/) or WSL',
+            'Learn basics: ls, cd, grep, pipes, variables (1-2 hours)',
+            'Practice: Schedule data pipeline jobs with cron'
+          ]
+        }
+      ],
+      recommendation: '📊 Python and SQL are CRITICAL. Dedicate 3-4 weeks to Python + SQL fundamentals before starting this course.'
+    },
     
     // Certification Exam Preparation
     certifications: [
@@ -2956,7 +4590,30 @@ const COURSE_PATHWAYS = {
         duration: '75 min',
         video: 'https://www.youtube.com/embed/qWru-b6m030',
         topics: ['Data Architecture', 'Batch vs Streaming', 'Data Modeling'],
-        description: 'Understand the role and responsibilities of data engineers.'
+        description: 'Understand the role and responsibilities of data engineers.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'Data Engineering Roles and Responsibilities', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/what-is/data-engineering/',
+            description: 'AWS guide to data engineering covering roles, skills, and career path'
+          },
+          { 
+            type: 'video', 
+            title: 'Batch vs Stream Processing', 
+            duration: '20 min',
+            url: 'https://www.youtube.com/watch?v=A_mstzRGfIE',
+            description: 'Clear comparison of batch and stream processing patterns with use cases'
+          },
+          { 
+            type: 'reading', 
+            title: 'Data Modeling Fundamentals', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/training/modules/design-multidimensional-schema/',
+            description: 'Microsoft Learn module on dimensional modeling and star schema design'
+          }
+        ]
       },
       {
         id: 'lesson2',
@@ -2964,7 +4621,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/rLvC4LxDX1I',
         topics: ['Data Lakes', 'Object Storage', 'Databases', 'File Formats'],
-        description: 'Choose and implement appropriate storage solutions for your data.'
+        description: 'Choose and implement appropriate storage solutions for your data.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'Data Lake vs Data Warehouse', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/big-data/datalakes-and-analytics/what-is-a-data-lake/',
+            description: 'AWS comprehensive guide to data lakes, warehouses, and when to use each'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Parquet and ORC File Formats', 
+            duration: '20 min',
+            url: 'https://parquet.apache.org/docs/',
+            description: 'Official Parquet documentation - columnar storage format for analytics'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Azure Data Lake Storage Tutorial', 
+            duration: '25 min',
+            url: 'https://learn.microsoft.com/training/modules/introduction-to-azure-data-lake-storage/',
+            description: 'Microsoft Learn hands-on tutorial with Azure Data Lake Gen2'
+          }
+        ]
       },
       {
         id: 'lesson3',
@@ -2972,7 +4652,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/HXV3zeQKqGY',
         topics: ['SQL Basics', 'Joins', 'Aggregations', 'Query Optimization'],
-        description: 'Master SQL for data analysis and transformation.'
+        description: 'Master SQL for data analysis and transformation.',
+        learningMaterials: [
+          { 
+            type: 'interactive', 
+            title: 'SQL Interactive Tutorial', 
+            duration: '40 min',
+            url: 'https://www.w3schools.com/sql/',
+            description: 'Interactive SQL tutorial with tryit editor - learn by doing'
+          },
+          { 
+            type: 'reading', 
+            title: 'Query Optimization Best Practices', 
+            duration: '30 min',
+            url: 'https://use-the-index-luke.com/',
+            description: 'Comprehensive guide to SQL indexing and query optimization'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'BigQuery SQL Syntax', 
+            duration: '25 min',
+            url: 'https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax',
+            description: 'Google BigQuery SQL reference for cloud data warehousing'
+          }
+        ]
       },
       {
         id: 'lesson4',
@@ -2980,7 +4683,30 @@ const COURSE_PATHWAYS = {
         duration: '150 min',
         video: 'https://www.youtube.com/embed/JXh1T2xQNIs',
         topics: ['Extract', 'Transform', 'Load', 'Data Quality', 'Error Handling'],
-        description: 'Design and build efficient ETL pipelines for data processing.'
+        description: 'Design and build efficient ETL pipelines for data processing.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'ETL Best Practices Guide', 
+            duration: '35 min',
+            url: 'https://aws.amazon.com/what-is/etl/',
+            description: 'AWS comprehensive ETL guide covering design patterns and best practices'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Azure Data Factory Tutorial', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/training/modules/intro-to-azure-data-factory/',
+            description: 'Microsoft Learn hands-on tutorial for building ETL pipelines'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Apache NiFi Documentation', 
+            duration: '25 min',
+            url: 'https://nifi.apache.org/docs.html',
+            description: 'Open-source data flow automation tool documentation'
+          }
+        ]
       },
       {
         id: 'lesson5',
@@ -2988,7 +4714,30 @@ const COURSE_PATHWAYS = {
         duration: '150 min',
         video: 'https://www.youtube.com/embed/9mELEARcxJo',
         topics: ['Spark Architecture', 'DataFrames', 'RDDs', 'Spark SQL'],
-        description: 'Process massive datasets with Apache Spark.'
+        description: 'Process massive datasets with Apache Spark.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'Apache Spark Quickstart', 
+            duration: '40 min',
+            url: 'https://spark.apache.org/docs/latest/quick-start.html',
+            description: 'Official Spark tutorial covering DataFrames, SQL, and transformations'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Databricks Learning Academy', 
+            duration: '60 min',
+            url: 'https://www.databricks.com/learn/training/home',
+            description: 'Free Databricks courses with interactive Spark notebooks'
+          },
+          { 
+            type: 'reading', 
+            title: 'PySpark Best Practices', 
+            duration: '25 min',
+            url: 'https://spark.apache.org/docs/latest/api/python/getting_started/index.html',
+            description: 'PySpark getting started guide with Python best practices'
+          }
+        ]
       },
       {
         id: 'lesson6',
@@ -2996,7 +4745,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/J0SLCwSz-0o',
         topics: ['Snowflake', 'Redshift', 'BigQuery', 'Schema Design'],
-        description: 'Build scalable data warehouses for analytics.'
+        description: 'Build scalable data warehouses for analytics.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'Snowflake Getting Started', 
+            duration: '35 min',
+            url: 'https://quickstarts.snowflake.com/',
+            description: 'Snowflake quickstarts with hands-on tutorials (free trial available)'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Google BigQuery Best Practices', 
+            duration: '30 min',
+            url: 'https://cloud.google.com/bigquery/docs/best-practices',
+            description: 'Google Cloud BigQuery optimization and schema design guide'
+          },
+          { 
+            type: 'reading', 
+            title: 'Star Schema vs Snowflake Schema', 
+            duration: '20 min',
+            url: 'https://learn.microsoft.com/training/modules/design-multidimensional-schema/',
+            description: 'Microsoft Learn module on dimensional modeling approaches'
+          }
+        ]
       },
       {
         id: 'lesson7',
@@ -3004,7 +4776,30 @@ const COURSE_PATHWAYS = {
         duration: '150 min',
         video: 'https://www.youtube.com/embed/avi-TZI9t2I',
         topics: ['Kafka', 'Kinesis', 'Real-time Processing', 'Event Streaming'],
-        description: 'Process and analyze data in real-time with streaming technologies.'
+        description: 'Process and analyze data in real-time with streaming technologies.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'Apache Kafka Quickstart', 
+            duration: '40 min',
+            url: 'https://kafka.apache.org/quickstart',
+            description: 'Official Kafka quickstart guide with hands-on examples'
+          },
+          { 
+            type: 'documentation', 
+            title: 'AWS Kinesis Developer Guide', 
+            duration: '35 min',
+            url: 'https://docs.aws.amazon.com/streams/latest/dev/introduction.html',
+            description: 'Complete guide to Amazon Kinesis Data Streams'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Stream Processing Patterns', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/training/modules/intro-to-azure-stream-analytics/',
+            description: 'Microsoft Learn module on real-time analytics with Azure Stream Analytics'
+          }
+        ]
       },
       {
         id: 'lesson8',
@@ -3012,7 +4807,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/AHMm1wfGuHE',
         topics: ['Apache Airflow', 'Workflow DAGs', 'Scheduling', 'Monitoring'],
-        description: 'Orchestrate complex data workflows with Apache Airflow.'
+        description: 'Orchestrate complex data workflows with Apache Airflow.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'Apache Airflow Tutorial', 
+            duration: '40 min',
+            url: 'https://airflow.apache.org/docs/apache-airflow/stable/tutorial/index.html',
+            description: 'Official Airflow tutorial covering DAGs, operators, and scheduling'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Airflow Best Practices', 
+            duration: '30 min',
+            url: 'https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html',
+            description: 'Airflow best practices for production deployments'
+          },
+          { 
+            type: 'video', 
+            title: 'Building Production DAGs', 
+            duration: '25 min',
+            url: 'https://www.youtube.com/watch?v=43wHwwZhJMo',
+            description: 'Conference talk on building robust production data pipelines with Airflow'
+          }
+        ]
       },
       {
         id: 'lesson9',
@@ -3020,7 +4838,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/TPMlZxRRaBQ',
         topics: ['BI Tools', 'Tableau', 'Power BI', 'Dashboard Design'],
-        description: 'Create insightful visualizations and dashboards from your data.'
+        description: 'Create insightful visualizations and dashboards from your data.',
+        learningMaterials: [
+          { 
+            type: 'interactive', 
+            title: 'Power BI Getting Started', 
+            duration: '40 min',
+            url: 'https://learn.microsoft.com/training/paths/create-use-analytics-reports-power-bi/',
+            description: 'Microsoft Learn path for Power BI with hands-on exercises (free)'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Tableau Public Tutorial', 
+            duration: '35 min',
+            url: 'https://public.tableau.com/app/learn/how-to-videos',
+            description: 'Free Tableau Public tutorials with sample visualizations'
+          },
+          { 
+            type: 'reading', 
+            title: 'Dashboard Design Best Practices', 
+            duration: '20 min',
+            url: 'https://www.tableau.com/learn/articles/best-practices-dashboard-design',
+            description: 'Tableau guide to effective dashboard design principles'
+          }
+        ]
       },
       {
         id: 'lesson10',
@@ -3028,7 +4869,30 @@ const COURSE_PATHWAYS = {
         duration: '90 min',
         video: 'https://www.youtube.com/embed/FSp6BE33noU',
         topics: ['CI/CD for Data', 'Testing', 'Monitoring', 'Version Control'],
-        description: 'Apply DevOps principles to data engineering workflows.'
+        description: 'Apply DevOps principles to data engineering workflows.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'DataOps Principles', 
+            duration: '25 min',
+            url: 'https://dataopsmanifesto.org/',
+            description: 'DataOps Manifesto - principles and practices for data teams'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Data Pipeline Testing', 
+            duration: '30 min',
+            url: 'https://greatexpectations.io/gx/get-started',
+            description: 'Great Expectations tutorial for data quality testing and validation'
+          },
+          { 
+            type: 'documentation', 
+            title: 'dbt (Data Build Tool)', 
+            duration: '20 min',
+            url: 'https://docs.getdbt.com/docs/introduction',
+            description: 'dbt documentation - transform data in your warehouse with SQL'
+          }
+        ]
       },
       {
         id: 'lesson11',
@@ -3036,7 +4900,30 @@ const COURSE_PATHWAYS = {
         duration: '180 min',
         video: 'https://www.youtube.com/embed/hwrnciyVaZ8',
         topics: ['Requirements Analysis', 'Architecture Design', 'Implementation', 'Testing'],
-        description: 'Build a complete data pipeline from ingestion to visualization.'
+        description: 'Build a complete data pipeline from ingestion to visualization.',
+        learningMaterials: [
+          { 
+            type: 'template', 
+            title: 'Data Pipeline Architecture Template', 
+            duration: '20 min',
+            url: 'https://aws.amazon.com/architecture/data-analytics/',
+            description: 'AWS data analytics reference architectures and templates'
+          },
+          { 
+            type: 'checklist', 
+            title: 'Data Engineering Project Checklist', 
+            duration: '15 min',
+            url: 'https://learn.microsoft.com/azure/architecture/data-guide/',
+            description: 'Azure data architecture guide with planning checklist'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Production Data Pipeline Case Studies', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/solutions/case-studies/analytics/',
+            description: 'Real-world analytics and data engineering case studies from AWS'
+          }
+        ]
       }
     ]
   },
@@ -3053,6 +4940,154 @@ const COURSE_PATHWAYS = {
     color: '#ec4899',
     icon: '⚡',
     skills: ['Serverless', 'Microservices', 'API Design', 'Event-Driven Architecture', 'Containers'],
+    
+    // Lab Environment Setup Instructions
+    labSetup: {
+      title: 'Getting Your Lab Environment Ready',
+      description: 'You\'ll need access to cloud platforms to complete hands-on labs. Here are your options:',
+      options: [
+        {
+          name: 'AWS Free Tier (Recommended for Beginners)',
+          steps: [
+            'Visit https://aws.amazon.com/free/',
+            'Click "Create a Free Account"',
+            'Provide email, password, and AWS account name',
+            'Enter payment information (required but won\'t be charged for free tier usage)',
+            'Verify your phone number',
+            'Choose "Basic Support - Free" plan',
+            'Sign in to AWS Console at https://console.aws.amazon.com/',
+            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+          ],
+          duration: '10-15 minutes',
+          cost: 'Free for 12 months (with usage limits)',
+          url: 'https://aws.amazon.com/free/'
+        },
+        {
+          name: 'Azure Free Account',
+          steps: [
+            'Visit https://azure.microsoft.com/free/',
+            'Click "Start free"',
+            'Sign in with Microsoft account (or create one)',
+            'Enter personal information and phone verification',
+            'Add credit card for identity verification ($200 credit provided)',
+            'Complete identity verification',
+            'Access Azure Portal at https://portal.azure.com/',
+            '💡 Tip: Use Azure Cost Management to track your spending'
+          ],
+          duration: '10-15 minutes',
+          cost: '$200 credit for 30 days + 12 months of free services',
+          url: 'https://azure.microsoft.com/free/'
+        },
+        {
+          name: 'Google Cloud Free Tier',
+          steps: [
+            'Visit https://cloud.google.com/free/',
+            'Click "Get started for free"',
+            'Sign in with Google account',
+            'Enter billing information ($300 credit for 90 days)',
+            'Select country and accept terms',
+            'Access GCP Console at https://console.cloud.google.com/',
+            'Create your first project',
+            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+          ],
+          duration: '10 minutes',
+          cost: '$300 credit for 90 days + Always Free tier',
+          url: 'https://cloud.google.com/free/'
+        },
+        {
+          name: 'Use Your Existing Cloud Account',
+          steps: [
+            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            'Ensure you have permissions to create: VMs, storage, networks, and basic services',
+            'Check with your organization about cost allocation tags or budget limits',
+            'Use a separate resource group/project for course labs to keep things organized',
+            '🏷️ Tag all resources with "Course: Serverless Microservices" for easy cleanup'
+          ],
+          duration: '5 minutes',
+          cost: 'Depends on your organization\'s arrangement'
+        },
+        {
+          name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
+          steps: [
+            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
+          ],
+          duration: 'Instant access',
+          cost: 'Free (time-limited sessions)'
+        }
+      ],
+      recommendations: [
+        '⚡ Serverless learners: Lambda/Functions have very generous free tiers - 1M requests/month free!',
+        '💳 Recommended: AWS Lambda for extensive free tier or Azure Functions for hybrid scenarios',
+        '💡 Cost-efficient: Serverless is pay-per-use - you\'ll spend cents, not dollars, on labs',
+        '🎯 Pro tip: API Gateway and event sources have separate costs - monitor CloudWatch invocations',
+        '🐳 Containers: Use local Docker Desktop for development before deploying to cloud'
+      ]
+    },
+    
+    // Coding Prerequisites
+    codingPrerequisites: {
+      required: true,
+      description: 'Writing serverless functions and microservices requires solid programming skills in Python or Node.js.',
+      languages: [
+        {
+          name: 'Python',
+          why: 'Primary language for AWS Lambda functions, data processing, and microservices development',
+          skillLevel: 'Advanced - functions, async, APIs, frameworks (Flask/FastAPI)',
+          learningResources: [
+            { title: 'Python for Beginners - Microsoft', url: 'https://learn.microsoft.com/training/paths/beginner-python/', duration: '8 hours', type: 'free' },
+            { title: 'Python Tutorial - W3Schools', url: 'https://www.w3schools.com/python/', duration: 'Self-paced', type: 'free' },
+            { title: 'Learn Python - Codecademy', url: 'https://www.codecademy.com/learn/learn-python-3', duration: '25 hours', type: 'freemium' },
+            { title: 'Automate the Boring Stuff with Python', url: 'https://automatetheboringstuff.com/', duration: 'Book + Videos', type: 'free' }
+          ],
+          quickStart: [
+            'Install Python: https://www.python.org/downloads/',
+            'Try it online: https://repl.it/languages/python3',
+            'Learn basics: variables, functions, loops, lists (2-3 hours)',
+            'Practice: Build a REST API with Flask'
+          ]
+        },
+        {
+          name: 'PowerShell',
+          why: 'Useful for Azure Functions deployment and infrastructure management',
+          skillLevel: 'Basic - optional for Azure Functions workflows',
+          learningResources: [
+            { title: 'PowerShell 101 - Microsoft', url: 'https://learn.microsoft.com/powershell/scripting/learn/ps101/00-introduction', duration: '5 hours', type: 'free' },
+            { title: 'PowerShell Tutorial - TutorialsPoint', url: 'https://www.tutorialspoint.com/powershell/index.htm', duration: 'Self-paced', type: 'free' },
+            { title: 'Introduction to PowerShell - Pluralsight', url: 'https://www.pluralsight.com/courses/powershell-intro', duration: '3 hours', type: 'paid' },
+            { title: 'Learn PowerShell in a Month of Lunches', url: 'https://www.manning.com/books/learn-powershell-in-a-month-of-lunches', duration: 'Book', type: 'paid' }
+          ],
+          quickStart: [
+            'Already installed on Windows! Open "Windows PowerShell"',
+            'Mac/Linux: Install PowerShell Core from https://github.com/PowerShell/PowerShell',
+            'Learn basics: cmdlets (Get-, Set-, New-), variables, pipelines (2 hours)',
+            'Practice: Publish-AzWebApp, deploy functions'
+          ]
+        },
+        {
+          name: 'Bash/Shell Scripting',
+          why: 'Essential for container orchestration, deployment scripts, and CI/CD pipelines',
+          skillLevel: 'Intermediate - scripting, Docker commands, automation',
+          learningResources: [
+            { title: 'Bash Scripting Tutorial', url: 'https://linuxconfig.org/bash-scripting-tutorial', duration: '4 hours', type: 'free' },
+            { title: 'Shell Scripting - Linux Journey', url: 'https://linuxjourney.com/lesson/the-shell', duration: 'Self-paced', type: 'free' },
+            { title: 'Bash Guide for Beginners', url: 'https://tldp.org/LDP/Bash-Beginners-Guide/html/', duration: 'Reference', type: 'free' }
+          ],
+          quickStart: [
+            'Mac/Linux: Already have it! Open Terminal',
+            'Windows: Use Git Bash (https://gitforwindows.org/) or WSL',
+            'Learn basics: ls, cd, grep, pipes, variables (1-2 hours)',
+            'Practice: Write Docker build and deployment scripts'
+          ]
+        }
+      ],
+      recommendation: '⚡ Strong programming skills in Python or Node.js are REQUIRED. Complete an intermediate programming course first.'
+    },
+    
     lessons: [
       {
         id: 'lesson1',
@@ -3060,7 +5095,30 @@ const COURSE_PATHWAYS = {
         duration: '90 min',
         video: 'https://www.youtube.com/embed/CdBtNQZH8a4',
         topics: ['Microservices vs Monolith', 'Service Boundaries', 'Communication Patterns'],
-        description: 'Understand the principles and benefits of microservices architecture.'
+        description: 'Understand the principles and benefits of microservices architecture.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'Microservices Patterns', 
+            duration: '30 min',
+            url: 'https://microservices.io/patterns/microservices.html',
+            description: 'Comprehensive catalog of microservices patterns from Chris Richardson'
+          },
+          { 
+            type: 'video', 
+            title: 'Monolith to Microservices', 
+            duration: '25 min',
+            url: 'https://www.youtube.com/watch?v=CdBtNQZH8a4',
+            description: 'Martin Fowler talk on transitioning from monolith to microservices'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Netflix Microservices Architecture', 
+            duration: '20 min',
+            url: 'https://netflixtechblog.com/tagged/microservices',
+            description: 'Netflix Tech Blog - real-world microservices at scale'
+          }
+        ]
       },
       {
         id: 'lesson2',
@@ -3068,7 +5126,30 @@ const COURSE_PATHWAYS = {
         duration: '90 min',
         video: 'https://www.youtube.com/embed/W_VV2Fx32_Y',
         topics: ['FaaS Concepts', 'Event-Driven', 'Cold Starts', 'Use Cases'],
-        description: 'Learn the fundamentals of serverless computing and when to use it.'
+        description: 'Learn the fundamentals of serverless computing and when to use it.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'Serverless Architecture Patterns', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/serverless/',
+            description: 'AWS serverless overview covering FaaS, BaaS, and event-driven patterns'
+          },
+          { 
+            type: 'video', 
+            title: 'Serverless Best Practices', 
+            duration: '30 min',
+            url: 'https://www.youtube.com/watch?v=W_VV2Fx32_Y',
+            description: 'AWS re:Invent talk on serverless best practices and cold start mitigation'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Serverless Framework Guide', 
+            duration: '20 min',
+            url: 'https://www.serverless.com/framework/docs',
+            description: 'Serverless Framework documentation for multi-cloud deployments'
+          }
+        ]
       },
       {
         id: 'lesson3',
@@ -3076,7 +5157,30 @@ const COURSE_PATHWAYS = {
         duration: '150 min',
         video: 'https://www.youtube.com/embed/97q30JjEq9Y',
         topics: ['Lambda Functions', 'Triggers', 'Layers', 'Performance Optimization'],
-        description: 'Master AWS Lambda for building serverless applications.'
+        description: 'Master AWS Lambda for building serverless applications.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'AWS Lambda Getting Started', 
+            duration: '40 min',
+            url: 'https://docs.aws.amazon.com/lambda/latest/dg/getting-started.html',
+            description: 'Official AWS Lambda tutorial with Python, Node.js, and other runtimes'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Lambda Best Practices', 
+            duration: '35 min',
+            url: 'https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html',
+            description: 'AWS Lambda best practices for production workloads'
+          },
+          { 
+            type: 'interactive', 
+            title: 'Serverless Application Model (SAM)', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/serverless/sam/',
+            description: 'AWS SAM for building and deploying serverless applications'
+          }
+        ]
       },
       {
         id: 'lesson4',
@@ -3084,7 +5188,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/zIfxkub7CLY',
         topics: ['Function Apps', 'Bindings', 'Durable Functions', 'Integration'],
-        description: 'Build serverless applications on Microsoft Azure.'
+        description: 'Build serverless applications on Microsoft Azure.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'Azure Functions Quickstart', 
+            duration: '35 min',
+            url: 'https://learn.microsoft.com/azure/azure-functions/functions-get-started',
+            description: 'Microsoft Learn module for Azure Functions with hands-on labs'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Durable Functions Guide', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/azure/azure-functions/durable/durable-functions-overview',
+            description: 'Azure Durable Functions for stateful serverless workflows'
+          },
+          { 
+            type: 'video', 
+            title: 'Azure Functions Patterns', 
+            duration: '25 min',
+            url: 'https://www.youtube.com/watch?v=zIfxkub7CLY',
+            description: 'Microsoft Azure conference talk on serverless patterns'
+          }
+        ]
       },
       {
         id: 'lesson5',
@@ -3092,7 +5219,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/Sku1P6IhjP8',
         topics: ['API Design', 'Gateway Patterns', 'Authentication', 'Rate Limiting'],
-        description: 'Design and implement scalable RESTful APIs.'
+        description: 'Design and implement scalable RESTful APIs.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'REST API Design Best Practices', 
+            duration: '30 min',
+            url: 'https://restfulapi.net/',
+            description: 'Comprehensive REST API design guide with examples'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'AWS API Gateway Tutorial', 
+            duration: '35 min',
+            url: 'https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html',
+            description: 'AWS API Gateway getting started with Lambda integration'
+          },
+          { 
+            type: 'documentation', 
+            title: 'API Security Best Practices', 
+            duration: '25 min',
+            url: 'https://owasp.org/www-project-api-security/',
+            description: 'OWASP API Security Top 10 with mitigation strategies'
+          }
+        ]
       },
       {
         id: 'lesson6',
@@ -3100,7 +5250,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/o2HJCGcYwoU',
         topics: ['Event Sourcing', 'CQRS', 'Message Queues', 'Event Buses'],
-        description: 'Build reactive systems with event-driven architecture.'
+        description: 'Build reactive systems with event-driven architecture.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'Event-Driven Architecture Patterns', 
+            duration: '35 min',
+            url: 'https://aws.amazon.com/event-driven-architecture/',
+            description: 'AWS guide to event-driven architecture with patterns and examples'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'CQRS and Event Sourcing', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/azure/architecture/patterns/cqrs',
+            description: 'Microsoft architecture pattern guide for CQRS and event sourcing'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Amazon EventBridge Guide', 
+            duration: '25 min',
+            url: 'https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html',
+            description: 'AWS EventBridge documentation for serverless event bus'
+          }
+        ]
       },
       {
         id: 'lesson7',
@@ -3108,7 +5281,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/16fgzklcF7Y',
         topics: ['Istio', 'Service Discovery', 'Load Balancing', 'Circuit Breakers'],
-        description: 'Manage microservices communication with service mesh.'
+        description: 'Manage microservices communication with service mesh.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'Istio Getting Started', 
+            duration: '40 min',
+            url: 'https://istio.io/latest/docs/setup/getting-started/',
+            description: 'Official Istio tutorial for service mesh with Kubernetes'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Linkerd Service Mesh', 
+            duration: '30 min',
+            url: 'https://linkerd.io/2.14/getting-started/',
+            description: 'Linkerd lightweight service mesh documentation'
+          },
+          { 
+            type: 'reading', 
+            title: 'Circuit Breaker Pattern', 
+            duration: '20 min',
+            url: 'https://learn.microsoft.com/azure/architecture/patterns/circuit-breaker',
+            description: 'Microsoft architecture pattern for fault tolerance'
+          }
+        ]
       },
       {
         id: 'lesson8',
@@ -3116,7 +5312,30 @@ const COURSE_PATHWAYS = {
         duration: '120 min',
         video: 'https://www.youtube.com/embed/YhavdmgxW00',
         topics: ['Database per Service', 'Saga Pattern', 'Eventual Consistency'],
-        description: 'Handle data in distributed microservices systems.'
+        description: 'Handle data in distributed microservices systems.',
+        learningMaterials: [
+          { 
+            type: 'reading', 
+            title: 'Saga Pattern Guide', 
+            duration: '30 min',
+            url: 'https://microservices.io/patterns/data/saga.html',
+            description: 'Saga pattern for managing distributed transactions'
+          },
+          { 
+            type: 'documentation', 
+            title: 'Database per Service Pattern', 
+            duration: '25 min',
+            url: 'https://microservices.io/patterns/data/database-per-service.html',
+            description: 'Pattern for data ownership in microservices'
+          },
+          { 
+            type: 'tutorial', 
+            title: 'Event-Driven Data Management', 
+            duration: '30 min',
+            url: 'https://aws.amazon.com/blogs/database/building-event-driven-architectures-with-amazon-dynamodb/',
+            description: 'AWS guide to event-driven data management with DynamoDB'
+          }
+        ]
       },
       {
         id: 'lesson9',
@@ -3124,7 +5343,30 @@ const COURSE_PATHWAYS = {
         duration: '90 min',
         video: 'https://www.youtube.com/embed/h4Sl21AKiDg',
         topics: ['Distributed Tracing', 'Logging', 'Metrics', 'Alerting'],
-        description: 'Monitor and troubleshoot microservices in production.'
+        description: 'Monitor and troubleshoot microservices in production.',
+        learningMaterials: [
+          { 
+            type: 'tutorial', 
+            title: 'Distributed Tracing with Jaeger', 
+            duration: '30 min',
+            url: 'https://www.jaegertracing.io/docs/1.54/getting-started/',
+            description: 'Jaeger distributed tracing quickstart guide'
+          },
+          { 
+            type: 'reading', 
+            title: 'Observability for Microservices', 
+            duration: '25 min',
+            url: 'https://opentelemetry.io/docs/',
+            description: 'OpenTelemetry documentation for unified observability'
+          },
+          { 
+            type: 'documentation', 
+            title: 'AWS X-Ray Developer Guide', 
+            duration: '20 min',
+            url: 'https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html',
+            description: 'AWS X-Ray for distributed tracing and service maps'
+          }
+        ]
       },
       {
         id: 'lesson10',
@@ -3132,7 +5374,30 @@ const COURSE_PATHWAYS = {
         duration: '180 min',
         video: 'https://www.youtube.com/embed/hwrnciyVaZ8',
         topics: ['Architecture Design', 'Service Implementation', 'Deployment', 'Testing'],
-        description: 'Build a complete microservices-based application.'
+        description: 'Build a complete microservices-based application.',
+        learningMaterials: [
+          { 
+            type: 'template', 
+            title: 'Microservices Architecture Blueprint', 
+            duration: '25 min',
+            url: 'https://aws.amazon.com/architecture/reference-architecture-diagrams/',
+            description: 'AWS reference architectures for microservices applications'
+          },
+          { 
+            type: 'case-study', 
+            title: 'Production Microservices', 
+            duration: '30 min',
+            url: 'https://learn.microsoft.com/azure/architecture/microservices/',
+            description: 'Microsoft microservices architecture guide with real-world examples'
+          },
+          { 
+            type: 'checklist', 
+            title: 'Microservices Readiness Checklist', 
+            duration: '15 min',
+            url: 'https://12factor.net/',
+            description: 'The Twelve-Factor App methodology for cloud-native applications'
+          }
+        ]
       }
     ]
   }
