@@ -180,11 +180,93 @@
       display: flex;
       gap: 1.5rem;
       transition: all 0.3s;
+      cursor: pointer;
     }
 
     .lesson-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
+      border-color: #ffcc00;
+    }
+
+    .lesson-card.expanded {
+      border-color: #10b981;
+      background: linear-gradient(135deg, #1f1147, #2d1b69);
+    }
+
+    .lesson-details {
+      display: none;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid rgba(147, 51, 234, 0.3);
+    }
+
+    .lesson-card.expanded .lesson-details {
+      display: block;
+    }
+
+    .detail-section {
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border-radius: 10px;
+      border-left: 4px solid #9333ea;
+    }
+
+    .detail-section h4 {
+      color: #ffcc00;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .materials-list, .lab-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .materials-list li, .lab-list li {
+      padding: 0.8rem;
+      color: #e0e0e0;
+      border-bottom: 1px solid rgba(147, 51, 234, 0.2);
+      background: rgba(255,255,255,0.02);
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+    }
+
+    .quiz-question {
+      background: rgba(147, 51, 234, 0.15);
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border-left: 4px solid #c084fc;
+    }
+
+    .quiz-question p {
+      color: #ffcc00;
+      font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+
+    .quiz-options {
+      padding-left: 1.5rem;
+      list-style: none;
+    }
+
+    .quiz-options li {
+      color: #c084fc;
+      padding: 0.4rem 0;
+    }
+
+    .expand-icon {
+      float: right;
+      color: #9333ea;
+      transition: transform 0.3s;
+      font-size: 1.2rem;
+    }
+
+    .lesson-card.expanded .expand-icon {
+      transform: rotate(180deg);
+      color: #10b981;
     }
 
     .lesson-number {
@@ -471,14 +553,69 @@
 
         <div class="lessons-grid">
           ${course.lessons.map((lesson, index) => `
-            <div class="lesson-card">
+            <div class="lesson-card" onclick="toggleLessonDetails(this, '${course.id}', ${index})">
               <div class="lesson-number">${index + 1}</div>
-              <div class="lesson-content">
-                <h3>${lesson.title}</h3>
+              <div class="lesson-content" style="flex: 1;">
+                <h3>
+                  ${lesson.title}
+                  <i class="fas fa-chevron-down expand-icon"></i>
+                </h3>
                 <div class="duration">${lesson.duration}</div>
                 <p>${lesson.description}</p>
                 <div class="topics">
                   ${lesson.topics.map(topic => `<span class="topic-tag">${topic}</span>`).join('')}
+                </div>
+
+                <div class="lesson-details">
+                  ${lesson.video ? `
+                  <div class="detail-section">
+                    <h4>🎥 Video Lesson</h4>
+                    <iframe width="100%" height="400" src="${lesson.video}" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
+                  </div>
+                  ` : ''}
+
+                  ${lesson.learningMaterials ? `
+                  <div class="detail-section">
+                    <h4>📚 Learning Materials</h4>
+                    <ul class="materials-list">
+                      ${lesson.learningMaterials.map(material => `
+                        <li>
+                          <strong>${material.type === 'reading' ? '📖' : material.type === 'video' ? '🎬' : material.type === 'interactive' ? '💻' : '📄'} ${material.title}</strong>
+                          <span style="color: #9333ea; float: right;">${material.duration}</span>
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                  ` : ''}
+
+                  ${lesson.quiz ? `
+                  <div class="detail-section">
+                    <h4>✅ Quiz (Passing Score: ${lesson.quiz.passingScore}%)</h4>
+                    ${lesson.quiz.questions.map((q, qIndex) => `
+                      <div class="quiz-question">
+                        <p>Question ${qIndex + 1}: ${q.question}</p>
+                        <ul class="quiz-options">
+                          ${q.options.map((opt, optIndex) => `
+                            <li style="${optIndex === q.correctAnswer ? 'color: #10b981; font-weight: bold;' : ''}">${String.fromCharCode(65 + optIndex)}. ${opt}</li>
+                          `).join('')}
+                        </ul>
+                      </div>
+                    `).join('')}
+                  </div>
+                  ` : ''}
+
+                  ${lesson.lab ? `
+                  <div class="detail-section">
+                    <h4>🔬 Hands-On Lab: ${lesson.lab.title} (${lesson.lab.duration})</h4>
+                    <ul class="lab-list">
+                      ${lesson.lab.tasks.map((task, taskIndex) => `
+                        <li>
+                          <strong>Step ${taskIndex + 1}:</strong> ${task}
+                        </li>
+                      `).join('')}
+                    </ul>
+                  </div>
+                  ` : ''}
                 </div>
               </div>
             </div>
@@ -505,6 +642,10 @@
       `;
 
       window.scrollTo(0, 0);
+    }
+
+    function toggleLessonDetails(element, courseId, lessonIndex) {
+      element.classList.toggle('expanded');
     }
 
     function showCourseList() {

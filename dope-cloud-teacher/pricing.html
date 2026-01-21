@@ -258,6 +258,25 @@
       background: #ffd700;
     }
 
+    .btn-view-details {
+      width: 100%;
+      padding: 0.8rem;
+      background: transparent;
+      color: #9333ea;
+      border: 2px solid #9333ea;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .btn-view-details:hover {
+      background: rgba(147, 51, 234, 0.1);
+      transform: scale(1.02);
+    }
+
     .membership-section {
       background: rgba(45, 27, 105, 0.5);
       padding: 3rem 2rem;
@@ -503,6 +522,9 @@
             <li><i class="fas fa-check-circle"></i> ${accessNote}</li>
             <li><i class="fas fa-check-circle"></i> Certificate of completion</li>
           </ul>
+          <button class="btn-view-details" onclick="viewCourseDetails('${course.id}')">
+            <i class="fas fa-info-circle"></i> View Full Details
+          </button>
           <button class="btn-purchase" onclick="purchaseCourse('${course.id}', ${isOneTimePurchase})">Enroll Now</button>
         `;
         
@@ -510,14 +532,45 @@
       });
     }
 
-    async function purchaseCourse(courseId) {
+    function viewCourseDetails(courseId) {
+      window.location.href = `courses.html?course=${courseId}`;
+    }
+
+    async function purchaseCourse(courseId, isOneTime = true) {
       if (!dopeAuth.isAuthenticated()) {
         showAuthModal('login');
         return;
       }
 
       try {
-        await dopeCourses.purchaseCourse(courseId);
+        if (isOneTime) {
+          await dopeCourses.purchaseCourse(courseId);
+        } else {
+          const course = COURSE_PATHWAYS[courseId];
+          const monthlyPrice = Math.ceil(course.price / 10);
+          
+          const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+              planType: 'course',
+              courseId: courseId,
+              planName: `${course.title} - Monthly Access`,
+              price: monthlyPrice,
+              interval: 'month'
+            })
+          });
+
+          const data = await response.json();
+          if (data.url) {
+            window.location.href = data.url;
+          } else {
+            alert(data.error || 'Failed to create subscription');
+          }
+        }
       } catch (error) {
         alert('Purchase failed: ' + error.message);
       }
