@@ -333,6 +333,15 @@
 
   <div class="pricing-container">
     <h2 class="section-title">🎓 Professional Course Pathways</h2>
+    
+    <!-- Payment Toggle -->
+    <div class="pricing-toggle">
+      <span style="color: #c084fc; font-weight: bold;">Pay Monthly</span>
+      <div class="toggle-switch" id="paymentToggle" onclick="togglePaymentPlan()"></div>
+      <span style="color: #10b981; font-weight: bold;">Pay Once</span>
+      <span class="save-badge">Save 60%</span>
+    </div>
+
     <div class="pricing-grid" id="coursePricingGrid">
       <!-- Courses will be dynamically inserted here -->
     </div>
@@ -344,7 +353,7 @@
           <div class="course-icon">🎓</div>
           <h3>Student Member</h3>
           <div class="subtitle">Access All Courses</div>
-          <div class="price">$47<span>/month</span></div>
+          <div class="price">$14<span>/month</span></div>
           <ul class="features">
             <li><i class="fas fa-check-circle"></i> Access to ALL courses</li>
             <li><i class="fas fa-check-circle"></i> Monthly live Q&A sessions</li>
@@ -360,7 +369,7 @@
           <div class="course-icon">⭐</div>
           <h3>Pro Member</h3>
           <div class="subtitle">Everything + Mentorship</div>
-          <div class="price">$97<span>/month</span></div>
+          <div class="price">$14<span>/month</span></div>
           <ul class="features">
             <li><i class="fas fa-check-circle"></i> Everything in Student</li>
             <li><i class="fas fa-check-circle"></i> 1-on-1 office hours (30min/month)</li>
@@ -376,7 +385,7 @@
           <div class="course-icon">🚀</div>
           <h3>Career Accelerator</h3>
           <div class="subtitle">Ultimate Career Support</div>
-          <div class="price">$497<span>/month</span></div>
+          <div class="price">$14<span>/month</span></div>
           <ul class="features">
             <li><i class="fas fa-check-circle"></i> Everything in Pro</li>
             <li><i class="fas fa-check-circle"></i> 2 × 1-on-1 sessions per month</li>
@@ -421,28 +430,80 @@
   <script src="js/auth-system.js"></script>
   <script src="js/course-data.js"></script>
   <script>
+    let isOneTimePurchase = true; // Default to one-time purchase
+
+    // Toggle between monthly and one-time payment
+    function togglePaymentPlan() {
+      isOneTimePurchase = !isOneTimePurchase;
+      const toggle = document.getElementById('paymentToggle');
+      
+      if (isOneTimePurchase) {
+        toggle.classList.add('annual');
+      } else {
+        toggle.classList.remove('annual');
+      }
+      
+      renderCoursePricing();
+    }
+
     // Render course pricing dynamically
     function renderCoursePricing() {
       const grid = document.getElementById('coursePricingGrid');
+      grid.innerHTML = ''; // Clear existing cards
       
       Object.values(COURSE_PATHWAYS).forEach(course => {
         const card = document.createElement('div');
         card.className = 'price-card';
         
-        card.innerHTML = `
-          <div class="course-icon">${course.icon}</div>
-          <h3>${course.title}</h3>
-          <div class="subtitle">${course.subtitle}</div>
-          <div class="price">$${course.price}<span> one-time</span></div>
+        // Calculate monthly price (approximately 1/12 of full price with slight premium)
+        const monthlyPrice = Math.ceil(course.price / 10);
+        const displayPrice = isOneTimePurchase ? course.price : monthlyPrice;
+        const priceLabel = isOneTimePurcha, isOneTime = true) {
+      if (!dopeAuth.isAuthenticated()) {
+        showAuthModal('login');
+        return;
+      }
+
+      try {
+        if (isOneTime) {
+          // One-time purchase
+          await dopeCourses.purchaseCourse(courseId);
+        } else {
+          // Monthly subscription for this course
+          const course = COURSE_PATHWAYS[courseId];
+          const monthlyPrice = Math.ceil(course.price / 10);
+          
+          const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+              planType: 'course',
+              courseId: courseId,
+              planName: `${course.title} - Monthly Access`,
+              price: monthlyPrice,
+              interval: 'month'
+            })
+          });
+
+          const data = await response.json();
+          if (data.url) {
+            window.location.href = data.url;
+          } else {
+            alert(data.error || 'Failed to create subscription');
+          }
+        }${priceLabel}</span></div>
           <div class="duration">${course.duration} • ${course.lessons.length} lessons • ${course.level}</div>
           <ul class="features">
             ${course.skills.slice(0, 5).map(skill => `
               <li><i class="fas fa-check-circle"></i> ${skill}</li>
             `).join('')}
-            <li><i class="fas fa-check-circle"></i> Lifetime access</li>
+            <li><i class="fas fa-check-circle"></i> ${accessNote}</li>
             <li><i class="fas fa-check-circle"></i> Certificate of completion</li>
           </ul>
-          <button class="btn-purchase" onclick="purchaseCourse('${course.id}')">Enroll Now</button>
+          <button class="btn-purchase" onclick="purchaseCourse('${course.id}', ${isOneTimePurchase})">Enroll Now</button>
         `;
         
         grid.appendChild(card);
@@ -463,6 +524,8 @@
     }
 
     async function purchaseMembership(type) {
+      // Set toggle to one-time purchase by default
+      document.getElementById('paymentToggle').classList.add('annual');
       if (!dopeAuth.isAuthenticated()) {
         showAuthModal('login');
         return;
@@ -470,9 +533,9 @@
 
       try {
         const membershipPlans = {
-          'student': { price: 47, name: 'Student Membership - All-Access Monthly', interval: 'month' },
-          'pro': { price: 97, name: 'Pro Membership - With Mentorship', interval: 'month' },
-          'career': { price: 497, name: 'Career Accelerator - Ultimate Support', interval: 'month' }
+          'student': { price: 14, name: 'Student Membership - All-Access Monthly', interval: 'month' },
+          'pro': { price: 14, name: 'Pro Membership - With Mentorship', interval: 'month' },
+          'career': { price: 14, name: 'Career Accelerator - Ultimate Support', interval: 'month' }
         };
 
         const plan = membershipPlans[type];
