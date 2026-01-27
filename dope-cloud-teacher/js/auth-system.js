@@ -1,5 +1,8 @@
 // Authentication and Monetization System
-const API_URL = 'http://localhost:3000/api';
+// Use environment variable or fallback for API URL
+const API_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:3000/api'
+  : 'https://api.thedopecloudteacher.com/api'; // Replace with your deployed API URL
 
 class DopeCloudAuth {
   constructor() {

@@ -2,8 +2,8 @@
 ## All Three Businesses: Complete Setup & Funding Strategy
 
 **Your Three Ventures:**
-1. **The Dope Cloud Teacher** (For-Profit LLC) - Online cloud training
-2. **askdogood.com** (501c3 Nonprofit) - Free tech education for underserved communities
+1. **The Dope Cloud Teacher** (For-Profit LLC) - Online cloud training EIN 33-4167103
+2. **askdogood.com** (501c3 Nonprofit) - Free tech education for underserved communities  EIN 85-0835602
 3. **CloudShift Pro** (For-Profit LLC) - Cloud consulting services
 
 ---
