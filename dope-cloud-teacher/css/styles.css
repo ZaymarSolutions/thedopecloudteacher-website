@@ -4,17 +4,17 @@
    ============================================ */
 
 :root {
-  --primary-purple: #6B46C1;
-  --dark-purple: #4A2F7A;
-  --accent-gold: #D4AF37;
-  --dark-bg: #0F172A;
-  --card-bg: #1E293B;
-  --text-light: #F8FAFC;
-  --text-gray: #CBD5E1;
-  --border-color: #334155;
-  --success-green: #10B981;
-  --shadow-lg: 0 10px 40px rgba(0,0,0,0.3);
-  --shadow-md: 0 4px 15px rgba(0,0,0,0.2);
+  --primary-purple: #4B3869;
+  --dark-purple: #2C2541;
+  --accent-gold: #BFA14A;
+  --dark-bg: #F7F8FA;
+  --card-bg: #FFFFFF;
+  --text-light: #23272F;
+  --text-gray: #6B7280;
+  --border-color: #E5E7EB;
+  --success-green: #198754;
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
 }
 
 * {
@@ -28,6 +28,8 @@ body {
   line-height: 1.6;
   background: var(--dark-bg);
   color: var(--text-light);
+  letter-spacing: 0.01em;
+  font-size: 17px;
   font-size: 16px;
 }
 
@@ -36,13 +38,13 @@ body {
    ============================================ */
 
 header {
-  background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
-  padding: 1rem 5%;
+  background: #fff;
+  padding: 1.5rem 5%;
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-bottom: 2px solid var(--accent-gold);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .header-container {
@@ -70,7 +72,7 @@ header {
   width: 50px;
   margin-right: 12px;
   border-radius: 8px;
-  border: 2px solid var(--accent-gold);
+  border: 1px solid var(--border-color);
 }
 
 .logo-text {
@@ -81,7 +83,7 @@ header {
 .logo-text .main-title {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--text-light);
+  color: var(--primary-purple);
   letter-spacing: -0.5px;
 }
 
@@ -100,7 +102,7 @@ nav.nav-links {
 }
 
 nav.nav-links a {
-  color: var(--text-light);
+  color: var(--primary-purple);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
