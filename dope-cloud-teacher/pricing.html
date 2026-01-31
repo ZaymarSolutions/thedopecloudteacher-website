@@ -363,6 +363,7 @@
       <a href="courses.html">Courses</a>
       <a href="pricing.html">Pricing</a>
       <a href="dashboard.html">Dashboard</a>
+      <a href="resources.html">Resources</a>
       <a href="#" id="authButton" onclick="showAuthModal('login')">Sign In</a>
     </nav>
   </header>
@@ -402,7 +403,7 @@
             <li><i class="fas fa-check-circle"></i> Study resources & guides</li>
             <li><i class="fas fa-check-circle"></i> Course certificates</li>
           </ul>
-          <button class="btn-purchase" onclick="purchaseMembership('student')">Start Student Membership</button>
+          <button class="btn-purchase" onclick="purchaseMembership('student')" aria-label="Start Student Membership securely via Gumroad">Start Student Membership</button>
         </div>
 
         <div class="price-card featured">
@@ -419,7 +420,7 @@
             <li><i class="fas fa-check-circle"></i> Resume review</li>
             <li><i class="fas fa-check-circle"></i> Career guidance</li>
           </ul>
-          <button class="btn-purchase featured" onclick="purchaseMembership('pro')">Start Pro Membership</button>
+          <button class="btn-purchase featured" onclick="purchaseMembership('pro')" aria-label="Start Pro Membership securely via Gumroad">Start Pro Membership</button>
         </div>
 
         <div class="price-card">
@@ -435,7 +436,7 @@
             <li><i class="fas fa-check-circle"></i> Job search strategy</li>
             <li><i class="fas fa-check-circle"></i> LinkedIn optimization</li>
           </ul>
-          <button class="btn-purchase" onclick="purchaseMembership('career')">Start Career Accelerator</button>
+          <button class="btn-purchase" onclick="purchaseMembership('career')" aria-label="Start Career Accelerator securely via Gumroad">Start Career Accelerator</button>
         </div>
       </div>
     </div>
@@ -459,11 +460,16 @@
           <li><i class="fas fa-check-circle"></i> Post-training support</li>
           <li><i class="fas fa-check-circle"></i> Progress tracking dashboard</li>
         </ul>
-        <button class="btn-purchase" onclick="contactCorporate()">Contact for Quote</button>
+        <button class="btn-purchase" onclick="contactCorporate()" aria-label="Contact for corporate training quote">Contact for Quote</button>
       </div>
     </div>
   </div>
 
+  <div style="text-align:center; margin:2rem 0 1rem 0;">
+    <span style="color:#10b981; font-size:0.95rem;">Secure checkout via Gumroad & Stripe. <a href="/privacy.html" style="color:#c084fc; text-decoration:underline;">Privacy Policy</a> & <a href="/terms.html" style="color:#c084fc; text-decoration:underline;">Terms</a></span>
+    <br>
+    <span style="color:#c084fc; font-size:0.95rem;">Need help? <a href="mailto:support@thedopecloudteacher.com" style="color:#10b981; text-decoration:underline;">Contact Support</a></span>
+  </div>
   <footer>
     <section aria-label="Credibility and Trust" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
       <h3 style="color: #10b981; text-align: center; margin-bottom: 1rem;">Trusted by Industry Leaders</h3>
