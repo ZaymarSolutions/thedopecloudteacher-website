@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const path = require('path');
 const crypto = require('crypto');
+const { sendEmail } = require('./email-service');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -232,6 +233,8 @@ app.post('/api/leads', async (req, res) => {
       } catch (webhookError) {
         console.error('Lead webhook error:', webhookError);
       }
+    } else {
+      await sendEmail(email, 'verifyEmail', email, verifyUrl);
     }
 
     res.json({
@@ -277,6 +280,12 @@ app.get('/api/leads/verify', async (req, res) => {
     }
 
     res.json({ success: true, status: 'verified' });
+
+    const lead = db.prepare('SELECT email FROM leads WHERE verify_token = ?').get(token);
+    if (lead) {
+      await sendEmail(lead.email, 'welcomeEmail', lead.email);
+    }
+
   } catch (error) {
     console.error('Lead verification error:', error);
     res.status(500).json({ error: 'Lead verification failed' });
