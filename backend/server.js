@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const path = require('path');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,6 +16,33 @@ const PORT = process.env.PORT || 3000;
 // Database connection
 const db = new Database(path.join(__dirname, process.env.DATABASE_PATH || 'database.sqlite'));
 db.pragma('foreign_keys = ON');
+
+// Ensure leads table exists
+db.exec(`
+  CREATE TABLE IF NOT EXISTS leads (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    source TEXT,
+    page TEXT,
+    referrer TEXT,
+    user_agent TEXT,
+    verify_token TEXT,
+    verified_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_seen DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
+
+const ensureLeadColumn = (columnName, columnDefinition) => {
+  const columns = db.prepare('PRAGMA table_info(leads)').all();
+  const exists = columns.some(column => column.name === columnName);
+  if (!exists) {
+    db.exec(`ALTER TABLE leads ADD COLUMN ${columnName} ${columnDefinition}`);
+  }
+};
+
+ensureLeadColumn('verify_token', 'TEXT');
+ensureLeadColumn('verified_at', 'DATETIME');
 
 // Middleware
 app.use(helmet());
@@ -49,6 +77,16 @@ const authenticateToken = (req, res, next) => {
     req.user = user;
     next();
   });
+};
+
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const requireAdmin = (req, res, next) => {
+  const user = db.prepare('SELECT role FROM users WHERE id = ?').get(req.user.userId);
+  if (!user || user.role !== 'admin') {
+    return res.status(403).json({ error: 'Admin access required' });
+  }
+  next();
 };
 
 // ==================== AUTH ROUTES ====================
@@ -147,6 +185,147 @@ app.get('/api/auth/me', authenticateToken, (req, res) => {
   }
 
   res.json({ user });
+});
+
+// ==================== LEAD CAPTURE ====================
+app.post('/api/leads', async (req, res) => {
+  try {
+    const { email, source, page, referrer } = req.body;
+
+    if (!email || !isValidEmail(email)) {
+      return res.status(400).json({ error: 'Valid email is required' });
+    }
+
+    const existingLead = db.prepare('SELECT id, verified_at FROM leads WHERE email = ?').get(email);
+    const verifyToken = crypto.randomBytes(24).toString('hex');
+    const frontendUrl = process.env.FRONTEND_URL || 'https://thedopecloudteacher.com';
+    const verifyUrl = `${frontendUrl.replace(/\/$/, '')}/verify.html?token=${verifyToken}`;
+
+    if (existingLead) {
+      db.prepare(`
+        UPDATE leads
+        SET source = ?, page = ?, referrer = ?, user_agent = ?, last_seen = CURRENT_TIMESTAMP,
+            verify_token = CASE WHEN verified_at IS NULL THEN ? ELSE verify_token END
+        WHERE email = ?
+      `).run(source || null, page || null, referrer || null, req.headers['user-agent'] || null, verifyToken, email);
+    } else {
+      db.prepare(`
+        INSERT INTO leads (email, source, page, referrer, user_agent, verify_token)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `).run(email, source || null, page || null, referrer || null, req.headers['user-agent'] || null, verifyToken);
+    }
+
+    if (process.env.LEAD_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.LEAD_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            source: source || null,
+            page: page || null,
+            referrer: referrer || null,
+            status: existingLead && existingLead.verified_at ? 'verified' : 'pending',
+            verify_url: existingLead && existingLead.verified_at ? null : verifyUrl
+          })
+        });
+      } catch (webhookError) {
+        console.error('Lead webhook error:', webhookError);
+      }
+    }
+
+    res.json({
+      success: true,
+      status: existingLead ? 'updated' : 'created',
+      verifyRequired: !(existingLead && existingLead.verified_at)
+    });
+  } catch (error) {
+    console.error('Lead capture error:', error);
+    res.status(500).json({ error: 'Lead capture failed' });
+  }
+});
+
+app.get('/api/leads/verify', async (req, res) => {
+  try {
+    const { token } = req.query;
+    if (!token) {
+      return res.status(400).json({ error: 'Verification token required' });
+    }
+
+    const lead = db.prepare('SELECT id, email, verified_at FROM leads WHERE verify_token = ?').get(token);
+    if (!lead) {
+      return res.status(404).json({ error: 'Invalid verification token' });
+    }
+
+    if (!lead.verified_at) {
+      db.prepare('UPDATE leads SET verified_at = CURRENT_TIMESTAMP WHERE id = ?').run(lead.id);
+    }
+
+    if (process.env.LEAD_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.LEAD_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: lead.email,
+            status: 'verified'
+          })
+        });
+      } catch (webhookError) {
+        console.error('Lead webhook error:', webhookError);
+      }
+    }
+
+    res.json({ success: true, status: 'verified' });
+  } catch (error) {
+    console.error('Lead verification error:', error);
+    res.status(500).json({ error: 'Lead verification failed' });
+  }
+});
+
+app.get('/api/leads', authenticateToken, requireAdmin, (req, res) => {
+  const limit = Math.min(parseInt(req.query.limit || '100', 10), 500);
+  const offset = parseInt(req.query.offset || '0', 10);
+
+  const total = db.prepare('SELECT COUNT(*) as count FROM leads').get();
+  const leads = db.prepare(`
+    SELECT id, email, source, page, referrer, verified_at, created_at, last_seen
+    FROM leads
+    ORDER BY created_at DESC
+    LIMIT ? OFFSET ?
+  `).all(limit, offset);
+
+  res.json({ leads, total: total.count, limit, offset });
+});
+
+app.get('/api/leads/export', authenticateToken, requireAdmin, (req, res) => {
+  const format = (req.query.format || 'csv').toLowerCase();
+  const leads = db.prepare(`
+    SELECT email, source, page, referrer, verified_at, created_at, last_seen
+    FROM leads
+    ORDER BY created_at DESC
+  `).all();
+
+  if (format === 'json') {
+    return res.json({ leads });
+  }
+
+  const escapeCsv = (value) => {
+    if (value === null || value === undefined) return '';
+    const stringValue = String(value);
+    if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
+      return `"${stringValue.replace(/"/g, '""')}"`;
+    }
+    return stringValue;
+  };
+
+  const header = ['email', 'source', 'page', 'referrer', 'verified_at', 'created_at', 'last_seen'];
+  const rows = leads.map(lead => header.map(key => escapeCsv(lead[key])).join(','));
+  const csv = [header.join(','), ...rows].join('\n');
+
+  res.setHeader('Content-Type', 'text/csv');
+  res.setHeader('Content-Disposition', 'attachment; filename="leads.csv"');
+  res.send(csv);
 });
 
 // ==================== COURSES ROUTES ====================

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Courses - The Dope Cloud Teacher</title>
+  <meta name="description" content="Browse cloud training pathways with hands-on labs, certification prep, and career-ready projects. AWS, Azure, GCP, DevOps, and security." />
+  <link rel="canonical" href="https://thedopecloudteacher.com/courses.html" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     * {
@@ -72,6 +74,54 @@
       color: #e0e0e0;
       max-width: 800px;
       margin: 0 auto 2rem;
+    }
+
+    .lead-magnet {
+      max-width: 1200px;
+      margin: 1.5rem auto 2.5rem;
+      padding: 2rem;
+      background: rgba(45, 27, 105, 0.6);
+      border-radius: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .lead-magnet h2 {
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+
+    .lead-form {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .lead-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .lead-form button {
+      padding: 0.9rem 1.3rem;
+      border-radius: 10px;
+      border: none;
+      background: #10b981;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .lead-success {
+      margin-top: 0.75rem;
+      color: #10b981;
+      font-weight: bold;
+      display: none;
     }
 
     .filter-section {
@@ -434,6 +484,20 @@
       <p>Industry-competitive training designed to launch and advance your tech career. From cloud fundamentals to advanced specializations.</p>
     </div>
 
+    <section class="lead-magnet">
+      <div>
+        <h2>Free Cloud Career Starter Kit</h2>
+        <p>Get the 7-day roadmap, certification checklist, and interview prep guide.</p>
+      </div>
+      <div>
+        <form class="lead-form" id="starterKitForm" data-lead-capture="true" data-success-id="starterKitSuccess" data-source="courses-starter-kit" data-redirect="cloud-career-starter-kit.html">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Send the kit</button>
+        </form>
+        <div class="lead-success" id="starterKitSuccess">Check your email to confirm your subscription. Redirecting to the starter kit.</div>
+      </div>
+    </section>
+
     <div class="filter-section">
       <button class="filter-btn active" onclick="filterCourses('all')">All Courses</button>
       <button class="filter-btn" onclick="filterCourses('Beginner')">Beginner</button>
@@ -451,12 +515,14 @@
   </div>
 
   <footer>
-    &copy; 2025 The Dope Cloud Teacher. All rights reserved.
+    &copy; 2026 The Dope Cloud Teacher. All rights reserved.
   </footer>
 
   <!-- Gumroad Integration -->
   <script src="https://gumroad.com/js/gumroad.js"></script>
 
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/auth-system.js"></script>
   <script src="js/course-data.js"></script>
   <script>
@@ -851,5 +917,7 @@
       }
     });
   </script>
+
+  <script src="js/lead-capture.js"></script>
 </body>
 </html>

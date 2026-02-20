@@ -114,6 +114,22 @@ db.exec(`
   )
 `);
 
+// Leads table
+db.exec(`
+  CREATE TABLE leads (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    source TEXT,
+    page TEXT,
+    referrer TEXT,
+    user_agent TEXT,
+    verify_token TEXT,
+    verified_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_seen DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
+
 console.log('Inserting course data...');
 
 // Insert courses

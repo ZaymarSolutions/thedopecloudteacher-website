@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Your Email | The Dope Cloud Teacher</title>
+  <meta name="description" content="Confirm your email to get the Cloud Career Starter Kit." />
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .verify-wrapper {
+      max-width: 720px;
+      margin: 3rem auto 4rem;
+      padding: 2.5rem;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .verify-status {
+      font-size: 1.2rem;
+      color: var(--text-gray);
+      margin-top: 1rem;
+    }
+
+    .verify-actions {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .verify-actions a {
+      padding: 0.9rem 1.4rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .verify-actions .primary {
+      background: var(--primary-purple);
+      color: #fff;
+    }
+
+    .verify-actions .secondary {
+      background: var(--accent-gold);
+      color: #1f1147;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.svg" alt="The Dope Cloud Teacher Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+          <span class="subtitle">Email Verification</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="courses.html">Courses</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="verify-wrapper">
+    <h1>Confirming your email...</h1>
+    <p class="verify-status" id="verifyStatus">Please wait while we verify your address.</p>
+    <div class="verify-actions" id="verifyActions" style="display:none;">
+      <a class="primary" href="cloud-career-starter-kit.html">Access the starter kit</a>
+      <a class="secondary" href="courses.html">Browse courses</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
+  </footer>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const statusEl = document.getElementById('verifyStatus');
+      const actionsEl = document.getElementById('verifyActions');
+      const params = new URLSearchParams(window.location.search);
+      const token = params.get('token');
+      const apiUrl = window.DCT_API_URL || (window.location.hostname === 'localhost'
+        ? 'http://localhost:3000/api'
+        : 'https://api.thedopecloudteacher.com/api');
+
+      if (!token) {
+        statusEl.textContent = 'Missing verification token. Please use the link in your email.';
+        return;
+      }
+
+      try {
+        const response = await fetch(`${apiUrl}/leads/verify?token=${encodeURIComponent(token)}`);
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'Verification failed');
+        }
+        statusEl.textContent = 'Email verified! Your starter kit is ready.';
+        actionsEl.style.display = 'flex';
+      } catch (error) {
+        statusEl.textContent = error.message || 'Verification failed. Please try again.';
+      }
+    });
+  </script>
+</body>
+</html>

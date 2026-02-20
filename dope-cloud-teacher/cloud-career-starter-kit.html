@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Career Starter Kit | The Dope Cloud Teacher</title>
+  <meta name="description" content="Your 7-day cloud roadmap, certification checklist, and interview prep guide." />
+  <link rel="canonical" href="https://thedopecloudteacher.com/cloud-career-starter-kit.html" />
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    .kit-wrapper {
+      max-width: 900px;
+      margin: 2.5rem auto 4rem;
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      padding: 2.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .kit-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .kit-header h1 {
+      color: var(--primary-purple);
+      margin-bottom: 0.75rem;
+    }
+
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .kit-card {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .kit-card h3 {
+      color: var(--primary-purple);
+      margin-bottom: 0.5rem;
+    }
+
+    .kit-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .kit-actions button,
+    .kit-actions a {
+      padding: 0.9rem 1.4rem;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .kit-actions .primary {
+      background: var(--primary-purple);
+      color: #fff;
+    }
+
+    .kit-actions .secondary {
+      background: var(--accent-gold);
+      color: #1f1147;
+    }
+
+    .kit-list {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+      color: var(--text-gray);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.svg" alt="The Dope Cloud Teacher Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+          <span class="subtitle">Career Starter Kit</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="courses.html">Courses</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="kit-wrapper">
+    <div class="kit-header">
+      <h1>Cloud Career Starter Kit</h1>
+      <p>Welcome! This quick-start kit helps you go from zero to interview-ready in 7 days.</p>
+      <p id="kitEmail" style="color:#6b7280; font-size:0.95rem;"></p>
+    </div>
+
+    <section>
+      <h2>7-Day Roadmap</h2>
+      <ul class="kit-list">
+        <li>Day 1: Cloud basics + terminology</li>
+        <li>Day 2: AWS vs Azure vs GCP overview</li>
+        <li>Day 3: Build your first serverless app</li>
+        <li>Day 4: Networking + security essentials</li>
+        <li>Day 5: CI/CD and deployment workflows</li>
+        <li>Day 6: Monitoring + cost optimization</li>
+        <li>Day 7: Mock interview + portfolio review</li>
+      </ul>
+    </section>
+
+    <div class="kit-grid">
+      <div class="kit-card">
+        <h3>Certification Checklist</h3>
+        <p>Pick one certification and follow the study path:</p>
+        <ul class="kit-list">
+          <li>AZ-900 (Azure Fundamentals)</li>
+          <li>AWS Cloud Practitioner</li>
+          <li>Google Cloud Digital Leader</li>
+        </ul>
+      </div>
+      <div class="kit-card">
+        <h3>Portfolio Project Ideas</h3>
+        <p>Build one of these projects:</p>
+        <ul class="kit-list">
+          <li>Serverless API with auth + database</li>
+          <li>Security monitoring dashboard</li>
+          <li>CI/CD pipeline with infrastructure-as-code</li>
+        </ul>
+      </div>
+      <div class="kit-card">
+        <h3>Interview Prep</h3>
+        <p>Practice answers to these themes:</p>
+        <ul class="kit-list">
+          <li>Cloud migration tradeoffs</li>
+          <li>Security + compliance basics</li>
+          <li>Cost optimization and monitoring</li>
+        </ul>
+      </div>
+    </div>
+
+    <section>
+      <h2>Next Steps</h2>
+      <p>Ready to keep the momentum? Choose a pathway or join the membership for full access.</p>
+      <div class="kit-actions">
+        <a class="primary" href="courses.html" data-analytics-event="cta_click" data-analytics-label="starter-kit-browse-courses">Browse courses</a>
+        <a class="secondary" href="pricing.html" data-analytics-event="cta_click" data-analytics-label="starter-kit-view-pricing">View pricing</a>
+        <button class="primary" type="button" onclick="window.print()" data-analytics-event="cta_click" data-analytics-label="starter-kit-save-pdf">Save as PDF</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
+  </footer>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const email = localStorage.getItem('starterKitEmail');
+      const emailLabel = document.getElementById('kitEmail');
+      if (email && emailLabel) {
+        emailLabel.textContent = `Sent to: ${email}`;
+      }
+    });
+  </script>
+</body>
+</html>

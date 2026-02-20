@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leads Admin | The Dope Cloud Teacher</title>
+  <meta name="description" content="Admin view for lead capture and exports." />
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .admin-wrapper {
+      max-width: 1200px;
+      margin: 2.5rem auto 4rem;
+      background: #ffffff;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      padding: 2rem;
+    }
+
+    .admin-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-actions button {
+      padding: 0.7rem 1.2rem;
+      border-radius: 10px;
+      border: none;
+      background: var(--primary-purple);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .admin-table th,
+    .admin-table td {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+
+    .status-pill {
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .status-verified {
+      background: rgba(25, 135, 84, 0.12);
+      color: var(--success-green);
+    }
+
+    .status-pending {
+      background: rgba(191, 161, 74, 0.15);
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.svg" alt="The Dope Cloud Teacher Logo" class="logo-img" onerror="this.style.display='none'">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+          <span class="subtitle">Leads Admin</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="courses.html">Courses</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-wrapper">
+    <div class="admin-header">
+      <div>
+        <h1>Lead Capture Admin</h1>
+        <p style="color: var(--text-gray);">Download CSV exports and review recent leads.</p>
+      </div>
+      <div class="admin-actions">
+        <button id="refreshLeads">Refresh</button>
+        <button id="downloadCsv">Download CSV</button>
+      </div>
+    </div>
+
+    <div id="adminStatus" style="margin-bottom: 1rem; color: var(--text-gray);"></div>
+
+    <div style="overflow-x:auto;">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Source</th>
+            <th>Page</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Last Seen</th>
+          </tr>
+        </thead>
+        <tbody id="leadsTable"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
+  </footer>
+
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/auth-system.js"></script>
+  <script>
+    const statusEl = document.getElementById('adminStatus');
+    const leadsTable = document.getElementById('leadsTable');
+    const refreshButton = document.getElementById('refreshLeads');
+    const downloadButton = document.getElementById('downloadCsv');
+
+    const ensureAdmin = async () => {
+      if (!dopeAuth.isAuthenticated()) {
+        statusEl.textContent = 'Please sign in with an admin account.';
+        return false;
+      }
+
+      const user = await dopeAuth.getCurrentUser();
+      if (!user || user.role !== 'admin') {
+        statusEl.textContent = 'Admin access required.';
+        return false;
+      }
+
+      return true;
+    };
+
+    const renderLeads = (leads) => {
+      leadsTable.innerHTML = '';
+      leads.forEach(lead => {
+        const row = document.createElement('tr');
+        const status = lead.verified_at ? 'Verified' : 'Pending';
+        row.innerHTML = `
+          <td>${lead.email}</td>
+          <td>${lead.source || '-'}</td>
+          <td>${lead.page || '-'}</td>
+          <td><span class="status-pill ${lead.verified_at ? 'status-verified' : 'status-pending'}">${status}</span></td>
+          <td>${new Date(lead.created_at).toLocaleString()}</td>
+          <td>${new Date(lead.last_seen).toLocaleString()}</td>
+        `;
+        leadsTable.appendChild(row);
+      });
+    };
+
+    const loadLeads = async () => {
+      const isAdmin = await ensureAdmin();
+      if (!isAdmin) return;
+
+      statusEl.textContent = 'Loading leads...';
+      try {
+        const response = await fetch(`${window.DCT_API_URL}/leads?limit=200`, {
+          headers: dopeAuth.getHeaders()
+        });
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to load leads');
+        }
+        renderLeads(data.leads || []);
+        statusEl.textContent = `Showing ${data.leads.length} leads.`;
+      } catch (error) {
+        statusEl.textContent = error.message || 'Failed to load leads.';
+      }
+    };
+
+    refreshButton.addEventListener('click', loadLeads);
+    downloadButton.addEventListener('click', async () => {
+      const isAdmin = await ensureAdmin();
+      if (!isAdmin) return;
+
+      try {
+        const response = await fetch(`${window.DCT_API_URL}/leads/export?format=csv`, {
+          headers: dopeAuth.getHeaders()
+        });
+        if (!response.ok) {
+          throw new Error('Failed to download CSV');
+        }
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'leads.csv';
+        link.click();
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        statusEl.textContent = error.message || 'CSV download failed.';
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', loadLeads);
+  </script>
+</body>
+</html>

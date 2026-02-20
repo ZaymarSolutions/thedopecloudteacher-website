@@ -86,7 +86,7 @@
         <span class="label" style="color:#444;">Hands-On Learning</span>
       </div>
     </div>
-    <a href="pricing.html" class="cta-button" style="background:#222;color:#fff;">Explore Training Solutions</a>
+    <a href="pricing.html" class="cta-button" style="background:#222;color:#fff;" data-analytics-event="cta_click" data-analytics-label="banner-explore-pricing">Explore Training Solutions</a>
   </section>
 
   <!-- Hero Section -->
@@ -94,8 +94,24 @@
     <h1>Professional <span class="highlight">Cloud Computing</span> Training</h1>
     <p>Industry-recognized certification programs in AWS, Azure, GCP, DevOps, and Cloud Security. Comprehensive training starting at just <strong>$25 per class</strong> with flexible payment options for government agencies and enterprises.</p>
     <div class="hero-buttons">
-      <a href="courses.html" class="button button-primary">Browse Certification Programs</a>
-      <a href="pricing.html" class="button button-secondary">View Corporate Pricing</a>
+      <a href="courses.html" class="button button-primary" data-analytics-event="cta_click" data-analytics-label="hero-browse-courses">Browse Certification Programs</a>
+      <a href="pricing.html" class="button button-secondary" data-analytics-event="cta_click" data-analytics-label="hero-view-pricing">View Corporate Pricing</a>
+    </div>
+  </section>
+
+  <section class="lead-magnet" id="starter-kit">
+    <div>
+      <span class="lead-pill">Free download</span>
+      <h2>Cloud Career Starter Kit</h2>
+      <p>Get a 7-day roadmap, certification map, and interview checklist used by new cloud professionals. Perfect for beginners and career switchers.</p>
+    </div>
+    <div>
+      <form class="lead-form" id="starterKitForm" data-lead-capture="true" data-success-id="starterKitSuccess" data-source="home-starter-kit" data-redirect="cloud-career-starter-kit.html">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Send the kit</button>
+      </form>
+      <div class="lead-success" id="starterKitSuccess">Check your email to confirm your subscription. Redirecting to the starter kit.</div>
+      <p style="margin-top:0.75rem; font-size:0.9rem; color:#6b7280;">No spam. Unsubscribe anytime.</p>
     </div>
   </section>
 
@@ -108,6 +124,30 @@
       <img src="images/partner3.png" alt="Partner 3" class="partner-logo" />
       <img src="images/partner4.png" alt="Partner 4" class="partner-logo" />
       <!-- Add real or placeholder logos for credibility -->
+    </div>
+  </section>
+
+  <section class="outcomes-section">
+    <div class="section-header">
+      <h2>Career Outcomes That Convert</h2>
+      <p>Focused pathways, real projects, and interview readiness for measurable results.</p>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <h3>Certification-Ready Path</h3>
+        <div class="metric">30-Day Plan</div>
+        <p>Weekly milestones for AZ-900, AWS CCP, and cloud fundamentals with labs and mock exams.</p>
+      </div>
+      <div class="outcome-card">
+        <h3>Portfolio Projects</h3>
+        <div class="metric">6 Real Builds</div>
+        <p>Deploy serverless apps, secure cloud networks, and CI/CD pipelines you can showcase.</p>
+      </div>
+      <div class="outcome-card">
+        <h3>Interview Acceleration</h3>
+        <div class="metric">15+ Prompts</div>
+        <p>Behavioral + technical interview prep with coaching-ready scorecards.</p>
+      </div>
     </div>
   </section>
 
@@ -269,6 +309,30 @@
     </div>
   </section>
 
+  <section class="testimonial-section">
+    <div class="section-header">
+      <h2>What Learners Are Saying</h2>
+      <p>Career pivots, promotions, and certifications from real students.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <p class="quote">“I landed my first cloud support role in 6 weeks. The labs and mock interviews were the difference.”</p>
+        <div class="author">A. Robinson</div>
+        <div class="role">Cloud Support Associate</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="quote">“The certification roadmap kept me focused. I passed AZ-900 and built a portfolio project I can show recruiters.”</p>
+        <div class="author">M. Patel</div>
+        <div class="role">IT Analyst</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="quote">“Clear structure, hands-on labs, and practical guidance. Worth it for the enterprise-ready training.”</p>
+        <div class="author">T. Nguyen</div>
+        <div class="role">Systems Administrator</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Programs & Partnerships Section -->
   <section style="padding: 3rem 5%; background: #1a1a2e; color: #fff; border-radius: 16px; margin: 3rem 0;">
     <h2 style="color: #ffd700;">🎯 Programs & Partnerships</h2>
@@ -340,6 +404,31 @@
     </div>
   </section>
 
+  <section class="faq-section">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Quick answers to help you pick the right path.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Which course should I start with?</h3>
+        <p>If you're new to cloud, start with Cloud Fundamentals 101. Experienced learners can jump into Security, DevOps, or Architecture.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How long until I’m job-ready?</h3>
+        <p>Most learners complete the starter roadmap in 30–45 days with 5–7 hours per week.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I get a certificate?</h3>
+        <p>Yes, you’ll receive a verifiable certificate for each completed pathway.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do you offer team training?</h3>
+        <p>Yes. We offer enterprise and government training with custom dashboards and volume pricing.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Why Choose Us Section -->
   <section style="padding: 4rem 5%; background: #0F172A;">
     <div style="max-width: 1000px; margin: 0 auto;">
@@ -374,11 +463,13 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 The Dope Cloud Teacher. All rights reserved.</p>
+    <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
     <p style="margin-top: 1rem;">Professional Cloud Computing Training | <a href="pricing.html">Corporate Training Solutions</a> | <a href="certificate.html">Certificate Verification</a></p>
     <p style="margin-top: 0.5rem; font-size: 0.85rem;">AWS | Azure | GCP | DevOps | Cloud Security | Terraform | Kubernetes | Docker</p>
   </footer>
 
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/auth-system.js"></script>
   <script>
     // Update auth button if user is logged in
@@ -390,7 +481,51 @@
           navButton.onclick = () => { window.location.href = 'dashboard.html'; return false; };
         }
       }
+
     });
+  </script>
+
+  <script src="js/lead-capture.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Which course should I start with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you're new to cloud, start with Cloud Fundamentals 101. Experienced learners can jump into Security, DevOps, or Architecture."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long until I’m job-ready?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Most learners complete the starter roadmap in 30–45 days with 5–7 hours per week."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I get a certificate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, you’ll receive a verifiable certificate for each completed pathway."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer team training?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We offer enterprise and government training with custom dashboards and volume pricing."
+        }
+      }
+    ]
+  }
   </script>
   
   <!-- AI Training Assistant -->

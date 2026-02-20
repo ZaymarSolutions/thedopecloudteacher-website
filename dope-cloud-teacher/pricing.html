@@ -104,6 +104,102 @@
       padding: 2rem;
     }
 
+    .plan-summary {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .plan-card {
+      background: linear-gradient(135deg, #2d1b69, #1f1147);
+      border: 2px solid #9333ea;
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .plan-card.featured {
+      border-color: #ffcc00;
+      box-shadow: 0 15px 40px rgba(255, 204, 0, 0.25);
+    }
+
+    .plan-card h3 {
+      color: #ffcc00;
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0.75rem 0 1rem;
+    }
+
+    .plan-list {
+      list-style: none;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .plan-list li {
+      padding: 0.4rem 0;
+      color: #e0e0e0;
+    }
+
+    .plan-cta {
+      display: inline-block;
+      padding: 0.9rem 1.2rem;
+      background: #ffcc00;
+      color: #1f1147;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+    }
+
+    .lead-capture {
+      background: rgba(45, 27, 105, 0.6);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2rem auto 4rem;
+      max-width: 1000px;
+      text-align: center;
+    }
+
+    .lead-form {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .lead-form input[type="email"] {
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      border: none;
+      width: min(320px, 100%);
+      font-size: 1rem;
+    }
+
+    .lead-form button {
+      padding: 0.9rem 1.4rem;
+      border-radius: 10px;
+      border: none;
+      background: #10b981;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .lead-success {
+      margin-top: 0.75rem;
+      color: #10b981;
+      font-weight: bold;
+      display: none;
+    }
+
     .section-title {
       text-align: center;
       font-size: 2.5rem;
@@ -374,6 +470,44 @@
   </div>
 
   <div class="pricing-container">
+    <h2 class="section-title">Choose Your Fastest Path</h2>
+    <div class="plan-summary">
+      <div class="plan-card">
+        <h3>Starter Kit</h3>
+        <p>Perfect for beginners or career switchers.</p>
+        <div class="plan-price">$29<span>/one-time</span></div>
+        <ul class="plan-list">
+          <li>✔ 7-day cloud roadmap</li>
+          <li>✔ Certification checklist</li>
+          <li>✔ Interview prep guide</li>
+        </ul>
+        <a href="cloud-career-starter-kit.html" class="plan-cta" data-analytics-event="cta_click" data-analytics-label="plan-starter-kit">Get the kit</a>
+      </div>
+      <div class="plan-card featured">
+        <div class="badge">Most Popular</div>
+        <h3>All-Access Membership</h3>
+        <p>Best for learners who want full access.</p>
+        <div class="plan-price">$47<span>/month</span></div>
+        <ul class="plan-list">
+          <li>✔ All courses + labs</li>
+          <li>✔ Monthly Q&A</li>
+          <li>✔ Certificate tracking</li>
+        </ul>
+        <a href="#membership" class="plan-cta" data-analytics-event="cta_click" data-analytics-label="plan-membership">Start membership</a>
+      </div>
+      <div class="plan-card">
+        <h3>Career Accelerator</h3>
+        <p>For fast placement and coaching.</p>
+        <div class="plan-price">$497<span>/month</span></div>
+        <ul class="plan-list">
+          <li>✔ 1:1 coaching</li>
+          <li>✔ Resume + interview prep</li>
+          <li>✔ Portfolio reviews</li>
+        </ul>
+        <a href="#career-accelerator" class="plan-cta" data-analytics-event="cta_click" data-analytics-label="plan-career-accelerator">Apply now</a>
+      </div>
+    </div>
+
     <h2 class="section-title">🎓 Professional Course Pathways</h2>
     
     <!-- Payment Toggle -->
@@ -388,7 +522,7 @@
       <!-- Courses will be dynamically inserted here -->
     </div>
 
-    <div class="membership-section">
+    <div class="membership-section" id="membership">
       <h2 class="section-title">💎 Monthly Memberships</h2>
       <div class="membership-grid">
         <div class="price-card">
@@ -403,7 +537,7 @@
             <li><i class="fas fa-check-circle"></i> Study resources & guides</li>
             <li><i class="fas fa-check-circle"></i> Course certificates</li>
           </ul>
-          <button class="btn-purchase" onclick="purchaseMembership('student')" aria-label="Start Student Membership securely via Gumroad">Start Student Membership</button>
+          <button class="btn-purchase" onclick="purchaseMembership('student')" aria-label="Start Student Membership securely via Gumroad" data-analytics-event="membership_start" data-analytics-label="student">Start Student Membership</button>
         </div>
 
         <div class="price-card featured">
@@ -420,10 +554,10 @@
             <li><i class="fas fa-check-circle"></i> Resume review</li>
             <li><i class="fas fa-check-circle"></i> Career guidance</li>
           </ul>
-          <button class="btn-purchase featured" onclick="purchaseMembership('pro')" aria-label="Start Pro Membership securely via Gumroad">Start Pro Membership</button>
+          <button class="btn-purchase featured" onclick="purchaseMembership('pro')" aria-label="Start Pro Membership securely via Gumroad" data-analytics-event="membership_start" data-analytics-label="pro">Start Pro Membership</button>
         </div>
 
-        <div class="price-card">
+        <div class="price-card" id="career-accelerator">
           <div class="course-icon">🚀</div>
           <h3>Career Accelerator</h3>
           <div class="subtitle">Ultimate Career Support</div>
@@ -436,7 +570,7 @@
             <li><i class="fas fa-check-circle"></i> Job search strategy</li>
             <li><i class="fas fa-check-circle"></i> LinkedIn optimization</li>
           </ul>
-          <button class="btn-purchase" onclick="purchaseMembership('career')" aria-label="Start Career Accelerator securely via Gumroad">Start Career Accelerator</button>
+          <button class="btn-purchase" onclick="purchaseMembership('career')" aria-label="Start Career Accelerator securely via Gumroad" data-analytics-event="membership_start" data-analytics-label="career">Start Career Accelerator</button>
         </div>
       </div>
     </div>
@@ -460,8 +594,18 @@
           <li><i class="fas fa-check-circle"></i> Post-training support</li>
           <li><i class="fas fa-check-circle"></i> Progress tracking dashboard</li>
         </ul>
-        <button class="btn-purchase" onclick="contactCorporate()" aria-label="Contact for corporate training quote">Contact for Quote</button>
+        <button class="btn-purchase" onclick="contactCorporate()" aria-label="Contact for corporate training quote" data-analytics-event="cta_click" data-analytics-label="corporate-contact">Contact for Quote</button>
       </div>
+    </div>
+
+    <div class="lead-capture">
+      <h2 class="section-title" style="margin-top:0;">Get the Free Cloud Career Starter Kit</h2>
+      <p>Download the 7-day roadmap, certification guide, and interview checklist.</p>
+      <form class="lead-form" id="starterKitForm" data-lead-capture="true" data-success-id="starterKitSuccess" data-source="pricing-starter-kit" data-redirect="cloud-career-starter-kit.html">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Send the kit</button>
+      </form>
+      <div class="lead-success" id="starterKitSuccess">Check your email to confirm your subscription. Redirecting to the starter kit.</div>
     </div>
   </div>
 
@@ -489,12 +633,13 @@
         <blockquote style="color: #c084fc; font-style: italic;">“The best value for professional cloud training. The membership is a steal!”</blockquote>
       </div>
     </section>
-    &copy; 2025 The Dope Cloud Teacher. All rights reserved.
+  <footer>
+    &copy; 2026 The Dope Cloud Teacher. All rights reserved.
   </footer>
-
-  <!-- Gumroad Integration -->
   <script src="https://gumroad.com/js/gumroad.js"></script>
 
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/auth-system.js"></script>
   <script src="js/course-data.js"></script>
   <script>
@@ -666,5 +811,7 @@
       renderCoursePricing();
     });
   </script>
+
+  <script src="js/lead-capture.js"></script>
 </body>
 </html>
