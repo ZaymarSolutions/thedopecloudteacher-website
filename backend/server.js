@@ -288,8 +288,7 @@ app.get('/api/leads/verify', async (req, res) => {
 
     res.json({ success: true, status: 'verified' });
 
-    const lead = db.prepare('SELECT email FROM leads WHERE verify_token = ?').get(token);
-    if (lead) {
+    if (lead?.email) {
       await sendEmail(lead.email, 'welcomeEmail', lead.email);
     }
 
