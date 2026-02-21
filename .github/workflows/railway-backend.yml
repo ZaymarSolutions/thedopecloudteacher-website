@@ -19,7 +19,19 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Deploy to Railway
-        run: railway up --service backend
+        run: |
+          if [ -z "$RAILWAY_SERVICE_NAME" ]; then
+            echo "RAILWAY_SERVICE_NAME secret is required"
+            exit 1
+          fi
+
+          if [ -n "$RAILWAY_PROJECT_ID" ]; then
+            railway up --project "$RAILWAY_PROJECT_ID" --service "$RAILWAY_SERVICE_NAME"
+          else
+            railway up --service "$RAILWAY_SERVICE_NAME"
+          fi
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
+          RAILWAY_SERVICE_NAME: ${{ secrets.RAILWAY_SERVICE_NAME }}
         working-directory: ./backend
