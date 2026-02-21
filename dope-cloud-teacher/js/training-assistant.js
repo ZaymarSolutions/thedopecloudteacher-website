@@ -1,11 +1,8 @@
 // training-assistant.js
 // Professional AI-powered training assistant for The Dope Cloud Teacher
-// Connects to external AI API (e.g., Azure OpenAI, OpenAI GPT)
+// Uses backend proxy endpoint to keep API keys secure.
 
-// === CONFIGURATION ===
-const AI_API_ENDPOINT = 'https://api.openai.com/v1/chat/completions'; // Replace with your endpoint
-const AI_API_KEY = 'YOUR_API_KEY_HERE'; // Securely store in production!
-const AI_MODEL = 'gpt-4'; // Or your preferred model
+const ASSISTANT_API_ENDPOINT = `${window.DCT_API_URL}/assistant/chat`;
 
 // === UI SETUP ===
 function createAssistantUI() {
@@ -64,7 +61,7 @@ function hideAssistantModal() {
 
 // === CHAT LOGIC ===
 let chatHistory = [
-  { role: 'system', content: 'You are a professional, culturally aware cloud training assistant. Answer questions about cloud, courses, and careers. If you don\'t know, say so honestly.' }
+  { role: 'system', content: 'You are a professional, culturally aware cloud training assistant. Answer questions about cloud, courses, and careers. If you do not know, say so honestly.' }
 ];
 
 function appendChat(role, content) {
@@ -96,21 +93,25 @@ async function handleAssistantSubmit(e) {
 
 async function fetchAIAnswer(messages) {
   try {
-    const response = await fetch(AI_API_ENDPOINT, {
+    const response = await fetch(ASSISTANT_API_ENDPOINT, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${AI_API_KEY}`
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: AI_MODEL,
-        messages: messages
+        question: messages[messages.length - 1]?.content || '',
+        history: messages.slice(-10)
       })
     });
-    if (!response.ok) throw new Error('API error');
+
+    if (!response.ok) {
+      throw new Error(`Assistant API error: ${response.status}`);
+    }
+
     const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim() || 'Sorry, I could not find an answer.';
+    return data.answer || 'Sorry, I could not find an answer.';
   } catch (err) {
+    console.error('Training assistant connection error:', err);
     return 'Sorry, there was a problem connecting to the AI service.';
   }
 }

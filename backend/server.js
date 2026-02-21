@@ -14,6 +14,8 @@ const { sendEmail } = require('./email-service');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const ASSISTANT_API_ENDPOINT = process.env.AI_API_ENDPOINT || 'https://api.openai.com/v1/chat/completions';
+const ASSISTANT_MODEL = process.env.AI_MODEL || 'gpt-4o-mini';
 
 // Database connection
 const db = new Database(path.join(__dirname, process.env.DATABASE_PATH || 'database.sqlite'));
@@ -82,6 +84,10 @@ const authenticateToken = (req, res, next) => {
 };
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+const assistantSystemPrompt = `You are The Dope Cloud Teacher training assistant. Provide clear, practical guidance for cloud learning and career growth.
+Prioritize concise, actionable answers with real-world examples when useful.
+If a question is outside your scope, say so and offer the closest helpful next step.`;
 
 const requireAdmin = (req, res, next) => {
   const user = db.prepare('SELECT role FROM users WHERE id = ?').get(req.user.userId);
@@ -336,6 +342,66 @@ app.get('/api/leads/export', authenticateToken, requireAdmin, (req, res) => {
   res.setHeader('Content-Type', 'text/csv');
   res.setHeader('Content-Disposition', 'attachment; filename="leads.csv"');
   res.send(csv);
+});
+
+// ==================== AI ASSISTANT ====================
+app.post('/api/assistant/chat', async (req, res) => {
+  try {
+    const { question, history } = req.body || {};
+    const userQuestion = typeof question === 'string' ? question.trim() : '';
+
+    if (!userQuestion) {
+      return res.status(400).json({ error: 'Question is required' });
+    }
+
+    const apiKey = process.env.OPENAI_API_KEY || process.env.AI_API_KEY;
+    if (!apiKey) {
+      return res.status(503).json({ error: 'AI assistant is not configured' });
+    }
+
+    const safeHistory = Array.isArray(history)
+      ? history
+          .filter(item => item && typeof item.content === 'string' && (item.role === 'user' || item.role === 'assistant'))
+          .slice(-8)
+      : [];
+
+    const messages = [
+      { role: 'system', content: assistantSystemPrompt },
+      ...safeHistory,
+      { role: 'user', content: userQuestion }
+    ];
+
+    const upstream = await fetch(ASSISTANT_API_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: ASSISTANT_MODEL,
+        messages,
+        temperature: 0.4
+      })
+    });
+
+    if (!upstream.ok) {
+      const errorText = await upstream.text();
+      console.error('Assistant upstream error:', upstream.status, errorText);
+      return res.status(502).json({ error: 'Assistant provider request failed' });
+    }
+
+    const data = await upstream.json();
+    const answer = data?.choices?.[0]?.message?.content?.trim();
+
+    if (!answer) {
+      return res.status(502).json({ error: 'Assistant provider returned an empty response' });
+    }
+
+    res.json({ answer });
+  } catch (error) {
+    console.error('Assistant API error:', error);
+    res.status(500).json({ error: 'Assistant request failed' });
+  }
 });
 
 // ==================== COURSES ROUTES ====================

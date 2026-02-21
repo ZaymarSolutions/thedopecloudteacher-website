@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#111827"/>
+  <ellipse cx="180" cy="110" rx="92" ry="36" fill="#7c3aed"/>
+  <rect x="88" y="110" width="184" height="130" fill="#5b21b6"/>
+  <ellipse cx="180" cy="240" rx="92" ry="36" fill="#7c3aed"/>
+  <path d="M320 110h250M320 150h220M320 190h245M320 230h205" stroke="#d4af37" stroke-width="8" stroke-linecap="round"/>
+  <text x="44" y="322" fill="#f8fafc" font-size="38" font-family="Inter,Segoe UI,sans-serif" font-weight="700">Cloud Data Engineering</text>
+</svg>

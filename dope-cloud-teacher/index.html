@@ -23,7 +23,7 @@
     "@type": "Organization",
     "name": "The Dope Cloud Teacher",
     "url": "https://thedopecloudteacher.com/",
-    "logo": "https://thedopecloudteacher.com/logo.svg",
+    "logo": "https://thedopecloudteacher.com/logo.png",
     "sameAs": [
       "https://www.linkedin.com/company/thedopecloudteacher/",
       "https://www.youtube.com/@thedopecloudteacher"
@@ -152,77 +152,100 @@
   </section>
 
   <!-- Live Demos Section -->
-  <section class="courses-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 20px; margin: 40px auto; border-radius: 15px;">
-    <div class="section-header">
-      <h2 style="color: white;">Interactive Security Demonstrations</h2>
-      <p style="color: rgba(255,255,255,0.95);">Real-time cloud security simulation with live threat detection and response</p>
-    </div>
-    <div class="modules-grid">
-      <a href="garden-guardian-demo.html" class="module-card" style="background: rgba(255,255,255,0.95); border: 3px solid #48bb78; transform: scale(1.02);">
-        <div class="module-icon" style="font-size: 3em;">🛡️</div>
-        <h3>Azure Security with Sentinel</h3>
-        <p>Interactive simulation of cloud security monitoring, IoT threat detection, and automated response using Microsoft Azure, Sentinel, and AI-powered analytics. See enterprise-grade security in action.</p>
-        <div class="module-meta" style="border-top: 2px solid #667eea; padding-top: 15px; margin-top: 15px;">
-          <div>
-            <span style="background: #48bb78; color: white; padding: 8px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em;">LIVE DEMO</span>
+  <section class="demo-showcase">
+    <div class="demo-showcase__inner">
+      <div class="section-header">
+        <h2>Interactive Security Demonstrations</h2>
+        <p>Modern SOC-style simulation with real-time threat detection, alert triage, and guided response workflows.</p>
+      </div>
+      <a href="garden-guardian-demo.html" class="demo-feature-card">
+        <img src="images/programs/security-demo.svg" alt="Azure security simulation preview" class="demo-feature-image">
+        <div class="demo-feature-body">
+          <div class="demo-feature-badges">
+            <span class="demo-badge demo-badge-live">Live Demo</span>
+            <span class="demo-badge">Azure + Sentinel</span>
+            <span class="demo-badge">AI Analytics</span>
           </div>
-          <span class="module-level" style="background: #667eea;">Interactive</span>
+          <h3>Azure Security with Sentinel</h3>
+          <p>Step through incident detection, playbook automation, and response decisions in an immersive cloud security scenario designed to mirror enterprise operations.</p>
+          <span class="demo-feature-cta">Launch Interactive Experience</span>
         </div>
       </a>
     </div>
   </section>
 
   <!-- Course Offerings -->
-  <section class="courses-section">
+  <section class="courses-section programs-section">
     <div class="section-header">
       <h2>Professional Certification Programs</h2>
       <p>Industry-recognized training with hands-on labs, real-world projects, and certification readiness. <strong style="color: #D4AF37;">Starting at just $15 per class</strong> with flexible licensing for teams and enterprises.</p>
     </div>
     <div class="modules-grid">
-      <a href="courses.html?course=cloud-fundamentals-101" class="module-card">
-        <div class="module-icon">☁️</div>
+      <a href="courses.html?course=cloud-fundamentals-101" class="module-card program-card">
+        <img src="images/programs/cloud-fundamentals.svg" alt="Cloud Fundamentals visual" class="module-visual">
         <h3>Cloud Fundamentals</h3>
         <p>Comprehensive introduction to AWS, Azure, and Google Cloud Platform. Ideal for IT professionals transitioning to cloud architecture and deployment.</p>
         <div class="module-meta">
           <span class="module-level">Beginner</span>
         </div>
-        <div class="module-icon">🏗️</div>
+      </a>
+
+      <a href="courses.html?course=cloud-architect-pathway" class="module-card program-card">
+        <img src="images/programs/cloud-architecture.svg" alt="Cloud Architecture visual" class="module-visual">
         <h3>Cloud Architecture</h3>
         <p>Enterprise architecture design, scalability patterns, high availability, and disaster recovery. Prepare for AWS Solutions Architect and Azure Architect Professional certifications.</p>
         <div class="module-meta">
           <span class="module-level">Advanced</span>
         </div>
-        <div class="module-icon">🔐</div>
+      </a>
+
+      <a href="courses.html?course=cloud-security-engineer" class="module-card program-card">
+        <img src="images/programs/cloud-security.svg" alt="Cloud Security Engineer visual" class="module-visual">
         <h3>Cloud Security Engineer</h3>
         <p>Security best practices, compliance frameworks (NIST, FedRAMP, HIPAA), threat detection, and incident response for cloud environments.</p>
         <div class="module-meta">
           <span class="module-level">Intermediate</span>
         </div>
-        <div class="module-icon">⚙️</div>
+      </a>
+
+      <a href="courses.html?course=devops-automation" class="module-card program-card">
+        <img src="images/programs/devops-automation.svg" alt="DevOps and Automation visual" class="module-visual">
         <h3>DevOps & Automation</h3>
         <p>CI/CD pipelines, Docker containerization, Kubernetes orchestration, Infrastructure as Code with Terraform and Ansible. Build modern deployment systems.</p>
         <div class="module-meta">
           <span class="module-level">Intermediate</span>
         </div>
-        <div class="module-icon">🤖</div>
+      </a>
+
+      <a href="courses.html?course=intro-to-ai-ml" class="module-card program-card">
+        <img src="images/programs/ai-machine-learning.svg" alt="AI and Machine Learning visual" class="module-visual">
         <h3>AI & Machine Learning</h3>
         <p>Build intelligent applications with AWS SageMaker, Azure ML, and Google AI Platform. Practical machine learning for cloud professionals.</p>
         <div class="module-meta">
           <span class="module-level">Beginner</span>
         </div>
-        <div class="module-icon">📊</div>
+      </a>
+
+      <a href="courses.html?course=data-engineering-cloud" class="module-card program-card">
+        <img src="images/programs/cloud-data-engineering.svg" alt="Cloud Data Engineering visual" class="module-visual">
         <h3>Cloud Data Engineering</h3>
         <p>Design and build scalable data pipelines, ETL processes, data warehousing, and analytics platforms on AWS, Azure, and GCP.</p>
         <div class="module-meta">
           <span class="module-level">Intermediate</span>
         </div>
-        <div class="module-icon">⚡</div>
+      </a>
+
+      <a href="courses.html?course=serverless-microservices" class="module-card program-card">
+        <img src="images/programs/serverless-microservices.svg" alt="Serverless and Microservices visual" class="module-visual">
         <h3>Serverless & Microservices</h3>
         <p>AWS Lambda, Azure Functions, event-driven architectures, API Gateway, and modern microservices patterns for scalable applications.</p>
         <div class="module-meta">
           <span class="module-level">Advanced</span>
         </div>
-        <div class="module-icon">💼</div>
+      </a>
+
+      <a href="pricing.html#corporate-training" class="module-card program-card">
+        <img src="images/programs/enterprise-plans.svg" alt="Enterprise and Government plans visual" class="module-visual">
         <h3>Enterprise & Government Plans</h3>
         <p>Unlimited access to all courses, custom curriculum development, dedicated support, and team management dashboards.</p>
         <div class="module-meta">
@@ -295,9 +318,10 @@
   </section>
 
   <!-- Additional Technologies Section -->
-  <section style="padding: 4rem 5%; background: #1E293B;">
+  <section class="additional-tech-section">
     <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-      <h2 style="font-size: 2rem; margin-bottom: 2rem; color: #F8FAFC;">Additional Technologies Covered</h2>
+      <h2 style="font-size: 2rem; margin-bottom: 0.8rem; color: #1F2937;">Additional Technologies Covered</h2>
+      <p style="color:#4B5563; max-width:700px; margin:0 auto 2rem;">Beyond core cloud paths, learners build familiarity with production-grade data platforms, observability stacks, and modern DevOps tooling.</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 2rem; margin-top: 2rem;">
         <a href="https://www.oracle.com/cloud/" target="_blank" rel="noopener" class="tech-icon">
           <i class="devicon-oracle-original colored"></i>
@@ -359,19 +383,19 @@
     <div class="faq-grid">
       <div class="faq-item">
         <h3>Which course should I start with?</h3>
-        <p>If you're new to cloud, start with Cloud Fundamentals 101. Experienced learners can jump into Security, DevOps, or Architecture.</p>
+        <p>If you are new to cloud computing, start with Cloud Fundamentals 101 because it builds the exact vocabulary and platform basics employers expect. The pathway is structured so you can progress from core concepts to hands-on labs without getting overwhelmed. If you already have IT experience, you can move directly into Security, DevOps, or Architecture tracks. Most learners use Fundamentals as a launchpad before choosing a specialization.</p>
       </div>
       <div class="faq-item">
         <h3>How long until I’m job-ready?</h3>
-        <p>Most learners complete the starter roadmap in 30–45 days with 5–7 hours per week.</p>
+        <p>Most learners complete the starter roadmap in 30 to 45 days with a steady 5 to 7 hours of focused work each week. Job readiness depends on consistency, portfolio quality, and interview practice just as much as course completion. We guide you through project milestones so you leave with concrete examples to discuss with recruiters and hiring managers. Learners who stay on schedule typically see measurable confidence gains within the first few weeks.</p>
       </div>
       <div class="faq-item">
         <h3>Do I get a certificate?</h3>
-        <p>Yes, you’ll receive a verifiable certificate for each completed pathway.</p>
+        <p>Yes, you receive a verifiable certificate for each completed pathway after meeting lesson and progress requirements. Certificates are designed to be shared on LinkedIn, resumes, and internal performance documentation. They signal practical skill development tied to specific cloud domains such as security, architecture, and automation. While certificates are not a substitute for vendor exams, they strengthen your portfolio and readiness narrative.</p>
       </div>
       <div class="faq-item">
         <h3>Do you offer team training?</h3>
-        <p>Yes. We offer enterprise and government training with custom dashboards and volume pricing.</p>
+        <p>Yes, we provide team training for enterprise and government organizations with flexible delivery options. Programs can include role-based pathways, manager visibility dashboards, and tailored schedules for distributed teams. We also support volume pricing and custom onboarding so organizations can roll out training efficiently. If you share your goals and team size, we can map a practical plan and timeline quickly.</p>
       </div>
     </div>
   </section>
@@ -444,7 +468,7 @@
         "name": "Which course should I start with?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "If you're new to cloud, start with Cloud Fundamentals 101. Experienced learners can jump into Security, DevOps, or Architecture."
+          "text": "If you are new to cloud computing, start with Cloud Fundamentals 101 because it builds the exact vocabulary and platform basics employers expect. The pathway is structured so you can progress from core concepts to hands-on labs without getting overwhelmed. If you already have IT experience, you can move directly into Security, DevOps, or Architecture tracks. Most learners use Fundamentals as a launchpad before choosing a specialization."
         }
       },
       {
@@ -452,7 +476,7 @@
         "name": "How long until I’m job-ready?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Most learners complete the starter roadmap in 30–45 days with 5–7 hours per week."
+          "text": "Most learners complete the starter roadmap in 30 to 45 days with a steady 5 to 7 hours of focused work each week. Job readiness depends on consistency, portfolio quality, and interview practice just as much as course completion. We guide you through project milestones so you leave with concrete examples to discuss with recruiters and hiring managers. Learners who stay on schedule typically see measurable confidence gains within the first few weeks."
         }
       },
       {
@@ -460,7 +484,7 @@
         "name": "Do I get a certificate?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, you’ll receive a verifiable certificate for each completed pathway."
+          "text": "Yes, you receive a verifiable certificate for each completed pathway after meeting lesson and progress requirements. Certificates are designed to be shared on LinkedIn, resumes, and internal performance documentation. They signal practical skill development tied to specific cloud domains such as security, architecture, and automation. While certificates are not a substitute for vendor exams, they strengthen your portfolio and readiness narrative."
         }
       },
       {
@@ -468,7 +492,7 @@
         "name": "Do you offer team training?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. We offer enterprise and government training with custom dashboards and volume pricing."
+          "text": "Yes, we provide team training for enterprise and government organizations with flexible delivery options. Programs can include role-based pathways, manager visibility dashboards, and tailored schedules for distributed teams. We also support volume pricing and custom onboarding so organizations can roll out training efficiently. If you share your goals and team size, we can map a practical plan and timeline quickly."
         }
       }
     ]

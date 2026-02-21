@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#111827"/>
+  <circle cx="180" cy="170" r="62" fill="#7c3aed"/>
+  <circle cx="180" cy="170" r="28" fill="#111827"/>
+  <circle cx="330" cy="170" r="62" fill="#d4af37"/>
+  <circle cx="330" cy="170" r="28" fill="#111827"/>
+  <path d="M242 170H268" stroke="#f8fafc" stroke-width="12" stroke-linecap="round"/>
+  <rect x="420" y="90" width="150" height="40" rx="10" fill="#4f46e5"/>
+  <rect x="420" y="145" width="120" height="40" rx="10" fill="#8b5cf6"/>
+  <rect x="420" y="200" width="170" height="40" rx="10" fill="#a78bfa"/>
+  <text x="44" y="322" fill="#f8fafc" font-size="38" font-family="Inter,Segoe UI,sans-serif" font-weight="700">DevOps &amp; Automation</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#111827"/>
+  <rect x="80" y="90" width="140" height="170" rx="10" fill="#4c1d95"/>
+  <rect x="250" y="60" width="140" height="200" rx="10" fill="#6d28d9"/>
+  <rect x="420" y="110" width="140" height="150" rx="10" fill="#7c3aed"/>
+  <path d="M80 260h480" stroke="#d4af37" stroke-width="8"/>
+  <circle cx="150" cy="160" r="16" fill="#d4af37"/>
+  <circle cx="320" cy="140" r="16" fill="#d4af37"/>
+  <circle cx="490" cy="185" r="16" fill="#d4af37"/>
+  <text x="44" y="322" fill="#f8fafc" font-size="38" font-family="Inter,Segoe UI,sans-serif" font-weight="700">Enterprise &amp; Government Plans</text>
+</svg>

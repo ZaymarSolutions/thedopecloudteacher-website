@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#0b1220"/>
+  <circle cx="140" cy="120" r="88" fill="#581c87"/>
+  <path d="M320 70l120 44v78c0 62-42 104-120 133-78-29-120-71-120-133v-78z" fill="#1d4ed8" stroke="#93c5fd" stroke-width="8"/>
+  <rect x="280" y="140" width="80" height="58" rx="12" fill="#f8fafc"/>
+  <rect x="298" y="118" width="44" height="34" rx="16" fill="#f8fafc"/>
+  <text x="44" y="322" fill="#f8fafc" font-size="38" font-family="Inter,Segoe UI,sans-serif" font-weight="700">Cloud Security Engineer</text>
+</svg>

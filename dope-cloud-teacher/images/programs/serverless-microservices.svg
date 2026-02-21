@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#0b1220"/>
+  <rect x="70" y="70" width="120" height="86" rx="14" fill="#7c3aed"/>
+  <rect x="260" y="135" width="120" height="86" rx="14" fill="#a855f7"/>
+  <rect x="450" y="70" width="120" height="86" rx="14" fill="#d4af37"/>
+  <path d="M190 113h70M380 178h70" stroke="#f8fafc" stroke-width="7" stroke-linecap="round"/>
+  <path d="M130 156v42h190" stroke="#f8fafc" stroke-width="6" fill="none"/>
+  <path d="M510 156v42H320" stroke="#f8fafc" stroke-width="6" fill="none"/>
+  <text x="44" y="322" fill="#f8fafc" font-size="38" font-family="Inter,Segoe UI,sans-serif" font-weight="700">Serverless &amp; Microservices</text>
+</svg>

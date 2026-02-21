@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#0f172a"/>
+  <circle cx="180" cy="150" r="100" fill="#4c1d95" opacity="0.9"/>
+  <circle cx="180" cy="150" r="68" fill="#8b5cf6"/>
+  <path d="M380 88h180M380 130h140M380 172h170M380 214h150" stroke="#c4b5fd" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="180" cy="150" r="16" fill="#f8fafc"/>
+  <text x="44" y="322" fill="#f8fafc" font-size="38" font-family="Inter,Segoe UI,sans-serif" font-weight="700">AI &amp; Machine Learning</text>
+</svg>
