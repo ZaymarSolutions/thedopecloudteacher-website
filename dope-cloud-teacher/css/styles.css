@@ -4,17 +4,19 @@
    ============================================ */
 
 :root {
-  --primary-purple: #4B3869;
-  --dark-purple: #2C2541;
-  --accent-gold: #BFA14A;
-  --dark-bg: #F7F8FA;
+  --primary-purple: #5B2B8F;
+  --dark-purple: #2D1B4D;
+  --accent-gold: #D4AF37;
+  --dark-bg: #F5F6F8;
   --card-bg: #FFFFFF;
-  --text-light: #23272F;
-  --text-gray: #6B7280;
-  --border-color: #E5E7EB;
-  --success-green: #198754;
-  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
-  --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+  --text-dark: #1F2937;
+  --text-light: #4B5563;
+  --text-muted: #8B92A9;
+  --border-color: #E0E5ED;
+  --success-green: #059669;
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
 }
 
 * {

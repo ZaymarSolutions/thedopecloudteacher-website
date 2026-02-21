@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const path = require('path');
 const crypto = require('crypto');
+const fs = require('fs');
 const { sendEmail } = require('./email-service');
 
 const app = express();
@@ -685,6 +686,108 @@ app.get('/api/admin/stats', authenticateToken, (req, res) => {
   };
 
   res.json({ stats });
+});
+
+// ===========================
+// VIDEO STREAMING ENDPOINTS
+// ===========================
+
+// Get video for specific lesson
+app.get('/api/videos/:courseId/:lessonId', authenticateToken, (req, res) => {
+  const { courseId, lessonId } = req.params;
+  
+  // Map courseId to folder name
+  const courseFolderMap = {
+    'cloud-fundamentals-101': 'CLOUD-FUNDAMENTALS-101',
+    'cloud-architect-pathway': 'CLOUD-ARCHITECT-PATHWAY',
+    'cloud-security-engineer': 'CLOUD-SECURITY-ENGINEER',
+    'devops-automation-mastery': 'DEVOPS-AUTOMATION-MASTERY',
+    'ai-machine-learning': 'AI-MACHINE-LEARNING',
+    'cloud-data-engineering': 'CLOUD-DATA-ENGINEERING',
+    'serverless-microservices': 'SERVERLESS-MICROSERVICES'
+  };
+  
+  const courseFolder = courseFolderMap[courseId];
+  if (!courseFolder) {
+    return res.status(404).json({ error: 'Course not found' });
+  }
+  
+  // Find video file
+  const videoBasePath = 'D:\\COURSE_VIDEOS';
+  const coursePath = path.join(videoBasePath, courseFolder);
+  
+  // Read directory to find lesson video
+  try {
+    const files = fs.readdirSync(coursePath);
+    const videoFile = files.find(f => f.startsWith(`Lesson-${lessonId}-`) && f.endsWith('.mp4'));
+    
+    if (!videoFile) {
+      return res.status(404).json({ error: 'Video not found' });
+    }
+    
+    const videoPath = path.join(coursePath, videoFile);
+    const stat = fs.statSync(videoPath);
+    const fileSize = stat.size;
+    const range = req.headers.range;
+    
+    if (range) {
+      // Stream video with range support
+      const parts = range.replace(/bytes=/, '').split('-');
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+      const chunksize = (end - start) + 1;
+      const file = fs.createReadStream(videoPath, { start, end });
+      const head = {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': 'video/mp4',
+      };
+      res.writeHead(206, head);
+      file.pipe(res);
+    } else {
+      // Stream entire video
+      const head = {
+        'Content-Length': fileSize,
+        'Content-Type': 'video/mp4',
+      };
+      res.writeHead(200, head);
+      fs.createReadStream(videoPath).pipe(res);
+    }
+  } catch (error) {
+    console.error('Video streaming error:', error);
+    res.status(500).json({ error: 'Video streaming failed' });
+  }
+});
+
+// Get lesson metadata
+app.get('/api/videos/metadata/:courseId/:lessonId', (req, res) => {
+  const { courseId, lessonId } = req.params;
+  
+  // Load lesson manifest
+  const manifestPath = path.join(__dirname, '..', 'lesson_manifest.json');
+  try {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+    const lesson = manifest.find(l => 
+      l.course.toLowerCase().replace(/[^a-z0-9]/g, '-') === courseId && 
+      l.lessonNumber === parseInt(lessonId)
+    );
+    
+    if (!lesson) {
+      return res.status(404).json({ error: 'Lesson not found' });
+    }
+    
+    res.json({
+      lessonNumber: lesson.lessonNumber,
+      lessonTitle: lesson.lessonTitle,
+      course: lesson.course,
+      durationSeconds: lesson.durationSeconds,
+      wordCount: lesson.wordCount
+    });
+  } catch (error) {
+    console.error('Metadata error:', error);
+    res.status(500).json({ error: 'Failed to load metadata' });
+  }
 });
 
 // Health check

@@ -99,6 +99,24 @@ db.exec(`
   )
 `);
 
+// Videos table
+db.exec(`
+  CREATE TABLE videos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    course_id TEXT NOT NULL,
+    lesson_id INTEGER NOT NULL,
+    lesson_title TEXT NOT NULL,
+    file_path TEXT NOT NULL,
+    duration_seconds INTEGER,
+    word_count INTEGER,
+    start_time_formatted TEXT,
+    end_time_formatted TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    UNIQUE(course_id, lesson_id)
+  )
+`);
+
 // Subscriptions table
 db.exec(`
   CREATE TABLE subscriptions (

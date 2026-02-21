@@ -1,0 +1,123 @@
+﻿[
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  1,
+        "lessonTitle":  "Cloud Evolution Timeline",
+        "wordCount":  468,
+        "durationSeconds":  187,
+        "startTime":  0,
+        "endTime":  187,
+        "startTimeFormatted":  "00:00:00",
+        "endTimeFormatted":  "00:03:07"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  2,
+        "lessonTitle":  "Cloud Service Models: IaaS, PaaS, SaaS",
+        "wordCount":  514,
+        "durationSeconds":  206,
+        "startTime":  187,
+        "endTime":  393,
+        "startTimeFormatted":  "00:03:07",
+        "endTimeFormatted":  "00:06:33"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  3,
+        "lessonTitle":  "Introduction to AWS",
+        "wordCount":  511,
+        "durationSeconds":  204,
+        "startTime":  393,
+        "endTime":  597,
+        "startTimeFormatted":  "00:06:33",
+        "endTimeFormatted":  "00:09:57"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  4,
+        "lessonTitle":  "Microsoft Azure Essentials",
+        "wordCount":  492,
+        "durationSeconds":  197,
+        "startTime":  597,
+        "endTime":  794,
+        "startTimeFormatted":  "00:09:57",
+        "endTimeFormatted":  "00:13:14"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  5,
+        "lessonTitle":  "Google Cloud Platform Basics",
+        "wordCount":  556,
+        "durationSeconds":  222,
+        "startTime":  794,
+        "endTime":  1016,
+        "startTimeFormatted":  "00:13:14",
+        "endTimeFormatted":  "00:16:56"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  6,
+        "lessonTitle":  "Cloud Storage Solutions",
+        "wordCount":  582,
+        "durationSeconds":  233,
+        "startTime":  1016,
+        "endTime":  1249,
+        "startTimeFormatted":  "00:16:56",
+        "endTimeFormatted":  "00:20:49"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  7,
+        "lessonTitle":  "Cloud Networking Fundamentals",
+        "wordCount":  578,
+        "durationSeconds":  231,
+        "startTime":  1249,
+        "endTime":  1480,
+        "startTimeFormatted":  "00:20:49",
+        "endTimeFormatted":  "00:24:40"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  8,
+        "lessonTitle":  "Cloud Security Basics",
+        "wordCount":  600,
+        "durationSeconds":  240,
+        "startTime":  1480,
+        "endTime":  1720,
+        "startTimeFormatted":  "00:24:40",
+        "endTimeFormatted":  "00:28:40"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  9,
+        "lessonTitle":  "Cloud Cost Management",
+        "wordCount":  596,
+        "durationSeconds":  238,
+        "startTime":  1720,
+        "endTime":  1958,
+        "startTimeFormatted":  "00:28:40",
+        "endTimeFormatted":  "00:32:38"
+    },
+    {
+        "course":  "CLOUD FUNDAMENTALS 101",
+        "lessonNumber":  10,
+        "lessonTitle":  "Capstone Project: Deploy Your First Application",
+        "wordCount":  577,
+        "durationSeconds":  231,
+        "startTime":  1958,
+        "endTime":  2189,
+        "startTimeFormatted":  "00:32:38",
+        "endTimeFormatted":  "00:36:29"
+    },
+    {
+        "course":  "CLOUD ARCHITECT PROFESSIONAL PATHWAY",
+        "lessonNumber":  1,
+        "lessonTitle":  "Cloud Architecture Principles",
+        "wordCount":  555,
+        "durationSeconds":  222,
+        "startTime":  2189,
+        "endTime":  2411,
+        "startTimeFormatted":  "00:36:29",
+        "endTimeFormatted":  "00:40:11"
+    }
+]
