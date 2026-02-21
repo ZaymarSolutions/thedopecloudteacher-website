@@ -4,6 +4,13 @@ const API_URL = window.DCT_API_URL || (window.location.hostname === 'localhost'
   ? 'http://localhost:3000/api'
   : 'https://api.thedopecloudteacher.com/api'); // Replace with your deployed API URL
 
+function formatNetworkError(error) {
+  if (error instanceof TypeError || /fetch/i.test(error?.message || '')) {
+    return new Error(`Unable to reach the app server at ${API_URL}. Please verify backend deployment and API URL configuration.`);
+  }
+  return error;
+}
+
 class DopeCloudAuth {
   constructor() {
     this.token = localStorage.getItem('dct_token');
@@ -32,7 +39,7 @@ class DopeCloudAuth {
         body: JSON.stringify({ email, password, name, phone, organization })
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
       
       if (!response.ok) {
         throw new Error(data.error || 'Registration failed');
@@ -46,7 +53,7 @@ class DopeCloudAuth {
       return data;
     } catch (error) {
       console.error('Registration error:', error);
-      throw error;
+      throw formatNetworkError(error);
     }
   }
 
@@ -59,7 +66,7 @@ class DopeCloudAuth {
         body: JSON.stringify({ email, password })
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
       
       if (!response.ok) {
         throw new Error(data.error || 'Login failed');
@@ -73,7 +80,7 @@ class DopeCloudAuth {
       return data;
     } catch (error) {
       console.error('Login error:', error);
-      throw error;
+      throw formatNetworkError(error);
     }
   }
 
