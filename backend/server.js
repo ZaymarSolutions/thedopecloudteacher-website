@@ -108,6 +108,14 @@ app.post('/api/auth/register', async (req, res) => {
       return res.status(400).json({ error: 'Email, password, and name are required' });
     }
 
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ error: 'Please provide a valid email address' });
+    }
+
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ error: 'Server configuration error: JWT secret is missing' });
+    }
+
     // Check if user exists
     const existingUser = db.prepare('SELECT id FROM users WHERE email = ?').get(email);
     if (existingUser) {
@@ -117,17 +125,27 @@ app.post('/api/auth/register', async (req, res) => {
     // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Insert user
-    const result = db.prepare(`
-      INSERT INTO users (email, password_hash, name, phone, organization)
-      VALUES (?, ?, ?, ?, ?)
-    `).run(email, passwordHash, name, phone || null, organization || null);
+    // Keep signup atomic so we don't create users if token generation fails.
+    db.exec('BEGIN');
+    let result;
+    let token;
+    try {
+      result = db.prepare(`
+        INSERT INTO users (email, password_hash, name, phone, organization)
+        VALUES (?, ?, ?, ?, ?)
+      `).run(email, passwordHash, name, phone || null, organization || null);
 
-    const token = jwt.sign(
-      { userId: result.lastInsertRowid, email, name },
-      process.env.JWT_SECRET,
-      { expiresIn: '30d' }
-    );
+      token = jwt.sign(
+        { userId: result.lastInsertRowid, email, name },
+        process.env.JWT_SECRET,
+        { expiresIn: '30d' }
+      );
+
+      db.exec('COMMIT');
+    } catch (innerError) {
+      db.exec('ROLLBACK');
+      throw innerError;
+    }
 
     res.status(201).json({
       message: 'User created successfully',
@@ -136,7 +154,10 @@ app.post('/api/auth/register', async (req, res) => {
     });
   } catch (error) {
     console.error('Registration error:', error);
-    res.status(500).json({ error: 'Registration failed' });
+    if (/has no column named|no such table/i.test(error?.message || '')) {
+      return res.status(500).json({ error: 'Database schema is out of date. Please run the latest database migration.' });
+    }
+    res.status(500).json({ error: 'Registration failed. Please contact support if this continues.' });
   }
 });
 
