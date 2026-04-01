@@ -1,8 +1,11 @@
 // Authentication and Monetization System
 // Use global config or fallback for API URL
-const API_URL = window.DCT_API_URL || (window.location.hostname === 'localhost'
-  ? 'http://localhost:3000/api'
-  : 'https://api.thedopecloudteacher.com/api'); // Replace with your deployed API URL
+const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+const sameOriginApi = `${window.location.origin}/api`;
+const apiOverride = new URLSearchParams(window.location.search).get('api');
+const API_URL = window.DCT_API_URL
+  || apiOverride
+  || (isLocalhost ? 'http://localhost:3000/api' : sameOriginApi);
 
 function formatNetworkError(error) {
   if (error instanceof TypeError || /fetch/i.test(error?.message || '')) {
