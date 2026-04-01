@@ -554,7 +554,7 @@
             <li><i class="fas fa-check-circle"></i> Study resources & guides</li>
             <li><i class="fas fa-check-circle"></i> Course certificates</li>
           </ul>
-          <button class="btn-purchase" onclick="purchaseMembership('student')" aria-label="Start Student Membership securely via Gumroad" data-analytics-event="membership_start" data-analytics-label="student">Start Student Membership</button>
+          <button class="btn-purchase" onclick="purchaseMembership('student')" aria-label="Start Student Membership securely via Stripe" data-analytics-event="membership_start" data-analytics-label="student">Start Student Membership</button>
         </div>
 
         <div class="price-card featured">
@@ -571,7 +571,7 @@
             <li><i class="fas fa-check-circle"></i> Resume review</li>
             <li><i class="fas fa-check-circle"></i> Career guidance</li>
           </ul>
-          <button class="btn-purchase featured" onclick="purchaseMembership('pro')" aria-label="Start Pro Membership securely via Gumroad" data-analytics-event="membership_start" data-analytics-label="pro">Start Pro Membership</button>
+          <button class="btn-purchase featured" onclick="purchaseMembership('pro')" aria-label="Start Pro Membership securely via Stripe" data-analytics-event="membership_start" data-analytics-label="pro">Start Pro Membership</button>
         </div>
 
         <div class="price-card" id="career-accelerator">
@@ -587,7 +587,7 @@
             <li><i class="fas fa-check-circle"></i> Job search strategy</li>
             <li><i class="fas fa-check-circle"></i> LinkedIn optimization</li>
           </ul>
-          <button class="btn-purchase" onclick="purchaseMembership('career')" aria-label="Start Career Accelerator securely via Gumroad" data-analytics-event="membership_start" data-analytics-label="career">Start Career Accelerator</button>
+          <button class="btn-purchase" onclick="purchaseMembership('career')" aria-label="Start Career Accelerator securely via Stripe" data-analytics-event="membership_start" data-analytics-label="career">Start Career Accelerator</button>
         </div>
       </div>
     </div>
@@ -627,9 +627,9 @@
   </div>
 
   <div style="text-align:center; margin:2rem 0 1rem 0;">
-    <span style="color:#10b981; font-size:0.95rem;">Secure checkout via Gumroad & Stripe. <a href="/privacy.html" style="color:#cbbcff; text-decoration:underline;">Privacy Policy</a> & <a href="/terms.html" style="color:#cbbcff; text-decoration:underline;">Terms</a></span>
+    <span style="color:#10b981; font-size:0.95rem;">Secure checkout via Stripe. <a href="/privacy.html" style="color:#cbbcff; text-decoration:underline;">Privacy Policy</a> & <a href="/terms.html" style="color:#cbbcff; text-decoration:underline;">Terms</a></span>
     <br>
-    <span style="color:#cbbcff; font-size:0.95rem;">Need help? <a href="mailto:support@thedopecloudteacher.com" style="color:#10b981; text-decoration:underline;">Contact Support</a></span>
+    <span style="color:#cbbcff; font-size:0.95rem;">Need help? <a href="mailto:thedopecloudteacher@gmail.com" style="color:#10b981; text-decoration:underline;">Contact Support</a></span>
   </div>
   <footer>
     <section aria-label="Credibility and Trust" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
@@ -653,16 +653,18 @@
   <footer>
     &copy; 2026 The Dope Cloud Teacher. All rights reserved.
   </footer>
-  <script src="https://gumroad.com/js/gumroad.js"></script>
-
   <script src="js/site-config.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/auth-system.js"></script>
   <script src="js/course-data.js"></script>
   <script>
-    let isOneTimePurchase = true; // Default to one-time purchase
+    let isOneTimePurchase = true;
+    const MEMBERSHIP_PLANS = {
+      student: { name: 'Student Membership', price: 9.99, interval: 'month' },
+      pro: { name: 'Pro Membership', price: 14, interval: 'month' },
+      career: { name: 'Career Accelerator', price: 16, interval: 'month' }
+    };
 
-    // Toggle between monthly and one-time payment
     function togglePaymentPlan() {
       isOneTimePurchase = !isOneTimePurchase;
       const toggle = document.getElementById('paymentToggle');
@@ -672,23 +674,49 @@
       } else {
         toggle.classList.remove('annual');
       }
-      
+
       renderCoursePricing();
     }
 
-    // Render course pricing dynamically
     function renderCoursePricing() {
       const grid = document.getElementById('coursePricingGrid');
-      grid.innerHTML = ''; // Clear existing cards
-      
+      grid.innerHTML = '';
+
       Object.values(COURSE_PATHWAYS).forEach(course => {
         const card = document.createElement('div');
         card.className = 'price-card';
-        
-        // Calculate monthly price (approximately 1/12 of full price with slight premium)
+
         const monthlyPrice = Math.ceil(course.price / 10);
         const displayPrice = isOneTimePurchase ? course.price : monthlyPrice;
-        const priceLabel = isOneTimePurcha, isOneTime = true) {
+        const priceLabel = isOneTimePurchase ? 'one-time' : '/month';
+        const accessNote = isOneTimePurchase ? 'Lifetime access' : 'Monthly subscription';
+
+        card.innerHTML = `
+          <h3>${course.title}</h3>
+          <div class="price">$${displayPrice}<span>${priceLabel}</span></div>
+          <div class="duration">${course.duration} • ${course.lessons.length} lessons • ${course.level}</div>
+          <ul class="features">
+            ${course.skills.slice(0, 5).map(skill => `
+              <li><i class="fas fa-check-circle"></i> ${skill}</li>
+            `).join('')}
+            <li><i class="fas fa-check-circle"></i> ${accessNote}</li>
+            <li><i class="fas fa-check-circle"></i> Certificate of completion</li>
+          </ul>
+          <button class="btn-view-details" onclick="viewCourseDetails('${course.id}')">
+            <i class="fas fa-info-circle"></i> View Full Details
+          </button>
+          <button class="btn-purchase" onclick="purchaseCourse('${course.id}', ${isOneTimePurchase})">Enroll Now</button>
+        `;
+
+        grid.appendChild(card);
+      });
+    }
+
+    function viewCourseDetails(courseId) {
+      window.location.href = `courses.html?course=${courseId}`;
+    }
+
+    async function purchaseCourse(courseId, isOneTime = true) {
       if (!dopeAuth.isAuthenticated()) {
         showAuthModal('login');
         return;
@@ -696,13 +724,11 @@
 
       try {
         if (isOneTime) {
-          // One-time purchase
           await dopeCourses.purchaseCourse(courseId);
         } else {
-          // Monthly subscription for this course
           const course = COURSE_PATHWAYS[courseId];
           const monthlyPrice = Math.ceil(course.price / 10);
-          
+
           const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
             method: 'POST',
             headers: {
@@ -724,69 +750,26 @@
           } else {
             alert(data.error || 'Failed to create subscription');
           }
-        }${priceLabel}</span></div>
-          <div class="duration">${course.duration} • ${course.lessons.length} lessons • ${course.level}</div>
-          <ul class="features">
-            ${course.skills.slice(0, 5).map(skill => `
-              <li><i class="fas fa-check-circle"></i> ${skill}</li>
-            `).join('')}
-            <li><i class="fas fa-check-circle"></i> ${accessNote}</li>
-            <li><i class="fas fa-check-circle"></i> Certificate of completion</li>
-          </ul>
-          <button class="btn-view-details" onclick="viewCourseDetails('${course.id}')">
-            <i class="fas fa-info-circle"></i> View Full Details
-          </button>
-          <button class="btn-purchase" onclick="purchaseCourse('${course.id}', ${isOneTimePurchase})">Enroll Now</button>
-        `;
-        
-        grid.appendChild(card);
-      });
-    }
-
-    function viewCourseDetails(courseId) {
-      window.location.href = `courses.html?course=${courseId}`;
-    }
-
-    async function purchaseCourse(courseId, isOneTime = true) {
-      const course = COURSE_PATHWAYS[courseId];
-      
-      // Gumroad product links - UPDATE THESE after creating your Gumroad products
-      const gumroadLinks = {
-        'cloud-fundamentals-101': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/cloud-fundamentals-101' : 'https://thedopecloudteacher.gumroad.com/l/cloud-fundamentals-101-monthly',
-        'cloud-architect-pathway': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/cloud-architect' : 'https://thedopecloudteacher.gumroad.com/l/cloud-architect-monthly',
-        'cloud-security-engineer': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/cloud-security' : 'https://thedopecloudteacher.gumroad.com/l/cloud-security-monthly',
-        'devops-automation': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/devops-automation' : 'https://thedopecloudteacher.gumroad.com/l/devops-automation-monthly',
-        'intro-to-ai-ml': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/ai-ml-intro' : 'https://thedopecloudteacher.gumroad.com/l/ai-ml-intro-monthly',
-        'data-engineering-cloud': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/data-engineering' : 'https://thedopecloudteacher.gumroad.com/l/data-engineering-monthly',
-        'serverless-microservices': isOneTime ? 'https://thedopecloudteacher.gumroad.com/l/serverless-microservices' : 'https://thedopecloudteacher.gumroad.com/l/serverless-microservices-monthly'
-      };
-      
-      const link = gumroadLinks[courseId];
-      if (link) {
-        // Open Gumroad checkout - overlay mode keeps user on site
-        window.open(link, '_blank');
-      } else {
-        alert('Payment link not configured yet. Please contact support.');
+        }
+      } catch (error) {
+        console.error('Purchase error:', error);
+        alert('An error occurred while processing payment. Please try again.');
       }
     }
 
     async function purchaseMembership(type) {
-      // Gumroad membership links - UPDATE THESE after creating your Gumroad products
-      const membershipLinks = {
-        'student': 'https://thedopecloudteacher.gumroad.com/l/student-membership',
-        'pro': 'https://thedopecloudteacher.gumroad.com/l/pro-membership',
-        'career': 'https://thedopecloudteacher.gumroad.com/l/career-accelerator'
-      };
-      
-      const link = membershipLinks[type];
-      if (link) {
-        // Open Gumroad checkout
-        window.open(link, '_blank');
-      } else {
-        alert('Membership link not configured yet. Please contact support.');
+      if (!dopeAuth.isAuthenticated()) {
+        showAuthModal('login');
+        return;
       }
-    }
-        
+
+      const plan = MEMBERSHIP_PLANS[type];
+      if (!plan) {
+        alert('Membership type not found. Please contact support.');
+        return;
+      }
+
+      try {
         const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
           method: 'POST',
           headers: {
@@ -897,20 +880,17 @@
     function submitCorporateForm(event) {
       event.preventDefault();
       const form = event.target;
-      const formData = new FormData(form);
-      
-      // Send to backend or email service
+
       const company = form.querySelector('input[type="text"]').value;
       const name = form.querySelectorAll('input[type="text"]')[1].value;
       const email = form.querySelector('input[type="email"]').value;
       const teamSize = form.querySelector('select').value;
       const message = form.querySelector('textarea').value;
-      
-      // Send email via mailto for now (can be upgraded to backend API)
+
       const subject = `Corporate Training Inquiry: ${company}`;
       const body = `Company: ${company}\nContact: ${name}\nEmail: ${email}\nTeam Size: ${teamSize}\n\nMessage:\n${message}`;
       window.location.href = `mailto:thedopecloudteacher@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
+
       closeCorporateForm();
     }
 
@@ -922,6 +902,10 @@
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('paymentToggle');
+      if (toggle && isOneTimePurchase) {
+        toggle.classList.add('annual');
+      }
       renderCoursePricing();
     });
   </script>
