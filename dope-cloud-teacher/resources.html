@@ -3,65 +3,740 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resources | The Dope Cloud Teacher</title>
-  <meta name="description" content="Curated resources for cloud, tech, and career success. Official learning, certification, tools, and trusted merchandise.">
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Free Tech Resources | The Dope Cloud Teacher</title>
+  <meta name="description" content="Curated free cloud, cyber, AI, and certification resources. Labs, certs, tools, and starter paths with no gatekeeping.">
+  <meta name="keywords" content="free cloud labs, free Azure training, free cybersecurity training, AI fundamentals resources, tech career resources">
+  <link rel="canonical" href="https://thedopecloudteacher.org/free-resources/">
+  <meta property="og:title" content="Free Tech Resources | The Dope Cloud Teacher">
+  <meta property="og:description" content="No gatekeeping. Free cloud, cyber, AI, and certification resources curated for career changers and new technologists.">
+  <meta property="og:type" content="website">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Free Tech Resources",
+    "description": "Curated free cloud, cyber, AI, and certification resources for beginners and career changers.",
+    "provider": {
+      "@type": "Organization",
+      "name": "The Dope Cloud Teacher",
+      "url": "https://thedopecloudteacher.org"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { background: #1f1147; color: #fff; font-family: 'Segoe UI', sans-serif; padding: 2rem; }
-    h1 { color: #ffcc00; text-align: center; }
-    .section { background: #2e1b5f; border-radius: 10px; padding: 2rem; max-width: 900px; margin: 2rem auto; }
-    h2 { color: #10b981; margin-top: 1.5rem; }
-    ul { margin: 1rem 0 2rem 1.5rem; }
-    li { margin-bottom: 0.7rem; }
-    a { color: #c084fc; text-decoration: underline; }
-    .trusted { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 2rem 0; }
-    .trusted img { height: 40px; }
-    .merch { margin-top: 2rem; text-align: center; }
-    .merch img { max-width: 180px; border-radius: 10px; margin-bottom: 0.5rem; }
-    .note { color: #d8b4fe; font-size: 0.95rem; text-align: center; margin-top: 1rem; }
+    :root {
+      --ink: #eef3ff;
+      --paper: #0b1025;
+      --warm-white: #171d3f;
+      --accent-fire: #7b4df2;
+      --accent-gold: #77efe3;
+      --accent-teal: #77efe3;
+      --accent-azure: #9ec3ff;
+      --accent-purple: #9a78ff;
+      --muted: #a6afd1;
+      --card-bg: #141a39;
+      --border: #28325d;
+      --tag-bg: #1a2248;
+      --cat-cloud: #77efe3;
+      --cat-cyber: #9a78ff;
+      --cat-gov: #77efe3;
+      --cat-tools: #7b4df2;
+      --cat-ai: #9ec3ff;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Syne', sans-serif;
+      line-height: 1.6;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      z-index: 2;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 3rem;
+      background: rgba(11, 16, 37, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav a { text-decoration: none; }
+    .nav-logo {
+      color: var(--ink);
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo span { color: var(--accent-fire); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .nav-home {
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-fire), #5f39c7);
+      color: #eef3ff !important;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 2.5rem));
+      margin: 0 auto;
+      padding: 4.5rem 0 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 430px;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: var(--accent-fire);
+    }
+
+    .hero h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 em {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--accent-fire);
+    }
+
+    .hero-sub {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 38rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .stat-box {
+      padding-left: 1rem;
+      border-left: 3px solid var(--accent-fire);
+    }
+
+    .stat-num {
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .manifesto {
+      padding: 2rem;
+      border-radius: 1.3rem;
+      background: var(--ink);
+      color: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manifesto::before {
+      content: '"';
+      position: absolute;
+      top: -1.6rem;
+      left: 1rem;
+      font-family: 'Instrument Serif', serif;
+      font-size: 12rem;
+      line-height: 1;
+      color: rgba(255, 77, 28, 0.14);
+    }
+
+    .manifesto p {
+      position: relative;
+      margin: 0 0 1rem;
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.45rem;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    .manifesto small {
+      position: relative;
+      color: rgba(247, 244, 239, 0.66);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .filters,
+    .section,
+    .career-map,
+    .community,
+    footer {
+      position: relative;
+      z-index: 1;
+      width: min(1200px, calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      padding-bottom: 2rem;
+    }
+
+    .filter-label {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--card-bg);
+      color: var(--muted);
+      padding: 0.7rem 1rem;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .section { padding-bottom: 3rem; }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-title-row strong {
+      font-size: 0.86rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-title-row span {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .section h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.08;
+    }
+
+    .section p.section-intro {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      max-width: 46rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1rem;
+    }
+
+    .resource-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.15rem;
+      padding: 1.4rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .resource-card[hidden] { display: none; }
+
+    .resource-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .resource-name {
+      margin: 0 0 0.3rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .resource-org {
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: flex-end;
+    }
+
+    .badge {
+      padding: 0.3rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-free { background: rgba(0, 184, 160, 0.12); color: var(--accent-teal); }
+    .badge-lab { background: rgba(255, 77, 28, 0.1); color: var(--accent-fire); }
+    .badge-cert { background: rgba(0, 120, 212, 0.1); color: var(--accent-azure); }
+    .badge-ai { background: rgba(245, 183, 0, 0.24); color: #8c6400; }
+
+    .resource-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .feature-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--ink);
+      font-size: 0.9rem;
+    }
+
+    .feature-list li + li { margin-top: 0.35rem; }
+
+    .tip {
+      padding: 0.95rem 1rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(255, 77, 28, 0.06), rgba(245, 183, 0, 0.1));
+      border: 1px dashed rgba(255, 77, 28, 0.24);
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-style: italic;
+    }
+
+    .resource-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      width: fit-content;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 800;
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      background: var(--tag-bg);
+    }
+
+    .career-map {
+      padding: 0 0 3rem;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .track-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem;
+      padding: 1.4rem;
+    }
+
+    .track-card h3 { margin-top: 0; }
+
+    .track-link {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--tag-bg);
+      border-radius: 0.9rem;
+      padding: 0.9rem 1rem;
+      font-weight: 700;
+      margin-top: 0.75rem;
+    }
+
+    .community {
+      margin-bottom: 3rem;
+      border-radius: 1.5rem;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+    }
+
+    .community h2 {
+      margin-top: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+    }
+
+    .community h2 em {
+      font-family: 'Instrument Serif', serif;
+      color: var(--accent-fire);
+      font-style: italic;
+    }
+
+    .community p { color: rgba(247, 244, 239, 0.7); }
+
+    .community-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .community-links a {
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    .community-primary {
+      background: var(--accent-fire);
+      color: #fff;
+    }
+
+    .community-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .org-card {
+      border-radius: 1rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .org-card strong { display: block; margin-bottom: 0.35rem; }
+
+    .org-card span {
+      color: rgba(247, 244, 239, 0.62);
+      font-size: 0.88rem;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 0 2rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .community,
+      .track-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav { padding: 1rem; flex-direction: column; align-items: flex-start; }
+      .hero,
+      .filters,
+      .section,
+      .career-map,
+      .community,
+      footer { width: min(100% - 1.25rem, 1200px); }
+      .hero { padding-top: 3rem; }
+      footer { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
-  <h1>Resources</h1>
-  <div class="section">
-    <h2>Official Learning Platforms</h2>
-    <ul>
-      <li><a href="https://learn.microsoft.com/" target="_blank" rel="noopener">Microsoft Learn</a> – Free, official Microsoft cloud and tech training</li>
-      <li><a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AWS Training & Certification</a> – Official AWS learning paths</li>
-      <li><a href="https://cloud.google.com/training" target="_blank" rel="noopener">Google Cloud Training</a> – Google Cloud learning resources</li>
-      <li><a href="https://www.edx.org/" target="_blank" rel="noopener">edX</a> – University and industry tech courses</li>
-      <li><a href="https://www.coursera.org/" target="_blank" rel="noopener">Coursera</a> – Cloud, data, and tech programs</li>
-    </ul>
-    <h2>Certification & Career</h2>
-    <ul>
-      <li><a href="https://learn.microsoft.com/en-us/certifications/azure-fundamentals/" target="_blank" rel="noopener">Microsoft AZ-900: Azure Fundamentals</a></li>
-      <li><a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank" rel="noopener">AWS Certified Cloud Practitioner</a></li>
-      <li><a href="https://cloud.google.com/certification/cloud-digital-leader" target="_blank" rel="noopener">Google Cloud Digital Leader</a></li>
-      <li><a href="https://www.credly.com/" target="_blank" rel="noopener">Credly</a> – Official digital badges</li>
-      <li><a href="https://www.linkedin.com/learning/" target="_blank" rel="noopener">LinkedIn Learning</a> – Career and tech skills</li>
-    </ul>
-    <h2>Recommended Tools</h2>
-    <ul>
-      <li><a href="https://azure.microsoft.com/" target="_blank" rel="noopener">Microsoft Azure</a></li>
-      <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a></li>
-      <li><a href="https://www.terraform.io/" target="_blank" rel="noopener">Terraform</a></li>
-      <li><a href="https://www.kubernetes.io/" target="_blank" rel="noopener">Kubernetes</a></li>
-    </ul>
-    <h2>Trusted Merchandise</h2>
-    <div class="merch">
-      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Dope Cloud Teacher T-shirt">
-      <div><a href="https://thedopecloudteacher.gumroad.com/l/official-merch" target="_blank" rel="noopener">Official T-Shirts & Merch</a></div>
-      <div class="note">All merch is fulfilled via Gumroad for secure checkout.</div>
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">The <span>Dope</span> Cloud Teacher</a>
+    <div class="nav-links">
+      <a href="courses.html">Courses</a>
+      <a href="az-900-azure-fundamentals.html">AZ-900</a>
+      <a href="ai-900-azure-ai-fundamentals.html">AI-900</a>
+      <a class="nav-home" href="index.html">Home</a>
     </div>
-    <h2>Trusted By</h2>
-    <div class="trusted">
-      <img src="images/aws-partner.png" alt="AWS Partner">
-      <img src="images/azure-partner.png" alt="Azure Partner">
-      <img src="images/gcp-partner.png" alt="Google Cloud Partner">
-      <img src="images/pgparks-logo.png" alt="PG Parks & Planning">
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">Free Resources · No Gatekeeping</div>
+      <h1>The <em>real</em> toolkit for breaking into tech</h1>
+      <p class="hero-sub">No paywalls required to start. These are the labs, free cert paths, AI tools, and cloud platforms that actually move beginners forward without wasting time or money.</p>
+      <div class="hero-stats">
+        <div class="stat-box"><div class="stat-num">12</div><div class="stat-lbl">Curated platforms</div></div>
+        <div class="stat-box"><div class="stat-num">$0</div><div class="stat-lbl">To get started</div></div>
+        <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Career tracks</div></div>
+      </div>
     </div>
-    <div class="note">We only recommend resources and partners we trust. For questions, <a href="mailto:support@thedopecloudteacher.com">contact us</a>.</div>
+    <aside class="manifesto">
+      <p>"The cloud does not care where you came from. It cares whether you can learn, lab, and operate. These tools help you do that without waiting for permission."</p>
+      <small>— RoSeé Murphy, The Dope Cloud Teacher</small>
+    </aside>
+  </section>
+
+  <div class="filters">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="cloud">Cloud</button>
+    <button class="filter-btn" data-filter="cyber">Cyber</button>
+    <button class="filter-btn" data-filter="gov">Certs / Gov</button>
+    <button class="filter-btn" data-filter="tools">Tools</button>
+    <button class="filter-btn" data-filter="ai">AI</button>
   </div>
+
+  <section class="section">
+    <div class="section-title-row"><strong>Curated Library</strong><span></span></div>
+    <h2>Free platforms worth your time</h2>
+    <p class="section-intro">This list blends the cloud-first focus of the site with the stronger free-resource layout you attached. Every card here is something a beginner can actually act on.</p>
+    <div class="grid">
+      <article class="resource-card" data-cat="cloud">
+        <div class="resource-top"><div><h3 class="resource-name">Microsoft Learn</h3><div class="resource-org">learn.microsoft.com</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-cert">Cloud</span></div></div>
+        <p class="resource-desc">Official Microsoft training paths for Azure, AI, security, and administration with guided modules and quizzes.</p>
+        <ul class="feature-list"><li>Browser-based learning paths for AZ-900, AZ-104, AZ-305, and AI-900</li><li>Hands-on Learn Sandbox for selected modules</li><li>Best first stop for Microsoft cert prep</li></ul>
+        <div class="tip">Start here if you want the official Microsoft language before you add outside study resources.</div>
+        <a class="resource-link" href="https://learn.microsoft.com/en-us/training/" target="_blank" rel="noopener">Open Microsoft Learn →</a>
+      </article>
+
+      <article class="resource-card" data-cat="cloud">
+        <div class="resource-top"><div><h3 class="resource-name">Azure Free Account</h3><div class="resource-org">azure.microsoft.com/free</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-lab">Labs</span></div></div>
+        <p class="resource-desc">A clean way to test Azure in your own tenant with credits, always-free services, and direct exposure to the actual portal.</p>
+        <ul class="feature-list"><li>Useful for portal navigation, resource groups, VMs, storage, and budgets</li><li>Supports both fundamentals and admin tracks</li><li>Best paired with cost alerts from day one</li></ul>
+        <div class="tip">Do not just sign up and freestyle. Create budgets immediately and lab with intent.</div>
+        <a class="resource-link" href="https://azure.microsoft.com/en-us/free/" target="_blank" rel="noopener">Launch Azure Free →</a>
+      </article>
+
+      <article class="resource-card" data-cat="cloud">
+        <div class="resource-top"><div><h3 class="resource-name">Killercoda</h3><div class="resource-org">killercoda.com</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-lab">Labs</span></div></div>
+        <p class="resource-desc">Browser-based interactive labs for Linux, Kubernetes, Docker, and cloud-native workflows.</p>
+        <ul class="feature-list"><li>Fast lab access without local setup</li><li>Great for DevOps, containers, and CLI comfort</li><li>Useful side training for AZ-104 and architecture learners</li></ul>
+        <div class="tip">Perfect when you want hands-on muscle memory without burning an hour on local environment setup.</div>
+        <a class="resource-link" href="https://killercoda.com/" target="_blank" rel="noopener">Open Killercoda →</a>
+      </article>
+
+      <article class="resource-card" data-cat="tools">
+        <div class="resource-top"><div><h3 class="resource-name">Play with Docker</h3><div class="resource-org">labs.play-with-docker.com</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-lab">Sandbox</span></div></div>
+        <p class="resource-desc">A quick browser-based environment for Docker practice, image workflows, and containers without local installation.</p>
+        <ul class="feature-list"><li>Immediate container environment</li><li>Good support skill for Azure compute and app hosting paths</li><li>Useful before stepping into AKS or App Service containers</li></ul>
+        <div class="tip">Containers are easier to learn when you can break them in a sandbox instead of your own machine.</div>
+        <a class="resource-link" href="https://labs.play-with-docker.com/" target="_blank" rel="noopener">Open Docker Lab →</a>
+      </article>
+
+      <article class="resource-card" data-cat="gov">
+        <div class="resource-top"><div><h3 class="resource-name">ISC² Certified in Cybersecurity</h3><div class="resource-org">isc2.org/landing/1mcc</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-cert">Voucher</span></div></div>
+        <p class="resource-desc">One of the strongest free cert opportunities in tech: training plus an exam voucher for an entry-level cyber credential.</p>
+        <ul class="feature-list"><li>Good first cert if you are security-curious</li><li>Recognized by employers and resume filters</li><li>Pairs well with Azure identity and security study</li></ul>
+        <div class="tip">If somebody is serious about a security pivot and they skip this, they are leaving free signal on the table.</div>
+        <a class="resource-link" href="https://www.isc2.org/landing/1mcc" target="_blank" rel="noopener">Get Free Cert →</a>
+      </article>
+
+      <article class="resource-card" data-cat="gov">
+        <div class="resource-top"><div><h3 class="resource-name">NICCS by CISA</h3><div class="resource-org">niccs.cisa.gov</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-cert">Gov</span></div></div>
+        <p class="resource-desc">The U.S. government cybersecurity training portal with courses, labs, and career-aligned content.</p>
+        <ul class="feature-list"><li>Government-backed training catalog</li><li>Useful for federal and public-sector career paths</li><li>Strong supporting library for cyber and compliance learners</li></ul>
+        <div class="tip">This is especially useful if your career target includes public sector, contractors, or federal-aligned environments.</div>
+        <a class="resource-link" href="https://niccs.cisa.gov/" target="_blank" rel="noopener">Open NICCS →</a>
+      </article>
+
+      <article class="resource-card" data-cat="cyber">
+        <div class="resource-top"><div><h3 class="resource-name">TryHackMe</h3><div class="resource-org">tryhackme.com</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-lab">Cyber</span></div></div>
+        <p class="resource-desc">Guided browser-based cyber labs that work especially well for absolute beginners.</p>
+        <ul class="feature-list"><li>Pre-Security and blue-team paths</li><li>Hands-on labs without local setup</li><li>Useful if you want to strengthen security intuition alongside cloud study</li></ul>
+        <div class="tip">This is a strong first cyber platform because it teaches by doing, not by dumping theory on you.</div>
+        <a class="resource-link" href="https://tryhackme.com/" target="_blank" rel="noopener">Open TryHackMe →</a>
+      </article>
+
+      <article class="resource-card" data-cat="tools">
+        <div class="resource-top"><div><h3 class="resource-name">GitHub Student Developer Pack</h3><div class="resource-org">education.github.com</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-cert">Student</span></div></div>
+        <p class="resource-desc">If you qualify as a student, this unlocks credits and tools that can stretch your learning budget a long way.</p>
+        <ul class="feature-list"><li>Can include cloud credits and developer tools</li><li>Useful for labs, portfolio work, and experimentation</li><li>Worth checking before paying for subscriptions</li></ul>
+        <div class="tip">Always see what discounts or credits you qualify for before paying full price to learn.</div>
+        <a class="resource-link" href="https://education.github.com/pack" target="_blank" rel="noopener">Open Student Pack →</a>
+      </article>
+
+      <article class="resource-card" data-cat="ai">
+        <div class="resource-top"><div><h3 class="resource-name">Azure AI Training Paths</h3><div class="resource-org">learn.microsoft.com/azure-ai</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-ai">AI</span></div></div>
+        <p class="resource-desc">Microsoft Learn content for AI workloads, vision, language, search, and responsible AI concepts.</p>
+        <ul class="feature-list"><li>Best support library for AI-900 prep</li><li>Builds Azure AI service awareness without hype</li><li>Lets you learn the service names and what each one actually does</li></ul>
+        <div class="tip">AI gets easier when you stop treating it like magic and start treating it like a stack of services.</div>
+        <a class="resource-link" href="https://learn.microsoft.com/en-us/training/browse/?products=azure-ai-services" target="_blank" rel="noopener">Open Azure AI Paths →</a>
+      </article>
+
+      <article class="resource-card" data-cat="ai">
+        <div class="resource-top"><div><h3 class="resource-name">Google Cloud Shell</h3><div class="resource-org">shell.cloud.google.com</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-ai">Cloud Shell</span></div></div>
+        <p class="resource-desc">A browser shell with editor access that helps build command-line confidence and cloud platform fluency.</p>
+        <ul class="feature-list"><li>Good for cross-cloud perspective</li><li>Strengthens shell, editor, and cloud navigation habits</li><li>Supports broader architecture thinking</li></ul>
+        <div class="tip">Cross-cloud exposure helps you understand what is platform-specific and what is just core cloud thinking.</div>
+        <a class="resource-link" href="https://shell.cloud.google.com/" target="_blank" rel="noopener">Open Cloud Shell →</a>
+      </article>
+
+      <article class="resource-card" data-cat="tools">
+        <div class="resource-top"><div><h3 class="resource-name">AWS CloudShell</h3><div class="resource-org">aws.amazon.com/cloudshell</div></div><div class="badge-row"><span class="badge badge-free">Free</span><span class="badge badge-lab">CLI</span></div></div>
+        <p class="resource-desc">A managed shell in AWS for fast CLI work and broader cloud-administration muscle building.</p>
+        <ul class="feature-list"><li>Useful for learners comparing cloud workflows</li><li>Good support tool for scripting and administration habits</li><li>Reinforces that platform comfort matters</li></ul>
+        <div class="tip">Cloud careers reward people who can adapt patterns across providers instead of memorizing one dashboard forever.</div>
+        <a class="resource-link" href="https://aws.amazon.com/cloudshell/" target="_blank" rel="noopener">Open AWS CloudShell →</a>
+      </article>
+
+      <article class="resource-card" data-cat="cloud">
+        <div class="resource-top"><div><h3 class="resource-name">KodeKloud Playgrounds</h3><div class="resource-org">kodekloud.com/playgrounds</div></div><div class="badge-row"><span class="badge badge-lab">Labs</span><span class="badge badge-cert">Cloud</span></div></div>
+        <p class="resource-desc">A practical lab option for Linux, Kubernetes, and DevOps-adjacent skills that support cloud certification work.</p>
+        <ul class="feature-list"><li>Strong companion resource for administration and architecture paths</li><li>Hands-on environment for CLI and operations practice</li><li>Useful once fundamentals are in place</li></ul>
+        <div class="tip">This is more useful after you already know what a VM, container, or network is and need repetition.</div>
+        <a class="resource-link" href="https://kodekloud.com/playgrounds/" target="_blank" rel="noopener">Open Playgrounds →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="career-map">
+    <div class="section-title-row"><strong>Career Map</strong><span></span></div>
+    <h2>Use the resources by path, not at random</h2>
+    <p class="section-intro">Most people waste time because they collect links instead of following a track. Start with one path and stack in order.</p>
+    <div class="track-grid">
+      <article class="track-card">
+        <h3>Cloud Beginner</h3>
+        <p>Start with AZ-900, Microsoft Learn, and the Azure Free Account before trying to jump into admin or AI roles.</p>
+        <a class="track-link" href="az-900-azure-fundamentals.html">Go to AZ-900 path →</a>
+      </article>
+      <article class="track-card">
+        <h3>Azure Operator</h3>
+        <p>Move from fundamentals to AZ-104, then strengthen CLI, Linux, and container comfort with hands-on lab platforms.</p>
+        <a class="track-link" href="az-104-azure-administrator.html">Go to AZ-104 path →</a>
+      </article>
+      <article class="track-card">
+        <h3>AI Beginner</h3>
+        <p>Use AI fundamentals content after cloud basics so the service names and platform pieces actually make sense.</p>
+        <a class="track-link" href="ai-900-azure-ai-fundamentals.html">Go to AI-900 path →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="community">
+    <div>
+      <h2>Built for people tech usually <em>overlooks</em></h2>
+      <p>Professional enough for hiring managers. Human enough for people who did not come up through the usual pipelines. The point is not just access to links. The point is access to a path.</p>
+      <div class="community-links">
+        <a class="community-primary" href="courses.html">Browse all courses</a>
+        <a class="community-secondary" href="pricing.html">View pricing</a>
+      </div>
+    </div>
+    <div class="org-grid">
+      <div class="org-card"><strong>Cloud Foundations</strong><span>AZ-900 and browser-first labs to build the base without confusion.</span></div>
+      <div class="org-card"><strong>Admin Readiness</strong><span>Identity, RBAC, networking, storage, and monitoring with AZ-104 as the role target.</span></div>
+      <div class="org-card"><strong>Architecture Growth</strong><span>AZ-305 thinking for tradeoffs, governance, resilience, and design quality.</span></div>
+      <div class="org-card"><strong>AI Entry Point</strong><span>AI-900 preview path so the site has a credible AI on-ramp live now.</span></div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 The Dope Cloud Teacher</div>
+    <div>Use the free path first. Spend later, if the path earns it.</div>
+  </footer>
+
+  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.resource-card');
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach((item) => item.classList.remove('active'));
+        button.classList.add('active');
+
+        cards.forEach((card) => {
+          const category = card.dataset.cat;
+          card.hidden = filter !== 'all' && category !== filter;
+        });
+      });
+    });
+  </script>
 </body>
 </html>

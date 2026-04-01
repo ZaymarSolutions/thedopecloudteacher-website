@@ -390,27 +390,27 @@ function createAuthModal() {
       align-items: center;
     }
     .auth-modal-content {
-      background: linear-gradient(135deg, #2d1b69, #1f1147);
+      background: linear-gradient(135deg, #171d3f, #0b1025);
       padding: 2rem;
       border-radius: 15px;
       width: 90%;
       max-width: 450px;
       position: relative;
-      box-shadow: 0 10px 50px rgba(147, 51, 234, 0.3);
+      box-shadow: 0 10px 50px rgba(123, 77, 242, 0.3);
     }
     .auth-close {
       position: absolute;
       right: 20px;
       top: 15px;
       font-size: 2rem;
-      color: #ffcc00;
+      color: #77efe3;
       cursor: pointer;
     }
     .auth-close:hover {
       color: #fff;
     }
     .auth-form h2 {
-      color: #ffcc00;
+      color: #77efe3;
       margin-bottom: 1.5rem;
       text-align: center;
     }
@@ -418,7 +418,7 @@ function createAuthModal() {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: 2px solid #9333ea;
+      border: 2px solid #7b4df2;
       border-radius: 8px;
       background: rgba(255,255,255,0.1);
       color: #fff;
@@ -427,13 +427,13 @@ function createAuthModal() {
     }
     .auth-form input:focus {
       outline: none;
-      border-color: #ffcc00;
+      border-color: #77efe3;
     }
     .auth-button {
       width: 100%;
       padding: 12px;
       margin: 15px 0;
-      background: #9333ea;
+      background: #7b4df2;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -443,7 +443,7 @@ function createAuthModal() {
       transition: 0.3s;
     }
     .auth-button:hover {
-      background: #7e22ce;
+      background: #5f39c7;
       transform: translateY(-2px);
     }
     .auth-form p {
@@ -452,7 +452,7 @@ function createAuthModal() {
       margin-top: 1rem;
     }
     .auth-form a {
-      color: #ffcc00;
+      color: #77efe3;
       text-decoration: none;
     }
     .auth-form a:hover {

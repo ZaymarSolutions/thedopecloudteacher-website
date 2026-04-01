@@ -66,7 +66,6 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 2
-        continue-on-error: true
 
   deploy-backend:
     name: Deploy Backend
@@ -75,10 +74,26 @@ jobs:
     if: ${{ secrets.RAILWAY_TOKEN != '' && secrets.RAILWAY_SERVICE_NAME != '' }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Validate Railway secrets and access
+        run: |
+          if [ -z "$RAILWAY_TOKEN" ]; then
+            echo "RAILWAY_TOKEN secret is required"
+            exit 1
+          fi
+
+          if [ -z "$RAILWAY_SERVICE_NAME" ]; then
+            echo "RAILWAY_SERVICE_NAME secret is required"
+            exit 1
+          fi
+
+          npm install -g @railway/cli
+          railway whoami
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       
       - name: Deploy to Railway
         run: |
-          npm install -g @railway/cli
           if [ -n "$RAILWAY_PROJECT_ID" ]; then
             RAILWAY_ENVIRONMENT_NAME=${RAILWAY_ENVIRONMENT:-production}
             railway up --project "$RAILWAY_PROJECT_ID" --environment "$RAILWAY_ENVIRONMENT_NAME" --service "$RAILWAY_SERVICE_NAME"
@@ -91,7 +106,6 @@ jobs:
           RAILWAY_SERVICE_NAME: ${{ secrets.RAILWAY_SERVICE_NAME }}
           RAILWAY_ENVIRONMENT: ${{ secrets.RAILWAY_ENVIRONMENT }}
         working-directory: ./backend
-        continue-on-error: true
 
   summary:
     name: Deployment Summary

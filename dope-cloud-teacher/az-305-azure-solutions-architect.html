@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZ-305: Azure Solutions Architect Expert | The Dope Cloud Teacher</title>
+  <meta name="description" content="Design for AZ-305 with landing zones, identity architecture, storage decisions, integration patterns, and enterprise Azure tradeoff thinking.">
+  <meta name="keywords" content="AZ-305 exam prep, Azure Solutions Architect, Azure architecture course, landing zones, Cosmos DB, governance">
+  <link rel="canonical" href="https://thedopecloudteacher.org/courses/az-305-azure-solutions-architect/">
+  <meta property="og:title" content="AZ-305: Azure Solutions Architect Expert | The Dope Cloud Teacher">
+  <meta property="og:description" content="Architecture-first Azure training focused on design decisions, governance, data, integration, and tradeoffs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thedopecloudteacher.org/courses/az-305-azure-solutions-architect/">
+  <meta property="og:image" content="https://thedopecloudteacher.org/images/programs/cloud-architecture.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "AZ-305: Azure Solutions Architect Expert",
+    "description": "Architecture-focused Azure training that teaches design decisions across identity, governance, storage, integration, and scalable enterprise systems.",
+    "provider": {
+      "@type": "Organization",
+      "name": "The Dope Cloud Teacher",
+      "url": "https://thedopecloudteacher.org"
+    },
+    "courseMode": "online",
+    "educationalLevel": "Advanced",
+    "teaches": "Microsoft Azure Solutions Architect AZ-305 certification skills",
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "instructor": {
+        "@type": "Person",
+        "name": "RoSeé Murphy"
+      }
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/certification-pages.css">
+</head>
+<body>
+  <div class="page-shell">
+    <nav class="site-nav">
+      <a class="site-nav__brand" href="index.html">The Dope Cloud Teacher</a>
+      <div class="site-nav__links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="resources.html">Resources</a>
+        <a href="pricing.html">Pricing</a>
+        <a class="site-nav__cta" href="pricing.html">Enroll</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <div class="hero__eyebrow">Architect Expert Track</div>
+        <h1>AZ-305 is about why the design works, not just how to click it together.</h1>
+        <p class="hero__lede">This path trains you to evaluate business requirements, identity choices, landing zones, storage decisions, and integration patterns the way an architect should: through tradeoffs, constraints, resilience, and cost.</p>
+        <div class="hero__stats">
+          <div class="hero__stat"><span class="hero__stat-value">Advanced</span><span class="hero__stat-label">Level</span></div>
+          <div class="hero__stat"><span class="hero__stat-value">AZ-104</span><span class="hero__stat-label">Prerequisite</span></div>
+          <div class="hero__stat"><span class="hero__stat-value">Design</span><span class="hero__stat-label">Focus</span></div>
+          <div class="hero__stat"><span class="hero__stat-value">$797</span><span class="hero__stat-label">Course Path</span></div>
+        </div>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#syllabus">Explore architecture modules</a>
+          <a class="btn btn--secondary" href="az-104-azure-administrator.html">See AZ-104 first</a>
+        </div>
+      </div>
+      <aside class="hero__panel">
+        <h2>What makes this different</h2>
+        <p>AZ-305 moves from admin execution to decision quality. Every answer should reflect a reason, a tradeoff, and a business fit.</p>
+        <ul class="hero__panel-list">
+          <li><strong>Architect mindset</strong> Design from requirements, risk, compliance, cost, and performance instead of feature checklists.</li>
+          <li><strong>Enterprise patterns</strong> Landing zones, management groups, hybrid identity, data platform choices, and integration strategy.</li>
+          <li><strong>Scenario depth</strong> You will be asked to choose the best design, not merely identify a service name.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading"><span class="section-heading__kicker">Dope Translation</span><span class="section-heading__line"></span></div>
+      <h2>Architecture thinking without the fluff</h2>
+      <div class="grid grid--three">
+        <article class="card translation-card"><strong>Managed Identity</strong><p>The server vouches for itself. No password in a config file. No secret sitting where it can leak.</p></article>
+        <article class="card translation-card"><strong>Landing Zone</strong><p>This is the city plan before the buildings go up. Connectivity, governance, identity, and management are designed first.</p></article>
+        <article class="card translation-card"><strong>Consistency Models</strong><p>Not every app needs the exact same database guarantees. Architecture is knowing what the workload actually needs and paying only for that.</p></article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading"><span class="section-heading__kicker">Design Areas</span><span class="section-heading__line"></span></div>
+      <h2>The decisions AZ-305 expects you to defend</h2>
+      <div class="grid grid--two">
+        <article class="card domain-card"><h3>🧭 Identity and governance architecture</h3><p>Entra ID choices, hybrid identity, external identities, PIM, management groups, policy inheritance, and enterprise landing zones.</p></article>
+        <article class="card domain-card"><h3>🗃️ Data storage design</h3><p>Azure SQL Database versus Managed Instance versus SQL on VM, Cosmos DB models, Data Lake, Synapse, and integration tradeoffs.</p></article>
+        <article class="card domain-card"><h3>🔗 Integration and application design</h3><p>Data Factory, messaging, API patterns, managed identities, and service choices based on operational needs.</p></article>
+        <article class="card domain-card"><h3>🛡️ Reliability, security, and cost</h3><p>Architecting for scale, recovery, governance, and cost control without overengineering the environment.</p></article>
+      </div>
+    </section>
+
+    <section class="content-section" id="syllabus">
+      <div class="section-heading"><span class="section-heading__kicker">Architecture Modules</span><span class="section-heading__line"></span></div>
+      <h2>Scenario-driven curriculum for architects</h2>
+      <p>The source material defines the early modules directly. The remaining modules extend the same exam-driven design logic across the rest of the architect scope.</p>
+      <div class="syllabus">
+        <details open><summary>Lesson 1: Design Identity Architecture <span>Domain 1</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>Entra ID, External ID, and AD DS design choices</li><li>Hybrid identity with Azure AD Connect versus cloud-only</li><li>Managed Identities, Service Principals, and enterprise PIM</li></ul><div class="quote-box">AZ-104 asks if you can drive the car. AZ-305 asks you to design traffic flow for the whole city.</div></div></details>
+        <details><summary>Lesson 2: Design Governance Solutions <span>Domain 1</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>Landing zone architecture and subscription vending</li><li>Management group hierarchy and inherited policy</li><li>Tagging strategy, budgets, alerts, and cost governance</li></ul></div></details>
+        <details><summary>Lesson 3: Design Relational and Non-Relational Storage <span>Domain 2</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>SQL Database, Managed Instance, SQL on VM</li><li>Cosmos DB distribution and consistency decisions</li><li>Table storage, Mongo API, document and key-value choices</li></ul></div></details>
+        <details><summary>Lesson 4: Design Data Integration Solutions <span>Domain 2</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>Azure Data Factory orchestration</li><li>Synapse Analytics and Data Lake Storage Gen2</li><li>Integration architecture for analytics workloads</li></ul></div></details>
+        <details><summary>Lesson 5: Design Business Continuity and Resilience <span>Domain 3</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>Availability zones, paired regions, recovery patterns</li><li>Backup and disaster recovery choices per workload</li><li>Recovery objectives and failure domain thinking</li></ul></div></details>
+        <details><summary>Lesson 6: Design Application Architecture <span>Domain 3</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>Service selection: App Service, Functions, containers, AKS</li><li>Authentication, authorization, and secretless design</li><li>Messaging and decoupling patterns</li></ul></div></details>
+        <details><summary>Lesson 7: Design Network Solutions <span>Domain 4</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>Hub-spoke, private connectivity, peering, firewalls</li><li>Front Door, Application Gateway, and global routing choices</li><li>Segmentation and traffic control at scale</li></ul></div></details>
+        <details><summary>Lesson 8: Design Security and Cost Optimization <span>Cross-domain</span></summary><div class="syllabus__content"><h4>Topics</h4><ul><li>Least privilege by design</li><li>Guardrails, policy, budgets, and governance inheritance</li><li>Choosing the simplest architecture that still meets the requirement</li></ul></div></details>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="section-heading"><span class="section-heading__kicker">Labs and Study Moves</span><span class="section-heading__line"></span></div>
+      <h2>Architecture gets stronger when you compare options side by side</h2>
+      <div class="grid grid--three">
+        <article class="card lab-card"><h3>📐 Learn Architecture Modules</h3><p>Use Microsoft Learn paths for architecture scenarios, identity design, and governance at scale.</p><div class="badge-row"><a class="btn btn--primary" href="https://learn.microsoft.com/en-us/training/browse/?products=azure&roles=solution-architect" target="_blank" rel="noopener">Open architect modules</a></div></article>
+        <article class="card lab-card"><h3>🧪 Whiteboard Scenarios</h3><p>Practice choosing services against requirements: latency, compatibility, global scale, compliance, and recovery targets.</p><div class="badge-row"><a class="btn btn--primary" href="resources.html">Use the resource library</a></div></article>
+        <article class="card lab-card"><h3>🏗️ Tenant Design Exercises</h3><p>Prototype management groups, policy assignments, and reference architectures in a sandbox tenant before production.</p><div class="badge-row"><a class="btn btn--primary" href="https://azure.microsoft.com/en-us/free/" target="_blank" rel="noopener">Use Azure sandbox</a></div></article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="cta-panel">
+        <div>
+          <h2>Architecture is argument quality plus system design.</h2>
+          <p>If your next move is cloud architect, lead engineer, or platform design, AZ-305 is the cert path that forces you to reason through requirements instead of memorizing feature names.</p>
+        </div>
+        <div class="cta-panel__price">
+          <strong>$797</strong>
+          <p>Architect expert pathway</p>
+          <a class="btn btn--primary" href="pricing.html">View options</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">© 2026 The Dope Cloud Teacher · Enterprise Azure architecture explained through tradeoffs, not buzzwords.</footer>
+  </div>
+</body>
+</html>

@@ -18,13 +18,24 @@ jobs:
       - name: Install Railway CLI
         run: npm install -g @railway/cli
 
-      - name: Deploy to Railway
+      - name: Validate Railway secrets and access
         run: |
+          if [ -z "$RAILWAY_TOKEN" ]; then
+            echo "RAILWAY_TOKEN secret is required"
+            exit 1
+          fi
+
           if [ -z "$RAILWAY_SERVICE_NAME" ]; then
             echo "RAILWAY_SERVICE_NAME secret is required"
             exit 1
           fi
 
+          railway whoami
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Deploy to Railway
+        run: |
           if [ -n "$RAILWAY_PROJECT_ID" ]; then
             RAILWAY_ENVIRONMENT_NAME=${RAILWAY_ENVIRONMENT:-production}
             railway up --project "$RAILWAY_PROJECT_ID" --environment "$RAILWAY_ENVIRONMENT_NAME" --service "$RAILWAY_SERVICE_NAME"

@@ -28,6 +28,16 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    :root {
+      --brand-bg: #0b1025;
+      --brand-bg-alt: #171d3f;
+      --brand-purple: #7b4df2;
+      --brand-purple-soft: #cbbcff;
+      --brand-teal: #77efe3;
+      --brand-text: #f2f5ff;
+      --brand-muted: #b5bedc;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -36,13 +46,13 @@
     
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1f1147 0%, #301934 100%);
-      color: #fff;
+      background: linear-gradient(135deg, var(--brand-bg) 0%, var(--brand-bg-alt) 100%);
+      color: var(--brand-text);
       min-height: 100vh;
     }
 
     header {
-      background: #2d1b69;
+      background: rgba(23, 29, 63, 0.95);
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
@@ -55,15 +65,17 @@
       align-items: center;
       font-size: 1.4rem;
       font-weight: bold;
-      color: #ffcc00;
+      color: var(--brand-teal);
       text-decoration: none;
     }
 
     .logo-img {
-      height: 46px;
-      width: 46px;
+      height: 52px;
+      width: 52px;
       border-radius: 50%;
       margin-right: 10px;
+      border: 2px solid rgba(119, 239, 227, 0.35);
+      box-shadow: 0 10px 24px rgba(123, 77, 242, 0.18);
     }
 
     nav.nav-links a {
@@ -75,7 +87,7 @@
     }
 
     nav.nav-links a:hover {
-      color: #ffcc00;
+      color: var(--brand-teal);
     }
 
     .hero-section {
@@ -87,14 +99,14 @@
 
     .hero-section h1 {
       font-size: 3rem;
-      color: #ffcc00;
+      color: var(--brand-teal);
       margin-bottom: 1rem;
       text-shadow: 2px 2px 10px rgba(255, 204, 0, 0.3);
     }
 
     .hero-section p {
       font-size: 1.3rem;
-      color: #e0e0e0;
+      color: var(--brand-muted);
       margin-bottom: 2rem;
     }
 
@@ -113,8 +125,8 @@
     }
 
     .plan-card {
-      background: linear-gradient(135deg, #2d1b69, #1f1147);
-      border: 2px solid #9333ea;
+      background: linear-gradient(135deg, #171d3f, #0b1025);
+      border: 2px solid #7b4df2;
       border-radius: 20px;
       padding: 2rem;
       position: relative;
@@ -122,12 +134,12 @@
     }
 
     .plan-card.featured {
-      border-color: #ffcc00;
-      box-shadow: 0 15px 40px rgba(255, 204, 0, 0.25);
+      border-color: #77efe3;
+      box-shadow: 0 15px 40px rgba(119, 239, 227, 0.2);
     }
 
     .plan-card h3 {
-      color: #ffcc00;
+      color: #77efe3;
       font-size: 1.6rem;
       margin-bottom: 0.5rem;
     }
@@ -151,15 +163,15 @@
     .plan-cta {
       display: inline-block;
       padding: 0.9rem 1.2rem;
-      background: #ffcc00;
-      color: #1f1147;
+      background: #77efe3;
+      color: #0b1025;
       text-decoration: none;
       border-radius: 10px;
       font-weight: bold;
     }
 
     .lead-capture {
-      background: rgba(45, 27, 105, 0.6);
+      background: rgba(23, 29, 63, 0.72);
       border-radius: 20px;
       padding: 2.5rem;
       margin: 2rem auto 4rem;
@@ -203,7 +215,7 @@
     .section-title {
       text-align: center;
       font-size: 2.5rem;
-      color: #ffcc00;
+      color: #77efe3;
       margin: 3rem 0 2rem;
     }
 
@@ -220,7 +232,7 @@
       position: relative;
       width: 60px;
       height: 30px;
-      background: #9333ea;
+      background: #7b4df2;
       border-radius: 30px;
       cursor: pointer;
       transition: all 0.3s;
@@ -263,8 +275,8 @@
     }
 
     .price-card {
-      background: linear-gradient(135deg, #2d1b69, #1f1147);
-      border: 2px solid #9333ea;
+      background: linear-gradient(135deg, #171d3f, #0b1025);
+      border: 2px solid #7b4df2;
       border-radius: 20px;
       padding: 2rem;
       transition: transform 0.3s, box-shadow 0.3s;
@@ -274,20 +286,20 @@
 
     .price-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 40px rgba(147, 51, 234, 0.4);
+      box-shadow: 0 15px 40px rgba(123, 77, 242, 0.35);
     }
 
     .price-card.featured {
-      border-color: #ffcc00;
-      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.3);
+      border-color: #77efe3;
+      box-shadow: 0 10px 30px rgba(119, 239, 227, 0.24);
     }
 
     .badge {
       position: absolute;
       top: 20px;
       right: -35px;
-      background: #ffcc00;
-      color: #1f1147;
+      background: #77efe3;
+      color: #0b1025;
       padding: 5px 40px;
       transform: rotate(45deg);
       font-weight: bold;
@@ -295,18 +307,23 @@
     }
 
     .course-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      margin-bottom: 1.2rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
     }
 
     .price-card h3 {
       font-size: 1.8rem;
-      color: #ffcc00;
+      color: #77efe3;
       margin-bottom: 0.5rem;
     }
 
     .price-card .subtitle {
-      color: #c084fc;
+      color: #cbbcff;
       font-size: 1rem;
       margin-bottom: 1.5rem;
     }
@@ -324,7 +341,7 @@
     }
 
     .duration {
-      color: #c084fc;
+      color: #cbbcff;
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
     }
@@ -351,7 +368,7 @@
     .btn-purchase {
       width: 100%;
       padding: 1rem;
-      background: #9333ea;
+      background: #7b4df2;
       color: #fff;
       border: none;
       border-radius: 10px;
@@ -363,13 +380,13 @@
     }
 
     .btn-purchase:hover {
-      background: #7e22ce;
+      background: #5f39c7;
       transform: scale(1.05);
     }
 
     .btn-purchase.featured {
-      background: #ffcc00;
-      color: #1f1147;
+      background: #77efe3;
+      color: #0b1025;
     }
 
     .btn-purchase.featured:hover {
@@ -380,8 +397,8 @@
       width: 100%;
       padding: 0.8rem;
       background: transparent;
-      color: #9333ea;
-      border: 2px solid #9333ea;
+      color: #7b4df2;
+      border: 2px solid #7b4df2;
       border-radius: 10px;
       font-size: 1rem;
       font-weight: bold;
@@ -391,12 +408,12 @@
     }
 
     .btn-view-details:hover {
-      background: rgba(147, 51, 234, 0.1);
+      background: rgba(123, 77, 242, 0.1);
       transform: scale(1.02);
     }
 
     .membership-section {
-      background: rgba(45, 27, 105, 0.5);
+      background: rgba(23, 29, 63, 0.6);
       padding: 3rem 2rem;
       border-radius: 20px;
       margin: 2rem 0;
@@ -508,11 +525,11 @@
       </div>
     </div>
 
-    <h2 class="section-title">🎓 Professional Course Pathways</h2>
+    <h2 class="section-title">Professional Course Pathways</h2>
     
     <!-- Payment Toggle -->
     <div class="pricing-toggle">
-      <span style="color: #c084fc; font-weight: bold;">Pay Monthly</span>
+      <span style="color: #cbbcff; font-weight: bold;">Pay Monthly</span>
       <div class="toggle-switch" id="paymentToggle" onclick="togglePaymentPlan()"></div>
       <span style="color: #10b981; font-weight: bold;">Pay Once</span>
       <span class="save-badge">Save 60%</span>
@@ -523,10 +540,10 @@
     </div>
 
     <div class="membership-section" id="membership">
-      <h2 class="section-title">💎 Monthly Memberships</h2>
+      <h2 class="section-title">Monthly Memberships</h2>
       <div class="membership-grid">
         <div class="price-card">
-          <div class="course-icon">🎓</div>
+          <img class="course-icon" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Learners collaborating on cloud training">
           <h3>Student Member</h3>
           <div class="subtitle">Access All Courses</div>
           <div class="price">$9.99<span>/month</span></div>
@@ -542,7 +559,7 @@
 
         <div class="price-card featured">
           <div class="badge">POPULAR</div>
-          <div class="course-icon">⭐</div>
+          <img class="course-icon" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80" alt="Professional mentorship and career planning session">
           <h3>Pro Member</h3>
           <div class="subtitle">Everything + Mentorship</div>
           <div class="price">$14<span>/month</span></div>
@@ -558,7 +575,7 @@
         </div>
 
         <div class="price-card" id="career-accelerator">
-          <div class="course-icon">🚀</div>
+          <img class="course-icon" src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80" alt="Career coaching and team planning workshop">
           <h3>Career Accelerator</h3>
           <div class="subtitle">Ultimate Career Support</div>
           <div class="price">$16<span>/month</span></div>
@@ -581,12 +598,12 @@
     </div>
 
     <div style="text-align: center; margin: 4rem 0;">
-      <h2 class="section-title">🏢 Corporate Training</h2>
+      <h2 class="section-title">Corporate Training</h2>
       <div class="price-card" style="max-width: 600px; margin: 2rem auto;">
-        <div class="course-icon">🏢</div>
+        <img class="course-icon" src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1400&q=80" alt="Corporate team training session">
         <h3>Team Training</h3>
         <div class="subtitle">Custom Solutions for Your Organization</div>
-        <div class="price" style="font-size: 1.5rem; color: #D4AF37;">Enterprise Pricing</div>
+        <div class="price" style="font-size: 1.5rem; color: #77efe3;">Enterprise Pricing</div>
         <ul class="features">
           <li><i class="fas fa-check-circle"></i> Custom curriculum design</li>
           <li><i class="fas fa-check-circle"></i> Live workshops & bootcamps</li>
@@ -610,9 +627,9 @@
   </div>
 
   <div style="text-align:center; margin:2rem 0 1rem 0;">
-    <span style="color:#10b981; font-size:0.95rem;">Secure checkout via Gumroad & Stripe. <a href="/privacy.html" style="color:#c084fc; text-decoration:underline;">Privacy Policy</a> & <a href="/terms.html" style="color:#c084fc; text-decoration:underline;">Terms</a></span>
+    <span style="color:#10b981; font-size:0.95rem;">Secure checkout via Gumroad & Stripe. <a href="/privacy.html" style="color:#cbbcff; text-decoration:underline;">Privacy Policy</a> & <a href="/terms.html" style="color:#cbbcff; text-decoration:underline;">Terms</a></span>
     <br>
-    <span style="color:#c084fc; font-size:0.95rem;">Need help? <a href="mailto:support@thedopecloudteacher.com" style="color:#10b981; text-decoration:underline;">Contact Support</a></span>
+    <span style="color:#cbbcff; font-size:0.95rem;">Need help? <a href="mailto:support@thedopecloudteacher.com" style="color:#10b981; text-decoration:underline;">Contact Support</a></span>
   </div>
   <footer>
     <section aria-label="Credibility and Trust" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
@@ -624,13 +641,13 @@
         <img src="images/pgparks-logo.png" alt="PG Parks & Planning" style="height: 40px;">
       </div>
       <div style="text-align: center; margin-bottom: 1.5rem;">
-        <span style="background: #ffcc00; color: #1f1147; padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold;">30-Day Money-Back Guarantee</span>
-        <span style="background: #9333ea; color: #fff; padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold; margin-left: 1rem;">Secure Payments</span>
+        <span style="background: #77efe3; color: #0b1025; padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold;">30-Day Money-Back Guarantee</span>
+        <span style="background: #7b4df2; color: #fff; padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold; margin-left: 1rem;">Secure Payments</span>
       </div>
       <div style="max-width: 700px; margin: 0 auto;">
-        <blockquote style="color: #c084fc; font-style: italic; margin-bottom: 1rem;">“The Dope Cloud Teacher made it easy for our team to upskill and get certified. The pricing is unbeatable!”</blockquote>
-        <blockquote style="color: #c084fc; font-style: italic; margin-bottom: 1rem;">“Transparent pricing, no hidden fees, and a money-back guarantee. Highly recommended!”</blockquote>
-        <blockquote style="color: #c084fc; font-style: italic;">“The best value for professional cloud training. The membership is a steal!”</blockquote>
+        <blockquote style="color: #cbbcff; font-style: italic; margin-bottom: 1rem;">“The Dope Cloud Teacher made it easy for our team to upskill and get certified. The pricing is unbeatable!”</blockquote>
+        <blockquote style="color: #cbbcff; font-style: italic; margin-bottom: 1rem;">“Transparent pricing, no hidden fees, and a money-back guarantee. Highly recommended!”</blockquote>
+        <blockquote style="color: #cbbcff; font-style: italic;">“The best value for professional cloud training. The membership is a steal!”</blockquote>
       </div>
     </section>
   <footer>
@@ -815,17 +832,17 @@
       
       const form = document.createElement('div');
       form.style.cssText = `
-        background: #2d1b4d;
+        background: #171d3f;
         border-radius: 20px;
         padding: 2rem;
         max-width: 500px;
         width: 90%;
         box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        border: 2px solid #5B2B8F;
+        border: 2px solid #7b4df2;
       `;
       
       form.innerHTML = `
-        <h2 style="color: #D4AF37; margin-bottom: 1rem;">Enterprise Training Inquiry</h2>
+        <h2 style="color: #77efe3; margin-bottom: 1rem;">Enterprise Training Inquiry</h2>
         <p style="color: #e0e0e0; margin-bottom: 1.5rem;">Tell us about your team's training needs and we'll create a custom proposal.</p>
         
         <form id="corporateForm" onsubmit="submitCorporateForm(event)">
@@ -862,8 +879,8 @@
           </div>
           
           <div style="display: flex; gap: 1rem;">
-            <button type="submit" style="flex: 1; padding: 0.9rem; background: #D4AF37; color: #1f1147; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">Send Inquiry</button>
-            <button type="button" onclick="closeCorporateForm()" style="flex: 1; padding: 0.9rem; background: #5B2B8F; color: #fff; border: 2px solid #D4AF37; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">Cancel</button>
+            <button type="submit" style="flex: 1; padding: 0.9rem; background: #77efe3; color: #0b1025; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">Send Inquiry</button>
+            <button type="button" onclick="closeCorporateForm()" style="flex: 1; padding: 0.9rem; background: #7b4df2; color: #fff; border: 2px solid #77efe3; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">Cancel</button>
           </div>
         </form>
       `;
