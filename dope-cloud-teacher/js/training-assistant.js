@@ -2,7 +2,19 @@
 // Professional AI-powered training assistant for The Dope Cloud Teacher
 // Uses backend proxy endpoint to keep API keys secure.
 
-const ASSISTANT_API_ENDPOINT = `${window.DCT_API_URL}/assistant/chat`;
+function getAssistantEndpoints() {
+  const configuredBase = (window.DCT_API_URL || '').replace(/\/$/, '');
+  const origin = window.location.origin;
+
+  const candidates = [
+    configuredBase ? `${configuredBase}/assistant/chat` : '',
+    `${origin}/api/assistant/chat`,
+    '/api/assistant/chat',
+    'https://api.thedopecloudteacher.com/api/assistant/chat'
+  ];
+
+  return [...new Set(candidates.filter(Boolean))];
+}
 
 // === UI SETUP ===
 function createAssistantUI() {
@@ -92,27 +104,40 @@ async function handleAssistantSubmit(e) {
 }
 
 async function fetchAIAnswer(messages) {
-  try {
-    const response = await fetch(ASSISTANT_API_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        question: messages[messages.length - 1]?.content || '',
-        history: messages.slice(-10)
-      })
-    });
+  const endpoints = getAssistantEndpoints();
+  let lastError = null;
 
-    if (!response.ok) {
-      throw new Error(`Assistant API error: ${response.status}`);
+  for (const endpoint of endpoints) {
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          question: messages[messages.length - 1]?.content || '',
+          history: messages.slice(-10)
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Assistant API error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.answer || 'Sorry, I could not find an answer.';
+    } catch (err) {
+      lastError = err;
+      console.warn('Training assistant endpoint failed:', endpoint, err);
     }
+  }
 
-    const data = await response.json();
-    return data.answer || 'Sorry, I could not find an answer.';
+  try {
+    const diagnostics = endpoints.join(' | ');
+    throw new Error(`All assistant endpoints failed. Tried: ${diagnostics}`);
   } catch (err) {
-    console.error('Training assistant connection error:', err);
-    return 'Sorry, there was a problem connecting to the AI service.';
+    console.error('Training assistant connection error:', err, lastError);
+    return 'Sorry, there was a problem connecting to the AI service. Please try again in a moment.';
   }
 }
 
