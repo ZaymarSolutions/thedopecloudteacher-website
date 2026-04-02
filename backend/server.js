@@ -6,7 +6,8 @@ const rateLimit = require('express-rate-limit');
 const Database = require('better-sqlite3');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripe = stripeSecretKey ? require('stripe')(stripeSecretKey) : null;
 const path = require('path');
 const crypto = require('crypto');
 const fs = require('fs');
@@ -18,8 +19,152 @@ const ASSISTANT_API_ENDPOINT = process.env.AI_API_ENDPOINT || 'https://api.opena
 const ASSISTANT_MODEL = process.env.AI_MODEL || 'gpt-4o-mini';
 
 // Database connection
-const db = new Database(path.join(__dirname, process.env.DATABASE_PATH || 'database.sqlite'));
+const configuredDbPath = process.env.DATABASE_PATH || 'database.sqlite';
+let dbPath = path.isAbsolute(configuredDbPath)
+  ? configuredDbPath
+  : path.join(__dirname, configuredDbPath);
+
+try {
+  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+} catch (error) {
+  console.error(`Unable to initialize database directory for ${dbPath}: ${error.message}`);
+  dbPath = path.join(__dirname, 'database.sqlite');
+  fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+  console.error(`Falling back to local database path: ${dbPath}`);
+}
+
+const db = new Database(dbPath);
 db.pragma('foreign_keys = ON');
+
+// Core schema bootstrap for fresh environments (e.g. Railway first deploy).
+db.exec(`
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email TEXT UNIQUE NOT NULL,
+    password_hash TEXT NOT NULL,
+    name TEXT NOT NULL,
+    phone TEXT,
+    organization TEXT,
+    role TEXT DEFAULT 'student',
+    stripe_customer_id TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_login DATETIME,
+    email_verified BOOLEAN DEFAULT 0
+  )
+`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS courses (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    price DECIMAL(10,2),
+    duration_hours INTEGER,
+    lessons_count INTEGER,
+    level TEXT,
+    category TEXT,
+    thumbnail_url TEXT,
+    status TEXT DEFAULT 'active',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS purchases (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    product_type TEXT NOT NULL,
+    product_id TEXT NOT NULL,
+    stripe_payment_id TEXT,
+    stripe_subscription_id TEXT,
+    amount DECIMAL(10,2),
+    status TEXT DEFAULT 'active',
+    purchased_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  )
+`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS progress (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    course_id TEXT NOT NULL,
+    lesson_id TEXT NOT NULL,
+    completed BOOLEAN DEFAULT 0,
+    quiz_score INTEGER,
+    time_spent_minutes INTEGER DEFAULT 0,
+    completed_at DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    UNIQUE(user_id, course_id, lesson_id)
+  )
+`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS certificates (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    course_id TEXT NOT NULL,
+    certificate_code TEXT UNIQUE NOT NULL,
+    issue_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    verification_url TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    UNIQUE(user_id, course_id)
+  )
+`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS videos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    course_id TEXT NOT NULL,
+    lesson_id INTEGER NOT NULL,
+    lesson_title TEXT NOT NULL,
+    file_path TEXT NOT NULL,
+    duration_seconds INTEGER,
+    word_count INTEGER,
+    start_time_formatted TEXT,
+    end_time_formatted TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(id) ON DELETE CASCADE,
+    UNIQUE(course_id, lesson_id)
+  )
+`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS subscriptions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    plan_type TEXT NOT NULL,
+    stripe_subscription_id TEXT UNIQUE,
+    stripe_customer_id TEXT,
+    status TEXT DEFAULT 'active',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    canceled_at DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  )
+`);
+
+const seedCourse = db.prepare(`
+  INSERT OR IGNORE INTO courses (id, title, description, price, duration_hours, lessons_count, level, category)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+`);
+
+[
+  ['cloud-fundamentals-101', 'Cloud Fundamentals 101', 'Master the basics of cloud computing with AWS, Azure, and GCP. Perfect for beginners.', 297.0, 15, 10, 'Beginner', 'Cloud Basics'],
+  ['cloud-architect-pathway', 'Cloud Architect Professional Pathway', 'Comprehensive training to become a certified cloud architect. Design scalable, secure cloud infrastructure.', 797.0, 40, 12, 'Advanced', 'Architecture'],
+  ['cloud-security-engineer', 'Cloud Security Engineer Track', 'Master cloud security best practices, compliance, and threat mitigation across all major platforms.', 697.0, 35, 10, 'Intermediate', 'Security'],
+  ['devops-automation', 'DevOps & Automation Mastery', 'CI/CD pipelines, Infrastructure as Code, Docker, Kubernetes, and automation tools.', 597.0, 30, 12, 'Intermediate', 'DevOps'],
+  ['intro-to-ai-ml', 'Introduction to AI & Machine Learning', 'Practical AI/ML fundamentals with cloud services. Build intelligent applications.', 497.0, 25, 10, 'Beginner', 'AI/ML'],
+  ['data-engineering-cloud', 'Cloud Data Engineering', 'Big data, data pipelines, ETL processes, and analytics on cloud platforms.', 697.0, 35, 11, 'Intermediate', 'Data'],
+  ['serverless-microservices', 'Serverless & Microservices Architecture', 'Build scalable serverless applications with AWS Lambda, Azure Functions, and Cloud Functions.', 597.0, 28, 10, 'Advanced', 'Development']
+].forEach((course) => {
+  try {
+    seedCourse.run(...course);
+  } catch (error) {
+    // Keep API online even if an existing DB has an older schema.
+    console.error(`Course seed skipped for ${course[0]}: ${error.message}`);
+  }
+});
 
 // Ensure leads table exists
 db.exec(`
@@ -95,6 +240,14 @@ const requireAdmin = (req, res, next) => {
     return res.status(403).json({ error: 'Admin access required' });
   }
   next();
+};
+
+const ensureStripeConfigured = (res) => {
+  if (!stripe) {
+    res.status(503).json({ error: 'Stripe is not configured on this environment' });
+    return false;
+  }
+  return true;
 };
 
 // ==================== AUTH ROUTES ====================
@@ -459,6 +612,8 @@ app.get('/api/courses/:courseId/access', authenticateToken, (req, res) => {
 // Create checkout session
 app.post('/api/create-checkout', authenticateToken, async (req, res) => {
   try {
+    if (!ensureStripeConfigured(res)) return;
+
     const { courseId, priceId } = req.body;
 
     const course = db.prepare('SELECT * FROM courses WHERE id = ?').get(courseId);
@@ -499,6 +654,8 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
 // Create subscription (recurring payments)
 app.post('/api/create-subscription', authenticateToken, async (req, res) => {
   try {
+    if (!ensureStripeConfigured(res)) return;
+
     const { planType, planName, price, interval } = req.body;
 
     if (!planType || !planName || !price || !interval) {
@@ -567,6 +724,8 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
 
 // Stripe webhook handler
 app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+  if (!ensureStripeConfigured(res)) return;
+
   const sig = req.headers['stripe-signature'];
   let event;
 
@@ -884,7 +1043,12 @@ app.get('/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Dope Cloud Teacher API running on port ${PORT}`);
-  console.log(`📚 Courses available: ${db.prepare('SELECT COUNT(*) as count FROM courses').get().count}`);
+  try {
+    console.log(`📚 Courses available: ${db.prepare('SELECT COUNT(*) as count FROM courses').get().count}`);
+  } catch (error) {
+    console.error('Course count check failed:', error.message);
+  }
+  console.log(`💾 Database path: ${dbPath}`);
 });
 
 // Graceful shutdown

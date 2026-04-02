@@ -3,15 +3,76 @@
 const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
 const sameOriginApi = `${window.location.origin}/api`;
 const apiOverride = new URLSearchParams(window.location.search).get('api');
-const API_URL = window.DCT_API_URL
-  || apiOverride
-  || (isLocalhost ? 'http://localhost:3000/api' : sameOriginApi);
+const storedApiUrl = localStorage.getItem('DCT_API_URL');
+const normalizeApiBase = (value) => (typeof value === 'string' ? value.trim().replace(/\/$/, '') : '');
+
+const API_FALLBACKS = [
+  normalizeApiBase(window.DCT_API_URL),
+  normalizeApiBase(apiOverride),
+  normalizeApiBase(storedApiUrl),
+  isLocalhost ? 'http://localhost:3000/api' : sameOriginApi,
+  'https://thedopecloudteacher.org/api',
+  'https://thedopecloudteacher.com/api'
+].filter((url, index, list) => url && list.indexOf(url) === index);
+
+let API_URL = API_FALLBACKS[0];
+window.DCT_API_URL = API_URL;
+
+const RETRYABLE_STATUS_CODES = new Set([404, 405, 502, 503, 504]);
+
+async function fetchWithApiFallback(path, options = {}) {
+  let lastError = null;
+
+  for (const baseUrl of API_FALLBACKS) {
+    try {
+      const response = await fetch(`${baseUrl}${path}`, options);
+
+      if (RETRYABLE_STATUS_CODES.has(response.status)) {
+        lastError = new Error(`API endpoint ${baseUrl} responded with ${response.status}`);
+        continue;
+      }
+
+      if (baseUrl !== API_URL) {
+        API_URL = baseUrl;
+        window.DCT_API_URL = baseUrl;
+        localStorage.setItem('DCT_API_URL', baseUrl);
+      }
+
+      return response;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw formatNetworkError(lastError || new Error('Unable to reach any configured API endpoint'));
+}
 
 function formatNetworkError(error) {
   if (error instanceof TypeError || /fetch/i.test(error?.message || '')) {
     return new Error(`Unable to reach the app server at ${API_URL}. Please verify backend deployment and API URL configuration.`);
   }
   return error;
+}
+
+async function readApiError(response, fallbackMessage) {
+  let payload = {};
+
+  try {
+    payload = await response.json();
+  } catch (jsonError) {
+    payload = {};
+  }
+
+  const serverMessage = payload.error || payload.message;
+  if (serverMessage) {
+    return serverMessage;
+  }
+
+  if (response.status === 405 || response.status === 404) {
+    return `Auth API routing issue detected (${response.status}). This domain is not forwarding /api requests to the backend service.`;
+  }
+
+  return `${fallbackMessage} (HTTP ${response.status})`;
 }
 
 class DopeCloudAuth {
@@ -36,7 +97,7 @@ class DopeCloudAuth {
   // Register new user
   async register(email, password, name, phone = '', organization = '') {
     try {
-      const response = await fetch(`${API_URL}/auth/register`, {
+      const response = await fetchWithApiFallback('/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, name, phone, organization })
@@ -45,7 +106,8 @@ class DopeCloudAuth {
       const data = await response.json().catch(() => ({}));
       
       if (!response.ok) {
-        throw new Error(data.error || 'Registration failed');
+        const errorMessage = data.error || await readApiError(response, 'Registration failed');
+        throw new Error(errorMessage);
       }
 
       this.token = data.token;
@@ -63,7 +125,7 @@ class DopeCloudAuth {
   // Login user
   async login(email, password) {
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetchWithApiFallback('/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -72,7 +134,8 @@ class DopeCloudAuth {
       const data = await response.json().catch(() => ({}));
       
       if (!response.ok) {
-        throw new Error(data.error || 'Login failed');
+        const errorMessage = data.error || await readApiError(response, 'Login failed');
+        throw new Error(errorMessage);
       }
 
       this.token = data.token;
@@ -101,7 +164,7 @@ class DopeCloudAuth {
     if (!this.token) return null;
 
     try {
-      const response = await fetch(`${API_URL}/auth/me`, {
+      const response = await fetchWithApiFallback('/auth/me', {
         headers: this.getHeaders()
       });
 
@@ -134,7 +197,7 @@ class DopeCourseAccess {
     }
 
     try {
-      const response = await fetch(`${API_URL}/courses/${courseId}/access`, {
+      const response = await fetchWithApiFallback(`/courses/${courseId}/access`, {
         headers: this.auth.getHeaders()
       });
 
@@ -149,7 +212,7 @@ class DopeCourseAccess {
   // Get all courses
   async getAllCourses() {
     try {
-      const response = await fetch(`${API_URL}/courses`);
+      const response = await fetchWithApiFallback('/courses');
       const data = await response.json();
       return data.courses;
     } catch (error) {
@@ -165,7 +228,7 @@ class DopeCourseAccess {
     }
 
     try {
-      const response = await fetch(`${API_URL}/create-checkout`, {
+      const response = await fetchWithApiFallback('/create-checkout', {
         method: 'POST',
         headers: this.auth.getHeaders(),
         body: JSON.stringify({ courseId })
@@ -198,7 +261,7 @@ class DopeProgressTracker {
     }
 
     try {
-      const response = await fetch(`${API_URL}/progress/${courseId}`, {
+      const response = await fetchWithApiFallback(`/progress/${courseId}`, {
         headers: this.auth.getHeaders()
       });
 
@@ -217,7 +280,7 @@ class DopeProgressTracker {
     }
 
     try {
-      const response = await fetch(`${API_URL}/progress`, {
+      const response = await fetchWithApiFallback('/progress', {
         method: 'POST',
         headers: this.auth.getHeaders(),
         body: JSON.stringify({
@@ -257,7 +320,7 @@ class DopeCertificates {
     }
 
     try {
-      const response = await fetch(`${API_URL}/certificates/generate`, {
+      const response = await fetchWithApiFallback('/certificates/generate', {
         method: 'POST',
         headers: this.auth.getHeaders(),
         body: JSON.stringify({ courseId })
@@ -283,7 +346,7 @@ class DopeCertificates {
     }
 
     try {
-      const response = await fetch(`${API_URL}/certificates`, {
+      const response = await fetchWithApiFallback('/certificates', {
         headers: this.auth.getHeaders()
       });
 
@@ -298,7 +361,7 @@ class DopeCertificates {
   // Verify certificate
   async verifyCertificate(code) {
     try {
-      const response = await fetch(`${API_URL}/certificates/verify/${code}`);
+      const response = await fetchWithApiFallback(`/certificates/verify/${code}`);
       const data = await response.json();
       
       if (!response.ok) {
