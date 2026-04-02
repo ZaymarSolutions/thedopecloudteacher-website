@@ -16,7 +16,7 @@
   const hasExplicitGlobal = typeof window.DCT_API_URL === 'string' && window.DCT_API_URL.trim().length > 0;
   const defaultApiUrl = isLocalhost
     ? 'http://localhost:3000/api'
-    : sameOriginApi;
+    : 'https://energetic-endurance-production.up.railway.app/api';
 
   window.DCT_API_URL = hasExplicitGlobal
     ? window.DCT_API_URL.replace(/\/$/, '')

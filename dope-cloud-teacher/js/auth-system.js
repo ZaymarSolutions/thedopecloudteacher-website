@@ -11,6 +11,7 @@ const API_FALLBACKS = [
   normalizeApiBase(apiOverride),
   normalizeApiBase(storedApiUrl),
   isLocalhost ? 'http://localhost:3000/api' : sameOriginApi,
+  'https://energetic-endurance-production.up.railway.app/api',
   'https://thedopecloudteacher.org/api',
   'https://thedopecloudteacher.com/api'
 ].filter((url, index, list) => url && list.indexOf(url) === index);
