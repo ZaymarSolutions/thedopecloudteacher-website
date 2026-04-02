@@ -728,13 +728,11 @@
         } else {
           const course = COURSE_PATHWAYS[courseId];
           const monthlyPrice = Math.ceil(course.price / 10);
+          const apiBase = window.DCT_API_URL || `${window.location.origin}/api`;
 
-          const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
+          const response = await fetch(`${apiBase}/create-subscription`, {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('token')}`
-            },
+            headers: dopeAuth.getHeaders(),
             body: JSON.stringify({
               planType: 'course',
               courseId: courseId,
@@ -770,12 +768,10 @@
       }
 
       try {
-        const response = await fetch(`${dopeAuth.API_URL}/create-subscription`, {
+        const apiBase = window.DCT_API_URL || `${window.location.origin}/api`;
+        const response = await fetch(`${apiBase}/create-subscription`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          },
+          headers: dopeAuth.getHeaders(),
           body: JSON.stringify({
             planType: type,
             planName: plan.name,
