@@ -82,6 +82,13 @@ class DopeCloudAuth {
     this.user = JSON.parse(localStorage.getItem('dct_user') || 'null');
   }
 
+  clearSession() {
+    this.token = null;
+    this.user = null;
+    localStorage.removeItem('dct_token');
+    localStorage.removeItem('dct_user');
+  }
+
   // Check if user is authenticated
   isAuthenticated() {
     return !!this.token;
@@ -153,10 +160,7 @@ class DopeCloudAuth {
 
   // Logout
   logout() {
-    this.token = null;
-    this.user = null;
-    localStorage.removeItem('dct_token');
-    localStorage.removeItem('dct_user');
+    this.clearSession();
     window.location.href = 'index.html';
   }
 
@@ -238,6 +242,10 @@ class DopeCourseAccess {
       const data = await response.json();
       
       if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          this.auth.clearSession();
+          throw new Error('Your session expired. Please sign in again.');
+        }
         throw new Error(data.error || 'Checkout failed');
       }
 

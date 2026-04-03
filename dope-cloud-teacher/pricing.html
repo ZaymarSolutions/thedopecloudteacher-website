@@ -743,6 +743,17 @@
           });
 
           const data = await response.json();
+          if (!response.ok) {
+            if (response.status === 401 || response.status === 403) {
+              dopeAuth.clearSession();
+              alert('Your session expired. Please sign in again.');
+              showAuthModal('login');
+              return;
+            }
+            alert(data.error || `Failed to create subscription (HTTP ${response.status})`);
+            return;
+          }
+
           if (data.url) {
             window.location.href = data.url;
           } else {
@@ -751,7 +762,13 @@
         }
       } catch (error) {
         console.error('Purchase error:', error);
-        alert('An error occurred while processing payment. Please try again.');
+        if (/session expired|invalid or expired token/i.test(error?.message || '')) {
+          dopeAuth.clearSession();
+          alert('Your session expired. Please sign in again.');
+          showAuthModal('login');
+          return;
+        }
+        alert(error?.message || 'An error occurred while processing payment. Please try again.');
       }
     }
 
@@ -781,6 +798,17 @@
         });
 
         const data = await response.json();
+        if (!response.ok) {
+          if (response.status === 401 || response.status === 403) {
+            dopeAuth.clearSession();
+            alert('Your session expired. Please sign in again.');
+            showAuthModal('login');
+            return;
+          }
+          alert(data.error || `Failed to create subscription (HTTP ${response.status})`);
+          return;
+        }
+
         if (data.url) {
           window.location.href = data.url;
         } else {
@@ -788,7 +816,7 @@
         }
       } catch (error) {
         console.error('Subscription error:', error);
-        alert('An error occurred. Please try again.');
+        alert(error?.message || 'An error occurred. Please try again.');
       }
     }
 
