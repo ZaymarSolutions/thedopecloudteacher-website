@@ -635,8 +635,8 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL}/dashboard.html?success=true&course=${courseId}`,
-      cancel_url: `${process.env.FRONTEND_URL}/pricing.html?canceled=true`,
+      success_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/dashboard.html?success=true&course=${courseId}`,
+      cancel_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/pricing.html?canceled=true`,
       client_reference_id: req.user.userId.toString(),
       metadata: {
         courseId,
@@ -700,8 +700,8 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
         quantity: 1,
       }],
       mode: 'subscription',
-      success_url: `${process.env.FRONTEND_URL}/dashboard.html?success=true&subscription=${planType}`,
-      cancel_url: `${process.env.FRONTEND_URL}/pricing.html?canceled=true`,
+      success_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/dashboard.html?success=true&subscription=${planType}`,
+      cancel_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/pricing.html?canceled=true`,
       client_reference_id: req.user.userId.toString(),
       metadata: {
         planType,
