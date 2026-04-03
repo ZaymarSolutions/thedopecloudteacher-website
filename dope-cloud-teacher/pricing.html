@@ -748,9 +748,8 @@
         } else {
           const course = COURSE_PATHWAYS[courseId];
           const monthlyPrice = Math.ceil(course.price / 10);
-          const apiBase = window.DCT_API_URL || `${window.location.origin}/api`;
 
-          const response = await fetch(`${apiBase}/create-subscription`, {
+          const response = await fetchWithApiFallback('/create-subscription', {
             method: 'POST',
             headers: dopeAuth.getHeaders(),
             body: JSON.stringify({
@@ -764,30 +763,18 @@
 
           const data = await response.json();
           if (!response.ok) {
-            if (response.status === 401 || response.status === 403) {
-              dopeAuth.clearSession();
-              alert('Your session expired. Please sign in again.');
-              showAuthModal('login');
-              return;
-            }
-            alert(data.error || `Failed to create subscription (HTTP ${response.status})`);
+            alert(data.error || `Checkout failed (HTTP ${response.status}). Please try again.`);
             return;
           }
 
           if (data.url) {
             window.location.href = data.url;
           } else {
-            alert(data.error || 'Failed to create subscription');
+            alert(data.error || 'Failed to create checkout session');
           }
         }
       } catch (error) {
         console.error('Purchase error:', error);
-        if (/session expired|invalid or expired token/i.test(error?.message || '')) {
-          dopeAuth.clearSession();
-          alert('Your session expired. Please sign in again.');
-          showAuthModal('login');
-          return;
-        }
         alert(error?.message || 'An error occurred while processing payment. Please try again.');
       }
     }
@@ -804,8 +791,7 @@
       }
 
       try {
-        const apiBase = window.DCT_API_URL || `${window.location.origin}/api`;
-        const response = await fetch(`${apiBase}/create-subscription`, {
+        const response = await fetchWithApiFallback('/create-subscription', {
           method: 'POST',
           headers: dopeAuth.getHeaders(),
           body: JSON.stringify({
@@ -818,20 +804,14 @@
 
         const data = await response.json();
         if (!response.ok) {
-          if (response.status === 401 || response.status === 403) {
-            dopeAuth.clearSession();
-            alert('Your session expired. Please sign in again.');
-            showAuthModal('login');
-            return;
-          }
-          alert(data.error || `Failed to create subscription (HTTP ${response.status})`);
+          alert(data.error || `Subscription failed (HTTP ${response.status}). Please try again.`);
           return;
         }
 
         if (data.url) {
           window.location.href = data.url;
         } else {
-          alert(data.error || 'Failed to create subscription');
+          alert(data.error || 'Failed to start subscription');
         }
       } catch (error) {
         console.error('Subscription error:', error);

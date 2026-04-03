@@ -256,11 +256,7 @@ class DopeCourseAccess {
       const data = await response.json();
       
       if (!response.ok) {
-        if (response.status === 401 || response.status === 403) {
-          this.auth.clearSession();
-          throw new Error('Your session expired. Please sign in again.');
-        }
-        throw new Error(data.error || 'Checkout failed');
+        throw new Error(data.error || `Checkout failed (HTTP ${response.status})`);
       }
 
       // Redirect to Stripe checkout

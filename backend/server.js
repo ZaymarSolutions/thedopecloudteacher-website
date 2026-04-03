@@ -194,9 +194,16 @@ ensureLeadColumn('verify_token', 'TEXT');
 ensureLeadColumn('verified_at', 'DATETIME');
 
 // Middleware
+app.set('trust proxy', 1); // trust Railway's reverse proxy for accurate IPs
+
 app.use(helmet());
+
+// CORS: mirror the request Origin so Authorization headers work correctly
+// (origin:'*' + credentials:true is invalid per the CORS spec)
 app.use(cors({
-  origin: '*', // Allow all origins for development and deployment
+  origin: function (origin, callback) {
+    callback(null, origin || '*');
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -206,7 +213,7 @@ app.use(express.json());
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 500 // 500 requests per IP per 15 min
 });
 app.use('/api/', limiter);
 
