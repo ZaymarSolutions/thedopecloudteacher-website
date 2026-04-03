@@ -250,6 +250,17 @@ const ensureStripeConfigured = (res) => {
   return true;
 };
 
+const getStripeErrorResponse = (error, fallbackMessage) => {
+  const status = (error && typeof error.statusCode === 'number') ? error.statusCode : 500;
+  const message = (error && error.raw && error.raw.message) || error.message || fallbackMessage;
+  const code = (error && error.raw && error.raw.code) || error.code || null;
+
+  return {
+    status,
+    payload: code ? { error: message, code } : { error: message }
+  };
+};
+
 // ==================== AUTH ROUTES ====================
 
 // Register new user
@@ -647,7 +658,8 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
     res.json({ url: session.url, sessionId: session.id });
   } catch (error) {
     console.error('Checkout error:', error);
-    res.status(500).json({ error: 'Failed to create checkout session' });
+    const stripeError = getStripeErrorResponse(error, 'Failed to create checkout session');
+    res.status(stripeError.status).json(stripeError.payload);
   }
 });
 
@@ -718,7 +730,8 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
     res.json({ url: session.url, sessionId: session.id });
   } catch (error) {
     console.error('Subscription error:', error);
-    res.status(500).json({ error: 'Failed to create subscription' });
+    const stripeError = getStripeErrorResponse(error, 'Failed to create subscription');
+    res.status(stripeError.status).json(stripeError.payload);
   }
 });
 
