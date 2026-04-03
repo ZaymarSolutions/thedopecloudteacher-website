@@ -55,6 +55,15 @@ function formatNetworkError(error) {
   return error;
 }
 
+function emitAuthStateChange() {
+  window.dispatchEvent(new CustomEvent('dct:auth-changed', {
+    detail: {
+      authenticated: dopeAuth.isAuthenticated(),
+      user: dopeAuth.user
+    }
+  }));
+}
+
 async function readApiError(response, fallbackMessage) {
   let payload = {};
 
@@ -87,6 +96,7 @@ class DopeCloudAuth {
     this.user = null;
     localStorage.removeItem('dct_token');
     localStorage.removeItem('dct_user');
+    emitAuthStateChange();
   }
 
   // Check if user is authenticated
@@ -122,6 +132,7 @@ class DopeCloudAuth {
       this.user = data.user;
       localStorage.setItem('dct_token', data.token);
       localStorage.setItem('dct_user', JSON.stringify(data.user));
+      emitAuthStateChange();
 
       return data;
     } catch (error) {
@@ -150,6 +161,7 @@ class DopeCloudAuth {
       this.user = data.user;
       localStorage.setItem('dct_token', data.token);
       localStorage.setItem('dct_user', JSON.stringify(data.user));
+      emitAuthStateChange();
 
       return data;
     } catch (error) {
@@ -174,13 +186,15 @@ class DopeCloudAuth {
       });
 
       if (!response.ok) {
-        this.logout();
+        this.clearSession();
+        updateAuthUI();
         return null;
       }
 
       const data = await response.json();
       this.user = data.user;
       localStorage.setItem('dct_user', JSON.stringify(data.user));
+      emitAuthStateChange();
       
       return data.user;
     } catch (error) {
@@ -564,7 +578,7 @@ async function handleLogin(event) {
     await dopeAuth.login(email, password);
     errorDiv.textContent = '';
     hideAuthModal();
-    window.location.reload();
+    updateAuthUI();
   } catch (error) {
     errorDiv.textContent = error.message;
   }
@@ -584,7 +598,7 @@ async function handleRegister(event) {
     await dopeAuth.register(email, password, name, phone, organization);
     errorDiv.textContent = '';
     hideAuthModal();
-    window.location.reload();
+    updateAuthUI();
   } catch (error) {
     errorDiv.textContent = error.message;
   }
@@ -594,6 +608,7 @@ async function handleRegister(event) {
 function updateAuthUI() {
   const authButtons = document.querySelectorAll('.auth-required');
   const userNameElements = document.querySelectorAll('.user-name');
+  const navAuthButton = document.getElementById('authButton');
   
   if (dopeAuth.isAuthenticated()) {
     authButtons.forEach(btn => {
@@ -601,17 +616,34 @@ function updateAuthUI() {
       btn.onclick = () => window.location.href = 'dashboard.html';
     });
 
+    if (navAuthButton) {
+      navAuthButton.textContent = dopeAuth.user?.name ? `Dashboard (${dopeAuth.user.name.split(' ')[0]})` : 'My Dashboard';
+      navAuthButton.onclick = (event) => {
+        event.preventDefault();
+        window.location.href = 'dashboard.html';
+      };
+    }
+
     if (dopeAuth.user) {
       userNameElements.forEach(el => {
         el.textContent = dopeAuth.user.name;
       });
     }
+  } else if (navAuthButton) {
+    navAuthButton.textContent = 'Sign In';
+    navAuthButton.onclick = (event) => {
+      event.preventDefault();
+      showAuthModal('login');
+    };
   }
 }
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   createAuthModal();
+  if (dopeAuth.isAuthenticated()) {
+    await dopeAuth.getCurrentUser();
+  }
   updateAuthUI();
 });
 

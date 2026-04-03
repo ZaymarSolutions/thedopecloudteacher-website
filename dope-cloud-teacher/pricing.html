@@ -659,11 +659,32 @@
   <script src="js/course-data.js"></script>
   <script>
     let isOneTimePurchase = true;
+    let pendingPurchaseAction = null;
     const MEMBERSHIP_PLANS = {
       student: { name: 'Student Membership', price: 9.99, interval: 'month' },
       pro: { name: 'Pro Membership', price: 14, interval: 'month' },
       career: { name: 'Career Accelerator', price: 16, interval: 'month' }
     };
+
+    function requireAuthBeforePurchase(action) {
+      if (dopeAuth.isAuthenticated()) {
+        return false;
+      }
+
+      pendingPurchaseAction = action;
+      showAuthModal('login');
+      return true;
+    }
+
+    async function resumePendingPurchase() {
+      if (!pendingPurchaseAction || !dopeAuth.isAuthenticated()) {
+        return;
+      }
+
+      const action = pendingPurchaseAction;
+      pendingPurchaseAction = null;
+      await action();
+    }
 
     function togglePaymentPlan() {
       isOneTimePurchase = !isOneTimePurchase;
@@ -717,8 +738,7 @@
     }
 
     async function purchaseCourse(courseId, isOneTime = true) {
-      if (!dopeAuth.isAuthenticated()) {
-        showAuthModal('login');
+      if (requireAuthBeforePurchase(() => purchaseCourse(courseId, isOneTime))) {
         return;
       }
 
@@ -773,8 +793,7 @@
     }
 
     async function purchaseMembership(type) {
-      if (!dopeAuth.isAuthenticated()) {
-        showAuthModal('login');
+      if (requireAuthBeforePurchase(() => purchaseMembership(type))) {
         return;
       }
 
@@ -820,6 +839,20 @@
       }
     }
 
+    window.addEventListener('dct:auth-changed', async (event) => {
+      if (!event.detail?.authenticated) {
+        pendingPurchaseAction = null;
+        return;
+      }
+
+      try {
+        await resumePendingPurchase();
+      } catch (error) {
+        console.error('Resume purchase error:', error);
+        alert(error?.message || 'Unable to resume checkout. Please try again.');
+      }
+    });
+
     function contactCorporate() {
       // Show corporate contact form modal
       const modal = document.createElement('div');
@@ -836,7 +869,7 @@
         justify-content: center;
         z-index: 1000;
       `;
-      
+
       const form = document.createElement('div');
       form.style.cssText = `
         background: #171d3f;
