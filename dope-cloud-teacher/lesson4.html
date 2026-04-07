@@ -109,6 +109,80 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    .lesson-intro {
+      margin: 20px 0 30px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(123, 77, 242, 0.18), rgba(119, 239, 227, 0.08));
+      border: 1px solid rgba(119, 239, 227, 0.2);
+      border-radius: 14px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e8e8ff;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119,239,227,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-card h3 {
+      color: #77efe3;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .comparison-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: rgba(123,77,242,0.3);
+      color: #77efe3;
+    }
+    .comparison-table td {
+      background: rgba(255,255,255,0.03);
+    }
+    .bullet-list {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bullet-list li {
+      margin-bottom: 0.55rem;
+    }
+    .resource-links a {
+      color: #77efe3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
     .quiz-section {
       margin-top: 40px;
       background: rgba(255,255,255,0.05);
@@ -187,6 +261,30 @@
 
   <h1>Lesson 4: Benefits and Challenges of Cloud Computing</h1>
 
+  <div class="lesson-intro">
+    <h2>Lesson Roadmap</h2>
+    <p>This lesson helps you think like a decision-maker by weighing the <strong>advantages of cloud adoption</strong> against the <strong>operational, security, and governance risks</strong> that come with it.</p>
+    <div class="meta-pills">
+      <span class="meta-pill">⏱️ Estimated Time: 20–30 min</span>
+      <span class="meta-pill">⚖️ Focus: Trade-offs and decision making</span>
+      <span class="meta-pill">🎯 Outcome: Explain both value and risk</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>What You'll Learn</h3>
+        <p>The business case for cloud and the top risks organizations need to manage.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why It Matters</h3>
+        <p>Strong cloud professionals know how to balance agility with governance instead of overselling cloud as magic.</p>
+      </div>
+      <div class="info-card">
+        <h3>Career Relevance</h3>
+        <p>These trade-offs appear constantly in interviews, architecture reviews, and certification scenarios.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="content-block">
     <h2>Professional Overview</h2>
     <p>Cloud computing brings a wide array of benefits, including scalability, cost efficiency, global accessibility, disaster recovery, and increased collaboration. Organizations can scale up or down based on demand, eliminating the need for large capital expenditures. With pay-as-you-go models, cloud reduces waste by charging only for resources consumed.</p>
@@ -199,6 +297,53 @@
     <h2>Real-Life Scenarios</h2>
     <p><strong>Scenario 1:</strong> A small accounting firm moves their operations to the cloud to accommodate hybrid work. Staff begin using Microsoft 365, QuickBooks Online, and Google Drive. Productivity soars. However, during tax season, an outage in their document management platform delays submissions. This highlights the benefit of flexibility, but the challenge of availability.</p>
     <p><strong>Scenario 2:</strong> A nonprofit handling youth data uses a cloud CRM to track families and donors. While their software is affordable and scalable, a misconfigured access policy exposes personal info. They fix it fast—but learn the hard way about the importance of strong cloud security governance.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Benefits vs Challenges</h2>
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Benefit</th>
+            <th>Challenge to Watch</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cost</strong></td>
+            <td>Pay-as-you-go and lower upfront hardware spend</td>
+            <td>Costs can climb fast without monitoring, tagging, and budgets</td>
+          </tr>
+          <tr>
+            <td><strong>Scale</strong></td>
+            <td>Elastic capacity during demand spikes</td>
+            <td>Poorly designed systems can still fail or become too expensive</td>
+          </tr>
+          <tr>
+            <td><strong>Security</strong></td>
+            <td>Enterprise-grade tools and provider investment</td>
+            <td>Misconfigurations and weak IAM can still cause breaches</td>
+          </tr>
+          <tr>
+            <td><strong>Speed</strong></td>
+            <td>Faster deployment and global reach</td>
+            <td>Vendor lock-in or poor governance can slow future changes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block resource-links">
+    <h2>Smart Risk Reduction Checklist</h2>
+    <ul class="bullet-list">
+      <li>Use <strong>MFA</strong>, <strong>least privilege</strong>, and regular access reviews.</li>
+      <li>Set budgets, alerts, and tagging rules early to control spend.</li>
+      <li>Document backup, disaster recovery, and incident response expectations.</li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/well-architected/" target="_blank" rel="noopener noreferrer">Azure Well-Architected Framework</a></li>
+    </ul>
   </div>
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/M988_fsOSWo" title="Cloud Computing Benefits and Risks - Animated Explainer" frameborder="0" allowfullscreen></iframe>
@@ -274,5 +419,6 @@
   <script src="js/progress-tracker.js"></script>
   <!-- AI Training Assistant -->
   <script src="js/training-assistant.js"></script>
+  <script src="js/knowledge-guide.js"></script>
 </body>
 </html>

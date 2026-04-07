@@ -102,6 +102,80 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    .lesson-intro {
+      margin: 20px 0 30px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(123, 77, 242, 0.18), rgba(119, 239, 227, 0.08));
+      border: 1px solid rgba(119, 239, 227, 0.2);
+      border-radius: 14px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e8e8ff;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119,239,227,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-card h3 {
+      color: #77efe3;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .comparison-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: rgba(123,77,242,0.3);
+      color: #77efe3;
+    }
+    .comparison-table td {
+      background: rgba(255,255,255,0.03);
+    }
+    .bullet-list {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bullet-list li {
+      margin-bottom: 0.55rem;
+    }
+    .resource-links a {
+      color: #77efe3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
     .quiz-section {
       margin-top: 40px;
       background: rgba(255,255,255,0.05);
@@ -180,6 +254,30 @@
 
   <h1>Lesson 10: Certification and Career Planning</h1>
 
+  <div class="lesson-intro">
+    <h2>Lesson Roadmap</h2>
+    <p>This final lesson turns the course into a next-step plan by helping you connect <strong>certifications</strong>, <strong>portfolio work</strong>, and <strong>career storytelling</strong> into a real job strategy.</p>
+    <div class="meta-pills">
+      <span class="meta-pill">⏱️ Estimated Time: 20–30 min</span>
+      <span class="meta-pill">💼 Focus: Career direction and certification planning</span>
+      <span class="meta-pill">🎯 Outcome: Build your next-step roadmap</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>What You'll Learn</h3>
+        <p>How to choose a first certification, show proof of skill, and speak confidently about your growth.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why It Matters</h3>
+        <p>Certifications help you get noticed, but projects and communication are what help you get hired.</p>
+      </div>
+      <div class="info-card">
+        <h3>Career Relevance</h3>
+        <p>This is the transition from learning cloud to presenting yourself as someone ready for real opportunity.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="content-block">
     <h2>Professional Overview</h2>
     <p>Cloud certifications validate your knowledge and open doors to high-paying careers. They demonstrate hands-on skills and understanding of platforms like AWS, Azure, and Google Cloud. Entry-level certifications include AWS Cloud Practitioner, Microsoft AZ-900, and Google Cloud Digital Leader.</p>
@@ -192,6 +290,49 @@
     <h2>Real-Life Scenarios</h2>
     <p><strong>Scenario 1:</strong> A helpdesk technician sets a goal to become a cloud architect. She earns her AZ-900, then AZ-104, starts home labbing with Terraform and GitHub Actions, and eventually lands a job as a junior DevOps engineer. She shares her journey online and speaks at meetups.</p>
     <p><strong>Scenario 2:</strong> A military veteran completes an AWS re/Start bootcamp, passes the Cloud Practitioner, and leverages his project work to land an internship. He builds his portfolio by recreating enterprise-grade environments in the cloud and gets hired full-time in 6 months.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Starter Certification Pathways</h2>
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Goal</th>
+            <th>Good First Certification</th>
+            <th>Strong Next Move</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cloud foundations</strong></td>
+            <td><a href="az-900-azure-fundamentals.html">AZ-900</a> or AWS Cloud Practitioner</td>
+            <td>AZ-104 or a support/admin pathway</td>
+          </tr>
+          <tr>
+            <td><strong>AI and cloud</strong></td>
+            <td><a href="ai-900-azure-ai-fundamentals.html">AI-900</a></td>
+            <td>Azure AI Engineer or data-oriented learning</td>
+          </tr>
+          <tr>
+            <td><strong>Operations and administration</strong></td>
+            <td>AZ-104</td>
+            <td>Security, architecture, or DevOps specialization</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block resource-links">
+    <h2>Portfolio Checklist</h2>
+    <ul class="bullet-list">
+      <li>Publish at least one cloud project on <strong>GitHub</strong>.</li>
+      <li>Document what problem you solved, what services you used, and what you learned.</li>
+      <li>Update <strong>LinkedIn</strong> with coursework, labs, and certification milestones.</li>
+      <li>Practice telling a short story about your work using the problem → action → result format.</li>
+      <li><a href="cloud-career-starter-kit.html">Open the Cloud Career Starter Kit</a></li>
+    </ul>
   </div>
 
   <div class="quiz-section">
@@ -265,5 +406,6 @@
   <script src="js/progress-tracker.js"></script>
   <!-- AI Training Assistant -->
   <script src="js/training-assistant.js"></script>
+  <script src="js/knowledge-guide.js"></script>
 </body>
 </html>

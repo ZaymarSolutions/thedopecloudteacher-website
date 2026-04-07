@@ -113,6 +113,80 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    .lesson-intro {
+      margin: 20px 0 30px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(123, 77, 242, 0.18), rgba(119, 239, 227, 0.08));
+      border: 1px solid rgba(119, 239, 227, 0.2);
+      border-radius: 14px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e8e8ff;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119,239,227,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-card h3 {
+      color: #77efe3;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .comparison-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: rgba(123,77,242,0.3);
+      color: #77efe3;
+    }
+    .comparison-table td {
+      background: rgba(255,255,255,0.03);
+    }
+    .bullet-list {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bullet-list li {
+      margin-bottom: 0.55rem;
+    }
+    .resource-links a {
+      color: #77efe3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
     .quiz-section {
       margin-top: 40px;
       background: rgba(255,255,255,0.05);
@@ -193,6 +267,30 @@
 
   <h1>Lesson 2: Cloud Service Models</h1>
 
+  <div class="lesson-intro">
+    <h2>Lesson Roadmap</h2>
+    <p>This lesson breaks down the three major cloud service models—<strong>IaaS</strong>, <strong>PaaS</strong>, and <strong>SaaS</strong>—so you can quickly understand <strong>who manages what</strong>, <strong>how much control you get</strong>, and <strong>which option best fits a workload</strong>.</p>
+    <div class="meta-pills">
+      <span class="meta-pill">⏱️ Estimated Time: 20–30 min</span>
+      <span class="meta-pill">🏗️ Focus: IaaS vs PaaS vs SaaS</span>
+      <span class="meta-pill">🎯 Outcome: Choose the right service model</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>What You'll Learn</h3>
+        <p>The control, speed, and trade-offs behind the most common cloud delivery models.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why It Matters</h3>
+        <p>Most cloud architecture, budgeting, and security decisions start with choosing the right service layer.</p>
+      </div>
+      <div class="info-card">
+        <h3>Career Relevance</h3>
+        <p>This is a core concept in AZ-900, AWS Cloud Practitioner, and real cloud support or admin work.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="content-block">
     <h2>Professional Overview</h2>
     <p>Cloud computing service models define how services are delivered to users and organizations. These models simplify development, deployment, and infrastructure management. The three primary models are Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS).</p>
@@ -206,6 +304,52 @@
     <h2>Real-Life Scenarios</h2>
     <p><strong>Scenario 1:</strong> A freelance designer uses Adobe Creative Cloud (SaaS) for editing graphics, Dropbox (SaaS) for file sharing, and occasionally uses AWS Lightsail (IaaS) to test hosting a portfolio site. She doesn’t worry about infrastructure or backend code—everything’s plug-and-play.</p>
     <p><strong>Scenario 2:</strong> A local nonprofit gets a grant and wants to build a community app. Their developer uses Firebase (PaaS) to spin up the backend in a weekend, deploys it to Google App Engine, and links it to a simple website on Netlify. No servers to patch, no infrastructure to buy—just a complete solution deployed using service models tailored to small teams and fast delivery.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Service Model Comparison</h2>
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>You Manage</th>
+            <th>Provider Manages</th>
+            <th>Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>IaaS</strong></td>
+            <td>OS, apps, data, runtime, and most configuration</td>
+            <td>Physical hardware, networking foundation, virtualization</td>
+            <td>Maximum control, custom environments, admin-heavy workloads</td>
+          </tr>
+          <tr>
+            <td><strong>PaaS</strong></td>
+            <td>Your code, app logic, and data</td>
+            <td>Servers, runtime, patching, scaling platform</td>
+            <td>Developers who want to move fast without managing infrastructure</td>
+          </tr>
+          <tr>
+            <td><strong>SaaS</strong></td>
+            <td>Mainly usage, settings, and user access</td>
+            <td>The full application stack</td>
+            <td>End users and teams that need software immediately</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="content-block resource-links">
+    <h2>How to Choose the Right Model</h2>
+    <ul class="bullet-list">
+      <li><strong>Choose IaaS</strong> when you need deep infrastructure control or want to configure servers yourself.</li>
+      <li><strong>Choose PaaS</strong> when the goal is fast development and deployment with less operational overhead.</li>
+      <li><strong>Choose SaaS</strong> when you just need the finished software and don’t want to manage the backend.</li>
+      <li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/" target="_blank" rel="noopener noreferrer">Microsoft Learn: describe cloud service types</a></li>
+    </ul>
   </div>
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/ae_DKNwK_ms" title="Cloud Service Models - Animated Explainer" frameborder="0" allowfullscreen></iframe>
@@ -297,5 +441,6 @@
   <script src="js/progress-tracker.js"></script>
   <!-- AI Training Assistant -->
   <script src="js/training-assistant.js"></script>
+  <script src="js/knowledge-guide.js"></script>
 </body>
 </html>

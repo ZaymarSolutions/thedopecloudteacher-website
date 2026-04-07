@@ -109,6 +109,80 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    .lesson-intro {
+      margin: 20px 0 30px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(123, 77, 242, 0.18), rgba(119, 239, 227, 0.08));
+      border: 1px solid rgba(119, 239, 227, 0.2);
+      border-radius: 14px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e8e8ff;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119,239,227,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-card h3 {
+      color: #77efe3;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .comparison-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: rgba(123,77,242,0.3);
+      color: #77efe3;
+    }
+    .comparison-table td {
+      background: rgba(255,255,255,0.03);
+    }
+    .bullet-list {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bullet-list li {
+      margin-bottom: 0.55rem;
+    }
+    .resource-links a {
+      color: #77efe3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
     .quiz-section {
       margin-top: 40px;
       background: rgba(255,255,255,0.05);
@@ -187,22 +261,124 @@
 
   <h1>Lesson 3: Cloud Deployment Models</h1>
 
+  <div class="lesson-intro">
+    <h2>Lesson Roadmap</h2>
+    <p>This lesson explains <strong>where cloud infrastructure lives</strong>, <strong>who manages it</strong>, and <strong>why organizations choose one deployment model over another</strong>. This is one of the most important foundations for cloud architecture, security, and certification prep.</p>
+    <div class="meta-pills">
+      <span class="meta-pill">⏱️ Estimated Time: 20–30 min</span>
+      <span class="meta-pill">🎯 Focus: Architecture Decisions</span>
+      <span class="meta-pill">☁️ Models: Public, Private, Hybrid, Community</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>What You'll Learn</h3>
+        <p>How each deployment model works, when it makes sense, and what trade-offs matter most in real organizations.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why It Matters</h3>
+        <p>Deployment decisions affect security, compliance, costs, performance, and how quickly teams can launch new services.</p>
+      </div>
+      <div class="info-card">
+        <h3>Career Relevance</h3>
+        <p>These concepts show up constantly in roles like cloud support, cloud engineer, solutions architect, and security analyst.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="content-block">
     <h2>Professional Overview</h2>
-    <p>Cloud deployment models define how cloud services are made available to users and organizations. Each model varies in terms of infrastructure ownership, security, scalability, and customization. The four main models are Public Cloud, Private Cloud, Hybrid Cloud, and Community Cloud.</p>
-    <p><strong>Public Cloud</strong> is offered by third-party providers like AWS, Azure, or Google Cloud. The infrastructure is owned and managed by the provider and shared among multiple organizations. It's highly scalable and cost-effective, ideal for startups and fast-growing companies.</p>
-    <p><strong>Private Cloud</strong> is a cloud environment dedicated to a single organization. It can be hosted on-premises or by a third-party. It offers greater control and security, making it suitable for government agencies or companies with strict compliance requirements.</p>
-    <p><strong>Hybrid Cloud</strong> combines public and private environments. It allows data and applications to move between the two, offering greater flexibility and optimized workload deployment. It's great for companies that want to keep sensitive data in-house but leverage public cloud for burst capacity.</p>
-    <p><strong>Community Cloud</strong> is shared by several organizations with similar requirements. These could be regulatory, policy, or security needs. It's commonly used in education or government coalitions.</p>
+    <p>Cloud deployment models define how cloud services are delivered, where the infrastructure is hosted, and how resources are shared or isolated. Choosing the right model is not just a technical decision—it is also a business decision that influences governance, agility, and long-term operating cost.</p>
+    <ul class="bullet-list">
+      <li><strong>Public Cloud:</strong> Infrastructure is owned and operated by providers such as AWS, Microsoft Azure, or Google Cloud, and delivered over the internet to many customers.</li>
+      <li><strong>Private Cloud:</strong> Cloud resources are dedicated to a single organization, either on-premises or in a hosted environment, giving more control and tighter policy enforcement.</li>
+      <li><strong>Hybrid Cloud:</strong> A combination of private and public environments that allows data or workloads to move between them when needed.</li>
+      <li><strong>Community Cloud:</strong> A shared platform designed for organizations with similar compliance, regulatory, or mission needs, such as public sector or education groups.</li>
+    </ul>
+    <p>In practice, organizations rarely choose a model based on hype. They choose based on questions like: <em>How sensitive is the data? What are the compliance requirements? How fast do we need to scale? What can our team realistically manage?</em></p>
+  </div>
+
+  <div class="content-block">
+    <h2>Deployment Model Comparison</h2>
+    <div class="comparison-table-wrap">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Best For</th>
+            <th>Main Advantage</th>
+            <th>Main Trade-Off</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Public Cloud</strong></td>
+            <td>Startups, web apps, fast-growing teams, test environments</td>
+            <td>Low upfront cost and fast scalability</td>
+            <td>Less direct infrastructure control</td>
+          </tr>
+          <tr>
+            <td><strong>Private Cloud</strong></td>
+            <td>Government, healthcare, finance, strict compliance workloads</td>
+            <td>Greater control, isolation, and customization</td>
+            <td>Higher cost and management overhead</td>
+          </tr>
+          <tr>
+            <td><strong>Hybrid Cloud</strong></td>
+            <td>Organizations balancing legacy systems with modern cloud apps</td>
+            <td>Flexibility to keep sensitive systems private while scaling publicly</td>
+            <td>More complex integration and governance</td>
+          </tr>
+          <tr>
+            <td><strong>Community Cloud</strong></td>
+            <td>Organizations with shared missions or regulations</td>
+            <td>Shared cost and shared policy alignment</td>
+            <td>Less common and more specialized to build</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="content-block">
     <h2>Real-Life Scenarios</h2>
-    <p><strong>Scenario 1:</strong> A hospital uses a private cloud to store patient records (HIPAA-compliant), but runs its website and marketing services on a public cloud. When there’s a data-heavy analytics task, it uses hybrid cloud to burst into public compute power during demand spikes.</p>
-    <p><strong>Scenario 2:</strong> A school district shares curriculum data and digital tools through a cloud platform built specifically for education systems. The community cloud ensures all participating schools get the same level of access, security, and collaboration tools without reinventing the wheel for each one.</p>
+    <p><strong>Healthcare Example:</strong> A hospital may store patient records in a <strong>private cloud</strong> for HIPAA compliance while using a <strong>public cloud</strong> for its website, appointment scheduling, or analytics dashboards.</p>
+    <p><strong>Retail Example:</strong> An online store may run most of the year in the <strong>public cloud</strong>, then temporarily scale up during the holidays—one of the classic reasons businesses love cloud elasticity.</p>
+    <p><strong>Enterprise Example:</strong> A large company with older on-prem systems may adopt a <strong>hybrid cloud</strong> approach so it can modernize gradually instead of moving everything at once.</p>
+    <p><strong>Education/Government Example:</strong> Several school systems or agencies may share a <strong>community cloud</strong> because they need similar security rules, reporting controls, and collaboration tools.</p>
   </div>
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/lkif_dTVU1I" title="Cloud Deployment Models - Animated Explainer" frameborder="0" allowfullscreen></iframe>
+
+  <div class="content-block">
+    <h2>How to Choose the Right Model</h2>
+    <ul class="bullet-list">
+      <li><strong>Choose public cloud</strong> when speed, flexibility, and lower startup cost matter most.</li>
+      <li><strong>Choose private cloud</strong> when you need tight governance, predictable control, or highly customized security boundaries.</li>
+      <li><strong>Choose hybrid cloud</strong> when you are modernizing step-by-step and need some systems to stay private while others scale in the public cloud.</li>
+      <li><strong>Choose community cloud</strong> when several organizations share the same compliance requirements and can benefit from pooled infrastructure.</li>
+    </ul>
+    <p>A strong cloud professional knows that there is no single “best” model—only the best fit for a specific workload, budget, and risk profile.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Exam Tips & Key Terms</h2>
+    <ul class="bullet-list">
+      <li><strong>Scalability:</strong> the ability to grow resources as demand increases.</li>
+      <li><strong>Elasticity:</strong> the ability to automatically scale up and down as demand changes.</li>
+      <li><strong>Compliance:</strong> meeting legal, industry, and policy requirements for data handling.</li>
+      <li><strong>Governance:</strong> the rules and controls that determine how cloud resources are used and managed.</li>
+    </ul>
+    <p>If you are preparing for certifications like <strong>AZ-900</strong>, <strong>AWS Cloud Practitioner</strong>, or <strong>AI-900</strong>, expect scenario-based questions that ask which model best fits a business need.</p>
+  </div>
+
+  <div class="content-block resource-links">
+    <h2>Recommended Resources</h2>
+    <ul class="bullet-list">
+      <li><a href="https://learn.microsoft.com/en-us/training/modules/describe-cloud-service-types/" target="_blank" rel="noopener noreferrer">Microsoft Learn: Describe cloud service types</a></li>
+      <li><a href="https://aws.amazon.com/what-is-cloud-computing/" target="_blank" rel="noopener noreferrer">AWS: What is cloud computing?</a></li>
+      <li><a href="https://cloud.google.com/learn/what-is-cloud-computing" target="_blank" rel="noopener noreferrer">Google Cloud: What is cloud computing?</a></li>
+    </ul>
+  </div>
 
   <div class="quiz-section">
     <h2>Quick Quiz</h2>
@@ -275,5 +451,6 @@
   <script src="js/progress-tracker.js"></script>
   <!-- AI Training Assistant -->
   <script src="js/training-assistant.js"></script>
+  <script src="js/knowledge-guide.js"></script>
 </body>
 </html>

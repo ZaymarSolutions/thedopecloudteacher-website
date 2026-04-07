@@ -109,6 +109,57 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    .lesson-intro {
+      margin: 20px 0 30px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(123, 77, 242, 0.18), rgba(119, 239, 227, 0.08));
+      border: 1px solid rgba(119, 239, 227, 0.2);
+      border-radius: 14px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e8e8ff;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119,239,227,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-card h3 {
+      color: #77efe3;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .bullet-list {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bullet-list li {
+      margin-bottom: 0.55rem;
+    }
+    .resource-links a {
+      color: #77efe3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
     .quiz-section {
       margin-top: 40px;
       background: rgba(255,255,255,0.05);
@@ -187,6 +238,30 @@
 
   <h1>Lesson 5: Getting Started with Cloud</h1>
 
+  <div class="lesson-intro">
+    <h2>Lesson Roadmap</h2>
+    <p>This lesson helps beginners move from curiosity to action by showing how to <strong>set up free cloud accounts</strong>, <strong>choose a first certification</strong>, and <strong>practice in safe environments without overspending</strong>.</p>
+    <div class="meta-pills">
+      <span class="meta-pill">⏱️ Estimated Time: 20–30 min</span>
+      <span class="meta-pill">🚀 Focus: First steps and setup</span>
+      <span class="meta-pill">🎯 Outcome: Start learning with confidence</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>What You'll Learn</h3>
+        <p>How to choose a provider, start a lab account, and build momentum without getting overwhelmed.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why It Matters</h3>
+        <p>Cloud careers grow faster when you combine reading with hands-on practice from day one.</p>
+      </div>
+      <div class="info-card">
+        <h3>Career Relevance</h3>
+        <p>Setting up labs, budgets, and free-tier practice is one of the smartest first moves for beginners.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="content-block">
     <h2>Professional Overview</h2>
     <p>Starting your cloud journey involves choosing a provider, understanding your goals, and gaining hands-on experience with cloud platforms. Common entry points include learning platforms like Microsoft Learn, AWS Skill Builder, and Google Cloud Skills Boost. Begin by creating a free-tier account and exploring core services such as virtual machines, cloud storage, databases, and networking.</p>
@@ -199,6 +274,26 @@
     <h2>Real-Life Scenarios</h2>
     <p><strong>Scenario 1:</strong> A career-changer starts studying cloud at night after work. They sign up for Azure’s free account and begin learning through Microsoft Learn’s sandbox. After 6 weeks, they pass the AZ-900 and use that momentum to land a junior support role at a cloud consulting firm.</p>
     <p><strong>Scenario 2:</strong> A solopreneur wants to stop paying developers every time they need a website change. They take a course on AWS and build their own simple web app using S3, Lambda, and API Gateway. Cloud gave them control—and saved thousands.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Your First 30 Days in Cloud</h2>
+    <ul class="bullet-list">
+      <li><strong>Week 1:</strong> Learn the basics—cloud concepts, service models, and deployment models.</li>
+      <li><strong>Week 2:</strong> Create a free Azure, AWS, or GCP account and explore the portal safely.</li>
+      <li><strong>Week 3:</strong> Complete beginner labs on identity, storage, networking, or a simple website deployment.</li>
+      <li><strong>Week 4:</strong> Pick a first certification path like <strong>AZ-900</strong> or <strong>AWS Cloud Practitioner</strong> and start a study routine.</li>
+    </ul>
+  </div>
+
+  <div class="content-block resource-links">
+    <h2>Free Starting Points</h2>
+    <ul class="bullet-list">
+      <li><a href="https://azure.microsoft.com/en-us/free/" target="_blank" rel="noopener noreferrer">Azure Free Account</a></li>
+      <li><a href="https://aws.amazon.com/free/" target="_blank" rel="noopener noreferrer">AWS Free Tier</a></li>
+      <li><a href="https://cloud.google.com/free" target="_blank" rel="noopener noreferrer">Google Cloud Free Tier</a></li>
+      <li><a href="https://learn.microsoft.com/training/" target="_blank" rel="noopener noreferrer">Microsoft Learn training paths</a></li>
+    </ul>
   </div>
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/nHyI1a-02yA" title="Getting Started in the Cloud - Animated Guide" frameborder="0" allowfullscreen></iframe>
@@ -275,5 +370,6 @@
   <script src="js/progress-tracker.js"></script>
   <!-- AI Training Assistant -->
   <script src="js/training-assistant.js"></script>
+  <script src="js/knowledge-guide.js"></script>
 </body>
 </html>

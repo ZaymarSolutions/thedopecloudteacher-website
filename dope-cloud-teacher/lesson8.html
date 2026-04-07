@@ -102,6 +102,80 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    .lesson-intro {
+      margin: 20px 0 30px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(123, 77, 242, 0.18), rgba(119, 239, 227, 0.08));
+      border: 1px solid rgba(119, 239, 227, 0.2);
+      border-radius: 14px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e8e8ff;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119,239,227,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-card h3 {
+      color: #77efe3;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .comparison-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: rgba(123,77,242,0.3);
+      color: #77efe3;
+    }
+    .comparison-table td {
+      background: rgba(255,255,255,0.03);
+    }
+    .bullet-list {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bullet-list li {
+      margin-bottom: 0.55rem;
+    }
+    .resource-links a {
+      color: #77efe3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
     .quiz-section {
       margin-top: 40px;
       background: rgba(255,255,255,0.05);
@@ -180,6 +254,30 @@
 
   <h1>Lesson 8: Networking in the Cloud</h1>
 
+  <div class="lesson-intro">
+    <h2>Lesson Roadmap</h2>
+    <p>This lesson introduces the network building blocks behind secure cloud systems: <strong>virtual networks</strong>, <strong>subnets</strong>, <strong>routing</strong>, <strong>load balancing</strong>, and <strong>private connectivity</strong>.</p>
+    <div class="meta-pills">
+      <span class="meta-pill">⏱️ Estimated Time: 20–30 min</span>
+      <span class="meta-pill">🌐 Focus: Connectivity and traffic flow</span>
+      <span class="meta-pill">🎯 Outcome: Understand secure cloud networking</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>What You'll Learn</h3>
+        <p>How cloud resources communicate and how network controls protect workloads from unnecessary exposure.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why It Matters</h3>
+        <p>Networking can make or break reliability, performance, and security in a cloud deployment.</p>
+      </div>
+      <div class="info-card">
+        <h3>Career Relevance</h3>
+        <p>This appears in cloud administration, security, architecture, and support troubleshooting every day.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="content-block">
     <h2>Professional Overview</h2>
     <p>Cloud networking enables resources to securely and efficiently communicate across global environments. Virtual networks (VNets in Azure, VPCs in AWS) are foundational to every cloud deployment. These provide IP ranges, subnets, and routing controls for traffic between services, datacenters, and the internet.</p>
@@ -192,6 +290,28 @@
     <h2>Real-Life Scenarios</h2>
     <p><strong>Scenario 1:</strong> A fintech company deploys web apps in AWS and uses load balancers to manage customer traffic. They configure VPCs with subnets, route tables, and security groups to ensure compliance and prevent unauthorized access.</p>
     <p><strong>Scenario 2:</strong> A government agency links its on-prem datacenter to Azure using a VPN gateway. They use NSGs (Network Security Groups) and firewalls to limit exposure, enforce traffic rules, and segment services with private endpoints for internal-only APIs.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Networking Building Blocks</h2>
+    <ul class="bullet-list">
+      <li><strong>VNet / VPC:</strong> Your private network space in the cloud.</li>
+      <li><strong>Subnet:</strong> A smaller section of the network used to separate workloads.</li>
+      <li><strong>NSG / Security Group:</strong> Rules that allow or deny traffic.</li>
+      <li><strong>Load Balancer:</strong> Spreads traffic across multiple resources for availability.</li>
+      <li><strong>DNS:</strong> Resolves friendly names to IP addresses.</li>
+      <li><strong>VPN / ExpressRoute:</strong> Connects on-premises networks to cloud environments.</li>
+    </ul>
+  </div>
+
+  <div class="content-block resource-links">
+    <h2>Good Networking Habits</h2>
+    <ul class="bullet-list">
+      <li>Plan IP ranges before deployment so networks can grow cleanly.</li>
+      <li>Use <strong>private endpoints</strong> and segmentation for sensitive systems.</li>
+      <li>Review firewall and NSG rules regularly to reduce exposure.</li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" target="_blank" rel="noopener noreferrer">Azure virtual network overview</a></li>
+    </ul>
   </div>
 
   <div class="quiz-section">
@@ -266,5 +386,6 @@
   <script src="js/progress-tracker.js"></script>
   <!-- AI Training Assistant -->
   <script src="js/training-assistant.js"></script>
+  <script src="js/knowledge-guide.js"></script>
 </body>
 </html>

@@ -114,6 +114,80 @@
       background: rgba(255,255,255,0.05);
       border-radius: 10px;
     }
+    .lesson-intro {
+      margin: 20px 0 30px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(123, 77, 242, 0.18), rgba(119, 239, 227, 0.08));
+      border: 1px solid rgba(119, 239, 227, 0.2);
+      border-radius: 14px;
+    }
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1rem 0 1.25rem;
+    }
+    .meta-pill {
+      background: rgba(255,255,255,0.08);
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      color: #e8e8ff;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119,239,227,0.12);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-card h3 {
+      color: #77efe3;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+    .comparison-table-wrap {
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+    .comparison-table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 0.85rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: rgba(123,77,242,0.3);
+      color: #77efe3;
+    }
+    .comparison-table td {
+      background: rgba(255,255,255,0.03);
+    }
+    .bullet-list {
+      padding-left: 1.2rem;
+      line-height: 1.8;
+    }
+    .bullet-list li {
+      margin-bottom: 0.55rem;
+    }
+    .resource-links a {
+      color: #77efe3;
+      text-decoration: none;
+    }
+    .resource-links a:hover {
+      text-decoration: underline;
+    }
     .quiz-section {
       margin-top: 40px;
       background: rgba(255,255,255,0.05);
@@ -194,6 +268,30 @@
 
   <h1>Lesson 1: Cloud Evolution Timeline</h1>
 
+  <div class="lesson-intro">
+    <h2>Lesson Roadmap</h2>
+    <p>This lesson traces the journey from <strong>time-sharing and mainframes</strong> to <strong>internet-scale cloud platforms</strong>. Understanding that evolution helps you see why today's cloud services are built around shared resources, rapid scaling, and on-demand access.</p>
+    <div class="meta-pills">
+      <span class="meta-pill">⏱️ Estimated Time: 20–30 min</span>
+      <span class="meta-pill">🕰️ Focus: History to Modern Cloud</span>
+      <span class="meta-pill">🎯 Outcome: Understand why cloud exists</span>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>What You'll Learn</h3>
+        <p>Key milestones, innovators, and shifts that moved computing from local hardware to cloud services.</p>
+      </div>
+      <div class="info-card">
+        <h3>Why It Matters</h3>
+        <p>Modern concepts like elasticity, self-service, and pay-as-you-go only make sense when you know what problems cloud was built to solve.</p>
+      </div>
+      <div class="info-card">
+        <h3>Career Relevance</h3>
+        <p>This foundation helps with certification questions, migration planning, and explaining cloud value to non-technical stakeholders.</p>
+      </div>
+    </div>
+  </div>
+
   <div class="content-block">
     <h2>Professional Overview</h2>
     <p>Cloud computing didn't emerge overnight—it evolved from decades of innovation, experimentation, and necessity. In the early 1960s, the concept of time-sharing revolutionized mainframe usage by allowing multiple users to access computing power simultaneously. This broke the mold of one machine, one user, and laid the foundation for resource-sharing that would become critical in future computing models. Over time, computer systems advanced, networking technology expanded, and the vision of computing as a service began to take shape. The development of ARPANET in the 1960s, a precursor to the internet, enabled institutions to share information and laid the groundwork for the interconnected digital world we experience today.</p>
@@ -206,6 +304,27 @@
     <h2>Real-Life Scenarios</h2>
     <p><strong>Scenario 1:</strong> Think back to the early 2000s when installing Microsoft Office meant going to Best Buy, buying a disc, and manually installing it on every computer in your household or office. If the CD scratched or you lost the product key, you were out of luck. Fast-forward to today: you log into Office.com or Google Docs and immediately have access to the latest version, synced across all devices. No discs. No manual installs. No barriers. That’s the power of cloud—instant availability, auto-updates, and flexibility from anywhere.</p>
     <p><strong>Scenario 2:</strong> A local barber wants to modernize his business. He signs up for an online booking platform, sets up payments with Square, and starts a digital loyalty program. He has no server closet, no IT staff, and no infrastructure—just cloud-based apps that run on his phone and tablet. His entire business operations—from scheduling to payment processing to client tracking—are hosted in the cloud. He didn’t need a degree in tech to make it happen. He needed cloud-enabled services that were intuitive, accessible, and cost-effective. That’s the evolution in action, making tools once reserved for enterprises available to anyone with a Wi-Fi signal and a vision.</p>
+  </div>
+
+  <div class="content-block">
+    <h2>Major Milestones in Cloud History</h2>
+    <ul class="bullet-list">
+      <li><strong>1960s:</strong> Time-sharing and utility computing ideas emerge, including John McCarthy's famous vision of computing as a public utility.</li>
+      <li><strong>1970s–1990s:</strong> Networking, virtualization, and the internet expand what shared computing can look like.</li>
+      <li><strong>2006:</strong> Amazon helps popularize public cloud with services like EC2 and S3, changing how startups and enterprises deploy infrastructure.</li>
+      <li><strong>2010s:</strong> Containers, DevOps, serverless, and hybrid cloud strategies reshape software delivery.</li>
+      <li><strong>Today:</strong> Cloud powers AI, global collaboration, data analytics, edge computing, and real-time digital services.</li>
+    </ul>
+  </div>
+
+  <div class="content-block resource-links">
+    <h2>Key Takeaways & Resources</h2>
+    <ul class="bullet-list">
+      <li><strong>On-demand self-service</strong>, <strong>broad network access</strong>, and <strong>elasticity</strong> are not random buzzwords—they are direct outcomes of decades of computing evolution.</li>
+      <li>Understanding this timeline helps you explain why cloud replaced so much traditional infrastructure.</li>
+      <li><a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-145.pdf" target="_blank" rel="noopener noreferrer">NIST definition of cloud computing</a></li>
+      <li><a href="https://aws.amazon.com/what-is-cloud-computing/" target="_blank" rel="noopener noreferrer">AWS: What is cloud computing?</a></li>
+    </ul>
   </div>
 
   <iframe width="560" height="315" src="https://www.youtube.com/embed/2LaAJq1lB1Q" title="Animated Explainer - What is Cloud Computing?" frameborder="0" allowfullscreen></iframe>
@@ -277,5 +396,6 @@
   <script src="js/progress-tracker.js"></script>
   <!-- AI Training Assistant -->
   <script src="js/training-assistant.js"></script>
+  <script src="js/knowledge-guide.js"></script>
 </body>
 </html>
