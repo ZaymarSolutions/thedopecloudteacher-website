@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /dashboard.html
+Disallow: /login.html
+Disallow: /verify.html
+Disallow: /certificate.html
+Disallow: /leads-admin.html
+Disallow: /api/
+
+Sitemap: https://thedopecloudteacher.org/sitemap.xml
+Host: https://thedopecloudteacher.org

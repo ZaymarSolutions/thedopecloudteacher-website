@@ -85,30 +85,41 @@ async function readApiError(response, fallbackMessage) {
   return `${fallbackMessage} (HTTP ${response.status})`;
 }
 
+const GUMROAD_STORE_URL = 'https://roseecraft.gumroad.com';
+
 const HOSTED_CHECKOUT_LINKS = {
-  'cloud-fundamentals-101': 'https://buy.stripe.com/3cI6oG6ao8KSbRx1hS77O04'
+  'cloud-fundamentals-101': `${GUMROAD_STORE_URL}/l/cloud-fundamentals-101`,
+  'cloud-security-engineer': 'https://gumroad.com/l/ffudfq',
+  'devops-automation': 'https://gumroad.com/l/cpqdtk',
+  'serverless-microservices': 'https://gumroad.com/l/cqkceh',
+  'intro-to-ai-ml': `${GUMROAD_STORE_URL}/l/intro-to-ai-ml`,
+  student: `${GUMROAD_STORE_URL}/l/student-membership`,
+  pro: `${GUMROAD_STORE_URL}/l/pro-membership`,
+  career: `${GUMROAD_STORE_URL}/l/career-accelerator`,
+  'cloud-architect-pathway': GUMROAD_STORE_URL,
+  'data-engineering-cloud': GUMROAD_STORE_URL
 };
 
 const PAYMENT_SUPPORT_EMAIL = 'thedopecloudteacher@gmail.com';
 
-function getHostedCheckoutUrl(courseId) {
-  return HOSTED_CHECKOUT_LINKS[courseId] || '';
+function getHostedCheckoutUrl(productId) {
+  return HOSTED_CHECKOUT_LINKS[productId] || GUMROAD_STORE_URL;
 }
 
 function isStripeConfigurationIssue(message = '') {
   return /invalid api key|stripe is not configured|authentication with stripe|no api key provided/i.test(String(message));
 }
 
-function getFriendlyCheckoutError(message = '', courseId = '') {
+function getFriendlyCheckoutError(message = '', productId = '') {
   if (isStripeConfigurationIssue(message)) {
-    const hostedUrl = getHostedCheckoutUrl(courseId);
+    const hostedUrl = getHostedCheckoutUrl(productId);
     return hostedUrl
-      ? 'Secure checkout is being redirected through our hosted payment page.'
+      ? 'Checkout is being redirected through the Gumroad storefront.'
       : `Checkout is temporarily unavailable. Please contact ${PAYMENT_SUPPORT_EMAIL} for help enrolling.`;
   }
 
   if (/Unable to reach the app server/i.test(String(message))) {
-    return 'The checkout server is temporarily unreachable. Please try again shortly.';
+    return 'The app server is temporarily unreachable. Please try again shortly or use the Gumroad storefront.';
   }
 
   return message || 'Unable to start checkout right now. Please try again.';
@@ -118,7 +129,8 @@ window.DCT_PAYMENT_HELPERS = {
   getHostedCheckoutUrl,
   isStripeConfigurationIssue,
   getFriendlyCheckoutError,
-  supportEmail: PAYMENT_SUPPORT_EMAIL
+  supportEmail: PAYMENT_SUPPORT_EMAIL,
+  storeUrl: GUMROAD_STORE_URL
 };
 
 class DopeCloudAuth {

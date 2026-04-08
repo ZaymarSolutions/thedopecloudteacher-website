@@ -5,7 +5,7 @@ const COURSE_PATHWAYS = {
     title: 'Cloud Fundamentals 101',
     subtitle: 'Your First Step Into Cloud Computing',
     description: 'Master the essentials of cloud computing across AWS, Azure, and GCP. Perfect for absolute beginners.',
-    price: 297,
+    price: 97,
     duration: '15 hours',
     level: 'Beginner',
     category: 'Cloud Basics',
