@@ -1034,15 +1034,10 @@
     }
 
     async function enrollInCourse(courseId) {
-      if (!dopeAuth.isAuthenticated()) {
-        showAuthModal('login');
-        return;
-      }
-
       try {
         await dopeCourses.purchaseCourse(courseId);
       } catch (error) {
-        alert('Enrollment failed: ' + error.message);
+        alert(error?.message || 'Enrollment is temporarily unavailable. Please try again shortly.');
       }
     }
 

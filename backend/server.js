@@ -259,12 +259,23 @@ const ensureStripeConfigured = (res) => {
 
 const getStripeErrorResponse = (error, fallbackMessage) => {
   const status = (error && typeof error.statusCode === 'number') ? error.statusCode : 500;
-  const message = (error && error.raw && error.raw.message) || error.message || fallbackMessage;
+  const rawMessage = (error && error.raw && error.raw.message) || error.message || fallbackMessage;
   const code = (error && error.raw && error.raw.code) || error.code || null;
+  const sanitizedMessage = /sk_|pk_|rk_|mk_/i.test(String(rawMessage || '')) ? fallbackMessage : rawMessage;
+  const isConfigurationIssue = /invalid api key|authentication with stripe|no api key provided/i.test(String(rawMessage || ''));
+
+  if (isConfigurationIssue) {
+    return {
+      status: 503,
+      payload: {
+        error: 'Checkout is temporarily unavailable. Please use the hosted payment link or contact thedopecloudteacher@gmail.com.'
+      }
+    };
+  }
 
   return {
     status,
-    payload: code ? { error: message, code } : { error: message }
+    payload: code ? { error: sanitizedMessage, code } : { error: sanitizedMessage }
   };
 };
 

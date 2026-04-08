@@ -738,6 +738,13 @@
     }
 
     async function purchaseCourse(courseId, isOneTime = true) {
+      const hostedCheckoutUrl = window.DCT_PAYMENT_HELPERS?.getHostedCheckoutUrl?.(courseId);
+
+      if (isOneTime && hostedCheckoutUrl) {
+        window.location.href = hostedCheckoutUrl;
+        return;
+      }
+
       if (requireAuthBeforePurchase(() => purchaseCourse(courseId, isOneTime))) {
         return;
       }
@@ -761,21 +768,24 @@
             })
           });
 
-          const data = await response.json();
+          const data = await response.json().catch(() => ({}));
           if (!response.ok) {
-            alert(data.error || `Checkout failed (HTTP ${response.status}). Please try again.`);
+            alert(window.DCT_PAYMENT_HELPERS?.getFriendlyCheckoutError?.(data.error || `Checkout failed (HTTP ${response.status}). Please try again.`, courseId)
+              || data.error || `Checkout failed (HTTP ${response.status}). Please try again.`);
             return;
           }
 
           if (data.url) {
             window.location.href = data.url;
           } else {
-            alert(data.error || 'Failed to create checkout session');
+            alert(window.DCT_PAYMENT_HELPERS?.getFriendlyCheckoutError?.(data.error || 'Failed to create checkout session', courseId)
+              || data.error || 'Failed to create checkout session');
           }
         }
       } catch (error) {
         console.error('Purchase error:', error);
-        alert(error?.message || 'An error occurred while processing payment. Please try again.');
+        alert(window.DCT_PAYMENT_HELPERS?.getFriendlyCheckoutError?.(error?.message, courseId)
+          || error?.message || 'An error occurred while processing payment. Please try again.');
       }
     }
 
@@ -802,20 +812,23 @@
           })
         });
 
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
         if (!response.ok) {
-          alert(data.error || `Subscription failed (HTTP ${response.status}). Please try again.`);
+          alert(window.DCT_PAYMENT_HELPERS?.getFriendlyCheckoutError?.(data.error || `Subscription failed (HTTP ${response.status}). Please try again.`, type)
+            || data.error || `Subscription failed (HTTP ${response.status}). Please try again.`);
           return;
         }
 
         if (data.url) {
           window.location.href = data.url;
         } else {
-          alert(data.error || 'Failed to start subscription');
+          alert(window.DCT_PAYMENT_HELPERS?.getFriendlyCheckoutError?.(data.error || 'Failed to start subscription', type)
+            || data.error || 'Failed to start subscription');
         }
       } catch (error) {
         console.error('Subscription error:', error);
-        alert(error?.message || 'An error occurred. Please try again.');
+        alert(window.DCT_PAYMENT_HELPERS?.getFriendlyCheckoutError?.(error?.message, type)
+          || error?.message || 'An error occurred. Please try again.');
       }
     }
 

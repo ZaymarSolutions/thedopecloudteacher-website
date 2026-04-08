@@ -3,9 +3,11 @@
   window.__dopeKnowledgeGuideLoaded = true;
 
   const pageKey = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0];
-  const storageKey = 'dopeKnowledgeGuideCollapsed';
+  const dismissKey = 'dopeKnowledgeGuideDismissedOn';
+  const today = new Date();
+  const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 
-  const guideTips = {
+  const baseTips = {
     'index.html': '💎 Hidden jewel: pick one cloud lane and stay steady—consistency beats cramming every time.',
     'courses.html': '💎 Hidden jewel: the smartest learners stack fundamentals first, specialization second.',
     'pricing.html': '💎 Hidden jewel: structure saves time, and time is one of the most expensive things to lose.',
@@ -47,6 +49,14 @@
     '💎 Hidden jewel: the best learners review, apply, and explain—not just read.'
   ];
 
+  const dailyTwists = [
+    'Today’s move: explain one concept out loud before you leave this page.',
+    'Today’s move: turn this page into one note, one action, or one question to revisit.',
+    'Today’s move: connect what you learned here to one real job task or real-life example.',
+    'Today’s move: save one small win now—screenshots, notes, and progress all count.',
+    'Today’s move: review for five extra minutes so tomorrow feels easier, not heavier.'
+  ];
+
   function hashString(value) {
     let hash = 0;
     for (let i = 0; i < value.length; i += 1) {
@@ -56,8 +66,109 @@
     return Math.abs(hash);
   }
 
+  function getDailyIndex(key, length) {
+    return hashString(`${todayKey}|${key}`) % length;
+  }
+
   function getTip(key) {
-    return guideTips[key] || fallbackTips[hashString(key) % fallbackTips.length];
+    const baseTip = baseTips[key] || fallbackTips[getDailyIndex(`${key}|fallback`, fallbackTips.length)];
+    const twist = dailyTwists[getDailyIndex(`${key}|twist`, dailyTwists.length)];
+    return `${baseTip} ${twist}`;
+  }
+
+  function readStorage(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  }
+
+  function writeStorage(key, value) {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch {
+      // Ignore storage issues and keep the guide visible.
+    }
+  }
+
+  const styleMode = getDailyIndex(`${pageKey}|style`, 2) === 0 ? 'kicks' : 'heels';
+
+  function getCoachTag() {
+    return styleMode === 'heels'
+      ? 'Coach Ro • blazer + heels'
+      : 'Coach Ro • fresh kicks + blazer';
+  }
+
+  function getCoachSubline() {
+    return styleMode === 'heels'
+      ? 'Polished, powerful, and still dropping gems.'
+      : 'Fresh kicks, sharp blazer, and cloud wisdom on deck.';
+  }
+
+  function renderCoachAvatar(mode) {
+    if (mode === 'heels') {
+      return `
+        <svg class="dope-guide__avatar" viewBox="0 0 120 170" aria-hidden="true">
+          <defs>
+            <linearGradient id="coachDressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7b4df2" />
+              <stop offset="100%" stop-color="#db2777" />
+            </linearGradient>
+          </defs>
+          <ellipse cx="60" cy="162" rx="30" ry="6" fill="rgba(15,23,42,0.18)" />
+          <path d="M39 29c4-16 17-25 31-23 12 2 19 10 21 22-5-3-9-4-14-4-6 0-10 2-14 5-7-4-14-4-24 0z" fill="#241433" />
+          <circle cx="60" cy="37" r="18" fill="#b87a61" />
+          <path d="M52 45c3 3 13 3 16 0" stroke="#8f4e44" stroke-width="2" fill="none" stroke-linecap="round" />
+          <circle cx="54" cy="36" r="2" fill="#241913" />
+          <circle cx="67" cy="36" r="2" fill="#241913" />
+          <ellipse cx="46" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
+          <ellipse cx="74" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
+          <rect x="53" y="50" width="14" height="10" rx="5" fill="#b87a61" />
+          <path d="M36 68c4-14 15-22 24-22h0c9 0 20 8 24 22l5 26H31l5-26z" fill="#1f1d5a" />
+          <path d="M48 64h24l-4 16H52z" fill="#fff7ed" opacity="0.95" />
+          <path d="M44 86c4-5 10-8 16-8s12 3 16 8v42H44z" fill="url(#coachDressGradient)" />
+          <path d="M32 71h10v36H32z" rx="5" fill="#b87a61" />
+          <path d="M78 71h10v36H78z" rx="5" fill="#b87a61" />
+          <rect x="49" y="128" width="8" height="25" rx="4" fill="#4b5563" />
+          <rect x="64" y="128" width="8" height="25" rx="4" fill="#4b5563" />
+          <path d="M46 154h14l-2 6H45c0-2 0-4 1-6z" fill="#111827" />
+          <path d="M61 154h14l-1 6H60c0-2 0-4 1-6z" fill="#111827" />
+          <circle cx="60" cy="60" r="2" fill="#facc15" />
+        </svg>
+      `;
+    }
+
+    return `
+      <svg class="dope-guide__avatar" viewBox="0 0 120 170" aria-hidden="true">
+        <defs>
+          <linearGradient id="coachBlazerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7b4df2" />
+            <stop offset="100%" stop-color="#4f46e5" />
+          </linearGradient>
+        </defs>
+        <ellipse cx="60" cy="162" rx="30" ry="6" fill="rgba(15,23,42,0.18)" />
+        <path d="M39 29c4-16 17-25 31-23 12 2 19 10 21 22-5-3-9-4-14-4-6 0-10 2-14 5-7-4-14-4-24 0z" fill="#241433" />
+        <circle cx="60" cy="37" r="18" fill="#b87a61" />
+        <path d="M52 45c3 3 13 3 16 0" stroke="#8f4e44" stroke-width="2" fill="none" stroke-linecap="round" />
+        <circle cx="54" cy="36" r="2" fill="#241913" />
+        <circle cx="67" cy="36" r="2" fill="#241913" />
+        <ellipse cx="46" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
+        <ellipse cx="74" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
+        <rect x="53" y="50" width="14" height="10" rx="5" fill="#b87a61" />
+        <path d="M35 68c4-14 15-22 25-22s21 8 25 22l6 28H29l6-28z" fill="url(#coachBlazerGradient)" />
+        <path d="M48 63h24l-4 16H52z" fill="#fff7ed" opacity="0.95" />
+        <rect x="43" y="88" width="34" height="38" rx="10" fill="#ec4899" opacity="0.92" />
+        <path d="M31 71h10v37H31z" rx="5" fill="#b87a61" />
+        <path d="M79 71h10v37H79z" rx="5" fill="#b87a61" />
+        <rect x="48" y="128" width="8" height="24" rx="4" fill="#4b5563" />
+        <rect x="64" y="128" width="8" height="24" rx="4" fill="#4b5563" />
+        <path d="M40 151h20l-2 7H38c0-3 1-5 2-7z" fill="#f8fafc" />
+        <path d="M61 151h21l-2 7H60c0-3 0-5 1-7z" fill="#77efe3" />
+        <path d="M45 150h13" stroke="#7b4df2" stroke-width="2" stroke-linecap="round" />
+        <path d="M66 150h13" stroke="#0f172a" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    `;
   }
 
   function injectStyles() {
@@ -81,12 +192,17 @@
         box-sizing: border-box;
       }
 
+      @keyframes dopeGuideFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+      }
+
       .dope-guide__bubble {
-        max-width: min(340px, calc(100vw - 140px));
+        max-width: min(360px, calc(100vw - 140px));
         background: linear-gradient(135deg, rgba(17, 24, 39, 0.98), rgba(76, 29, 149, 0.96));
         color: #f8fafc;
         border: 1px solid rgba(119, 239, 227, 0.35);
-        border-radius: 18px;
+        border-radius: 20px;
         padding: 14px 16px;
         box-shadow: 0 18px 38px rgba(15, 23, 42, 0.35);
         position: relative;
@@ -106,17 +222,51 @@
         transform: rotate(-45deg);
       }
 
-      .dope-guide__label {
+      .dope-guide__brand-row {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         gap: 12px;
-        margin-bottom: 8px;
-        font-size: 0.82rem;
+        margin-bottom: 10px;
+      }
+
+      .dope-guide__brand {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .dope-guide__brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #7b4df2, #ec4899);
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        box-shadow: 0 8px 20px rgba(123, 77, 242, 0.28);
+        flex-shrink: 0;
+      }
+
+      .dope-guide__label {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 0.8rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: #77efe3;
+      }
+
+      .dope-guide__subline {
+        margin: 0;
+        color: #d9d2ff;
+        font-size: 0.78rem;
+        line-height: 1.35;
       }
 
       .dope-guide__close {
@@ -128,6 +278,7 @@
         height: 28px;
         cursor: pointer;
         font-size: 16px;
+        flex-shrink: 0;
       }
 
       .dope-guide__text {
@@ -136,18 +287,39 @@
         line-height: 1.55;
       }
 
+      .dope-guide__rotation-note {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        padding: 5px 8px;
+        border-radius: 999px;
+        background: rgba(119, 239, 227, 0.12);
+        color: #c9fff8;
+        font-size: 0.74rem;
+        font-weight: 700;
+      }
+
       .dope-guide__teacher {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 6px;
+        animation: dopeGuideFloat 4.8s ease-in-out infinite;
+        cursor: pointer;
+      }
+
+      .dope-guide__teacher:focus-visible {
+        outline: 2px solid #77efe3;
+        outline-offset: 4px;
+        border-radius: 12px;
       }
 
       .dope-guide__avatar {
-        width: 88px;
-        height: 118px;
+        width: 96px;
+        height: 128px;
         display: block;
-        filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.28));
+        filter: drop-shadow(0 12px 18px rgba(15, 23, 42, 0.28));
       }
 
       .dope-guide__tag {
@@ -156,7 +328,7 @@
         border: 1px solid rgba(119, 239, 227, 0.32);
         border-radius: 999px;
         padding: 5px 10px;
-        font-size: 0.74rem;
+        font-size: 0.72rem;
         font-weight: 700;
         white-space: nowrap;
       }
@@ -173,15 +345,16 @@
         font-weight: 700;
       }
 
-      #dopeKnowledgeGuide.is-collapsed .dope-guide__bubble,
-      #dopeKnowledgeGuide.is-collapsed .dope-guide__teacher {
+      #dopeKnowledgeGuide.is-collapsed .dope-guide__bubble {
         display: none;
       }
 
+      #dopeKnowledgeGuide.is-collapsed .dope-guide__teacher {
+        opacity: 1;
+      }
+
       #dopeKnowledgeGuide.is-collapsed .dope-guide__reopen {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
+        display: none;
       }
 
       @media (max-width: 640px) {
@@ -193,7 +366,7 @@
         }
 
         .dope-guide__bubble {
-          max-width: calc(100vw - 120px);
+          max-width: calc(100vw - 118px);
           padding: 12px 14px;
         }
 
@@ -202,12 +375,12 @@
         }
 
         .dope-guide__avatar {
-          width: 74px;
-          height: 100px;
+          width: 80px;
+          height: 108px;
         }
 
         .dope-guide__tag {
-          font-size: 0.68rem;
+          font-size: 0.66rem;
         }
       }
     `;
@@ -224,62 +397,66 @@
     wrapper.setAttribute('aria-label', 'Coach Ro hidden jewel');
 
     wrapper.innerHTML = `
-      <button class="dope-guide__reopen" type="button" aria-label="Show hidden jewel">💎 Hidden jewel</button>
+      <button class="dope-guide__reopen" type="button" aria-label="Show hidden jewel">💎 Coach Ro’s drop</button>
       <div class="dope-guide__bubble">
-        <div class="dope-guide__label">
-          <span>Coach Ro’s knowledge drop</span>
+        <div class="dope-guide__brand-row">
+          <div class="dope-guide__brand">
+            <div class="dope-guide__brand-mark">CR</div>
+            <div>
+              <span class="dope-guide__label">Coach Ro • The Dope Drop</span>
+              <p class="dope-guide__subline">${getCoachSubline()}</p>
+            </div>
+          </div>
           <button class="dope-guide__close" type="button" aria-label="Hide guide">×</button>
         </div>
         <p class="dope-guide__text">${getTip(pageKey)}</p>
+        <div class="dope-guide__rotation-note">✨ Daily hidden jewel • rotates every day</div>
       </div>
       <div class="dope-guide__teacher">
-        <svg class="dope-guide__avatar" viewBox="0 0 120 160" aria-hidden="true">
-          <defs>
-            <linearGradient id="blazerGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#7b4df2" />
-              <stop offset="100%" stop-color="#4f46e5" />
-            </linearGradient>
-          </defs>
-          <ellipse cx="60" cy="152" rx="28" ry="6" fill="rgba(15,23,42,0.18)" />
-          <circle cx="60" cy="34" r="18" fill="#a96f55" />
-          <path d="M42 31c2-16 14-24 27-22 10 1 16 7 19 18-4-2-7-2-10-2-4 0-6 1-8 3-5-4-12-4-28 3z" fill="#1f172f" />
-          <rect x="51" y="47" width="18" height="12" rx="5" fill="#a96f55" />
-          <path d="M35 65c3-13 14-20 25-20s22 7 25 20l6 28H29l6-28z" fill="url(#blazerGlow)" />
-          <path d="M48 61h24l-6 17H54z" fill="#f8fafc" opacity="0.92" />
-          <rect x="42" y="92" width="36" height="34" rx="10" fill="#d946ef" opacity="0.92" />
-          <rect x="31" y="68" width="11" height="42" rx="5" fill="#a96f55" />
-          <rect x="78" y="68" width="11" height="42" rx="5" fill="#a96f55" />
-          <rect x="45" y="126" width="11" height="22" rx="5" fill="#4b5563" />
-          <rect x="64" y="126" width="11" height="22" rx="5" fill="#4b5563" />
-          <path d="M41 146h19c0 5-4 8-10 8-6 0-9-3-9-8z" fill="#f8fafc" />
-          <path d="M60 146h19c0 5-4 8-10 8-6 0-9-3-9-8z" fill="#f8fafc" />
-          <circle cx="53" cy="34" r="2" fill="#2b1b14" />
-          <circle cx="67" cy="34" r="2" fill="#2b1b14" />
-          <path d="M53 42c4 4 10 4 14 0" stroke="#7a2f2f" stroke-width="2" fill="none" stroke-linecap="round" />
-        </svg>
-        <div class="dope-guide__tag">Coach Ro • blazer energy</div>
+        ${renderCoachAvatar(styleMode)}
+        <div class="dope-guide__tag">${getCoachTag()}</div>
       </div>
     `;
 
     document.body.appendChild(wrapper);
 
-    const collapsed = window.localStorage.getItem(storageKey) === 'true';
-    if (collapsed) {
+    const dismissedToday = readStorage(dismissKey) === todayKey;
+    if (dismissedToday) {
       wrapper.classList.add('is-collapsed');
     }
 
     const closeButton = wrapper.querySelector('.dope-guide__close');
     const reopenButton = wrapper.querySelector('.dope-guide__reopen');
+    const teacher = wrapper.querySelector('.dope-guide__teacher');
 
     closeButton.addEventListener('click', function () {
       wrapper.classList.add('is-collapsed');
-      window.localStorage.setItem(storageKey, 'true');
+      writeStorage(dismissKey, todayKey);
     });
 
     reopenButton.addEventListener('click', function () {
       wrapper.classList.remove('is-collapsed');
-      window.localStorage.setItem(storageKey, 'false');
+      writeStorage(dismissKey, 'open');
     });
+
+    teacher.addEventListener('click', function () {
+      if (wrapper.classList.contains('is-collapsed')) {
+        wrapper.classList.remove('is-collapsed');
+        writeStorage(dismissKey, 'open');
+      }
+    });
+
+    teacher.addEventListener('keydown', function (event) {
+      if ((event.key === 'Enter' || event.key === ' ') && wrapper.classList.contains('is-collapsed')) {
+        event.preventDefault();
+        wrapper.classList.remove('is-collapsed');
+        writeStorage(dismissKey, 'open');
+      }
+    });
+
+    teacher.setAttribute('tabindex', '0');
+    teacher.setAttribute('role', 'button');
+    teacher.setAttribute('aria-label', 'Open Coach Ro knowledge drop');
   }
 
   if (document.readyState === 'loading') {

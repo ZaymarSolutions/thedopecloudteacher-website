@@ -85,6 +85,42 @@ async function readApiError(response, fallbackMessage) {
   return `${fallbackMessage} (HTTP ${response.status})`;
 }
 
+const HOSTED_CHECKOUT_LINKS = {
+  'cloud-fundamentals-101': 'https://buy.stripe.com/3cI6oG6ao8KSbRx1hS77O04'
+};
+
+const PAYMENT_SUPPORT_EMAIL = 'thedopecloudteacher@gmail.com';
+
+function getHostedCheckoutUrl(courseId) {
+  return HOSTED_CHECKOUT_LINKS[courseId] || '';
+}
+
+function isStripeConfigurationIssue(message = '') {
+  return /invalid api key|stripe is not configured|authentication with stripe|no api key provided/i.test(String(message));
+}
+
+function getFriendlyCheckoutError(message = '', courseId = '') {
+  if (isStripeConfigurationIssue(message)) {
+    const hostedUrl = getHostedCheckoutUrl(courseId);
+    return hostedUrl
+      ? 'Secure checkout is being redirected through our hosted payment page.'
+      : `Checkout is temporarily unavailable. Please contact ${PAYMENT_SUPPORT_EMAIL} for help enrolling.`;
+  }
+
+  if (/Unable to reach the app server/i.test(String(message))) {
+    return 'The checkout server is temporarily unreachable. Please try again shortly.';
+  }
+
+  return message || 'Unable to start checkout right now. Please try again.';
+}
+
+window.DCT_PAYMENT_HELPERS = {
+  getHostedCheckoutUrl,
+  isStripeConfigurationIssue,
+  getFriendlyCheckoutError,
+  supportEmail: PAYMENT_SUPPORT_EMAIL
+};
+
 class DopeCloudAuth {
   constructor() {
     this.token = localStorage.getItem('dct_token');
@@ -242,6 +278,13 @@ class DopeCourseAccess {
 
   // Create checkout session
   async purchaseCourse(courseId) {
+    const hostedCheckoutUrl = getHostedCheckoutUrl(courseId);
+
+    if (hostedCheckoutUrl) {
+      window.location.href = hostedCheckoutUrl;
+      return { url: hostedCheckoutUrl, source: 'hosted-checkout' };
+    }
+
     if (!this.auth.isAuthenticated()) {
       throw new Error('Please log in to purchase courses');
     }
@@ -253,17 +296,22 @@ class DopeCourseAccess {
         body: JSON.stringify({ courseId })
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
       
       if (!response.ok) {
-        throw new Error(data.error || `Checkout failed (HTTP ${response.status})`);
+        const message = data.error || `Checkout failed (HTTP ${response.status})`;
+        throw new Error(getFriendlyCheckoutError(message, courseId));
+      }
+
+      if (!data.url) {
+        throw new Error('Checkout link is not available yet. Please contact support.');
       }
 
       // Redirect to Stripe checkout
       window.location.href = data.url;
     } catch (error) {
       console.error('Purchase error:', error);
-      throw error;
+      throw new Error(getFriendlyCheckoutError(formatNetworkError(error).message, courseId));
     }
   }
 }
