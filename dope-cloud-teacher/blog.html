@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud & Azure Blog | The Dope Cloud Teacher</title>
+  <meta name="description" content="Read practical cloud, Azure, AI, governance, and career strategy articles from The Dope Cloud Teacher.">
+  <meta name="keywords" content="Azure blog, cloud blog, cloud governance, Azure Policy, AZ-900 study tips, AI-900 training, cloud career advice">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://thedopecloudteacher.org/blog.html">
+  <meta property="og:site_name" content="The Dope Cloud Teacher">
+  <meta property="og:title" content="Cloud & Azure Blog | The Dope Cloud Teacher">
+  <meta property="og:description" content="Read practical cloud, Azure, AI, governance, and career strategy articles from The Dope Cloud Teacher.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thedopecloudteacher.org/blog.html">
+  <meta property="og:image" content="https://thedopecloudteacher.org/images/og-homepage-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cloud & Azure Blog | The Dope Cloud Teacher">
+  <meta name="twitter:description" content="Read practical cloud, Azure, AI, governance, and career strategy articles from The Dope Cloud Teacher.">
+  <meta name="twitter:image" content="https://thedopecloudteacher.org/images/og-homepage-preview.png">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "The Dope Cloud Teacher Blog",
+    "url": "https://thedopecloudteacher.org/blog.html",
+    "description": "Practical cloud, Azure, AI, governance, and career strategy articles.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Dope Cloud Teacher",
+      "url": "https://thedopecloudteacher.org/"
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0b1025;
+      --bg-alt: #171d3f;
+      --panel: #141a39;
+      --border: #28325d;
+      --text: #eef3ff;
+      --muted: #b5bedc;
+      --purple: #7b4df2;
+      --teal: #77efe3;
+      --gold: #f4c542;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--bg), var(--bg-alt));
+      color: var(--text);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11, 16, 37, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(119,239,227,0.12);
+    }
+
+    .header-inner,
+    .hero,
+    .blog-grid-wrap,
+    .coming-soon,
+    footer {
+      width: min(1160px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--teal);
+    }
+
+    .hero {
+      padding: 3rem 0 2rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(119,239,227,0.1);
+      border: 1px solid rgba(119,239,227,0.25);
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1 {
+      margin: 1rem 0 0.8rem;
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      line-height: 1.06;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 48rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .blog-grid-wrap {
+      padding-bottom: 2rem;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1rem;
+    }
+
+    .blog-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 14px 32px rgba(0,0,0,0.24);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .blog-card-body {
+      padding: 1rem 1rem 1.2rem;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.7rem;
+    }
+
+    .pill {
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: rgba(123,77,242,0.18);
+      color: #efe9ff;
+    }
+
+    .blog-card h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.2rem;
+      line-height: 1.35;
+    }
+
+    .blog-card p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .blog-card a.read-more {
+      display: inline-block;
+      text-decoration: none;
+      color: #0b1025;
+      background: var(--teal);
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    .coming-soon {
+      padding: 1rem 0 3rem;
+    }
+
+    .coming-soon-box {
+      border-radius: 18px;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, rgba(123,77,242,0.14), rgba(119,239,227,0.08));
+      border: 1px solid rgba(119,239,227,0.2);
+    }
+
+    .coming-soon-box ul {
+      color: var(--muted);
+      margin: 0.8rem 0 0;
+      padding-left: 1.2rem;
+    }
+
+    footer {
+      padding: 0 0 2.5rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="The Dope Cloud Teacher logo" onerror="this.style.display='none'">
+        <span>The Dope Cloud Teacher</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="resources.html">Resources</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow"><i class="fas fa-pen-nib"></i> Blog & insights</div>
+    <h1>Cloud lessons, Azure strategy, and career moves that actually help</h1>
+    <p>
+      This blog is where cloud concepts get broken down in plain language. Expect Azure governance explainers, certification prep insights,
+      AI conversations without hype, and practical advice for learners building real momentum.
+    </p>
+  </section>
+
+  <main class="blog-grid-wrap">
+    <div class="blog-grid">
+      <article class="blog-card">
+        <img src="images/programs/cloud-security.svg" alt="Azure governance and policy illustration">
+        <div class="blog-card-body">
+          <div class="pill-row">
+            <span class="pill">Azure</span>
+            <span class="pill">Governance</span>
+            <span class="pill">New</span>
+          </div>
+          <h2>Cloud Control: How Azure Policies Keep Your Virtual House in Order</h2>
+          <p>
+            A practical, beginner-friendly breakdown of how Azure Policy helps with governance, cost management, security, and compliance.
+          </p>
+          <a class="read-more" href="cloud-control-azure-policy.html">Read article</a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <section class="coming-soon">
+    <div class="coming-soon-box">
+      <h2 style="margin:0;">Coming next</h2>
+      <ul>
+        <li>How to Pass AZ-900 on Your First Try</li>
+        <li>AI-900 vs AZ-900: Which Cert Should You Start With?</li>
+        <li>Beginner Cloud Career Roadmap for 2026</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
+  </footer>
+
+  <script src="js/knowledge-guide.js"></script>
+</body>
+</html>
