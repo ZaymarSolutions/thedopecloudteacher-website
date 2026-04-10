@@ -1,0 +1,44 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="1080" y2="660" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1025"/>
+      <stop offset="0.52" stop-color="#1C2450"/>
+      <stop offset="1" stop-color="#3D1F68"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="270" y1="180" x2="930" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#78EFE2" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FF8EB8" stop-opacity="0.16"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="360" y1="200" x2="850" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111936"/>
+      <stop offset="1" stop-color="#202A59"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="700" rx="28" fill="url(#bg)"/>
+  <circle cx="1040" cy="124" r="72" fill="#77EFE3" fill-opacity="0.12"/>
+  <circle cx="156" cy="110" r="46" fill="#FF8EB8" fill-opacity="0.16"/>
+  <circle cx="1010" cy="600" r="88" fill="#7B4DF2" fill-opacity="0.16"/>
+
+  <rect x="160" y="110" width="880" height="480" rx="26" fill="url(#panel)" stroke="#77EFE3" stroke-opacity="0.22"/>
+  <rect x="330" y="170" width="520" height="300" rx="22" fill="url(#screen)" stroke="#9EC3FF" stroke-opacity="0.24"/>
+  <rect x="360" y="205" width="180" height="18" rx="9" fill="#77EFE3" fill-opacity="0.85"/>
+  <rect x="360" y="240" width="310" height="12" rx="6" fill="#CBD5FF" fill-opacity="0.35"/>
+  <rect x="360" y="266" width="270" height="12" rx="6" fill="#CBD5FF" fill-opacity="0.22"/>
+  <rect x="360" y="316" width="205" height="90" rx="14" fill="#7B4DF2" fill-opacity="0.32"/>
+  <rect x="580" y="316" width="220" height="18" rx="9" fill="#FF8EB8" fill-opacity="0.65"/>
+  <rect x="580" y="348" width="180" height="12" rx="6" fill="#CBD5FF" fill-opacity="0.3"/>
+  <rect x="580" y="372" width="155" height="12" rx="6" fill="#CBD5FF" fill-opacity="0.22"/>
+
+  <circle cx="905" cy="295" r="64" fill="#111936" stroke="#77EFE3" stroke-opacity="0.3"/>
+  <circle cx="905" cy="272" r="20" fill="#FFCC7A"/>
+  <path d="M868 338C878 310 899 297 922 297C944 297 965 310 975 338V359H868V338Z" fill="#FF8EB8"/>
+  <path d="M890 290C897 284 905 281 914 281C924 281 934 285 941 292" stroke="#0B1025" stroke-width="3" stroke-linecap="round"/>
+
+  <circle cx="265" cy="488" r="56" fill="#111936" stroke="#FF8EB8" stroke-opacity="0.28"/>
+  <path d="M231 520C241 493 260 480 281 480C303 480 321 493 331 520V539H231V520Z" fill="#77EFE3" fill-opacity="0.8"/>
+  <circle cx="281" cy="460" r="18" fill="#E2A56D"/>
+
+  <text x="180" y="648" fill="#EEF3FF" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700">Black Women in IT</text>
+  <text x="180" y="682" fill="#B5BEDC" font-family="Segoe UI, Arial, sans-serif" font-size="20">Resilience • Strategy • Upskilling for the AI Era</text>
+</svg>

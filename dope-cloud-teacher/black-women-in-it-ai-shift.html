@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift | The Dope Cloud Teacher</title>
+  <meta name="description" content="A featured blog post on the real challenges Black women face in IT: pay cuts, harassment, DEI rollbacks, education barriers, and why tech skills matter more than ever in the AI era.">
+  <meta name="keywords" content="Black women in IT, DEI rollback, pay gap in tech, AI jobs, Black women in tech, tech education, Azure, AI enablement engineer">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://thedopecloudteacher.org/black-women-in-it-ai-shift.html">
+  <meta property="og:site_name" content="The Dope Cloud Teacher">
+  <meta property="og:title" content="Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift">
+  <meta property="og:description" content="Why Black women in IT need education, strategy, and transition-ready tech skills now more than ever.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://thedopecloudteacher.org/black-women-in-it-ai-shift.html">
+  <meta property="og:image" content="https://thedopecloudteacher.org/images/programs/black-women-in-tech-feature.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift">
+  <meta name="twitter:description" content="Why Black women in IT need education, strategy, and transition-ready tech skills now more than ever.">
+  <meta name="twitter:image" content="https://thedopecloudteacher.org/images/programs/black-women-in-tech-feature.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift",
+    "description": "A featured blog post on the real challenges Black women face in IT: pay cuts, harassment, DEI rollbacks, education barriers, and why tech skills matter more than ever in the AI era.",
+    "author": {
+      "@type": "Person",
+      "name": "RoSeé Murphy"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Dope Cloud Teacher",
+      "url": "https://thedopecloudteacher.org/"
+    },
+    "datePublished": "2026-04-09",
+    "dateModified": "2026-04-09",
+    "mainEntityOfPage": "https://thedopecloudteacher.org/black-women-in-it-ai-shift.html"
+  }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0b1025;
+      --bg-alt: #171d3f;
+      --panel: #141a39;
+      --border: #28325d;
+      --text: #eef3ff;
+      --muted: #b5bedc;
+      --purple: #7b4df2;
+      --teal: #77efe3;
+      --gold: #f4c542;
+      --rose: #ff8eb8;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--bg), var(--bg-alt));
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(11, 16, 37, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(119, 239, 227, 0.12);
+    }
+
+    .header-inner,
+    .hero,
+    .article-wrap,
+    .cta-strip,
+    footer {
+      width: min(980px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .logo img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--teal); }
+
+    .hero { padding: 3rem 0 1.25rem; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.42rem 0.82rem;
+      border-radius: 999px;
+      background: rgba(255, 142, 184, 0.12);
+      border: 1px solid rgba(255, 142, 184, 0.28);
+      color: #ffd5e6;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 1rem 0 0.8rem;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.08;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 46rem;
+      font-size: 1.05rem;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .meta-pill {
+      border-radius: 999px;
+      padding: 0.45rem 0.8rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .hero-image {
+      margin-top: 1.4rem;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(119,239,227,0.15);
+      box-shadow: 0 18px 42px rgba(0,0,0,0.28);
+    }
+
+    .hero-image img {
+      width: 100%;
+      display: block;
+      max-height: 420px;
+      object-fit: cover;
+    }
+
+    .article-wrap { padding: 0.75rem 0 3rem; }
+
+    .article-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 2rem;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.24);
+    }
+
+    .article-card h2 {
+      margin-top: 2rem;
+      color: var(--teal);
+      font-size: 1.45rem;
+    }
+
+    .article-card p,
+    .article-card li {
+      color: var(--muted);
+    }
+
+    .callout {
+      margin: 1.4rem 0;
+      padding: 1rem 1.1rem;
+      border-left: 4px solid var(--rose);
+      background: rgba(255, 142, 184, 0.11);
+      border-radius: 12px;
+      color: #ffe6f0;
+    }
+
+    .role-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+
+    .role-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.9rem;
+    }
+
+    .role-card strong {
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .cta-strip { padding-bottom: 3rem; }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(119,239,227,0.1), rgba(123,77,242,0.16));
+      border: 1px solid rgba(119,239,227,0.22);
+      border-radius: 18px;
+      padding: 1.3rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .cta-actions a {
+      text-decoration: none;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: 0.85rem 1.1rem;
+    }
+
+    .btn-primary { background: var(--teal); color: #0b1025; }
+    .btn-secondary {
+      background: #21184f;
+      color: #fff;
+      border: 1px solid rgba(203,188,255,0.28);
+    }
+
+    .author-box {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer {
+      padding: 0 0 2.5rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .article-card { padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="The Dope Cloud Teacher logo" onerror="this.style.display='none'">
+        <span>The Dope Cloud Teacher</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="resources.html">Resources</a>
+        <a href="blog.html">Blog</a>
+        <a href="pricing.html">Pricing</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow"><i class="fas fa-star"></i> Featured post</div>
+    <h1>Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift</h1>
+    <p>
+      For Black women in tech and IT, this moment is not just about career growth. It is about survival, strategy, and refusing to be pushed even further behind.
+      The pressure is real, but so is the opportunity to build a future that cannot be easily stripped away.
+    </p>
+    <div class="meta-row">
+      <span class="meta-pill">By RoSeé Murphy</span>
+      <span class="meta-pill">Featured commentary</span>
+      <span class="meta-pill">Published April 9, 2026</span>
+    </div>
+    <div class="hero-image">
+      <img src="images/programs/black-women-in-tech-feature.svg" alt="Original illustration celebrating Black women in tech leadership and AI-era growth">
+    </div>
+  </section>
+
+  <main class="article-wrap">
+    <article class="article-card">
+      <p>
+        Black women in IT have always had to do more with less: more proof, more emotional labor, more competence, more patience, and often more silence than should ever be required.
+        We are expected to deliver excellence in rooms that still underestimate us, then smile through environments that ask us to be grateful just to be there. And now, with the rollback of DEI efforts,
+        the restructuring of education support, and the acceleration of AI across every industry, the ground is shifting again.
+      </p>
+
+      <p>
+        That is exactly why this moment matters so much. The ladder is getting narrower, not wider. The jobs that will remain stable and well-paid are increasingly the ones closest to cloud, automation,
+        data, security, AI operations, and technical enablement. For Black women, that means education is not optional. Upskilling is not a side hobby. It is a form of protection.
+      </p>
+
+      <div class="callout">
+        <strong>The truth:</strong> when institutions remove support, the answer cannot be to wait patiently for fairness. The answer is to build technical leverage so strong that the market has to reckon with it.
+      </div>
+
+      <h2>The challenge is not in our heads</h2>
+      <p>
+        Black women in IT do not only deal with normal job stress. We deal with wage compression, being passed over for stretch opportunities, having our expertise questioned, and being expected to clean up chaos without
+        receiving the same compensation or recognition as others doing equal or even less complex work. Many of us know what it feels like to solve high-level problems while still being treated as if we are "supporting"
+        someone else's brilliance instead of leading our own work.
+      </p>
+
+      <p>
+        The pay drop is not theoretical. For some women, it has felt immediate. I know the sting personally: doing the same W-2 work — and in many cases even more complex work — after once earning <strong>$87 an hour</strong>,
+        and now being pushed toward offers closer to <strong>$47 an hour</strong>. That kind of drop is not just frustrating. It is destabilizing. It changes how families budget, how women plan childcare, how debt is managed,
+        and how confidence gets tested. When Black women say the market has shifted against us, that statement is grounded in lived experience.
+      </p>
+
+      <h2>Harassment, isolation, and the silence tax</h2>
+      <p>
+        Another reality that deserves honest language is harassment and disrespect on the job. Black women in IT are often navigating not only racism and sexism, but the exhausting overlap of both. Sometimes the harm is obvious.
+        Sometimes it is subtle: being talked over, being treated as “difficult” for setting boundaries, or being expected to tolerate behavior others would never be asked to tolerate.
+      </p>
+
+      <p>
+        And yes, sometimes that mistreatment comes from Black male colleagues or leaders too. That is not said to attack Black men as a group. It is said because silence does not protect Black women. When the pressure to keep the peace
+        becomes stronger than the expectation to keep women safe, the message is clear: protect the room, not the woman harmed inside it. We need the courage to tell the truth about that dynamic without apology.
+      </p>
+
+      <h2>Why the removal of DEI changes the stakes</h2>
+      <p>
+        The removal of DEI programs does not just change workplace language. It changes access. It changes who gets mentored, who gets sponsored, who gets defended when a manager is unfair, and who gets seen as a long-term investment.
+        When DEI disappears, companies often act as if neutrality has returned. But neutrality in an unequal environment does not create fairness. It protects whatever inequalities were already in place.
+      </p>
+
+      <p>
+        For Black women, that means fewer structured pipelines into leadership, fewer accountability mechanisms when bias shows up, and fewer visible commitments to equitable pay and promotion. Add in the restructuring of grants, student loans,
+        and public education funding, and the picture becomes even sharper. When the cost of learning rises while institutional support falls, the people hurt first are the ones who were already climbing with less margin.
+      </p>
+
+      <h2>Why education matters more than ever now</h2>
+      <p>
+        This is exactly why now is the time to get as much education and practical knowledge in tech as possible. AI is already automating pieces of administrative work, customer support, reporting, writing, scheduling, and repetitive analysis.
+        Many jobs will not disappear overnight, but they will be redesigned. The people who keep strong careers will be the ones who know how to work with the new systems, secure them, govern them, improve them, and translate business problems
+        into technical solutions.
+      </p>
+
+      <p>
+        Black women should not be scared away from this shift. We should be positioned for it. Our communication strengths, pattern recognition, relationship management, and operational discipline are powerful in the next era of tech.
+        But those strengths become high-value only when paired with technical language, cloud fluency, AI literacy, and the confidence to move into roles tied to transformation.
+      </p>
+
+      <h2>Roles worth paying attention to in the AI transition</h2>
+      <div class="role-list">
+        <div class="role-card"><strong>AI Enablement Engineer</strong><span>Helps teams adopt AI tools, workflows, and integrations safely and effectively.</span></div>
+        <div class="role-card"><strong>Cloud Administrator</strong><span>Manages the cloud platforms where AI systems and business apps actually run.</span></div>
+        <div class="role-card"><strong>Cybersecurity Analyst</strong><span>Protects data, identities, endpoints, and cloud workloads in a higher-risk AI era.</span></div>
+        <div class="role-card"><strong>AI Operations / MLOps Support</strong><span>Supports model deployment, monitoring, reliability, and lifecycle management.</span></div>
+        <div class="role-card"><strong>Automation Specialist</strong><span>Builds repeatable workflows using scripting, low-code tools, and cloud automation.</span></div>
+        <div class="role-card"><strong>Data & Governance Analyst</strong><span>Focuses on quality, compliance, policy, and responsible handling of data and AI systems.</span></div>
+      </div>
+
+      <p>
+        These roles matter because they sit near the center of the transition. They are not just “tech jobs” in the abstract. They are jobs that help organizations function in the world that AI is creating right now.
+        That is where the leverage is.
+      </p>
+
+      <h2>What Black women should do next</h2>
+      <p>
+        First, stop underestimating how urgent this is. If you are already in IT, deepen your stack. Learn cloud fundamentals, identity, security, data basics, automation, and AI concepts. If you are outside of tech, do not assume you are too late.
+        Many transition-friendly roles reward people who can learn fast, communicate clearly, and understand systems.
+      </p>
+
+      <p>
+        Second, document everything. Document your contributions, your wins, your process improvements, and your impact. In uncertain labor markets, receipts matter. Third, keep building community with women who are serious about moving forward.
+        Black women cannot afford isolation in this season. We need shared information, referrals, salary transparency, encouragement, and strategy.
+      </p>
+
+      <p>
+        Finally, do not let the cruelty of this moment convince you that your future has shrunk. The system may be tightening, but your ability to learn, pivot, and own technical knowledge can still expand. That is the work now: not just surviving the shift,
+        but preparing to lead inside it.
+      </p>
+
+      <div class="callout">
+        <strong>Bottom line:</strong> Black women in IT are not behind because we are less capable. We are often behind because the rules keep moving. The answer is to move with skill, clarity, and technical power anyway.
+      </div>
+
+      <div class="author-box">
+        <strong>RoSeé Murphy</strong><br>
+        <span style="color: var(--muted);">The Dope Cloud Teacher</span><br>
+        <a href="mailto:roseecm@gmail.com" style="color: var(--teal);">roseecm@gmail.com</a>
+      </div>
+    </article>
+  </main>
+
+  <section class="cta-strip">
+    <div class="cta-box">
+      <div>
+        <h2 style="margin:0 0 0.4rem;">Ready to build transition-proof tech skills?</h2>
+        <p style="margin:0; color:var(--muted);">Start with cloud fundamentals, Azure paths, AI training, and the free resources library.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn-primary" href="courses.html">Explore Courses</a>
+        <a class="btn-secondary" href="resources.html">Free Resources</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
+  </footer>
+
+  <script src="js/knowledge-guide.js"></script>
+</body>
+</html>
