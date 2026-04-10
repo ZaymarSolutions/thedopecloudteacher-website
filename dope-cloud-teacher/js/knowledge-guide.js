@@ -107,67 +107,12 @@
   }
 
   function renderCoachAvatar(mode) {
-    if (mode === 'heels') {
-      return `
-        <svg class="dope-guide__avatar" viewBox="0 0 120 170" aria-hidden="true">
-          <defs>
-            <linearGradient id="coachDressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#7b4df2" />
-              <stop offset="100%" stop-color="#db2777" />
-            </linearGradient>
-          </defs>
-          <ellipse cx="60" cy="162" rx="30" ry="6" fill="rgba(15,23,42,0.18)" />
-          <path d="M39 29c4-16 17-25 31-23 12 2 19 10 21 22-5-3-9-4-14-4-6 0-10 2-14 5-7-4-14-4-24 0z" fill="#241433" />
-          <circle cx="60" cy="37" r="18" fill="#b87a61" />
-          <path d="M52 45c3 3 13 3 16 0" stroke="#8f4e44" stroke-width="2" fill="none" stroke-linecap="round" />
-          <circle cx="54" cy="36" r="2" fill="#241913" />
-          <circle cx="67" cy="36" r="2" fill="#241913" />
-          <ellipse cx="46" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
-          <ellipse cx="74" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
-          <rect x="53" y="50" width="14" height="10" rx="5" fill="#b87a61" />
-          <path d="M36 68c4-14 15-22 24-22h0c9 0 20 8 24 22l5 26H31l5-26z" fill="#1f1d5a" />
-          <path d="M48 64h24l-4 16H52z" fill="#fff7ed" opacity="0.95" />
-          <path d="M44 86c4-5 10-8 16-8s12 3 16 8v42H44z" fill="url(#coachDressGradient)" />
-          <path d="M32 71h10v36H32z" rx="5" fill="#b87a61" />
-          <path d="M78 71h10v36H78z" rx="5" fill="#b87a61" />
-          <rect x="49" y="128" width="8" height="25" rx="4" fill="#4b5563" />
-          <rect x="64" y="128" width="8" height="25" rx="4" fill="#4b5563" />
-          <path d="M46 154h14l-2 6H45c0-2 0-4 1-6z" fill="#111827" />
-          <path d="M61 154h14l-1 6H60c0-2 0-4 1-6z" fill="#111827" />
-          <circle cx="60" cy="60" r="2" fill="#facc15" />
-        </svg>
-      `;
-    }
-
+    const variantTag = mode === 'heels' ? 'Polished' : 'Street-smart';
     return `
-      <svg class="dope-guide__avatar" viewBox="0 0 120 170" aria-hidden="true">
-        <defs>
-          <linearGradient id="coachBlazerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7b4df2" />
-            <stop offset="100%" stop-color="#4f46e5" />
-          </linearGradient>
-        </defs>
-        <ellipse cx="60" cy="162" rx="30" ry="6" fill="rgba(15,23,42,0.18)" />
-        <path d="M39 29c4-16 17-25 31-23 12 2 19 10 21 22-5-3-9-4-14-4-6 0-10 2-14 5-7-4-14-4-24 0z" fill="#241433" />
-        <circle cx="60" cy="37" r="18" fill="#b87a61" />
-        <path d="M52 45c3 3 13 3 16 0" stroke="#8f4e44" stroke-width="2" fill="none" stroke-linecap="round" />
-        <circle cx="54" cy="36" r="2" fill="#241913" />
-        <circle cx="67" cy="36" r="2" fill="#241913" />
-        <ellipse cx="46" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
-        <ellipse cx="74" cy="38" rx="2.5" ry="4.5" fill="#f6c7b6" opacity="0.9" />
-        <rect x="53" y="50" width="14" height="10" rx="5" fill="#b87a61" />
-        <path d="M35 68c4-14 15-22 25-22s21 8 25 22l6 28H29l6-28z" fill="url(#coachBlazerGradient)" />
-        <path d="M48 63h24l-4 16H52z" fill="#fff7ed" opacity="0.95" />
-        <rect x="43" y="88" width="34" height="38" rx="10" fill="#ec4899" opacity="0.92" />
-        <path d="M31 71h10v37H31z" rx="5" fill="#b87a61" />
-        <path d="M79 71h10v37H79z" rx="5" fill="#b87a61" />
-        <rect x="48" y="128" width="8" height="24" rx="4" fill="#4b5563" />
-        <rect x="64" y="128" width="8" height="24" rx="4" fill="#4b5563" />
-        <path d="M40 151h20l-2 7H38c0-3 1-5 2-7z" fill="#f8fafc" />
-        <path d="M61 151h21l-2 7H60c0-3 0-5 1-7z" fill="#77efe3" />
-        <path d="M45 150h13" stroke="#7b4df2" stroke-width="2" stroke-linecap="round" />
-        <path d="M66 150h13" stroke="#0f172a" stroke-width="2" stroke-linecap="round" />
-      </svg>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+        <img class="dope-guide__avatar" src="images/programs/coach-ro-portrait.svg" alt="Coach Ro avatar" />
+        <span style="font-size:0.66rem; color:#d9d2ff; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">${variantTag} mode</span>
+      </div>
     `;
   }
 

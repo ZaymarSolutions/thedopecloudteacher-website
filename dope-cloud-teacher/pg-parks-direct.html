@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG Parks Direct Student Hub | The Dope Cloud Teacher</title>
+  <meta name="description" content="Fun and futuristic student landing page for PG Parks Direct learners to quickly access classes, specials, blogs, and dashboards.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://thedopecloudteacher.org/pg-parks-direct.html">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --pg-green: #0f5e39;
+      --pg-teal: #1aa07a;
+      --pg-gold: #f4c84c;
+      --pg-navy: #12263a;
+      --pg-mint: #e9fff4;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top right, rgba(26,160,122,0.22), transparent 42%), linear-gradient(135deg, #f4fff8 0%, #e9fff4 100%);
+      color: #163047;
+    }
+
+    .pg-wrap {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 3rem;
+    }
+
+    .pg-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .pg-nav a {
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--pg-navy);
+    }
+
+    .pg-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .pg-home img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid rgba(15,94,57,0.3);
+    }
+
+    .pg-hero {
+      margin-top: 1.5rem;
+      border-radius: 20px;
+      background: linear-gradient(140deg, var(--pg-green), #157049 56%, var(--pg-teal));
+      color: #f8fff9;
+      padding: 1.6rem;
+      box-shadow: 0 16px 34px rgba(10, 57, 35, 0.25);
+    }
+
+    .pg-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      background: rgba(244,200,76,0.2);
+      color: #fff0bf;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .pg-hero h1 {
+      margin: 0.8rem 0 0.5rem;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      line-height: 1.05;
+    }
+
+    .pg-hero p {
+      margin: 0;
+      color: #ddfee8;
+      max-width: 46rem;
+      font-size: 1.05rem;
+    }
+
+    .pg-actions {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .pg-btn {
+      text-decoration: none;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: 0.88rem 1.05rem;
+      border: 1px solid transparent;
+    }
+
+    .pg-btn-primary {
+      background: var(--pg-gold);
+      color: #20342a;
+    }
+
+    .pg-btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: #f8fff9;
+      border-color: rgba(255,255,255,0.35);
+    }
+
+    .pg-grid {
+      margin-top: 1.3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .pg-card {
+      background: #ffffff;
+      border: 1px solid rgba(18,38,58,0.12);
+      border-radius: 14px;
+      padding: 1rem;
+      box-shadow: 0 8px 18px rgba(18,38,58,0.08);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pg-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(18,38,58,0.14);
+    }
+
+    .pg-card h3 {
+      margin: 0.35rem 0;
+      color: var(--pg-green);
+    }
+
+    .pg-card p {
+      margin: 0;
+      color: #3f5567;
+    }
+
+    .pg-badge {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      background: rgba(26,160,122,0.14);
+      color: var(--pg-green);
+      font-size: 0.74rem;
+      font-weight: 800;
+    }
+
+    .pg-note {
+      margin-top: 1.2rem;
+      border-radius: 14px;
+      border: 1px dashed rgba(15,94,57,0.35);
+      background: #ffffff;
+      padding: 1rem;
+      color: #345067;
+    }
+  </style>
+</head>
+<body>
+  <main class="pg-wrap">
+    <nav class="pg-nav" aria-label="PG Parks landing navigation">
+      <a href="index.html" class="pg-home">
+        <img src="logo.png" alt="The Dope Cloud Teacher logo" onerror="this.style.display='none'">
+        <span>The Dope Cloud Teacher</span>
+      </a>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="courses.html">Classes</a>
+        <a href="pricing.html">Specials</a>
+        <a href="blog.html">Blog</a>
+        <a href="dashboard.html">Dashboard</a>
+      </div>
+    </nav>
+
+    <section class="pg-hero">
+      <span class="pg-pill"><i class="fas fa-rocket"></i> PG Parks Direct Student Hub</span>
+      <h1>Fun, Futuristic, and Built for Youth Cloud Learners</h1>
+      <p>
+        Jump straight into your classes, discover new specials, and level up with cloud + AI skills. This page is made for PG Parks Direct students who want fast access and a motivating launch point.
+      </p>
+      <div class="pg-actions">
+        <a class="pg-btn pg-btn-primary" href="dashboard.html"><i class="fas fa-sign-in-alt"></i> Student Login</a>
+        <a class="pg-btn pg-btn-secondary" href="https://www.pgparks.com/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit PG Parks Direct Directory</a>
+      </div>
+    </section>
+
+    <section class="pg-grid">
+      <a class="pg-card" href="courses.html">
+        <span class="pg-badge">Start Here</span>
+        <h3>Individual Classes</h3>
+        <p>Pick one class at a time and build confidence with beginner-friendly pacing.</p>
+      </a>
+      <a class="pg-card" href="pricing.html">
+        <span class="pg-badge">Specials</span>
+        <h3>Student Offers</h3>
+        <p>See youth-access pricing, bundles, and monthly options designed for families.</p>
+      </a>
+      <a class="pg-card" href="blog.html">
+        <span class="pg-badge">Inspiration</span>
+        <h3>Blog & Career Stories</h3>
+        <p>Read practical stories, industry insights, and next-step guides for your future.</p>
+      </a>
+      <a class="pg-card" href="garden-guardian-demo.html">
+        <span class="pg-badge">Interactive</span>
+        <h3>Live Demos</h3>
+        <p>Experience security and cloud workflows in a fun, visual simulation.</p>
+      </a>
+    </section>
+
+    <div class="pg-note">
+      <strong>Tip:</strong> If your PG Parks class was listed in the directory, use the Student Login button first, then open your class module from your dashboard.
+    </div>
+  </main>
+
+  <script src="js/global-ui.js"></script>
+  <script src="js/knowledge-guide.js"></script>
+</body>
+</html>

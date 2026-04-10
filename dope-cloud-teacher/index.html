@@ -48,56 +48,83 @@
         <img src="logo.png" alt="The Dope Cloud Teacher Logo" class="logo-img" onerror="this.style.display='none'">
         <div class="logo-text">
           <span class="main-title">The Dope Cloud Teacher</span>
-          <span class="subtitle">Enterprise Training Solutions</span>
+          <span class="subtitle">Cloud Classes For Real People</span>
         </div>
       </a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="courses.html">Courses</a>
-        <a href="pricing.html">Pricing</a>
+      <nav class="nav-links" aria-label="Main navigation" id="primaryNav">
+        <a href="courses.html">Classes</a>
+        <a href="pricing.html">Specials</a>
+        <a href="pg-parks-direct.html">PG Parks Direct</a>
         <a href="dashboard.html">Dashboard</a>
         <a href="resources.html">Resources</a>
         <a href="blog.html">Blog</a>
         <a href="certificate.html">Certificates</a>
         <a href="#" onclick="showAuthModal('login'); return false;" id="navAuthButton">Sign In</a>
       </nav>
-      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="primaryNav">
         <span style="font-size:1.5rem;">≡</span>
       </button>
     </div>
   </header>
 
   <!-- Professional Banner -->
-  <section class="demo-banner" style="background: linear-gradient(135deg, #e5e7eb 0%, #f3f4f6 100%); color: #222;">
-    <h2 style="color:#222;">Trusted by Federal Agencies & Enterprise Organizations</h2>
-    <p class="subtitle" style="color:#444;">Professional training programs trusted for government, enterprise, and nonprofit organizations seeking workforce development solutions</p>
+  <section class="demo-banner" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border: 1px solid rgba(119,239,227,0.2);">
+    <h2 style="color:#f8fafc;">Cloud Skills For Individuals, Youth, and Career Switchers</h2>
+    <p class="subtitle" style="color:#cbd5e1;">Start with practical classes, specials, and blog guidance. Enterprise programs are available when your team is ready.</p>
     <div class="value-props">
-      <div class="value-prop">
-        <span class="stat" style="color:#222;">7+</span>
-        <span class="label" style="color:#444;">Certification Pathways</span>
+      <div class="value-prop" data-flip="true" data-flip-back="Explore seven guided certification tracks including Azure, cloud security, architecture, and AI with beginner-friendly ramps.">
+        <span class="stat" style="color:#f8fafc;">7+</span>
+        <span class="label" style="color:#cbd5e1;">Certification Pathways</span>
       </div>
-      <div class="value-prop">
-        <span class="stat" style="color:#222;">70+</span>
-        <span class="label" style="color:#444;">Hours of Training</span>
+      <div class="value-prop" data-flip="true" data-flip-back="Over seventy hours of structured content, labs, and guided walkthroughs you can complete at your pace.">
+        <span class="stat" style="color:#f8fafc;">70+</span>
+        <span class="label" style="color:#cbd5e1;">Hours of Training</span>
       </div>
-      <div class="value-prop">
-        <span class="stat" style="color:#222;">100%</span>
-        <span class="label" style="color:#444;">Hands-On Labs</span>
+      <div class="value-prop" data-flip="true" data-flip-back="Every learning path includes hands-on scenarios so you build confidence and portfolio proof, not just theory.">
+        <span class="stat" style="color:#f8fafc;">100%</span>
+        <span class="label" style="color:#cbd5e1;">Hands-On Labs</span>
       </div>
-      <div class="value-prop">
-        <span class="stat" style="color:#222;">30-Day</span>
-        <span class="label" style="color:#444;">Money-Back Guarantee</span>
+      <div class="value-prop" data-flip="true" data-flip-back="Try classes with confidence. If the program is not a fit in the first 30 days, your refund option stays available.">
+        <span class="stat" style="color:#f8fafc;">30-Day</span>
+        <span class="label" style="color:#cbd5e1;">Money-Back Guarantee</span>
       </div>
     </div>
-    <a href="pricing.html" class="cta-button" style="background:#222;color:#fff;" data-analytics-event="cta_click" data-analytics-label="banner-explore-pricing">View All Training Options</a>
+    <a href="pricing.html" class="cta-button" style="background:#77efe3;color:#0b1025;" data-analytics-event="cta_click" data-analytics-label="banner-explore-pricing">See Class Specials</a>
+  </section>
+
+  <section class="automation-wow-section" aria-labelledby="automation-wow-title">
+    <div class="automation-wow-grid">
+      <div class="automation-copy">
+        <span class="automation-pill">Live Automation Preview</span>
+        <h2 id="automation-wow-title">Watch cloud automation react in real time</h2>
+        <p>
+          New visitors can click start and watch a mini cloud workflow run: trigger, validate, deploy, and notify.
+          It is simple, visual, and gives that immediate "this is tech-savvy" first impression.
+        </p>
+        <div class="automation-actions">
+          <button id="automationStartBtn" class="button button-primary" type="button">Run Automation</button>
+          <a href="garden-guardian-demo.html" class="button button-secondary">Launch Security Demo</a>
+        </div>
+      </div>
+      <div class="automation-console" aria-live="polite">
+        <div class="automation-console-header">
+          <span></span><span></span><span></span>
+          <strong>automation-runner.log</strong>
+        </div>
+        <div id="automationLog" class="automation-log">
+          <div>Ready: click <code>Run Automation</code> to simulate a cloud workflow.</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1>Enterprise-Grade <span class="highlight">Cloud Training</span> Programs</h1>
-    <p>Trusted by government agencies and enterprise organizations. AWS, Azure, GCP, DevOps, and Cloud Security certification programs with hands-on labs, real-world projects, and expert mentorship. Comprehensive training at <strong>$25 per class</strong> with flexible licensing for teams.</p>
+    <h1>Learn <span class="highlight">Cloud, AI, and Cyber</span> One Class At A Time</h1>
+    <p>Start with individual classes, youth-friendly pathways, and practical specials before moving into enterprise tracks. Build skills through hands-on labs, career projects, and guided support.</p>
     <div class="hero-buttons">
-      <a href="courses.html" class="button button-primary" data-analytics-event="cta_click" data-analytics-label="hero-browse-courses">Explore Programs</a>
-      <a href="pricing.html" class="button button-secondary" data-analytics-event="cta_click" data-analytics-label="hero-view-pricing">View Pricing Options</a>
+      <a href="courses.html" class="button button-primary" data-analytics-event="cta_click" data-analytics-label="hero-browse-courses">Explore Classes</a>
+      <a href="pg-parks-direct.html" class="button button-secondary" data-analytics-event="cta_click" data-analytics-label="hero-pgparks-landing">PG Parks Student Login</a>
     </div>
   </section>
 
@@ -121,11 +148,11 @@
   <section class="trust-section">
     <h3>Trusted By Leading Organizations</h3>
     <div class="partner-logos">
-      <img src="images/partner1.png" alt="Partner 1" class="partner-logo" />
-      <img src="images/partner2.png" alt="Partner 2" class="partner-logo" />
-      <img src="images/partner3.png" alt="Partner 3" class="partner-logo" />
-      <img src="images/partner4.png" alt="Partner 4" class="partner-logo" />
-      <!-- Add real or placeholder logos for credibility -->
+      <div class="partner-chip"><i class="devicon-azure-plain colored"></i><span>Microsoft Azure</span></div>
+      <div class="partner-chip"><i class="devicon-amazonwebservices-original colored"></i><span>AWS</span></div>
+      <div class="partner-chip"><i class="devicon-googlecloud-plain colored"></i><span>Google Cloud</span></div>
+      <div class="partner-chip"><i class="devicon-github-original"></i><span>GitHub</span></div>
+      <div class="partner-chip"><i class="fas fa-landmark"></i><span>Prince George's County Programs</span></div>
     </div>
   </section>
 
@@ -135,30 +162,30 @@
       <p>Focused pathways, real projects, and interview readiness for measurable results.</p>
     </div>
     <div class="outcomes-grid">
-      <div class="outcome-card">
+      <a class="outcome-card" href="resources.html#starter-kit" data-flip="true" data-flip-back="Open the starter kit section to get a weekly breakdown, checkpoints, and exam-aligned practice blocks.">
         <h3>Certification-Ready Path</h3>
         <div class="metric">30-Day Plan</div>
         <p>Weekly milestones for AZ-900, AWS CCP, and cloud fundamentals with labs and mock exams.</p>
-      </div>
-      <div class="outcome-card">
+      </a>
+      <a class="outcome-card" href="courses.html" data-flip="true" data-flip-back="Review real class projects you can turn into portfolio proof for interviews and scholarship applications.">
         <h3>Portfolio Projects</h3>
         <div class="metric">6 Real Builds</div>
         <p>Deploy serverless apps, secure cloud networks, and CI/CD pipelines you can showcase.</p>
-      </div>
-      <div class="outcome-card">
+      </a>
+      <a class="outcome-card" href="blog.html" data-flip="true" data-flip-back="Get interview prompts, confidence routines, and communication patterns from career-focused blog posts.">
         <h3>Interview Acceleration</h3>
         <div class="metric">15+ Prompts</div>
         <p>Behavioral + technical interview prep with coaching-ready scorecards.</p>
-      </div>
+      </a>
     </div>
   </section>
 
-  <section style="width:min(1100px,calc(100% - 2rem)); margin:0 auto 2.5rem; background:linear-gradient(135deg, rgba(255,142,184,0.12), rgba(123,77,242,0.18)); border:1px solid rgba(255,142,184,0.25); border-radius:18px; padding:1.35rem 1.4rem;">
+  <section style="width:min(1100px,calc(100% - 2rem)); margin:0 auto 2.5rem; background:linear-gradient(135deg, #1e1b4b 0%, #1f2937 100%); border:1px solid rgba(119,239,227,0.35); border-radius:18px; padding:1.35rem 1.4rem;">
     <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
       <div>
-        <div style="display:inline-block; padding:0.35rem 0.75rem; border-radius:999px; background:#eef3ff; color:#0b1025; font-size:0.75rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.6rem;">Featured on the blog</div>
-        <h2 style="margin:0 0 0.35rem; color:#fff;">Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift</h2>
-        <p style="margin:0; color:#cbd5e1; max-width:42rem;">A powerful, timely post on compensation loss, workplace barriers, and why Black women must build transition-ready tech skills in the AI era.</p>
+        <div style="display:inline-block; padding:0.35rem 0.75rem; border-radius:999px; background:#77efe3; color:#0b1025; font-size:0.75rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.6rem;">Featured on the blog</div>
+        <h2 style="margin:0 0 0.35rem; color:#f8fafc;">Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift</h2>
+        <p style="margin:0; color:#e2e8f0; max-width:42rem;">A powerful, timely post on compensation loss, workplace barriers, and why Black women must build transition-ready tech skills in the AI era.</p>
       </div>
       <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
         <a href="black-women-in-it-ai-shift.html" style="display:inline-block; text-decoration:none; background:#77efe3; color:#0b1025; padding:0.9rem 1.2rem; border-radius:12px; font-weight:800;">Read the featured post</a>
@@ -320,19 +347,19 @@
     <h2 style="font-size: 2rem; margin-bottom: 1rem; color: #fff;">Proven Training Excellence</h2>
     <p style="font-size: 1.1rem; color: #CBD5E1; max-width: 700px; margin: 0 auto 2rem;">Delivering results for government agencies, enterprises, and individual professionals</p>
     <div class="stats-grid">
-      <div class="stat-card">
+      <div class="stat-card" data-flip="true" data-flip-back="Choose from seven guided tracks that walk from beginner foundation to role-ready confidence.">
         <span class="number">7+</span>
         <span class="label">Certification Pathways</span>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" data-flip="true" data-flip-back="Each lesson stacks into practical outcomes, not random clips. You learn by doing and explaining your work.">
         <span class="number">77</span>
         <span class="label">Professional Lessons</span>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" data-flip="true" data-flip-back="Structured hours with labs, review checkpoints, and real scenario walkthroughs build durable technical fluency.">
         <span class="number">70+</span>
         <span class="label">Training Hours</span>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" data-flip="true" data-flip-back="Affordable entry points help learners start now, then scale into bundles, memberships, and career pathways.">
         <span class="number">$25</span>
         <span class="label">Average Per Class</span>
       </div>
@@ -345,17 +372,17 @@
       <p>Real outcomes from professionals who completed our programs and advanced their careers</p>
     </div>
     <div class="testimonial-grid">
-      <div class="testimonial-card">
+      <div class="testimonial-card" data-flip="true" data-flip-back="Outcome details: completed labs in 6 weeks, built 2 projects, and passed first technical screening.">
         <p class="quote">"The structured labs and mock interviews helped me land my first cloud role within 8 weeks."</p>
         <div class="author">A. Robinson</div>
         <div class="role">Cloud Support Associate</div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card" data-flip="true" data-flip-back="Outcome details: passed Azure certification, published projects, and improved recruiter response quality.">
         <p class="quote">"The certification roadmap was exactly what I needed. I passed my Azure exam and built projects I can show employers."</p>
         <div class="author">M. Patel</div>
         <div class="role">IT Analyst</div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card" data-flip="true" data-flip-back="Outcome details: adopted cloud automation playbooks and improved deployment consistency at work.">
         <p class="quote">"Professional instruction with hands-on experience. The content is immediately applicable to enterprise environments."</p>
         <div class="author">T. Nguyen</div>
         <div class="role">Systems Administrator</div>
@@ -441,19 +468,19 @@
       <p>Quick answers to help you pick the right path.</p>
     </div>
     <div class="faq-grid">
-      <div class="faq-item">
+      <div class="faq-item" data-flip="true" data-flip-back="Try Cloud Fundamentals first, then branch to Security, DevOps, Architecture, or AI based on your goals.">
         <h3>Which course should I start with?</h3>
         <p>If you are new to cloud computing, start with Cloud Fundamentals 101 because it builds the exact vocabulary and platform basics employers expect. The pathway is structured so you can progress from core concepts to hands-on labs without getting overwhelmed. If you already have IT experience, you can move directly into Security, DevOps, or Architecture tracks. Most learners use Fundamentals as a launchpad before choosing a specialization.</p>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-flip="true" data-flip-back="Most students feel interview-ready in 30 to 45 days with weekly consistency and practical labs.">
         <h3>How long until I’m job-ready?</h3>
         <p>Most learners complete the starter roadmap in 30 to 45 days with a steady 5 to 7 hours of focused work each week. Job readiness depends on consistency, portfolio quality, and interview practice just as much as course completion. We guide you through project milestones so you leave with concrete examples to discuss with recruiters and hiring managers. Learners who stay on schedule typically see measurable confidence gains within the first few weeks.</p>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-flip="true" data-flip-back="Certificates are verifiable and useful for LinkedIn, resumes, and internal promotion narratives.">
         <h3>Do I get a certificate?</h3>
         <p>Yes, you receive a verifiable certificate for each completed pathway after meeting lesson and progress requirements. Certificates are designed to be shared on LinkedIn, resumes, and internal performance documentation. They signal practical skill development tied to specific cloud domains such as security, architecture, and automation. While certificates are not a substitute for vendor exams, they strengthen your portfolio and readiness narrative.</p>
       </div>
-      <div class="faq-item">
+      <div class="faq-item" data-flip="true" data-flip-back="Team programs include role tracks, progress visibility, and delivery options for agencies and departments.">
         <h3>Do you offer team training?</h3>
         <p>Yes, we provide team training for enterprise and government organizations with flexible delivery options. Programs can include role-based pathways, manager visibility dashboards, and tailored schedules for distributed teams. We also support volume pricing and custom onboarding so organizations can roll out training efficiently. If you share your goals and team size, we can map a practical plan and timeline quickly.</p>
       </div>
@@ -502,6 +529,7 @@
   <script src="js/site-config.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/auth-system.js"></script>
+  <script src="js/global-ui.js"></script>
   <script>
     // Update auth button if user is logged in
     document.addEventListener('DOMContentLoaded', () => {
@@ -513,6 +541,40 @@
         }
       }
 
+      const startBtn = document.getElementById('automationStartBtn');
+      const log = document.getElementById('automationLog');
+      if (startBtn && log) {
+        const steps = [
+          '[init] Trigger received from learner portal.',
+          '[auth] Access validated via role-based policy.',
+          '[deploy] Provisioning sandbox resources...',
+          '[test] Running smoke checks and policy scan...',
+          '[notify] Sending readiness update to dashboard.',
+          '[done] Workflow complete. Environment healthy.'
+        ];
+
+        let busy = false;
+        startBtn.addEventListener('click', function () {
+          if (busy) return;
+          busy = true;
+          startBtn.textContent = 'Running...';
+          log.innerHTML = '';
+
+          steps.forEach((line, index) => {
+            setTimeout(() => {
+              const row = document.createElement('div');
+              row.textContent = line;
+              log.appendChild(row);
+              log.scrollTop = log.scrollHeight;
+
+              if (index === steps.length - 1) {
+                startBtn.textContent = 'Run Again';
+                busy = false;
+              }
+            }, index * 750);
+          });
+        });
+      }
     });
   </script>
 

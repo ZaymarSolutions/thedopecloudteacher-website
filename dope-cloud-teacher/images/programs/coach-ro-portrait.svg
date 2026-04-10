@@ -1,0 +1,39 @@
+<svg width="240" height="320" viewBox="0 0 240 320" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="20" y1="20" x2="220" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#181a3e"/>
+      <stop offset="1" stop-color="#402066"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="73" y1="40" x2="170" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#201326"/>
+      <stop offset="1" stop-color="#09060c"/>
+    </linearGradient>
+    <linearGradient id="jacket" x1="68" y1="150" x2="168" y2="288" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7b4df2"/>
+      <stop offset="1" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="12" y="12" width="216" height="296" rx="28" fill="url(#bg)"/>
+  <circle cx="120" cy="102" r="46" fill="#b98066"/>
+  <path d="M78 70c8-30 27-44 50-44s44 14 52 45c-8-2-15 0-20 4-9-6-22-9-32-9s-22 3-31 9c-6-5-12-6-19-5z" fill="url(#hair)"/>
+  <path d="M76 96c6-11 8-22 6-34" stroke="#160d1d" stroke-width="6" stroke-linecap="round"/>
+  <path d="M166 95c-6-11-8-22-6-34" stroke="#160d1d" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="104" cy="106" rx="4" ry="5" fill="#23160f"/>
+  <ellipse cx="136" cy="106" rx="4" ry="5" fill="#23160f"/>
+  <path d="M108 126c6 6 17 6 23 0" stroke="#8b4f44" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="91" cy="110" rx="5" ry="8" fill="#d9a38b" opacity="0.45"/>
+  <ellipse cx="149" cy="110" rx="5" ry="8" fill="#d9a38b" opacity="0.45"/>
+  <rect x="108" y="138" width="24" height="18" rx="9" fill="#b98066"/>
+
+  <path d="M68 180c8-22 27-34 52-34 25 0 44 13 52 34l10 44H58l10-44z" fill="url(#jacket)"/>
+  <path d="M98 174h44l-7 21h-30z" fill="#f8f2ff"/>
+  <rect x="83" y="198" width="74" height="68" rx="14" fill="#1f163f" opacity="0.33"/>
+
+  <rect x="92" y="263" width="19" height="35" rx="9" fill="#4b5563"/>
+  <rect x="129" y="263" width="19" height="35" rx="9" fill="#4b5563"/>
+  <path d="M88 296h29l-3 8H88z" fill="#0f172a"/>
+  <path d="M126 296h29l-3 8h-26z" fill="#0f172a"/>
+
+  <text x="120" y="44" text-anchor="middle" fill="#d8c8ff" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Coach Ro</text>
+</svg>
