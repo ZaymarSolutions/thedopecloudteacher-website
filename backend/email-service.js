@@ -68,6 +68,22 @@ const emailTemplates = {
         </p>
       </div>
     `
+  }),
+
+  passwordReset: (name, resetUrl) => ({
+    subject: 'Reset Your Password - The Dope Cloud Teacher',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h1 style="color: #4B3869; margin-bottom: 1rem;">Password reset request</h1>
+        <p>Hi${name ? ` ${name}` : ''},</p>
+        <p>We received a request to reset your password for <strong>The Dope Cloud Teacher</strong>.</p>
+        <div style="text-align: center; margin: 2rem 0;">
+          <a href="${resetUrl}" style="display: inline-block; background: #4B3869; color: white; padding: 12px 30px; border-radius: 10px; text-decoration: none; font-weight: bold;">Reset my password</a>
+        </div>
+        <p style="color: #666; font-size: 0.9rem;">Or copy this link into your browser: <a href="${resetUrl}">${resetUrl}</a></p>
+        <p style="color: #666; font-size: 0.9rem;">This link expires in 1 hour. If you did not request this, you can safely ignore this email.</p>
+      </div>
+    `
   })
 };
 

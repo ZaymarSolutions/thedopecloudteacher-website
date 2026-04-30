@@ -1,5 +1,6 @@
 (() => {
   const config = window.DCT_ANALYTICS || {};
+  const hasValidGa4MeasurementId = typeof config.measurementId === 'string' && /^G-[A-Z0-9]+$/i.test(config.measurementId) && config.measurementId.toUpperCase() !== 'G-XXXXXXXXXX';
 
   const trackEvent = (eventName, props = {}) => {
     if (!eventName) return;
@@ -23,7 +24,7 @@
     return;
   }
 
-  if (config.provider === 'ga4' && config.measurementId) {
+  if (config.provider === 'ga4' && hasValidGa4MeasurementId) {
     const gtagScript = document.createElement('script');
     gtagScript.async = true;
     gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${config.measurementId}`;

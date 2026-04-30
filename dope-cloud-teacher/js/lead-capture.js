@@ -1,7 +1,7 @@
 (() => {
   const API_URL = window.DCT_API_URL || (window.location.hostname === 'localhost'
     ? 'http://localhost:3000/api'
-    : 'https://api.thedopecloudteacher.com/api');
+    : 'https://energetic-endurance-production.up.railway.app/api');
 
   const trackEvent = window.DCTTrackEvent || ((eventName, props = {}) => {
     if (typeof window.plausible === 'function') {

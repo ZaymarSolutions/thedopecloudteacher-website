@@ -7,6 +7,8 @@
   <meta name="description" content="Fun and futuristic student landing page for PG Parks Direct learners to quickly access classes, specials, blogs, and dashboards.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://thedopecloudteacher.org/pg-parks-direct.html">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
@@ -422,9 +424,11 @@
         <span>PG Parks Direct Learners</span>
       </div>
       <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="index.html">Home</a>
         <a href="courses.html">Classes</a>
-        <a href="pricing.html">Specials</a>
         <a href="blog.html">Blog</a>
+        <a href="resources.html">Resources</a>
+        <a href="pricing.html">Pricing</a>
         <a href="dashboard.html">Dashboard</a>
       </div>
     </nav>
@@ -439,8 +443,8 @@
           </p>
           <div class="pg-actions">
             <a class="pg-btn pg-btn-primary" href="dashboard.html"><i class="fas fa-sign-in-alt"></i> Student Login</a>
-            <a class="pg-btn pg-btn-secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Action=Start&amp;keyword=cloud&amp;keywordoption=Match+One&amp;dayoption=All&amp;display=Detail&amp;module=global&amp;globalwebsearch_buttonsearch=yes" target="_blank" rel="noopener"><i class="fas fa-search"></i> Find Cloud Classes</a>
-            <a class="pg-btn pg-btn-secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Open WebTrac</a>
+            <a class="pg-btn pg-btn-secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Action=Start&amp;keyword=cloud&amp;keywordoption=Match+One&amp;dayoption=All&amp;display=Detail&amp;module=global&amp;globalwebsearch_buttonsearch=yes" target="_blank" rel="noopener" data-analytics-event="outbound_click" data-analytics-label="pgparks-cloud-search"><i class="fas fa-search"></i> Find Cloud Classes</a>
+            <a class="pg-btn pg-btn-secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/" target="_blank" rel="noopener" data-analytics-event="outbound_click" data-analytics-label="pgparks-webtrac"><i class="fas fa-external-link-alt"></i> Open WebTrac</a>
           </div>
           <div class="pg-mini-stats">
             <div class="pg-mini-stat"><strong>Cloud</strong><span>starter labs</span></div>
@@ -486,19 +490,19 @@
         </div>
       </div>
       <div class="pg-grid">
-        <a class="pg-card" href="courses.html?course=cloud-fundamentals-101" data-flip="true" data-flip-back="Learn how cloud powers the apps you already use and start your first technical journey with clear, beginner-friendly steps.">
+        <a class="pg-card" href="pg-cloud-mission.html" data-flip="true" data-flip-back="Open the Cloud Explorer landing page for beginner-friendly labs, class links, and a clear next step into tech.">
           <div class="pg-icon"><i class="fas fa-cloud"></i></div>
           <span class="pg-badge">Cloud Explorer</span>
           <h3>Build your first cloud skills</h3>
           <p>Start simple and understand the digital world behind websites, apps, and storage.</p>
         </a>
-        <a class="pg-card" href="garden-guardian-demo.html" data-flip="true" data-flip-back="Step into a live security demo and see how defenders detect alerts, investigate risk, and protect systems.">
+        <a class="pg-card" href="pg-cyber-mission.html" data-flip="true" data-flip-back="Open the Cyber Defender landing page for hands-on security demos, mission steps, and real-world cyber pathways.">
           <div class="pg-icon"><i class="fas fa-shield-alt"></i></div>
           <span class="pg-badge">Cyber Defender</span>
           <h3>Try a security challenge</h3>
           <p>See how cloud security works in a fun demo designed to feel like a real mission.</p>
         </a>
-        <a class="pg-card" href="blog.html" data-flip="true" data-flip-back="Read inspiring posts, tech stories, and beginner-friendly advice that helps you picture yourself in the field.">
+        <a class="pg-card" href="pg-ai-mission.html" data-flip="true" data-flip-back="Open the AI Creator landing page for beginner AI ideas, creative tools, and future-ready project inspiration.">
           <div class="pg-icon"><i class="fas fa-robot"></i></div>
           <span class="pg-badge">AI Creator</span>
           <h3>Discover future tech paths</h3>
@@ -601,6 +605,8 @@
       setInterval(updateCountdown, 1000);
     })();
   </script>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/global-ui.js"></script>
   <script src="js/knowledge-guide.js"></script>
 </body>

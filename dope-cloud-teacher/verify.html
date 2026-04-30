@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Verify Your Email | The Dope Cloud Teacher</title>
   <meta name="robots" content="noindex, nofollow">
@@ -92,7 +94,7 @@
       const token = params.get('token');
       const apiUrl = window.DCT_API_URL || (window.location.hostname === 'localhost'
         ? 'http://localhost:3000/api'
-        : 'https://api.thedopecloudteacher.com/api');
+        : 'https://energetic-endurance-production.up.railway.app/api');
 
       if (!token) {
         statusEl.textContent = 'Missing verification token. Please use the link in your email.';

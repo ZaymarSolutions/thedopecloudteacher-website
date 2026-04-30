@@ -3,17 +3,26 @@
 // Uses backend proxy endpoint to keep API keys secure.
 
 function getAssistantEndpoints() {
-  const configuredBase = (window.DCT_API_URL || '').replace(/\/$/, '');
+  const normalizeBase = (value) => (typeof value === 'string' ? value.trim().replace(/\/$/, '') : '');
   const origin = window.location.origin;
+  const isLocalhost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+  let storedApiUrl = '';
 
-  const candidates = [
-    configuredBase ? `${configuredBase}/assistant/chat` : '',
-    `${origin}/api/assistant/chat`,
-    '/api/assistant/chat',
-    'https://api.thedopecloudteacher.com/api/assistant/chat'
+  try {
+    storedApiUrl = window.localStorage.getItem('DCT_API_URL') || '';
+  } catch {
+    storedApiUrl = '';
+  }
+
+  const baseCandidates = [
+    normalizeBase(window.DCT_API_URL),
+    normalizeBase(storedApiUrl),
+    isLocalhost ? 'http://localhost:3000/api' : `${origin}/api`,
+    'https://energetic-endurance-production.up.railway.app/api',
+    'https://thedopecloudteacher.org/api'
   ];
 
-  return [...new Set(candidates.filter(Boolean))];
+  return [...new Set(baseCandidates.filter(Boolean))].map((base) => `${base}/assistant/chat`);
 }
 
 // === UI SETUP ===

@@ -8,6 +8,8 @@
   <meta name="keywords" content="Black women in IT, DEI rollback, pay gap in tech, AI jobs, Black women in tech, tech education, Azure, AI enablement engineer">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://thedopecloudteacher.org/black-women-in-it-ai-shift.html">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
   <meta property="og:site_name" content="The Dope Cloud Teacher">
   <meta property="og:title" content="Black Women in IT: Pay Cuts, DEI Rollbacks, and the AI Shift">
   <meta property="og:description" content="Why Black women in IT need education, strategy, and transition-ready tech skills now more than ever.">
@@ -221,12 +223,43 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 0.9rem;
+      min-height: 132px;
     }
 
     .role-card strong {
       color: var(--gold);
       display: block;
       margin-bottom: 0.25rem;
+    }
+
+    .role-card .dct-flip-card-back {
+      align-items: flex-start;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .role-live-jobs {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.65rem;
+      width: 100%;
+    }
+
+    .role-live-jobs a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .role-live-jobs a:hover {
+      text-decoration: underline;
+    }
+
+    .role-live-status {
+      margin-top: 0.55rem;
+      color: #d7e0fb;
+      font-size: 0.78rem;
     }
 
     .cta-strip { padding-bottom: 3rem; }
@@ -382,12 +415,12 @@
       <h2>Roles worth paying attention to in the AI transition</h2>
       <p style="margin-top:-0.35rem; color:#d7e0fb;"><em>Tap a role card to flip it for a fuller description and examples of businesses that commonly hire in that lane.</em></p>
       <div class="role-list">
-        <div class="role-card" data-flip="true" data-flip-back="Role focus: helps organizations roll out AI copilots, workflows, prompts, and governance safely across business teams. Businesses to watch for hiring in this lane include Microsoft, Accenture, Deloitte, IBM, and PwC."><strong>AI Enablement Engineer</strong><span>Helps teams adopt AI tools, workflows, and integrations safely and effectively.</span></div>
-        <div class="role-card" data-flip="true" data-flip-back="Role focus: manages Azure, AWS, or hybrid cloud systems, identity, storage, automation, and uptime. Businesses often hiring include Amazon, Capital One, Booz Allen Hamilton, Microsoft, and government contractors."><strong>Cloud Administrator</strong><span>Manages the cloud platforms where AI systems and business apps actually run.</span></div>
-        <div class="role-card" data-flip="true" data-flip-back="Role focus: monitors threats, investigates alerts, protects user access, and secures endpoints and cloud services. Hiring examples to watch include CrowdStrike, Palo Alto Networks, Leidos, Northrop Grumman, and IBM."><strong>Cybersecurity Analyst</strong><span>Protects data, identities, endpoints, and cloud workloads in a higher-risk AI era.</span></div>
-        <div class="role-card" data-flip="true" data-flip-back="Role focus: supports model deployment, observability, data pipelines, reliability, and responsible AI operations after launch. Businesses commonly hiring include Google, Databricks, AWS, Salesforce, and JPMorgan Chase."><strong>AI Operations / MLOps Support</strong><span>Supports model deployment, monitoring, reliability, and lifecycle management.</span></div>
-        <div class="role-card" data-flip="true" data-flip-back="Role focus: automates repetitive workflows with scripting, Power Platform, Python, CI/CD, and cloud orchestration. Businesses to watch include ServiceNow, Accenture, GitHub, Cisco, and enterprise IT departments."><strong>Automation Specialist</strong><span>Builds repeatable workflows using scripting, low-code tools, and cloud automation.</span></div>
-        <div class="role-card" data-flip="true" data-flip-back="Role focus: handles compliance, data quality, reporting, governance controls, and responsible use of business data. Hiring examples include Capital One, Deloitte, KPMG, Oracle, and healthcare or public-sector organizations."><strong>Data & Governance Analyst</strong><span>Focuses on quality, compliance, policy, and responsible handling of data and AI systems.</span></div>
+        <div class="role-card" data-role-key="ai-enablement-engineer" data-flip="true" data-flip-back="Role focus: helps organizations roll out AI copilots, workflows, prompts, and governance safely across business teams. Businesses to watch for hiring in this lane include Microsoft, Accenture, Deloitte, IBM, and PwC."><strong>AI Enablement Engineer</strong><span>Helps teams adopt AI tools, workflows, and integrations safely and effectively.</span></div>
+        <div class="role-card" data-role-key="cloud-administrator" data-flip="true" data-flip-back="Role focus: manages Azure, AWS, or hybrid cloud systems, identity, storage, automation, and uptime. Businesses often hiring include Amazon, Capital One, Booz Allen Hamilton, Microsoft, and government contractors."><strong>Cloud Administrator</strong><span>Manages the cloud platforms where AI systems and business apps actually run.</span></div>
+        <div class="role-card" data-role-key="cybersecurity-analyst" data-flip="true" data-flip-back="Role focus: monitors threats, investigates alerts, protects user access, and secures endpoints and cloud services. Hiring examples to watch include CrowdStrike, Palo Alto Networks, Leidos, Northrop Grumman, and IBM."><strong>Cybersecurity Analyst</strong><span>Protects data, identities, endpoints, and cloud workloads in a higher-risk AI era.</span></div>
+        <div class="role-card" data-role-key="ai-operations-mlops-support" data-flip="true" data-flip-back="Role focus: supports model deployment, observability, data pipelines, reliability, and responsible AI operations after launch. Businesses commonly hiring include Google, Databricks, AWS, Salesforce, and JPMorgan Chase."><strong>AI Operations / MLOps Support</strong><span>Supports model deployment, monitoring, reliability, and lifecycle management.</span></div>
+        <div class="role-card" data-role-key="automation-specialist" data-flip="true" data-flip-back="Role focus: automates repetitive workflows with scripting, Power Platform, Python, CI/CD, and cloud orchestration. Businesses to watch include ServiceNow, Accenture, GitHub, Cisco, and enterprise IT departments."><strong>Automation Specialist</strong><span>Builds repeatable workflows using scripting, low-code tools, and cloud automation.</span></div>
+        <div class="role-card" data-role-key="data-governance-analyst" data-flip="true" data-flip-back="Role focus: handles compliance, data quality, reporting, governance controls, and responsible use of business data. Hiring examples include Capital One, Deloitte, KPMG, Oracle, and healthcare or public-sector organizations."><strong>Data & Governance Analyst</strong><span>Focuses on quality, compliance, policy, and responsible handling of data and AI systems.</span></div>
       </div>
 
       <p>
@@ -440,7 +473,70 @@
     <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
   </footer>
 
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
   <script src="js/global-ui.js"></script>
+  <script>
+    (function () {
+      function escapeHtml(value) {
+        return String(value || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      async function hydrateLiveJobs() {
+        const cards = Array.from(document.querySelectorAll('.role-card[data-role-key]'));
+        if (!cards.length) return;
+
+        const apiBase = (window.DCT_API_URL || '/api').replace(/\/$/, '');
+
+        await Promise.all(cards.map(async (card) => {
+          const roleKey = card.getAttribute('data-role-key');
+          const backPanel = card.querySelector('.dct-flip-card-back');
+          const summary = card.getAttribute('data-flip-back') || '';
+          if (!backPanel) return;
+
+          backPanel.innerHTML = `<p>${escapeHtml(summary)}</p><div class="role-live-status">Loading live jobs…</div>`;
+
+          try {
+            const response = await fetch(`${apiBase}/jobs/live?role=${encodeURIComponent(roleKey)}`);
+            if (!response.ok) throw new Error('Job lookup failed');
+            const data = await response.json();
+            const jobs = Array.isArray(data.jobs) ? data.jobs.slice(0, 2) : [];
+
+            if (!jobs.length) {
+              backPanel.innerHTML = `<p>${escapeHtml(summary)}</p><div class="role-live-status">No live matches were returned right now, but this role path is still highly relevant.</div>`;
+              return;
+            }
+
+            const jobLinks = jobs.map((job) => {
+              const title = escapeHtml(job.title);
+              const company = escapeHtml(job.company);
+              const href = escapeHtml(job.url);
+              return `<a href="${href}" target="_blank" rel="noopener" data-analytics-event="outbound_click" data-analytics-label="${escapeHtml(roleKey + ':' + company)}">${title} — ${company}</a>`;
+            }).join('');
+
+            const updatedAt = data.updatedAt
+              ? new Date(data.updatedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+              : 'recently';
+
+            backPanel.innerHTML = `<p>${escapeHtml(summary)}</p><div class="role-live-jobs">${jobLinks}</div><div class="role-live-status">Live openings via ${escapeHtml(data.source || 'job feed')} • updated ${escapeHtml(updatedAt)}</div>`;
+          } catch (error) {
+            backPanel.innerHTML = `<p>${escapeHtml(summary)}</p><div class="role-live-status">Live jobs are temporarily unavailable, but the role guidance is still here for you.</div>`;
+          }
+        }));
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => setTimeout(hydrateLiveJobs, 0));
+      } else {
+        setTimeout(hydrateLiveJobs, 0);
+      }
+    })();
+  </script>
   <script src="js/knowledge-guide.js"></script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Dashboard - The Dope Cloud Teacher</title>
   <meta name="robots" content="noindex, nofollow">
@@ -10,12 +12,12 @@
   <meta property="og:title" content="My Dashboard - The Dope Cloud Teacher">
   <meta property="og:description" content="Track your cloud learning progress, certificates, and enrolled courses. The Dope Cloud Teacher dashboard helps you master AWS, Azure, GCP, and more.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thedopecloudteacher.com/dashboard.html">
-  <meta property="og:image" content="https://thedopecloudteacher.com/images/dashboard-preview.png">
+  <meta property="og:url" content="https://thedopecloudteacher.org/dashboard.html">
+  <meta property="og:image" content="https://thedopecloudteacher.org/images/dashboard-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="My Dashboard - The Dope Cloud Teacher">
   <meta name="twitter:description" content="Track your cloud learning progress, certificates, and enrolled courses. The Dope Cloud Teacher dashboard helps you master AWS, Azure, GCP, and more.">
-  <meta name="twitter:image" content="https://thedopecloudteacher.com/images/dashboard-preview.png">
+  <meta name="twitter:image" content="https://thedopecloudteacher.org/images/dashboard-preview.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
@@ -46,6 +48,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
       box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
@@ -65,6 +69,28 @@
       margin-right: 10px;
       border: 2px solid rgba(119, 239, 227, 0.35);
       box-shadow: 0 10px 24px rgba(123, 77, 242, 0.18);
+    }
+
+    .dashboard-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .dashboard-nav a {
+      color: #dbe4ff;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(119, 239, 227, 0.14);
+    }
+
+    .dashboard-nav a:hover {
+      color: #0b1025;
+      background: #77efe3;
     }
 
     .user-info {
@@ -260,6 +286,26 @@
       font-size: 1.1rem;
     }
 
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .trust-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #f8fbff;
+      border: 1px solid rgba(119, 239, 227, 0.22);
+      font-weight: 700;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
@@ -274,6 +320,14 @@
       <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
       The Dope Cloud Teacher
     </a>
+    <nav class="dashboard-nav" aria-label="Dashboard navigation">
+      <a href="index.html">Home</a>
+      <a href="courses.html">Classes</a>
+      <a href="blog.html">Blog</a>
+      <a href="resources.html">Resources</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pg-parks-direct.html">PG Parks Direct</a>
+    </nav>
     <div class="user-info">
       <span class="user-name" id="userName">Loading...</span>
       <button class="btn-logout" onclick="dopeAuth.logout()">
@@ -367,15 +421,15 @@
   <footer>
     <section aria-label="Credibility and Trust" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
       <h3 style="color: #10b981; text-align: center; margin-bottom: 1rem;">Trusted by Industry Leaders</h3>
-      <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-        <img src="images/aws-partner.png" alt="AWS Partner" style="height: 40px;">
-        <img src="images/azure-partner.png" alt="Azure Partner" style="height: 40px;">
-        <img src="images/gcp-partner.png" alt="Google Cloud Partner" style="height: 40px;">
-        <img src="images/pgparks-logo.png" alt="PG Parks & Planning" style="height: 40px;">
+      <div class="trust-row">
+        <span class="trust-badge"><i class="fab fa-microsoft"></i> Microsoft Azure</span>
+        <span class="trust-badge"><i class="fab fa-aws"></i> AWS</span>
+        <span class="trust-badge"><i class="fab fa-google"></i> Google Cloud</span>
+        <span class="trust-badge"><i class="fas fa-landmark"></i> PG Parks & Planning</span>
       </div>
-      <div style="text-align: center; margin-bottom: 1.5rem;">
+      <div style="text-align: center; margin-bottom: 1.5rem; display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap;">
         <span style="background: #77efe3; color: #0b1025; padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold;">30-Day Money-Back Guarantee</span>
-        <span style="background: #7b4df2; color: #fff; padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold; margin-left: 1rem;">Secure Payments</span>
+        <a href="https://roseecraft.gumroad.com" target="_blank" rel="noopener" class="btn-continue" style="margin-top:0; background:#7b4df2;">Secure Payments</a>
       </div>
       <div style="max-width: 700px; margin: 0 auto;">
         <blockquote style="color: #cbbcff; font-style: italic; margin-bottom: 1rem;">“The Dope Cloud Teacher helped our team master cloud security and pass certification exams. Highly recommended!”</blockquote>
@@ -521,5 +575,6 @@
   <script src="js/training-assistant.js"></script>
   <script src="js/global-ui.js"></script>
   <script src="js/knowledge-guide.js"></script>
-</body>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script></body>
 </html>

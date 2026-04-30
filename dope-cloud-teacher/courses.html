@@ -8,6 +8,8 @@
   <meta name="keywords" content="cloud computing courses, Azure training, AWS training, AI course, DevOps training, cloud security course, certification prep" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://thedopecloudteacher.org/courses.html" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
   <meta property="og:site_name" content="The Dope Cloud Teacher">
   <meta property="og:title" content="Cloud Computing Courses | Azure, AWS, AI & DevOps Training">
   <meta property="og:description" content="Browse cloud computing courses with certification prep, hands-on labs, career projects, and beginner-friendly pathways across Azure, AWS, AI, DevOps, and security.">
@@ -695,6 +697,48 @@
     function getCoursePhoto(courseId) {
       return COURSE_PHOTOS[courseId] || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=80';
     }
+    function ensureCourseEnhancements() {
+      const platformTemplate = {
+        platforms: ['Coursera', 'Pluralsight', 'LinkedIn Learning'],
+        standards: [
+          'Clear learning outcomes per lesson',
+          'Project-based assignments and labs',
+          'Knowledge checks and graded quizzes',
+          'Career-aligned skills mapping',
+          'Certificate-ready completion criteria'
+        ],
+        format: {
+          hasVideo: true,
+          hasAssessments: true,
+          hasProjects: true,
+          hasResources: true
+        }
+      };
+
+      Object.values(COURSE_PATHWAYS).forEach(course => {
+        if (!course.platformCompatibility) {
+          course.platformCompatibility = platformTemplate;
+        }
+
+        if (!course.videoBlueprint) {
+          course.videoBlueprint = {
+            avatarStyle: 'Professional mentor',
+            targetDuration: '6-10 minutes per lesson',
+            format: [
+              'Hook and lesson outcome',
+              'Core concept walk-through',
+              'Hands-on demo or scenario',
+              'Quick recap and challenge prompt'
+            ],
+            lessonPrompts: (course.lessons || []).map((lesson, idx) => ({
+              lessonNumber: idx + 1,
+              title: lesson.title,
+              prompt: `You are The Dope Cloud Teacher mini me. Teach ${lesson.title} in an energetic, professional tone with practical examples. Cover: ${(lesson.topics || []).join(', ')}. End with a 60-second recap and one hands-on challenge.`
+            }))
+          };
+        }
+      });
+    }
 
     function renderCoursesList() {
       const grid = document.getElementById('coursesGrid');
@@ -723,6 +767,7 @@
             <div class="topics">
               ${course.skills.slice(0, 4).map(skill => `<span class="topic-tag">${skill}</span>`).join('')}
               <span class="topic-tag" style="background: #10b981; color: #fff; font-weight:bold;">Special Offer</span>
+              <span class="topic-tag" style="background: rgba(59,130,246,0.25); color: #bfdbfe;">Platform-Ready</span>
             </div>
           </div>
         `;
@@ -918,6 +963,39 @@
           ` : ''}
         </div>
         ` : ''}
+        ${course.platformCompatibility ? `
+        <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(14, 116, 144, 0.12)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(16, 185, 129, 0.35);">
+          <h3 style="font-size: 1.8rem; color: #10b981; margin-bottom: 1rem; text-align: center;">
+            🎓 Enterprise Learning Platform Compatibility
+          </h3>
+          <p style="text-align: center; color: #e0e0e0; margin-bottom: 1.5rem; font-size: 1.05rem;">Structured to align with delivery expectations on major learning platforms.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 1.25rem;">
+            ${course.platformCompatibility.platforms.map(platform => `<span style="background: rgba(255,255,255,0.07); color: #77efe3; padding: 0.45rem 0.8rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem;">${platform}</span>`).join('')}
+          </div>
+          <ul style="line-height: 1.9; color: #e6f7f3; max-width: 760px; margin: 0 auto;">
+            ${course.platformCompatibility.standards.map(standard => `<li>${standard}</li>`).join('')}
+          </ul>
+        </div>
+        ` : ''}
+
+        ${course.videoBlueprint ? `
+        <div style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(37, 99, 235, 0.1)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(124, 58, 237, 0.35);">
+          <h3 style="font-size: 1.8rem; color: #c4b5fd; margin-bottom: 0.8rem; text-align: center;">
+            🎥 Mini Me Video Blueprint
+          </h3>
+          <p style="text-align: center; color: #e0e0e0; margin-bottom: 1rem;">Avatar style: <strong style="color:#77efe3;">${course.videoBlueprint.avatarStyle}</strong> • Target lesson video length: <strong style="color:#77efe3;">${course.videoBlueprint.targetDuration}</strong></p>
+          <p style="text-align: center; color: #cbbcff; margin-bottom: 1.25rem;">Use this script structure for every lesson video:</p>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; margin-bottom: 1.5rem;">
+            ${course.videoBlueprint.format.map(step => `<div style="background: rgba(255,255,255,0.05); border-radius: 10px; padding: 0.85rem; color: #e9e4ff; font-size: 0.92rem;">${step}</div>`).join('')}
+          </div>
+          <details style="background: rgba(255,255,255,0.04); border-radius: 12px; padding: 1rem;">
+            <summary style="cursor: pointer; color: #77efe3; font-weight: 700;">Open lesson-by-lesson Mini Me prompts (${course.videoBlueprint.lessonPrompts.length})</summary>
+            <div style="margin-top: 1rem; display: grid; gap: 0.8rem;">
+              ${course.videoBlueprint.lessonPrompts.map(item => `<div style="background: rgba(255,255,255,0.04); padding: 0.9rem; border-radius: 8px;"><strong style="color:#c4b5fd;">Lesson ${item.lessonNumber}: ${item.title}</strong><p style="margin-top:0.4rem; color:#e0e0e0; font-size:0.92rem;">${item.prompt}</p></div>`).join('')}
+            </div>
+          </details>
+        </div>
+        ` : ''}
 
         <h3 style="font-size: 2rem; color: #77efe3; margin-bottom: 1.5rem; margin-top: 3rem; text-align: center;">
           Course Curriculum (${course.lessons.length} Lessons)
@@ -1075,6 +1153,7 @@
       if (courseId && COURSE_PATHWAYS[courseId]) {
         showCourseDetail(courseId);
       } else {
+        ensureCourseEnhancements();
         renderCoursesList();
       }
     });

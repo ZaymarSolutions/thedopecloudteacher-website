@@ -1,5 +1,11 @@
 # 🎬 AI Video Generation Guide for Course Videos
 
+## Latest Project Assets
+
+- Mini Me lesson-by-lesson prompts: `MINI_ME_VIDEO_MANIFEST.md`
+- Platform standards checklist: `COURSE_PLATFORM_COMPATIBILITY_GUIDE.md`
+- GA4 implementation and validation: `GOOGLE_ANALYTICS_SETUP.md`
+
 ## Best AI Video Tools Comparison (January 2026)
 
 ### 🏆 Top Recommendations
@@ -34,8 +40,8 @@
 
 ## 🎥 Video Production Workflow
 
-### Step 1: Prepare Scripts (Done Below!)
-- I'll generate complete scripts for all 65+ lessons
+### Step 1: Prepare Scripts (Use Mini Me Manifest)
+- Use the generated prompts in `MINI_ME_VIDEO_MANIFEST.md`
 - Each script ~300-500 words (3-5 min video)
 - Includes intro, main content, key takeaways
 
@@ -215,7 +221,7 @@ Compare to traditional:
 
 ## 📝 What's Next?
 
-I'll now generate complete video scripts for ALL your lessons! Each script will include:
+The generated `MINI_ME_VIDEO_MANIFEST.md` already includes script prompts for all lessons. Each script pattern includes:
 - ✅ Engaging introduction
 - ✅ Clear learning objectives
 - ✅ Main content broken into digestible segments
@@ -223,7 +229,7 @@ I'll now generate complete video scripts for ALL your lessons! Each script will 
 - ✅ Practical tips and best practices
 - ✅ Summary and next steps
 
-You'll be able to copy-paste these directly into HeyGen/Synthesia!
+You can copy-paste these directly into HeyGen/Synthesia.
 
 ---
 

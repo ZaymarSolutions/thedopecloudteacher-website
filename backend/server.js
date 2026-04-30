@@ -11,6 +11,7 @@ const stripe = stripeSecretKey ? require('stripe')(stripeSecretKey) : null;
 const path = require('path');
 const crypto = require('crypto');
 const fs = require('fs');
+const https = require('https');
 const { sendEmail } = require('./email-service');
 
 const app = express();
@@ -110,6 +111,18 @@ db.exec(`
     verification_url TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     UNIQUE(user_id, course_id)
+  )
+`);
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS password_reset_tokens (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    token_hash TEXT UNIQUE NOT NULL,
+    expires_at DATETIME NOT NULL,
+    used_at DATETIME,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
   )
 `);
 
@@ -236,6 +249,15 @@ const authenticateToken = (req, res, next) => {
 };
 
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const isStrongPassword = (password) => typeof password === 'string' && password.length >= 8;
+const sha256 = (value) => crypto.createHash('sha256').update(String(value)).digest('hex');
+const buildFrontendUrl = (pathname = '') => {
+  const baseUrl = (process.env.FRONTEND_URL || 'https://thedopecloudteacher.org').replace(/\/$/, '');
+  if (!pathname) {
+    return baseUrl;
+  }
+  return `${baseUrl}${pathname.startsWith('/') ? pathname : `/${pathname}`}`;
+};
 
 const assistantSystemPrompt = `You are The Dope Cloud Teacher training assistant. Provide clear, practical guidance for cloud learning and career growth.
 Prioritize concise, actionable answers with real-world examples when useful.
@@ -278,6 +300,116 @@ const getStripeErrorResponse = (error, fallbackMessage) => {
     payload: code ? { error: sanitizedMessage, code } : { error: sanitizedMessage }
   };
 };
+
+const LIVE_JOBS_CACHE_TTL_MS = 15 * 60 * 1000;
+const liveJobsCache = new Map();
+const LIVE_JOB_ROLE_QUERIES = {
+  'ai-enablement-engineer': ['ai engineer', 'prompt engineer', 'machine learning engineer'],
+  'cloud-administrator': ['cloud administrator', 'cloud engineer'],
+  'cybersecurity-analyst': ['cybersecurity analyst', 'security analyst'],
+  'ai-operations-mlops-support': ['mlops engineer', 'machine learning operations', 'ai operations'],
+  'automation-specialist': ['automation engineer', 'devops engineer'],
+  'data-governance-analyst': ['data governance analyst', 'data analyst']
+};
+
+const fetchJson = (url) => new Promise((resolve, reject) => {
+  const request = https.get(url, {
+    headers: {
+      'User-Agent': 'The Dope Cloud Teacher/1.0'
+    }
+  }, (response) => {
+    const { statusCode, headers } = response;
+
+    if (statusCode >= 300 && statusCode < 400 && headers.location) {
+      response.resume();
+      fetchJson(headers.location).then(resolve).catch(reject);
+      return;
+    }
+
+    if (statusCode < 200 || statusCode >= 300) {
+      response.resume();
+      reject(new Error(`Request failed with status ${statusCode}`));
+      return;
+    }
+
+    let raw = '';
+    response.on('data', (chunk) => {
+      raw += chunk;
+    });
+    response.on('end', () => {
+      try {
+        resolve(JSON.parse(raw));
+      } catch (error) {
+        reject(error);
+      }
+    });
+  });
+
+  request.on('error', reject);
+});
+
+app.get('/api/jobs/live', async (req, res) => {
+  try {
+    const role = String(req.query.role || 'cloud-administrator').toLowerCase();
+    const searchTerms = LIVE_JOB_ROLE_QUERIES[role] || [String(req.query.q || 'cloud')];
+    const cacheKey = searchTerms.join('|');
+    const cached = liveJobsCache.get(cacheKey);
+
+    if (cached && (Date.now() - cached.timestamp) < LIVE_JOBS_CACHE_TTL_MS) {
+      return res.json(cached.payload);
+    }
+
+    const resultSets = await Promise.all(searchTerms.map(async (term) => {
+      const apiUrl = `https://remotive.com/api/remote-jobs?search=${encodeURIComponent(term)}`;
+      const data = await fetchJson(apiUrl);
+      return Array.isArray(data.jobs) ? data.jobs : [];
+    }));
+
+    const seen = new Set();
+    const jobs = resultSets
+      .flat()
+      .filter((job) => {
+        const key = job.url || `${job.company_name}:${job.title}`;
+        if (!job.title || !job.company_name || seen.has(key)) {
+          return false;
+        }
+        seen.add(key);
+        return true;
+      })
+      .slice(0, 6)
+      .map((job) => ({
+        title: job.title,
+        company: job.company_name,
+        url: job.url,
+        category: job.category || null,
+        location: job.candidate_required_location || 'Remote',
+        jobType: job.job_type || 'Not specified',
+        publishedAt: job.publication_date || null
+      }));
+
+    const payload = {
+      role,
+      source: 'Remotive',
+      updatedAt: new Date().toISOString(),
+      count: jobs.length,
+      jobs
+    };
+
+    liveJobsCache.set(cacheKey, {
+      timestamp: Date.now(),
+      payload
+    });
+
+    return res.json(payload);
+  } catch (error) {
+    console.error(`Live jobs lookup failed: ${error.message}`);
+    return res.status(502).json({
+      error: 'Unable to load live jobs right now',
+      source: 'Remotive',
+      jobs: []
+    });
+  }
+});
 
 // ==================== AUTH ROUTES ====================
 
@@ -383,6 +515,92 @@ app.post('/api/auth/login', async (req, res) => {
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Login failed' });
+  }
+});
+
+app.post('/api/auth/forgot-password', async (req, res) => {
+  try {
+    const email = typeof req.body?.email === 'string' ? req.body.email.trim().toLowerCase() : '';
+
+    if (!email || !isValidEmail(email)) {
+      return res.status(400).json({ error: 'Please provide a valid email address' });
+    }
+
+    const genericResponse = {
+      success: true,
+      message: 'If an account exists for that email, a reset link has been sent.'
+    };
+
+    const user = db.prepare('SELECT id, email, name FROM users WHERE email = ?').get(email);
+    if (!user) {
+      return res.json(genericResponse);
+    }
+
+    const rawToken = crypto.randomBytes(32).toString('hex');
+    const tokenHash = sha256(rawToken);
+    const resetUrl = `${buildFrontendUrl('/login.html')}?reset=${encodeURIComponent(rawToken)}`;
+
+    db.prepare('DELETE FROM password_reset_tokens WHERE user_id = ? OR expires_at <= datetime(\'now\')').run(user.id);
+    db.prepare(`
+      INSERT INTO password_reset_tokens (user_id, token_hash, expires_at)
+      VALUES (?, ?, datetime('now', '+1 hour'))
+    `).run(user.id, tokenHash);
+
+    const emailSent = await sendEmail(user.email, 'passwordReset', user.name, resetUrl);
+
+    res.json({
+      ...genericResponse,
+      emailSent,
+      ...(emailSent ? {} : { previewUrl: resetUrl })
+    });
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    res.status(500).json({ error: 'Unable to start password reset right now' });
+  }
+});
+
+app.post('/api/auth/reset-password', async (req, res) => {
+  try {
+    const token = typeof req.body?.token === 'string' ? req.body.token.trim() : '';
+    const password = typeof req.body?.password === 'string' ? req.body.password : '';
+
+    if (!token) {
+      return res.status(400).json({ error: 'Reset token is required' });
+    }
+
+    if (!isStrongPassword(password)) {
+      return res.status(400).json({ error: 'Password must be at least 8 characters long' });
+    }
+
+    const resetRecord = db.prepare(`
+      SELECT id, user_id
+      FROM password_reset_tokens
+      WHERE token_hash = ?
+        AND used_at IS NULL
+        AND expires_at > datetime('now')
+    `).get(sha256(token));
+
+    if (!resetRecord) {
+      return res.status(400).json({ error: 'This reset link is invalid or has expired' });
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const applyReset = db.transaction(() => {
+      db.prepare('UPDATE users SET password_hash = ? WHERE id = ?').run(passwordHash, resetRecord.user_id);
+      db.prepare('UPDATE password_reset_tokens SET used_at = CURRENT_TIMESTAMP WHERE id = ?').run(resetRecord.id);
+      db.prepare('DELETE FROM password_reset_tokens WHERE user_id = ? AND id != ?').run(resetRecord.user_id, resetRecord.id);
+    });
+
+    applyReset();
+
+    res.json({
+      success: true,
+      message: 'Password updated successfully. You can sign in now.'
+    });
+  } catch (error) {
+    console.error('Reset password error:', error);
+    res.status(500).json({ error: 'Unable to reset password right now' });
   }
 });
 

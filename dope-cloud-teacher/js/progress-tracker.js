@@ -76,16 +76,14 @@ function displayProgress() {
 
 // Auto-mark lesson as complete when user reaches the end
 function setupAutoComplete() {
-  let scrolledToBottom = false;
-  
-  window.addEventListener('scroll', () => {
+  function onScroll() {
     const scrollPercentage = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-    
-    if (scrollPercentage > 0.9 && !scrolledToBottom) {
-      scrolledToBottom = true;
+    if (scrollPercentage > 0.9) {
+      window.removeEventListener('scroll', onScroll);
       markLessonComplete();
     }
-  });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 // Initialize on page load

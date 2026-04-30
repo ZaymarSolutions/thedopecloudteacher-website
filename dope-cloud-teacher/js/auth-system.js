@@ -12,8 +12,7 @@ const API_FALLBACKS = [
   normalizeApiBase(storedApiUrl),
   isLocalhost ? 'http://localhost:3000/api' : sameOriginApi,
   'https://energetic-endurance-production.up.railway.app/api',
-  'https://thedopecloudteacher.org/api',
-  'https://thedopecloudteacher.com/api'
+  'https://thedopecloudteacher.org/api'
 ].filter((url, index, list) => url && list.indexOf(url) === index);
 
 let API_URL = API_FALLBACKS[0];
@@ -89,9 +88,9 @@ const GUMROAD_STORE_URL = 'https://roseecraft.gumroad.com';
 
 const HOSTED_CHECKOUT_LINKS = {
   'cloud-fundamentals-101': `${GUMROAD_STORE_URL}/l/cloud-fundamentals-101`,
-  'cloud-security-engineer': 'https://gumroad.com/l/ffudfq',
-  'devops-automation': 'https://gumroad.com/l/cpqdtk',
-  'serverless-microservices': 'https://gumroad.com/l/cqkceh',
+  'cloud-security-engineer': 'https://roseecraft.gumroad.com/l/ffudfq',
+  'devops-automation': 'https://roseecraft.gumroad.com/l/cpqdtk',
+  'serverless-microservices': 'https://roseecraft.gumroad.com/l/cqkceh',
   'intro-to-ai-ml': `${GUMROAD_STORE_URL}/l/intro-to-ai-ml`,
   student: `${GUMROAD_STORE_URL}/l/student-membership`,
   pro: `${GUMROAD_STORE_URL}/l/pro-membership`,
@@ -214,6 +213,46 @@ class DopeCloudAuth {
       return data;
     } catch (error) {
       console.error('Login error:', error);
+      throw formatNetworkError(error);
+    }
+  }
+
+  async requestPasswordReset(email) {
+    try {
+      const response = await fetchWithApiFallback('/auth/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || await readApiError(response, 'Password reset failed'));
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Forgot password error:', error);
+      throw formatNetworkError(error);
+    }
+  }
+
+  async resetPassword(token, password) {
+    try {
+      const response = await fetchWithApiFallback('/auth/reset-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, password })
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || await readApiError(response, 'Password reset failed'));
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Reset password error:', error);
       throw formatNetworkError(error);
     }
   }
@@ -471,6 +510,8 @@ function showAuthModal(mode = 'login') {
   document.getElementById('authModal').style.display = 'flex';
   if (mode === 'register') {
     showRegisterForm();
+  } else if (mode === 'forgot') {
+    showForgotPasswordForm();
   } else {
     showLoginForm();
   }
@@ -496,6 +537,7 @@ function createAuthModal() {
             <input type="password" id="loginPassword" placeholder="Password" required />
             <button type="submit" class="auth-button">Sign In</button>
           </form>
+          <p><a href="#" onclick="showForgotPasswordForm(); return false;">Forgot your password?</a></p>
           <p>Don't have an account? <a href="#" onclick="showRegisterForm(); return false;">Create one</a></p>
           <div id="loginError" class="auth-error"></div>
         </div>
@@ -512,6 +554,18 @@ function createAuthModal() {
           </form>
           <p>Already have an account? <a href="#" onclick="showLoginForm(); return false;">Sign in</a></p>
           <div id="registerError" class="auth-error"></div>
+        </div>
+
+        <div id="forgotPasswordForm" class="auth-form" style="display: none;">
+          <h2>Reset Your Password</h2>
+          <p class="auth-helper">Enter the email you use for your student account and we will send a secure reset link.</p>
+          <form onsubmit="handleForgotPassword(event)">
+            <input type="email" id="forgotEmail" placeholder="Email" required />
+            <button type="submit" class="auth-button">Send Reset Link</button>
+          </form>
+          <p>Remembered it? <a href="#" onclick="showLoginForm(); return false;">Back to sign in</a></p>
+          <div id="forgotSuccess" class="auth-success"></div>
+          <div id="forgotError" class="auth-error"></div>
         </div>
       </div>
     </div>
@@ -603,11 +657,24 @@ function createAuthModal() {
     .auth-form a:hover {
       text-decoration: underline;
     }
+    .auth-helper {
+      color: #d5def8;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
     .auth-error {
       color: #ff6b6b;
       text-align: center;
       margin-top: 10px;
       font-weight: bold;
+    }
+    .auth-success {
+      color: #77efe3;
+      text-align: center;
+      margin-top: 10px;
+      line-height: 1.5;
+      font-weight: 700;
     }
   `;
   document.head.appendChild(style);
@@ -616,11 +683,19 @@ function createAuthModal() {
 function showLoginForm() {
   document.getElementById('loginForm').style.display = 'block';
   document.getElementById('registerForm').style.display = 'none';
+  document.getElementById('forgotPasswordForm').style.display = 'none';
 }
 
 function showRegisterForm() {
   document.getElementById('loginForm').style.display = 'none';
   document.getElementById('registerForm').style.display = 'block';
+  document.getElementById('forgotPasswordForm').style.display = 'none';
+}
+
+function showForgotPasswordForm() {
+  document.getElementById('loginForm').style.display = 'none';
+  document.getElementById('registerForm').style.display = 'none';
+  document.getElementById('forgotPasswordForm').style.display = 'block';
 }
 
 async function handleLogin(event) {
@@ -660,11 +735,30 @@ async function handleRegister(event) {
   }
 }
 
+async function handleForgotPassword(event) {
+  event.preventDefault();
+  const email = document.getElementById('forgotEmail').value.trim();
+  const errorDiv = document.getElementById('forgotError');
+  const successDiv = document.getElementById('forgotSuccess');
+
+  try {
+    errorDiv.textContent = '';
+    successDiv.textContent = 'Sending reset link...';
+    const result = await dopeAuth.requestPasswordReset(email);
+    successDiv.innerHTML = result.previewUrl
+      ? `${result.message} <a href="${result.previewUrl}" target="_blank" rel="noopener">Open reset link</a>`
+      : result.message;
+  } catch (error) {
+    successDiv.textContent = '';
+    errorDiv.textContent = error.message;
+  }
+}
+
 // Update UI based on authentication status
 function updateAuthUI() {
   const authButtons = document.querySelectorAll('.auth-required');
   const userNameElements = document.querySelectorAll('.user-name');
-  const navAuthButton = document.getElementById('authButton');
+  const navAuthButtons = document.querySelectorAll('#authButton, #navAuthButton');
   
   if (dopeAuth.isAuthenticated()) {
     authButtons.forEach(btn => {
@@ -672,25 +766,27 @@ function updateAuthUI() {
       btn.onclick = () => window.location.href = 'dashboard.html';
     });
 
-    if (navAuthButton) {
+    navAuthButtons.forEach(navAuthButton => {
       navAuthButton.textContent = dopeAuth.user?.name ? `Dashboard (${dopeAuth.user.name.split(' ')[0]})` : 'My Dashboard';
       navAuthButton.onclick = (event) => {
         event.preventDefault();
         window.location.href = 'dashboard.html';
       };
-    }
+    });
 
     if (dopeAuth.user) {
       userNameElements.forEach(el => {
         el.textContent = dopeAuth.user.name;
       });
     }
-  } else if (navAuthButton) {
-    navAuthButton.textContent = 'Sign In';
-    navAuthButton.onclick = (event) => {
-      event.preventDefault();
-      showAuthModal('login');
-    };
+  } else {
+    navAuthButtons.forEach(navAuthButton => {
+      navAuthButton.textContent = 'Sign In';
+      navAuthButton.onclick = (event) => {
+        event.preventDefault();
+        showAuthModal('login');
+      };
+    });
   }
 }
 
@@ -714,3 +810,6 @@ window.handleLogin = handleLogin;
 window.handleRegister = handleRegister;
 window.showLoginForm = showLoginForm;
 window.showRegisterForm = showRegisterForm;
+window.showForgotPasswordForm = showForgotPasswordForm;
+window.handleForgotPassword = handleForgotPassword;
+window.updateAuthUI = updateAuthUI;

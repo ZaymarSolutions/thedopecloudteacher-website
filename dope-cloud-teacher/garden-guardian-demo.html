@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garden Guardian - IoT Security Demo | The Dope Cloud Teacher</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -169,6 +171,42 @@
             margin-top: 20px;
             opacity: 0.95;
             font-weight: 300;
+        }
+
+        .mission-brief {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12), rgba(118, 75, 162, 0.12));
+            border: 1px solid rgba(102, 126, 234, 0.18);
+            border-radius: 16px;
+            padding: 24px;
+            margin: -20px 0 40px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.14);
+        }
+
+        .mission-brief h2 {
+            margin: 0 0 10px;
+            color: #1a1a2e;
+            font-size: 1.6em;
+        }
+
+        .brief-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .brief-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 14px;
+            border: 1px solid rgba(102, 126, 234, 0.14);
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+        }
+
+        .brief-card strong {
+            display: block;
+            color: #667eea;
+            margin-bottom: 6px;
         }
         
         .demo-section {
@@ -490,6 +528,16 @@
             <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.9;">
                 Real-time demonstration of Microsoft Sentinel, Azure Functions, and AI-powered security monitoring
             </p>
+        </div>
+
+        <div class="mission-brief">
+            <h2>Mission briefing</h2>
+            <p style="margin:0; color:#334155;">This demo now mirrors the sharper homepage style: fast storytelling, live simulation energy, and a clearer path from alert to response.</p>
+            <div class="brief-grid">
+                <div class="brief-card"><strong>Live signal</strong><span>Watch activity flow from IoT sensors into your monitoring stack.</span></div>
+                <div class="brief-card"><strong>Threat response</strong><span>Trigger an attack scenario and see how defenders triage it.</span></div>
+                <div class="brief-card"><strong>Career story</strong><span>Use this page to explain Azure, Sentinel, and automation in interviews.</span></div>
+            </div>
         </div>
 
         <div class="demo-section">
@@ -901,5 +949,6 @@
     </script>
   <script src="js/global-ui.js"></script>
   <script src="js/knowledge-guide.js"></script>
-</body>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script></body>
 </html>

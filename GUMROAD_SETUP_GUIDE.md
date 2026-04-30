@@ -7,7 +7,7 @@
 3. Sign up with email or Google account
 4. Complete your profile:
    - Business name: "The Dope Cloud Teacher"
-   - Profile URL: gumroad.com/thedopecloudteacher
+   - Profile URL: roseecraft.gumroad.com
    - Add profile picture (use your logo)
    - Add cover image
    - Write bio about your cloud training platform
@@ -47,7 +47,7 @@ Repeat for all 7 courses:
 ### Individual Course Links
 After creating each product, you'll get a link like:
 ```
-https://thedopecloudteacher.gumroad.com/l/cloud-fundamentals-101
+https://roseecraft.gumroad.com/l/cloud-fundamentals-101
 ```
 
 ### Gumroad Overlay (Recommended)
@@ -58,7 +58,7 @@ Use Gumroad Overlay for seamless checkout WITHOUT leaving your site:
 <script src="https://gumroad.com/js/gumroad.js"></script>
 
 <!-- Use this for buy buttons -->
-<a class="gumroad-button" href="https://thedopecloudteacher.gumroad.com/l/cloud-fundamentals-101">
+<a class="gumroad-button" href="https://roseecraft.gumroad.com/l/cloud-fundamentals-101">
   Enroll Now for $297
 </a>
 ```
@@ -87,13 +87,13 @@ Add to all pages where you have buy buttons:
 ```javascript
 function enrollInCourse(courseId) {
   const gumroadLinks = {
-    'cloud-fundamentals-101': 'https://thedopecloudteacher.gumroad.com/l/cloud-fundamentals-101',
-    'cloud-architect-pathway': 'https://thedopecloudteacher.gumroad.com/l/cloud-architect',
-    'cloud-security-engineer': 'https://thedopecloudteacher.gumroad.com/l/cloud-security',
-    'devops-automation': 'https://thedopecloudteacher.gumroad.com/l/devops-automation',
-    'intro-to-ai-ml': 'https://thedopecloudteacher.gumroad.com/l/ai-ml-intro',
-    'data-engineering-cloud': 'https://thedopecloudteacher.gumroad.com/l/data-engineering',
-    'serverless-microservices': 'https://thedopecloudteacher.gumroad.com/l/serverless-microservices'
+    'cloud-fundamentals-101': 'https://roseecraft.gumroad.com/l/cloud-fundamentals-101',
+    'cloud-architect-pathway': 'https://roseecraft.gumroad.com/l/cloud-architect',
+    'cloud-security-engineer': 'https://roseecraft.gumroad.com/l/cloud-security',
+    'devops-automation': 'https://roseecraft.gumroad.com/l/devops-automation',
+    'intro-to-ai-ml': 'https://roseecraft.gumroad.com/l/ai-ml-intro',
+    'data-engineering-cloud': 'https://roseecraft.gumroad.com/l/data-engineering',
+    'serverless-microservices': 'https://roseecraft.gumroad.com/l/serverless-microservices'
   };
   
   window.open(gumroadLinks[courseId], '_blank');

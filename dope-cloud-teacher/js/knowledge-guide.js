@@ -95,23 +95,18 @@
   const styleMode = getDailyIndex(`${pageKey}|style`, 2) === 0 ? 'kicks' : 'heels';
 
   function getCoachTag() {
-    return styleMode === 'heels'
-      ? 'Coach Ro • blazer + heels'
-      : 'Coach Ro • fresh kicks + blazer';
+    return 'Coach Ro · Cloud Mentor';
   }
 
   function getCoachSubline() {
-    return styleMode === 'heels'
-      ? 'Polished, powerful, and still dropping gems.'
-      : 'Fresh kicks, sharp blazer, and cloud wisdom on deck.';
+    return 'Real-world cloud guidance, one calm step at a time.';
   }
 
-  function renderCoachAvatar(mode) {
-    const variantTag = mode === 'heels' ? 'Polished' : 'Street-smart';
+  function renderCoachAvatar() {
     return `
       <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
         <img class="dope-guide__avatar" src="images/programs/coach-ro-portrait.svg" alt="Coach Ro avatar" />
-        <span style="font-size:0.66rem; color:#d9d2ff; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">${variantTag} mode</span>
+        <span style="font-size:0.66rem; color:#d9d2ff; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;">Human mentor</span>
       </div>
     `;
   }
@@ -124,7 +119,7 @@
     style.textContent = `
       #dopeKnowledgeGuide {
         position: fixed;
-        right: 16px;
+        left: 16px;
         bottom: 16px;
         z-index: 1400;
         display: flex;
@@ -304,10 +299,10 @@
 
       @media (max-width: 640px) {
         #dopeKnowledgeGuide {
-          right: 10px;
           left: 10px;
+          right: auto;
           bottom: 10px;
-          justify-content: flex-end;
+          justify-content: flex-start;
         }
 
         .dope-guide__bubble {
@@ -342,14 +337,14 @@
     wrapper.setAttribute('aria-label', 'Coach Ro hidden jewel');
 
     wrapper.innerHTML = `
-      <button class="dope-guide__reopen" type="button" aria-label="Show hidden jewel">💎 Coach Ro’s drop</button>
+      <button class="dope-guide__reopen" type="button" aria-label="Show Coach Ro">💎 Coach Ro</button>
       <div class="dope-guide__bubble">
         <div class="dope-guide__brand-row">
           <div class="dope-guide__brand">
             <div class="dope-guide__brand-mark">CR</div>
             <div>
-              <span class="dope-guide__label">Coach Ro • The Dope Drop</span>
-              <p class="dope-guide__subline">${getCoachSubline()}</p>
+              <span class="dope-guide__label">Coach Ro</span>
+              <p class="dope-guide__subline">Cloud Mentor</p>
             </div>
           </div>
           <button class="dope-guide__close" type="button" aria-label="Hide guide">×</button>
@@ -358,7 +353,7 @@
         <div class="dope-guide__rotation-note">✨ Daily hidden jewel • rotates every day</div>
       </div>
       <div class="dope-guide__teacher">
-        ${renderCoachAvatar(styleMode)}
+        ${renderCoachAvatar()}
         <div class="dope-guide__tag">${getCoachTag()}</div>
       </div>
     `;

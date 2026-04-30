@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG Parks Cloud Explorer Mission | The Dope Cloud Teacher</title>
+  <meta name="description" content="PG Parks Cloud Explorer mission page with beginner-friendly cloud learning steps, class links, and student next actions.">
+  <link rel="canonical" href="https://thedopecloudteacher.org/pg-cloud-mission.html">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body { margin: 0; background: linear-gradient(135deg, #f4fff8, #eaf8ff); color: #17324a; }
+    .mission-wrap { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 3rem; }
+    .mission-card, .info-card { background: #fff; border-radius: 20px; border: 1px solid rgba(23,50,74,0.1); box-shadow: 0 12px 28px rgba(15,23,42,0.08); }
+    .mission-card { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; padding: 1.2rem; }
+    .mission-card img { width: 100%; border-radius: 16px; background: #eef7ff; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.75rem; border-radius: 999px; background: rgba(26, 160, 122, 0.12); color: #0f5e39; font-weight: 800; font-size: 0.78rem; text-transform: uppercase; }
+    h1 { margin: 0.8rem 0 0.6rem; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; }
+    .lead { color: #456276; line-height: 1.7; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .cta-row a { text-decoration: none; border-radius: 12px; padding: 0.85rem 1rem; font-weight: 800; }
+    .btn-primary { background: #0f5e39; color: #fff; }
+    .btn-secondary { background: #17324a; color: #fff; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 1rem; }
+    .info-card { padding: 1rem; }
+    .info-card h3 { margin-top: 0; color: #0f5e39; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo"><img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'"><div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Classes</a>
+        <a href="blog.html">Blog</a>
+        <a href="resources.html">Resources</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="pg-parks-direct.html">PG Parks Direct</a>
+        <a href="#" id="authButton" onclick="showAuthModal('login'); return false;">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="mission-wrap">
+    <section class="mission-card">
+      <div>
+        <span class="eyebrow"><i class="fas fa-cloud"></i> Cloud Explorer Mission</span>
+        <h1>Learn how the cloud runs the apps you already use every day.</h1>
+        <p class="lead">This PG Parks mission is built for beginners who want a clear, fun entry point into cloud computing. You will learn what cloud services are, why companies use them, and how your own tech journey can start with one strong foundation.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="Cloud-fundamentals-course.html">Start the cloud course</a>
+          <a class="btn-secondary" href="dashboard.html">Open dashboard</a>
+          <a class="btn-secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Action=Start&amp;keyword=cloud&amp;keywordoption=Match+One&amp;dayoption=All&amp;display=Detail&amp;module=global&amp;globalwebsearch_buttonsearch=yes" target="_blank" rel="noopener">Find PG Parks class</a>
+        </div>
+      </div>
+      <div>
+        <img src="images/programs/cloud-fundamentals.svg" alt="Cloud explorer illustration">
+      </div>
+    </section>
+
+    <div class="grid">
+      <article class="info-card">
+        <h3>What you will build</h3>
+        <p>A beginner cloud vocabulary, a map of how apps store data online, and confidence talking about modern tech systems.</p>
+      </article>
+      <article class="info-card">
+        <h3>Skills you will practice</h3>
+        <p>Cloud basics, digital storage, service models, security awareness, and career-friendly problem solving.</p>
+      </article>
+      <article class="info-card">
+        <h3>Best next step</h3>
+        <p>Finish your first cloud lesson, take notes in plain language, and explain one concept back to a friend or family member.</p>
+      </article>
+    </div>
+  </main>
+
+  <script src="js/auth-system.js"></script>
+  <script src="js/global-ui.js"></script>
+  <script src="js/knowledge-guide.js"></script>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script></body>
+</html>

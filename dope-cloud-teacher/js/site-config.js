@@ -22,8 +22,27 @@
     ? window.DCT_API_URL.replace(/\/$/, '')
     : (storedApiUrl || defaultApiUrl).replace(/\/$/, '');
 
-  window.DCT_ANALYTICS = window.DCT_ANALYTICS || {
-    provider: 'plausible',
-    domain: 'thedopecloudteacher.com'
-  };
+  const analyticsProviderParam = params.get('analyticsProvider');
+  const analyticsMeasurementParam = params.get('ga4') || params.get('measurementId');
+
+  if (analyticsProviderParam) {
+    localStorage.setItem('DCT_ANALYTICS_PROVIDER', analyticsProviderParam);
+  }
+
+  if (analyticsMeasurementParam) {
+    localStorage.setItem('DCT_GA4_MEASUREMENT_ID', analyticsMeasurementParam);
+  }
+
+  const storedAnalyticsProvider = localStorage.getItem('DCT_ANALYTICS_PROVIDER');
+  const storedGa4MeasurementId = localStorage.getItem('DCT_GA4_MEASUREMENT_ID');
+  const ga4MeasurementId = storedGa4MeasurementId || 'G-XXXXXXXXXX';
+
+  const explicitAnalyticsConfig = window.DCT_ANALYTICS && typeof window.DCT_ANALYTICS === 'object';
+  if (!explicitAnalyticsConfig) {
+    window.DCT_ANALYTICS = {
+      provider: storedAnalyticsProvider || 'ga4',
+      measurementId: ga4MeasurementId,
+      domain: 'thedopecloudteacher.org'
+    };
+  }
 })();

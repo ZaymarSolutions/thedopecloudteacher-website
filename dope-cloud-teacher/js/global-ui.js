@@ -2,10 +2,40 @@
   if (window.__dctGlobalUiLoaded) return;
   window.__dctGlobalUiLoaded = true;
 
+  function initStandardNav() {
+    var nav = document.querySelector('header .nav-links, .professional-nav .nav-links, .header-inner .nav-links, .header-container .nav-links');
+    if (!nav || nav.dataset.standardized === 'true') return;
+
+    var currentPage = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0] || 'index.html';
+    var navItems = [
+      { href: 'index.html', label: 'Home', match: ['index.html', ''] },
+      { href: 'courses.html', label: 'Classes', match: ['courses.html', 'Cloud-fundamentals-course.html', 'cloud-career-starter-kit.html', 'ai-900-azure-ai-fundamentals.html', 'az-900-azure-fundamentals.html', 'az-104-azure-administrator.html', 'az-305-azure-solutions-architect.html'] },
+      { href: 'blog.html', label: 'Blog', match: ['blog.html', 'cloud-control-azure-policy.html', 'black-women-in-it-ai-shift.html'] },
+      { href: 'resources.html', label: 'Resources', match: ['resources.html'] },
+      { href: 'pricing.html', label: 'Specials', match: ['pricing.html', 'shop.html'] },
+      { href: 'certificate.html', label: 'Certificates', match: ['certificate.html'] },
+      { href: 'dashboard.html', label: 'Dashboard', match: ['dashboard.html'] },
+      { href: 'pg-parks-direct.html', label: 'PG Parks Direct', match: ['pg-parks-direct.html', 'pg-cloud-mission.html', 'pg-ai-mission.html', 'pg-cyber-mission.html'] }
+    ];
+
+    nav.innerHTML = navItems.map(function (item) {
+      var isActive = item.match.indexOf(currentPage) !== -1;
+      return '<a href="' + item.href + '"' + (isActive ? ' class="active"' : '') + '>' + item.label + '</a>';
+    }).join('') + '<a href="#" id="authButton">Sign In</a>';
+
+    nav.dataset.standardized = 'true';
+
+    if (typeof window.updateAuthUI === 'function') {
+      window.updateAuthUI();
+    }
+  }
+
   function initMobileNav() {
     var toggle = document.querySelector('.mobile-menu-toggle');
-    var nav = document.querySelector('nav.nav-links');
+    var nav = document.querySelector('nav.nav-links, .nav-links');
     if (!toggle || !nav) return;
+
+    toggle.setAttribute('aria-expanded', 'false');
 
     toggle.addEventListener('click', function () {
       var isOpen = nav.classList.toggle('is-open');
@@ -82,10 +112,12 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      initStandardNav();
       initMobileNav();
       initFlipCards();
     });
   } else {
+    initStandardNav();
     initMobileNav();
     initFlipCards();
   }

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | The Dope Cloud Teacher</title>
   <meta name="robots" content="noindex, nofollow">
@@ -9,56 +11,150 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     body {
-      background: linear-gradient(to right, #301934, #000);
+      background:
+        radial-gradient(circle at top left, rgba(123, 77, 242, 0.28), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(119, 239, 227, 0.18), transparent 28%),
+        linear-gradient(135deg, #0b1025, #171d3f 65%, #0d1433);
       color: white;
       font-family: 'Segoe UI', sans-serif;
-      padding-top: 80px;
+      padding-top: 88px;
       min-height: 100vh;
       margin: 0;
     }
+
     .page-wrapper {
-      display: flex;
-      justify-content: center;
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+      min-height: calc(100vh - 88px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
       align-items: center;
-      min-height: calc(100vh - 80px);
+      padding: 2rem 0 3rem;
     }
 
+    .info-panel,
     .login-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #9333ea;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      width: 300px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(123, 77, 242, 0.4);
+      border-radius: 20px;
+      padding: 1.6rem;
+      box-shadow: 0 18px 42px rgba(11, 16, 37, 0.35);
+      backdrop-filter: blur(12px);
     }
 
+    .info-panel h1,
     .login-box h1 {
-      margin-bottom: 20px;
-      color: #c084fc;
+      margin: 0 0 0.75rem;
+      color: #cbbcff;
+      line-height: 1.1;
+    }
+
+    .info-panel p,
+    .helper-text {
+      color: #dbe4ff;
+      line-height: 1.6;
+    }
+
+    .login-box form {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1rem;
     }
 
     .login-box input {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: none;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(123, 77, 242, 0.45);
       outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      box-sizing: border-box;
     }
 
-    .login-box button {
-      background: #9333ea;
+    .login-box input::placeholder {
+      color: rgba(226, 232, 240, 0.8);
+    }
+
+    .login-box button,
+    .link-button {
+      background: linear-gradient(135deg, #9333ea, #7b4df2);
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s ease;
+      font-weight: 700;
+      transition: 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
     }
 
-    .login-box button:hover {
-      background: #7e22ce;
+    .login-box button:hover,
+    .link-button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
+    .secondary-button {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(119, 239, 227, 0.35);
+    }
+
+    .auth-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1rem 0 0;
+    }
+
+    .auth-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(119, 239, 227, 0.12);
+      color: #c8fff8;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .panel-toggle {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .panel-toggle a {
+      color: #77efe3;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .status-message {
+      margin-top: 0.85rem;
+      line-height: 1.5;
+      min-height: 1.5rem;
+      color: #dbe4ff;
+    }
+
+    .status-message.error {
+      color: #ff8f8f;
+    }
+
+    .status-message.success {
+      color: #77efe3;
+    }
+
+    .panel-hidden {
+      display: none;
     }
   </style>
 </head>
@@ -72,11 +168,12 @@
         </div>
       </a>
       <nav class="nav-links" aria-label="Main navigation">
-        <a href="courses.html">Courses</a>
+        <a href="index.html">Home</a>
+        <a href="courses.html">Classes</a>
+        <a href="blog.html">Blog</a>
         <a href="pricing.html">Pricing</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="certificate.html">Certificates</a>
-        <a href="#" onclick="showAuthModal('login'); return false;" id="navAuthButton">Sign In</a>
+        <a href="pg-parks-direct.html">PG Parks Direct</a>
+        <a href="#" id="authButton" onclick="showAuthModal('login'); return false;">Sign In</a>
       </nav>
       <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
         <i class="fas fa-bars"></i>
@@ -84,34 +181,176 @@
     </div>
   </header>
 
-  <div class="page-wrapper">
-  <div class="login-box">
-    <h1>Welcome!</h1>
-    <input type="text" id="name" placeholder="Your Name" />
-    <input type="email" id="email" placeholder="Your Email" />
-    <button onclick="login()">Start Learning</button>
-  </div>
-  </div>
+  <main class="page-wrapper">
+    <section class="info-panel">
+      <span class="auth-chip"><i class="fas fa-shield-alt"></i> Secure student access</span>
+      <h1>Welcome back to your cloud learning space</h1>
+      <p>
+        Sign in to continue your classes, check your dashboard, launch your demos, and keep building toward cloud, AI, and cybersecurity goals.
+      </p>
+      <div class="auth-meta">
+        <span class="auth-chip"><i class="fas fa-graduation-cap"></i> Courses</span>
+        <span class="auth-chip"><i class="fas fa-robot"></i> AI guidance</span>
+        <span class="auth-chip"><i class="fas fa-certificate"></i> Certificates</span>
+      </div>
+    </section>
+
+    <section class="login-box">
+      <div id="loginPanel">
+        <h1>Sign in</h1>
+        <p class="helper-text">Use your email and password to open your student dashboard.</p>
+        <form id="loginPageForm">
+          <input type="email" id="pageLoginEmail" placeholder="Email address" required>
+          <input type="password" id="pageLoginPassword" placeholder="Password" required>
+          <button type="submit"><i class="fas fa-arrow-right"></i> Open Dashboard</button>
+        </form>
+        <div id="loginStatus" class="status-message"></div>
+        <div class="panel-toggle">
+          <a href="#" id="showRequestReset">Forgot password?</a>
+          <a href="#" onclick="showAuthModal('register'); return false;">Create an account</a>
+        </div>
+      </div>
+
+      <div id="requestResetPanel" class="panel-hidden">
+        <h1>Forgot password?</h1>
+        <p class="helper-text">Enter your account email and we will send a secure reset link.</p>
+        <form id="requestResetForm">
+          <input type="email" id="requestResetEmail" placeholder="Email address" required>
+          <button type="submit"><i class="fas fa-paper-plane"></i> Send Reset Link</button>
+        </form>
+        <div id="requestResetStatus" class="status-message"></div>
+        <div class="panel-toggle">
+          <a href="#" id="backToLogin">Back to sign in</a>
+        </div>
+      </div>
+
+      <div id="completeResetPanel" class="panel-hidden">
+        <h1>Create a new password</h1>
+        <p class="helper-text">Choose a new password with at least 8 characters.</p>
+        <form id="completeResetForm">
+          <input type="password" id="newPassword" placeholder="New password" minlength="8" required>
+          <input type="password" id="confirmPassword" placeholder="Confirm new password" minlength="8" required>
+          <button type="submit"><i class="fas fa-key"></i> Update Password</button>
+        </form>
+        <div id="completeResetStatus" class="status-message"></div>
+        <div class="panel-toggle">
+          <a href="login.html">Back to sign in</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="js/auth-system.js"></script>
   <script>
-    function login() {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const resetToken = params.get('reset');
 
-      if (!name || !email) {
-        alert('Please enter both name and email!');
-        return;
+      const panels = {
+        login: document.getElementById('loginPanel'),
+        request: document.getElementById('requestResetPanel'),
+        complete: document.getElementById('completeResetPanel')
+      };
+
+      function setStatus(id, message, type) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.className = `status-message${type ? ` ${type}` : ''}`;
+        el.innerHTML = message || '';
       }
 
-      localStorage.setItem('dopeUserName', name);
-      localStorage.setItem('dopeUserEmail', email);
-      localStorage.setItem('dopeProgress', JSON.stringify({ lesson1: false, lesson2: false, lesson3: false, lesson4: false, lesson5: false }));
+      function showPanel(name) {
+        Object.entries(panels).forEach(([key, panel]) => {
+          panel.classList.toggle('panel-hidden', key !== name);
+        });
+      }
 
-      window.location.href = 'index.html';
-    }
+      document.getElementById('showRequestReset').addEventListener('click', function (event) {
+        event.preventDefault();
+        const emailField = document.getElementById('pageLoginEmail');
+        document.getElementById('requestResetEmail').value = emailField.value.trim();
+        setStatus('requestResetStatus', '', '');
+        showPanel('request');
+      });
+
+      document.getElementById('backToLogin').addEventListener('click', function (event) {
+        event.preventDefault();
+        showPanel('login');
+      });
+
+      document.getElementById('loginPageForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const email = document.getElementById('pageLoginEmail').value.trim();
+        const password = document.getElementById('pageLoginPassword').value;
+
+        try {
+          setStatus('loginStatus', 'Signing you in...', '');
+          await dopeAuth.login(email, password);
+          setStatus('loginStatus', 'Success! Opening your dashboard...', 'success');
+          window.location.href = 'dashboard.html';
+        } catch (error) {
+          setStatus('loginStatus', error.message, 'error');
+        }
+      });
+
+      document.getElementById('requestResetForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const email = document.getElementById('requestResetEmail').value.trim();
+
+        try {
+          setStatus('requestResetStatus', 'Sending your reset link...', '');
+          const result = await dopeAuth.requestPasswordReset(email);
+          const message = result.previewUrl
+            ? `${result.message} <a href="${result.previewUrl}" target="_blank" rel="noopener">Open reset link</a>`
+            : result.message;
+          setStatus('requestResetStatus', message, 'success');
+        } catch (error) {
+          setStatus('requestResetStatus', error.message, 'error');
+        }
+      });
+
+      document.getElementById('completeResetForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+        const password = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+
+        if (password !== confirmPassword) {
+          setStatus('completeResetStatus', 'Passwords do not match.', 'error');
+          return;
+        }
+
+        if (!resetToken) {
+          setStatus('completeResetStatus', 'This reset link is missing or invalid.', 'error');
+          return;
+        }
+
+        try {
+          setStatus('completeResetStatus', 'Updating your password...', '');
+          const result = await dopeAuth.resetPassword(resetToken, password);
+          setStatus('completeResetStatus', result.message || 'Password updated successfully. Redirecting...', 'success');
+          window.setTimeout(function () {
+            window.location.href = 'login.html';
+          }, 1400);
+        } catch (error) {
+          setStatus('completeResetStatus', error.message, 'error');
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', async function () {
+        if (dopeAuth.isAuthenticated()) {
+          const user = await dopeAuth.getCurrentUser();
+          if (user) {
+            window.location.href = 'dashboard.html';
+            return;
+          }
+        }
+
+        showPanel(resetToken ? 'complete' : 'login');
+      });
+    })();
   </script>
   <script src="js/global-ui.js"></script>
   <script src="js/knowledge-guide.js"></script>
-</body>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script></body>
 </html>

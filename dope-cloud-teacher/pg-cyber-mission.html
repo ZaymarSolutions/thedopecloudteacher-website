@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG Parks Cyber Defender Mission | The Dope Cloud Teacher</title>
+  <meta name="description" content="PG Parks Cyber Defender mission page with security demos, beginner cyber concepts, and next-step learning links.">
+  <link rel="canonical" href="https://thedopecloudteacher.org/pg-cyber-mission.html">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body { margin: 0; background: linear-gradient(135deg, #f5fbff, #eef6ff); color: #12263a; }
+    .mission-wrap { width: min(1100px, calc(100% - 2rem)); margin: 0 auto; padding: 2rem 0 3rem; }
+    .hero, .panel { background: #fff; border-radius: 20px; border: 1px solid rgba(18,38,58,0.12); box-shadow: 0 12px 28px rgba(15,23,42,0.08); }
+    .hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; padding: 1.2rem; }
+    .hero img { width: 100%; border-radius: 16px; background: #eef7ff; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.75rem; border-radius: 999px; background: rgba(72,187,120,0.12); color: #0f5e39; font-weight: 800; font-size: 0.78rem; text-transform: uppercase; }
+    h1 { margin: 0.8rem 0 0.6rem; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; }
+    .lead { color: #456276; line-height: 1.7; }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .cta-row a { text-decoration: none; border-radius: 12px; padding: 0.85rem 1rem; font-weight: 800; }
+    .btn-primary { background: #0f5e39; color: #fff; }
+    .btn-secondary { background: #17324a; color: #fff; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; margin-top: 1rem; }
+    .panel { padding: 1rem; }
+    .panel h3 { margin-top: 0; color: #0f5e39; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo"><img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'"><div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div></a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Classes</a>
+        <a href="blog.html">Blog</a>
+        <a href="resources.html">Resources</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="pg-parks-direct.html">PG Parks Direct</a>
+        <a href="#" id="authButton" onclick="showAuthModal('login'); return false;">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="mission-wrap">
+    <section class="hero">
+      <div>
+        <span class="eyebrow"><i class="fas fa-shield-alt"></i> Cyber Defender Mission</span>
+        <h1>See how defenders spot problems and protect systems in real time.</h1>
+        <p class="lead">Cybersecurity is about protecting people, information, and digital systems. This PG Parks mission introduces security thinking through an interactive demo and simple, high-interest concepts students can understand fast.</p>
+        <div class="cta-row">
+          <a class="btn-primary" href="garden-guardian-demo.html">Launch the live demo</a>
+          <a class="btn-secondary" href="resources.html">Explore security resources</a>
+          <a class="btn-secondary" href="dashboard.html">Open dashboard</a>
+        </div>
+      </div>
+      <div>
+        <img src="images/programs/security-demo.svg" alt="Cyber defender illustration">
+      </div>
+    </section>
+
+    <div class="grid">
+      <article class="panel">
+        <h3>What you will notice</h3>
+        <p>Alerts, monitoring dashboards, suspicious activity, and the steps a defender takes to investigate what went wrong.</p>
+      </article>
+      <article class="panel">
+        <h3>Career connection</h3>
+        <p>Cloud security, SOC analysis, threat detection, and digital safety are all real pathways students can grow into over time.</p>
+      </article>
+      <article class="panel">
+        <h3>Quick mission</h3>
+        <p>Run the attack scenario, identify what changed, and explain how a team might respond to keep systems safe.</p>
+      </article>
+    </div>
+  </main>
+
+  <script src="js/auth-system.js"></script>
+  <script src="js/global-ui.js"></script>
+  <script src="js/knowledge-guide.js"></script>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script></body>
+</html>
