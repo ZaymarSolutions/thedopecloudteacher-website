@@ -1,0 +1,21 @@
+<!-- Guided Onboarding Modal -->
+<div id="onboardingModal" class="modal" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:16px;max-width:420px;padding:2rem;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.18);">
+    <h2>Welcome to The Dope Cloud Teacher!</h2>
+    <p>Start your journey in 3 steps:</p>
+    <ol style="text-align:left;margin:1rem 0 2rem 1.5rem;">
+      <li>Browse <b>Courses</b> and pick your pathway</li>
+      <li>Complete your first lesson and quiz</li>
+      <li>Track your progress and earn certificates</li>
+    </ol>
+    <button onclick="document.getElementById('onboardingModal').style.display='none';localStorage.setItem('dct_onboarded','1');" style="background:#10b981;color:#fff;padding:0.7rem 2rem;border:none;border-radius:8px;font-size:1.1rem;">Get Started</button>
+  </div>
+</div>
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+  if(!localStorage.getItem('dct_onboarded')){
+    document.getElementById('onboardingModal').style.display='flex';
+  }
+});
+</script>
+<!-- /Guided Onboarding Modal -->
