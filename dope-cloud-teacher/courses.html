@@ -11,216 +11,79 @@
   <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="icon" type="image/png" href="logo.png">
   <meta property="og:site_name" content="The Dope Cloud Teacher">
-  <meta property="og:title" content="Cloud Computing Courses | Azure, AWS, AI & DevOps Training">
-  <meta property="og:description" content="Browse cloud computing courses with certification prep, hands-on labs, career projects, and beginner-friendly pathways across Azure, AWS, AI, DevOps, and security.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thedopecloudteacher.org/courses.html">
-  <meta property="og:image" content="https://thedopecloudteacher.org/images/og-homepage-preview.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cloud Computing Courses | Azure, AWS, AI & DevOps Training">
-  <meta name="twitter:description" content="Browse cloud computing courses with certification prep, hands-on labs, career projects, and beginner-friendly pathways across Azure, AWS, AI, DevOps, and security.">
-  <meta name="twitter:image" content="https://thedopecloudteacher.org/images/og-homepage-preview.png">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "The Dope Cloud Teacher Course Catalog",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "url": "https://thedopecloudteacher.org/az-900-azure-fundamentals.html", "name": "AZ-900 Azure Fundamentals"},
-      {"@type": "ListItem", "position": 2, "url": "https://thedopecloudteacher.org/az-104-azure-administrator.html", "name": "AZ-104 Azure Administrator"},
-      {"@type": "ListItem", "position": 3, "url": "https://thedopecloudteacher.org/az-305-azure-solutions-architect.html", "name": "AZ-305 Azure Solutions Architect"},
-      {"@type": "ListItem", "position": 4, "url": "https://thedopecloudteacher.org/ai-900-azure-ai-fundamentals.html", "name": "AI-900 Azure AI Fundamentals"},
-      {"@type": "ListItem", "position": 5, "url": "https://thedopecloudteacher.org/pricing.html", "name": "Membership Pricing"}
-    ]
-  }
-  </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root {
-      --brand-bg: #0b1025;
-      --brand-bg-alt: #171d3f;
-      --brand-purple: #7b4df2;
-      --brand-purple-soft: #cbbcff;
-      --brand-teal: #77efe3;
-      --brand-text: #f2f5ff;
-      --brand-muted: #b5bedc;
+  async function showCourseDetail(courseId) {
+    const course = COURSE_PATHWAYS[courseId];
+    if (!course) return;
+    const photoUrl = getCoursePhoto(course.id);
+
+    document.getElementById('courseListView').style.display = 'none';
+    const detailView = document.getElementById('courseDetailView');
+    detailView.classList.add('active');
+
+    // Check access
+    let hasAccess = false;
+    if (window.dopeCourses && typeof dopeCourses.hasCourseAccess === 'function') {
+      try {
+        hasAccess = await dopeCourses.hasCourseAccess(courseId);
+      } catch (e) { hasAccess = false; }
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--brand-bg) 0%, var(--brand-bg-alt) 100%);
-      color: var(--brand-text);
-      min-height: 100vh;
-    }
-
-    header {
-      background: rgba(23, 29, 63, 0.95);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: var(--brand-teal);
-      text-decoration: none;
-    }
-
-    .logo-img {
-      height: 52px;
-      width: 52px;
-      border-radius: 50%;
-      margin-right: 10px;
-      border: 2px solid rgba(119, 239, 227, 0.35);
-      box-shadow: 0 10px 24px rgba(123, 77, 242, 0.18);
+    if (!hasAccess) {
+      // Show preview/teaser only
+      detailView.innerHTML = `
+        <a href="#" onclick="showCourseList(); return false;" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Back to All Courses
+        </a>
+        <div class="course-header" style="background-image: linear-gradient(135deg, rgba(23, 29, 63, 0.92), rgba(11, 16, 37, 0.9)), url('${photoUrl}'); background-size: cover; background-position: center;">
+          <img class="course-hero-image" src="${photoUrl}" alt="${course.title} course hero image">
+          <h2>${course.title} <span style='color:#ffd700;font-size:1.2rem;'>(Preview)</span></h2>
+          <div class="subtitle">${course.subtitle}</div>
+          <p style="max-width: 800px; margin: 0 auto; color: #e0e0e0; margin-bottom: 2rem;">${course.description}</p>
+          <div class="course-meta">
+            <div class="meta-item"><strong>$${course.price}</strong><span>One-time</span></div>
+            <div class="meta-item"><strong>${course.duration}</strong><span>Total Duration</span></div>
+            <div class="meta-item"><strong>${course.lessons.length}</strong><span>Lessons</span></div>
+            <div class="meta-item"><strong>${course.level}</strong><span>Level</span></div>
+          </div>
+          <button class="btn-enroll" onclick="enrollInCourse('${course.id}')" style="margin-top: 2rem; font-size: 1.5rem; padding: 1.5rem 4rem;">🎓 Unlock Full Course for $${course.price}</button>
+          <p style="margin-top: 1rem; font-size: 0.95rem; color: #cbbcff;">Or get access to ALL courses with a <a href="pricing.html" style="color: #77efe3; text-decoration: underline;">$14/month membership</a></p>
+        </div>
+        <div class="content-block" style="text-align:center; margin-top:2rem;">
+          <h3 style="color:#ffd700;">Course Preview</h3>
+          <p>See a sample lesson below. To access the full curriculum, labs, quizzes, and resources, please purchase the course or subscribe.</p>
+          <div style="margin:2rem auto;max-width:600px;">
+            <strong style="color:#77efe3;">Sample Lesson:</strong><br>
+            <span style="color:#cbbcff; font-size:1.1rem;">${course.lessons[0].title}</span>
+            <div style="margin-top:1rem;">
+              <iframe src="${course.lessons[0].video}" allowfullscreen style="width:100%;height:320px;border-radius:12px;"></iframe>
+            </div>
+            <p style="color:#e0e0e0; margin-top:1rem;">${course.lessons[0].description}</p>
+          </div>
+        </div>
+      `;
+      return;
     }
 
-    nav.nav-links a {
-      margin-left: 2rem;
-      color: #fff;
-      text-decoration: none;
-      font-size: 1rem;
-      transition: color .2s;
-    }
-
-    nav.nav-links a:hover {
-      color: var(--brand-teal);
-    }
-
-    .hero {
-      text-align: center;
-      padding: 3rem 2rem 2rem;
-    }
-
-    .hero h1 {
-      font-size: 3rem;
-      color: var(--brand-teal);
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: var(--brand-muted);
-      max-width: 800px;
-      margin: 0 auto 2rem;
-    }
-
-    .lead-magnet {
-      max-width: 1200px;
-      margin: 1.5rem auto 2.5rem;
-      padding: 2rem;
-      background: rgba(34, 41, 87, 0.72);
-      border-radius: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .lead-magnet h2 {
-      color: var(--brand-teal);
-      margin-bottom: 0.5rem;
-    }
-
-    .lead-form {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .lead-form input[type="email"] {
-      flex: 1 1 220px;
-      padding: 0.9rem 1rem;
-      border-radius: 10px;
-      border: none;
-      font-size: 1rem;
-    }
-
-    .lead-form button {
-      padding: 0.9rem 1.3rem;
-      border-radius: 10px;
-      border: none;
-      background: #10b981;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .lead-success {
-      margin-top: 0.75rem;
-      color: #10b981;
-      font-weight: bold;
-      display: none;
-    }
-
-    .filter-section {
-      max-width: 1400px;
-      margin: 2rem auto;
-      padding: 0 2rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .filter-btn {
-      padding: 0.7rem 1.5rem;
-      background: rgba(123, 77, 242, 0.24);
-      color: #fff;
-      border: 2px solid #7b4df2;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-size: 1rem;
-      font-weight: bold;
-    }
-
-    .cert-spotlight {
-      max-width: 1400px;
-      margin: 0 auto 1rem;
-      padding: 0 2rem;
-    }
-
-    .cert-spotlight-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem;
-    }
-
-    .cert-spotlight-card {
-      display: block;
-      padding: 1.4rem;
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: linear-gradient(135deg, rgba(23, 29, 63, 0.92), rgba(11, 16, 37, 0.94));
-      color: #fff;
-      text-decoration: none;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    }
-
-    .cert-spotlight-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
-      border-color: rgba(119, 239, 227, 0.4);
-    }
-
-    .cert-spotlight-card strong {
-      display: block;
-      color: #77efe3;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
+    // ...existing code for full detail view...
+    detailView.innerHTML = `
+      <a href="#" onclick="showCourseList(); return false;" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Back to All Courses
+      </a>
+      <div class="course-header" style="background-image: linear-gradient(135deg, rgba(23, 29, 63, 0.92), rgba(11, 16, 37, 0.9)), url('${photoUrl}'); background-size: cover; background-position: center;">
+        <img class="course-hero-image" src="${photoUrl}" alt="${course.title} course hero image">
+        <h2>${course.title}</h2>
+        <div class="subtitle">${course.subtitle}</div>
+        <p style="max-width: 800px; margin: 0 auto; color: #e0e0e0; margin-bottom: 2rem;">${course.description}</p>
+        <div class="course-meta">
+          <div class="meta-item"><strong>$${course.price}</strong><span>One-time</span></div>
+          <div class="meta-item"><strong>${course.duration}</strong><span>Total Duration</span></div>
+          <div class="meta-item"><strong>${course.lessons.length}</strong><span>Lessons</span></div>
+          <div class="meta-item"><strong>${course.level}</strong><span>Level</span></div>
+        </div>
+        <button class="btn-enroll" onclick="enrollInCourse('${course.id}')" style="margin-top: 2rem; font-size: 1.5rem; padding: 1.5rem 4rem;">🎓 Enroll Now for $${course.price}</button>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: #cbbcff;">Or get access to ALL courses with a <a href="pricing.html" style="color: #77efe3; text-decoration: underline;">$14/month membership</a></p>
+      </div>
+      ${course.certifications ? `
     }
 
     .cert-spotlight-card span {
@@ -249,6 +112,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem;
+  }
     }
 
     .course-detail-view.active {
@@ -741,7 +605,7 @@
       });
     }
 
-    function renderCoursesList() {
+    async function renderCoursesList() {
       const grid = document.getElementById('coursesGrid');
       grid.innerHTML = '';
 
@@ -750,7 +614,13 @@
         return course.level === currentFilter;
       });
 
-      filteredCourses.forEach(course => {
+      for (const course of filteredCourses) {
+        let hasAccess = false;
+        if (window.dopeCourses && typeof dopeCourses.hasCourseAccess === 'function') {
+          try {
+            hasAccess = await dopeCourses.hasCourseAccess(course.id);
+          } catch (e) { hasAccess = false; }
+        }
         const card = document.createElement('div');
         card.className = 'lesson-card';
         card.style.cursor = 'pointer';
@@ -759,22 +629,41 @@
         card.onclick = () => showCourseDetail(course.id);
         const photoUrl = getCoursePhoto(course.id);
 
-        card.innerHTML = `
-          <div class="lesson-number"><img class="course-card-image" src="${photoUrl}" alt="${course.title} course photo" loading="lazy"></div>
-          <div class="lesson-content">
-            <h3>${course.title}</h3>
-            <div class="duration">${course.duration} • ${course.lessons ? course.lessons.length : 'N/A'} Lessons • ${course.level}</div>
-            <p>${course.description}</p>
-            <div class="topics">
-              ${course.skills.slice(0, 4).map(skill => `<span class="topic-tag">${skill}</span>`).join('')}
-              <span class="topic-tag" style="background: #10b981; color: #fff; font-weight:bold;">Special Offer</span>
-              <span class="topic-tag" style="background: rgba(59,130,246,0.25); color: #bfdbfe;">Platform-Ready</span>
+        if (!hasAccess) {
+          card.innerHTML = `
+            <div class="lesson-number"><img class="course-card-image" src="${photoUrl}" alt="${course.title} course photo" loading="lazy"></div>
+            <div class="lesson-content">
+              <h3>${course.title} <span style='color:#ffd700;font-size:1rem;'>(Preview)</span></h3>
+              <div class="duration">${course.duration} • ${course.lessons ? course.lessons.length : 'N/A'} Lessons • ${course.level}</div>
+              <p>${course.description}</p>
+              <div class="topics">
+                ${course.skills.slice(0, 4).map(skill => `<span class="topic-tag">${skill}</span>`).join('')}
+                <span class="topic-tag" style="background: #10b981; color: #fff; font-weight:bold;">Special Offer</span>
+                <span class="topic-tag" style="background: rgba(59,130,246,0.25); color: #bfdbfe;">Platform-Ready</span>
+              </div>
+              <div style="margin-top:1rem;">
+                <button class="btn-enroll" onclick="event.stopPropagation(); enrollInCourse('${course.id}')" style="font-size:1.1rem;">Unlock Full Course</button>
+                <p style="color:#cbbcff; font-size:0.95rem; margin-top:0.5rem;">Or <a href='pricing.html' style='color:#77efe3;text-decoration:underline;'>get all courses</a></p>
+              </div>
             </div>
-          </div>
-        `;
-
+          `;
+        } else {
+          card.innerHTML = `
+            <div class="lesson-number"><img class="course-card-image" src="${photoUrl}" alt="${course.title} course photo" loading="lazy"></div>
+            <div class="lesson-content">
+              <h3>${course.title}</h3>
+              <div class="duration">${course.duration} • ${course.lessons ? course.lessons.length : 'N/A'} Lessons • ${course.level}</div>
+              <p>${course.description}</p>
+              <div class="topics">
+                ${course.skills.slice(0, 4).map(skill => `<span class="topic-tag">${skill}</span>`).join('')}
+                <span class="topic-tag" style="background: #10b981; color: #fff; font-weight:bold;">Special Offer</span>
+                <span class="topic-tag" style="background: rgba(59,130,246,0.25); color: #bfdbfe;">Platform-Ready</span>
+              </div>
+            </div>
+          `;
+        }
         grid.appendChild(card);
-      });
+      }
     }
 
     function filterCourses(level) {

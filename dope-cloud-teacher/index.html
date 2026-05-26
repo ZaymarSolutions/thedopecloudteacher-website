@@ -134,23 +134,39 @@
   </section>
 
   <section class="lead-magnet" id="starter-kit">
-    <div>
-      <span class="lead-pill">Free download</span>
-      <h2>Cloud Career Starter Kit</h2>
-      <p>Get a 7-day roadmap, certification map, and interview checklist used by new cloud professionals. Perfect for beginners and career switchers.</p>
+    <div style="flex:1; min-width:260px;">
+      <span class="lead-pill" style="background:#77efe3; color:#0b1025; font-size:1rem; padding:0.5rem 1.2rem; border-radius:999px; font-weight:800;">Free download</span>
+      <h2 style="font-size:2.2rem; color:#1e293b; margin:0.5rem 0;">Cloud Career Starter Kit</h2>
+      <p style="font-size:1.15rem; color:#334155;">Get a 7-day roadmap, certification map, and interview checklist used by new cloud professionals. Perfect for beginners and career switchers.</p>
     </div>
-    <div>
+    <div style="flex:1; min-width:260px; background:linear-gradient(135deg,#c4b5fd 0%,#77efe3 100%); border-radius:18px; padding:2rem 1.5rem; box-shadow:0 4px 24px rgba(119,239,227,0.12);">
       <form class="lead-form" id="starterKitForm" data-lead-capture="true" data-success-id="starterKitSuccess" data-source="home-starter-kit" data-redirect="cloud-career-starter-kit.html">
-        <input type="email" name="email" placeholder="Enter your email" required>
-        <button type="submit">Send the kit</button>
+        <input type="email" name="email" placeholder="Enter your email" required style="font-size:1.1rem; padding:0.8rem; border-radius:8px; border:1px solid #a5b4fc; margin-bottom:1rem; width:100%;">
+        <button type="submit" style="background:#0b1025; color:#77efe3; font-size:1.1rem; padding:0.8rem 1.5rem; border-radius:8px; font-weight:700; width:100%;">Send the kit</button>
       </form>
-      <div class="lead-success" id="starterKitSuccess">Check your email to confirm your subscription. Redirecting to the starter kit.</div>
-      <p style="margin-top:0.75rem; font-size:0.9rem; color:#6b7280;">No spam. Unsubscribe anytime.</p>
+      <div class="lead-success" id="starterKitSuccess" style="color:#0b1025; font-weight:700; margin-top:1rem;">Check your email to confirm your subscription. Redirecting to the starter kit.</div>
+      <p style="margin-top:0.75rem; font-size:0.95rem; color:#0b1025;">No spam. Unsubscribe anytime.</p>
     </div>
   </section>
 
   <!-- Trusted By Section -->
   <section class="trust-section">
+      <!-- Tech News Ticker -->
+      <section class="tech-news-ticker" style="background:linear-gradient(90deg,#1e293b 0%,#77efe3 100%); color:#0b1025; font-weight:700; padding:0.7rem 0; text-align:center; font-size:1.1rem; letter-spacing:0.03em;">
+        <span style="margin-right:1.5rem;">🚀 <strong>AI in the News:</strong> Microsoft launches new Azure AI Studio for enterprise, Google Cloud unveils next-gen security analytics, AWS announces serverless ML pipelines, and more. <a href="blog.html" style="color:#0b1025; text-decoration:underline; margin-left:1rem;">See all updates</a></span>
+      </section>
+      <!-- Press/Credibility Section -->
+      <section class="press-credibility" style="background:#f8fafc; color:#1e293b; border-radius:16px; margin:2rem auto; max-width:1100px; padding:2rem 1.5rem; box-shadow:0 2px 16px rgba(119,239,227,0.08); text-align:center;">
+        <h3 style="color:#7c3aed; font-size:1.5rem; margin-bottom:1rem;">Featured In</h3>
+        <div style="display:flex; justify-content:center; align-items:center; gap:2.5rem; flex-wrap:wrap; margin-bottom:1rem;">
+          <img src="images/programs/security-demo.svg" alt="Security Demo" style="height:48px;">
+          <img src="images/programs/enterprise-plans.svg" alt="Enterprise Plans" style="height:48px;">
+          <img src="images/programs/cloud-architecture.svg" alt="Cloud Architecture" style="height:48px;">
+          <img src="images/programs/coach-ro-portrait.svg" alt="Coach Ro" style="height:48px; border-radius:50%;">
+          <span style="font-size:1.1rem; color:#6b7280;">As seen in: <strong>Microsoft Learn, LinkedIn, YouTube, PG Parks, Tech Blog</strong></span>
+        </div>
+        <p style="color:#334155; font-size:1.05rem;">Recognized for innovation in cloud, AI, and workforce upskilling. Trusted by public sector, enterprise, and community partners.</p>
+      </section>
     <h3>Trusted By Leading Organizations</h3>
     <div class="partner-logos">
       <div class="partner-chip"><i class="devicon-azure-plain colored"></i><span>Microsoft Azure</span></div>
@@ -274,7 +290,7 @@
     </div>
     <div class="modules-grid">
       <a href="courses.html?course=cloud-fundamentals-101" class="module-card program-card">
-        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="People working together on cloud fundamentals learning" class="module-visual" loading="lazy">
+        <img src="images/programs/cloud-fundamentals.svg" alt="Cloud Fundamentals Branded" class="module-visual" loading="lazy" style="background:#120a24; border-radius:16px;">
         <h3>Cloud Fundamentals</h3>
         <p>Comprehensive introduction to AWS, Azure, and Google Cloud Platform. Ideal for IT professionals transitioning to cloud architecture and deployment.</p>
         <div class="module-meta">
@@ -310,7 +326,7 @@
       </a>
 
       <a href="courses.html?course=intro-to-ai-ml" class="module-card program-card">
-        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=80" alt="AI and machine learning visualization" class="module-visual" loading="lazy">
+        <img src="images/programs/ai-machine-learning.svg" alt="AI & Machine Learning Branded" class="module-visual" loading="lazy" style="background:#0f172a; border-radius:16px;">
         <h3>AI & Machine Learning</h3>
         <p>Build intelligent applications with AWS SageMaker, Azure ML, and Google AI Platform. Practical machine learning for cloud professionals.</p>
         <div class="module-meta">

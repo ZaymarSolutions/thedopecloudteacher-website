@@ -462,8 +462,45 @@
 
       // Check access
       const hasAccess = await dopeCourses.hasCourseAccess(courseId);
+
       if (!hasAccess) {
-        document.getElementById('lockedOverlay').style.display = 'flex';
+        // Show preview/teaser mode
+        document.getElementById('lockedOverlay').style.display = 'none';
+        // Show only title, description, and intro video (if available)
+        document.title = `${currentCourse.title} - Preview`;
+        document.getElementById('lessonTitle').textContent = currentLesson.title + ' (Preview)';
+        document.getElementById('lessonMeta').textContent = `Duration: ${currentLesson.duration} | Lesson Preview`;
+        document.getElementById('lessonDescription').textContent = currentLesson.description;
+        document.getElementById('courseBreadcrumb').textContent = currentCourse.title;
+        document.getElementById('courseBreadcrumb').href = `courses.html?course=${courseId}`;
+        document.getElementById('lessonBreadcrumb').textContent = currentLesson.title + ' (Preview)';
+
+        // Show only the first topic as a sample
+        const topicsGrid = document.getElementById('topicsGrid');
+        topicsGrid.innerHTML = `<div class="topic-card"><i class="fas fa-check-circle" style="color: #10b981; margin-right: 5px;"></i>${currentLesson.topics[0]}</div>`;
+
+        // Show intro video if available
+        const videoWrapper = document.getElementById('videoWrapper');
+        videoWrapper.innerHTML = `<iframe src="${currentLesson.video}" allowfullscreen></iframe>`;
+
+        // Hide/blur the rest of the content
+        document.querySelectorAll('.content-block, .quiz-section, .affirmation, .navigation-buttons').forEach(el => {
+          if (!el.closest('.lesson-header') && !el.closest('.breadcrumb')) {
+            el.style.display = 'none';
+          }
+        });
+
+        // Show a CTA to unlock full lesson
+        const lessonContent = document.getElementById('lessonContent');
+        const ctaDiv = document.createElement('div');
+        ctaDiv.className = 'content-block';
+        ctaDiv.style.textAlign = 'center';
+        ctaDiv.innerHTML = `
+          <h2 style="color:#ffd700;">Unlock Full Lesson</h2>
+          <p>This is a preview. To access the full lesson, quiz, labs, and resources, please purchase the course or subscribe.</p>
+          <a href="pricing.html" class="btn-primary" style="font-size:1.2rem;">Unlock Full Access</a>
+        `;
+        lessonContent.appendChild(ctaDiv);
         return;
       }
 
