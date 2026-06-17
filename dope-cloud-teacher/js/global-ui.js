@@ -110,13 +110,52 @@
     document.querySelectorAll(selector).forEach(buildFlipCard);
   }
 
+  function sanitizeCoursesPageLeak() {
+    var currentPage = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0] || 'index.html';
+    if (currentPage !== 'courses.html') return;
+
+    var body = document.body;
+    if (!body) return;
+
+    var firstHeader = body.querySelector('header');
+    if (!firstHeader) return;
+
+    var leakedNodes = [];
+    var cursor = body.firstChild;
+    while (cursor && cursor !== firstHeader) {
+      leakedNodes.push(cursor);
+      cursor = cursor.nextSibling;
+    }
+
+    if (!leakedNodes.length) return;
+
+    var leakText = leakedNodes.map(function (node) {
+      return node && node.textContent ? node.textContent : '';
+    }).join(' ');
+
+    var looksLikeLeakedTemplate =
+      leakText.indexOf('showCourseDetail(courseId)') !== -1 ||
+      leakText.indexOf('${course.') !== -1 ||
+      leakText.indexOf('detailView.innerHTML =') !== -1;
+
+    if (!looksLikeLeakedTemplate) return;
+
+    leakedNodes.forEach(function (node) {
+      if (node && node.parentNode === body) {
+        body.removeChild(node);
+      }
+    });
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      sanitizeCoursesPageLeak();
       initStandardNav();
       initMobileNav();
       initFlipCards();
     });
   } else {
+    sanitizeCoursesPageLeak();
     initStandardNav();
     initMobileNav();
     initFlipCards();
