@@ -351,6 +351,216 @@
       background: #dceeff;
     }
 
+    .class-stack {
+      margin-top: 0.85rem;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .progress-panel {
+      margin-top: 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #f6fbff;
+      padding: 0.85rem;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-label {
+      margin: 0;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .progress-count {
+      margin: 0;
+      color: var(--green-deep);
+      font-weight: 800;
+      font-size: 0.82rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: #dfebf8;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #1f8f57, #1373d1);
+      transition: width 0.25s ease;
+    }
+
+    .progress-actions {
+      margin-top: 0.55rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .progress-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 0.48rem 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    .progress-btn-reset {
+      background: #e9f1fb;
+      color: #24415f;
+      border: 1px solid rgba(19, 115, 209, 0.25);
+    }
+
+    .progress-meta {
+      margin: 0.45rem 0 0;
+      color: #4f6a81;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .class-session {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfeff;
+      overflow: hidden;
+    }
+
+    .class-session summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.78rem 0.9rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      color: var(--ink);
+      background: #eef6ff;
+      border-bottom: 1px solid rgba(16, 38, 61, 0.1);
+    }
+
+    .class-session summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .class-meta {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #0f5a37;
+      background: rgba(31, 143, 87, 0.14);
+      border-radius: 999px;
+      padding: 0.18rem 0.52rem;
+      white-space: nowrap;
+    }
+
+    .class-body {
+      padding: 0.85rem 0.9rem 0.95rem;
+    }
+
+    .class-body p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .class-body h4 {
+      margin: 0.6rem 0 0.35rem;
+      font-size: 0.95rem;
+      color: var(--green-deep);
+    }
+
+    .session-complete {
+      margin-top: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .session-complete input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--green);
+    }
+
+    .class-steps {
+      margin: 0;
+      padding-left: 1.05rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .resource-grid {
+      margin-top: 0.8rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .resource-card {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #ffffff;
+      padding: 0.82rem;
+      box-shadow: 0 8px 20px rgba(16, 38, 61, 0.08);
+    }
+
+    .resource-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(16, 38, 61, 0.12);
+    }
+
+    .resource-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .brand-logo {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      border-radius: 4px;
+      flex: 0 0 auto;
+    }
+
+    .resource-title {
+      margin: 0;
+      font-weight: 800;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .resource-copy {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.45;
+      font-size: 0.9rem;
+    }
+
     .tracker {
       margin-top: 0.9rem;
       border-radius: 14px;
@@ -659,6 +869,255 @@
       </div>
     </section>
 
+    <section class="section" id="actualClasses">
+      <h2>Actual classes: step-by-step directions (low-talk mode)</h2>
+      <p class="section-intro">Open the session for today and let students follow the exact directions. This is designed to reduce how much you need to talk while keeping class moving.</p>
+
+      <div class="progress-panel" aria-live="polite">
+        <div class="progress-head">
+          <p class="progress-label">Class progress tracker</p>
+          <p class="progress-count" id="sessionProgressText">0 of 12 sessions complete</p>
+        </div>
+        <div class="progress-track" aria-hidden="true">
+          <div class="progress-fill" id="sessionProgressFill"></div>
+        </div>
+        <div class="progress-actions">
+          <button class="progress-btn progress-btn-reset" type="button" id="resetSessionProgress">Reset Progress</button>
+          <button class="progress-btn" type="button" id="continueNextSession">Continue to Next Session</button>
+        </div>
+        <p class="progress-meta" id="lastResetMeta">Last reset: not yet</p>
+      </div>
+
+      <div class="class-stack">
+        <details class="class-session" id="class-session-1" open>
+          <summary><span>Session 1: Cloud around me</span><span class="class-meta">Week 1 Day A</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students identify real cloud examples they use daily.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Open Canva or Google Slides and create one slide titled "Cloud Around Me".</li>
+              <li>Add 6 apps you use each week (email, streaming, school, banking, etc.).</li>
+              <li>Label each app as storage, communication, AI, or commerce.</li>
+              <li>Write one sentence on why cloud skills matter for your future.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="1"> Mark Session 1 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-2">
+          <summary><span>Session 2: Service model match</span><span class="class-meta">Week 1 Day B</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students apply IaaS, PaaS, and SaaS to simple scenarios.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Read three scenario cards from the board.</li>
+              <li>Match each to IaaS, PaaS, or SaaS and explain your choice.</li>
+              <li>Create "My App Idea" card with your chosen model.</li>
+              <li>Add one cost-saving idea using a cloud calculator.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="2"> Mark Session 2 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-3">
+          <summary><span>Session 3: Prompt basics</span><span class="class-meta">Week 2 Day A</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students write better prompts with clear structure.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Open Copilot or ChatGPT and run a basic prompt (version 1).</li>
+              <li>Rewrite prompt using role + task + context + format.</li>
+              <li>Run version 2 and compare quality.</li>
+              <li>Save both outputs in your session notes.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="3"> Mark Session 3 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-4">
+          <summary><span>Session 4: Prompt remix challenge</span><span class="class-meta">Week 2 Day B</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students produce a reliable study-helper prompt.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Create prompt version 3 with constraints and output format.</li>
+              <li>Test with partner on a real school/work question.</li>
+              <li>Apply one bias/safety check before finalizing.</li>
+              <li>Publish your final prompt card with examples.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="4"> Mark Session 4 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-5">
+          <summary><span>Session 5: Data cleanup sprint</span><span class="class-meta">Week 3 Day A</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students clean and prepare a small dataset.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Open a sample CSV in Google Sheets.</li>
+              <li>Fix blank labels and inconsistent values.</li>
+              <li>Create one clean table with clear headers.</li>
+              <li>Build first chart (bar or line).</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="5"> Mark Session 5 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-6">
+          <summary><span>Session 6: Data story board</span><span class="class-meta">Week 3 Day B</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students turn charts into a practical data story.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Create a one-page dashboard snapshot from your sheet.</li>
+              <li>Write one insight in plain language.</li>
+              <li>Add one recommendation based on the trend.</li>
+              <li>Share with partner and revise for clarity.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="6"> Mark Session 6 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-7">
+          <summary><span>Session 7: Security basics</span><span class="class-meta">Week 4 Day A</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students identify core account-security protections.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Review MFA, password hygiene, and phishing examples.</li>
+              <li>Score risks on the class security checklist.</li>
+              <li>Pick top three account protections.</li>
+              <li>Document one action you can apply this week.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="7"> Mark Session 7 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-8">
+          <summary><span>Session 8: Secure account guide</span><span class="class-meta">Week 4 Day B</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students build a usable cyber safety guide.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Create a one-page "Secure My Account" guide.</li>
+              <li>Include setup steps for MFA and safe password storage.</li>
+              <li>Add one phishing red-flag checklist.</li>
+              <li>Swap guides with partner and revise.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="8"> Mark Session 8 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-9">
+          <summary><span>Session 9: Portfolio shell</span><span class="class-meta">Week 5 Day A</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students launch a one-page project portfolio.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Open Google Sites or GitHub and create your portfolio page.</li>
+              <li>Add title, bio, and skills section.</li>
+              <li>Create three project placeholders.</li>
+              <li>Publish draft URL.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="9"> Mark Session 9 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-10">
+          <summary><span>Session 10: Portfolio upgrade</span><span class="class-meta">Week 5 Day B</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students add evidence and improve usability.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Add screenshots, links, and one short reflection video.</li>
+              <li>Include one accessibility improvement (contrast, headings, alt text).</li>
+              <li>Link to LinkedIn profile if available.</li>
+              <li>Peer review with one actionable improvement note.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="10"> Mark Session 10 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-11">
+          <summary><span>Session 11: Demo rehearsal</span><span class="class-meta">Week 6 Day A</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students prepare a confident final presentation.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Build a 3-slide demo deck (problem, solution, impact).</li>
+              <li>Practice a 2-minute talk with timer.</li>
+              <li>Collect two peer feedback comments.</li>
+              <li>Update slides and portfolio links.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="11"> Mark Session 11 complete</label>
+          </div>
+        </details>
+
+        <details class="class-session" id="class-session-12">
+          <summary><span>Session 12: Final showcase</span><span class="class-meta">Week 6 Day B</span></summary>
+          <div class="class-body">
+            <p><strong>Goal:</strong> students present final work and set next steps.</p>
+            <h4>Lab directions</h4>
+            <ol class="class-steps">
+              <li>Deliver final 2-3 minute showcase.</li>
+              <li>Submit portfolio link and top project artifact.</li>
+              <li>Create a 90-day learning plan (certification + project goal).</li>
+              <li>Connect with one classmate on LinkedIn for accountability.</li>
+            </ol>
+            <label class="session-complete"><input type="checkbox" data-session-complete="12"> Mark Session 12 complete</label>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="officialLinks">
+      <h2>Official platforms and links (with logos)</h2>
+      <p class="section-intro">Use these direct links for labs and assignments. All links open official platform pages.</p>
+
+      <div class="resource-grid">
+        <a class="resource-card" href="https://portal.azure.com" target="_blank" rel="noopener">
+          <div class="resource-head">
+            <img class="brand-logo" src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Microsoft Azure logo">
+            <p class="resource-title">Microsoft Azure Portal</p>
+          </div>
+          <p class="resource-copy">Sign in to create and manage cloud resources in Azure.</p>
+        </a>
+
+        <a class="resource-card" href="https://learn.microsoft.com/training/" target="_blank" rel="noopener">
+          <div class="resource-head">
+            <img class="brand-logo" src="https://cdn.simpleicons.org/microsoft/5E5E5E" alt="Microsoft logo">
+            <p class="resource-title">Microsoft Learn</p>
+          </div>
+          <p class="resource-copy">Official free learning modules and labs for Azure and AI topics.</p>
+        </a>
+
+        <a class="resource-card" href="https://learn.microsoft.com/azure/lab-services/lab-services-overview" target="_blank" rel="noopener">
+          <div class="resource-head">
+            <img class="brand-logo" src="https://cdn.simpleicons.org/microsoftazure/0078D4" alt="Azure Labs logo">
+            <p class="resource-title">Azure Lab Services</p>
+          </div>
+          <p class="resource-copy">Official Azure Labs overview for classroom lab environments.</p>
+        </a>
+
+        <a class="resource-card" href="https://github.com" target="_blank" rel="noopener">
+          <div class="resource-head">
+            <img class="brand-logo" src="https://cdn.simpleicons.org/github/181717" alt="GitHub logo">
+            <p class="resource-title">GitHub</p>
+          </div>
+          <p class="resource-copy">Store class projects, version history, and collaborate on builds.</p>
+        </a>
+
+        <a class="resource-card" href="https://www.linkedin.com" target="_blank" rel="noopener">
+          <div class="resource-head">
+            <img class="brand-logo" src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn logo">
+            <p class="resource-title">LinkedIn</p>
+          </div>
+          <p class="resource-copy">Publish portfolio wins and build professional connections.</p>
+        </a>
+      </div>
+    </section>
+
     <section class="section">
       <h2>Grab-and-go class assets</h2>
       <p class="section-intro">Use these pages during class for lectures, pathways, and student access in one click.</p>
@@ -677,32 +1136,130 @@
 
   <script>
     (function () {
-      const storageKey = 'pgDesignLabMissionTracker';
-      const checkboxes = Array.from(document.querySelectorAll('input[data-mission]'));
-      if (!checkboxes.length) return;
+      const missionKey = 'pgDesignLabMissionTracker';
+      const sessionKey = 'pgDesignLabSessionTracker';
+      const resetMetaKey = 'pgDesignLabLastResetAt';
+      const missionChecks = Array.from(document.querySelectorAll('input[data-mission]'));
+      const sessionChecks = Array.from(document.querySelectorAll('input[data-session-complete]'));
+      const progressFill = document.getElementById('sessionProgressFill');
+      const progressText = document.getElementById('sessionProgressText');
+      const continueBtn = document.getElementById('continueNextSession');
+      const resetBtn = document.getElementById('resetSessionProgress');
+      const resetMeta = document.getElementById('lastResetMeta');
 
       function loadState() {
         try {
-          return JSON.parse(localStorage.getItem(storageKey) || '{}');
+          return JSON.parse(localStorage.getItem(missionKey) || '{}');
         } catch (e) {
           return {};
         }
       }
 
-      function saveState(state) {
-        localStorage.setItem(storageKey, JSON.stringify(state));
+      function loadSessionState() {
+        try {
+          return JSON.parse(localStorage.getItem(sessionKey) || '{}');
+        } catch (e) {
+          return {};
+        }
       }
 
-      const state = loadState();
-      checkboxes.forEach((checkbox) => {
+      function saveMissionState(state) {
+        localStorage.setItem(missionKey, JSON.stringify(state));
+      }
+
+      function saveSessionState(state) {
+        localStorage.setItem(sessionKey, JSON.stringify(state));
+      }
+
+      function updateResetMeta(rawTimestamp) {
+        if (!resetMeta) return;
+        if (!rawTimestamp) {
+          resetMeta.textContent = 'Last reset: not yet';
+          return;
+        }
+
+        const parsed = new Date(rawTimestamp);
+        if (Number.isNaN(parsed.getTime())) {
+          resetMeta.textContent = 'Last reset: not yet';
+          return;
+        }
+
+        resetMeta.textContent = 'Last reset: ' + parsed.toLocaleString();
+      }
+
+      function updateProgressUI() {
+        if (!sessionChecks.length || !progressFill || !progressText) return;
+        const done = sessionChecks.filter((checkbox) => checkbox.checked).length;
+        const total = sessionChecks.length;
+        const percent = Math.round((done / total) * 100);
+        progressFill.style.width = percent + '%';
+        progressText.textContent = done + ' of ' + total + ' sessions complete (' + percent + '%)';
+      }
+
+      const missionState = loadState();
+      missionChecks.forEach((checkbox) => {
         const key = checkbox.getAttribute('data-mission');
-        checkbox.checked = Boolean(state[key]);
+        checkbox.checked = Boolean(missionState[key]);
 
         checkbox.addEventListener('change', function () {
-          state[key] = checkbox.checked;
-          saveState(state);
+          missionState[key] = checkbox.checked;
+          saveMissionState(missionState);
         });
       });
+
+      const sessionState = loadSessionState();
+      sessionChecks.forEach((checkbox) => {
+        const key = checkbox.getAttribute('data-session-complete');
+        checkbox.checked = Boolean(sessionState[key]);
+
+        checkbox.addEventListener('change', function () {
+          sessionState[key] = checkbox.checked;
+          saveSessionState(sessionState);
+          updateProgressUI();
+        });
+      });
+
+      if (continueBtn) {
+        continueBtn.addEventListener('click', function () {
+          const next = sessionChecks.find((checkbox) => !checkbox.checked);
+          if (!next) {
+            const officialLinks = document.getElementById('officialLinks');
+            if (officialLinks) officialLinks.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            return;
+          }
+
+          const sessionId = next.getAttribute('data-session-complete');
+          const sessionCard = document.getElementById('class-session-' + sessionId);
+          if (!sessionCard) return;
+          sessionCard.open = true;
+          sessionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+          const confirmed = window.confirm('Reset all session and mission progress for this browser?');
+          if (!confirmed) return;
+
+          missionChecks.forEach((checkbox) => {
+            checkbox.checked = false;
+          });
+
+          sessionChecks.forEach((checkbox) => {
+            checkbox.checked = false;
+          });
+
+          saveMissionState({});
+          saveSessionState({});
+          const resetNow = new Date().toISOString();
+          localStorage.setItem(resetMetaKey, resetNow);
+          updateResetMeta(resetNow);
+          updateProgressUI();
+        });
+      }
+
+      updateResetMeta(localStorage.getItem(resetMetaKey));
+      updateProgressUI();
     })();
   </script>
   <script src="js/site-config.js"></script>
