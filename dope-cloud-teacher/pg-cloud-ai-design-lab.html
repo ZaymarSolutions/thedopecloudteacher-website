@@ -1818,6 +1818,7 @@
       const simKey = 'pgDesignLabCyberSimTracker';
       const instructorPinKey = 'pgDesignLabInstructorPinHash';
       const instructorUnlockedKey = 'pgDesignLabInstructorUnlocked';
+      const defaultInstructorPinHash = 'MjA3Nw==';
 
       const simAnswers = {
         '1': 'b',
@@ -1940,19 +1941,8 @@
 
           let storedPinHash = localStorage.getItem(instructorPinKey);
           if (!storedPinHash) {
-            const newPin = window.prompt('Set a 4+ digit PIN for instructor notes:');
-            if (!newPin || newPin.trim().length < 4) {
-              window.alert('PIN setup cancelled. Use at least 4 characters.');
-              return;
-            }
-            const confirmPin = window.prompt('Re-enter your instructor notes PIN:');
-            if (newPin !== confirmPin) {
-              window.alert('PINs did not match. Please try again.');
-              return;
-            }
-            storedPinHash = hashPin(newPin.trim());
+            storedPinHash = defaultInstructorPinHash;
             localStorage.setItem(instructorPinKey, storedPinHash);
-            window.alert('Instructor notes PIN is set for this browser.');
           }
 
           const enteredPin = window.prompt('Enter instructor notes PIN:');
