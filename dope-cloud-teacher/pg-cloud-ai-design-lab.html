@@ -261,6 +261,34 @@
       gap: 0.9rem;
     }
 
+    .session-nav {
+      margin-top: 0.85rem;
+      display: flex;
+      gap: 0.45rem;
+      overflow-x: auto;
+      padding-bottom: 0.3rem;
+      scroll-snap-type: x proximity;
+      scrollbar-width: thin;
+    }
+
+    .session-nav a {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      text-decoration: none;
+      color: #134675;
+      border-radius: 999px;
+      border: 1px solid rgba(19, 115, 209, 0.3);
+      background: #ebf5ff;
+      padding: 0.3rem 0.62rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .session-nav a:hover {
+      background: #dceeff;
+    }
+
     .week-card {
       border-radius: 16px;
       border: 1px solid var(--line);
@@ -484,6 +512,21 @@
         Each week has a Day A and Day B class. Day A introduces the concept and starts the build. Day B finishes, upgrades, and presents. Week 1 can be used as your re-engagement reset.
       </p>
 
+      <nav class="session-nav" aria-label="Jump to one of 12 class sessions">
+        <a href="#session-1">Session 1</a>
+        <a href="#session-2">Session 2</a>
+        <a href="#session-3">Session 3</a>
+        <a href="#session-4">Session 4</a>
+        <a href="#session-5">Session 5</a>
+        <a href="#session-6">Session 6</a>
+        <a href="#session-7">Session 7</a>
+        <a href="#session-8">Session 8</a>
+        <a href="#session-9">Session 9</a>
+        <a href="#session-10">Session 10</a>
+        <a href="#session-11">Session 11</a>
+        <a href="#session-12">Session 12</a>
+      </nav>
+
       <div class="week-grid">
         <article class="week-card">
           <div class="week-head">
@@ -491,9 +534,9 @@
             <span class="week-badge">Build Day</span>
           </div>
           <ol class="week-list">
-            <li>Day A: Cloud basics lecture + "where cloud shows up in my life" warm-up.</li>
+            <li id="session-1">Day A: Cloud basics lecture + "where cloud shows up in my life" warm-up.</li>
             <li>Day A lab: Build a Cloud Life Map in Canva or Google Slides.</li>
-            <li>Day B: Mini project "My app idea" and choose IaaS, PaaS, or SaaS.</li>
+            <li id="session-2">Day B: Mini project "My app idea" and choose IaaS, PaaS, or SaaS.</li>
             <li>Day B stretch: Compare local laptop cost vs cloud app hosting.</li>
             <li>Weekly deliverable: One slide and 30-second explanation.</li>
           </ol>
@@ -510,9 +553,9 @@
             <span class="week-badge">Build Day</span>
           </div>
           <ol class="week-list">
-            <li>Day A: Prompt structure lecture (role, task, context, format) and safety basics.</li>
+            <li id="session-3">Day A: Prompt structure lecture (role, task, context, format) and safety basics.</li>
             <li>Day A lab: Prompt Remix challenge with three versions of one prompt.</li>
-            <li>Day B: Build a study helper prompt pack for school or work.</li>
+            <li id="session-4">Day B: Build a study helper prompt pack for school or work.</li>
             <li>Day B stretch: Create role-based prompts for teen and adult users.</li>
             <li>Weekly deliverable: Prompt card with before-and-after output.</li>
           </ol>
@@ -529,9 +572,9 @@
             <span class="week-badge">Build Day</span>
           </div>
           <ol class="week-list">
-            <li>Day A: Data literacy lecture (types, trends, and decisions).</li>
+            <li id="session-5">Day A: Data literacy lecture (types, trends, and decisions).</li>
             <li>Day A lab: Clean a small CSV and chart it in Google Sheets.</li>
-            <li>Day B: Build a "Community Needs Snapshot" data board.</li>
+            <li id="session-6">Day B: Build a "Community Needs Snapshot" data board.</li>
             <li>Day B stretch: Add one AI-generated insight paragraph.</li>
             <li>Weekly deliverable: One chart plus one insight sentence.</li>
           </ol>
@@ -548,9 +591,9 @@
             <span class="week-badge">Build Day</span>
           </div>
           <ol class="week-list">
-            <li>Day A: Security lecture (passwords, MFA, phishing, and cloud identity).</li>
+            <li id="session-7">Day A: Security lecture (passwords, MFA, phishing, and cloud identity).</li>
             <li>Day A lab: Security checklist sprint for a sample startup.</li>
-            <li>Day B: Build a one-page "Secure My Account" guide.</li>
+            <li id="session-8">Day B: Build a one-page "Secure My Account" guide.</li>
             <li>Day B stretch: Design a phishing simulation and response plan.</li>
             <li>Weekly deliverable: Team security scorecard.</li>
           </ol>
@@ -567,9 +610,9 @@
             <span class="week-badge">Build Day</span>
           </div>
           <ol class="week-list">
-            <li>Day A: Portfolio lecture and examples of entry-level project pages.</li>
+            <li id="session-9">Day A: Portfolio lecture and examples of entry-level project pages.</li>
             <li>Day A lab: Build a one-page portfolio shell.</li>
-            <li>Day B: Add three class artifacts and one reflection video.</li>
+            <li id="session-10">Day B: Add three class artifacts and one reflection video.</li>
             <li>Day B stretch: Add badges, resume link, and contact form.</li>
             <li>Weekly deliverable: Shareable portfolio URL.</li>
           </ol>
@@ -586,9 +629,9 @@
             <span class="week-badge">Showcase</span>
           </div>
           <ol class="week-list">
-            <li>Day A: Career pathways lecture and certification next steps (AZ-900, AI-900).</li>
+            <li id="session-11">Day A: Career pathways lecture and certification next steps (AZ-900, AI-900).</li>
             <li>Day A lab: Rehearsal lightning demos with peer feedback.</li>
-            <li>Day B: Final showcase and personal 90-day learning roadmap.</li>
+            <li id="session-12">Day B: Final showcase and personal 90-day learning roadmap.</li>
             <li>Day B stretch: Team concept for community tech impact.</li>
             <li>Weekly deliverable: Final demo plus roadmap card.</li>
           </ol>
