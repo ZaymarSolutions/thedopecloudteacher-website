@@ -206,10 +206,14 @@
     }
 
     .section-intro {
-      margin: 0;
+      margin: 0.1rem 0 0.75rem;
       color: var(--ink-soft);
       max-width: 76ch;
-      line-height: 1.6;
+      line-height: 1.68;
+    }
+
+    .section p {
+      line-height: 1.64;
     }
 
     .lanes {
@@ -327,7 +331,11 @@
       margin: 0;
       padding-left: 1rem;
       color: var(--ink-soft);
-      line-height: 1.52;
+      line-height: 1.62;
+    }
+
+    .week-list li + li {
+      margin-top: 0.32rem;
     }
 
     .tool-row {
@@ -475,9 +483,9 @@
     }
 
     .class-body p {
-      margin: 0;
+      margin: 0 0 0.62rem;
       color: var(--ink-soft);
-      line-height: 1.55;
+      line-height: 1.64;
     }
 
     .class-body h4 {
@@ -506,7 +514,11 @@
       margin: 0;
       padding-left: 1.05rem;
       color: var(--ink-soft);
-      line-height: 1.5;
+      line-height: 1.6;
+    }
+
+    .class-steps li + li {
+      margin-top: 0.3rem;
     }
 
     .resource-grid {
@@ -555,9 +567,9 @@
     }
 
     .resource-copy {
-      margin: 0;
+      margin: 0.1rem 0 0;
       color: var(--ink-soft);
-      line-height: 1.45;
+      line-height: 1.56;
       font-size: 0.9rem;
     }
 
@@ -641,9 +653,9 @@
     }
 
     .lab-copy {
-      margin: 0.38rem 0;
+      margin: 0.45rem 0;
       color: var(--ink-soft);
-      line-height: 1.45;
+      line-height: 1.56;
       font-size: 0.88rem;
     }
 
@@ -856,6 +868,58 @@
 
     .notes strong {
       color: #8a3f1d;
+    }
+
+    .instructor-notes {
+      margin-top: 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #f8fcff;
+      padding: 0.95rem;
+    }
+
+    .instructor-notes h3 {
+      margin: 0;
+      color: var(--green-deep);
+      font-size: 1.05rem;
+    }
+
+    .instructor-notes p {
+      margin: 0.45rem 0 0;
+      color: var(--ink-soft);
+      line-height: 1.62;
+    }
+
+    .instructor-grid {
+      margin-top: 0.72rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .instructor-card {
+      border-radius: 12px;
+      border: 1px solid rgba(19, 115, 209, 0.2);
+      background: #ffffff;
+      padding: 0.75rem;
+    }
+
+    .instructor-card h4 {
+      margin: 0;
+      color: #18486c;
+      font-size: 0.95rem;
+    }
+
+    .instructor-card ul {
+      margin: 0.45rem 0 0;
+      padding-left: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.56;
+      font-size: 0.87rem;
+    }
+
+    .instructor-card li + li {
+      margin-top: 0.28rem;
     }
 
     .footer-links {
@@ -1317,6 +1381,57 @@
             <label class="session-complete"><input type="checkbox" data-session-complete="12"> Mark Session 12 complete</label>
           </div>
         </details>
+      </div>
+    </section>
+
+    <section class="section" id="instructorNotes">
+      <h2>Instructor notes for lecture delivery</h2>
+      <p class="section-intro">Use these notes as your quick facilitation script so lecture and lab transitions stay smooth, inclusive, and on-time.</p>
+
+      <div class="instructor-notes">
+        <h3>Before class (10-minute setup)</h3>
+        <p>Open this page, pre-open Microsoft Learn tabs, and test one link from the Cloud and AI lab blocks. Put students into pairs before lecture begins so no one gets stuck solo during build sprint.</p>
+        <div class="instructor-grid">
+          <article class="instructor-card">
+            <h4>Lecture pacing (20 minutes)</h4>
+            <ul>
+              <li>Minute 0-4: anchor concept in plain language.</li>
+              <li>Minute 5-10: one demo, no more than 3 clicks deep.</li>
+              <li>Minute 11-16: quick comprehension checks.</li>
+              <li>Minute 17-20: explain build success criteria.</li>
+            </ul>
+          </article>
+
+          <article class="instructor-card">
+            <h4>Build sprint coaching (35 minutes)</h4>
+            <ul>
+              <li>Run checkpoint every 10 minutes.</li>
+              <li>Use two-level support: core win + pro move.</li>
+              <li>If blocked, switch student to simulation path so momentum continues.</li>
+              <li>Require one screenshot or one note artifact per student.</li>
+            </ul>
+          </article>
+
+          <article class="instructor-card">
+            <h4>Mixed-age engagement</h4>
+            <ul>
+              <li>Pair one confident navigator with one explainer.</li>
+              <li>Give teen learners visual tasks first, adults architecture decisions first.</li>
+              <li>Rotate speaking roles during share-out.</li>
+              <li>Celebrate iteration, not perfection.</li>
+            </ul>
+          </article>
+
+          <article class="instructor-card">
+            <h4>Certification tie-in (last 5 minutes)</h4>
+            <ul>
+              <li>Map today’s lab to AZ-900, AI-900, or SC-900 objective area.</li>
+              <li>Assign one Microsoft Learn module for home practice.</li>
+              <li>Have students update portfolio notes immediately.</li>
+              <li>Close with one next-step action per student.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
