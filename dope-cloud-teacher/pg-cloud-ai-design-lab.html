@@ -1807,6 +1807,7 @@
       const labChecks = Array.from(document.querySelectorAll('input[data-lab-complete]'));
       const instructorNotes = document.getElementById('instructorNotes');
       const instructorAccessBtn = document.getElementById('instructorAccessBtn');
+      let instructorNotesUnlocked = false;
       const progressFill = document.getElementById('sessionProgressFill');
       const progressText = document.getElementById('sessionProgressText');
       const continueBtn = document.getElementById('continueNextSession');
@@ -1932,9 +1933,8 @@
 
       if (instructorAccessBtn) {
         instructorAccessBtn.addEventListener('click', function () {
-          const alreadyUnlocked = sessionStorage.getItem(instructorUnlockedKey) === 'true';
-          if (alreadyUnlocked) {
-            sessionStorage.removeItem(instructorUnlockedKey);
+          if (instructorNotesUnlocked) {
+            instructorNotesUnlocked = false;
             setInstructorVisibility(false);
             return;
           }
@@ -1954,7 +1954,7 @@
             return;
           }
 
-          sessionStorage.setItem(instructorUnlockedKey, 'true');
+          instructorNotesUnlocked = true;
           setInstructorVisibility(true);
           instructorNotes.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
@@ -2089,7 +2089,7 @@
       updateProgressUI();
       updateLabStudioUI();
       updateSimScoreUI(simState);
-      setInstructorVisibility(sessionStorage.getItem(instructorUnlockedKey) === 'true');
+      setInstructorVisibility(false);
     })();
   </script>
   <script src="js/site-config.js"></script>
