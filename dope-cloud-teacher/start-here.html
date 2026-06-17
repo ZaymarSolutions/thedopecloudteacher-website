@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Here Quiz | The Dope Cloud Teacher</title>
+  <meta name="description" content="Take a quick quiz to find your best cloud training starting point and recommended certification path.">
+  <link rel="stylesheet" href="css/styles.css">
+  <!--#include virtual="google-analytics.html" -->
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.png" alt="The Dope Cloud Teacher Logo" class="logo-img">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+          <span class="subtitle">Cloud Classes For Real People</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="courses.html">Classes</a>
+        <a href="cloud-career-starter-kit.html">Free Roadmap</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width:900px;margin:2rem auto;padding:0 1rem 2rem;">
+    <section style="background:#fff;border:1px solid #dbe3f5;border-radius:16px;padding:1.5rem;box-shadow:0 8px 28px rgba(23,29,63,0.08);margin-bottom:1.5rem;">
+      <h1 style="color:#171d3f;">Start Here: Find Your Best Learning Path</h1>
+      <p style="color:#334155;">Answer three quick questions and get a recommended starting class, certification track, and next action.</p>
+
+      <form id="pathQuiz" style="display:grid;gap:1rem;">
+        <label style="color:#334155;font-weight:600;">1) Your current level
+          <select id="level" required style="display:block;width:100%;margin-top:0.35rem;padding:0.7rem;border:1px solid #cbd5e1;border-radius:8px;">
+            <option value="">Select one</option>
+            <option value="beginner">Beginner (new to cloud)</option>
+            <option value="it">Some IT experience</option>
+            <option value="advanced">Already in cloud/tech</option>
+          </select>
+        </label>
+
+        <label style="color:#334155;font-weight:600;">2) Primary goal
+          <select id="goal" required style="display:block;width:100%;margin-top:0.35rem;padding:0.7rem;border:1px solid #cbd5e1;border-radius:8px;">
+            <option value="">Select one</option>
+            <option value="first-job">Get first cloud job</option>
+            <option value="promotion">Get promoted in current role</option>
+            <option value="security">Move into cybersecurity</option>
+            <option value="ai">Build AI skills</option>
+          </select>
+        </label>
+
+        <label style="color:#334155;font-weight:600;">3) Weekly study time
+          <select id="time" required style="display:block;width:100%;margin-top:0.35rem;padding:0.7rem;border:1px solid #cbd5e1;border-radius:8px;">
+            <option value="">Select one</option>
+            <option value="light">2-4 hours</option>
+            <option value="medium">5-7 hours</option>
+            <option value="high">8+ hours</option>
+          </select>
+        </label>
+
+        <button type="submit" class="button button-primary" style="width:fit-content;">Get My Path Recommendation</button>
+      </form>
+    </section>
+
+    <section id="result" style="display:none;background:#0f172a;color:#e2e8f0;border-radius:16px;padding:1.25rem;">
+      <h2 style="color:#77efe3;">Your Recommended Path</h2>
+      <p id="recommendationText" style="margin:0.5rem 0 1rem;"></p>
+      <div style="display:flex;gap:0.7rem;flex-wrap:wrap;">
+        <a id="primaryLink" href="courses.html" class="button button-primary">Go to Recommended Class</a>
+        <a href="cloud-career-starter-kit.html" class="button button-secondary">Download Free Roadmap</a>
+      </div>
+    </section>
+  </main>
+
+  <footer style="text-align:center;padding:1.8rem;color:#64748b;">
+    <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const quiz = document.getElementById('pathQuiz');
+    const result = document.getElementById('result');
+    const recommendationText = document.getElementById('recommendationText');
+    const primaryLink = document.getElementById('primaryLink');
+
+    quiz.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const level = document.getElementById('level').value;
+      const goal = document.getElementById('goal').value;
+      const time = document.getElementById('time').value;
+
+      let text = 'Start with Cloud Fundamentals and complete one guided lab each week.';
+      let href = 'az-900-azure-fundamentals.html';
+
+      if (goal === 'security') {
+        text = 'Start with Azure Fundamentals, then move into security labs and policy automation projects.';
+        href = 'cloud-control-azure-policy.html';
+      } else if (goal === 'ai') {
+        text = 'Start with AI fundamentals and build one project each week to create portfolio proof.';
+        href = 'ai-900-azure-ai-fundamentals.html';
+      } else if (goal === 'promotion' && (level === 'it' || level === 'advanced')) {
+        text = 'You are ready for the Azure Administrator path with weekly scenario drills and certification prep.';
+        href = 'az-104-azure-administrator.html';
+      }
+
+      if (time === 'light') {
+        text += ' Use a 2-4 hour weekly plan and focus on one milestone at a time.';
+      } else if (time === 'high') {
+        text += ' With 8+ hours weekly, you can stack labs and move to your next certification faster.';
+      }
+
+      recommendationText.textContent = text;
+      primaryLink.href = href;
+      result.style.display = 'block';
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</body>
+</html>

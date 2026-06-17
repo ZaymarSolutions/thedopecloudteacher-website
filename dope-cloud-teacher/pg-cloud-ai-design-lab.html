@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG Parks Cloud & AI Design Lab | 6-Week Student Build Studio</title>
+  <meta name="description" content="A fun 6-week Cloud and AI Design Lab for PG Parks students with weekly lectures, free hands-on projects, and demo day milestones.">
+  <meta name="keywords" content="PG Parks cloud and ai class, cloud labs for teens, beginner ai projects, free cloud projects, classroom build studio">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://thedopecloudteacher.org/pg-cloud-ai-design-lab.html">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --ink: #10263d;
+      --ink-soft: #33546f;
+      --card: #ffffff;
+      --line: rgba(16, 38, 61, 0.14);
+      --green: #1f8f57;
+      --green-deep: #11663d;
+      --blue: #1373d1;
+      --sun: #f4b640;
+      --coral: #e46f47;
+      --shadow: 0 14px 36px rgba(16, 38, 61, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 92% 10%, rgba(19, 115, 209, 0.16), transparent 32%),
+        radial-gradient(circle at 8% 28%, rgba(244, 182, 64, 0.14), transparent 28%),
+        linear-gradient(145deg, #eef8ff 0%, #f3fff7 42%, #fff8ed 100%);
+      min-height: 100vh;
+    }
+
+    .lab-wrap {
+      width: min(1160px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.2rem 0 3rem;
+    }
+
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .top-nav-links {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .hero {
+      border-radius: 26px;
+      padding: 1.35rem;
+      background:
+        linear-gradient(135deg, rgba(17, 102, 61, 0.98), rgba(31, 143, 87, 0.93) 42%, rgba(19, 115, 209, 0.9));
+      color: #f5fff8;
+      box-shadow: 0 20px 44px rgba(16, 38, 61, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 64%);
+      right: -120px;
+      top: -150px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      background: rgba(255,255,255,0.16);
+      color: #f7ffda;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Sora', sans-serif;
+      letter-spacing: -0.01em;
+    }
+
+    .hero h1 {
+      margin: 0.7rem 0 0.6rem;
+      font-size: clamp(1.95rem, 4.7vw, 3.1rem);
+      line-height: 1.06;
+    }
+
+    .hero p {
+      margin: 0;
+      color: #e5fff0;
+      line-height: 1.62;
+      max-width: 60ch;
+      font-size: 1.03rem;
+    }
+
+    .hero-actions {
+      margin-top: 1.05rem;
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border-radius: 12px;
+      text-decoration: none;
+      padding: 0.82rem 1rem;
+      font-weight: 800;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-primary {
+      background: var(--sun);
+      color: #372100;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      border-color: rgba(255,255,255,0.38);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+      align-content: start;
+    }
+
+    .stat {
+      background: rgba(8, 29, 19, 0.34);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 0.9rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.45rem;
+      color: #fff8d3;
+      line-height: 1;
+      margin-bottom: 0.26rem;
+    }
+
+    .stat span {
+      color: #d8ffea;
+      font-size: 0.9rem;
+    }
+
+    .section {
+      margin-top: 1.1rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 1.1rem;
+    }
+
+    .section h2 {
+      margin: 0 0 0.5rem;
+      color: var(--green-deep);
+      font-size: clamp(1.3rem, 3vw, 1.95rem);
+    }
+
+    .section-intro {
+      margin: 0;
+      color: var(--ink-soft);
+      max-width: 76ch;
+      line-height: 1.6;
+    }
+
+    .lanes {
+      margin-top: 0.85rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+    }
+
+    .lane {
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #f9fdff;
+      padding: 0.85rem;
+    }
+
+    .lane h3 {
+      margin: 0.2rem 0 0.35rem;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+
+    .pill {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 0.23rem 0.57rem;
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .pill-green { background: var(--green); }
+    .pill-blue { background: var(--blue); }
+    .pill-coral { background: var(--coral); }
+
+    .lane ul {
+      margin: 0.45rem 0 0 1rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      padding-left: 0.2rem;
+    }
+
+    .week-grid {
+      margin-top: 0.9rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .week-card {
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(160deg, #ffffff, #f5fbff);
+      padding: 1rem;
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .week-card h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.08rem;
+    }
+
+    .week-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .week-badge {
+      border-radius: 999px;
+      padding: 0.2rem 0.58rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(125deg, #178648, #1275b0);
+    }
+
+    .week-list {
+      margin: 0;
+      padding-left: 1rem;
+      color: var(--ink-soft);
+      line-height: 1.52;
+    }
+
+    .tool-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tool-chip {
+      text-decoration: none;
+      color: #134675;
+      border-radius: 999px;
+      border: 1px solid rgba(19, 115, 209, 0.28);
+      background: #ebf5ff;
+      padding: 0.27rem 0.55rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .tool-chip:hover {
+      background: #dceeff;
+    }
+
+    .tracker {
+      margin-top: 0.9rem;
+      border-radius: 14px;
+      border: 1px dashed rgba(17, 102, 61, 0.4);
+      background: #f7fff9;
+      padding: 0.9rem;
+    }
+
+    .tracker h3 {
+      margin: 0 0 0.35rem;
+      color: var(--green-deep);
+      font-size: 1.02rem;
+    }
+
+    .tracker-grid {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.55rem;
+    }
+
+    .tracker-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--ink-soft);
+      font-size: 0.96rem;
+    }
+
+    .tracker-item input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--green);
+    }
+
+    .notes {
+      margin-top: 1rem;
+      padding: 0.9rem;
+      border-radius: 14px;
+      background: #fff7ea;
+      border: 1px solid rgba(228, 111, 71, 0.28);
+      color: #5b4335;
+      line-height: 1.55;
+    }
+
+    .notes strong {
+      color: #8a3f1d;
+    }
+
+    .footer-links {
+      margin-top: 1.15rem;
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.64rem 0.82rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .lab-wrap {
+        width: calc(100% - 1rem);
+      }
+
+      .hero {
+        border-radius: 20px;
+        padding: 1rem;
+      }
+
+      .section {
+        padding: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="lab-wrap">
+    <nav class="top-nav" aria-label="Design lab navigation">
+      <a href="pg-parks-direct.html"><i class="fas fa-arrow-left"></i> Back to PG Parks Direct</a>
+      <div class="top-nav-links">
+        <a href="dashboard.html">Student Login</a>
+        <a href="pg-cloud-ai-fundamentals-academy.html">Academy Playbook</a>
+        <a href="courses.html">Courses</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="tag"><i class="fas fa-flask"></i> PG Parks Cloud & AI Build Studio</span>
+          <h1>6-week design lab: learn it, build it, show it.</h1>
+          <p>
+            This is your class mission hub. Every week includes a short lecture, a hands-on build, and a mini project you can actually show.
+            Everything here is free and browser-friendly so students ages 15 through adult can create in class without stress.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#weekPlan"><i class="fas fa-play"></i> Start This Week</a>
+            <a class="btn btn-secondary" href="lesson1.html"><i class="fas fa-video"></i> Open Lesson Library</a>
+            <a class="btn btn-secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Action=Start&amp;keyword=cloud&amp;keywordoption=Match+One&amp;dayoption=All&amp;display=Detail&amp;module=global&amp;globalwebsearch_buttonsearch=yes" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> PG Parks Class Search</a>
+          </div>
+        </div>
+        <div class="hero-stats" aria-label="Program highlights">
+          <article class="stat"><strong>12</strong><span>class sessions (2x/week)</span></article>
+          <article class="stat"><strong>18</strong><span>micro-project options</span></article>
+          <article class="stat"><strong>100%</strong><span>free tool stack</span></article>
+          <article class="stat"><strong>1</strong><span>demo day showcase</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Class flow each session</h2>
+      <p class="section-intro">
+        Keep every session moving with a rhythm students can trust. Start with energy, build fast, and end with a win.
+      </p>
+      <div class="lanes" style="margin-top:0.85rem;">
+        <article class="lane">
+          <h3><span class="pill pill-green">20 min</span> Spark lecture</h3>
+          <ul>
+            <li>One core concept in plain language</li>
+            <li>One real-life cloud or AI example</li>
+            <li>One quick check-for-understanding</li>
+          </ul>
+        </article>
+        <article class="lane">
+          <h3><span class="pill pill-blue">35 min</span> Build sprint</h3>
+          <ul>
+            <li>Students build with a guided handout</li>
+            <li>Pair teens with adults for support</li>
+            <li>Instructor circulates for checkpoints</li>
+          </ul>
+        </article>
+        <article class="lane">
+          <h3><span class="pill pill-coral">20 min</span> Show + reflect</h3>
+          <ul>
+            <li>2 to 3 student demos each class</li>
+            <li>What worked / what was hard / next step</li>
+            <li>Assign tiny at-home bonus challenge</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="weekPlan">
+      <h2>6-week lecture + lab plan (12 sessions)</h2>
+      <p class="section-intro">
+        Each week has a Day A and Day B class. Day A introduces the concept and starts the build. Day B finishes, upgrades, and presents. Week 1 can be used as your re-engagement reset.
+      </p>
+
+      <div class="week-grid">
+        <article class="week-card">
+          <div class="week-head">
+            <h3>Week 1: Reset + Cloud Basics that click</h3>
+            <span class="week-badge">Build Day</span>
+          </div>
+          <ol class="week-list">
+            <li>Day A: Cloud basics lecture + "where cloud shows up in my life" warm-up.</li>
+            <li>Day A lab: Build a Cloud Life Map in Canva or Google Slides.</li>
+            <li>Day B: Mini project "My app idea" and choose IaaS, PaaS, or SaaS.</li>
+            <li>Day B stretch: Compare local laptop cost vs cloud app hosting.</li>
+            <li>Weekly deliverable: One slide and 30-second explanation.</li>
+          </ol>
+          <div class="tool-row">
+            <a class="tool-chip" href="https://www.canva.com" target="_blank" rel="noopener">Canva</a>
+            <a class="tool-chip" href="https://slides.google.com" target="_blank" rel="noopener">Google Slides</a>
+            <a class="tool-chip" href="https://azure.microsoft.com/en-us/pricing/calculator/" target="_blank" rel="noopener">Azure Pricing Calculator</a>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-head">
+            <h3>Week 2: AI prompts and responsible use</h3>
+            <span class="week-badge">Build Day</span>
+          </div>
+          <ol class="week-list">
+            <li>Day A: Prompt structure lecture (role, task, context, format) and safety basics.</li>
+            <li>Day A lab: Prompt Remix challenge with three versions of one prompt.</li>
+            <li>Day B: Build a study helper prompt pack for school or work.</li>
+            <li>Day B stretch: Create role-based prompts for teen and adult users.</li>
+            <li>Weekly deliverable: Prompt card with before-and-after output.</li>
+          </ol>
+          <div class="tool-row">
+            <a class="tool-chip" href="https://copilot.microsoft.com" target="_blank" rel="noopener">Microsoft Copilot</a>
+            <a class="tool-chip" href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT Free</a>
+            <a class="tool-chip" href="https://www.notion.so" target="_blank" rel="noopener">Notion</a>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-head">
+            <h3>Week 3: Data storytelling with cloud tools</h3>
+            <span class="week-badge">Build Day</span>
+          </div>
+          <ol class="week-list">
+            <li>Day A: Data literacy lecture (types, trends, and decisions).</li>
+            <li>Day A lab: Clean a small CSV and chart it in Google Sheets.</li>
+            <li>Day B: Build a "Community Needs Snapshot" data board.</li>
+            <li>Day B stretch: Add one AI-generated insight paragraph.</li>
+            <li>Weekly deliverable: One chart plus one insight sentence.</li>
+          </ol>
+          <div class="tool-row">
+            <a class="tool-chip" href="https://docs.google.com/spreadsheets" target="_blank" rel="noopener">Google Sheets</a>
+            <a class="tool-chip" href="https://www.kaggle.com/datasets" target="_blank" rel="noopener">Kaggle Datasets</a>
+            <a class="tool-chip" href="https://www.datawrapper.de" target="_blank" rel="noopener">Datawrapper</a>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-head">
+            <h3>Week 4: Cloud security mission</h3>
+            <span class="week-badge">Build Day</span>
+          </div>
+          <ol class="week-list">
+            <li>Day A: Security lecture (passwords, MFA, phishing, and cloud identity).</li>
+            <li>Day A lab: Security checklist sprint for a sample startup.</li>
+            <li>Day B: Build a one-page "Secure My Account" guide.</li>
+            <li>Day B stretch: Design a phishing simulation and response plan.</li>
+            <li>Weekly deliverable: Team security scorecard.</li>
+          </ol>
+          <div class="tool-row">
+            <a class="tool-chip" href="https://learn.microsoft.com/en-us/training/paths/describe-concepts-of-security-compliance-identity/" target="_blank" rel="noopener">Microsoft Learn Security Path</a>
+            <a class="tool-chip" href="https://haveibeenpwned.com" target="_blank" rel="noopener">Have I Been Pwned</a>
+            <a class="tool-chip" href="https://www.canva.com" target="_blank" rel="noopener">Canva</a>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-head">
+            <h3>Week 5: Build your cloud + AI portfolio page</h3>
+            <span class="week-badge">Build Day</span>
+          </div>
+          <ol class="week-list">
+            <li>Day A: Portfolio lecture and examples of entry-level project pages.</li>
+            <li>Day A lab: Build a one-page portfolio shell.</li>
+            <li>Day B: Add three class artifacts and one reflection video.</li>
+            <li>Day B stretch: Add badges, resume link, and contact form.</li>
+            <li>Weekly deliverable: Shareable portfolio URL.</li>
+          </ol>
+          <div class="tool-row">
+            <a class="tool-chip" href="https://sites.google.com" target="_blank" rel="noopener">Google Sites</a>
+            <a class="tool-chip" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+            <a class="tool-chip" href="https://www.canva.com/websites/" target="_blank" rel="noopener">Canva Websites</a>
+          </div>
+        </article>
+
+        <article class="week-card">
+          <div class="week-head">
+            <h3>Week 6: Demo Day + Future Pathway Map</h3>
+            <span class="week-badge">Showcase</span>
+          </div>
+          <ol class="week-list">
+            <li>Day A: Career pathways lecture and certification next steps (AZ-900, AI-900).</li>
+            <li>Day A lab: Rehearsal lightning demos with peer feedback.</li>
+            <li>Day B: Final showcase and personal 90-day learning roadmap.</li>
+            <li>Day B stretch: Team concept for community tech impact.</li>
+            <li>Weekly deliverable: Final demo plus roadmap card.</li>
+          </ol>
+          <div class="tool-row">
+            <a class="tool-chip" href="https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/" target="_blank" rel="noopener">AZ-900 Info</a>
+            <a class="tool-chip" href="https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/" target="_blank" rel="noopener">AI-900 Info</a>
+            <a class="tool-chip" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="tracker" aria-live="polite">
+        <h3>Student mission tracker</h3>
+        <p class="section-intro" style="margin-bottom:0;">Check these off each class to keep momentum high. Progress saves in this browser.</p>
+        <div class="tracker-grid">
+          <label class="tracker-item"><input type="checkbox" data-mission="lecture"> I watched or attended the lecture.</label>
+          <label class="tracker-item"><input type="checkbox" data-mission="build"> I completed the build sprint task.</label>
+          <label class="tracker-item"><input type="checkbox" data-mission="share"> I shared one thing I learned.</label>
+          <label class="tracker-item"><input type="checkbox" data-mission="bonus"> I attempted the stretch challenge.</label>
+        </div>
+      </div>
+
+      <div class="notes">
+        <strong>Instructor note for mixed ages:</strong> run each activity with a "core win" and a "pro move." Core win keeps beginners confident. Pro move keeps advanced or adult learners challenged. Use pairings where one student leads setup and the other leads explanation.
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Grab-and-go class assets</h2>
+      <p class="section-intro">Use these pages during class for lectures, pathways, and student access in one click.</p>
+      <div class="footer-links">
+        <a href="lesson.html">Lesson Hub</a>
+        <a href="lesson1.html">Lesson 1</a>
+        <a href="lesson2.html">Lesson 2</a>
+        <a href="lesson3.html">Lesson 3</a>
+        <a href="dashboard.html">Student Dashboard</a>
+        <a href="pg-cloud-ai-fundamentals-academy.html">Instructor Playbook</a>
+        <a href="pg-cloud-ai-instructor-guide.html">Printable Instructor Guide</a>
+        <a href="pg-cloud-ai-student-worksheets.html">Printable Student Worksheets</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const storageKey = 'pgDesignLabMissionTracker';
+      const checkboxes = Array.from(document.querySelectorAll('input[data-mission]'));
+      if (!checkboxes.length) return;
+
+      function loadState() {
+        try {
+          return JSON.parse(localStorage.getItem(storageKey) || '{}');
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveState(state) {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      }
+
+      const state = loadState();
+      checkboxes.forEach((checkbox) => {
+        const key = checkbox.getAttribute('data-mission');
+        checkbox.checked = Boolean(state[key]);
+
+        checkbox.addEventListener('change', function () {
+          state[key] = checkbox.checked;
+          saveState(state);
+        });
+      });
+    })();
+  </script>
+  <script src="js/site-config.js"></script>
+  <script src="js/analytics.js"></script>
+  <script src="js/global-ui.js"></script>
+</body>
+</html>

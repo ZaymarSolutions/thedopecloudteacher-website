@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG Parks Cloud & AI Instructor Guide | 12 Sessions</title>
+  <meta name="description" content="Printable instructor guide for the PG Parks 6-week Cloud and AI Fundamentals class meeting two days per week.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --ink: #10263d;
+      --soft: #3d5c76;
+      --green: #1f8f57;
+      --line: rgba(16, 38, 61, 0.18);
+      --card: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f9ff;
+      color: var(--ink);
+    }
+
+    .wrap {
+      width: min(980px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1.2rem 0 2rem;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .top a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .card {
+      margin-top: 0.9rem;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    h1 {
+      margin: 0.2rem 0 0.4rem;
+      font-size: 1.8rem;
+      color: var(--green);
+    }
+
+    h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.2rem;
+      color: var(--ink);
+    }
+
+    p {
+      margin: 0;
+      color: var(--soft);
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .session {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.8rem;
+      background: #fbfeff;
+    }
+
+    .session h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--green);
+    }
+
+    .session ul {
+      margin: 0.4rem 0 0;
+      padding-left: 1rem;
+      color: var(--soft);
+      line-height: 1.45;
+    }
+
+    .print-btn {
+      margin-top: 0.8rem;
+      border: 0;
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff;
+      font-weight: 700;
+      padding: 0.58rem 0.9rem;
+      cursor: pointer;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .top,
+      .print-btn {
+        display: none;
+      }
+
+      .wrap {
+        width: 100%;
+        padding: 0;
+      }
+
+      .card {
+        border: 1px solid #ccc;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="top" aria-label="Instructor guide navigation">
+      <a href="pg-cloud-ai-design-lab.html">Back to Design Lab</a>
+      <a href="pg-cloud-ai-student-worksheets.html">Student Worksheets</a>
+    </nav>
+
+    <section class="card">
+      <h1>PG Parks Cloud & AI Instructor Guide</h1>
+      <p>Schedule: 6 weeks, 2 days per week, 90 minutes per session. This guide is printable for in-class facilitation and substitute coverage.</p>
+      <button class="print-btn" onclick="window.print()">Print this guide</button>
+    </section>
+
+    <section class="card">
+      <h2>Session rhythm</h2>
+      <p>Use the same timing every class: 15 min opener, 20 min lesson, 35 min build, 15 min share-out, 5 min exit ticket.</p>
+    </section>
+
+    <section class="card">
+      <h2>12-session run of show</h2>
+      <div class="grid">
+        <article class="session"><h3>Session 1 (W1 Day A)</h3><ul><li>Cloud basics and student reset</li><li>Build: Cloud Life Map start</li><li>Exit ticket: one cloud use daily</li></ul></article>
+        <article class="session"><h3>Session 2 (W1 Day B)</h3><ul><li>Service models quick lesson</li><li>Finish Cloud Life Map</li><li>Share 30-second project pitch</li></ul></article>
+        <article class="session"><h3>Session 3 (W2 Day A)</h3><ul><li>Prompt engineering fundamentals</li><li>Prompt remix challenge</li><li>Save version history</li></ul></article>
+        <article class="session"><h3>Session 4 (W2 Day B)</h3><ul><li>Responsible AI checkpoints</li><li>Build study-helper prompts</li><li>Peer test and improve</li></ul></article>
+        <article class="session"><h3>Session 5 (W3 Day A)</h3><ul><li>Data basics and chart types</li><li>Clean sample dataset</li><li>Create first chart</li></ul></article>
+        <article class="session"><h3>Session 6 (W3 Day B)</h3><ul><li>Data story framing</li><li>Build dashboard snapshot</li><li>Add one insight sentence</li></ul></article>
+        <article class="session"><h3>Session 7 (W4 Day A)</h3><ul><li>Security basics: MFA + phishing</li><li>Security checklist sprint</li><li>Risk scoring exercise</li></ul></article>
+        <article class="session"><h3>Session 8 (W4 Day B)</h3><ul><li>Cloud identity mini-lesson</li><li>Create secure-account guide</li><li>Team review and revise</li></ul></article>
+        <article class="session"><h3>Session 9 (W5 Day A)</h3><ul><li>Portfolio purpose and examples</li><li>Build one-page portfolio shell</li><li>Add about section</li></ul></article>
+        <article class="session"><h3>Session 10 (W5 Day B)</h3><ul><li>Artifact curation</li><li>Add project screenshots and links</li><li>Peer accessibility check</li></ul></article>
+        <article class="session"><h3>Session 11 (W6 Day A)</h3><ul><li>Career and certification roadmap</li><li>Demo rehearsal rounds</li><li>Feedback and final edits</li></ul></article>
+        <article class="session"><h3>Session 12 (W6 Day B)</h3><ul><li>Final showcase presentations</li><li>90-day action plan card</li><li>Celebrate + next-step commitments</li></ul></article>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Fast differentiation for mixed ages</h2>
+      <p>Core win: complete baseline task. Pro move: add one advanced feature. Pair students so one leads setup and one leads explanation, then switch roles.</p>
+    </section>
+  </main>
+</body>
+</html>
