@@ -63,6 +63,22 @@
       font-weight: 700;
     }
 
+    .instructor-access-btn {
+      border: 1px solid rgba(19, 115, 209, 0.3);
+      background: #ebf5ff;
+      color: #134675;
+      border-radius: 999px;
+      padding: 0.34rem 0.68rem;
+      font-size: 0.78rem;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .instructor-access-btn:hover {
+      background: #dceeff;
+    }
+
     .top-nav-links {
       display: flex;
       gap: 0.9rem;
@@ -878,6 +894,14 @@
       padding: 0.95rem;
     }
 
+    .instructor-only {
+      display: none;
+    }
+
+    .instructor-only.visible {
+      display: block;
+    }
+
     .instructor-notes h3 {
       margin: 0;
       color: var(--green-deep);
@@ -969,6 +993,7 @@
         <a href="dashboard.html">Student Login</a>
         <a href="pg-cloud-ai-fundamentals-academy.html">Academy Playbook</a>
         <a href="courses.html">Courses</a>
+        <button type="button" class="instructor-access-btn" id="instructorAccessBtn" aria-label="Toggle instructor notes visibility">Instructor Access</button>
       </div>
     </nav>
 
@@ -1384,7 +1409,7 @@
       </div>
     </section>
 
-    <section class="section" id="instructorNotes">
+    <section class="section instructor-only" id="instructorNotes" hidden>
       <h2>Instructor notes for lecture delivery</h2>
       <p class="section-intro">Use these notes as your quick facilitation script so lecture and lab transitions stay smooth, inclusive, and on-time.</p>
 
@@ -1780,6 +1805,8 @@
       const missionChecks = Array.from(document.querySelectorAll('input[data-mission]'));
       const sessionChecks = Array.from(document.querySelectorAll('input[data-session-complete]'));
       const labChecks = Array.from(document.querySelectorAll('input[data-lab-complete]'));
+      const instructorNotes = document.getElementById('instructorNotes');
+      const instructorAccessBtn = document.getElementById('instructorAccessBtn');
       const progressFill = document.getElementById('sessionProgressFill');
       const progressText = document.getElementById('sessionProgressText');
       const continueBtn = document.getElementById('continueNextSession');
@@ -1789,12 +1816,31 @@
       const cyberSimScore = document.getElementById('cyberSimScore');
       const labKey = 'pgDesignLabStudioTracker';
       const simKey = 'pgDesignLabCyberSimTracker';
+      const instructorPinKey = 'pgDesignLabInstructorPinHash';
+      const instructorUnlockedKey = 'pgDesignLabInstructorUnlocked';
 
       const simAnswers = {
         '1': 'b',
         '2': 'a',
         '3': 'b'
       };
+
+      function hashPin(pin) {
+        return btoa(pin);
+      }
+
+      function setInstructorVisibility(isVisible) {
+        if (!instructorNotes) return;
+        if (isVisible) {
+          instructorNotes.classList.add('visible');
+          instructorNotes.hidden = false;
+          if (instructorAccessBtn) instructorAccessBtn.textContent = 'Lock Notes';
+        } else {
+          instructorNotes.classList.remove('visible');
+          instructorNotes.hidden = true;
+          if (instructorAccessBtn) instructorAccessBtn.textContent = 'Instructor Access';
+        }
+      }
 
       function loadState() {
         try {
@@ -1881,6 +1927,47 @@
         const total = Object.keys(simAnswers).length;
         const correctCount = Object.keys(simAnswers).filter((id) => simState[id] && simState[id].correct).length;
         cyberSimScore.textContent = 'Cyber sim score: ' + correctCount + ' of ' + total + ' correct';
+      }
+
+      if (instructorAccessBtn) {
+        instructorAccessBtn.addEventListener('click', function () {
+          const alreadyUnlocked = sessionStorage.getItem(instructorUnlockedKey) === 'true';
+          if (alreadyUnlocked) {
+            sessionStorage.removeItem(instructorUnlockedKey);
+            setInstructorVisibility(false);
+            return;
+          }
+
+          let storedPinHash = localStorage.getItem(instructorPinKey);
+          if (!storedPinHash) {
+            const newPin = window.prompt('Set a 4+ digit PIN for instructor notes:');
+            if (!newPin || newPin.trim().length < 4) {
+              window.alert('PIN setup cancelled. Use at least 4 characters.');
+              return;
+            }
+            const confirmPin = window.prompt('Re-enter your instructor notes PIN:');
+            if (newPin !== confirmPin) {
+              window.alert('PINs did not match. Please try again.');
+              return;
+            }
+            storedPinHash = hashPin(newPin.trim());
+            localStorage.setItem(instructorPinKey, storedPinHash);
+            window.alert('Instructor notes PIN is set for this browser.');
+          }
+
+          const enteredPin = window.prompt('Enter instructor notes PIN:');
+          if (!enteredPin) return;
+
+          const isValid = hashPin(enteredPin.trim()) === storedPinHash;
+          if (!isValid) {
+            window.alert('Incorrect PIN. Instructor notes stay hidden.');
+            return;
+          }
+
+          sessionStorage.setItem(instructorUnlockedKey, 'true');
+          setInstructorVisibility(true);
+          instructorNotes.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
       }
 
       const missionState = loadState();
@@ -2012,6 +2099,7 @@
       updateProgressUI();
       updateLabStudioUI();
       updateSimScoreUI(simState);
+      setInstructorVisibility(sessionStorage.getItem(instructorUnlockedKey) === 'true');
     })();
   </script>
   <script src="js/site-config.js"></script>
