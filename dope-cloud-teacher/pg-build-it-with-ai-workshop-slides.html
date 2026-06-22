@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build It With AI Workshop Slides | The Dope Cloud Teacher</title>
+  <meta name="description" content="Printable Session 1 workshop slide handout with on-screen prompts and teacher speaker notes.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --ink: #10263d;
+      --muted: #49657e;
+      --line: rgba(16, 38, 61, 0.2);
+      --card: #ffffff;
+      --accent: #1373d1;
+      --accent-2: #1f8f57;
+      --paper: #f3f9ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at top right, #e7f2ff 0%, var(--paper) 55%, #edf7ff 100%);
+    }
+
+    .wrap {
+      width: min(1060px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 1rem 0 2rem;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .top a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.5rem 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn.print {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn.notes {
+      background: #e4f1ff;
+      color: #0f4b82;
+      border: 1px solid rgba(19, 115, 209, 0.24);
+    }
+
+    .hero,
+    .card {
+      margin-top: 0.85rem;
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 12px;
+      padding: 0.9rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      color: var(--accent-2);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--ink);
+    }
+
+    p {
+      margin: 0.45rem 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .meta {
+      margin-top: 0.55rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #f7fbff;
+      color: #23435e;
+      font-size: 0.84rem;
+      padding: 0.22rem 0.58rem;
+      font-weight: 700;
+    }
+
+    .slides {
+      margin-top: 0.7rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .slide {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fcfeff;
+      padding: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .slide h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    .label {
+      margin: 0;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #335a7e;
+      font-weight: 700;
+    }
+
+    .onscreen {
+      margin: 0;
+      color: var(--ink);
+      line-height: 1.48;
+      padding-left: 1rem;
+    }
+
+    .onscreen li + li {
+      margin-top: 0.25rem;
+    }
+
+    .notes {
+      display: none;
+      margin-top: 0.15rem;
+      border-radius: 10px;
+      padding: 0.62rem;
+      background: #f4fbf7;
+      border: 1px solid rgba(31, 143, 87, 0.3);
+      color: #194a34;
+      line-height: 1.52;
+      font-size: 0.94rem;
+    }
+
+    body.instructor-unlocked .notes {
+      display: block;
+    }
+
+    .notes-locked {
+      margin-top: 0.8rem;
+      border-radius: 10px;
+      padding: 0.66rem;
+      border: 1px dashed rgba(31, 143, 87, 0.4);
+      background: #f8fdf9;
+      color: #2f5a46;
+      font-size: 0.92rem;
+    }
+
+    body.instructor-unlocked .notes-locked {
+      display: none;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .top,
+      .notes-locked {
+        display: none;
+      }
+
+      .wrap {
+        width: 100%;
+        padding: 0;
+      }
+
+      .hero,
+      .card,
+      .slide {
+        break-inside: avoid;
+      }
+
+      .notes {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="top" aria-label="Workshop handout navigation">
+      <a href="pg-cloud-ai-design-lab.html">Back to Design Lab</a>
+      <div>
+        <button class="btn notes" type="button" id="instructorAccessBtn">Instructor Access</button>
+        <button class="btn print" type="button" onclick="window.print()">Print Handout</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <h1>The Dope Cloud Teacher Innovation Lab</h1>
+      <p><strong>Session 1:</strong> Build It With AI</p>
+      <div class="meta" aria-label="Workshop quick facts">
+        <span class="chip">Duration: 90 minutes</span>
+        <span class="chip">Format: Interactive Workshop</span>
+        <span class="chip">Outcome: Business concept + brand + pitch</span>
+      </div>
+      <p class="notes-locked">Speaker notes are locked. Use Instructor Access to reveal teacher notes.</p>
+    </section>
+
+    <section class="card">
+      <h2>Slide Handout (14 Slides)</h2>
+      <p>Students should only follow the On Screen prompts. Teacher notes appear only after Instructor Access is unlocked.</p>
+
+      <div class="slides">
+        <article class="slide">
+          <h3>Slide 1: Welcome</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>BUILD IT WITH AI</li><li>Learn. Create. Launch.</li><li>Today's Mission: Create an AI-Powered Business</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Set the tone that this is hands-on and practical. Students will leave with a business concept, brand assets, and pitch.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 2: Icebreaker</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>If someone gave you $500 today...</li><li>What business would you start tomorrow?</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Have each learner answer and keep the energy positive. No wrong answers.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 3: What Is AI?</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>AI helps humans solve problems faster.</li><li>Examples: ChatGPT, Siri, Alexa, Netflix, TikTok feed</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Ask who already uses these tools and explain AI as pattern recognition and prediction.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 4: What Is The Cloud?</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>The cloud is renting computers on the internet.</li><li>Borrow what you need, when you need it.</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Use familiar examples like Netflix, YouTube, Roblox, and Fortnite to ground the concept.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 5: Today's Challenge</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Business Name</li><li>Logo Idea</li><li>Slogan</li><li>Flyer</li><li>Social Post</li><li>30-Second Pitch</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Make it clear every output is part of one cohesive business story.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 6: Cloud Quest</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Level 1: Business Idea (10)</li><li>Level 2: Business Name (20)</li><li>Level 3: Logo Concept (30)</li><li>Level 4: Marketing Flyer (50)</li><li>Level 5: Business Pitch (100)</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Keep score visible. Light competition increases focus and participation.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 7: Prompt Engineering</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>A prompt is an instruction.</li><li>Bad: Create a business.</li><li>Better: Create a business idea for a 15-year-old interested in gaming with a $500 budget.</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Reinforce that better prompts produce better outputs and this is a marketable job skill.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 8: Activity Time</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Open ChatGPT</li><li>Prompt: Give me 10 business ideas I could start with $500.</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Let learners run it live, discuss options, and select one idea to build.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 9: Build The Brand</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Prompt AI to create:</li><li>Business Name</li><li>Slogan</li><li>Mission Statement</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Encourage iteration so brand language reflects the student, not generic AI text.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 10: Build The Marketing</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Prompt: Create a flyer advertising my business.</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Discuss audience targeting and call-to-action clarity.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 11: Social Media Challenge</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Create:</li><li>Instagram Post</li><li>TikTok Caption</li><li>Facebook Post</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Teach platform adaptation while preserving one consistent brand voice.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 12: Shark Tank Time</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Present your business in 60 seconds.</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Ask each presenter: What problem do you solve? Who is your customer? Why should they buy?</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 13: What Did We Learn?</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>AI</li><li>Cloud</li><li>Prompting</li><li>Marketing</li><li>Entrepreneurship</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Close with confidence-building reflection on how much was built in one class.</p>
+        </article>
+
+        <article class="slide">
+          <h3>Slide 14: Homework</h3>
+          <p class="label">On Screen</p>
+          <ul class="onscreen"><li>Improve logo, flyer, and pitch</li><li>Bonus: Create a website mockup</li></ul>
+          <p class="notes"><strong>Speaker note:</strong> Preview Wednesday: Build your website. Ask, "Where do websites live?" then bridge to cloud.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const unlockKey = 'pgWorkshopSlidesInstructorUnlocked';
+      const pinHashKey = 'pgWorkshopSlidesInstructorPinHash';
+      const defaultPinHash = 'MjA3Nw==';
+      const accessBtn = document.getElementById('instructorAccessBtn');
+
+      function hashPin(pin) {
+        return btoa(pin);
+      }
+
+      function applyUnlockState(isUnlocked) {
+        document.body.classList.toggle('instructor-unlocked', !!isUnlocked);
+        if (accessBtn) {
+          accessBtn.textContent = isUnlocked ? 'Lock Notes' : 'Instructor Access';
+        }
+      }
+
+      function getStoredPinHash() {
+        return localStorage.getItem(pinHashKey) || defaultPinHash;
+      }
+
+      function requestUnlock() {
+        const pin = window.prompt('Enter instructor PIN to view speaker notes:');
+        if (pin === null) return;
+        if (hashPin(pin.trim()) === getStoredPinHash()) {
+          localStorage.setItem(unlockKey, '1');
+          applyUnlockState(true);
+          return;
+        }
+        window.alert('Incorrect PIN.');
+      }
+
+      applyUnlockState(localStorage.getItem(unlockKey) === '1');
+
+      if (accessBtn) {
+        accessBtn.addEventListener('click', function () {
+          const isUnlocked = document.body.classList.contains('instructor-unlocked');
+          if (isUnlocked) {
+            localStorage.removeItem(unlockKey);
+            applyUnlockState(false);
+            return;
+          }
+          requestUnlock();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -902,6 +902,21 @@
       display: block;
     }
 
+    .slide-speaker-note {
+      display: none;
+      margin-top: 0.35rem;
+      padding: 0.55rem 0.65rem;
+      border-radius: 10px;
+      border: 1px solid rgba(19, 115, 209, 0.22);
+      background: #f5fbff;
+      color: #174a72;
+      line-height: 1.55;
+    }
+
+    body.instructor-unlocked .slide-speaker-note {
+      display: block;
+    }
+
     .instructor-notes h3 {
       margin: 0;
       color: var(--green-deep);
@@ -1078,20 +1093,20 @@
       <div class="week-grid">
         <article class="week-card">
           <div class="week-head">
-            <h3>Week 1: Reset + Cloud Basics that click</h3>
+            <h3>Week 1: Innovation lab workshop</h3>
             <span class="week-badge">Build Day</span>
           </div>
           <ol class="week-list">
-            <li id="session-1">Day A: Cloud basics lecture + "where cloud shows up in my life" warm-up.</li>
-            <li>Day A lab: Build a Cloud Life Map in Canva or Google Slides.</li>
-            <li id="session-2">Day B: Mini project "My app idea" and choose IaaS, PaaS, or SaaS.</li>
-            <li>Day B stretch: Compare local laptop cost vs cloud app hosting.</li>
-            <li>Weekly deliverable: One slide and 30-second explanation.</li>
+            <li id="session-1">Day A: Build It With AI workshop (90 minutes, high-interaction format).</li>
+            <li>Day A challenge: Create business name, slogan, flyer, social post, and pitch.</li>
+            <li id="session-2">Day B: Turn the business into a basic website concept.</li>
+            <li>Day B bridge: Introduce cloud naturally by asking where websites live.</li>
+            <li>Weekly deliverable: 60-second pitch and starter homepage content.</li>
           </ol>
           <div class="tool-row">
             <a class="tool-chip" href="https://www.canva.com" target="_blank" rel="noopener">Canva</a>
             <a class="tool-chip" href="https://slides.google.com" target="_blank" rel="noopener">Google Slides</a>
-            <a class="tool-chip" href="https://azure.microsoft.com/en-us/pricing/calculator/" target="_blank" rel="noopener">Azure Pricing Calculator</a>
+            <a class="tool-chip" href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT</a>
           </div>
         </article>
 
@@ -1228,15 +1243,67 @@
 
       <div class="class-stack">
         <details class="class-session" id="class-session-1" open>
-          <summary><span>Session 1: Cloud around me</span><span class="class-meta">Week 1 Day A</span></summary>
+          <summary><span>Session 1: Innovation Lab - Build It With AI</span><span class="class-meta">Week 1 Day A (90-Min Workshop)</span></summary>
           <div class="class-body">
-            <p><strong>Goal:</strong> students identify real cloud examples they use daily.</p>
-            <h4>Lab directions</h4>
+            <p><strong>Goal:</strong> students understand AI and cloud in plain language, then build and pitch an AI-powered business idea.</p>
+            <h4>Workshop outcomes</h4>
             <ol class="class-steps">
-              <li>Open Canva or Google Slides and create one slide titled "Cloud Around Me".</li>
-              <li>Add 6 apps you use each week (email, streaming, school, banking, etc.).</li>
-              <li>Label each app as storage, communication, AI, or commerce.</li>
-              <li>Write one sentence on why cloud skills matter for your future.</li>
+              <li>Understand what AI and cloud computing are without heavy jargon.</li>
+              <li>Generate a practical business idea tied to student interests.</li>
+              <li>Use AI prompts to create branding and starter marketing assets.</li>
+              <li>Deliver a short business pitch with confidence.</li>
+            </ol>
+            <h4>Facilitation mode (for small groups)</h4>
+            <ol class="class-steps">
+              <li>Run this as a workshop, not a lecture. Keep it conversational and interactive.</li>
+              <li>Use live prompts together and pause after each output to refine as a team.</li>
+              <li>Track points using Cloud Quest to keep energy high.</li>
+              <li>Prioritize creating artifacts over explaining theory for long stretches.</li>
+            </ol>
+            <h4>Slide-by-slide run of show (on-screen view)</h4>
+            <ol class="class-steps">
+              <li><strong>Slide 1 - Welcome to The Dope Cloud Teacher Innovation Lab</strong>: BUILD IT WITH AI. Learn. Create. Launch. Today's Mission: Create an AI-Powered Business.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Set the tone that this session is hands-on, and students will leave with a real business concept, brand, marketing content, and a pitch.</p>
+              </li>
+              <li><strong>Slide 2 - Icebreaker</strong>: If someone gave you $500 today, what business would you start tomorrow?
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Have each learner answer. Encourage examples like gaming, music, clothing, hair, food, tech, YouTube, or sports. No wrong answers.</p>
+              </li>
+              <li><strong>Slide 3 - What Is AI?</strong>: AI is technology that helps humans solve problems faster. Examples: ChatGPT, Siri, Alexa, Netflix recommendations, TikTok feed.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Ask who already uses those tools and connect AI to pattern recognition and prediction.</p>
+              </li>
+              <li><strong>Slide 4 - What Is The Cloud?</strong>: The cloud is renting computers on the internet.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Use Netflix, Roblox, Fortnite, and YouTube examples to explain that modern apps run in cloud data centers.</p>
+              </li>
+              <li><strong>Slide 5 - Today's Challenge</strong>: Create a business name, logo idea, slogan, flyer, social post, and 30-second pitch.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Explain that every step supports one business concept.</p>
+              </li>
+              <li><strong>Slide 6 - Cloud Quest</strong>: Level 1 Business Idea (10), Level 2 Name (20), Level 3 Logo Concept (30), Level 4 Flyer (50), Level 5 Pitch (100).
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Keep score visibly. Gamification increases participation quickly.</p>
+              </li>
+              <li><strong>Slide 7 - Prompt Engineering</strong>: A prompt is an instruction. Bad prompt: Create a business. Better prompt: Create a business idea for a 15-year-old interested in gaming with a budget of $500.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Reinforce that prompt quality drives output quality.</p>
+              </li>
+              <li><strong>Slide 8 - Activity Time</strong>: Open ChatGPT and run: "Give me 10 business ideas I could start with $500."
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Have learners discuss results and choose one concept to build.</p>
+              </li>
+              <li><strong>Slide 9 - Build The Brand</strong>: Prompt AI to create business name, slogan, and mission statement.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Coach students to refine and personalize outputs.</p>
+              </li>
+              <li><strong>Slide 10 - Build The Marketing</strong>: Prompt AI to create a flyer advertising the business.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Discuss audience, voice, and clear call-to-action.</p>
+              </li>
+              <li><strong>Slide 11 - Social Media Challenge</strong>: Prompt AI to create an Instagram post, TikTok caption, and Facebook post.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Show how platform messaging changes while brand voice stays consistent.</p>
+              </li>
+              <li><strong>Slide 12 - Shark Tank Time</strong>: Present your business in 60 seconds.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Ask: What problem do you solve? Who is your customer? Why would someone buy?</p>
+              </li>
+              <li><strong>Slide 13 - What Did We Learn?</strong>: AI, cloud, prompting, marketing, and entrepreneurship.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Emphasize progress and confidence built in one class.</p>
+              </li>
+              <li><strong>Slide 14 - Homework</strong>: Improve logo, flyer, and pitch. Bonus: create a website mockup.
+                <p class="slide-speaker-note"><strong>Speaker note:</strong> Preview next session as "Build Your Website" and bridge to cloud by asking where websites live.</p>
+              </li>
             </ol>
             <label class="session-complete"><input type="checkbox" data-session-complete="1"> Mark Session 1 complete</label>
           </div>
@@ -1418,6 +1485,16 @@
         <p>Open this page, pre-open Microsoft Learn tabs, and test one link from the Cloud and AI lab blocks. Put students into pairs before lecture begins so no one gets stuck solo during build sprint.</p>
         <div class="instructor-grid">
           <article class="instructor-card">
+            <h4>Small-group workshop playbook</h4>
+            <ul>
+              <li>If class size is 2 to 5 learners, skip long decks and run live co-building.</li>
+              <li>Treat each prompt as a mini challenge with immediate discussion.</li>
+              <li>Keep each section moving: explain in 60 seconds, then build.</li>
+              <li>Use points + quick celebrations after each completed artifact.</li>
+            </ul>
+          </article>
+
+          <article class="instructor-card">
             <h4>Lecture pacing (20 minutes)</h4>
             <ul>
               <li>Minute 0-4: anchor concept in plain language.</li>
@@ -1454,6 +1531,16 @@
               <li>Assign one Microsoft Learn module for home practice.</li>
               <li>Have students update portfolio notes immediately.</li>
               <li>Close with one next-step action per student.</li>
+            </ul>
+          </article>
+
+          <article class="instructor-card">
+            <h4>Wednesday bridge: Build your website</h4>
+            <ul>
+              <li>Use AI to generate homepage copy, About section, services, FAQ, and customer reviews.</li>
+              <li>Frame it as business execution, not abstract technology theory.</li>
+              <li>Then ask: "Guess where websites live?" and connect naturally to cloud infrastructure.</li>
+              <li>Keep discovery-based teaching: learners experience first, then name the concept.</li>
             </ul>
           </article>
         </div>
@@ -1792,6 +1879,7 @@
         <a href="dashboard.html">Student Dashboard</a>
         <a href="pg-cloud-ai-fundamentals-academy.html">Instructor Playbook</a>
         <a href="pg-cloud-ai-instructor-guide.html">Printable Instructor Guide</a>
+        <a href="pg-build-it-with-ai-workshop-slides.html">Printable Session 1 Slide Handout</a>
         <a href="pg-cloud-ai-student-worksheets.html">Printable Student Worksheets</a>
       </div>
     </section>
@@ -1832,14 +1920,18 @@
       }
 
       function setInstructorVisibility(isVisible) {
-        if (!instructorNotes) return;
+        document.body.classList.toggle('instructor-unlocked', !!isVisible);
         if (isVisible) {
-          instructorNotes.classList.add('visible');
-          instructorNotes.hidden = false;
+          if (instructorNotes) {
+            instructorNotes.classList.add('visible');
+            instructorNotes.hidden = false;
+          }
           if (instructorAccessBtn) instructorAccessBtn.textContent = 'Lock Notes';
         } else {
-          instructorNotes.classList.remove('visible');
-          instructorNotes.hidden = true;
+          if (instructorNotes) {
+            instructorNotes.classList.remove('visible');
+            instructorNotes.hidden = true;
+          }
           if (instructorAccessBtn) instructorAccessBtn.textContent = 'Instructor Access';
         }
       }
