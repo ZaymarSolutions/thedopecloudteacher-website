@@ -46,6 +46,7 @@ db.exec(`
     name TEXT NOT NULL,
     phone TEXT,
     organization TEXT,
+    profile_image TEXT,
     role TEXT DEFAULT 'student',
     stripe_customer_id TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -203,8 +204,17 @@ const ensureLeadColumn = (columnName, columnDefinition) => {
   }
 };
 
+const ensureUserColumn = (columnName, columnDefinition) => {
+  const columns = db.prepare('PRAGMA table_info(users)').all();
+  const exists = columns.some(column => column.name === columnName);
+  if (!exists) {
+    db.exec(`ALTER TABLE users ADD COLUMN ${columnName} ${columnDefinition}`);
+  }
+};
+
 ensureLeadColumn('verify_token', 'TEXT');
 ensureLeadColumn('verified_at', 'DATETIME');
+ensureUserColumn('profile_image', 'TEXT');
 
 // Middleware
 app.set('trust proxy', 1); // trust Railway's reverse proxy for accurate IPs
@@ -416,7 +426,7 @@ app.get('/api/jobs/live', async (req, res) => {
 // Register new user
 app.post('/api/auth/register', async (req, res) => {
   try {
-    const { email, password, name, phone, organization } = req.body;
+    const { email, password, name, phone, organization, profileImage } = req.body;
 
     if (!email || !password || !name) {
       return res.status(400).json({ error: 'Email, password, and name are required' });
@@ -428,6 +438,22 @@ app.post('/api/auth/register', async (req, res) => {
 
     if (!process.env.JWT_SECRET) {
       return res.status(500).json({ error: 'Server configuration error: JWT secret is missing' });
+    }
+
+    let safeProfileImage = null;
+    if (typeof profileImage === 'string' && profileImage.trim().length > 0) {
+      const normalizedImage = profileImage.trim();
+      const isDataImage = /^data:image\/(png|jpe?g|webp);base64,/i.test(normalizedImage);
+      if (!isDataImage) {
+        return res.status(400).json({ error: 'Profile image must be a JPG, PNG, or WebP file.' });
+      }
+
+      // Cap payload size to keep requests performant and DB records reasonable.
+      const maxImagePayloadChars = 1_200_000;
+      if (normalizedImage.length > maxImagePayloadChars) {
+        return res.status(400).json({ error: 'Profile image is too large. Please upload a smaller image.' });
+      }
+      safeProfileImage = normalizedImage;
     }
 
     // Check if user exists
@@ -445,9 +471,9 @@ app.post('/api/auth/register', async (req, res) => {
     let token;
     try {
       result = db.prepare(`
-        INSERT INTO users (email, password_hash, name, phone, organization)
-        VALUES (?, ?, ?, ?, ?)
-      `).run(email, passwordHash, name, phone || null, organization || null);
+        INSERT INTO users (email, password_hash, name, phone, organization, profile_image)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `).run(email, passwordHash, name, phone || null, organization || null, safeProfileImage);
 
       token = jwt.sign(
         { userId: result.lastInsertRowid, email, name },
@@ -464,7 +490,7 @@ app.post('/api/auth/register', async (req, res) => {
     res.status(201).json({
       message: 'User created successfully',
       token,
-      user: { id: result.lastInsertRowid, email, name }
+      user: { id: result.lastInsertRowid, email, name, profileImage: safeProfileImage }
     });
   } catch (error) {
     console.error('Registration error:', error);
@@ -509,7 +535,8 @@ app.post('/api/auth/login', async (req, res) => {
         id: user.id,
         email: user.email,
         name: user.name,
-        role: user.role
+        role: user.role,
+        profileImage: user.profile_image || null
       }
     });
   } catch (error) {
@@ -606,7 +633,7 @@ app.post('/api/auth/reset-password', async (req, res) => {
 
 // Get current user
 app.get('/api/auth/me', authenticateToken, (req, res) => {
-  const user = db.prepare('SELECT id, email, name, phone, organization, role, created_at FROM users WHERE id = ?')
+  const user = db.prepare('SELECT id, email, name, phone, organization, profile_image AS profileImage, role, created_at FROM users WHERE id = ?')
     .get(req.user.userId);
   
   if (!user) {

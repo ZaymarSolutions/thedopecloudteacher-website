@@ -160,12 +160,12 @@ class DopeCloudAuth {
   }
 
   // Register new user
-  async register(email, password, name, phone = '', organization = '') {
+  async register(email, password, name, phone = '', organization = '', profileImage = null) {
     try {
       const response = await fetchWithApiFallback('/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, name, phone, organization })
+        body: JSON.stringify({ email, password, name, phone, organization, profileImage })
       });
 
       const data = await response.json().catch(() => ({}));
@@ -550,6 +550,9 @@ function createAuthModal() {
             <input type="password" id="registerPassword" placeholder="Password (min 8 characters)" required minlength="8" />
             <input type="tel" id="registerPhone" placeholder="Phone (optional)" />
             <input type="text" id="registerOrg" placeholder="Organization (optional)" />
+            <label class="auth-upload-label" for="registerPhoto">Upload a profile photo (optional)</label>
+            <input type="file" id="registerPhoto" accept="image/*" />
+            <img id="registerPhotoPreview" class="auth-photo-preview" alt="Profile photo preview" style="display:none;" />
             <button type="submit" class="auth-button">Create Account</button>
           </form>
           <p>Already have an account? <a href="#" onclick="showLoginForm(); return false;">Sign in</a></p>
@@ -624,6 +627,22 @@ function createAuthModal() {
       font-size: 1rem;
       box-sizing: border-box;
     }
+    .auth-upload-label {
+      display: block;
+      margin-top: 0.25rem;
+      color: #d5def8;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .auth-photo-preview {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #77efe3;
+      margin: 0.35rem auto 0.2rem;
+      box-shadow: 0 4px 14px rgba(119, 239, 227, 0.28);
+    }
     .auth-form input:focus {
       outline: none;
       border-color: #77efe3;
@@ -692,6 +711,61 @@ function showRegisterForm() {
   document.getElementById('forgotPasswordForm').style.display = 'none';
 }
 
+function fileToDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || ''));
+    reader.onerror = () => reject(new Error('Unable to read the selected image'));
+    reader.readAsDataURL(file);
+  });
+}
+
+function resizeImageDataUrl(dataUrl, maxDimension = 420, quality = 0.85) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => {
+      let { width, height } = image;
+      if (width > maxDimension || height > maxDimension) {
+        const scale = Math.min(maxDimension / width, maxDimension / height);
+        width = Math.max(1, Math.round(width * scale));
+        height = Math.max(1, Math.round(height * scale));
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+
+      const context = canvas.getContext('2d');
+      if (!context) {
+        reject(new Error('Unable to process the selected image'));
+        return;
+      }
+
+      context.drawImage(image, 0, 0, width, height);
+      resolve(canvas.toDataURL('image/jpeg', quality));
+    };
+    image.onerror = () => reject(new Error('Invalid image format. Please upload a JPG, PNG, or WebP image.'));
+    image.src = dataUrl;
+  });
+}
+
+async function buildRegisterProfileImage(file) {
+  if (!file) return null;
+
+  if (!String(file.type || '').startsWith('image/')) {
+    throw new Error('Please upload a valid image file.');
+  }
+
+  // Keep localStorage and API payload safe for browsers on lower-memory devices.
+  const maxBytes = 5 * 1024 * 1024;
+  if (file.size > maxBytes) {
+    throw new Error('Image is too large. Please choose one under 5MB.');
+  }
+
+  const dataUrl = await fileToDataUrl(file);
+  return resizeImageDataUrl(dataUrl);
+}
+
 function showForgotPasswordForm() {
   document.getElementById('loginForm').style.display = 'none';
   document.getElementById('registerForm').style.display = 'none';
@@ -722,17 +796,50 @@ async function handleRegister(event) {
   const password = document.getElementById('registerPassword').value;
   const phone = document.getElementById('registerPhone').value;
   const organization = document.getElementById('registerOrg').value;
+  const photoFile = document.getElementById('registerPhoto').files[0];
   const errorDiv = document.getElementById('registerError');
 
   try {
     errorDiv.textContent = 'Creating account...';
-    await dopeAuth.register(email, password, name, phone, organization);
+    const profileImage = await buildRegisterProfileImage(photoFile);
+    await dopeAuth.register(email, password, name, phone, organization, profileImage);
     errorDiv.textContent = '';
     hideAuthModal();
     updateAuthUI();
   } catch (error) {
     errorDiv.textContent = error.message;
   }
+}
+
+function setupRegisterPhotoPreview() {
+  const photoInput = document.getElementById('registerPhoto');
+  const preview = document.getElementById('registerPhotoPreview');
+  const errorDiv = document.getElementById('registerError');
+  if (!photoInput || !preview) return;
+
+  photoInput.addEventListener('change', async function () {
+    const selected = photoInput.files && photoInput.files[0] ? photoInput.files[0] : null;
+    if (!selected) {
+      preview.style.display = 'none';
+      preview.removeAttribute('src');
+      return;
+    }
+
+    try {
+      const resized = await buildRegisterProfileImage(selected);
+      preview.src = resized;
+      preview.style.display = 'block';
+      if (errorDiv && String(errorDiv.textContent || '').toLowerCase().includes('image')) {
+        errorDiv.textContent = '';
+      }
+    } catch (error) {
+      preview.style.display = 'none';
+      preview.removeAttribute('src');
+      if (errorDiv) {
+        errorDiv.textContent = error.message;
+      }
+    }
+  });
 }
 
 async function handleForgotPassword(event) {
@@ -793,6 +900,7 @@ function updateAuthUI() {
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', async () => {
   createAuthModal();
+  setupRegisterPhotoPreview();
   if (dopeAuth.isAuthenticated()) {
     await dopeAuth.getCurrentUser();
   }

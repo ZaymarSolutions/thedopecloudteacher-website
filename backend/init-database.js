@@ -27,6 +27,7 @@ db.exec(`
     name TEXT NOT NULL,
     phone TEXT,
     organization TEXT,
+    profile_image TEXT,
     role TEXT DEFAULT 'student',
     stripe_customer_id TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,

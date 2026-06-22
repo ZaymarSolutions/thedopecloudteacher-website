@@ -99,6 +99,16 @@
       gap: 1rem;
     }
 
+    .user-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(119, 239, 227, 0.55);
+      box-shadow: 0 6px 16px rgba(119, 239, 227, 0.28);
+      display: none;
+    }
+
     .user-name {
       color: var(--brand-teal);
       font-weight: bold;
@@ -317,7 +327,7 @@
 <body>
   <header>
     <a href="index.html" class="logo">
-      <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+      <img src="logo.svg" alt="Logo" class="logo-img" onerror="this.style.display='none'">
       The Dope Cloud Teacher
     </a>
     <nav class="dashboard-nav" aria-label="Dashboard navigation">
@@ -329,6 +339,7 @@
       <a href="pg-parks-direct.html">PG Parks Direct</a>
     </nav>
     <div class="user-info">
+      <img id="userAvatar" class="user-avatar" alt="Student profile photo">
       <span class="user-name" id="userName">Loading...</span>
       <button class="btn-logout" onclick="dopeAuth.logout()">
         <i class="fas fa-sign-out-alt"></i> Logout
@@ -460,6 +471,14 @@
 
       document.getElementById('userName').textContent = user.name;
       document.getElementById('welcomeName').textContent = user.name.split(' ')[0];
+      const avatar = document.getElementById('userAvatar');
+      if (avatar && user.profileImage) {
+        avatar.src = user.profileImage;
+        avatar.style.display = 'block';
+      } else if (avatar) {
+        avatar.style.display = 'none';
+        avatar.removeAttribute('src');
+      }
 
       // Get all courses
       const allCourses = await dopeCourses.getAllCourses();

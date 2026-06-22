@@ -1,3 +1,37 @@
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Dope Cloud Teacher logo">
-  <image href="logo.png" x="0" y="0" width="512" height="512" preserveAspectRatio="xMidYMid meet"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111f45"/>
+      <stop offset="1" stop-color="#0e1531"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3dc8ff"/>
+      <stop offset="1" stop-color="#1ee3b6"/>
+    </linearGradient>
+    <linearGradient id="sunrise" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe69a"/>
+      <stop offset="1" stop-color="#ffb347"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="24" y="24" width="464" height="464" rx="112" fill="url(#bg)"/>
+  <rect x="36" y="36" width="440" height="440" rx="96" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2"/>
+
+  <circle cx="162" cy="152" r="42" fill="url(#sunrise)" opacity="0.95"/>
+  <path d="M118 236c0-42 34-76 76-76h42c30 0 54 24 54 54v22h30c32 0 58 26 58 58s-26 58-58 58H174c-31 0-56-25-56-56 0-24 15-45 38-53z" fill="url(#accent)" filter="url(#glow)"/>
+
+  <path d="M188 366c0-41 33-74 74-74h64" stroke="#77f6de" stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+  <path d="M198 404h120" stroke="#59d0ff" stroke-width="12" stroke-linecap="round" opacity="0.9"/>
+
+  <g fill="#ffffff">
+    <text x="256" y="430" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="800" letter-spacing="2">DCT</text>
+    <text x="256" y="462" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="3" opacity="0.9">THE DOPE CLOUD TEACHER</text>
+  </g>
 </svg>

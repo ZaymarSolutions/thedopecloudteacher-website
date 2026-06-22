@@ -337,48 +337,6 @@
       margin-bottom: 0.6rem;
     }
 
-    .pg-countdown {
-      margin-top: 1.2rem;
-      background: #ffffff;
-      border: 1px solid rgba(18,38,58,0.12);
-      border-radius: 18px;
-      padding: 1rem;
-      box-shadow: 0 8px 18px rgba(18,38,58,0.08);
-    }
-
-    .pg-countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .pg-timer {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(60px, 1fr));
-      gap: 0.6rem;
-    }
-
-    .pg-time-box {
-      border-radius: 12px;
-      background: linear-gradient(135deg, #0f5e39, #1aa07a);
-      color: #f8fff9;
-      padding: 0.8rem 0.5rem;
-      text-align: center;
-    }
-
-    .pg-time-box strong {
-      display: block;
-      font-size: 1.35rem;
-      line-height: 1;
-    }
-
-    .pg-time-box span {
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
     .pg-steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -425,7 +383,7 @@
   <main class="pg-wrap">
     <nav class="pg-nav" aria-label="PG Parks landing navigation">
       <a href="index.html" class="pg-home">
-        <img src="logo.png" alt="The Dope Cloud Teacher logo" onerror="this.style.display='none'">
+        <img src="logo.svg" alt="The Dope Cloud Teacher logo" onerror="this.style.display='none'">
         <span>The Dope Cloud Teacher</span>
       </a>
       <div class="pg-brand-chip">
@@ -472,22 +430,6 @@
               <div class="pg-screen-row"><span>AI challenge unlocked</span><span class="pg-screen-tag">New</span></div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pg-countdown">
-      <div class="pg-countdown-grid">
-        <div>
-          <span class="pg-badge">Next Session</span>
-          <h2 style="margin:0.45rem 0; color:var(--pg-deep);">Countdown to the next build day</h2>
-          <p style="margin:0; color:#486072;">Use this hub before class to log in, check your next activity, and get into a tech mindset fast.</p>
-        </div>
-        <div class="pg-timer" id="pgCountdown">
-          <div class="pg-time-box"><strong id="pgDays">00</strong><span>Days</span></div>
-          <div class="pg-time-box"><strong id="pgHours">00</strong><span>Hours</span></div>
-          <div class="pg-time-box"><strong id="pgMinutes">00</strong><span>Minutes</span></div>
-          <div class="pg-time-box"><strong id="pgSeconds">00</strong><span>Seconds</span></div>
         </div>
       </div>
     </section>
@@ -591,38 +533,6 @@
     </div>
   </main>
 
-  <script>
-    (function () {
-      const target = new Date('2026-04-18T10:00:00-04:00').getTime();
-      const ids = {
-        days: document.getElementById('pgDays'),
-        hours: document.getElementById('pgHours'),
-        minutes: document.getElementById('pgMinutes'),
-        seconds: document.getElementById('pgSeconds')
-      };
-      if (!ids.days) return;
-
-      function updateCountdown() {
-        const now = Date.now();
-        let diff = Math.max(0, target - now);
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        diff -= days * (1000 * 60 * 60 * 24);
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        diff -= hours * (1000 * 60 * 60);
-        const minutes = Math.floor(diff / (1000 * 60));
-        diff -= minutes * (1000 * 60);
-        const seconds = Math.floor(diff / 1000);
-
-        ids.days.textContent = String(days).padStart(2, '0');
-        ids.hours.textContent = String(hours).padStart(2, '0');
-        ids.minutes.textContent = String(minutes).padStart(2, '0');
-        ids.seconds.textContent = String(seconds).padStart(2, '0');
-      }
-
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    })();
-  </script>
   <script src="js/site-config.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/global-ui.js"></script>
