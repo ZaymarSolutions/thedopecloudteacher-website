@@ -589,6 +589,70 @@
       font-size: 0.9rem;
     }
 
+    .vibes-grid {
+      margin-top: 0.85rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .vibe-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(16, 38, 61, 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .vibe-card img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      display: block;
+      background: #0f1f2c;
+    }
+
+    .vibe-copy {
+      padding: 0.72rem;
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .vibe-copy h3 {
+      margin: 0;
+      color: var(--green-deep);
+      font-size: 0.96rem;
+    }
+
+    .vibe-copy p {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .photo-upload-label {
+      margin-top: 0.42rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      border: 1px solid rgba(19, 115, 209, 0.28);
+      background: #ebf5ff;
+      color: #134675;
+      padding: 0.34rem 0.62rem;
+      font-size: 0.76rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .photo-upload-input {
+      display: none;
+    }
+
     .launch-row {
       margin-top: 0.8rem;
       display: flex;
@@ -1590,6 +1654,47 @@
       </div>
     </section>
 
+    <section class="section" id="classroomVibes">
+      <h2>Classroom vibes visual board</h2>
+      <p class="section-intro">Use these visuals in class promos and rec center communications to show the energy of your lab.</p>
+
+      <div class="vibes-grid">
+        <article class="vibe-card">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80" alt="Students and instructor in a community classroom">
+          <div class="vibe-copy">
+            <h3>Rec Center Learning Lab</h3>
+            <p>Community classroom feel with students collaborating around tech projects.</p>
+          </div>
+        </article>
+
+        <article class="vibe-card">
+          <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=1200&q=80" alt="Black woman teaching students in a computer lab">
+          <div class="vibe-copy">
+            <h3>Instructor Leadership</h3>
+            <p>Hands-on facilitation and confidence-building in a practical computer lab setup.</p>
+          </div>
+        </article>
+
+        <article class="vibe-card">
+          <img src="images/programs/rec-center-comic-strip.svg" alt="Comic strip style visual of workshop scenes">
+          <div class="vibe-copy">
+            <h3>Comic Strip Storyboard</h3>
+            <p>A playful sequence from idea spark to final pitch for flyers and social posts.</p>
+          </div>
+        </article>
+
+        <article class="vibe-card">
+          <img id="designLabInstructorPreview" src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?auto=format&fit=crop&w=1200&q=80" alt="Instructor feature image">
+          <div class="vibe-copy">
+            <h3>Feature Your Photo</h3>
+            <p>Upload your own classroom photo to personalize this visual board in your browser.</p>
+            <label class="photo-upload-label" for="designLabInstructorInput">Upload your photo</label>
+            <input class="photo-upload-input" id="designLabInstructorInput" type="file" accept="image/*">
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section" id="studentAccountPath">
       <h2>Student account path: no-credit, low-complexity options</h2>
       <p class="section-intro">Use this order so students can learn and build without credit-card barriers or setup overload.</p>
@@ -2023,6 +2128,32 @@
       updateProgressUI();
       updateLabStudioUI();
       updateSimScoreUI(simState);
+
+      const customPhotoKey = 'designLabInstructorPreviewPhoto';
+      const customPhotoInput = document.getElementById('designLabInstructorInput');
+      const customPhotoPreview = document.getElementById('designLabInstructorPreview');
+      if (customPhotoInput && customPhotoPreview) {
+        const savedPhoto = localStorage.getItem(customPhotoKey);
+        if (savedPhoto) {
+          customPhotoPreview.src = savedPhoto;
+        }
+
+        customPhotoInput.addEventListener('change', function () {
+          const file = customPhotoInput.files && customPhotoInput.files[0] ? customPhotoInput.files[0] : null;
+          if (!file || !String(file.type || '').startsWith('image/')) return;
+          const reader = new FileReader();
+          reader.onload = function () {
+            const result = String(reader.result || '');
+            customPhotoPreview.src = result;
+            try {
+              localStorage.setItem(customPhotoKey, result);
+            } catch (error) {
+              console.warn('Unable to save design lab preview photo', error);
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+      }
       setInstructorVisibility(false);
     })();
   </script>
