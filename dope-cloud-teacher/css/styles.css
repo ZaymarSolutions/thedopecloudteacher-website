@@ -75,10 +75,10 @@ header {
   height: 56px;
   width: 56px;
   margin-right: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(119, 239, 227, 0.35);
-  background: radial-gradient(circle at center, rgba(119, 239, 227, 0.18), rgba(123, 77, 242, 0.12));
-  box-shadow: 0 10px 24px rgba(123, 77, 242, 0.16);
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
   object-fit: cover;
 }
 
