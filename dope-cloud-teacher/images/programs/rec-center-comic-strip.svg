@@ -1,0 +1,77 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comic strip style classroom visual">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fff9"/>
+      <stop offset="1" stop-color="#e7fff3"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1aa07a"/>
+      <stop offset="1" stop-color="#0f5e39"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="720" rx="28" fill="url(#bg)"/>
+
+  <g fill="none" stroke="#163047" stroke-width="6" stroke-linejoin="round">
+    <rect x="30" y="30" width="360" height="300" rx="18"/>
+    <rect x="420" y="30" width="360" height="300" rx="18"/>
+    <rect x="810" y="30" width="360" height="300" rx="18"/>
+    <rect x="30" y="360" width="360" height="330" rx="18"/>
+    <rect x="420" y="360" width="750" height="330" rx="18"/>
+  </g>
+
+  <g font-family="Segoe UI, Arial, sans-serif" fill="#163047">
+    <text x="52" y="68" font-size="30" font-weight="800">Panel 1: Idea Spark</text>
+    <text x="442" y="68" font-size="30" font-weight="800">Panel 2: Prompt Build</text>
+    <text x="832" y="68" font-size="30" font-weight="800">Panel 3: Brand Drop</text>
+    <text x="52" y="398" font-size="30" font-weight="800">Panel 4: Flyer + Social</text>
+    <text x="442" y="398" font-size="30" font-weight="800">Panel 5: 60-Second Pitch</text>
+  </g>
+
+  <g>
+    <circle cx="140" cy="182" r="40" fill="#6d4c41"/>
+    <rect x="96" y="228" width="90" height="60" rx="16" fill="url(#teal)"/>
+    <rect x="220" y="150" width="140" height="105" rx="12" fill="#ffffff" stroke="#163047" stroke-width="4"/>
+    <text x="233" y="191" font-size="20" font-family="Segoe UI, Arial" fill="#163047" font-weight="700">$500 idea?</text>
+  </g>
+
+  <g>
+    <circle cx="520" cy="180" r="40" fill="#8d5524"/>
+    <rect x="476" y="225" width="88" height="62" rx="16" fill="#1aa07a"/>
+    <rect x="610" y="130" width="140" height="150" rx="12" fill="#ffffff" stroke="#163047" stroke-width="4"/>
+    <text x="625" y="170" font-size="16" font-family="Segoe UI, Arial" fill="#163047" font-weight="700">Prompt:</text>
+    <text x="625" y="198" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Business name</text>
+    <text x="625" y="220" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Slogan</text>
+    <text x="625" y="242" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Mission</text>
+  </g>
+
+  <g>
+    <circle cx="905" cy="180" r="40" fill="#5d4037"/>
+    <rect x="860" y="225" width="90" height="62" rx="16" fill="#0f5e39"/>
+    <rect x="995" y="125" width="150" height="165" rx="12" fill="#fff" stroke="#163047" stroke-width="4"/>
+    <rect x="1010" y="143" width="120" height="66" rx="8" fill="#e9fff4"/>
+    <text x="1010" y="234" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Logo + slogan</text>
+    <text x="1010" y="256" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Ready to launch</text>
+  </g>
+
+  <g>
+    <rect x="52" y="428" width="318" height="240" rx="14" fill="#fff" stroke="#163047" stroke-width="4"/>
+    <rect x="72" y="450" width="120" height="70" rx="8" fill="#e9fff4"/>
+    <text x="206" y="475" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Flyer:</text>
+    <text x="206" y="497" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Big CTA</text>
+    <text x="206" y="519" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Offer + date</text>
+    <text x="72" y="560" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Instagram post</text>
+    <text x="72" y="584" font-size="14" font-family="Segoe UI, Arial" fill="#163047">TikTok caption</text>
+    <text x="72" y="608" font-size="14" font-family="Segoe UI, Arial" fill="#163047">Facebook post</text>
+  </g>
+
+  <g>
+    <rect x="448" y="430" width="695" height="240" rx="16" fill="#ffffff" stroke="#163047" stroke-width="4"/>
+    <circle cx="548" cy="560" r="50" fill="#8d5524"/>
+    <rect x="492" y="615" width="112" height="36" rx="12" fill="url(#teal)"/>
+    <rect x="640" y="485" width="470" height="120" rx="14" fill="#e9fff4" stroke="#1aa07a" stroke-width="3"/>
+    <text x="664" y="526" font-size="30" font-family="Segoe UI, Arial" fill="#163047" font-weight="800">"Our business solves ___"</text>
+    <text x="664" y="562" font-size="24" font-family="Segoe UI, Arial" fill="#163047" font-weight="700">Customer: ___   Why us: ___</text>
+    <text x="664" y="598" font-size="22" font-family="Segoe UI, Arial" fill="#0f5e39" font-weight="800">Shark Tank Time: 60 seconds</text>
+  </g>
+</svg>
