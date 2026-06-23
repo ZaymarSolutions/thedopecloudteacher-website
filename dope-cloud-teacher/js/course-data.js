@@ -1770,8 +1770,8 @@ const COURSE_PATHWAYS = {
   'cloud-security-engineer': {
     id: 'cloud-security-engineer',
     title: 'Cloud Security Engineer Track',
-    subtitle: 'Secure the Cloud, Protect the Future',
-    description: 'Master cloud security best practices, compliance frameworks, and threat mitigation strategies.',
+    subtitle: 'Protect Accounts, Devices, and Businesses',
+    description: 'Cybersecurity teaches students how to protect themselves, their accounts, their devices, and their future businesses with practical safety habits and Zero Trust awareness.',
     price: 697,
     duration: '35 hours',
     level: 'Intermediate',
@@ -2617,8 +2617,8 @@ const COURSE_PATHWAYS = {
   'devops-automation': {
     id: 'devops-automation',
     title: 'DevOps & Automation Mastery',
-    subtitle: 'Build, Deploy, Automate Everything',
-    description: 'Master CI/CD pipelines, Infrastructure as Code, containers, and automation tools.',
+    subtitle: 'Build, Test, Secure, and Release Faster',
+    description: 'DevOps and Automation teaches students how modern teams build, test, secure, and release software using GitHub, Azure DevOps, CI/CD, infrastructure as code, containers, and scripting.',
     price: 597,
     duration: '30 hours',
     level: 'Intermediate',
@@ -3561,9 +3561,9 @@ const COURSE_PATHWAYS = {
 
   'intro-to-ai-ml': {
     id: 'intro-to-ai-ml',
-    title: 'Introduction to AI & Machine Learning',
-    subtitle: 'Build Intelligent Cloud Applications',
-    description: 'Learn practical AI/ML fundamentals and build intelligent applications using cloud services.',
+    title: 'AI Fundamentals for Real-World Learning',
+    subtitle: 'Use AI Responsibly for School, Work, and Business',
+    description: 'AI Fundamentals introduces students to artificial intelligence in a practical and responsible way using ChatGPT and cloud AI tools for research, creativity, and career growth.',
     price: 497,
     duration: '25 hours',
     level: 'Beginner',

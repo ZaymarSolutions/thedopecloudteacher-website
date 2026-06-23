@@ -1,18 +1,19 @@
-<svg width="1200" height="860" viewBox="0 0 1200 860" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TheDopeCloudTeacHer.org logo" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+<svg width="1000" height="760" viewBox="80 0 1000 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TheDopeCloudTeacHer.org logo" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
   <rect width="1200" height="860" fill="none"/>
+  <g transform="translate(-80 0)">
+    <path d="M912 534H418c-131 0-238-101-238-225 0-109 84-201 194-219 38-87 128-148 233-148 127 0 232 89 252 208 95 12 173 92 173 188 0 108-94 196-210 196h-44" fill="none" stroke="#1889e6" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <path d="M912 534H418c-131 0-238-101-238-225 0-109 84-201 194-219 38-87 128-148 233-148 127 0 232 89 252 208 95 12 173 92 173 188 0 108-94 196-210 196h-44" fill="none" stroke="#1889e6" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M432 360l78-52h196l103 70H432z" fill="#146fd6"/>
+    <path d="M594 360h58v249l-58-38V360z" fill="#146fd6"/>
 
-  <path d="M432 360l78-52h196l103 70H432z" fill="#146fd6"/>
-  <path d="M594 360h58v249l-58-38V360z" fill="#146fd6"/>
+    <rect x="820" y="360" width="8" height="58" fill="#146fd6"/>
+    <circle cx="824" cy="420" r="11" fill="#146fd6"/>
+    <path d="M824 431l-12 65h24l-12-65z" fill="#146fd6"/>
+    <rect x="812" y="496" width="24" height="8" rx="4" fill="#146fd6"/>
 
-  <rect x="820" y="360" width="8" height="58" fill="#146fd6"/>
-  <circle cx="824" cy="420" r="11" fill="#146fd6"/>
-  <path d="M824 431l-12 65h24l-12-65z" fill="#146fd6"/>
-  <rect x="812" y="496" width="24" height="8" rx="4" fill="#146fd6"/>
-
-  <g fill="#146fd6" text-anchor="middle">
-    <text x="568" y="708" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="0.2">TheDopeCloudTeacHer</text>
-    <text x="882" y="708" font-family="Segoe UI, Arial, sans-serif" font-size="73" font-weight="500">.org</text>
+    <g fill="#146fd6" text-anchor="middle">
+      <text x="568" y="708" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="0.2">TheDopeCloudTeacHer</text>
+      <text x="882" y="708" font-family="Segoe UI, Arial, sans-serif" font-size="73" font-weight="500">.org</text>
+    </g>
   </g>
 </svg>

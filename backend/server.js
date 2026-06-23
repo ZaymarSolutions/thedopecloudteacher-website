@@ -643,6 +643,35 @@ app.get('/api/auth/me', authenticateToken, (req, res) => {
   res.json({ user });
 });
 
+app.put('/api/auth/me', authenticateToken, async (req, res) => {
+  try {
+    const profileImage = typeof req.body?.profileImage === 'string' ? req.body.profileImage.trim() : '';
+
+    if (!profileImage) {
+      return res.status(400).json({ error: 'Profile image is required' });
+    }
+
+    const isDataImage = /^data:image\/(png|jpe?g|webp);base64,/i.test(profileImage);
+    if (!isDataImage) {
+      return res.status(400).json({ error: 'Profile image must be a JPG, PNG, or WebP file.' });
+    }
+
+    if (profileImage.length > 1_200_000) {
+      return res.status(400).json({ error: 'Profile image is too large. Please upload a smaller image.' });
+    }
+
+    db.prepare('UPDATE users SET profile_image = ? WHERE id = ?').run(profileImage, req.user.userId);
+
+    const user = db.prepare('SELECT id, email, name, phone, organization, profile_image AS profileImage, role, created_at FROM users WHERE id = ?')
+      .get(req.user.userId);
+
+    res.json({ user });
+  } catch (error) {
+    console.error('Profile update error:', error);
+    res.status(500).json({ error: 'Unable to update profile right now' });
+  }
+});
+
 // ==================== LEAD CAPTURE ====================
 app.post('/api/leads', async (req, res) => {
   try {

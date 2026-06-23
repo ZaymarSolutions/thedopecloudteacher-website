@@ -289,6 +289,35 @@ class DopeCloudAuth {
       return null;
     }
   }
+
+  async updateProfileImage(profileImage) {
+    if (!this.token) {
+      throw new Error('Please log in to update your profile photo');
+    }
+
+    try {
+      const response = await fetchWithApiFallback('/auth/me', {
+        method: 'PUT',
+        headers: this.getHeaders(),
+        body: JSON.stringify({ profileImage })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || await readApiError(response, 'Profile update failed'));
+      }
+
+      this.user = data.user;
+      localStorage.setItem('dct_user', JSON.stringify(data.user));
+      emitAuthStateChange();
+
+      return data.user;
+    } catch (error) {
+      console.error('Profile update error:', error);
+      throw formatNetworkError(error);
+    }
+  }
 }
 
 class DopeCourseAccess {
