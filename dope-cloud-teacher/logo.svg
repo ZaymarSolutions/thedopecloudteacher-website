@@ -1,28 +1,18 @@
-<svg width="702" height="691" viewBox="0 0 702 691" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TheDopeCloudTeacHer.org logo">
-  <defs>
-    <linearGradient id="cloudBlue" x1="106" y1="329" x2="596" y2="329" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#1d8eea"/>
-      <stop offset="1" stop-color="#0f5fca"/>
-    </linearGradient>
-    <linearGradient id="markBlue" x1="251" y1="384" x2="466" y2="384" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#1d8eea"/>
-      <stop offset="1" stop-color="#0f5fca"/>
-    </linearGradient>
-  </defs>
+<svg width="1200" height="860" viewBox="0 0 1200 860" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TheDopeCloudTeacHer.org logo" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+  <rect width="1200" height="860" fill="none"/>
 
-  <rect width="702" height="691" fill="none"/>
+  <path d="M912 534H418c-131 0-238-101-238-225 0-109 84-201 194-219 38-87 128-148 233-148 127 0 232 89 252 208 95 12 173 92 173 188 0 108-94 196-210 196h-44" fill="none" stroke="#1889e6" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <path d="M536 456H244c-76 0-138-59-138-132 0-65 49-119 114-130 22-52 74-88 134-88 73 0 134 53 145 123 56 7 99 54 99 111 0 64-56 116-126 116h-26" fill="none" stroke="url(#cloudBlue)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M432 360l78-52h196l103 70H432z" fill="#146fd6"/>
+  <path d="M594 360h58v249l-58-38V360z" fill="#146fd6"/>
 
-  <path d="M251 303l46-30h106l63 43H251z" fill="url(#markBlue)"/>
-  <path d="M340 303h35v146l-35-22V303z" fill="url(#markBlue)"/>
-  <rect x="469" y="303" width="4" height="34" fill="#176fd3"/>
-  <circle cx="471" cy="337" r="6" fill="#176fd3"/>
-  <path d="M471 344l-6 36h12l-6-36z" fill="#176fd3"/>
-  <rect x="465" y="379" width="12" height="4" rx="2" fill="#176fd3"/>
+  <rect x="820" y="360" width="8" height="58" fill="#146fd6"/>
+  <circle cx="824" cy="420" r="11" fill="#146fd6"/>
+  <path d="M824 431l-12 65h24l-12-65z" fill="#146fd6"/>
+  <rect x="812" y="496" width="24" height="8" rx="4" fill="#146fd6"/>
 
-  <g fill="#176fd3" text-anchor="middle">
-    <text x="351" y="526" font-family="Poppins, Nunito, Segoe UI, Arial, sans-serif" font-size="56" font-weight="600" letter-spacing="0.2">TheDopeCloudTeacHer</text>
-    <text x="558" y="526" font-family="Poppins, Nunito, Segoe UI, Arial, sans-serif" font-size="49" font-weight="400">.org</text>
+  <g fill="#146fd6" text-anchor="middle">
+    <text x="568" y="708" font-family="Segoe UI, Arial, sans-serif" font-size="84" font-weight="700" letter-spacing="0.2">TheDopeCloudTeacHer</text>
+    <text x="882" y="708" font-family="Segoe UI, Arial, sans-serif" font-size="73" font-weight="500">.org</text>
   </g>
 </svg>
