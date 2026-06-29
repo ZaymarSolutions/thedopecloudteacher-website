@@ -5,4 +5,80 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-G05YSEYHFN');
+
+  (function () {
+    function track(eventName, params) {
+      if (typeof window.gtag !== 'function') return;
+      window.gtag('event', eventName, params || {});
+    }
+
+    document.addEventListener('click', function (event) {
+      var link = event.target.closest('a[href]');
+      if (!link) return;
+
+      var href = (link.getAttribute('href') || '').trim();
+      var absoluteHref = (link.href || '').trim();
+      var text = (link.textContent || '').trim().slice(0, 120);
+
+      // 1) Shop intent clicks (internal shop page or obvious shop CTA text)
+      if (/shop\.html(\?|#|$)/i.test(href) || /\bshop\b/i.test(text)) {
+        track('shop_click', {
+          link_text: text || undefined,
+          link_url: href || absoluteHref || undefined,
+          page_path: location.pathname
+        });
+      }
+
+      // 2) Outbound Gumroad purchase clicks
+      if (/gumroad\.com/i.test(absoluteHref) || /gumroad\.com/i.test(href)) {
+        track('purchase_click_gumroad', {
+          destination: absoluteHref || href,
+          link_text: text || undefined,
+          page_path: location.pathname
+        });
+
+        // Optional GA4 recommended event for outbound clicks.
+        track('select_content', {
+          content_type: 'outbound_purchase',
+          item_id: 'gumroad_checkout',
+          page_path: location.pathname
+        });
+      }
+
+      // 3) Contact intent clicks on contact page (mailto/tel)
+      if (/contact\.html$/i.test(location.pathname) && (/^mailto:/i.test(href) || /^tel:/i.test(href))) {
+        track('contact_click', {
+          contact_method: /^tel:/i.test(href) ? 'phone' : 'email',
+          destination: href,
+          page_path: location.pathname
+        });
+
+        // Optional GA4 recommended lead event.
+        track('generate_lead', {
+          method: /^tel:/i.test(href) ? 'phone' : 'email',
+          page_path: location.pathname
+        });
+      }
+    }, { passive: true });
+
+    // 4) Contact form submissions (if/when forms are present)
+    document.addEventListener('submit', function (event) {
+      var form = event.target;
+      if (!form || !form.tagName || form.tagName.toLowerCase() !== 'form') return;
+
+      if (/contact\.html$/i.test(location.pathname) || /contact/i.test(form.id || '') || /contact/i.test(form.className || '')) {
+        track('contact_form_submit', {
+          form_id: form.id || undefined,
+          form_name: form.getAttribute('name') || undefined,
+          page_path: location.pathname
+        });
+
+        track('generate_lead', {
+          method: 'contact_form',
+          form_id: form.id || undefined,
+          page_path: location.pathname
+        });
+      }
+    }, true);
+  })();
 </script>
