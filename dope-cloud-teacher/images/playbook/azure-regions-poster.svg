@@ -8,7 +8,7 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="1600" fill="url(#bg)"/>
-  <image href="/logo.svg?v=20260622c" x="78" y="64" width="138" height="138"/>
+  <image href="/logo.svg?v=20260704a" x="78" y="64" width="138" height="138"/>
   <text x="240" y="132" font-family="Segoe UI, Arial" font-size="42" fill="#ffffff" font-weight="700">The Dope Cloud Teacher</text>
   <text x="78" y="250" font-family="Segoe UI, Arial" font-size="78" fill="#ffffff" font-weight="900">AZURE REGIONS</text>
   <text x="78" y="326" font-family="Segoe UI, Arial" font-size="68" fill="#5eead4" font-weight="900">AND AVAILABILITY ZONES</text>

@@ -3,7 +3,7 @@
   <desc id="desc">Professional roadmap visual for cloud career progression.</desc>
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a1222"/><stop offset="100%" stop-color="#21457d"/></linearGradient></defs>
   <rect width="1200" height="1600" fill="url(#bg)"/>
-  <image href="/logo.svg?v=20260622c" x="78" y="64" width="138" height="138"/>
+  <image href="/logo.svg?v=20260704a" x="78" y="64" width="138" height="138"/>
   <text x="240" y="132" font-family="Segoe UI, Arial" font-size="42" fill="#ffffff" font-weight="700">The Dope Cloud Teacher</text>
   <text x="78" y="250" font-family="Segoe UI, Arial" font-size="88" fill="#ffffff" font-weight="900">CLOUD CAREER ROADMAP</text>
   <text x="78" y="326" font-family="Segoe UI, Arial" font-size="70" fill="#60a5fa" font-weight="900">BY ROLE</text>

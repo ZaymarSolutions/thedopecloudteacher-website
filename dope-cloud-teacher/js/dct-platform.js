@@ -49,7 +49,7 @@
       '<header class="platform-header">' +
       '<div class="platform-header-inner">' +
       '<a class="brand-lockup" href="/index.html">' +
-      '<img src="/logo.svg?v=20260622c" alt="The Dope Cloud Teacher logo">' +
+      '<img src="/logo.svg?v=20260704a" alt="The Dope Cloud Teacher logo">' +
       '<div class="brand-copy">' +
       '<strong>The Dope Cloud Teacher</strong>' +
       '<span>Cloud, AI, Security, and Career Readiness</span>' +

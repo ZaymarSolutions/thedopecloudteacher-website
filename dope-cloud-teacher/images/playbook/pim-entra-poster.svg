@@ -19,7 +19,7 @@
 
   <rect width="1200" height="1600" fill="url(#bg)"/>
   <rect x="40" y="40" width="1120" height="1520" rx="26" fill="none" stroke="#62d6ff" stroke-opacity="0.35"/>
-  <image href="/logo.svg?v=20260622c" x="78" y="66" width="128" height="128"/>
+  <image href="/logo.svg?v=20260704a" x="78" y="66" width="128" height="128"/>
 
   <g fill="#ffffff" font-family="Segoe UI, Arial, sans-serif">
     <text x="228" y="132" font-size="42" font-weight="700">TheDopeCloudTeacher.org</text>

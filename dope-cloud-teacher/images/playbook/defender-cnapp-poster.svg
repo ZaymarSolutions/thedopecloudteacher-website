@@ -9,7 +9,7 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="1600" fill="url(#bg)"/>
-  <image href="/logo.svg?v=20260622c" x="78" y="54" width="128" height="128"/>
+  <image href="/logo.svg?v=20260704a" x="78" y="54" width="128" height="128"/>
   <text x="224" y="122" font-family="Segoe UI, Arial" font-size="46" fill="#ffffff" font-weight="700">TheDopeCloudTeacher.org</text>
   <text x="80" y="218" font-family="Segoe UI, Arial" font-size="88" fill="#ffffff" font-weight="900">MICROSOFT DEFENDER</text>
   <text x="80" y="294" font-family="Segoe UI, Arial" font-size="82" fill="#8b5cf6" font-weight="900">FOR CLOUD + CNAPP</text>

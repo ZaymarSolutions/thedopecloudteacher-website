@@ -13,7 +13,7 @@
   </defs>
   <rect width="1200" height="1600" fill="url(#bg)"/>
   <rect x="40" y="40" width="1120" height="1520" rx="24" fill="none" stroke="#7e8fe8"/>
-  <image href="/logo.svg?v=20260622c" x="78" y="64" width="128" height="128"/>
+  <image href="/logo.svg?v=20260704a" x="78" y="64" width="128" height="128"/>
 
   <text x="224" y="132" font-family="Segoe UI, Arial" font-size="46" font-weight="700" fill="#101827">TheDopeCloudTeacher.org</text>
   <text x="80" y="222" font-family="Segoe UI, Arial" font-size="84" font-weight="900" fill="#4c1d95">MASTER LEAST PRIVILEGE</text>
