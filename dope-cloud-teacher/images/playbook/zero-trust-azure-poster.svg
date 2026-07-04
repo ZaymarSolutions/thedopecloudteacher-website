@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
+  <title id="title">Zero Trust in Azure</title>
+  <desc id="desc">Poster illustrating Zero Trust principles in Azure.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#070d22"/>
+      <stop offset="55%" stop-color="#0d1f4d"/>
+      <stop offset="100%" stop-color="#150a2c"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00e1ff"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  <image href="/logo.svg?v=20260622c" x="78" y="54" width="128" height="128"/>
+  <text x="224" y="122" font-family="Segoe UI, Arial" font-size="46" fill="#ffffff" font-weight="700">TheDopeCloudTeacher.org</text>
+  <text x="80" y="220" font-family="Segoe UI, Arial" font-size="110" fill="#ffffff" font-weight="900">ZERO TRUST</text>
+  <text x="80" y="304" font-family="Segoe UI, Arial" font-size="100" fill="#26b7ff" font-weight="900">IN AZURE</text>
+  <text x="80" y="352" font-family="Segoe UI, Arial" font-size="38" fill="#d7e7ff" font-weight="700">Never trust. Always verify. Secure every request.</text>
+
+  <circle cx="600" cy="860" r="250" fill="none" stroke="url(#ring)" stroke-width="8"/>
+  <circle cx="600" cy="860" r="155" fill="#102353" stroke="#67e8f9" stroke-width="4"/>
+  <text x="525" y="846" font-family="Segoe UI, Arial" font-size="52" fill="#ffffff" font-weight="800">ZERO</text>
+  <text x="515" y="904" font-family="Segoe UI, Arial" font-size="52" fill="#ffffff" font-weight="800">TRUST</text>
+
+  <g font-family="Segoe UI, Arial" font-size="36" font-weight="700" fill="#e2e8f0">
+    <circle cx="600" cy="520" r="58" fill="#122b66" stroke="#4cc9ff"/><text x="536" y="530">IDENTITY</text>
+    <circle cx="860" cy="680" r="58" fill="#2c1865" stroke="#a855f7"/><text x="788" y="690">APPS</text>
+    <circle cx="860" cy="1025" r="58" fill="#063c66" stroke="#22d3ee"/><text x="790" y="1035">DATA</text>
+    <circle cx="600" cy="1200" r="58" fill="#11356f" stroke="#38bdf8"/><text x="500" y="1210">POLICY</text>
+    <circle cx="340" cy="1025" r="58" fill="#4a1d95" stroke="#c084fc"/><text x="248" y="1035">NETWORK</text>
+    <circle cx="340" cy="680" r="58" fill="#0c4a6e" stroke="#67e8f9"/><text x="246" y="690">DEVICES</text>
+  </g>
+
+  <rect x="80" y="430" width="460" height="360" rx="16" fill="#0b173b" stroke="#2dd4bf"/>
+  <text x="110" y="488" font-family="Segoe UI, Arial" font-size="42" fill="#67e8f9" font-weight="800">How Zero Trust Works</text>
+  <text x="110" y="548" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">1. Verify explicitly</text>
+  <text x="110" y="602" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">2. Use least privilege access</text>
+  <text x="110" y="656" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">3. Assume breach</text>
+  <text x="110" y="710" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">4. Monitor continuously</text>
+
+  <rect x="660" y="430" width="460" height="360" rx="16" fill="#1a1140" stroke="#a78bfa"/>
+  <text x="690" y="488" font-family="Segoe UI, Arial" font-size="42" fill="#c4b5fd" font-weight="800">Azure Services</text>
+  <text x="690" y="548" font-family="Segoe UI, Arial" font-size="30" fill="#eef2ff">- Microsoft Entra ID</text>
+  <text x="690" y="598" font-family="Segoe UI, Arial" font-size="30" fill="#eef2ff">- Conditional Access</text>
+  <text x="690" y="648" font-family="Segoe UI, Arial" font-size="30" fill="#eef2ff">- PIM</text>
+  <text x="690" y="698" font-family="Segoe UI, Arial" font-size="30" fill="#eef2ff">- Defender for Cloud</text>
+
+  <rect x="80" y="1310" width="1040" height="210" rx="16" fill="#0b122b" stroke="#38bdf8"/>
+  <text x="110" y="1372" font-family="Segoe UI, Arial" font-size="44" fill="#38bdf8" font-weight="800">Pro Tips</text>
+  <text x="110" y="1432" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">Enable MFA for all admins, run access reviews, and automate policy enforcement.</text>
+  <text x="110" y="1486" font-family="Segoe UI, Arial" font-size="46" fill="#f8fafc" font-weight="900">Zero Trust is not a product. It is a mindset.</text>
+</svg>

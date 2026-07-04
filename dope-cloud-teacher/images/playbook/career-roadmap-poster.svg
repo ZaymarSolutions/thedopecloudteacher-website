@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
+  <title id="title">Cloud Career Roadmap by Role</title>
+  <desc id="desc">Professional roadmap visual for cloud career progression.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a1222"/><stop offset="100%" stop-color="#21457d"/></linearGradient></defs>
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  <image href="/logo.svg?v=20260622c" x="78" y="64" width="138" height="138"/>
+  <text x="240" y="132" font-family="Segoe UI, Arial" font-size="42" fill="#ffffff" font-weight="700">The Dope Cloud Teacher</text>
+  <text x="78" y="250" font-family="Segoe UI, Arial" font-size="88" fill="#ffffff" font-weight="900">CLOUD CAREER ROADMAP</text>
+  <text x="78" y="326" font-family="Segoe UI, Arial" font-size="70" fill="#60a5fa" font-weight="900">BY ROLE</text>
+  <text x="78" y="382" font-family="Segoe UI, Arial" font-size="34" fill="#dbeafe">Structured growth from foundational skills to role-ready confidence.</text>
+
+  <rect x="78" y="430" width="1044" height="180" rx="16" fill="#0f172a" stroke="#38bdf8"/>
+  <text x="112" y="496" font-family="Segoe UI, Arial" font-size="40" fill="#38bdf8" font-weight="800">Stage 1: Foundations</text>
+  <text x="112" y="550" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">Azure basics, identity, networking, and governance principles.</text>
+
+  <rect x="78" y="640" width="1044" height="180" rx="16" fill="#111827" stroke="#818cf8"/>
+  <text x="112" y="706" font-family="Segoe UI, Arial" font-size="40" fill="#a5b4fc" font-weight="800">Stage 2: Build Portfolio Evidence</text>
+  <text x="112" y="760" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">Ship labs, architecture summaries, and security practice artifacts.</text>
+
+  <rect x="78" y="850" width="1044" height="180" rx="16" fill="#1f2937" stroke="#22d3ee"/>
+  <text x="112" y="916" font-family="Segoe UI, Arial" font-size="40" fill="#67e8f9" font-weight="800">Stage 3: Certification Strategy</text>
+  <text x="112" y="970" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">Align AZ-900, SC-300, AZ-400, AZ-305, and AI-900 to role goals.</text>
+
+  <rect x="78" y="1060" width="1044" height="180" rx="16" fill="#0f172a" stroke="#34d399"/>
+  <text x="112" y="1126" font-family="Segoe UI, Arial" font-size="40" fill="#34d399" font-weight="800">Stage 4: Interview and Communication</text>
+  <text x="112" y="1180" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">Present technical decisions clearly with measurable business impact.</text>
+
+  <rect x="78" y="1270" width="1044" height="250" rx="16" fill="#1e3a8a"/>
+  <text x="112" y="1336" font-family="Segoe UI, Arial" font-size="40" fill="#ffffff" font-weight="800">Pro Tip</text>
+  <text x="112" y="1392" font-family="Segoe UI, Arial" font-size="30" fill="#eaf2ff">Treat each lesson, poster, and quiz as portfolio-ready evidence.</text>
+  <text x="112" y="1442" font-family="Segoe UI, Arial" font-size="30" fill="#eaf2ff">Consistency beats intensity. Build weekly and track your progress.</text>
+</svg>

@@ -39,8 +39,21 @@
     </section>
 
     <section class="section">
-      <h2>Self-Paced Course Inventory</h2>
-      <div id="academyTracks" class="card-grid"></div>
+      <h2>Find the Right Track</h2>
+      <p>Use filters to quickly identify the track that fits your goals, audience, and certification focus.</p>
+      <div class="search-row">
+        <input id="academySearch" type="search" placeholder="Search by track, topic, or audience">
+        <select id="academyAudience">
+          <option value="all">All audiences</option>
+          <option value="beginners">Beginners</option>
+          <option value="career">Career changers</option>
+          <option value="security">Security learners</option>
+          <option value="developers">Developers</option>
+          <option value="architects">Architects</option>
+        </select>
+        <select id="academyFocus"></select>
+      </div>
+      <div id="academyExplorer" class="card-grid"></div>
     </section>
 
     <p class="footer-note">Academy lessons share the same reusable assets used in PG Parks and Live cohorts so learners can switch paths without losing continuity.</p>
@@ -52,7 +65,7 @@
   <script src="/js/dct-platform.js"></script>
   <script>
     DCTPlatform.renderHeader('academy');
-    DCTPlatform.renderCourseTrackCards('academyTracks', 'self-paced');
+    DCTPlatform.renderAcademyExplorer('academyExplorer');
   </script>
 </body>
 </html>

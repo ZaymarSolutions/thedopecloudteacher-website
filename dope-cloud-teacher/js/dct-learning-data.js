@@ -336,13 +336,14 @@
       topic: 'Identity Security',
       audience: 'Security admins and cloud engineers',
       style: 'Cyberpunk SOC',
-      imageUrl: '/images/programs/security-demo.svg',
+      imageUrl: '/images/playbook/pim-entra-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-azure-security', 'course-pg-parks-cohort'],
       relatedLessonIds: ['lesson-security-pim-01'],
       tags: ['pim', 'entra', 'identity', 'security'],
       difficulty: 'intermediate',
-      certificationMapping: ['SC-300']
+      certificationMapping: ['SC-300'],
+      blogUrl: '/blog.html#poster-pim-pro'
     },
     {
       id: 'poster-least-privilege',
@@ -350,13 +351,14 @@
       topic: 'Identity Governance',
       audience: 'Executives, IAM admins, and students',
       style: 'Microsoft Learn clean',
-      imageUrl: '/images/programs/cloud-security.svg',
+      imageUrl: '/images/playbook/least-privilege-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-azure-security', 'course-live-virtual-cohort'],
       relatedLessonIds: ['lesson-security-pim-01', 'lesson-security-pim-02'],
       tags: ['least-privilege', 'rbac', 'access-reviews'],
       difficulty: 'beginner',
-      certificationMapping: ['SC-300', 'AZ-500']
+      certificationMapping: ['SC-300', 'AZ-500'],
+      blogUrl: '/blog.html#poster-least-privilege'
     },
     {
       id: 'poster-devsecops-pipeline',
@@ -364,13 +366,14 @@
       topic: 'DevSecOps',
       audience: 'Developers and platform engineers',
       style: 'Comic-book technical',
-      imageUrl: '/images/programs/devops-automation.svg',
+      imageUrl: '/images/playbook/devsecops-cicd-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-devsecops', 'course-live-virtual-cohort'],
       relatedLessonIds: ['lesson-devsecops-01'],
       tags: ['cicd', 'shift-left', 'pipeline-security'],
       difficulty: 'intermediate',
-      certificationMapping: ['AZ-400']
+      certificationMapping: ['AZ-400'],
+      blogUrl: '/blog.html#poster-devsecops-pipeline'
     },
     {
       id: 'poster-defender-cnapp',
@@ -378,13 +381,14 @@
       topic: 'Cloud Security Posture',
       audience: 'Architects and security teams',
       style: 'Futuristic hologram datacenter',
-      imageUrl: '/images/programs/enterprise-plans.svg',
+      imageUrl: '/images/playbook/defender-cnapp-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-azure-security', 'course-cloud-architecture'],
       relatedLessonIds: ['lesson-devsecops-02', 'lesson-arch-02'],
       tags: ['defender', 'cnapp', 'cspm', 'cwpp'],
       difficulty: 'advanced',
-      certificationMapping: ['AZ-500', 'SC-200']
+      certificationMapping: ['AZ-500', 'SC-200'],
+      blogUrl: '/blog.html#poster-defender-cnapp'
     },
     {
       id: 'poster-zero-trust-azure',
@@ -392,13 +396,14 @@
       topic: 'Security Architecture',
       audience: 'Architects and leadership',
       style: 'Cinematic architecture poster',
-      imageUrl: '/images/programs/cloud-architecture.svg',
+      imageUrl: '/images/playbook/zero-trust-azure-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-cloud-architecture', 'course-azure-security'],
       relatedLessonIds: ['lesson-arch-01'],
       tags: ['zero-trust', 'network', 'identity', 'data'],
       difficulty: 'advanced',
-      certificationMapping: ['AZ-305', 'SC-100']
+      certificationMapping: ['AZ-305', 'SC-100'],
+      blogUrl: '/blog.html#poster-zero-trust-azure'
     },
     {
       id: 'poster-azure-regions-map',
@@ -406,13 +411,14 @@
       topic: 'Azure Fundamentals',
       audience: 'Beginners and youth learners',
       style: 'Classroom visual explainer',
-      imageUrl: '/images/programs/cloud-fundamentals.svg',
+      imageUrl: '/images/playbook/azure-regions-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-azure-fundamentals', 'course-pg-parks-cohort'],
       relatedLessonIds: ['lesson-azure-core-01'],
       tags: ['regions', 'availability-zones', 'azure-basics'],
       difficulty: 'beginner',
-      certificationMapping: ['AZ-900']
+      certificationMapping: ['AZ-900'],
+      blogUrl: '/blog.html#poster-azure-regions-map'
     },
     {
       id: 'poster-azure-policy-control',
@@ -420,13 +426,14 @@
       topic: 'Governance',
       audience: 'Administrators and learners',
       style: 'Blueprint + clean enterprise',
-      imageUrl: '/images/programs/black-women-in-tech-feature.svg',
+      imageUrl: '/images/playbook/azure-policy-poster.svg',
       downloadablePdfUrl: '/cloud-control-azure-policy.html',
       relatedCourseIds: ['course-azure-fundamentals', 'course-cloud-architecture'],
       relatedLessonIds: ['lesson-azure-core-02'],
       tags: ['governance', 'azure-policy', 'cost-control'],
       difficulty: 'intermediate',
-      certificationMapping: ['AZ-900', 'AZ-305']
+      certificationMapping: ['AZ-900', 'AZ-305'],
+      blogUrl: '/blog.html#poster-azure-policy-control'
     },
     {
       id: 'poster-ai-rag',
@@ -434,13 +441,14 @@
       topic: 'AI Fundamentals',
       audience: 'AI builders and analysts',
       style: 'Neon wireframe futurism',
-      imageUrl: '/images/programs/ai-machine-learning.svg',
+      imageUrl: '/images/playbook/ai-rag-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-ai-fundamentals', 'course-live-virtual-cohort'],
       relatedLessonIds: ['lesson-ai-01', 'lesson-ai-02'],
       tags: ['rag', 'prompt-engineering', 'vector-search'],
       difficulty: 'intermediate',
-      certificationMapping: ['AI-900']
+      certificationMapping: ['AI-900'],
+      blogUrl: '/blog.html#poster-ai-rag'
     },
     {
       id: 'poster-career-roadmap',
@@ -448,13 +456,14 @@
       topic: 'Career Development',
       audience: 'Career changers, students, and veterans',
       style: 'Modern classroom and executive hybrid',
-      imageUrl: '/images/programs/coach-ro-portrait.svg',
+      imageUrl: '/images/playbook/career-roadmap-poster.svg',
       downloadablePdfUrl: '/cloud-career-starter-kit.html',
       relatedCourseIds: ['course-career-prep', 'course-pg-parks-cohort'],
       relatedLessonIds: ['lesson-career-01', 'lesson-career-02'],
       tags: ['career', 'portfolio', 'interview', 'certification'],
       difficulty: 'beginner',
-      certificationMapping: ['Career']
+      certificationMapping: ['Career'],
+      blogUrl: '/blog.html#poster-career-roadmap'
     }
   ];
 

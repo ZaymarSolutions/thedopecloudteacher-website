@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
+  <title id="title">RAG Architecture for Teams</title>
+  <desc id="desc">Professional poster for retrieval augmented generation architecture.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#050a1f"/><stop offset="100%" stop-color="#1f1f66"/></linearGradient></defs>
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  <image href="/logo.svg?v=20260622c" x="78" y="64" width="138" height="138"/>
+  <text x="240" y="132" font-family="Segoe UI, Arial" font-size="42" fill="#ffffff" font-weight="700">The Dope Cloud Teacher</text>
+  <text x="78" y="250" font-family="Segoe UI, Arial" font-size="92" fill="#ffffff" font-weight="900">RAG ARCHITECTURE</text>
+  <text x="78" y="332" font-family="Segoe UI, Arial" font-size="72" fill="#67e8f9" font-weight="900">FOR MODERN TEAMS</text>
+  <text x="78" y="388" font-family="Segoe UI, Arial" font-size="34" fill="#dbeafe">Connect trusted enterprise data to generative AI safely and reliably.</text>
+
+  <rect x="78" y="430" width="1044" height="260" rx="16" fill="#0f172a" stroke="#67e8f9"/>
+  <text x="112" y="496" font-family="Segoe UI, Arial" font-size="40" fill="#67e8f9" font-weight="800">Core Flow</text>
+  <text x="112" y="552" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">1. Ingest trusted content from approved sources</text>
+  <text x="112" y="602" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">2. Chunk and embed content into vector index</text>
+  <text x="112" y="652" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">3. Retrieve relevant context at query time</text>
+
+  <rect x="78" y="720" width="1044" height="500" rx="16" fill="#111827" stroke="#818cf8"/>
+  <text x="112" y="786" font-family="Segoe UI, Arial" font-size="40" fill="#a5b4fc" font-weight="800">Security and Quality Guardrails</text>
+  <text x="112" y="844" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Enforce role-based data access</text>
+  <text x="112" y="894" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Apply content filtering and policy checks</text>
+  <text x="112" y="944" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Track prompts, responses, and citations</text>
+  <text x="112" y="994" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Measure groundedness and hallucination rates</text>
+  <text x="112" y="1044" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Review monthly with legal, security, and architecture</text>
+
+  <rect x="78" y="1252" width="1044" height="270" rx="16" fill="#1e3a8a"/>
+  <text x="112" y="1318" font-family="Segoe UI, Arial" font-size="40" fill="#ffffff" font-weight="800">Professional Outcomes</text>
+  <text x="112" y="1374" font-family="Segoe UI, Arial" font-size="30" fill="#eaf2ff">- More reliable AI answers anchored to trusted knowledge</text>
+  <text x="112" y="1424" font-family="Segoe UI, Arial" font-size="30" fill="#eaf2ff">- Better governance over AI behavior and data exposure</text>
+  <text x="112" y="1474" font-family="Segoe UI, Arial" font-size="30" fill="#eaf2ff">- Faster business impact with reduced risk</text>
+</svg>

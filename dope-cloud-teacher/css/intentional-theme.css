@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --dct-ivory: #fbfbf9;
+  --dct-paper: #ffffff;
+  --dct-navy: #112240;
+  --dct-ink: #1f2a3b;
+  --dct-muted: #4f5f77;
+  --dct-line: #d8dee8;
+  --dct-accent: #8c6b3f;
+  --dct-accent-soft: #f5efe5;
+  --dct-shadow-soft: 0 10px 24px rgba(17, 34, 64, 0.08);
+}
+
+body.dct-intentional-theme {
+  font-family: 'Public Sans', 'Segoe UI', Arial, sans-serif !important;
+  background: var(--dct-ivory) !important;
+  color: var(--dct-ink) !important;
+}
+
+body.dct-intentional-theme h1,
+body.dct-intentional-theme h2,
+body.dct-intentional-theme h3,
+body.dct-intentional-theme h4,
+body.dct-intentional-theme .main-title,
+body.dct-intentional-theme .hero h1,
+body.dct-intentional-theme .section-header h2 {
+  font-family: 'Crimson Text', Georgia, 'Times New Roman', serif !important;
+  letter-spacing: 0.01em;
+  color: var(--dct-navy) !important;
+}
+
+body.dct-intentional-theme p,
+body.dct-intentional-theme li,
+body.dct-intentional-theme span,
+body.dct-intentional-theme .subtitle {
+  color: var(--dct-muted);
+}
+
+body.dct-intentional-theme header,
+body.dct-intentional-theme .platform-header,
+body.dct-intentional-theme .site-nav {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid var(--dct-line) !important;
+  box-shadow: 0 4px 14px rgba(17, 34, 64, 0.06) !important;
+  backdrop-filter: blur(7px);
+}
+
+body.dct-intentional-theme nav.nav-links a,
+body.dct-intentional-theme .platform-nav a,
+body.dct-intentional-theme .site-nav a {
+  color: var(--dct-navy) !important;
+  font-weight: 600 !important;
+}
+
+body.dct-intentional-theme nav.nav-links a:hover,
+body.dct-intentional-theme .platform-nav a:hover,
+body.dct-intentional-theme .platform-nav a.active,
+body.dct-intentional-theme .site-nav a:hover {
+  color: var(--dct-accent) !important;
+  background: #f8f5ef !important;
+}
+
+body.dct-intentional-theme .button,
+body.dct-intentional-theme .btn,
+body.dct-intentional-theme button {
+  border-radius: 10px !important;
+}
+
+body.dct-intentional-theme .button-primary,
+body.dct-intentional-theme .btn.primary,
+body.dct-intentional-theme button[type='submit'] {
+  background: var(--dct-navy) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--dct-navy) !important;
+}
+
+body.dct-intentional-theme .button-secondary,
+body.dct-intentional-theme .btn.secondary {
+  background: #ffffff !important;
+  color: var(--dct-navy) !important;
+  border: 1px solid #c8d2df !important;
+}
+
+body.dct-intentional-theme .card,
+body.dct-intentional-theme .module-card,
+body.dct-intentional-theme .testimonial-card,
+body.dct-intentional-theme .stat-card,
+body.dct-intentional-theme .faq-item,
+body.dct-intentional-theme .outcome-card {
+  background: var(--dct-paper) !important;
+  border: 1px solid var(--dct-line) !important;
+  box-shadow: var(--dct-shadow-soft) !important;
+}
+
+body.dct-intentional-theme .hero,
+body.dct-intentional-theme .demo-banner,
+body.dct-intentional-theme .hero-band,
+body.dct-intentional-theme .top-hero-banner,
+body.dct-intentional-theme .stats-section,
+body.dct-intentional-theme .automation-wow-section,
+body.dct-intentional-theme .human-touch-section,
+body.dct-intentional-theme .future-collection,
+body.dct-intentional-theme .faq-section,
+body.dct-intentional-theme .courses-section,
+body.dct-intentional-theme .testimonial-section,
+body.dct-intentional-theme .trust-section,
+body.dct-intentional-theme .outcomes-section,
+body.dct-intentional-theme .additional-tech-section,
+body.dct-intentional-theme .lead-magnet,
+body.dct-intentional-theme .tech-news-ticker,
+body.dct-intentional-theme .press-credibility {
+  background: var(--dct-paper) !important;
+  color: var(--dct-ink) !important;
+  border: 1px solid var(--dct-line) !important;
+  box-shadow: var(--dct-shadow-soft) !important;
+  border-radius: 14px !important;
+}
+
+body.dct-intentional-theme .hero,
+body.dct-intentional-theme .hero h1,
+body.dct-intentional-theme .hero p,
+body.dct-intentional-theme .demo-banner h2,
+body.dct-intentional-theme .demo-banner .subtitle,
+body.dct-intentional-theme .stats-section h2,
+body.dct-intentional-theme .stats-section p {
+  color: var(--dct-ink) !important;
+}
+
+body.dct-intentional-theme .pill,
+body.dct-intentional-theme .lead-pill,
+body.dct-intentional-theme .future-pill,
+body.dct-intentional-theme .automation-pill,
+body.dct-intentional-theme .human-touch-pill,
+body.dct-intentional-theme .demo-badge,
+body.dct-intentional-theme .module-level {
+  background: var(--dct-accent-soft) !important;
+  color: #6f5432 !important;
+  border: 1px solid #e8dbc7 !important;
+}
+
+body.dct-intentional-theme .logo-text .subtitle {
+  color: #7a6b55 !important;
+}
+
+body.dct-intentional-theme .partner-chip,
+body.dct-intentional-theme .tech-icon {
+  background: #ffffff !important;
+  border: 1px solid var(--dct-line) !important;
+}
+
+body.dct-intentional-theme footer {
+  background: #eef2f7 !important;
+  color: #2f3f55 !important;
+  border-top: 1px solid var(--dct-line);
+}
+
+body.dct-intentional-theme img {
+  border-radius: 10px;
+}
+
+body.dct-intentional-theme #dct-growth-banner {
+  background: #f1ece2 !important;
+  color: #4c3a26 !important;
+  border-bottom: 1px solid #e0d2bb;
+}
+
+body.dct-intentional-theme #dct-growth-banner a {
+  color: #6f5432 !important;
+}
+
+@media (max-width: 900px) {
+  body.dct-intentional-theme .top-hero-banner,
+  body.dct-intentional-theme .hero,
+  body.dct-intentional-theme .demo-banner {
+    border-radius: 12px !important;
+  }
+}

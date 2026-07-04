@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>The Dope Cloud Teacher Blog + Visual Playbook</title>
+    <link>https://thedopecloudteacher.org/blog.html</link>
+    <description>Cloud, security, DevSecOps, AI, architecture, and career content aligned to the DCT Visual Playbook.</description>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 03 Jul 2026 18:00:00 GMT</lastBuildDate>
+
+    <item>
+      <title>Enable Microsoft Entra PIM Like a Pro</title>
+      <link>https://thedopecloudteacher.org/blog.html#poster-pim-pro</link>
+      <guid>https://thedopecloudteacher.org/blog.html#poster-pim-pro</guid>
+      <pubDate>Fri, 03 Jul 2026 18:00:00 GMT</pubDate>
+      <description>Just-in-time privileged access implementation with approval, MFA, and audit controls.</description>
+    </item>
+
+    <item>
+      <title>Master Least Privilege in Microsoft Entra ID</title>
+      <link>https://thedopecloudteacher.org/blog.html#poster-least-privilege</link>
+      <guid>https://thedopecloudteacher.org/blog.html#poster-least-privilege</guid>
+      <pubDate>Fri, 03 Jul 2026 18:00:00 GMT</pubDate>
+      <description>Role design and governance strategy to reduce attack surface and privilege abuse.</description>
+    </item>
+
+    <item>
+      <title>Build a Secure Azure DevOps CI/CD Pipeline</title>
+      <link>https://thedopecloudteacher.org/blog.html#poster-devsecops-pipeline</link>
+      <guid>https://thedopecloudteacher.org/blog.html#poster-devsecops-pipeline</guid>
+      <pubDate>Fri, 03 Jul 2026 18:00:00 GMT</pubDate>
+      <description>Shift-left security and controlled release flow for enterprise-ready software delivery.</description>
+    </item>
+
+    <item>
+      <title>Defender for Cloud + CNAPP Explained</title>
+      <link>https://thedopecloudteacher.org/blog.html#poster-defender-cnapp</link>
+      <guid>https://thedopecloudteacher.org/blog.html#poster-defender-cnapp</guid>
+      <pubDate>Fri, 03 Jul 2026 18:00:00 GMT</pubDate>
+      <description>Unified cloud security posture and workload protection architecture in one model.</description>
+    </item>
+
+    <item>
+      <title>Zero Trust in Azure: Practical Model for Teams</title>
+      <link>https://thedopecloudteacher.org/blog.html#poster-zero-trust-azure</link>
+      <guid>https://thedopecloudteacher.org/blog.html#poster-zero-trust-azure</guid>
+      <pubDate>Fri, 03 Jul 2026 18:00:00 GMT</pubDate>
+      <description>Apply verify explicitly, least privilege, and assume breach across Azure services.</description>
+    </item>
+  </channel>
+</rss>

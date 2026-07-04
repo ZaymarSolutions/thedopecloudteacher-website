@@ -64,6 +64,34 @@
     return ids.map(function (id) { return lookup[id]; }).filter(Boolean);
   }
 
+  function courseHref(courseId) {
+    var map = {
+      'course-pg-parks-cohort': '/classes/pg-parks/',
+      'course-live-virtual-cohort': '/classes/live/',
+      'course-azure-fundamentals': '/academy/azure-fundamentals/',
+      'course-azure-security': '/academy/azure-security/',
+      'course-devsecops': '/academy/devsecops/',
+      'course-ai-fundamentals': '/academy/ai-fundamentals/',
+      'course-cloud-architecture': '/academy/cloud-architecture/',
+      'course-career-prep': '/academy/career-prep/'
+    };
+    return map[courseId] || '/academy/';
+  }
+
+  function courseFocusList(course, model) {
+    var lessons = byIds(course.lessons, model.byId.lesson);
+    var focus = [];
+    lessons.forEach(function (lesson) {
+      (lesson.certificationMapping || []).forEach(function (item) {
+        var clean = String(item).split(':')[0].trim();
+        if (clean && focus.indexOf(clean) === -1) {
+          focus.push(clean);
+        }
+      });
+    });
+    return focus;
+  }
+
   function renderCohortCards(type, targetId) {
     const model = getModel();
     const target = $(targetId);
@@ -115,10 +143,94 @@
           '<span class="pill">' + lessonCount + ' Lessons</span>' +
           '<span class="pill">' + posterCount + ' Posters</span>' +
           '</div>' +
+          '<div class="cta-row">' +
+          '<a class="btn secondary" href="' + courseHref(course.id) + '">Open Track</a>' +
+          '<a class="btn secondary" href="/playbook/">View Visual Assets</a>' +
+          '</div>' +
           '</article>'
         );
       })
       .join('');
+  }
+
+  function renderAcademyExplorer(targetId) {
+    var model = getModel();
+    var target = $(targetId);
+    if (!target) return;
+
+    var courses = model.courses.filter(function (course) {
+      return course.deliveryType === 'self-paced';
+    });
+
+    var focusOptions = [];
+    courses.forEach(function (course) {
+      courseFocusList(course, model).forEach(function (focus) {
+        if (focusOptions.indexOf(focus) === -1) {
+          focusOptions.push(focus);
+        }
+      });
+    });
+    focusOptions.sort();
+
+    var focusSelect = $('academyFocus');
+    if (focusSelect) {
+      focusSelect.innerHTML = '<option value="all">All focus areas</option>' + focusOptions
+        .map(function (focus) { return '<option value="' + focus + '">' + focus + '</option>'; })
+        .join('');
+    }
+
+    function draw() {
+      var search = (($('academySearch') && $('academySearch').value) || '').trim().toLowerCase();
+      var audienceFilter = (($('academyAudience') && $('academyAudience').value) || 'all').toLowerCase();
+      var focusFilter = ($('academyFocus') && $('academyFocus').value) || 'all';
+
+      var filtered = courses.filter(function (course) {
+        var focus = courseFocusList(course, model);
+        var haystack = [course.title, course.description, course.audience].join(' ').toLowerCase();
+        var searchMatch = !search || haystack.indexOf(search) !== -1;
+        var audienceMatch = audienceFilter === 'all' || course.audience.toLowerCase().indexOf(audienceFilter) !== -1;
+        var focusMatch = focusFilter === 'all' || focus.indexOf(focusFilter) !== -1;
+        return searchMatch && audienceMatch && focusMatch;
+      });
+
+      target.innerHTML = filtered
+        .map(function (course) {
+          var modules = byIds(course.modules, model.byId.module);
+          var focus = courseFocusList(course, model);
+          return (
+            '<article class="card">' +
+            '<h3>' + course.title + '</h3>' +
+            '<p>' + course.description + '</p>' +
+            '<p><strong>Audience:</strong> ' + course.audience + '</p>' +
+            '<p><strong>Track Focus:</strong> ' + (focus.length ? focus.join(', ') : 'General') + '</p>' +
+            '<div class="pill-row">' +
+            '<span class="pill">' + modules.length + ' Modules</span>' +
+            '<span class="pill">' + course.lessons.length + ' Lessons</span>' +
+            '<span class="pill">' + course.assets.length + ' Visual Assets</span>' +
+            '</div>' +
+            '<div class="cta-row">' +
+            '<a class="btn primary" href="' + courseHref(course.id) + '">Start This Track</a>' +
+            '<a class="btn secondary" href="/student-dashboard/">Study Dashboard</a>' +
+            '</div>' +
+            '</article>'
+          );
+        })
+        .join('');
+
+      if (!filtered.length) {
+        target.innerHTML = '<article class="card"><h3>No tracks match those filters yet.</h3><p>Try a broader search or choose All focus areas.</p></article>';
+      }
+    }
+
+    ['academySearch', 'academyAudience', 'academyFocus'].forEach(function (id) {
+      var el = $(id);
+      if (el) {
+        el.addEventListener('input', draw);
+        el.addEventListener('change', draw);
+      }
+    });
+
+    draw();
   }
 
   function renderTrackDetail(courseId, detailsTargetId, lessonsTargetId) {
@@ -143,6 +255,11 @@
         '</div>' +
         '<div class="pill-row">' +
         posters.map(function (poster) { return '<span class="pill">Poster: ' + poster.title + '</span>'; }).join('') +
+        '</div>' +
+        '<div class="card-grid">' +
+        posters.map(function (poster) {
+          return '<article class="card poster-card"><img src="' + poster.imageUrl + '" alt="' + poster.title + '"><h4>' + poster.title + '</h4></article>';
+        }).join('') +
         '</div>' +
         '</article>';
     }
@@ -206,7 +323,6 @@
             '<h3>' + poster.title + '</h3>' +
             '<p><strong>Topic:</strong> ' + poster.topic + '</p>' +
             '<p><strong>Audience:</strong> ' + poster.audience + '</p>' +
-            '<p><strong>Style:</strong> ' + poster.style + '</p>' +
             '<p><strong>Related Course:</strong> ' + relatedCourses.map(function (course) { return course.title; }).join(', ') + '</p>' +
             '<p><strong>Lesson Summary:</strong> ' + (firstLesson ? firstLesson.summary : 'TBD') + '</p>' +
             '<p><strong>Quiz:</strong> ' + (quiz ? quiz.title : 'TBD') + '</p>' +
@@ -214,7 +330,7 @@
             '<p><strong>Related Tools/Services:</strong> ' + poster.tags.join(', ') + '</p>' +
             '<div class="cta-row">' +
             '<a class="btn secondary" href="' + poster.downloadablePdfUrl + '">Download Image/PDF</a>' +
-            '<a class="btn secondary" href="/blog.html">Related Blog/Article</a>' +
+            '<a class="btn secondary" href="' + (poster.blogUrl || '/blog.html') + '">Related Blog/Article</a>' +
             '</div>' +
             '</article>'
           );
@@ -362,6 +478,7 @@
     renderCohortCards: renderCohortCards,
     renderCourseTrackCards: renderCourseTrackCards,
     renderTrackDetail: renderTrackDetail,
+    renderAcademyExplorer: renderAcademyExplorer,
     renderPlaybook: renderPlaybook,
     renderStudentDashboard: renderStudentDashboard,
     renderInstructorDashboard: renderInstructorDashboard

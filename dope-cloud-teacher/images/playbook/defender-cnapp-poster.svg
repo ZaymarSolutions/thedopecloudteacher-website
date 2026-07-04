@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
+  <title id="title">Defender for Cloud and CNAPP Explained</title>
+  <desc id="desc">Poster visual for Microsoft Defender for Cloud and CNAPP capabilities.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#04101d"/>
+      <stop offset="55%" stop-color="#0b2463"/>
+      <stop offset="100%" stop-color="#2d0f5e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  <image href="/logo.svg?v=20260622c" x="78" y="54" width="128" height="128"/>
+  <text x="224" y="122" font-family="Segoe UI, Arial" font-size="46" fill="#ffffff" font-weight="700">TheDopeCloudTeacher.org</text>
+  <text x="80" y="218" font-family="Segoe UI, Arial" font-size="88" fill="#ffffff" font-weight="900">MICROSOFT DEFENDER</text>
+  <text x="80" y="294" font-family="Segoe UI, Arial" font-size="82" fill="#8b5cf6" font-weight="900">FOR CLOUD + CNAPP</text>
+  <text x="80" y="350" font-family="Segoe UI, Arial" font-size="36" fill="#9be6ff">One platform. Full visibility. End-to-end cloud protection.</text>
+
+  <rect x="80" y="410" width="1040" height="220" rx="16" fill="#071c3f" stroke="#22d3ee"/>
+  <text x="114" y="474" font-family="Segoe UI, Arial" font-size="44" fill="#22d3ee" font-weight="800">What is CNAPP?</text>
+  <text x="114" y="534" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">CNAPP unifies CSPM, CWPP, CIEM, ASPM, and KSPM into one security program.</text>
+  <text x="114" y="586" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">It helps teams prevent, detect, respond, and continuously improve posture.</text>
+
+  <rect x="80" y="670" width="1040" height="290" rx="16" fill="#111827" stroke="#8b5cf6"/>
+  <text x="114" y="734" font-family="Segoe UI, Arial" font-size="44" fill="#c4b5fd" font-weight="800">Core Defender for Cloud Capabilities</text>
+  <text x="114" y="794" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Secure Score and posture visibility</text>
+  <text x="114" y="842" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Workload protection across VMs, containers, and apps</text>
+  <text x="114" y="890" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Threat detection and guided remediation</text>
+  <text x="114" y="938" font-family="Segoe UI, Arial" font-size="30" fill="#e5e7eb">- Compliance benchmarking (NIST, CIS, ISO)</text>
+
+  <rect x="80" y="1000" width="1040" height="330" rx="16" fill="#05182f" stroke="#22d3ee"/>
+  <text x="114" y="1064" font-family="Segoe UI, Arial" font-size="44" fill="#22d3ee" font-weight="800">How It Works</text>
+  <text x="114" y="1124" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">1. Discover assets across cloud and hybrid environments</text>
+  <text x="114" y="1172" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">2. Assess vulnerabilities and posture drift</text>
+  <text x="114" y="1220" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">3. Protect with policy controls and workload hardening</text>
+  <text x="114" y="1268" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">4. Detect anomalous behavior and high-risk threats</text>
+  <text x="114" y="1316" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">5. Respond faster with automation and security playbooks</text>
+
+  <rect x="80" y="1368" width="1040" height="172" rx="16" fill="#1f1147" stroke="#8b5cf6"/>
+  <text x="114" y="1430" font-family="Segoe UI, Arial" font-size="40" fill="#c4b5fd" font-weight="800">Pro Tip</text>
+  <text x="114" y="1488" font-family="Segoe UI, Arial" font-size="32" fill="#f3f4f6">Start with Secure Score improvements and map remediation to quarterly risk goals.</text>
+</svg>

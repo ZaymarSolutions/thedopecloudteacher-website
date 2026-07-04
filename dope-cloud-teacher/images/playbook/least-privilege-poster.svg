@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
+  <title id="title">Master Least Privilege in Entra ID</title>
+  <desc id="desc">Poster on least privilege principles and role assignment guidance.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="100%" stop-color="#dce7ff"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1f4ed8"/>
+      <stop offset="100%" stop-color="#5b21b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1600" fill="url(#bg)"/>
+  <rect x="40" y="40" width="1120" height="1520" rx="24" fill="none" stroke="#7e8fe8"/>
+  <image href="/logo.svg?v=20260622c" x="78" y="64" width="128" height="128"/>
+
+  <text x="224" y="132" font-family="Segoe UI, Arial" font-size="46" font-weight="700" fill="#101827">TheDopeCloudTeacher.org</text>
+  <text x="80" y="222" font-family="Segoe UI, Arial" font-size="84" font-weight="900" fill="#4c1d95">MASTER LEAST PRIVILEGE</text>
+  <text x="80" y="286" font-family="Segoe UI, Arial" font-size="60" font-weight="800" fill="#1e3a8a">IN MICROSOFT ENTRA ID</text>
+  <text x="80" y="336" font-family="Segoe UI, Arial" font-size="38" font-weight="700" fill="#2563eb">Right access. Right people. Right time.</text>
+
+  <rect x="80" y="382" width="1040" height="84" rx="14" fill="url(#bar)"/>
+  <text x="110" y="436" font-family="Segoe UI, Arial" font-size="38" fill="#ffffff" font-weight="700">Least privilege means users get only what they need and nothing more.</text>
+
+  <g font-family="Segoe UI, Arial" fill="#1e293b">
+    <rect x="80" y="520" width="720" height="130" rx="14" fill="#ffffff" stroke="#b8c7ff"/><text x="110" y="572" font-size="52" font-weight="800" fill="#2563eb">1</text><text x="180" y="572" font-size="40" font-weight="700">Identify the need</text><text x="180" y="616" font-size="30">Understand the user or service function first.</text>
+    <rect x="80" y="680" width="720" height="130" rx="14" fill="#ffffff" stroke="#b8c7ff"/><text x="110" y="732" font-size="52" font-weight="800" fill="#2563eb">2</text><text x="180" y="732" font-size="40" font-weight="700">Use groups, not individuals</text><text x="180" y="776" font-size="30">Assign roles to groups for cleaner governance.</text>
+    <rect x="80" y="840" width="720" height="130" rx="14" fill="#ffffff" stroke="#b8c7ff"/><text x="110" y="892" font-size="52" font-weight="800" fill="#16a34a">3</text><text x="180" y="892" font-size="40" font-weight="700">Assign lowest possible role</text><text x="180" y="936" font-size="30">Prefer scoped built-in roles over tenant-wide admin.</text>
+    <rect x="80" y="1000" width="720" height="130" rx="14" fill="#ffffff" stroke="#b8c7ff"/><text x="110" y="1052" font-size="52" font-weight="800" fill="#ea580c">4</text><text x="180" y="1052" font-size="40" font-weight="700">Use PIM just-in-time</text><text x="180" y="1096" font-size="30">Eligible by default, active only on approval.</text>
+    <rect x="80" y="1160" width="720" height="130" rx="14" fill="#ffffff" stroke="#b8c7ff"/><text x="110" y="1212" font-size="52" font-weight="800" fill="#2563eb">5</text><text x="180" y="1212" font-size="40" font-weight="700">Review access regularly</text><text x="180" y="1256" font-size="30">Access reviews and stale role cleanup monthly.</text>
+    <rect x="80" y="1320" width="720" height="130" rx="14" fill="#ffffff" stroke="#b8c7ff"/><text x="110" y="1372" font-size="52" font-weight="800" fill="#7c3aed">6</text><text x="180" y="1372" font-size="40" font-weight="700">Enforce with policy</text><text x="180" y="1416" font-size="30">Conditional access and assignment policy guardrails.</text>
+  </g>
+
+  <rect x="830" y="520" width="290" height="580" rx="16" fill="#ffffff" stroke="#b8c7ff"/>
+  <text x="860" y="578" font-family="Segoe UI, Arial" font-size="38" font-weight="800" fill="#1e3a8a">Results</text>
+  <text x="860" y="638" font-family="Segoe UI, Arial" font-size="30" fill="#0f172a">- Smaller attack surface</text>
+  <text x="860" y="690" font-family="Segoe UI, Arial" font-size="30" fill="#0f172a">- Reduced privilege abuse</text>
+  <text x="860" y="742" font-family="Segoe UI, Arial" font-size="30" fill="#0f172a">- Better audit posture</text>
+  <text x="860" y="794" font-family="Segoe UI, Arial" font-size="30" fill="#0f172a">- Stronger governance</text>
+
+  <rect x="830" y="1130" width="290" height="320" rx="16" fill="#0f172a"/>
+  <text x="860" y="1186" font-family="Segoe UI, Arial" font-size="34" font-weight="800" fill="#8b5cf6">Pro Tips</text>
+  <text x="860" y="1242" font-family="Segoe UI, Arial" font-size="28" fill="#dbeafe">Use PIM for all privileged roles.</text>
+  <text x="860" y="1292" font-family="Segoe UI, Arial" font-size="28" fill="#dbeafe">Run continuous access reviews.</text>
+  <text x="860" y="1342" font-family="Segoe UI, Arial" font-size="28" fill="#dbeafe">Keep break-glass accounts documented.</text>
+
+  <text x="80" y="1534" font-family="Segoe UI, Arial" font-size="38" font-weight="800" fill="#1d4ed8">Give just enough access to get the job done. Less privilege. Less risk.</text>
+</svg>
