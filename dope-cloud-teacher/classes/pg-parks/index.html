@@ -4,160 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PG Parks Classes | The Dope Cloud Teacher</title>
-  <meta name="description" content="PG Parks cloud cohort schedule, onboarding checklist, Azure setup, weekly lessons, homework, resources, and quiz links.">
-  <link rel="icon" type="image/svg+xml" href="../../logo.svg?v=20260705b">
-  <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../../css/platform.css">
+  <meta name="description" content="PG Parks in-person cohort page with schedule, onboarding checklist, Azure setup, weekly lessons, homework, resources, and quizzes.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/platform.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <a href="../../index.html" class="logo">
-        <img src="../../logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img">
-        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
-      </a>
-      <nav class="nav-links" aria-label="Main navigation"></nav>
-      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
-    </div>
-  </header>
+  <div id="dct-header"></div>
 
   <main class="platform-shell">
-    <section class="platform-hero">
-      <h1>PG Parks In-Person Cohort</h1>
-      <p>Community-first classroom experience with structured weekly labs and instructor support.</p>
-      <div class="cta-row">
-        <a class="cta primary" href="../../contact.html">Join Next Cohort</a>
-        <a class="cta secondary" href="../index.html">Back to All Classes</a>
+    <section class="hero-band">
+      <div class="hero-band-inner">
+        <h1>PG Parks In-Person Cohort</h1>
+        <p>Hands-on classroom learning for cloud, security, DevOps, and AI with local support and weekly outcomes.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="/contact.html">Enroll in Current Cohort</a>
+          <a class="btn secondary" href="/playbook/">Study with Visual Playbook</a>
+        </div>
       </div>
     </section>
 
-    <section class="section-head"><h2>Current Class Schedule</h2></section>
-    <section id="pg-cohort" class="card-grid"></section>
-
-    <section class="section-head"><h2>Location Info</h2></section>
-    <article class="platform-card">
-      <p>Primary location: Southern Regional Technology & Recreation Complex. Check your welcome email for parking, room assignment, and check-in details.</p>
-      <p><a class="cta primary" href="../../pg-parks-direct.html">To see this or other classes in PG County, click here</a></p>
-      <p><a class="cta secondary" href="../../pg-parks-direct.html">Search more classes in Parks & Rec Direct</a></p>
-    </article>
-
-    <section class="section-head"><h2>Class Options and Pricing</h2></section>
-    <section class="card-grid">
-      <article class="platform-card pathway-card">
-        <h3>PG Parks In-Person Cohort</h3>
-        <p>Structured classroom sessions with instructor guidance, weekly labs, and peer accountability.</p>
-        <p class="pathway-price">$0-$75 (Program dependent via PG County and partner sites)</p>
-        <div class="cta-row">
-          <a class="cta primary" href="../../pg-parks-direct.html">View PG County Options</a>
-        </div>
-      </article>
-      <article class="platform-card pathway-card">
-        <h3>Online Self-Paced Track</h3>
-        <p>Learn on your own schedule with recordings, guided labs, and quiz-based checkpoints.</p>
-        <p class="pathway-price">$14/month all-access or individual course purchase</p>
-        <div class="cta-row">
-          <a class="cta primary" href="../../courses.html">Explore Self-Paced Courses</a>
-          <a class="cta secondary" href="../../pricing.html">View Membership Pricing</a>
-        </div>
-      </article>
-      <article class="platform-card pathway-card">
-        <h3>Online Instructor-Led Track</h3>
-        <p>Live virtual classes with office hours, assignment review, and cohort support.</p>
-        <p class="pathway-price">$149-$499 per cohort term based on scope and duration</p>
-        <div class="cta-row">
-          <a class="cta primary" href="../live/index.html">View Instructor-Led Classes</a>
-          <a class="cta secondary" href="../../contact.html">Request Cohort Advising</a>
-        </div>
-      </article>
+    <section class="section">
+      <h2>Current Schedule and Location</h2>
+      <div id="pgCohorts" class="card-grid"></div>
     </section>
 
-    <section class="section-head"><h2>Age Group Course Offerings</h2></section>
-    <section class="card-grid">
-      <article class="platform-card pathway-card">
-        <h3>Ages 14-18: Youth Launch Cohort</h3>
-        <p>Hands-on starter pathways in cloud, AI, and cybersecurity with engaging challenge formats.</p>
-        <ul>
-          <li><strong>Cloud Foundations Starter:</strong> Interactives (guided cloud labs), puzzlies (service-matching puzzles), games (mission scoreboards).</li>
-          <li><strong>AI Creator Studio:</strong> Interactives (prompt labs), puzzlies (logic and output puzzles), games (model challenge rounds).</li>
-          <li><strong>Cyber Defender Basics:</strong> Interactives (security mini-scenarios), puzzlies (threat-spotting puzzles), games (capture-the-flag drills).</li>
-        </ul>
-        <div class="cta-row">
-          <a class="cta primary" href="../../pg-parks-direct.html">Open Youth Track in PG Parks Direct</a>
-        </div>
-      </article>
-
-      <article class="platform-card pathway-card">
-        <h3>Ages 18-55: Career Growth Cohort</h3>
-        <p>Certification and job-readiness pathways aligned to cloud operations, security, and portfolio outcomes.</p>
-        <ul>
-          <li><strong>Azure Fundamentals Career Path:</strong> Interactives (sandbox labs), puzzlies (architecture decision puzzles), games (timed scenario quizzes).</li>
-          <li><strong>DevSecOps Builder Path:</strong> Interactives (pipeline labs), puzzlies (build-break-fix security puzzles), games (automation sprint challenges).</li>
-          <li><strong>Career Prep Accelerator:</strong> Interactives (resume workshop boards), puzzlies (interview framework puzzles), games (mock interview scorecards).</li>
-        </ul>
-        <div class="cta-row">
-          <a class="cta primary" href="../../pg-parks-direct.html">Open Career Track in PG Parks Direct</a>
-        </div>
-      </article>
-
-      <article class="platform-card pathway-card">
-        <h3>Ages 55+: Digital Confidence Cohort</h3>
-        <p>Supportive and practical course pathways built for confidence, pace, and real-life technology use.</p>
-        <ul>
-          <li><strong>Cloud Confidence Essentials:</strong> Interactives (guided walkthroughs), puzzlies (real-world service puzzles), games (confidence checkpoints).</li>
-          <li><strong>Cyber Safety Everyday:</strong> Interactives (safe/unsafe review labs), puzzlies (phishing clue puzzles), games (cyber safety card challenges).</li>
-          <li><strong>AI for Everyday Life:</strong> Interactives (everyday prompt labs), puzzlies (output quality puzzles), games (prompt improvement rounds).</li>
-        </ul>
-        <div class="cta-row">
-          <a class="cta primary" href="../../pg-parks-direct.html">Open Digital Confidence Track in PG Parks Direct</a>
-        </div>
-      </article>
+    <section class="section">
+      <h2>Student Onboarding Checklist</h2>
+      <div class="card-grid">
+        <article class="card"><h3>1. Account Setup</h3><p>Create or confirm your student login and notification preferences.</p></article>
+        <article class="card"><h3>2. Bring Your Kit</h3><p>Laptop, charger, notebook, and class packet for each session.</p></article>
+        <article class="card"><h3>3. Join Communication Channel</h3><p>Verify email and class channel access for reminders and updates.</p></article>
+      </div>
     </section>
 
-    <section class="section-head"><h2>Student Onboarding Checklist</h2></section>
-    <article class="platform-card onboarding-panel">
-      <p class="onboarding-intro">Complete each item before your first class meeting. This helps your instructor place you in the correct track and ensures your first lab starts smoothly.</p>
-      <ol class="onboarding-checklist">
-        <li>
-          <h3>Registration Confirmation</h3>
-          <p>Submit your class registration and emergency contact details.</p>
-        </li>
-        <li>
-          <h3>Device Readiness</h3>
-          <p>Bring a laptop, charger, and reliable internet hotspot backup if available.</p>
-        </li>
-        <li>
-          <h3>Microsoft Account Setup</h3>
-          <p>Create or confirm your Microsoft account for Azure access and identity verification.</p>
-        </li>
-        <li>
-          <h3>Class Communication Access</h3>
-          <p>Join the class communication channel and verify that announcements are visible.</p>
-        </li>
-      </ol>
-    </article>
+    <section class="section">
+      <h2>Azure Setup Instructions</h2>
+      <div class="card">
+        <p>Complete Azure setup before week 1: create free account, enable MFA, join class resource group, and test portal access. Use the official setup guide in class resources.</p>
+        <div class="cta-row">
+          <a class="btn secondary" href="/resources.html">Open Setup Resources</a>
+          <a class="btn secondary" href="/pg-cloud-ai-design-lab.html">Open Class Build Hub</a>
+        </div>
+      </div>
+    </section>
 
-    <section class="section-head"><h2>Azure Setup Instructions</h2></section>
-    <article class="platform-card"><p>Create your Azure student account, enable MFA, and verify your subscription quota before week 1 lab check-in.</p></article>
+    <section class="section">
+      <h2>Weekly Lessons</h2>
+      <div id="pgLessons" class="card-grid"></div>
+    </section>
 
-    <section class="section-head"><h2>Weekly Lessons</h2></section>
-    <section id="pg-lessons" class="card-grid"></section>
+    <section class="section">
+      <h2>Homework and Resources</h2>
+      <div class="card-grid">
+        <article class="card"><h3>Homework</h3><p>Submit weekly lab notes, architecture sketches, and security checklists before each Thursday class.</p></article>
+        <article class="card"><h3>Class Resources</h3><p>Download poster handouts, guided labs, and setup checklists aligned to each lesson.</p></article>
+        <article class="card"><h3>Quiz Links</h3><p>Take end-of-week quizzes directly from the Student Dashboard to track progress and readiness.</p></article>
+      </div>
+    </section>
 
-    <section class="section-head"><h2>Homework</h2></section>
-    <article class="platform-card"><p>Submit one lab reflection and one screenshot proof each week. Missed work can be recovered during open lab hours.</p></article>
-
-    <section class="section-head"><h2>Class Resources</h2></section>
-    <article class="platform-card"><p>Download onboarding kit, lab checklist, and visual playbook posters from your dashboard resources tab.</p></article>
-
-    <section class="section-head"><h2>Quiz Links</h2></section>
-    <article class="platform-card"><p>Quiz access is released per lesson in sequence. Current quizzes include Cloud Concepts Check and Career Readiness Quiz.</p></article>
+    <p class="footer-note">PG Parks lessons are mapped to shared academy modules and visual posters, so students can continue learning in any delivery mode.</p>
   </main>
 
-  <script src="../../js/dct-content-model.js"></script>
-  <script src="../../js/platform-pages.js"></script>
-  <script src="../../js/global-ui.js"></script>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/dct-learning-data.js"></script>
+  <script src="/js/dct-platform.js"></script>
   <script>
-    DCT_PAGES.renderCohorts("pg-cohort", "pg-parks");
-    DCT_PAGES.renderAssignedLessons("pg-lessons", "pg-parks");
+    DCTPlatform.renderHeader('classes');
+    DCTPlatform.renderCohortCards('pg-parks', 'pgCohorts');
+    DCTPlatform.renderTrackDetail('course-pg-parks-cohort', null, 'pgLessons');
   </script>
 </body>
 </html>

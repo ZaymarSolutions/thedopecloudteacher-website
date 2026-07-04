@@ -4,98 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Classes | The Dope Cloud Teacher</title>
-  <meta name="description" content="Choose your learning path: PG Parks in-person classes, live virtual cohorts, or the Dope Cloud Academy self-paced tracks.">
-  <link rel="icon" type="image/svg+xml" href="../logo.svg?v=20260705b">
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/platform.css">
+  <meta name="description" content="Choose your learning lane: PG Parks in-person, live virtual cohorts, or self-paced Dope Cloud Academy.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/platform.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <a href="../index.html" class="logo">
-        <img src="../logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img">
-        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
-      </a>
-      <nav class="nav-links" aria-label="Main navigation"></nav>
-      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
-    </div>
-  </header>
+  <div id="dct-header"></div>
 
   <main class="platform-shell">
-    <section class="platform-hero">
-      <h1>Classes Built for How You Learn</h1>
-      <p>Choose an in-person cohort, join live online sessions, or learn on your own schedule in the Academy. One shared curriculum powers all paths.</p>
-      <div class="cta-row">
-        <a class="cta primary" href="pg-parks/index.html">Explore PG Parks</a>
-        <a class="cta secondary" href="live/index.html">Explore Live Virtual</a>
-        <a class="cta secondary" href="../academy/index.html">Explore Academy</a>
+    <section class="hero-band">
+      <div class="hero-band-inner">
+        <h1>Classes Built for Three Learning Paths</h1>
+        <p>Join in person through PG Parks, meet live online with guided cohorts, or learn on your own schedule in Dope Cloud Academy. One shared curriculum powers all three paths.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="/classes/pg-parks/">Join PG Parks</a>
+          <a class="btn secondary" href="/classes/live/">Join Live Virtual</a>
+          <a class="btn secondary" href="/academy/">View Academy</a>
+        </div>
       </div>
     </section>
 
-    <section class="section-head">
-      <h2>All Class Types</h2>
-      <p>Reusable lessons, quizzes, posters, and downloads are assigned across programs without duplication.</p>
-    </section>
-    <section class="path-grid">
-      <article class="path-card">
-        <h3>PG Parks / In-Person Classes</h3>
-        <p>Instructor-led classroom cohorts with local schedule, onboarding, labs, and weekly homework.</p>
-        <a class="cta secondary" href="pg-parks/index.html">Open PG Parks Path</a>
-      </article>
-      <article class="path-card">
-        <h3>Live Virtual Classes</h3>
-        <p>Remote cohorts with fixed schedule, live instruction, and replay/resource access after registration.</p>
-        <a class="cta secondary" href="live/index.html">Open Live Virtual Path</a>
-      </article>
-      <article class="path-card">
-        <h3>The Dope Cloud Academy</h3>
-        <p>Self-paced learning tracks with modular lessons and progress-based completion.</p>
-        <a class="cta secondary" href="../academy/index.html">Open Academy Path</a>
-      </article>
+    <section class="section">
+      <h2>Learning Paths</h2>
+      <p>Programs share reusable lessons, visual playbooks, quizzes, videos, and downloadable resources. No duplicated content silos.</p>
+      <div class="path-grid">
+        <article class="card">
+          <h3>PG Parks / In-Person Classes</h3>
+          <p>Community cohort with in-person support, onboarding checklists, Azure setup help, weekly lessons, and homework support.</p>
+          <div class="cta-row"><a class="btn secondary" href="/classes/pg-parks/">Open PG Parks Cohort</a></div>
+        </article>
+        <article class="card">
+          <h3>Live Virtual Classes</h3>
+          <p>Online cohort model with upcoming sessions, schedule visibility, virtual access details, and replay/resource availability after registration.</p>
+          <div class="cta-row"><a class="btn secondary" href="/classes/live/">Open Live Virtual Cohort</a></div>
+        </article>
+        <article class="card">
+          <h3>Dope Cloud Academy</h3>
+          <p>Self-paced academy with structured track progression across Azure, Security, DevSecOps, AI, Architecture, and Career Prep.</p>
+          <div class="cta-row"><a class="btn secondary" href="/academy/">Open Academy</a></div>
+        </article>
+      </div>
     </section>
 
-    <section class="section-head">
+    <section class="section">
       <h2>Current and Upcoming Cohorts</h2>
+      <h3>PG Parks</h3>
+      <div id="classCohortsPg" class="card-grid"></div>
+      <h3 style="margin-top: 0.8rem;">Live Virtual</h3>
+      <div id="classCohortsLive" class="card-grid"></div>
     </section>
-    <section id="classes-cohorts" class="card-grid"></section>
 
-    <section class="section-head">
-      <h2>Visuals Used in Class</h2>
-      <p>These are the exact poster styles used during in-person and live virtual instruction.</p>
-    </section>
-    <section class="visual-grid">
-      <article class="visual-card">
-        <img src="../images/programs/cloud-fundamentals.svg" alt="Cloud fundamentals teaching visual">
-        <div class="visual-card-body">
-          <h3>Cloud Fundamentals Board</h3>
-          <p>Starter visual that introduces cloud terms, service models, and shared responsibility.</p>
-          <a class="cta secondary" href="../playbook/index.html">Open in Playbook</a>
-        </div>
-      </article>
-      <article class="visual-card">
-        <img src="../images/programs/devops-automation.svg" alt="DevOps automation teaching visual">
-        <div class="visual-card-body">
-          <h3>DevOps + Automation Flow</h3>
-          <p>Shows commit-to-deploy workflow so students can connect concepts to real execution.</p>
-          <a class="cta secondary" href="../playbook/index.html">Open in Playbook</a>
-        </div>
-      </article>
-      <article class="visual-card">
-        <img src="../images/programs/stride-threat-modeling.svg" alt="Threat modeling teaching visual">
-        <div class="visual-card-body">
-          <h3>Threat Modeling Sprint</h3>
-          <p>Used in security sessions to convert architecture diagrams into risk-aware backlogs.</p>
-          <a class="cta secondary" href="../playbook/index.html">Open in Playbook</a>
-        </div>
-      </article>
-    </section>
+    <p class="footer-note">The Dope Cloud Teacher learning system keeps lesson assets aligned to curriculum objectives across in-person, live virtual, and self-paced delivery.</p>
   </main>
 
-  <script src="../js/dct-content-model.js"></script>
-  <script src="../js/platform-pages.js"></script>
-  <script src="../js/global-ui.js"></script>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/dct-learning-data.js"></script>
+  <script src="/js/dct-platform.js"></script>
   <script>
-    DCT_PAGES.renderCohorts("classes-cohorts");
+    DCTPlatform.renderHeader('classes');
+    DCTPlatform.renderCohortCards('pg-parks', 'classCohortsPg');
+    DCTPlatform.renderCohortCards('live', 'classCohortsLive');
   </script>
 </body>
 </html>

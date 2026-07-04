@@ -3,98 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DCT Visual Playbook Library</title>
-  <meta name="description" content="Searchable and filterable visual playbook posters aligned to lessons, modules, quizzes, and certification objectives.">
-  <link rel="icon" type="image/svg+xml" href="../logo.svg?v=20260705b">
-  <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="../css/platform.css">
+  <title>DCT Visual Playbook Library | The Dope Cloud Teacher</title>
+  <meta name="description" content="Searchable visual playbook library aligned to course modules and lessons with downloadable assets and quiz links.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/platform.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <a href="../index.html" class="logo">
-        <img src="../logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img">
-        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
-      </a>
-      <nav class="nav-links"></nav>
-      <button class="mobile-menu-toggle">≡</button>
-    </div>
-  </header>
+  <div id="dct-header"></div>
 
   <main class="platform-shell">
-    <section class="platform-hero">
-      <h1>DCT Visual Playbook Library</h1>
-      <p>Every poster is curriculum-linked. Browse by topic, level, and lesson alignment to keep visuals instructional and measurable.</p>
-      <div class="cta-row">
-        <a class="cta secondary" href="../academy/">View Course Tracks</a>
-        <a class="cta secondary" href="../classes/">View Class Paths</a>
+    <section class="hero-band">
+      <div class="hero-band-inner">
+        <h1>DCT Visual Playbook Library</h1>
+        <p>Every poster in this library is curriculum-aligned to at least one course module and one lesson. No random graphics, only instructional assets.</p>
       </div>
     </section>
 
-    <section class="scenario-section">
-      <div class="scenario-grid">
-        <article class="scenario-card">
-          <img src="../images/programs/stride-threat-modeling.svg" alt="STRIDE threat modeling poster">
-          <h3>Featured Security Visual: STRIDE</h3>
-          <p>This poster guides learners through a practical threat-modeling workflow used in cloud and application security planning.</p>
-          <ul>
-            <li>Map threat categories to architecture components</li>
-            <li>Document mitigation controls before release</li>
-            <li>Use the output as evidence for governance reviews</li>
-          </ul>
-        </article>
+    <section class="section">
+      <h2>Search and Filter</h2>
+      <div class="search-row">
+        <input id="posterSearch" type="search" placeholder="Search by title, topic, or tags">
+        <select id="posterDifficulty">
+          <option value="all">All difficulty levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <select id="posterCourse"></select>
       </div>
     </section>
 
-    <section class="section-head"><h2>Search and Filter</h2></section>
-    <div class="toolbar">
-      <input id="playbook-search" type="text" placeholder="Search title, topic, or tags">
-      <select id="playbook-difficulty">
-        <option value="all">All difficulty levels</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Intermediate">Intermediate</option>
-        <option value="Advanced">Advanced</option>
-      </select>
-    </div>
-
-    <section class="section-head"><h2>Featured Poster Gallery</h2></section>
-    <section class="visual-grid">
-      <article class="visual-card">
-        <img src="../images/programs/devops-automation.svg" alt="Secure Azure DevOps pipeline poster">
-        <div class="visual-card-body">
-          <h3>Secure Azure DevOps CI/CD</h3>
-          <p>Step-by-step guide for build, security scanning, deploy, and monitoring workflows.</p>
-        </div>
-      </article>
-      <article class="visual-card">
-        <img src="../images/programs/cloud-security.svg" alt="Defender for Cloud style security visual">
-        <div class="visual-card-body">
-          <h3>Defender + CNAPP Breakdown</h3>
-          <p>Explain visibility, posture management, threat response, and audit readiness quickly.</p>
-        </div>
-      </article>
-      <article class="visual-card">
-        <img src="../images/programs/stride-threat-modeling.svg" alt="STRIDE poster">
-        <div class="visual-card-body">
-          <h3>STRIDE Attack Thinking</h3>
-          <p>Use six risk lenses to evaluate every new architecture component and release.</p>
-        </div>
-      </article>
-      <article class="visual-card">
-        <img src="../images/programs/cloud-architecture.svg" alt="Architecture and least privilege visual">
-        <div class="visual-card-body">
-          <h3>Least Privilege Architecture</h3>
-          <p>Role-scoping visual that helps teams reduce blast radius and tighten IAM patterns.</p>
-        </div>
-      </article>
+    <section class="section">
+      <h2>Poster Library</h2>
+      <div id="playbookGrid" class="card-grid"></div>
     </section>
 
-    <section id="playbook-results" class="card-grid"></section>
+    <p class="footer-note">Poster assets include related course mapping, lesson summary, downloads, quiz linkage, blog context, certification objective, and tool/service associations.</p>
   </main>
 
-  <script src="../js/dct-content-model.js"></script>
-  <script src="../js/platform-pages.js"></script>
-  <script src="../js/global-ui.js"></script>
-  <script>DCT_PAGES.renderPlaybook("playbook-results");</script>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/dct-learning-data.js"></script>
+  <script src="/js/dct-platform.js"></script>
+  <script>
+    DCTPlatform.renderHeader('playbook');
+    DCTPlatform.renderPlaybook('playbookGrid');
+  </script>
 </body>
 </html>

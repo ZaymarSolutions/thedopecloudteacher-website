@@ -4,51 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Live Virtual Classes | The Dope Cloud Teacher</title>
-  <meta name="description" content="Live virtual cohort schedule, upcoming cohorts, registration CTA, access instructions, and replay resources.">
-  <link rel="icon" type="image/svg+xml" href="../../logo.svg?v=20260705b">
-  <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../../css/platform.css">
+  <meta name="description" content="Live virtual cohort page with upcoming classes, registration CTA, schedule, virtual access details, and replay/resource access.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/platform.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <a href="../../index.html" class="logo">
-        <img src="../../logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img">
-        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
-      </a>
-      <nav class="nav-links" aria-label="Main navigation"></nav>
-      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
-    </div>
-  </header>
+  <div id="dct-header"></div>
 
   <main class="platform-shell">
-    <section class="platform-hero">
-      <h1>Live Virtual Classes</h1>
-      <p>Join instructor-led cloud classes from anywhere with structured support, office hours, and replay access.</p>
-      <div class="cta-row">
-        <a class="cta primary" href="../../contact.html">Register for Next Live Cohort</a>
-        <a class="cta secondary" href="../index.html">Back to All Classes</a>
+    <section class="hero-band">
+      <div class="hero-band-inner">
+        <h1>Live Virtual Cohorts</h1>
+        <p>Join from anywhere for guided sessions, structured progression, and replay-backed support after registration.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="/contact.html">Register for Next Cohort</a>
+          <a class="btn secondary" href="/student-dashboard/">Open Student Dashboard</a>
+        </div>
       </div>
     </section>
 
-    <section class="section-head"><h2>Upcoming Cohorts</h2></section>
-    <section id="live-cohort" class="card-grid"></section>
+    <section class="section">
+      <h2>Upcoming Cohorts</h2>
+      <div id="liveCohorts" class="card-grid"></div>
+    </section>
 
-    <section class="section-head"><h2>Schedule</h2></section>
-    <article class="platform-card"><p>Sessions run twice a week with optional office hours every Friday for homework support and quiz prep.</p></article>
+    <section class="section">
+      <h2>Virtual Access After Registration</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Session Access</h3>
+          <p>Registered students receive secure meeting links and calendar reminders by email.</p>
+        </article>
+        <article class="card">
+          <h3>Replay Library</h3>
+          <p>Session replays and downloadable resources are unlocked in your dashboard after attendance is recorded.</p>
+        </article>
+        <article class="card">
+          <h3>Support Windows</h3>
+          <p>Each cohort includes office hours and asynchronous Q&A support for lesson blockers.</p>
+        </article>
+      </div>
+    </section>
 
-    <section class="section-head"><h2>Virtual Access Info</h2></section>
-    <article class="platform-card"><p>Secure meeting links and class files unlock after registration. MFA and learner profile setup are required before orientation.</p></article>
+    <section class="section">
+      <h2>Live Cohort Curriculum</h2>
+      <div id="liveLessons" class="card-grid"></div>
+    </section>
 
-    <section class="section-head"><h2>Replay and Resource Access</h2></section>
-    <article class="platform-card"><p>Registered students receive replay vault access, visual playbook posters, lesson summaries, and downloadable lab guides.</p></article>
+    <p class="footer-note">Live cohorts use the same core lesson, poster, quiz, and download library as in-person and academy programs for seamless continuity.</p>
   </main>
 
-  <script src="../../js/dct-content-model.js"></script>
-  <script src="../../js/platform-pages.js"></script>
-  <script src="../../js/global-ui.js"></script>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/dct-learning-data.js"></script>
+  <script src="/js/dct-platform.js"></script>
   <script>
-    DCT_PAGES.renderCohorts("live-cohort", "live");
+    DCTPlatform.renderHeader('classes');
+    DCTPlatform.renderCohortCards('live', 'liveCohorts');
+    DCTPlatform.renderTrackDetail('course-live-virtual-cohort', null, 'liveLessons');
   </script>
 </body>
 </html>

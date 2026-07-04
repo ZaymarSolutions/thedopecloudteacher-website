@@ -3,184 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dope Cloud Academy | Self-Paced Learning</title>
-  <meta name="description" content="Self-paced Dope Cloud Academy tracks: Azure Fundamentals, Azure Security, DevSecOps, AI Fundamentals, Cloud Architecture, and Career Prep.">
-  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260705b">
-  <link rel="stylesheet" href="/css/styles.css">
+  <title>Dope Cloud Academy | The Dope Cloud Teacher</title>
+  <meta name="description" content="Self-paced Dope Cloud Academy with Azure Fundamentals, Azure Security, DevSecOps, AI Fundamentals, Cloud Architecture, and Career Prep tracks.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
   <link rel="stylesheet" href="/css/platform.css">
-  <style>
-    .track-card {
-      padding: 0;
-      overflow: hidden;
-    }
-
-    .track-card-visual {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      display: block;
-      background: #06122d;
-      border-bottom: 1px solid #d6e8fa;
-    }
-
-    .track-card-body {
-      padding: 1rem 1rem 1.15rem;
-    }
-
-    .track-card-body h3 {
-      margin-top: 0;
-      margin-bottom: 0.45rem;
-    }
-
-    .track-meta {
-      margin: 0 0 0.6rem;
-      font-size: 0.93rem;
-      color: #2b4d78;
-      font-weight: 700;
-    }
-
-    .track-points {
-      margin: 0.5rem 0 0.9rem;
-      padding-left: 1.15rem;
-      color: #4a567d;
-      line-height: 1.6;
-    }
-
-    .track-points li + li {
-      margin-top: 0.3rem;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="header-container">
-      <a href="/index.html" class="logo">
-        <img src="/logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img">
-        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
-      </a>
-      <nav class="nav-links" aria-label="Main navigation"></nav>
-      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
-    </div>
-  </header>
+  <div id="dct-header"></div>
 
   <main class="platform-shell">
-    <section class="platform-hero">
-      <h1>The Dope Cloud Academy</h1>
-      <p>Self-paced learning with premium structure, clear progression, and reusable resources mapped to certifications.</p>
-      <div class="cta-row">
-        <a class="cta primary" href="/student-dashboard/">Open Student Dashboard</a>
+    <section class="hero-band">
+      <div class="hero-band-inner">
+        <h1>Dope Cloud Academy</h1>
+        <p>A polished self-paced learning platform with role-based tracks, guided lesson progression, reusable visual playbooks, and certification alignment.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="/student-dashboard/">Open My Dashboard</a>
+          <a class="btn secondary" href="/playbook/">Browse Visual Playbook</a>
+        </div>
       </div>
     </section>
 
-    <section class="section-head"><h2>Course Tracks</h2></section>
-    <section class="path-grid">
-      <article class="path-card track-card">
-        <img class="track-card-visual" src="/images/programs/cloud-fundamentals.svg" alt="Azure Fundamentals course poster visual">
-        <div class="track-card-body">
-          <h3>Azure Fundamentals</h3>
-          <p class="track-meta">Best for beginners and career changers starting cloud learning.</p>
-          <p>Build strong cloud vocabulary, understand Azure core services, and connect concepts to real workplace use.</p>
-          <ul class="track-points">
-            <li>Cloud concepts, pricing, governance, and shared responsibility</li>
-            <li>Identity basics, security foundations, and service mapping</li>
-            <li>Certification-aligned prep for AZ-900 confidence</li>
-          </ul>
-          <a class="cta secondary" href="/academy/azure-fundamentals/">View Track</a>
-        </div>
-      </article>
-
-      <article class="path-card track-card">
-        <img class="track-card-visual" src="/images/programs/cloud-security.svg" alt="Azure Security course poster visual">
-        <div class="track-card-body">
-          <h3>Azure Security</h3>
-          <p class="track-meta">Security-first training built around zero trust operations.</p>
-          <p>Learn to secure identities, workloads, and data paths while building repeatable security habits and controls.</p>
-          <ul class="track-points">
-            <li>Zero trust, least privilege, and secure access patterns</li>
-            <li>Cloud posture, monitoring, and incident-ready thinking</li>
-            <li>Practical security baselines for teams and projects</li>
-          </ul>
-          <a class="cta secondary" href="/academy/azure-security/">View Track</a>
-        </div>
-      </article>
-
-      <article class="path-card track-card">
-        <img class="track-card-visual" src="/images/programs/devops-automation.svg" alt="DevSecOps course poster visual">
-        <div class="track-card-body">
-          <h3>DevSecOps</h3>
-          <p class="track-meta">Pipeline security and automation for modern engineering teams.</p>
-          <p>Integrate security into CI/CD, automate controls, and improve release quality without slowing delivery.</p>
-          <ul class="track-points">
-            <li>Secure build, test, deploy, and monitor workflows</li>
-            <li>Policy-as-code and infrastructure automation patterns</li>
-            <li>Continuous improvement with measurable guardrails</li>
-          </ul>
-          <a class="cta secondary" href="/academy/devsecops/">View Track</a>
-        </div>
-      </article>
-
-      <article class="path-card track-card">
-        <img class="track-card-visual" src="/images/programs/ai-machine-learning.svg" alt="AI Fundamentals course poster visual">
-        <div class="track-card-body">
-          <h3>AI Fundamentals</h3>
-          <p class="track-meta">Responsible AI foundations with practical business use cases.</p>
-          <p>Understand AI lifecycle basics and apply AI safely in workflows that support decision-making and productivity.</p>
-          <ul class="track-points">
-            <li>Core AI concepts, models, and responsible AI principles</li>
-            <li>Machine learning literacy and real-world use scenarios</li>
-            <li>Hands-on context for AI-900 and workplace readiness</li>
-          </ul>
-          <a class="cta secondary" href="/academy/ai-fundamentals/">View Track</a>
-        </div>
-      </article>
-
-      <article class="path-card track-card">
-        <img class="track-card-visual" src="/images/programs/cloud-architecture.svg" alt="Cloud Architecture course poster visual">
-        <div class="track-card-body">
-          <h3>Cloud Architecture</h3>
-          <p class="track-meta">Design-focused pathway for scalable and secure cloud systems.</p>
-          <p>Develop architecture judgment across availability, performance, security, and cost to design resilient cloud environments.</p>
-          <ul class="track-points">
-            <li>Reference architectures and design tradeoff analysis</li>
-            <li>Reliability, disaster recovery, and performance planning</li>
-            <li>Cost-aware design with governance and compliance alignment</li>
-          </ul>
-          <a class="cta secondary" href="/academy/cloud-architecture/">View Track</a>
-        </div>
-      </article>
-
-      <article class="path-card track-card">
-        <img class="track-card-visual" src="/images/programs/coach-ro-portrait.svg" alt="Career Prep course poster visual">
-        <div class="track-card-body">
-          <h3>Career Prep</h3>
-          <p class="track-meta">Professional readiness for resumes, interviews, and transition strategy.</p>
-          <p>Translate technical learning into clear professional value with interview stories, project proof, and job-search structure.</p>
-          <ul class="track-points">
-            <li>Resume and portfolio storytelling with role alignment</li>
-            <li>Interview preparation for cloud and security pathways</li>
-            <li>Certification planning tied to career milestones</li>
-          </ul>
-          <a class="cta secondary" href="/academy/career-prep/">View Track</a>
-        </div>
-      </article>
-
-      <article class="path-card track-card">
-        <img class="track-card-visual" src="/images/programs/enterprise-plans.svg" alt="LearnPress structure guide visual">
-        <div class="track-card-body">
-          <h3>LearnPress Structure</h3>
-          <p class="track-meta">Delivery blueprint for course, section, lesson, and quiz sequencing.</p>
-          <p>Use a clear structure model to organize content for self-paced and instructor-led delivery with assessment continuity.</p>
-          <ul class="track-points">
-            <li>Course-to-lesson hierarchy for cleaner learner progression</li>
-            <li>Quiz mapping and milestone checkpoints by module</li>
-            <li>Reusable architecture for academy and class pathways</li>
-          </ul>
-          <a class="cta secondary" href="/academy/learnpress-structure/">Open Guide</a>
-        </div>
-      </article>
+    <section class="section">
+      <h2>Academy Tracks</h2>
+      <div class="path-grid">
+        <article class="card"><h3>Azure Fundamentals</h3><p>Build cloud foundations and AZ-900 readiness.</p><a class="btn secondary" href="/academy/azure-fundamentals/">Open Track</a></article>
+        <article class="card"><h3>Azure Security</h3><p>Identity security, least privilege, and cloud defense operations.</p><a class="btn secondary" href="/academy/azure-security/">Open Track</a></article>
+        <article class="card"><h3>DevSecOps</h3><p>Secure software delivery and policy-driven deployment workflows.</p><a class="btn secondary" href="/academy/devsecops/">Open Track</a></article>
+        <article class="card"><h3>AI Fundamentals</h3><p>Prompt design, RAG architecture, and responsible AI implementation.</p><a class="btn secondary" href="/academy/ai-fundamentals/">Open Track</a></article>
+        <article class="card"><h3>Cloud Architecture</h3><p>Landing zones, resilience patterns, and enterprise governance.</p><a class="btn secondary" href="/academy/cloud-architecture/">Open Track</a></article>
+        <article class="card"><h3>Career Prep</h3><p>Portfolio building, interview readiness, and certification planning.</p><a class="btn secondary" href="/academy/career-prep/">Open Track</a></article>
+      </div>
     </section>
+
+    <section class="section">
+      <h2>Self-Paced Course Inventory</h2>
+      <div id="academyTracks" class="card-grid"></div>
+    </section>
+
+    <p class="footer-note">Academy lessons share the same reusable assets used in PG Parks and Live cohorts so learners can switch paths without losing continuity.</p>
   </main>
 
-  <script src="/js/global-ui.js"></script>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/dct-learning-data.js"></script>
+  <script src="/js/dct-platform.js"></script>
+  <script>
+    DCTPlatform.renderHeader('academy');
+    DCTPlatform.renderCourseTrackCards('academyTracks', 'self-paced');
+  </script>
 </body>
 </html>
