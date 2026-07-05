@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DCT Visual Playbook Library</title>
   <meta name="description" content="Searchable and filterable visual playbook posters aligned to lessons, modules, quizzes, and certification objectives.">
-  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="stylesheet" href="/css/platform.css">
+  <link rel="icon" type="image/svg+xml" href="../logo.svg?v=20260622c">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/platform.css">
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="/index.html" class="logo">
-        <img src="/logo.png?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img">
+      <a href="../index.html" class="logo">
+        <img src="../logo.png?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img">
         <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
       </a>
       <nav class="nav-links"></nav>
@@ -26,8 +26,23 @@
       <h1>DCT Visual Playbook Library</h1>
       <p>Every poster is curriculum-linked. Browse by topic, level, and lesson alignment to keep visuals instructional and measurable.</p>
       <div class="cta-row">
-        <a class="cta secondary" href="/academy/">View Course Tracks</a>
-        <a class="cta secondary" href="/classes/">View Class Paths</a>
+        <a class="cta secondary" href="../academy/">View Course Tracks</a>
+        <a class="cta secondary" href="../classes/">View Class Paths</a>
+      </div>
+    </section>
+
+    <section class="scenario-section">
+      <div class="scenario-grid">
+        <article class="scenario-card">
+          <img src="../images/programs/stride-threat-modeling.svg" alt="STRIDE threat modeling poster">
+          <h3>Featured Security Visual: STRIDE</h3>
+          <p>This poster guides learners through a practical threat-modeling workflow used in cloud and application security planning.</p>
+          <ul>
+            <li>Map threat categories to architecture components</li>
+            <li>Document mitigation controls before release</li>
+            <li>Use the output as evidence for governance reviews</li>
+          </ul>
+        </article>
       </div>
     </section>
 
@@ -45,9 +60,9 @@
     <section id="playbook-results" class="card-grid"></section>
   </main>
 
-  <script src="/js/dct-content-model.js"></script>
-  <script src="/js/platform-pages.js"></script>
-  <script src="/js/global-ui.js"></script>
+  <script src="../js/dct-content-model.js"></script>
+  <script src="../js/platform-pages.js"></script>
+  <script src="../js/global-ui.js"></script>
   <script>DCT_PAGES.renderPlaybook("playbook-results");</script>
 </body>
 </html>
