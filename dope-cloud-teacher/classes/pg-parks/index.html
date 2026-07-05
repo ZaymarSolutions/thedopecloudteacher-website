@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG Parks Classes | The Dope Cloud Teacher</title>
+  <meta name="description" content="PG Parks cloud cohort schedule, onboarding checklist, Azure setup, weekly lessons, homework, resources, and quiz links.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/platform.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="/index.html" class="logo">
+        <img src="/logo.svg?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img">
+        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation"></nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
+    </div>
+  </header>
+
+  <main class="platform-shell">
+    <section class="platform-hero">
+      <h1>PG Parks In-Person Cohort</h1>
+      <p>Community-first classroom experience with structured weekly labs and instructor support.</p>
+      <div class="cta-row">
+        <a class="cta primary" href="/contact.html">Join Next Cohort</a>
+        <a class="cta secondary" href="/classes/">Back to All Classes</a>
+      </div>
+    </section>
+
+    <section class="section-head"><h2>Current Class Schedule</h2></section>
+    <section id="pg-cohort" class="card-grid"></section>
+
+    <section class="section-head"><h2>Location Info</h2></section>
+    <article class="platform-card"><p>Primary location: PG Parks Community Technology Center, computer lab wing. Check your welcome email for parking and room details.</p></article>
+
+    <section class="section-head"><h2>Student Onboarding Checklist</h2></section>
+    <ul class="list-clean platform-card">
+      <li>Complete registration and emergency contact form</li>
+      <li>Bring laptop and charger to every session</li>
+      <li>Create Microsoft account for Azure access</li>
+      <li>Join class communication channel</li>
+    </ul>
+
+    <section class="section-head"><h2>Azure Setup Instructions</h2></section>
+    <article class="platform-card"><p>Create your Azure student account, enable MFA, and verify your subscription quota before week 1 lab check-in.</p></article>
+
+    <section class="section-head"><h2>Weekly Lessons</h2></section>
+    <section id="pg-lessons" class="card-grid"></section>
+
+    <section class="section-head"><h2>Homework</h2></section>
+    <article class="platform-card"><p>Submit one lab reflection and one screenshot proof each week. Missed work can be recovered during open lab hours.</p></article>
+
+    <section class="section-head"><h2>Class Resources</h2></section>
+    <article class="platform-card"><p>Download onboarding kit, lab checklist, and visual playbook posters from your dashboard resources tab.</p></article>
+
+    <section class="section-head"><h2>Quiz Links</h2></section>
+    <article class="platform-card"><p>Quiz access is released per lesson in sequence. Current quizzes include Cloud Concepts Check and Career Readiness Quiz.</p></article>
+  </main>
+
+  <script src="/js/dct-content-model.js"></script>
+  <script src="/js/platform-pages.js"></script>
+  <script src="/js/global-ui.js"></script>
+  <script>
+    DCT_PAGES.renderCohorts("pg-cohort", "pg-parks");
+    DCT_PAGES.renderAssignedLessons("pg-lessons", "pg-parks");
+  </script>
+</body>
+</html>

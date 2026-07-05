@@ -6,20 +6,23 @@
     var nav = document.querySelector('header .nav-links, .professional-nav .nav-links, .header-inner .nav-links, .header-container .nav-links');
     if (!nav || nav.dataset.standardized === 'true') return;
 
-    var currentPage = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0] || 'index.html';
+    var pathname = window.location.pathname || '/';
+    var parts = pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+    var section = parts[0] || 'home';
+    var currentPage = (parts.length ? parts[parts.length - 1] : 'index.html').split('?')[0] || 'index.html';
     var navItems = [
-      { href: 'index.html', label: 'Home', match: ['index.html', ''] },
-      { href: 'courses.html', label: 'Classes', match: ['courses.html', 'Cloud-fundamentals-course.html', 'cloud-career-starter-kit.html', 'ai-900-azure-ai-fundamentals.html', 'az-900-azure-fundamentals.html', 'az-104-azure-administrator.html', 'az-305-azure-solutions-architect.html'] },
-      { href: 'blog.html', label: 'Blog', match: ['blog.html', 'cloud-control-azure-policy.html', 'black-women-in-it-ai-shift.html'] },
-      { href: 'resources.html', label: 'Resources', match: ['resources.html'] },
-      { href: 'pricing.html', label: 'Specials', match: ['pricing.html', 'shop.html'] },
-      { href: 'certificate.html', label: 'Certificates', match: ['certificate.html'] },
-      { href: 'dashboard.html', label: 'Dashboard', match: ['dashboard.html'] },
-      { href: 'pg-parks-direct.html', label: 'PG Parks Direct', match: ['pg-parks-direct.html', 'pg-cloud-mission.html', 'pg-ai-mission.html', 'pg-cyber-mission.html'] }
+      { href: '/index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
+      { href: '/classes/', label: 'Classes', sections: ['classes'], pages: ['courses.html', 'pg-parks-direct.html'] },
+      { href: '/academy/', label: 'Academy', sections: ['academy'], pages: ['cloud-fundamentals-course.html', 'cloud-career-starter-kit.html'] },
+      { href: '/playbook/', label: 'Visual Playbook', sections: ['playbook'], pages: ['resources.html'] },
+      { href: '/student-dashboard/', label: 'Student Dashboard', sections: ['student-dashboard'], pages: ['dashboard.html'] },
+      { href: '/corporate-training.html', label: 'For Businesses', sections: [], pages: ['corporate-training.html', 'b2b.html'] },
+      { href: '/about.html', label: 'About', sections: [], pages: ['about.html'] },
+      { href: '/contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
     ];
 
     nav.innerHTML = navItems.map(function (item) {
-      var isActive = item.match.indexOf(currentPage) !== -1;
+      var isActive = item.sections.indexOf(section) !== -1 || item.pages.indexOf(currentPage) !== -1;
       return '<a href="' + item.href + '"' + (isActive ? ' class="active"' : '') + '>' + item.label + '</a>';
     }).join('') + '<a href="#" id="authButton">Sign In</a>';
 

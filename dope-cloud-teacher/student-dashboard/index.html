@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | The Dope Cloud Teacher</title>
+  <meta name="description" content="Student dashboard with classes, current lesson, homework, quizzes, downloads, progress, and certificates.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/platform.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="/index.html" class="logo">
+        <img src="/logo.svg?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img">
+        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
+      </a>
+      <nav class="nav-links"></nav>
+      <button class="mobile-menu-toggle">≡</button>
+    </div>
+  </header>
+
+  <main class="platform-shell">
+    <section class="platform-hero">
+      <h1>Student Dashboard</h1>
+      <p>Track classes, stay on your current lesson, and manage quizzes, homework, downloads, and certificates in one place.</p>
+    </section>
+
+    <section class="dashboard-shell">
+      <section class="section-head"><h2>My Classes</h2></section>
+      <section id="student-cohorts" class="card-grid"></section>
+
+      <section class="section-head"><h2>My Current Lesson</h2></section>
+      <article id="student-current-lesson" class="platform-card"></article>
+    </section>
+  </main>
+
+  <script src="/js/dct-content-model.js"></script>
+  <script src="/js/platform-pages.js"></script>
+  <script src="/js/global-ui.js"></script>
+  <script>DCT_PAGES.renderStudentDashboard();</script>
+</body>
+</html>

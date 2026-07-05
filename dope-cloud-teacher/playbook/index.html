@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCT Visual Playbook Library</title>
+  <meta name="description" content="Searchable and filterable visual playbook posters aligned to lessons, modules, quizzes, and certification objectives.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/platform.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="/index.html" class="logo">
+        <img src="/logo.svg?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img">
+        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
+      </a>
+      <nav class="nav-links"></nav>
+      <button class="mobile-menu-toggle">≡</button>
+    </div>
+  </header>
+
+  <main class="platform-shell">
+    <section class="platform-hero">
+      <h1>DCT Visual Playbook Library</h1>
+      <p>Every poster is curriculum-linked. Browse by topic, level, and lesson alignment to keep visuals instructional and measurable.</p>
+      <div class="cta-row">
+        <a class="cta secondary" href="/academy/">View Course Tracks</a>
+        <a class="cta secondary" href="/classes/">View Class Paths</a>
+      </div>
+    </section>
+
+    <section class="section-head"><h2>Search and Filter</h2></section>
+    <div class="toolbar">
+      <input id="playbook-search" type="text" placeholder="Search title, topic, or tags">
+      <select id="playbook-difficulty">
+        <option value="all">All difficulty levels</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      </select>
+    </div>
+
+    <section id="playbook-results" class="card-grid"></section>
+  </main>
+
+  <script src="/js/dct-content-model.js"></script>
+  <script src="/js/platform-pages.js"></script>
+  <script src="/js/global-ui.js"></script>
+  <script>DCT_PAGES.renderPlaybook("playbook-results");</script>
+</body>
+</html>

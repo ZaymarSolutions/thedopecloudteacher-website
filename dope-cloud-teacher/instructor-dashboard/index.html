@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor Dashboard | The Dope Cloud Teacher</title>
+  <meta name="description" content="Manage cohorts, upload lesson assets, assign posters/resources/quizzes, and track student progress.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260622c">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/platform.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="/index.html" class="logo">
+        <img src="/logo.svg?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img">
+        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span></div>
+      </a>
+      <nav class="nav-links"></nav>
+      <button class="mobile-menu-toggle">≡</button>
+    </div>
+  </header>
+
+  <main class="platform-shell">
+    <section class="platform-hero">
+      <h1>Instructor Dashboard</h1>
+      <p>Manage cohorts, upload lesson assets, assign visual posters/resources/quizzes, and track student progress across programs.</p>
+    </section>
+
+    <section class="section-head"><h2>Manage Cohorts</h2></section>
+    <section id="instructor-cohorts" class="card-grid"></section>
+
+    <section class="section-head"><h2>Assign Reusable Assets</h2></section>
+    <article class="platform-card">
+      <p>One lesson can be assigned to multiple cohorts and delivery types. Posters, quizzes, and downloads map directly to lesson IDs.</p>
+      <table class="data-table">
+        <thead>
+          <tr><th>Lesson</th><th>Poster Assets</th><th>Quiz</th><th>Action</th></tr>
+        </thead>
+        <tbody id="assignment-table-body"></tbody>
+      </table>
+    </article>
+
+    <section class="section-head"><h2>Track Student Progress</h2></section>
+    <article class="platform-card"><p>Progress tracking supports completion, quiz pass rates, homework submissions, and certificate milestones by cohort and course.</p></article>
+  </main>
+
+  <script src="/js/dct-content-model.js"></script>
+  <script src="/js/platform-pages.js"></script>
+  <script src="/js/global-ui.js"></script>
+  <script>DCT_PAGES.renderInstructorDashboard();</script>
+</body>
+</html>

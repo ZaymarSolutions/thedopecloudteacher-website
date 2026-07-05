@@ -93,6 +93,7 @@
   }
   </script>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/platform.css">
   <!-- Font Awesome for icons, Devicon for tech logos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
@@ -166,6 +167,51 @@
     </div>
   </header>
   <!--#include virtual="onboarding-modal.html" -->
+
+  <section class="platform-shell" aria-labelledby="platform-home-title">
+    <section class="platform-hero">
+      <h1 id="platform-home-title">Learn Cloud, Security, DevOps, and AI with The Dope Cloud Teacher</h1>
+      <p>Choose your path and follow one aligned curriculum: in-person PG Parks classes, live virtual cohorts, or self-paced Dope Cloud Academy learning.</p>
+      <div class="cta-row">
+        <a class="cta primary" href="/classes/">Enroll</a>
+        <a class="cta secondary" href="/academy/">View Academy</a>
+        <a class="cta secondary" href="/playbook/">Browse Playbook</a>
+      </div>
+    </section>
+
+    <section class="section-head">
+      <h2>Choose Your Path</h2>
+      <p>Clear options for every learner.</p>
+    </section>
+    <section class="path-grid">
+      <article class="path-card">
+        <h3>Join an In-Person Class</h3>
+        <p>PG Parks classroom cohorts with hands-on labs and instructor support.</p>
+        <a class="cta secondary" href="/classes/pg-parks/">Explore PG Parks</a>
+      </article>
+      <article class="path-card">
+        <h3>Attend a Live Virtual Class</h3>
+        <p>Scheduled online sessions with replay and guided resource access.</p>
+        <a class="cta secondary" href="/classes/live/">Explore Live Virtual</a>
+      </article>
+      <article class="path-card">
+        <h3>Learn Anytime Through Dope Cloud Academy</h3>
+        <p>Self-paced tracks in Azure, Security, DevSecOps, AI, Architecture, and Career Prep.</p>
+        <a class="cta secondary" href="/academy/">Explore Academy</a>
+      </article>
+    </section>
+
+    <section class="section-head">
+      <h2>Featured Visual Playbook Posters</h2>
+      <p>Poster assets are linked to course modules and lessons.</p>
+    </section>
+    <section id="home-featured-posters" class="card-grid"></section>
+
+    <section class="section-head">
+      <h2>Current and Upcoming Cohorts</h2>
+    </section>
+    <section id="home-cohorts" class="card-grid"></section>
+  </section>
 
   <!-- Home Intro Section -->
   <section class="demo-banner" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #e2e8f0; border: 1px solid rgba(119,239,227,0.2);">
@@ -746,10 +792,29 @@
   <script src="js/site-config.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/auth-system.js"></script>
+  <script src="js/dct-content-model.js"></script>
+  <script src="js/platform-pages.js"></script>
   <script src="js/global-ui.js"></script>
   <script>
     // Update auth button if user is logged in
     document.addEventListener('DOMContentLoaded', () => {
+      const featuredPosters = document.getElementById('home-featured-posters');
+      if (featuredPosters && window.DCT_CONTENT) {
+        featuredPosters.innerHTML = window.DCT_CONTENT.visualPosters.slice(0, 4).map((poster) => {
+          return '<article class="platform-card">' +
+            '<h3>' + poster.title + '</h3>' +
+            '<p>' + poster.topic + '</p>' +
+            '<p class="poster-meta"><strong>Certification:</strong> ' + poster.certificationMapping + '</p>' +
+            '<p class="poster-meta"><strong>Related lessons:</strong> ' + poster.relatedLessonIds.length + '</p>' +
+            '<a class="cta secondary" href="/playbook/">Open in Playbook</a>' +
+            '</article>';
+        }).join('');
+      }
+
+      if (document.getElementById('home-cohorts') && window.DCT_PAGES) {
+        window.DCT_PAGES.renderCohorts('home-cohorts');
+      }
+
       if (dopeAuth.isAuthenticated()) {
         const navButton = document.getElementById('navAuthButton');
         if (navButton) {
