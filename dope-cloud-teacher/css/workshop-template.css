@@ -1,0 +1,294 @@
+:root {
+  --dct-workshop-bg: #0b1025;
+  --dct-workshop-panel: rgba(255, 255, 255, 0.06);
+  --dct-workshop-panel-strong: rgba(255, 255, 255, 0.10);
+  --dct-workshop-text: #f7f9ff;
+  --dct-workshop-muted: #c7d2f4;
+  --dct-workshop-line: rgba(119, 239, 227, 0.14);
+  --dct-workshop-purple: #7b4df2;
+  --dct-workshop-blue: #4aa3ff;
+  --dct-workshop-teal: #77efe3;
+  --dct-workshop-surface: rgba(8, 11, 26, 0.92);
+  --dct-workshop-card: rgba(255, 255, 255, 0.07);
+  --dct-workshop-card-border: rgba(119, 239, 227, 0.16);
+  --dct-workshop-soft: rgba(123, 77, 242, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--dct-workshop-text);
+  background:
+    radial-gradient(circle at top left, rgba(74, 163, 255, 0.18), transparent 36%),
+    radial-gradient(circle at top right, rgba(123, 77, 242, 0.22), transparent 34%),
+    linear-gradient(135deg, #050816 0%, #0b1025 44%, #131942 100%);
+}
+
+.dct-workshop-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+}
+
+.dct-workshop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--dct-workshop-line);
+  border-radius: 16px;
+  background: var(--dct-workshop-surface);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(5, 8, 22, 0.35);
+}
+
+.dct-workshop-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--dct-workshop-text);
+}
+
+.dct-workshop-brand img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.dct-workshop-brand strong {
+  display: block;
+  font-size: 1.02rem;
+}
+
+.dct-workshop-brand span {
+  display: block;
+  color: var(--dct-workshop-muted);
+  font-size: 0.84rem;
+}
+
+.dct-workshop-actions {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.dct-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.62rem 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.dct-btn:hover {
+  transform: translateY(-1px);
+}
+
+.dct-btn.primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--dct-workshop-purple), var(--dct-workshop-blue));
+  box-shadow: 0 12px 24px rgba(123, 77, 242, 0.22);
+}
+
+.dct-btn.secondary {
+  color: var(--dct-workshop-text);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.dct-workshop-hero,
+.dct-workshop-card {
+  margin-top: 0.95rem;
+  border-radius: 18px;
+  border: 1px solid var(--dct-workshop-card-border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+  box-shadow: 0 18px 42px rgba(5, 8, 22, 0.24);
+}
+
+.dct-workshop-hero {
+  padding: 1.15rem 1.15rem 1rem;
+}
+
+.dct-workshop-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(119, 239, 227, 0.10);
+  color: var(--dct-workshop-teal);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.dct-workshop-hero h1 {
+  margin: 0.7rem 0 0;
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  line-height: 1.1;
+}
+
+.dct-workshop-hero p,
+.dct-workshop-card p {
+  color: var(--dct-workshop-muted);
+  line-height: 1.6;
+}
+
+.dct-workshop-meta {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.dct-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.28rem 0.7rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #edf2ff;
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+.dct-workshop-card {
+  padding: 1rem;
+}
+
+.dct-workshop-card h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #f4f7ff;
+}
+
+.dct-slide-grid {
+  margin-top: 0.85rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.8rem;
+}
+
+.dct-slide {
+  border-radius: 14px;
+  border: 1px solid var(--dct-workshop-card-border);
+  background: rgba(255,255,255,0.06);
+  padding: 0.9rem;
+}
+
+.dct-slide h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.02rem;
+  color: var(--dct-workshop-teal);
+}
+
+.dct-slide .label {
+  margin: 0;
+  color: #96bcff;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+  font-size: 0.78rem;
+}
+
+.dct-onscreen {
+  margin: 0.4rem 0 0;
+  padding-left: 1rem;
+  color: #f4f7ff;
+  line-height: 1.48;
+}
+
+.dct-onscreen li + li {
+  margin-top: 0.25rem;
+}
+
+.dct-notes {
+  display: none;
+  margin-top: 0.65rem;
+  padding: 0.72rem;
+  border-radius: 12px;
+  background: rgba(46, 144, 255, 0.12);
+  border: 1px solid rgba(74, 163, 255, 0.24);
+  color: #eaf2ff;
+  line-height: 1.5;
+  font-size: 0.94rem;
+}
+
+body.instructor-unlocked .dct-notes {
+  display: block;
+}
+
+.dct-notes-locked {
+  margin-top: 0.85rem;
+  padding: 0.8rem 0.85rem;
+  border-radius: 12px;
+  border: 1px dashed rgba(119, 239, 227, 0.28);
+  background: rgba(255,255,255,0.04);
+  color: var(--dct-workshop-muted);
+}
+
+body.instructor-unlocked .dct-notes-locked {
+  display: none;
+}
+
+.dct-workshop-footer {
+  margin-top: 0.9rem;
+  color: var(--dct-workshop-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .dct-workshop-header {
+    padding: 0.85rem;
+  }
+
+  .dct-workshop-shell {
+    width: min(1120px, calc(100% - 1rem));
+  }
+
+  .dct-workshop-hero,
+  .dct-workshop-card {
+    border-radius: 16px;
+  }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .dct-workshop-header,
+  .dct-workshop-footer,
+  .dct-notes-locked,
+  .dct-btn {
+    display: none !important;
+  }
+
+  .dct-workshop-shell {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .dct-workshop-hero,
+  .dct-workshop-card,
+  .dct-slide {
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+  .dct-notes {
+    display: block !important;
+  }
+}
