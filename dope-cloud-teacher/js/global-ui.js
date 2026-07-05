@@ -106,10 +106,12 @@
     var navItems = [
       { href: 'index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
       { href: 'classes/', label: 'Classes', sections: ['classes'], pages: ['courses.html', 'pg-parks-direct.html'] },
+      { href: 'curriculum-paths.html', label: 'Curriculum Paths', sections: [], pages: ['curriculum-paths.html'] },
       { href: 'academy/', label: 'Academy', sections: ['academy'], pages: ['cloud-fundamentals-course.html', 'cloud-career-starter-kit.html'] },
       { href: 'playbook/', label: 'Visual Playbook', sections: ['playbook'], pages: ['resources.html'] },
       { href: 'student-dashboard/', label: 'Student Dashboard', sections: ['student-dashboard'], pages: ['dashboard.html'] },
       { href: 'corporate-training.html', label: 'For Businesses', sections: [], pages: ['corporate-training.html', 'b2b.html'] },
+      { href: 'instructor-apply.html', label: 'Instructors', sections: [], pages: ['instructor-apply.html'] },
       { href: 'about.html', label: 'About', sections: [], pages: ['about.html'] },
       { href: 'contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
     ];

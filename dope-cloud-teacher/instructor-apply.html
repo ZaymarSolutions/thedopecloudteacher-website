@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructor Application | The Dope Cloud Teacher</title>
+  <meta name="description" content="Apply to teach with The Dope Cloud Teacher for in-person and live virtual cohorts in cloud, security, AI, and DevSecOps.">
+  <link rel="icon" type="image/png" href="logo.png?v=20260622c">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.png?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img">
+        <div class="logo-text">
+          <span class="main-title">The Dope Cloud Teacher</span>
+          <span class="subtitle">Cloud Classes For Real People</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation"></nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
+    </div>
+  </header>
+
+  <main class="contact-layout">
+    <section class="contact-card">
+      <h1>Apply to Become a DCT Instructor</h1>
+      <p>Help learners break into cloud, cybersecurity, AI, and DevSecOps through in-person and live virtual delivery paths.</p>
+      <p><strong>Current hiring focus:</strong> Cloud fundamentals, Azure administration, cloud security, DevSecOps, and AI fundamentals.</p>
+    </section>
+
+    <section class="contact-card scenario-section">
+      <h2>Instructor Roles</h2>
+      <div class="scenario-grid">
+        <article class="scenario-card">
+          <h3>In-Person Facilitator</h3>
+          <p>Lead classroom sessions in community and workforce environments.</p>
+        </article>
+        <article class="scenario-card">
+          <h3>Live Virtual Instructor</h3>
+          <p>Teach remote cohorts and support student milestones.</p>
+        </article>
+        <article class="scenario-card">
+          <h3>Curriculum Coach</h3>
+          <p>Contribute to lesson quality, project rubrics, and playbook alignment.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-card">
+      <h2>Application Form</h2>
+      <form action="mailto:thedopecloudteacher@gmail.com?subject=DCT%20Instructor%20Application" method="POST" enctype="text/plain" style="display:grid;gap:0.8rem;max-width:760px;">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="text" name="location" placeholder="City/State or Region" required>
+        <input type="text" name="linkedin" placeholder="LinkedIn Profile URL">
+        <input type="text" name="certifications" placeholder="Top Certifications (AZ-900, AZ-104, AZ-500, etc.)" required>
+        <select name="delivery_preference" required>
+          <option value="">Preferred Delivery Format</option>
+          <option>In-Person</option>
+          <option>Live Virtual</option>
+          <option>Both</option>
+        </select>
+        <textarea name="teaching_experience" rows="4" placeholder="Describe your teaching or facilitation experience" required></textarea>
+        <textarea name="specialty" rows="4" placeholder="Primary topics you can teach (cloud, security, AI, DevSecOps, career prep)" required></textarea>
+        <button class="cta primary" type="submit">Submit Application</button>
+      </form>
+      <p style="margin-top:0.8rem;">Prefer direct email? Send your resume and teaching profile to <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.</p>
+    </section>
+  </main>
+
+  <script src="js/global-ui.js"></script>
+</body>
+</html>
