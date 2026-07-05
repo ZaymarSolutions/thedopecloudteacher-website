@@ -4,6 +4,9 @@
 
   function sitePath(target) {
     var cleanTarget = String(target || '').replace(/^\/+/, '');
+    if (cleanTarget.endsWith('/')) {
+      cleanTarget += 'index.html';
+    }
     if (!cleanTarget) return '/';
 
     if (window.location.protocol !== 'file:') {
@@ -222,6 +225,43 @@
     document.querySelectorAll(selector).forEach(buildFlipCard);
   }
 
+  function initAuthFallback() {
+    if (typeof window.showAuthModal !== 'function') {
+      window.showAuthModal = function () {
+        window.location.href = sitePath('login.html');
+      };
+    }
+
+    document.querySelectorAll('#authButton, #navAuthButton').forEach(function (node) {
+      node.addEventListener('click', function (event) {
+        var href = node.getAttribute('href') || '';
+        if (href === '#' || href === '') {
+          event.preventDefault();
+          if (typeof window.showAuthModal === 'function') {
+            window.showAuthModal('login');
+          } else {
+            window.location.href = sitePath('login.html');
+          }
+        }
+      });
+    });
+  }
+
+  function normalizeLocalLinks() {
+    if (window.location.protocol !== 'file:') return;
+
+    document.querySelectorAll('a[href]').forEach(function (link) {
+      var href = link.getAttribute('href') || '';
+      if (!href || href.indexOf('http') === 0 || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0 || href.indexOf('#') === 0) {
+        return;
+      }
+
+      if (href.charAt(0) === '/' && href.endsWith('/')) {
+        link.setAttribute('href', sitePath(href + 'index.html'));
+      }
+    });
+  }
+
   function sanitizeCoursesPageLeak() {
     var currentPage = (window.location.pathname.split('/').pop() || 'index.html').split('?')[0] || 'index.html';
     if (currentPage !== 'courses.html') return;
@@ -267,6 +307,8 @@
       initStandardNav();
       initMobileNav();
       initFlipCards();
+      initAuthFallback();
+      normalizeLocalLinks();
     });
   } else {
     ensureThemeStyles();
@@ -275,5 +317,7 @@
     initStandardNav();
     initMobileNav();
     initFlipCards();
+    initAuthFallback();
+    normalizeLocalLinks();
   }
 })();

@@ -88,12 +88,24 @@ button,
 img.logo-img {
   image-rendering: auto;
   object-fit: contain !important;
-  object-position: center !important;
+  object-position: center center !important;
   overflow: visible !important;
   padding-top: 4px;
+  height: 76px !important;
+  width: auto !important;
+  max-width: min(320px, 42vw) !important;
+  border-radius: 0 !important;
+  display: block !important;
+  clip-path: none !important;
+  mask-image: none !important;
 }
 
 .logo,
 .logo-img {
   overflow: visible !important;
+}
+
+header .logo {
+  align-items: center !important;
+  min-height: 80px;
 }
