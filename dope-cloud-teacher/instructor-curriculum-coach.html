@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Coach | The Dope Cloud Teacher</title>
+  <meta name="description" content="Apply for the Curriculum Coach role at The Dope Cloud Teacher.">
+  <link rel="icon" type="image/png" href="logo.png?v=20260705b">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { margin: 0; font-family: "Source Sans 3", "Segoe UI", Tahoma, sans-serif; background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%); color: #24324d; }
+    .shell { max-width: 1120px; margin: 1.2rem auto 2rem; padding: 0 1rem; }
+    .hero { background: #fff; border: 1px solid #d4e5fb; border-radius: 20px; overflow: hidden; box-shadow: 0 14px 32px rgba(16, 32, 62, 0.08); }
+    .hero img { width: 100%; height: 330px; object-fit: cover; display: block; }
+    .hero-body { padding: 1.2rem; }
+    h1, h2, h3 { font-family: "Merriweather", "Georgia", serif; color: #0f2140; }
+    .grid { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; }
+    .card { background: #fff; border: 1px solid #d4e5fb; border-radius: 16px; padding: 1rem; }
+    .card p { margin: 0.4rem 0 0; line-height: 1.65; }
+    form { margin-top: 1rem; background: #fff; border: 1px solid #d4e5fb; border-radius: 16px; padding: 1rem; display: grid; gap: 0.75rem; }
+    input, select, textarea { width: 100%; border: 1px solid #c7daf5; border-radius: 10px; padding: 0.6rem 0.7rem; font: inherit; }
+    label { font-weight: 700; color: #1b3158; }
+    .btn { text-decoration: none; border-radius: 999px; padding: 0.62rem 1rem; font-weight: 700; border: 1px solid transparent; display: inline-block; }
+    .btn.primary { background: linear-gradient(135deg, #178BE7, #0F6EDB); color: #fff; }
+    .btn.secondary { background: #e9f3ff; color: #16355a; border-color: #c8dcfb; }
+    .actions { margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher logo" class="logo-img">
+        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span><span class="subtitle">Cloud Classes For Real People</span></div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation"></nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1800&q=80" alt="Curriculum planning session for technology training program">
+      <div class="hero-body">
+        <h1>Curriculum Coach</h1>
+        <p>Guide lesson quality, pacing, learner assessment strategy, and instructional consistency across cloud, AI, and cybersecurity pathways.</p>
+        <div class="actions">
+          <a class="btn secondary" href="curriculum-paths.html">View Curriculum Pathways</a>
+          <a class="btn secondary" href="instructor-apply.html">Back to Instructor Roles</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Role Scope</h2>
+        <p>Review course architecture, improve lesson outcomes, align assignments with career goals, and support instructor coaching workflows.</p>
+      </article>
+      <article class="card">
+        <h2>Expected Deliverables</h2>
+        <p>Curriculum maps, rubric improvements, quality checks, and implementation recommendations backed by learner performance data.</p>
+      </article>
+      <article class="card">
+        <h2>Best Fit Profile</h2>
+        <p>Experienced educators, instructional designers, and technical coaches who can bridge cloud content with practical teaching strategy.</p>
+      </article>
+    </section>
+
+    <form action="mailto:thedopecloudteacher@gmail.com?subject=Curriculum%20Coach%20Application" method="POST" enctype="text/plain">
+      <h2>Curriculum Coach Application Form</h2>
+
+      <label for="cc-name">Full name</label>
+      <input id="cc-name" name="full_name" type="text" required>
+
+      <label for="cc-email">Email address</label>
+      <input id="cc-email" name="email" type="email" required>
+
+      <label for="cc-phone">Phone number</label>
+      <input id="cc-phone" name="phone" type="tel" required>
+
+      <label for="cc-location">Location and timezone</label>
+      <input id="cc-location" name="location_timezone" type="text" required>
+
+      <label for="cc-role">Primary background</label>
+      <select id="cc-role" name="background" required>
+        <option value="">Select one</option>
+        <option>Instructional Design</option>
+        <option>Technical Education</option>
+        <option>Cloud Engineering and Training</option>
+        <option>Workforce Program Management</option>
+      </select>
+
+      <label for="cc-subjects">Subject domains you can coach</label>
+      <input id="cc-subjects" name="subject_domains" type="text" placeholder="Cloud, Azure, AI, Security, DevSecOps, Career Prep" required>
+
+      <label for="cc-exp">Curriculum coaching experience</label>
+      <textarea id="cc-exp" name="coaching_experience" rows="4" placeholder="Include program types, outcomes, and content ownership" required></textarea>
+
+      <label for="cc-rubrics">Assessment and rubric design experience</label>
+      <textarea id="cc-rubrics" name="rubric_experience" rows="4" placeholder="How you evaluate learner performance and quality of instruction" required></textarea>
+
+      <label for="cc-artifacts">Portfolio links or artifacts</label>
+      <textarea id="cc-artifacts" name="portfolio_links" rows="3" placeholder="Share curriculum samples, frameworks, or published guides"></textarea>
+
+      <label for="cc-availability">Availability and engagement preference</label>
+      <textarea id="cc-availability" name="availability" rows="3" placeholder="Part-time, project-based, advisory cadence" required></textarea>
+
+      <button class="btn primary" type="submit">Submit Curriculum Coach Application</button>
+    </form>
+  </main>
+
+  <script src="js/global-ui.js"></script>
+</body>
+</html>

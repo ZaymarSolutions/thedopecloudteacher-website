@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Virtual Instructor | The Dope Cloud Teacher</title>
+  <meta name="description" content="Apply for the Live Virtual Instructor role at The Dope Cloud Teacher.">
+  <link rel="icon" type="image/png" href="logo.png?v=20260705b">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { margin: 0; font-family: "Source Sans 3", "Segoe UI", Tahoma, sans-serif; background: linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%); color: #24324d; }
+    .shell { max-width: 1120px; margin: 1.2rem auto 2rem; padding: 0 1rem; }
+    .hero { background: #fff; border: 1px solid #d4e5fb; border-radius: 20px; overflow: hidden; box-shadow: 0 14px 32px rgba(16, 32, 62, 0.08); }
+    .hero img { width: 100%; height: 330px; object-fit: cover; display: block; }
+    .hero-body { padding: 1.2rem; }
+    h1, h2, h3 { font-family: "Merriweather", "Georgia", serif; color: #0f2140; }
+    .grid { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.85rem; }
+    .card { background: #fff; border: 1px solid #d4e5fb; border-radius: 16px; padding: 1rem; }
+    .card p { margin: 0.4rem 0 0; line-height: 1.65; }
+    form { margin-top: 1rem; background: #fff; border: 1px solid #d4e5fb; border-radius: 16px; padding: 1rem; display: grid; gap: 0.75rem; }
+    input, select, textarea { width: 100%; border: 1px solid #c7daf5; border-radius: 10px; padding: 0.6rem 0.7rem; font: inherit; }
+    label { font-weight: 700; color: #1b3158; }
+    .btn { text-decoration: none; border-radius: 999px; padding: 0.62rem 1rem; font-weight: 700; border: 1px solid transparent; display: inline-block; }
+    .btn.primary { background: linear-gradient(135deg, #178BE7, #0F6EDB); color: #fff; }
+    .btn.secondary { background: #e9f3ff; color: #16355a; border-color: #c8dcfb; }
+    .actions { margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher logo" class="logo-img">
+        <div class="logo-text"><span class="main-title">The Dope Cloud Teacher</span><span class="subtitle">Cloud Classes For Real People</span></div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation"></nav>
+      <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">≡</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1800&q=80" alt="Virtual instructor leading a live online class">
+      <div class="hero-body">
+        <h1>Live Virtual Instructor</h1>
+        <p>Lead remote cohorts in cloud, AI, and cybersecurity with consistent pacing, high-engagement teaching, and measurable learner outcomes.</p>
+        <div class="actions">
+          <a class="btn secondary" href="classes/live/index.html">View Live Virtual Program</a>
+          <a class="btn secondary" href="instructor-apply.html">Back to Instructor Roles</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Core Responsibilities</h2>
+        <p>Deliver live sessions, run office hours, grade projects with rubrics, and provide milestone feedback that keeps learners progressing.</p>
+      </article>
+      <article class="card">
+        <h2>Typical Schedule</h2>
+        <p>Two to three live sessions each week, lesson prep, asynchronous feedback windows, and monthly curriculum alignment meetings.</p>
+      </article>
+      <article class="card">
+        <h2>Preferred Qualifications</h2>
+        <p>Demonstrated virtual teaching experience, cloud certifications, and confidence using Zoom, Teams, LMS tools, and learner analytics.</p>
+      </article>
+    </section>
+
+    <form action="mailto:thedopecloudteacher@gmail.com?subject=Live%20Virtual%20Instructor%20Application" method="POST" enctype="text/plain">
+      <h2>Live Virtual Instructor Application Form</h2>
+
+      <label for="lv-name">Full name</label>
+      <input id="lv-name" name="full_name" type="text" required>
+
+      <label for="lv-email">Email address</label>
+      <input id="lv-email" name="email" type="email" required>
+
+      <label for="lv-phone">Phone number</label>
+      <input id="lv-phone" name="phone" type="tel" required>
+
+      <label for="lv-location">Location and timezone</label>
+      <input id="lv-location" name="location_timezone" type="text" placeholder="Example: Atlanta, GA (ET)" required>
+
+      <label for="lv-cert">Cloud and security certifications</label>
+      <input id="lv-cert" name="certifications" type="text" placeholder="Example: AZ-900, AZ-104, Security+, AI-900" required>
+
+      <label for="lv-platforms">Virtual platforms and tools you use</label>
+      <input id="lv-platforms" name="teaching_tools" type="text" placeholder="Zoom, Teams, Google Classroom, LMS tools" required>
+
+      <label for="lv-audience">Learner audiences you have taught</label>
+      <select id="lv-audience" name="audience_experience" required>
+        <option value="">Select one</option>
+        <option>K-12</option>
+        <option>College and Adult Learners</option>
+        <option>Workforce Development Cohorts</option>
+        <option>Mixed Audiences</option>
+      </select>
+
+      <label for="lv-exp">Virtual teaching experience summary</label>
+      <textarea id="lv-exp" name="teaching_experience" rows="4" placeholder="Describe your remote teaching outcomes, class sizes, and approach" required></textarea>
+
+      <label for="lv-demo">Portfolio or sample lesson links</label>
+      <textarea id="lv-demo" name="sample_links" rows="3" placeholder="Share links to lesson samples, recordings, or curriculum artifacts"></textarea>
+
+      <label for="lv-availability">Weekly availability</label>
+      <textarea id="lv-availability" name="availability" rows="3" placeholder="Include preferred days, time windows, and start date" required></textarea>
+
+      <label for="lv-support">How do you support learners who are falling behind?</label>
+      <textarea id="lv-support" name="learner_support_strategy" rows="4" required></textarea>
+
+      <button class="btn primary" type="submit">Submit Live Virtual Instructor Application</button>
+    </form>
+  </main>
+
+  <script src="js/global-ui.js"></script>
+</body>
+</html>
