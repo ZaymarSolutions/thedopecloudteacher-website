@@ -14,8 +14,11 @@
     body {
       margin: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0b1025, #171d3f);
-      color: #e2e8f0;
+      background:
+        radial-gradient(circle at top left, rgba(23, 139, 231, 0.08), transparent 30%),
+        radial-gradient(circle at top right, rgba(44, 157, 255, 0.08), transparent 30%),
+        linear-gradient(180deg, #ffffff, #f3f9ff);
+      color: #3a4465;
       min-height: 100vh;
     }
 
@@ -26,27 +29,28 @@
     }
 
     .card {
-      background: rgba(15, 23, 42, 0.82);
-      border: 1px solid rgba(44, 157, 255, 0.25);
-      border-radius: 16px;
+      background: #ffffff;
+      border: 1px solid #d6e8fa;
+      border-radius: 18px;
+      box-shadow: 0 10px 24px rgba(17, 21, 45, 0.08);
       padding: 1.4rem;
       margin-bottom: 1rem;
     }
 
     h1, h2 {
-      color: #2C9DFF;
+      color: #0b1f33;
       margin-top: 0;
     }
 
     p {
       line-height: 1.75;
-      color: #d5deef;
+      color: #4d587a;
     }
 
     .list {
       margin: 0;
       padding-left: 1.25rem;
-      color: #d5deef;
+      color: #4d587a;
       line-height: 1.7;
     }
 
@@ -59,22 +63,22 @@
 
     .cta {
       text-decoration: none;
-      background: #2C9DFF;
-      color: #0b1025;
+      background: #178BE7;
+      color: #ffffff;
       padding: 0.7rem 1rem;
-      border-radius: 10px;
+      border-radius: 999px;
       font-weight: 700;
     }
 
     .cta.alt {
-      background: #178BE7;
+      background: #0F6EDB;
       color: #ffffff;
     }
 
     footer {
       text-align: center;
       padding: 1.5rem;
-      color: #b5bedc;
+      color: #64748b;
     }
   </style>
   <!--#include virtual="google-analytics.html" -->

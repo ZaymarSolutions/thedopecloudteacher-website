@@ -132,7 +132,7 @@
     nav.innerHTML = navItems.map(function (item) {
       var isActive = item.sections.indexOf(section) !== -1 || item.pages.indexOf(currentPage) !== -1;
       return '<a href="' + sitePath(item.href) + '"' + (isActive ? ' class="active"' : '') + '>' + item.label + '</a>';
-    }).join('') + '<a href="#" id="authButton">Sign In</a>';
+    }).join('') + '<a href="' + sitePath('login.html') + '" id="authButton">Sign In</a>';
 
     nav.dataset.standardized = 'true';
     ensureMobileToggle(nav);
