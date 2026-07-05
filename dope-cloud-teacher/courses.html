@@ -856,7 +856,7 @@
           </div>
 
           <button class="btn-enroll" onclick="enrollInCourse('${course.id}')" style="margin-top: 2rem; font-size: 1.5rem; padding: 1.5rem 4rem;">
-            🎓 Enroll Now for $${course.price}
+            Enroll Now for $${course.price}
           </button>
           <p style="margin-top: 1rem; font-size: 0.95rem; color: #cbbcff;">
             Or get access to ALL courses with a <a href="pricing.html" style="color: #2C9DFF; text-decoration: underline;">$14/month membership</a>
@@ -866,7 +866,7 @@
         ${course.certifications ? `
         <div style="background: rgba(16, 185, 129, 0.1); padding: 2rem; border-radius: 20px; margin: 2rem 0;">
           <h3 style="font-size: 1.8rem; color: #10b981; margin-bottom: 1rem; text-align: center;">
-            🎖️ Certification Preparation
+            Certification Preparation
           </h3>
           <p style="text-align: center; color: #e0e0e0; margin-bottom: 1.5rem;">This course prepares you for:</p>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
@@ -883,7 +883,7 @@
                 <div style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; text-align: center; transition: all 0.3s; cursor: pointer;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
                   <strong style="color: #2C9DFF;">${cert.name}</strong><br>
                   <span style="color: #cbbcff; font-size: 0.9rem;">${cert.provider} • ${cert.code}</span><br>
-                  <span style="color: #10b981; font-size: 0.85rem; margin-top: 0.5rem; display: inline-block;">📚 View Certification →</span>
+                  <span style="color: #10b981; font-size: 0.85rem; margin-top: 0.5rem; display: inline-block;">View Certification →</span>
                 </div>
               </a>
             `}).join('')}
@@ -912,7 +912,7 @@
         ${course.labSetup ? `
         <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(59, 130, 246, 0.3);">
           <h3 style="font-size: 1.8rem; color: #3b82f6; margin-bottom: 1rem; text-align: center;">
-            🧪 ${course.labSetup.title}
+            ${course.labSetup.title}
           </h3>
           <p style="text-align: center; color: #e0e0e0; margin-bottom: 2rem; font-size: 1.05rem;">${course.labSetup.description}</p>
           
@@ -921,11 +921,11 @@
               <details style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #3b82f6; cursor: pointer; transition: all 0.3s;" ${idx === 0 ? 'open' : ''}>
                 <summary style="font-size: 1.2rem; font-weight: bold; color: #2C9DFF; cursor: pointer; user-select: none;">
                   ${idx + 1}. ${option.name} 
-                  <span style="float: right; color: #10b981; font-size: 0.9rem;">⏱️ ${option.duration}</span>
+                  <span style="float: right; color: #10b981; font-size: 0.9rem;">Duration: ${option.duration}</span>
                 </summary>
                 <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
                   <p style="color: #178BE7; font-weight: bold; margin-bottom: 0.5rem;">Cost: ${option.cost}</p>
-                  ${option.url ? `<p style="margin-bottom: 1rem;"><a href="${option.url}" target="_blank" style="color: #3b82f6; text-decoration: underline;">🔗 ${option.url}</a></p>` : ''}
+                  ${option.url ? `<p style="margin-bottom: 1rem;"><a href="${option.url}" target="_blank" style="color: #3b82f6; text-decoration: underline;">${option.url}</a></p>` : ''}
                   <p style="color: #cbbcff; font-weight: bold; margin-bottom: 0.5rem;">Setup Steps:</p>
                   <ol style="color: #e0e0e0; line-height: 1.8; margin-left: 1.5rem;">
                     ${option.steps.map(step => `<li>${step}</li>`).join('')}
@@ -936,7 +936,7 @@
           </div>
 
           <div style="background: rgba(16, 185, 129, 0.1); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem; border: 1px solid rgba(16, 185, 129, 0.3);">
-            <p style="color: #10b981; font-weight: bold; margin-bottom: 0.8rem;">💡 Recommendations:</p>
+            <p style="color: #10b981; font-weight: bold; margin-bottom: 0.8rem;">Recommendations:</p>
             <ul style="color: #e0e0e0; line-height: 1.8; margin-left: 1.5rem;">
               ${course.labSetup.recommendations.map(rec => `<li>${rec}</li>`).join('')}
             </ul>
@@ -947,7 +947,7 @@
         ${course.codingPrerequisites ? `
         <div style="background: linear-gradient(135deg, rgba(251, 146, 60, 0.1), rgba(239, 68, 68, 0.1)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(251, 146, 60, 0.3);">
           <h3 style="font-size: 1.8rem; color: #fb923c; margin-bottom: 1rem; text-align: center;">
-            💻 Coding Prerequisites ${course.codingPrerequisites.required ? '(Required)' : '(Optional)'}
+            Coding Prerequisites ${course.codingPrerequisites.required ? '(Required)' : '(Optional)'}
           </h3>
           <p style="text-align: center; color: #e0e0e0; margin-bottom: 2rem; font-size: 1.05rem;">${course.codingPrerequisites.description}</p>
           
@@ -959,10 +959,10 @@
                   <span style="float: right; color: #cbbcff; font-size: 0.9rem;">${lang.skillLevel}</span>
                 </summary>
                 <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                  <p style="color: #fb923c; font-weight: bold; margin-bottom: 0.5rem;">🎯 Why Learn This?</p>
+                  <p style="color: #fb923c; font-weight: bold; margin-bottom: 0.5rem;">Why Learn This?</p>
                   <p style="color: #e0e0e0; margin-bottom: 1rem;">${lang.why}</p>
                   
-                  <p style="color: #10b981; font-weight: bold; margin-bottom: 0.5rem;">📚 Learning Resources:</p>
+                  <p style="color: #10b981; font-weight: bold; margin-bottom: 0.5rem;">Learning Resources:</p>
                   <ul style="color: #e0e0e0; line-height: 2;">
                     ${lang.learningResources.map(res => `
                       <li>
@@ -975,7 +975,7 @@
                     `).join('')}
                   </ul>
 
-                  <p style="color: #fb923c; font-weight: bold; margin-bottom: 0.5rem; margin-top: 1rem;">⚡ Quick Start:</p>
+                  <p style="color: #fb923c; font-weight: bold; margin-bottom: 0.5rem; margin-top: 1rem;">Quick Start:</p>
                   <ol style="color: #e0e0e0; line-height: 1.8; margin-left: 1.5rem;">
                     ${lang.quickStart.map(step => `<li>${step}</li>`).join('')}
                   </ol>
@@ -994,7 +994,7 @@
         ${course.platformCompatibility ? `
         <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(14, 116, 144, 0.12)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(16, 185, 129, 0.35);">
           <h3 style="font-size: 1.8rem; color: #10b981; margin-bottom: 1rem; text-align: center;">
-            🎓 Enterprise Learning Platform Compatibility
+            Enterprise Learning Platform Compatibility
           </h3>
           <p style="text-align: center; color: #e0e0e0; margin-bottom: 1.5rem; font-size: 1.05rem;">Structured to align with delivery expectations on major learning platforms.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-bottom: 1.25rem;">
@@ -1009,7 +1009,7 @@
         ${course.videoBlueprint ? `
         <div style="background: linear-gradient(135deg, rgba(124, 58, 237, 0.16), rgba(37, 99, 235, 0.1)); padding: 2.5rem; border-radius: 20px; margin: 2rem 0; border: 2px solid rgba(124, 58, 237, 0.35);">
           <h3 style="font-size: 1.8rem; color: #c4b5fd; margin-bottom: 0.8rem; text-align: center;">
-            🎥 Mini Me Video Blueprint
+            Mini Me Video Blueprint
           </h3>
           <p style="text-align: center; color: #e0e0e0; margin-bottom: 1rem;">Avatar style: <strong style="color:#2C9DFF;">${course.videoBlueprint.avatarStyle}</strong> • Target lesson video length: <strong style="color:#2C9DFF;">${course.videoBlueprint.targetDuration}</strong></p>
           <p style="text-align: center; color: #cbbcff; margin-bottom: 1.25rem;">Use this script structure for every lesson video:</p>
@@ -1047,24 +1047,37 @@
                 <div class="lesson-details">
                   ${lesson.video ? `
                   <div class="detail-section">
-                    <h4>🎥 Video Lesson</h4>
+                    <h4>Video Lesson</h4>
                     <iframe width="100%" height="400" src="${lesson.video}" frameborder="0" allowfullscreen style="border-radius: 10px;"></iframe>
                   </div>
                   ` : ''}
 
                   ${lesson.learningMaterials ? `
                   <div class="detail-section">
-                    <h4>📚 Learning Materials</h4>
+                    <h4>Learning Materials</h4>
                     <ul class="materials-list">
                       ${lesson.learningMaterials.map(material => {
-                        const icon = material.type === 'reading' ? '📖' : material.type === 'video' ? '🎬' : material.type === 'interactive' ? '💻' : material.type === 'case-study' ? '💼' : material.type === 'documentation' ? '📋' : material.type === 'checklist' ? '✅' : material.type === 'diagram' ? '📊' : material.type === 'calculator' ? '🧮' : material.type === 'template' ? '📝' : material.type === 'tutorial' ? '🎓' : '📄';
+                        const materialTypeLabelMap = {
+                          reading: 'Reading',
+                          video: 'Video',
+                          interactive: 'Interactive',
+                          'case-study': 'Case Study',
+                          documentation: 'Documentation',
+                          checklist: 'Checklist',
+                          diagram: 'Diagram',
+                          calculator: 'Calculator',
+                          template: 'Template',
+                          tutorial: 'Tutorial'
+                        };
+                        const materialType = materialTypeLabelMap[material.type] || 'Resource';
                         
                         return `
                         <li style="margin-bottom: 1rem; padding: 1rem; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 3px solid #3b82f6; transition: all 0.3s;" onmouseover="this.style.background='rgba(59,130,246,0.1)'; this.style.transform='translateX(5px)';" onmouseout="this.style.background='rgba(255,255,255,0.02)'; this.style.transform='translateX(0)';">
                           <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem;">
                             <div style="flex: 1;">
                               <a href="${material.url || '#'}" target="_blank" style="text-decoration: none; color: inherit;">
-                                <strong style="color: #3b82f6; font-size: 1.05rem;">${icon} ${material.title}</strong>
+                                <strong style="color: #3b82f6; font-size: 1.05rem;">${material.title}</strong>
+                                <p style="color: #9ecbff; font-size: 0.82rem; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.03em;">${materialType}</p>
                                 ${material.description ? `<p style="color: #cbbcff; font-size: 0.9rem; margin-top: 0.3rem;">${material.description}</p>` : ''}
                               </a>
                             </div>
@@ -1083,7 +1096,7 @@
 
                   ${lesson.quiz ? `
                   <div class="detail-section" data-lesson-quiz="${course.id}-${index}">
-                    <h4>✅ Quiz (Passing Score: ${lesson.quiz.passingScore}%)</h4>
+                    <h4>Quiz (Passing Score: ${lesson.quiz.passingScore}%)</h4>
                     <p style="color: #cbbcff; font-size: 0.95rem; margin-bottom: 1rem;">Try answering the questions below, then click "Reveal Answers" to check your knowledge.</p>
                     ${lesson.quiz.questions.map((q, qIndex) => `
                       <div class="quiz-question">
@@ -1103,7 +1116,7 @@
 
                   ${lesson.lab ? `
                   <div class="detail-section">
-                    <h4>🔬 Hands-On Lab: ${lesson.lab.title} (${lesson.lab.duration})</h4>
+                    <h4>Hands-On Lab: ${lesson.lab.title} (${lesson.lab.duration})</h4>
                     <ul class="lab-list">
                       ${lesson.lab.tasks.map((task, taskIndex) => `
                         <li>
@@ -1125,15 +1138,15 @@
             Join thousands of students mastering ${course.title}
           </p>
           <button class="btn-enroll" onclick="enrollInCourse('${course.id}')" style="font-size: 1.5rem; padding: 1.5rem 4rem;">
-            💳 Enroll Now - $${course.price}
+            Enroll Now - $${course.price}
           </button>
           <p style="margin-top: 1.5rem; font-size: 1rem;">
             Or save 95% with our <a href="pricing.html" style="color: #2C9DFF; font-weight: bold; text-decoration: underline;">$14/month All-Access Membership</a>
           </p>
           <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
-            <div>✅ Lifetime Access</div>
-            <div>✅ Certificate of Completion</div>
-            <div>✅ 30-Day Money-Back Guarantee</div>
+            <div>Lifetime Access</div>
+            <div>Certificate of Completion</div>
+            <div> 30-Day Money-Back Guarantee</div>
           </div>
         </div>
       `;

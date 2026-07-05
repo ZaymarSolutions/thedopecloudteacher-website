@@ -403,12 +403,12 @@
     </div>
 
     <div class="content-block">
-      <h2>📖 Lesson Overview</h2>
+      <h2> Lesson Overview</h2>
       <p id="lessonDescription">Loading lesson content...</p>
     </div>
 
     <div class="content-block">
-      <h2>💡 Real-World Application</h2>
+      <h2> Real-World Application</h2>
       <p id="realWorldContent">This lesson applies to real-world scenarios in cloud computing and technology careers...</p>
     </div>
 
@@ -419,7 +419,7 @@
     <div id="quizResult" class="result" style="display: none;"></div>
 
     <div class="affirmation">
-      <p>💪 "You're not just learning—you're leveling up. Keep going, you got this!"</p>
+      <p> "You're not just learning—you're leveling up. Keep going, you got this!"</p>
     </div>
 
     <div class="navigation-buttons">
@@ -564,7 +564,7 @@
       const quizSection = document.getElementById('quizSection');
       
       quizSection.innerHTML = `
-        <h2>🧠 Knowledge Check</h2>
+        <h2> Knowledge Check</h2>
         <div class="question">
           <p>1. What is the main focus of this lesson?</p>
           <label><input type="radio" name="q1" value="correct"> ${currentLesson.topics[0]}</label>
@@ -627,14 +627,14 @@
 
       try {
         await dopeProgress.completeLesson(courseId, lessonId, 100, 30);
-        alert('✅ Lesson marked as complete!');
+        alert(' Lesson marked as complete!');
         
         // Check if course is complete
         const progress = await dopeProgress.getCourseProgress(courseId);
         const completed = progress.filter(p => p.completed).length;
         
         if (completed === currentCourse.lessons.length) {
-          if (confirm('🎉 Congratulations! You\'ve completed the entire course! Generate your certificate?')) {
+          if (confirm(' Congratulations! You\'ve completed the entire course! Generate your certificate?')) {
             window.location.href = 'certificate.html?course=' + courseId;
           }
         } else if (currentLessonIndex < currentCourse.lessons.length - 1) {

@@ -14,6 +14,7 @@
   max-width: 1240px;
   margin: 0 auto;
   padding: 2.5rem clamp(1rem, 4vw, 3rem) 4rem;
+  font-family: "Source Sans 3", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .platform-hero {
@@ -28,8 +29,10 @@
 }
 
 .platform-hero h1 {
+  font-family: "Merriweather", "Georgia", serif;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   margin-bottom: 0.8rem;
+  letter-spacing: 0.01em;
 }
 
 .platform-hero p {
@@ -57,6 +60,7 @@
 
 .path-card h3,
 .platform-card h3 {
+  font-family: "Merriweather", "Georgia", serif;
   color: var(--dct-ink);
   margin-bottom: 0.5rem;
 }
@@ -119,8 +123,82 @@
 }
 
 .section-head h2 {
+  font-family: "Merriweather", "Georgia", serif;
   font-size: 1.45rem;
   color: var(--dct-ink);
+}
+
+.pathway-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.pathway-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0F6EDB, #2e90ff);
+}
+
+.pathway-price {
+  font-weight: 700;
+  color: #0F6EDB;
+  margin-top: 0.7rem;
+}
+
+.onboarding-panel {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.onboarding-intro {
+  margin-bottom: 1rem;
+  color: #2f446c;
+}
+
+.onboarding-checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: onboarding;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.onboarding-checklist li {
+  counter-increment: onboarding;
+  border: 1px solid #d8e5fb;
+  border-radius: 14px;
+  padding: 0.9rem 1rem 0.85rem 3rem;
+  position: relative;
+  background: #ffffff;
+}
+
+.onboarding-checklist li::before {
+  content: counter(onboarding);
+  position: absolute;
+  left: 0.85rem;
+  top: 0.95rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: #0F6EDB;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.onboarding-checklist h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.02rem;
+}
+
+.onboarding-checklist p {
+  margin: 0;
 }
 
 .section-head p {

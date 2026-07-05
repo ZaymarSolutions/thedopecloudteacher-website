@@ -429,7 +429,7 @@
   <div class="dashboard-container">
       <!--#include virtual="google-analytics.html" -->
     <div class="welcome-section">
-      <h1>Welcome Back, <span id="welcomeName">Student</span>! 🎉</h1>
+      <h1>Welcome Back, <span id="welcomeName">Student</span>! </h1>
       <p>Continue your journey to cloud mastery</p>
     </div>
 
@@ -494,8 +494,8 @@
     <div class="courses-grid">
       <div class="course-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
         <div class="course-header">
-          <span class="course-badge" style="background: #48bb78;">🔴 LIVE</span>
-          <h3>🛡️ Garden Guardian</h3>
+          <span class="course-badge" style="background: #48bb78;"> LIVE</span>
+          <h3>️ Garden Guardian</h3>
         </div>
         <p>Azure IoT Security & Threat Detection Demo</p>
         <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.9;">
@@ -660,7 +660,7 @@
       if (certificates.length > 0) {
         certificatesList.innerHTML = certificates.map(cert => `
           <div class="course-card">
-            <div class="course-icon">🏆</div>
+            <div class="course-icon"></div>
             <h3>${cert.course_title}</h3>
             <p style="color: #10b981; margin: 1rem 0;">
               <i class="fas fa-check-circle"></i> Completed
@@ -754,7 +754,7 @@
     // Check for success message
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
-      alert('🎉 Purchase successful! Welcome to your new course!');
+      alert(' Purchase successful! Welcome to your new course!');
     }
 
     // Load dashboard on page load

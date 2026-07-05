@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
 /* Global color-schema enforcement for all DCT pages loaded with global-ui.js */
 :root {
   --dct-bg-1: #ffffff;
@@ -18,6 +20,8 @@ body {
     radial-gradient(circle at top right, rgba(15, 110, 219, 0.05), transparent 26%),
     linear-gradient(180deg, var(--dct-bg-1) 0%, var(--dct-bg-2) 100%) !important;
   color: var(--dct-text-soft) !important;
+  font-family: "Source Sans 3", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  line-height: 1.72;
 }
 
 header {
@@ -27,7 +31,9 @@ header {
 }
 
 h1, h2, h3, h4 {
+  font-family: "Merriweather", "Georgia", serif !important;
   color: var(--dct-text) !important;
+  letter-spacing: 0.01em;
 }
 
 p, li, span, small {

@@ -65,7 +65,7 @@ function displayProgress() {
       indicator.className = 'completion-indicator';
       indicator.innerHTML = `
         <div style="background: rgba(16, 185, 129, 0.2); border: 2px solid #10b981; padding: 1rem; border-radius: 10px; margin: 1rem 0; text-align: center;">
-          <span style="color: #10b981; font-size: 1.5rem;">✓</span>
+          <span style="color: #10b981; font-size: 1.5rem;"></span>
           <span style="color: white; margin-left: 0.5rem;">Lesson Completed</span>
         </div>
       `;
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   completeBtn.addEventListener('click', () => {
     if (markLessonComplete()) {
-      completeBtn.textContent = '✓ Completed!';
+      completeBtn.textContent = ' Completed!';
       completeBtn.style.background = '#059669';
       setTimeout(() => {
         location.reload();

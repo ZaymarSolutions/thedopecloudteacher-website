@@ -10,7 +10,7 @@ const COURSE_PATHWAYS = {
     level: 'Beginner',
     category: 'Cloud Basics',
     color: '#9333ea',
-    icon: '☁️',
+    icon: '️',
     skills: ['Cloud Computing Basics', 'AWS Core Services', 'Azure Fundamentals', 'GCP Essentials', 'Cloud Security'],
     
     // Lab Environment Setup Instructions
@@ -28,7 +28,7 @@ const COURSE_PATHWAYS = {
             'Verify your phone number',
             'Choose "Basic Support - Free" plan',
             'Sign in to AWS Console at https://console.aws.amazon.com/',
-            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+            '️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
           ],
           duration: '10-15 minutes',
           cost: 'Free for 12 months (with usage limits)',
@@ -44,7 +44,7 @@ const COURSE_PATHWAYS = {
             'Add credit card for identity verification ($200 credit provided)',
             'Complete identity verification',
             'Access Azure Portal at https://portal.azure.com/',
-            '💡 Tip: Use Azure Cost Management to track your spending'
+            ' Tip: Use Azure Cost Management to track your spending'
           ],
           duration: '10-15 minutes',
           cost: '$200 credit for 30 days + 12 months of free services',
@@ -60,7 +60,7 @@ const COURSE_PATHWAYS = {
             'Select country and accept terms',
             'Access GCP Console at https://console.cloud.google.com/',
             'Create your first project',
-            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+            ' Enable billing alerts in Billing > Budgets & Alerts'
           ],
           duration: '10 minutes',
           cost: '$300 credit for 90 days + Always Free tier',
@@ -69,11 +69,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Use Your Existing Cloud Account',
           steps: [
-            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            ' If you already have AWS/Azure/GCP access through work or school, you can use that',
             'Ensure you have permissions to create: VMs, storage, networks, and basic services',
             'Check with your organization about cost allocation tags or budget limits',
             'Use a separate resource group/project for course labs to keep things organized',
-            '🏷️ Tag all resources with "Course: Cloud Fundamentals 101" for easy cleanup'
+            '️ Tag all resources with "Course: Cloud Fundamentals 101" for easy cleanup'
           ],
           duration: '5 minutes',
           cost: 'Depends on your organization\'s arrangement'
@@ -81,11 +81,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
           steps: [
-            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
-            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
-            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
-            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
-            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            ' A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            ' AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            ' Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '‍ Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            ' Instruqt Interactive Labs: https://play.instruqt.com/public',
             'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
           ],
           duration: 'Instant access',
@@ -93,10 +93,10 @@ const COURSE_PATHWAYS = {
         }
       ],
       recommendations: [
-        '🎯 Beginners: Start with free sandboxes (A Cloud Guru, Qwiklabs) to explore without risk',
-        '💳 Ready to commit: Sign up for all three free tiers (AWS, Azure, GCP) for maximum learning',
-        '🏢 Corporate learners: Check if your employer provides Azure/AWS subscriptions',
-        '🎓 Students: Look for GitHub Student Developer Pack (includes Azure credits)',
+        ' Beginners: Start with free sandboxes (A Cloud Guru, Qwiklabs) to explore without risk',
+        ' Ready to commit: Sign up for all three free tiers (AWS, Azure, GCP) for maximum learning',
+        ' Corporate learners: Check if your employer provides Azure/AWS subscriptions',
+        ' Students: Look for GitHub Student Developer Pack (includes Azure credits)',
         '⏰ Budget-conscious: Use sandboxes for practice, your own account only for capstone projects'
       ]
     },
@@ -157,7 +157,7 @@ const COURSE_PATHWAYS = {
           ]
         }
       ],
-      recommendation: '💡 You can start the course today and learn coding alongside. Most lessons have step-by-step instructions that teach you as you go!'
+      recommendation: ' You can start the course today and learn coding alongside. Most lessons have step-by-step instructions that teach you as you go!'
     },
     
     // Certification Exam Preparation
@@ -830,7 +830,7 @@ const COURSE_PATHWAYS = {
     level: 'Advanced',
     category: 'Architecture',
     color: '#0ea5e9',
-    icon: '🏗️',
+    icon: '️',
     skills: ['Solution Architecture', 'Multi-Cloud Design', 'High Availability', 'Disaster Recovery', 'Cost Optimization'],
     
     // Lab Environment Setup Instructions
@@ -848,7 +848,7 @@ const COURSE_PATHWAYS = {
             'Verify your phone number',
             'Choose "Basic Support - Free" plan',
             'Sign in to AWS Console at https://console.aws.amazon.com/',
-            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+            '️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
           ],
           duration: '10-15 minutes',
           cost: 'Free for 12 months (with usage limits)',
@@ -864,7 +864,7 @@ const COURSE_PATHWAYS = {
             'Add credit card for identity verification ($200 credit provided)',
             'Complete identity verification',
             'Access Azure Portal at https://portal.azure.com/',
-            '💡 Tip: Use Azure Cost Management to track your spending'
+            ' Tip: Use Azure Cost Management to track your spending'
           ],
           duration: '10-15 minutes',
           cost: '$200 credit for 30 days + 12 months of free services',
@@ -880,7 +880,7 @@ const COURSE_PATHWAYS = {
             'Select country and accept terms',
             'Access GCP Console at https://console.cloud.google.com/',
             'Create your first project',
-            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+            ' Enable billing alerts in Billing > Budgets & Alerts'
           ],
           duration: '10 minutes',
           cost: '$300 credit for 90 days + Always Free tier',
@@ -889,11 +889,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Use Your Existing Cloud Account',
           steps: [
-            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            ' If you already have AWS/Azure/GCP access through work or school, you can use that',
             'Ensure you have permissions to create: VMs, storage, networks, and basic services',
             'Check with your organization about cost allocation tags or budget limits',
             'Use a separate resource group/project for course labs to keep things organized',
-            '🏷️ Tag all resources with "Course: Cloud Architect Pathway" for easy cleanup'
+            '️ Tag all resources with "Course: Cloud Architect Pathway" for easy cleanup'
           ],
           duration: '5 minutes',
           cost: 'Depends on your organization\'s arrangement'
@@ -901,11 +901,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
           steps: [
-            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
-            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
-            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
-            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
-            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            ' A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            ' AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            ' Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '‍ Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            ' Instruqt Interactive Labs: https://play.instruqt.com/public',
             'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
           ],
           duration: 'Instant access',
@@ -913,10 +913,10 @@ const COURSE_PATHWAYS = {
         }
       ],
       recommendations: [
-        '🏢 Enterprise learners: This course requires production-level access for architecture labs',
-        '💳 Recommended: Sign up for all three cloud platforms (AWS, Azure, GCP) for multi-cloud experience',
-        '💰 Budget tip: Most architecture labs use minimal resources; set $50-100/month budgets',
-        '🎓 Advanced users: Consider dedicated sandbox subscriptions for complex architecture designs',
+        ' Enterprise learners: This course requires production-level access for architecture labs',
+        ' Recommended: Sign up for all three cloud platforms (AWS, Azure, GCP) for multi-cloud experience',
+        ' Budget tip: Most architecture labs use minimal resources; set $50-100/month budgets',
+        ' Advanced users: Consider dedicated sandbox subscriptions for complex architecture designs',
         '⏰ Time management: Some labs require resources to run for hours to demonstrate patterns'
       ]
     },
@@ -977,7 +977,7 @@ const COURSE_PATHWAYS = {
           ]
         }
       ],
-      recommendation: '💡 As an architect, you\'ll read and review code more than write it. Focus on understanding patterns over syntax.'
+      recommendation: ' As an architect, you\'ll read and review code more than write it. Focus on understanding patterns over syntax.'
     },
     
     // Certification Exam Preparation
@@ -1777,7 +1777,7 @@ const COURSE_PATHWAYS = {
     level: 'Intermediate',
     category: 'Security',
     color: '#ef4444',
-    icon: '🔐',
+    icon: '',
     skills: ['Cloud Security', 'Threat Detection', 'Compliance', 'Incident Response', 'Zero Trust'],
     
     // Lab Environment Setup Instructions
@@ -1795,7 +1795,7 @@ const COURSE_PATHWAYS = {
             'Verify your phone number',
             'Choose "Basic Support - Free" plan',
             'Sign in to AWS Console at https://console.aws.amazon.com/',
-            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+            '️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
           ],
           duration: '10-15 minutes',
           cost: 'Free for 12 months (with usage limits)',
@@ -1811,7 +1811,7 @@ const COURSE_PATHWAYS = {
             'Add credit card for identity verification ($200 credit provided)',
             'Complete identity verification',
             'Access Azure Portal at https://portal.azure.com/',
-            '💡 Tip: Use Azure Cost Management to track your spending'
+            ' Tip: Use Azure Cost Management to track your spending'
           ],
           duration: '10-15 minutes',
           cost: '$200 credit for 30 days + 12 months of free services',
@@ -1827,7 +1827,7 @@ const COURSE_PATHWAYS = {
             'Select country and accept terms',
             'Access GCP Console at https://console.cloud.google.com/',
             'Create your first project',
-            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+            ' Enable billing alerts in Billing > Budgets & Alerts'
           ],
           duration: '10 minutes',
           cost: '$300 credit for 90 days + Always Free tier',
@@ -1836,11 +1836,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Use Your Existing Cloud Account',
           steps: [
-            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            ' If you already have AWS/Azure/GCP access through work or school, you can use that',
             'Ensure you have permissions to create: VMs, storage, networks, and basic services',
             'Check with your organization about cost allocation tags or budget limits',
             'Use a separate resource group/project for course labs to keep things organized',
-            '🏷️ Tag all resources with "Course: Cloud Security Engineer" for easy cleanup'
+            '️ Tag all resources with "Course: Cloud Security Engineer" for easy cleanup'
           ],
           duration: '5 minutes',
           cost: 'Depends on your organization\'s arrangement'
@@ -1848,11 +1848,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
           steps: [
-            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
-            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
-            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
-            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
-            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            ' A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            ' AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            ' Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '‍ Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            ' Instruqt Interactive Labs: https://play.instruqt.com/public',
             'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
           ],
           duration: 'Instant access',
@@ -1860,11 +1860,11 @@ const COURSE_PATHWAYS = {
         }
       ],
       recommendations: [
-        '🔒 Security learners: Use dedicated test accounts - NEVER practice on production systems',
-        '💳 Recommended: Create isolated AWS/Azure/GCP accounts specifically for security testing',
-        '🛡️ Important: Some security tools (scanners, monitoring) may incur costs - set alerts',
-        '🎯 Pro tip: Use AWS Security Hub, Azure Defender free trials for advanced labs',
-        '⚠️ Ethics: Only perform security tests on your own resources - unauthorized testing is illegal'
+        ' Security learners: Use dedicated test accounts - NEVER practice on production systems',
+        ' Recommended: Create isolated AWS/Azure/GCP accounts specifically for security testing',
+        '️ Important: Some security tools (scanners, monitoring) may incur costs - set alerts',
+        ' Pro tip: Use AWS Security Hub, Azure Defender free trials for advanced labs',
+        '️ Ethics: Only perform security tests on your own resources - unauthorized testing is illegal'
       ]
     },
     
@@ -1924,7 +1924,7 @@ const COURSE_PATHWAYS = {
           ]
         }
       ],
-      recommendation: '🔒 Security automation is a core skill. Dedicate 2-3 weeks to Python fundamentals before starting this course.'
+      recommendation: ' Security automation is a core skill. Dedicate 2-3 weeks to Python fundamentals before starting this course.'
     },
     
     // Certification Exam Preparation
@@ -2624,7 +2624,7 @@ const COURSE_PATHWAYS = {
     level: 'Intermediate',
     category: 'DevOps',
     color: '#10b981',
-    icon: '⚙️',
+    icon: '️',
     skills: ['CI/CD', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Jenkins'],
     
     // Lab Environment Setup Instructions
@@ -2642,7 +2642,7 @@ const COURSE_PATHWAYS = {
             'Verify your phone number',
             'Choose "Basic Support - Free" plan',
             'Sign in to AWS Console at https://console.aws.amazon.com/',
-            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+            '️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
           ],
           duration: '10-15 minutes',
           cost: 'Free for 12 months (with usage limits)',
@@ -2658,7 +2658,7 @@ const COURSE_PATHWAYS = {
             'Add credit card for identity verification ($200 credit provided)',
             'Complete identity verification',
             'Access Azure Portal at https://portal.azure.com/',
-            '💡 Tip: Use Azure Cost Management to track your spending'
+            ' Tip: Use Azure Cost Management to track your spending'
           ],
           duration: '10-15 minutes',
           cost: '$200 credit for 30 days + 12 months of free services',
@@ -2674,7 +2674,7 @@ const COURSE_PATHWAYS = {
             'Select country and accept terms',
             'Access GCP Console at https://console.cloud.google.com/',
             'Create your first project',
-            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+            ' Enable billing alerts in Billing > Budgets & Alerts'
           ],
           duration: '10 minutes',
           cost: '$300 credit for 90 days + Always Free tier',
@@ -2683,11 +2683,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Use Your Existing Cloud Account',
           steps: [
-            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            ' If you already have AWS/Azure/GCP access through work or school, you can use that',
             'Ensure you have permissions to create: VMs, storage, networks, and basic services',
             'Check with your organization about cost allocation tags or budget limits',
             'Use a separate resource group/project for course labs to keep things organized',
-            '🏷️ Tag all resources with "Course: DevOps Automation" for easy cleanup'
+            '️ Tag all resources with "Course: DevOps Automation" for easy cleanup'
           ],
           duration: '5 minutes',
           cost: 'Depends on your organization\'s arrangement'
@@ -2695,11 +2695,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
           steps: [
-            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
-            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
-            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
-            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
-            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            ' A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            ' AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            ' Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '‍ Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            ' Instruqt Interactive Labs: https://play.instruqt.com/public',
             'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
           ],
           duration: 'Instant access',
@@ -2707,11 +2707,11 @@ const COURSE_PATHWAYS = {
         }
       ],
       recommendations: [
-        '⚙️ DevOps learners: You\'ll need CI/CD tools (GitHub Actions, Jenkins) - free tiers available',
-        '💳 Recommended: AWS or Azure for Kubernetes clusters (costs ~$70-100/month if running 24/7)',
-        '💡 Cost-saving tip: Destroy clusters after each lab session - recreate with Infrastructure as Code',
-        '🐳 Docker: Free on your local machine - no cloud account needed for container basics',
-        '🎯 Pro strategy: Use GitHub Actions free tier (2000 minutes/month) for CI/CD labs'
+        '️ DevOps learners: You\'ll need CI/CD tools (GitHub Actions, Jenkins) - free tiers available',
+        ' Recommended: AWS or Azure for Kubernetes clusters (costs ~$70-100/month if running 24/7)',
+        ' Cost-saving tip: Destroy clusters after each lab session - recreate with Infrastructure as Code',
+        ' Docker: Free on your local machine - no cloud account needed for container basics',
+        ' Pro strategy: Use GitHub Actions free tier (2000 minutes/month) for CI/CD labs'
       ]
     },
     
@@ -2771,7 +2771,7 @@ const COURSE_PATHWAYS = {
           ]
         }
       ],
-      recommendation: '⚙️ Strong scripting skills are ESSENTIAL. If you\'re new to coding, complete a Python basics course first.'
+      recommendation: '️ Strong scripting skills are ESSENTIAL. If you\'re new to coding, complete a Python basics course first.'
     },
     
     // Certification Exam Preparation
@@ -3569,7 +3569,7 @@ const COURSE_PATHWAYS = {
     level: 'Beginner',
     category: 'AI/ML',
     color: '#f59e0b',
-    icon: '🤖',
+    icon: '',
     skills: ['Machine Learning', 'AI Services', 'Python', 'Model Training', 'ML Pipelines'],
     
     // Lab Environment Setup Instructions
@@ -3587,7 +3587,7 @@ const COURSE_PATHWAYS = {
             'Verify your phone number',
             'Choose "Basic Support - Free" plan',
             'Sign in to AWS Console at https://console.aws.amazon.com/',
-            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+            '️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
           ],
           duration: '10-15 minutes',
           cost: 'Free for 12 months (with usage limits)',
@@ -3603,7 +3603,7 @@ const COURSE_PATHWAYS = {
             'Add credit card for identity verification ($200 credit provided)',
             'Complete identity verification',
             'Access Azure Portal at https://portal.azure.com/',
-            '💡 Tip: Use Azure Cost Management to track your spending'
+            ' Tip: Use Azure Cost Management to track your spending'
           ],
           duration: '10-15 minutes',
           cost: '$200 credit for 30 days + 12 months of free services',
@@ -3619,7 +3619,7 @@ const COURSE_PATHWAYS = {
             'Select country and accept terms',
             'Access GCP Console at https://console.cloud.google.com/',
             'Create your first project',
-            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+            ' Enable billing alerts in Billing > Budgets & Alerts'
           ],
           duration: '10 minutes',
           cost: '$300 credit for 90 days + Always Free tier',
@@ -3628,11 +3628,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Use Your Existing Cloud Account',
           steps: [
-            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            ' If you already have AWS/Azure/GCP access through work or school, you can use that',
             'Ensure you have permissions to create: VMs, storage, networks, and basic services',
             'Check with your organization about cost allocation tags or budget limits',
             'Use a separate resource group/project for course labs to keep things organized',
-            '🏷️ Tag all resources with "Course: AI & Machine Learning" for easy cleanup'
+            '️ Tag all resources with "Course: AI & Machine Learning" for easy cleanup'
           ],
           duration: '5 minutes',
           cost: 'Depends on your organization\'s arrangement'
@@ -3640,11 +3640,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
           steps: [
-            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
-            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
-            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
-            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
-            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            ' A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            ' AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            ' Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '‍ Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            ' Instruqt Interactive Labs: https://play.instruqt.com/public',
             'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
           ],
           duration: 'Instant access',
@@ -3652,11 +3652,11 @@ const COURSE_PATHWAYS = {
         }
       ],
       recommendations: [
-        '🤖 AI/ML learners: Most cloud AI services have generous free tiers (perfect for learning)',
-        '💳 Budget-friendly: Start with Azure Cognitive Services or AWS AI services (free tier covers most labs)',
-        '💰 Training costs: GPU instances for custom models can be expensive (~$1-3/hour) - use only when needed',
-        '📊 Tip: Use managed AI services (Azure AI, AWS SageMaker) free tiers instead of training from scratch',
-        '🎓 Students: Apply for GitHub Education Pack or Azure for Students for extra AI/ML credits'
+        ' AI/ML learners: Most cloud AI services have generous free tiers (perfect for learning)',
+        ' Budget-friendly: Start with Azure Cognitive Services or AWS AI services (free tier covers most labs)',
+        ' Training costs: GPU instances for custom models can be expensive (~$1-3/hour) - use only when needed',
+        ' Tip: Use managed AI services (Azure AI, AWS SageMaker) free tiers instead of training from scratch',
+        ' Students: Apply for GitHub Education Pack or Azure for Students for extra AI/ML credits'
       ]
     },
     
@@ -3716,7 +3716,7 @@ const COURSE_PATHWAYS = {
           ]
         }
       ],
-      recommendation: '🤖 Python is MANDATORY for this course. Complete a Python fundamentals course (20-30 hours) before starting.'
+      recommendation: ' Python is MANDATORY for this course. Complete a Python fundamentals course (20-30 hours) before starting.'
     },
     
     // Certification Exam Preparation
@@ -4385,7 +4385,7 @@ const COURSE_PATHWAYS = {
     level: 'Intermediate',
     category: 'Data',
     color: '#8b5cf6',
-    icon: '📊',
+    icon: '',
     skills: ['Data Pipelines', 'ETL', 'Data Warehousing', 'Big Data', 'Analytics'],
     
     // Lab Environment Setup Instructions
@@ -4403,7 +4403,7 @@ const COURSE_PATHWAYS = {
             'Verify your phone number',
             'Choose "Basic Support - Free" plan',
             'Sign in to AWS Console at https://console.aws.amazon.com/',
-            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+            '️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
           ],
           duration: '10-15 minutes',
           cost: 'Free for 12 months (with usage limits)',
@@ -4419,7 +4419,7 @@ const COURSE_PATHWAYS = {
             'Add credit card for identity verification ($200 credit provided)',
             'Complete identity verification',
             'Access Azure Portal at https://portal.azure.com/',
-            '💡 Tip: Use Azure Cost Management to track your spending'
+            ' Tip: Use Azure Cost Management to track your spending'
           ],
           duration: '10-15 minutes',
           cost: '$200 credit for 30 days + 12 months of free services',
@@ -4435,7 +4435,7 @@ const COURSE_PATHWAYS = {
             'Select country and accept terms',
             'Access GCP Console at https://console.cloud.google.com/',
             'Create your first project',
-            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+            ' Enable billing alerts in Billing > Budgets & Alerts'
           ],
           duration: '10 minutes',
           cost: '$300 credit for 90 days + Always Free tier',
@@ -4444,11 +4444,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Use Your Existing Cloud Account',
           steps: [
-            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            ' If you already have AWS/Azure/GCP access through work or school, you can use that',
             'Ensure you have permissions to create: VMs, storage, networks, and basic services',
             'Check with your organization about cost allocation tags or budget limits',
             'Use a separate resource group/project for course labs to keep things organized',
-            '🏷️ Tag all resources with "Course: Data Engineering Cloud" for easy cleanup'
+            '️ Tag all resources with "Course: Data Engineering Cloud" for easy cleanup'
           ],
           duration: '5 minutes',
           cost: 'Depends on your organization\'s arrangement'
@@ -4456,11 +4456,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
           steps: [
-            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
-            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
-            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
-            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
-            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            ' A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            ' AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            ' Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '‍ Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            ' Instruqt Interactive Labs: https://play.instruqt.com/public',
             'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
           ],
           duration: 'Instant access',
@@ -4468,11 +4468,11 @@ const COURSE_PATHWAYS = {
         }
       ],
       recommendations: [
-        '📊 Data engineers: Storage and data transfer can incur costs - monitor BigQuery, Redshift usage',
-        '💳 Recommended: GCP for BigQuery free tier (1TB queries/month) or AWS for Athena',
-        '💰 Cost warning: Spark clusters and data warehouses can be expensive - terminate after labs',
-        '🎯 Pro tip: Use serverless data services (BigQuery, Athena, Synapse Serverless) to minimize costs',
-        '📈 Dataset tip: Use public datasets (Google Public Datasets, AWS Open Data) - free to query'
+        ' Data engineers: Storage and data transfer can incur costs - monitor BigQuery, Redshift usage',
+        ' Recommended: GCP for BigQuery free tier (1TB queries/month) or AWS for Athena',
+        ' Cost warning: Spark clusters and data warehouses can be expensive - terminate after labs',
+        ' Pro tip: Use serverless data services (BigQuery, Athena, Synapse Serverless) to minimize costs',
+        ' Dataset tip: Use public datasets (Google Public Datasets, AWS Open Data) - free to query'
       ]
     },
     
@@ -4532,7 +4532,7 @@ const COURSE_PATHWAYS = {
           ]
         }
       ],
-      recommendation: '📊 Python and SQL are CRITICAL. Dedicate 3-4 weeks to Python + SQL fundamentals before starting this course.'
+      recommendation: ' Python and SQL are CRITICAL. Dedicate 3-4 weeks to Python + SQL fundamentals before starting this course.'
     },
     
     // Certification Exam Preparation
@@ -4938,7 +4938,7 @@ const COURSE_PATHWAYS = {
     level: 'Advanced',
     category: 'Development',
     color: '#ec4899',
-    icon: '⚡',
+    icon: '',
     skills: ['Serverless', 'Microservices', 'API Design', 'Event-Driven Architecture', 'Containers'],
     
     // Lab Environment Setup Instructions
@@ -4956,7 +4956,7 @@ const COURSE_PATHWAYS = {
             'Verify your phone number',
             'Choose "Basic Support - Free" plan',
             'Sign in to AWS Console at https://console.aws.amazon.com/',
-            '⚠️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
+            '️ Set up billing alerts to avoid unexpected charges: CloudWatch > Billing > Create Alarm'
           ],
           duration: '10-15 minutes',
           cost: 'Free for 12 months (with usage limits)',
@@ -4972,7 +4972,7 @@ const COURSE_PATHWAYS = {
             'Add credit card for identity verification ($200 credit provided)',
             'Complete identity verification',
             'Access Azure Portal at https://portal.azure.com/',
-            '💡 Tip: Use Azure Cost Management to track your spending'
+            ' Tip: Use Azure Cost Management to track your spending'
           ],
           duration: '10-15 minutes',
           cost: '$200 credit for 30 days + 12 months of free services',
@@ -4988,7 +4988,7 @@ const COURSE_PATHWAYS = {
             'Select country and accept terms',
             'Access GCP Console at https://console.cloud.google.com/',
             'Create your first project',
-            '📊 Enable billing alerts in Billing > Budgets & Alerts'
+            ' Enable billing alerts in Billing > Budgets & Alerts'
           ],
           duration: '10 minutes',
           cost: '$300 credit for 90 days + Always Free tier',
@@ -4997,11 +4997,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Use Your Existing Cloud Account',
           steps: [
-            '✅ If you already have AWS/Azure/GCP access through work or school, you can use that',
+            ' If you already have AWS/Azure/GCP access through work or school, you can use that',
             'Ensure you have permissions to create: VMs, storage, networks, and basic services',
             'Check with your organization about cost allocation tags or budget limits',
             'Use a separate resource group/project for course labs to keep things organized',
-            '🏷️ Tag all resources with "Course: Serverless Microservices" for easy cleanup'
+            '️ Tag all resources with "Course: Serverless Microservices" for easy cleanup'
           ],
           duration: '5 minutes',
           cost: 'Depends on your organization\'s arrangement'
@@ -5009,11 +5009,11 @@ const COURSE_PATHWAYS = {
         {
           name: 'Cloud Sandboxes & Practice Environments (No Credit Card Required)',
           steps: [
-            '🧪 A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
-            '🎮 AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
-            '🔬 Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
-            '🧑‍🔬 Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
-            '💻 Instruqt Interactive Labs: https://play.instruqt.com/public',
+            ' A Cloud Guru Sandbox: https://acloudguru.com/platform/cloud-sandbox-playgrounds',
+            ' AWS CloudQuest (gamified learning): https://aws.amazon.com/training/digital/aws-cloud-quest/',
+            ' Azure Learn Sandbox: Built into Microsoft Learn modules (https://learn.microsoft.com/training/azure/)',
+            '‍ Qwiklabs for GCP: https://www.cloudskillsboost.google/ (free labs available)',
+            ' Instruqt Interactive Labs: https://play.instruqt.com/public',
             'These are temporary environments (1-4 hours) - perfect for trying things without commitment'
           ],
           duration: 'Instant access',
@@ -5021,11 +5021,11 @@ const COURSE_PATHWAYS = {
         }
       ],
       recommendations: [
-        '⚡ Serverless learners: Lambda/Functions have very generous free tiers - 1M requests/month free!',
-        '💳 Recommended: AWS Lambda for extensive free tier or Azure Functions for hybrid scenarios',
-        '💡 Cost-efficient: Serverless is pay-per-use - you\'ll spend cents, not dollars, on labs',
-        '🎯 Pro tip: API Gateway and event sources have separate costs - monitor CloudWatch invocations',
-        '🐳 Containers: Use local Docker Desktop for development before deploying to cloud'
+        ' Serverless learners: Lambda/Functions have very generous free tiers - 1M requests/month free!',
+        ' Recommended: AWS Lambda for extensive free tier or Azure Functions for hybrid scenarios',
+        ' Cost-efficient: Serverless is pay-per-use - you\'ll spend cents, not dollars, on labs',
+        ' Pro tip: API Gateway and event sources have separate costs - monitor CloudWatch invocations',
+        ' Containers: Use local Docker Desktop for development before deploying to cloud'
       ]
     },
     
@@ -5085,7 +5085,7 @@ const COURSE_PATHWAYS = {
           ]
         }
       ],
-      recommendation: '⚡ Strong programming skills in Python or Node.js are REQUIRED. Complete an intermediate programming course first.'
+      recommendation: ' Strong programming skills in Python or Node.js are REQUIRED. Complete an intermediate programming course first.'
     },
     
     lessons: [
