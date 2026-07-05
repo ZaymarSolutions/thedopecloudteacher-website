@@ -373,6 +373,85 @@
       color: #345067;
     }
 
+    .pg-age-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .pg-age-card {
+      background: #ffffff;
+      border: 1px solid rgba(18,38,58,0.14);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(18,38,58,0.08);
+    }
+
+    .pg-age-head {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(18,38,58,0.1);
+      background: linear-gradient(135deg, rgba(15,94,57,0.08), rgba(26,160,122,0.06));
+    }
+
+    .pg-age-head h3 {
+      margin: 0;
+      color: var(--pg-green);
+      font-size: 1.12rem;
+    }
+
+    .pg-age-head p {
+      margin: 0.35rem 0 0;
+      color: #3f5567;
+      font-size: 0.92rem;
+    }
+
+    .pg-age-body {
+      padding: 0.95rem 1rem 1rem;
+      display: grid;
+      gap: 0.65rem;
+    }
+
+    .pg-course-item {
+      border: 1px solid rgba(18,38,58,0.12);
+      border-radius: 12px;
+      padding: 0.7rem 0.8rem;
+      background: #f9fffc;
+    }
+
+    .pg-course-item h4 {
+      margin: 0;
+      color: #123c2d;
+      font-size: 0.98rem;
+    }
+
+    .pg-course-item p {
+      margin: 0.35rem 0 0.45rem;
+      color: #425a6e;
+      font-size: 0.9rem;
+    }
+
+    .pg-course-list {
+      margin: 0;
+      padding-left: 1rem;
+      color: #36526a;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    .pg-course-list li + li {
+      margin-top: 0.25rem;
+    }
+
+    .pg-course-link {
+      display: inline-flex;
+      margin-top: 0.5rem;
+      font-weight: 800;
+      color: var(--pg-green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-size: 0.88rem;
+    }
+
     .pg-photo-upload {
       margin-top: auto;
       display: inline-flex;
@@ -547,6 +626,134 @@
           <h3 style="margin:0 0 0.35rem; color:var(--pg-green);">Pick today’s mission</h3>
           <p style="margin:0; color:#486072;">Read, build, or try the live demo so every session feels hands-on and fun.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="pg-section">
+      <div class="pg-section-head">
+        <div>
+          <h2>PG Parks course offerings by age group</h2>
+          <p>Each age band includes a dedicated mix of class tracks plus its own interactive labs, puzzlies, and game-based activities.</p>
+        </div>
+      </div>
+
+      <div class="pg-age-grid">
+        <article class="pg-age-card">
+          <div class="pg-age-head">
+            <h3>Ages 14-18: Youth Launch Track</h3>
+            <p>Future-ready starter pathways focused on confidence, creativity, and problem solving.</p>
+          </div>
+          <div class="pg-age-body">
+            <div class="pg-course-item">
+              <h4>Cloud Foundations Starter</h4>
+              <p>Build cloud basics with practical examples and simple architecture thinking.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Build-your-first-cloud challenge board</li>
+                <li>Puzzlies: Service matching and architecture clue puzzles</li>
+                <li>Games: Timed cloud concept missions with team scoring</li>
+              </ul>
+              <a class="pg-course-link" href="resources.html">Open Cloud Foundations Resources</a>
+            </div>
+            <div class="pg-course-item">
+              <h4>AI Creator Studio</h4>
+              <p>Learn AI basics through ethical design prompts and creative tool workflows.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Prompt refinement and output critique labs</li>
+                <li>Puzzlies: AI logic ladders and pattern-recognition rounds</li>
+                <li>Games: Model-vs-human challenge tasks</li>
+              </ul>
+              <a class="pg-course-link" href="pg-ai-mission.html">Open AI Creator Mission</a>
+            </div>
+            <div class="pg-course-item">
+              <h4>Cyber Defender Basics</h4>
+              <p>Understand cyber hygiene, account safety, and first-line defense strategies.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Incident-response mini scenarios</li>
+                <li>Puzzlies: Threat spotting and risk-ranking puzzles</li>
+                <li>Games: Capture-the-flag style security rounds</li>
+              </ul>
+              <a class="pg-course-link" href="pg-cyber-mission.html">Open Cyber Defender Mission</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pg-age-card">
+          <div class="pg-age-head">
+            <h3>Ages 18-55: Career Growth Track</h3>
+            <p>Career-focused pathways aligned to certifications, portfolios, and job readiness.</p>
+          </div>
+          <div class="pg-age-body">
+            <div class="pg-course-item">
+              <h4>Azure Fundamentals Career Path</h4>
+              <p>Certification-aligned cloud track for support, admin, and transition roles.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Guided sandbox labs and cloud operations drills</li>
+                <li>Puzzlies: Cost, governance, and architecture decision puzzles</li>
+                <li>Games: Scenario sprint quizzes with progression badges</li>
+              </ul>
+              <a class="pg-course-link" href="academy/azure-fundamentals/">Open Azure Fundamentals Track</a>
+            </div>
+            <div class="pg-course-item">
+              <h4>DevSecOps Builder Path</h4>
+              <p>Secure pipeline delivery, automation habits, and operational reliability.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: CI/CD pipeline configuration labs</li>
+                <li>Puzzlies: Build-break-fix security pipeline puzzles</li>
+                <li>Games: Team automation race with quality checkpoints</li>
+              </ul>
+              <a class="pg-course-link" href="academy/devsecops/">Open DevSecOps Track</a>
+            </div>
+            <div class="pg-course-item">
+              <h4>Career Prep Accelerator</h4>
+              <p>Portfolio proof, interview confidence, and role-targeted planning.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Resume and story-mapping workshop boards</li>
+                <li>Puzzlies: Interview-response framework puzzles</li>
+                <li>Games: Mock interview scorecards and challenge rounds</li>
+              </ul>
+              <a class="pg-course-link" href="academy/career-prep/">Open Career Prep Track</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pg-age-card">
+          <div class="pg-age-head">
+            <h3>Ages 55+: Legacy to Digital Confidence Track</h3>
+            <p>Supportive pacing for digital confidence, practical cloud literacy, and modern safety skills.</p>
+          </div>
+          <div class="pg-age-body">
+            <div class="pg-course-item">
+              <h4>Cloud Confidence Essentials</h4>
+              <p>Understand what cloud means in daily life, services, and trusted digital use.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Guided click-through cloud walkthroughs</li>
+                <li>Puzzlies: Real-world service sorting puzzles</li>
+                <li>Games: Confidence checkpoints with partner support</li>
+              </ul>
+              <a class="pg-course-link" href="start-here.html">Open Start Here Guide</a>
+            </div>
+            <div class="pg-course-item">
+              <h4>Cyber Safety Everyday</h4>
+              <p>Learn account protection, scam detection, and secure online behavior.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Safe/unsafe message review exercises</li>
+                <li>Puzzlies: Phishing clue puzzles and trust indicators</li>
+                <li>Games: Cyber safety challenge cards and score tracker</li>
+              </ul>
+              <a class="pg-course-link" href="resources.html">Open Cyber Safety Resources</a>
+            </div>
+            <div class="pg-course-item">
+              <h4>AI for Everyday Life</h4>
+              <p>Use beginner AI tools for communication, planning, and daily productivity.</p>
+              <ul class="pg-course-list">
+                <li>Interactives: Prompt labs for practical tasks</li>
+                <li>Puzzlies: AI output quality and bias-check puzzles</li>
+                <li>Games: Prompt improvement rounds with peer voting</li>
+              </ul>
+              <a class="pg-course-link" href="academy/ai-fundamentals/">Open AI Fundamentals Track</a>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
