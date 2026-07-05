@@ -86,8 +86,21 @@
       if (!img) return;
       img.src = logoSrc;
       img.removeAttribute('srcset');
+      // Enforce safe logo framing even when page-level CSS tries to crop it.
+      img.style.objectFit = 'contain';
+      img.style.objectPosition = 'center';
+      img.style.overflow = 'visible';
+      img.style.paddingTop = '4px';
+      if (img.classList.contains('logo-img') || img.closest('.logo')) {
+        img.style.height = '76px';
+        img.style.width = 'auto';
+        img.style.maxWidth = 'min(320px, 42vw)';
+      }
       var logo = img.closest('.logo');
-      if (logo) logo.classList.add('wordmark-mode');
+      if (logo) {
+        logo.classList.add('wordmark-mode');
+        logo.style.overflow = 'visible';
+      }
     });
   }
 

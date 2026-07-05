@@ -87,4 +87,13 @@ button,
 
 img.logo-img {
   image-rendering: auto;
+  object-fit: contain !important;
+  object-position: center !important;
+  overflow: visible !important;
+  padding-top: 4px;
+}
+
+.logo,
+.logo-img {
+  overflow: visible !important;
 }
