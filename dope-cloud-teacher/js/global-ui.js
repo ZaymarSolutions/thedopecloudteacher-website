@@ -6,6 +6,8 @@
     var nav = document.querySelector('header .nav-links, .professional-nav .nav-links, .header-inner .nav-links, .header-container .nav-links');
     if (!nav || nav.dataset.standardized === 'true') return;
 
+    nav.classList.add('dct-primary-nav');
+
     var pathname = window.location.pathname || '/';
     var parts = pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
     var section = parts[0] || 'home';
