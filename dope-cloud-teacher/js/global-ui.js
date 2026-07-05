@@ -81,7 +81,7 @@
   }
 
   function initBrandLogo() {
-    var logoSrc = sitePath('logo.png?v=20260622c');
+    var logoSrc = sitePath('logo.png?v=20260705b');
     document.querySelectorAll('.logo-img, .pg-home img, .dct-workshop-brand img, .logo img').forEach(function (img) {
       if (!img) return;
       img.src = logoSrc;

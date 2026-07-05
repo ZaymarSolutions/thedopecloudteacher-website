@@ -1,21 +1,21 @@
 /* Global color-schema enforcement for all DCT pages loaded with global-ui.js */
 :root {
   --dct-bg-1: #ffffff;
-  --dct-bg-2: #faf8ff;
+  --dct-bg-2: #F3F9FF;
   --dct-surface: #ffffff;
   --dct-surface-soft: #f7f5ff;
   --dct-text: #12162f;
   --dct-text-soft: #3a4465;
-  --dct-border: #e6e0f7;
-  --dct-primary: #7b4df2;
-  --dct-secondary: #ff3bb8;
-  --dct-highlight: #32c8ff;
+  --dct-border: #D6E8FA;
+  --dct-primary: #178BE7;
+  --dct-secondary: #0F6EDB;
+  --dct-highlight: #5BB6FF;
 }
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(123, 77, 242, 0.06), transparent 30%),
-    radial-gradient(circle at top right, rgba(255, 59, 184, 0.05), transparent 26%),
+    radial-gradient(circle at top left, rgba(23, 139, 231, 0.06), transparent 30%),
+    radial-gradient(circle at top right, rgba(15, 110, 219, 0.05), transparent 26%),
     linear-gradient(180deg, var(--dct-bg-1) 0%, var(--dct-bg-2) 100%) !important;
   color: var(--dct-text-soft) !important;
 }
@@ -66,7 +66,7 @@ button,
 .button,
 .dct-btn.primary,
 .dct-btn.secondary {
-  border: 1px solid rgba(123, 77, 242, 0.2) !important;
+  border: 1px solid rgba(23, 139, 231, 0.2) !important;
 }
 
 .btn-primary,
@@ -81,7 +81,7 @@ button,
 .cta.secondary,
 .button-secondary,
 .dct-btn.secondary {
-  background: rgba(123, 77, 242, 0.1) !important;
+  background: rgba(23, 139, 231, 0.1) !important;
   color: var(--dct-primary) !important;
 }
 

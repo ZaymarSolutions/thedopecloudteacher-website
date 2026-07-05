@@ -627,21 +627,21 @@ function createAuthModal() {
       width: 90%;
       max-width: 450px;
       position: relative;
-      box-shadow: 0 10px 50px rgba(123, 77, 242, 0.3);
+      box-shadow: 0 10px 50px rgba(23, 139, 231, 0.3);
     }
     .auth-close {
       position: absolute;
       right: 20px;
       top: 15px;
       font-size: 2rem;
-      color: #77efe3;
+      color: #2C9DFF;
       cursor: pointer;
     }
     .auth-close:hover {
       color: #fff;
     }
     .auth-form h2 {
-      color: #77efe3;
+      color: #2C9DFF;
       margin-bottom: 1.5rem;
       text-align: center;
     }
@@ -649,7 +649,7 @@ function createAuthModal() {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      border: 2px solid #7b4df2;
+      border: 2px solid #178BE7;
       border-radius: 8px;
       background: rgba(255,255,255,0.1);
       color: #fff;
@@ -668,19 +668,19 @@ function createAuthModal() {
       height: 84px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #77efe3;
+      border: 2px solid #2C9DFF;
       margin: 0.35rem auto 0.2rem;
-      box-shadow: 0 4px 14px rgba(119, 239, 227, 0.28);
+      box-shadow: 0 4px 14px rgba(44, 157, 255, 0.28);
     }
     .auth-form input:focus {
       outline: none;
-      border-color: #77efe3;
+      border-color: #2C9DFF;
     }
     .auth-button {
       width: 100%;
       padding: 12px;
       margin: 15px 0;
-      background: #7b4df2;
+      background: #178BE7;
       color: #fff;
       border: none;
       border-radius: 8px;
@@ -699,7 +699,7 @@ function createAuthModal() {
       margin-top: 1rem;
     }
     .auth-form a {
-      color: #77efe3;
+      color: #2C9DFF;
       text-decoration: none;
     }
     .auth-form a:hover {
@@ -718,7 +718,7 @@ function createAuthModal() {
       font-weight: bold;
     }
     .auth-success {
-      color: #77efe3;
+      color: #2C9DFF;
       text-align: center;
       margin-top: 10px;
       line-height: 1.5;

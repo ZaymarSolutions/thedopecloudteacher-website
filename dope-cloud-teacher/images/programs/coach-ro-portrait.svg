@@ -9,7 +9,7 @@
       <stop offset="1" stop-color="#09060c"/>
     </linearGradient>
     <linearGradient id="jacket" x1="68" y1="150" x2="168" y2="288" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7b4df2"/>
+      <stop stop-color="#178BE7"/>
       <stop offset="1" stop-color="#ec4899"/>
     </linearGradient>
   </defs>

@@ -1,11 +1,11 @@
 :root {
-  --dct-purple: #7b4df2;
-  --dct-pink: #ff3bb8;
+  --dct-purple: #178BE7;
+  --dct-pink: #0F6EDB;
   --dct-black: #080b1a;
   --dct-white: #ffffff;
   --dct-blue: #2e90ff;
   --dct-soft: #eef2ff;
-  --dct-border: #e7e0f7;
+  --dct-border: #D6E8FA;
   --dct-ink: #11152d;
   --dct-muted: #4a567d;
 }
@@ -18,7 +18,7 @@
 
 .platform-hero {
   background:
-    linear-gradient(135deg, rgba(123, 77, 242, 0.08), rgba(255, 59, 184, 0.05)),
+    linear-gradient(135deg, rgba(23, 139, 231, 0.08), rgba(15, 110, 219, 0.05)),
     #ffffff;
   color: var(--dct-ink);
   border-radius: 28px;
@@ -76,8 +76,8 @@
 }
 
 .pill {
-  background: #efe7ff;
-  color: #4c2398;
+  background: #EAF4FF;
+  color: #0F6EDB;
   border-radius: 999px;
   padding: 0.25rem 0.7rem;
   font-size: 0.8rem;
@@ -104,13 +104,13 @@
 .cta.primary {
   background: linear-gradient(135deg, var(--dct-purple), var(--dct-pink));
   color: var(--dct-white);
-  box-shadow: 0 10px 24px rgba(123, 77, 242, 0.18);
+  box-shadow: 0 10px 24px rgba(23, 139, 231, 0.18);
 }
 
 .cta.secondary {
-  background: #f5f1ff;
+  background: #EAF4FF;
   color: #2b2f55;
-  border-color: #ddd4f7;
+  border-color: #C8DFFC;
 }
 
 .section-head {
@@ -154,7 +154,7 @@
 }
 
 .data-table th {
-  background: linear-gradient(135deg, #1a224b, #3d2d81);
+  background: linear-gradient(135deg, #1a224b, #0F6EDB);
   color: #f4f7ff;
 }
 
@@ -179,7 +179,7 @@
 }
 
 .dashboard-shell {
-  background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #F3F9FF 100%);
   border-radius: 24px;
   padding: 1.25rem;
   border: 1px solid var(--dct-border);

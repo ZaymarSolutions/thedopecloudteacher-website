@@ -1,20 +1,13 @@
-<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Dope Cloud Teacher logo">
-  <defs>
-    <linearGradient id="dctBg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7b4df2"/>
-      <stop offset="60%" stop-color="#ff3bb8"/>
-      <stop offset="100%" stop-color="#32c8ff"/>
-    </linearGradient>
-  </defs>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Dope Cloud Teacher logo mark">
+  <title>The Dope Cloud Teacher Logo</title>
+  <g fill="none" stroke="#178BE7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M76 342h300c38 0 70-27 70-61 0-31-24-56-55-60-9-35-42-61-81-61-43 0-79 31-86 73-29 5-52 31-52 62 0 25 15 45 36 56" stroke-width="18"/>
+    <path d="M170 257h172" stroke-width="24"/>
+  </g>
 
-  <rect x="16" y="16" width="224" height="224" rx="52" fill="url(#dctBg)"/>
-
-  <path d="M74 160h108c23 0 42-17 42-39 0-20-16-36-36-39-8-23-30-39-56-39-30 0-55 20-60 49-20 3-36 20-36 40 0 16 10 29 26 36" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <path d="M96 112l34-22 58 35-58 34-34-21z" fill="#ffffff" opacity="0.95"/>
-  <path d="M130 126v44" stroke="#ffffff" stroke-width="10" stroke-linecap="round"/>
-
-  <circle cx="189" cy="118" r="7" fill="#77efe3"/>
-  <path d="M189 125v22" stroke="#77efe3" stroke-width="5" stroke-linecap="round"/>
-  <path d="M182 146h14" stroke="#77efe3" stroke-width="5" stroke-linecap="round"/>
+  <path d="M176 257l44-28h108l44 28z" fill="#178BE7"/>
+  <path d="M250 262h20v102l-20 14z" fill="#178BE7"/>
+  <path d="M372 257v48" stroke="#178BE7" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="372" cy="314" r="9" fill="#178BE7"/>
+  <path d="M372 322l-8 34h16z" fill="#178BE7"/>
 </svg>

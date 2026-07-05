@@ -4,21 +4,21 @@
    ============================================ */
 
 :root {
-  --primary-purple: #7b4df2;
-  --primary-pink: #ff3bb8;
-  --primary-cyan: #32c8ff;
-  --dark-purple: #171d3f;
-  --accent-gold: #77efe3;
-  --accent-blue: #4aa3ff;
+  --primary-purple: #178BE7;
+  --primary-pink: #0F6EDB;
+  --primary-cyan: #5BB6FF;
+  --dark-purple: #0B1F33;
+  --accent-gold: #2C9DFF;
+  --accent-blue: #2C9DFF;
   --nav-surface: rgba(255, 255, 255, 0.95);
   --page-bg: #ffffff;
-  --page-bg-soft: #faf8ff;
+  --page-bg-soft: #F3F9FF;
   --card-bg: #ffffff;
   --text-dark: #12162f;
   --text-light: #3a4465;
   --text-gray: #4d587a;
   --text-muted: #7884a8;
-  --border-color: #e6e0f7;
+  --border-color: #D6E8FA;
   --success-green: #27b6a8;
   --shadow-lg: 0 18px 48px rgba(23,29,63,0.10);
   --shadow-md: 0 8px 20px rgba(23,29,63,0.08);
@@ -35,8 +35,8 @@ body {
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.72;
   background:
-    radial-gradient(circle at top left, rgba(123, 77, 242, 0.06), transparent 28%),
-    radial-gradient(circle at top right, rgba(255, 59, 184, 0.05), transparent 22%),
+    radial-gradient(circle at top left, rgba(23, 139, 231, 0.06), transparent 28%),
+    radial-gradient(circle at top right, rgba(15, 110, 219, 0.05), transparent 22%),
     linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-soft) 100%);
   color: var(--text-light);
   letter-spacing: 0.01em;
@@ -134,8 +134,8 @@ nav.nav-links a,
   position: relative;
   border-radius: 999px;
   padding: 0.65rem 0.95rem;
-  background: rgba(123, 77, 242, 0.07);
-  border: 1px solid rgba(123, 77, 242, 0.10);
+  background: rgba(23, 139, 231, 0.07);
+  border: 1px solid rgba(23, 139, 231, 0.10);
 }
 
 nav.nav-links a::after,
@@ -156,7 +156,7 @@ nav.nav-links a.active,
 .dct-primary-nav a.active {
   color: #ffffff;
   background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
-  box-shadow: 0 8px 18px rgba(123, 77, 242, 0.24);
+  box-shadow: 0 8px 18px rgba(23, 139, 231, 0.24);
   transform: translateY(-1px);
 }
 
@@ -200,7 +200,7 @@ nav.nav-links.is-open {
   right: 0 !important;
   background: rgba(8, 11, 26, 0.94) !important;
   backdrop-filter: blur(14px) !important;
-  border-bottom: 1px solid rgba(119, 239, 227, 0.18) !important;
+  border-bottom: 1px solid rgba(44, 157, 255, 0.18) !important;
   box-shadow: 0 12px 30px rgba(8, 11, 26, 0.35) !important;
   z-index: 1000 !important;
 }
@@ -229,7 +229,7 @@ nav.nav-links.is-open {
   background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink)) !important;
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 18px rgba(123, 77, 242, 0.22) !important;
+  box-shadow: 0 8px 18px rgba(23, 139, 231, 0.22) !important;
 }
 
 .lesson-nav-right .nav-btn.next {
@@ -246,7 +246,7 @@ nav.nav-links.is-open {
    ============================================ */
 
 .demo-banner {
-  background: linear-gradient(135deg, rgba(123, 77, 242, 0.08) 0%, rgba(255, 59, 184, 0.06) 45%, rgba(50, 200, 255, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(23, 139, 231, 0.08) 0%, rgba(15, 110, 219, 0.06) 45%, rgba(50, 200, 255, 0.08) 100%);
   color: var(--text-dark);
   padding: 3.25rem clamp(1.25rem, 5vw, 4rem);
   margin: 2rem auto 3rem;
@@ -423,7 +423,7 @@ section + section {
 }
 
 .scenario-card {
-  border: 1px solid rgba(123, 77, 242, 0.16);
+  border: 1px solid rgba(23, 139, 231, 0.16);
   background: linear-gradient(160deg, #ffffff 0%, #f9f7ff 100%);
   border-radius: 16px;
   padding: 0.95rem;
@@ -560,7 +560,7 @@ section + section {
   align-items: center;
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
-  background: rgba(123, 77, 242, 0.12);
+  background: rgba(23, 139, 231, 0.12);
   color: var(--primary-purple);
   font-size: 0.75rem;
   font-weight: 800;
@@ -590,8 +590,8 @@ section + section {
 
 .future-list li {
   color: var(--text-light);
-  background: #faf8ff;
-  border: 1px solid rgba(123, 77, 242, 0.12);
+  background: #F3F9FF;
+  border: 1px solid rgba(23, 139, 231, 0.12);
   border-radius: 12px;
   padding: 0.7rem 0.75rem;
   line-height: 1.45;
@@ -604,8 +604,8 @@ section + section {
 }
 
 .future-collection-side {
-  background: linear-gradient(180deg, #faf8ff 0%, #f3fbff 100%);
-  border: 1px solid rgba(123, 77, 242, 0.12);
+  background: linear-gradient(180deg, #F3F9FF 0%, #f3fbff 100%);
+  border: 1px solid rgba(23, 139, 231, 0.12);
   border-radius: 18px;
   padding: 1.05rem;
 }
@@ -658,7 +658,7 @@ section + section {
   align-items: center;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba(123, 77, 242, 0.12);
+  background: rgba(23, 139, 231, 0.12);
   color: var(--primary-purple);
   font-size: 0.75rem;
   font-weight: 800;
@@ -748,8 +748,8 @@ section + section {
   align-items: center;
   padding: 0.34rem 0.7rem;
   border-radius: 999px;
-  background: rgba(123, 77, 242, 0.08);
-  border: 1px solid rgba(123, 77, 242, 0.12);
+  background: rgba(23, 139, 231, 0.08);
+  border: 1px solid rgba(23, 139, 231, 0.12);
   color: var(--text-light);
   font-size: 0.82rem;
   font-weight: 700;
@@ -771,7 +771,7 @@ section + section {
   align-items: center;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba(123, 77, 242, 0.12);
+  background: rgba(23, 139, 231, 0.12);
   color: var(--primary-purple);
   font-size: 0.75rem;
   font-weight: 700;
@@ -1020,7 +1020,7 @@ section + section {
 
 .demo-showcase {
   padding: 4rem 5%;
-  background: linear-gradient(135deg, #0b1025 0%, #171d3f 45%, #0f172a 100%);
+  background: linear-gradient(135deg, #0b1025 0%, #0B1F33 45%, #0f172a 100%);
   border-radius: 22px;
   margin: 2rem auto;
   max-width: 1360px;
@@ -1105,7 +1105,7 @@ section + section {
 
 .demo-feature-cta {
   margin-top: 1rem;
-  color: #7b4df2;
+  color: #178BE7;
   font-weight: 800;
 }
 
@@ -1470,9 +1470,9 @@ section + section {
   flex-direction: column;
   justify-content: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #171d3f, #0f172a);
+  background: linear-gradient(135deg, #0B1F33, #0f172a);
   color: #f8fafc;
-  border: 1px solid rgba(119, 239, 227, 0.3);
+  border: 1px solid rgba(44, 157, 255, 0.3);
   padding: 1rem;
 }
 
@@ -1487,7 +1487,7 @@ section + section {
   justify-content: center;
   align-self: flex-start;
   text-decoration: none;
-  background: #77efe3;
+  background: #2C9DFF;
   color: #0b1025;
   font-weight: 700;
   border-radius: 8px;
