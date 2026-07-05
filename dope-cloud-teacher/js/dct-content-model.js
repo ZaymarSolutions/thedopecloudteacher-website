@@ -442,11 +442,12 @@
       startDate: "2026-09-08",
       endDate: "2026-11-21",
       schedule: "Tuesdays and Thursdays, 6:00 PM - 8:00 PM",
-      location: "PG Parks Community Technology Center",
+      location: "Southern Regional Technology & Recreation Complex",
       virtualLink: "",
       assignedCourseIds: ["course-cohort-pg", "course-az-fund"],
       assignedLessonIds: ["lesson-cloud-intro", "lesson-identity-core", "lesson-portfolio-story"],
-      enrolledStudents: 38
+      enrolledStudents: null,
+      hideEnrollment: true
     },
     {
       id: "cohort-live-2026-aug",

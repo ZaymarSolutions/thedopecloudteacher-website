@@ -374,6 +374,23 @@
       font-size: 1.25rem;
     }
 
+    .quick-quiz-option {
+      text-align: left;
+      padding: 0.6rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: #eef6ff;
+      cursor: pointer;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+    }
+
+    .quick-quiz-option:hover {
+      background: rgba(44, 157, 255, 0.18);
+      border-color: rgba(44, 157, 255, 0.7);
+    }
+
     footer {
       text-align: center;
       color: #b7bfd2;
@@ -514,6 +531,139 @@
     function getCoursePhoto(courseId) {
       return COURSE_PHOTOS[courseId] || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1400&q=80';
     }
+
+    const COURSE_AGE_GROUPS = {
+      Beginner: 'Recommended for ages 13+ (great for teens, parents, and first-time career changers).',
+      Intermediate: 'Recommended for ages 16+ with basic digital confidence and curiosity.',
+      Advanced: 'Recommended for ages 18+ or professionals preparing for certification and leadership-level decision making.'
+    };
+
+    const COURSE_SCENARIOS = [
+      {
+        title: 'Layman Demo: Why Cloud Matters',
+        detail: 'Imagine your school laptop gets damaged. Cloud keeps your files safe online so your work is still there when you log in from another device.',
+        trend: 'Used by schools and nonprofits to avoid losing critical records during outages.',
+        policy: 'Many districts now require resilient cloud backup plans in digital safety policies.'
+      },
+      {
+        title: 'Trending Scenario: AI In Daily Work',
+        detail: 'A program coordinator asks AI to summarize attendance trends and draft a parent update in plain language.',
+        trend: 'Teams are using AI copilots to save hours on repetitive writing and reporting.',
+        policy: 'Organizations are adding responsible AI guidelines for bias, privacy, and approval workflows.'
+      },
+      {
+        title: 'Cyber Reality Check',
+        detail: 'A fake invoice email arrives. Security training helps staff recognize it before anyone clicks.',
+        trend: 'Phishing remains one of the top causes of preventable incidents across public agencies.',
+        policy: 'Local and federal frameworks now emphasize annual cyber awareness and incident reporting readiness.'
+      }
+    ];
+
+    const QUICK_QUIZ_BANK = [
+      {
+        question: 'What is cloud computing in plain language?',
+        options: ['Renting online tech resources as needed', 'Buying every server upfront', 'Using only desktop apps'],
+        answer: 0,
+        note: 'Correct. Cloud means on-demand services over the internet.'
+      },
+      {
+        question: 'What is one smart first step before starting AI projects?',
+        options: ['Define the problem and success metric', 'Buy every AI tool available', 'Skip data quality checks'],
+        answer: 0,
+        note: 'Correct. Scope first, tools second.'
+      },
+      {
+        question: 'Why do teams practice incident response?',
+        options: ['To react faster when security issues happen', 'To avoid updates forever', 'To remove all passwords'],
+        answer: 0,
+        note: 'Correct. Practice reduces downtime and confusion.'
+      },
+      {
+        question: 'Best use of automation in cloud operations?',
+        options: ['Repeatable tasks with fewer manual errors', 'Avoid documentation', 'Never review logs'],
+        answer: 0,
+        note: 'Correct. Automation helps quality and consistency.'
+      }
+    ];
+
+    const HUMOR_STRIPS = [
+      'Cloud joke of the day: "I told my files to stay local. They said, \"we need space\" and moved to the cloud."',
+      'AI joke of the day: "I asked the model for one sentence. It gave me a roadmap, glossary, and a motivational quote."',
+      'Security joke of the day: "Our strongest password policy? No pet names, no birthdays, and definitely no \"Password123\"."'
+    ];
+
+    function pickBySeed(collection, seedText) {
+      let hash = 0;
+      for (let i = 0; i < seedText.length; i += 1) {
+        hash = (hash << 5) - hash + seedText.charCodeAt(i);
+        hash |= 0;
+      }
+      const index = Math.abs(hash) % collection.length;
+      return collection[index];
+    }
+
+    function getScenarioCard(courseId) {
+      return pickBySeed(COURSE_SCENARIOS, courseId + '-scenario');
+    }
+
+    function getHumorStrip(courseId) {
+      return pickBySeed(HUMOR_STRIPS, courseId + '-humor');
+    }
+
+    function getQuickQuiz(courseId) {
+      return pickBySeed(QUICK_QUIZ_BANK, courseId + '-quiz');
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function renderQuickQuizCard(courseId) {
+      const quiz = getQuickQuiz(courseId);
+      const optionsHtml = quiz.options.map((option, idx) => {
+        return '<button type="button" class="quick-quiz-option" data-correct="' + (idx === quiz.answer ? 'true' : 'false') + '" onclick="evaluateQuickQuiz(this)">' +
+          escapeHtml(option) + '</button>';
+      }).join('');
+
+      return (
+        '<div style="margin-top:1rem; background: rgba(44, 157, 255, 0.08); border:1px solid rgba(44,157,255,0.35); border-radius:12px; padding:1rem;">' +
+          '<p style="margin:0 0 0.6rem; color:#2C9DFF; font-weight:700;">Free Quick Quiz</p>' +
+          '<p style="margin:0 0 0.8rem; color:#e8f3ff;">' + escapeHtml(quiz.question) + '</p>' +
+          '<div style="display:grid; gap:0.5rem;">' + optionsHtml + '</div>' +
+          '<p class="quick-quiz-feedback" data-correct-note="' + escapeHtml(quiz.note) + '" style="margin:0.75rem 0 0; color:#9fb9d9; font-size:0.9rem;">Pick one answer to check yourself.</p>' +
+        '</div>'
+      );
+    }
+
+    function evaluateQuickQuiz(button) {
+      const wrapper = button.closest('div');
+      if (!wrapper) return;
+      const feedback = wrapper.querySelector('.quick-quiz-feedback');
+      if (!feedback) return;
+
+      wrapper.querySelectorAll('.quick-quiz-option').forEach(opt => {
+        opt.style.background = 'rgba(255,255,255,0.06)';
+        opt.style.borderColor = 'rgba(255,255,255,0.15)';
+      });
+
+      if (button.dataset.correct === 'true') {
+        button.style.background = 'rgba(16,185,129,0.25)';
+        button.style.borderColor = 'rgba(16,185,129,0.9)';
+        feedback.textContent = feedback.dataset.correctNote;
+        feedback.style.color = '#86efac';
+      } else {
+        button.style.background = 'rgba(239,68,68,0.2)';
+        button.style.borderColor = 'rgba(239,68,68,0.9)';
+        feedback.textContent = 'Not quite. Try another option. Learning beats guessing.';
+        feedback.style.color = '#fca5a5';
+      }
+    }
+
     function ensureCourseEnhancements() {
       const platformTemplate = {
         platforms: ['Coursera', 'Pluralsight', 'LinkedIn Learning'],
@@ -580,6 +730,9 @@
         card.style.boxShadow = '0 8px 32px rgba(23, 139, 231,0.15)';
         card.onclick = () => showCourseDetail(course.id);
         const photoUrl = getCoursePhoto(course.id);
+        const scenario = getScenarioCard(course.id);
+        const ageGroup = COURSE_AGE_GROUPS[course.level] || 'Recommended for curious learners and professionals.';
+        const humor = getHumorStrip(course.id);
 
         if (!hasAccess) {
           card.innerHTML = `
@@ -588,11 +741,19 @@
               <h3>${course.title} <span style='color:#ffd700;font-size:1rem;'>(Preview)</span></h3>
               <div class="duration">${course.duration} • ${course.lessons ? course.lessons.length : 'N/A'} Lessons • ${course.level}</div>
               <p>${course.description}</p>
+              <p style="margin-top:0.5rem; color:#9ecbff; font-size:0.92rem;"><strong>Recommended Age Group:</strong> ${ageGroup}</p>
+              <div style="margin-top:0.75rem; background: rgba(255,255,255,0.04); border-left:3px solid #2C9DFF; border-radius:10px; padding:0.75rem;">
+                <p style="margin:0; color:#dbeafe;"><strong>${scenario.title}:</strong> ${scenario.detail}</p>
+              </div>
+              <p style="margin-top:0.6rem; color:#b7d8ff; font-size:0.9rem;"><strong>Trending:</strong> ${scenario.trend}</p>
+              <p style="margin-top:0.3rem; color:#b9f7d0; font-size:0.9rem;"><strong>Policy Reality:</strong> ${scenario.policy}</p>
+              <p style="margin-top:0.6rem; color:#ffdca8; font-size:0.9rem;"><strong>Quick Laugh:</strong> ${humor}</p>
               <div class="topics">
                 ${course.skills.slice(0, 4).map(skill => `<span class="topic-tag">${skill}</span>`).join('')}
                 <span class="topic-tag" style="background: #10b981; color: #fff; font-weight:bold;">Special Offer</span>
                 <span class="topic-tag" style="background: rgba(59,130,246,0.25); color: #bfdbfe;">Platform-Ready</span>
               </div>
+              ${renderQuickQuizCard(course.id)}
               <div style="margin-top:1rem;">
                 <button class="btn-enroll" onclick="event.stopPropagation(); enrollInCourse('${course.id}')" style="font-size:1.1rem;">Unlock Full Course</button>
                 <p style="color:#cbbcff; font-size:0.95rem; margin-top:0.5rem;">Or <a href='pricing.html' style='color:#2C9DFF;text-decoration:underline;'>get all courses</a></p>
@@ -606,11 +767,19 @@
               <h3>${course.title}</h3>
               <div class="duration">${course.duration} • ${course.lessons ? course.lessons.length : 'N/A'} Lessons • ${course.level}</div>
               <p>${course.description}</p>
+              <p style="margin-top:0.5rem; color:#9ecbff; font-size:0.92rem;"><strong>Recommended Age Group:</strong> ${ageGroup}</p>
+              <div style="margin-top:0.75rem; background: rgba(255,255,255,0.04); border-left:3px solid #2C9DFF; border-radius:10px; padding:0.75rem;">
+                <p style="margin:0; color:#dbeafe;"><strong>${scenario.title}:</strong> ${scenario.detail}</p>
+              </div>
+              <p style="margin-top:0.6rem; color:#b7d8ff; font-size:0.9rem;"><strong>Trending:</strong> ${scenario.trend}</p>
+              <p style="margin-top:0.3rem; color:#b9f7d0; font-size:0.9rem;"><strong>Policy Reality:</strong> ${scenario.policy}</p>
+              <p style="margin-top:0.6rem; color:#ffdca8; font-size:0.9rem;"><strong>Quick Laugh:</strong> ${humor}</p>
               <div class="topics">
                 ${course.skills.slice(0, 4).map(skill => `<span class="topic-tag">${skill}</span>`).join('')}
                 <span class="topic-tag" style="background: #10b981; color: #fff; font-weight:bold;">Special Offer</span>
                 <span class="topic-tag" style="background: rgba(59,130,246,0.25); color: #bfdbfe;">Platform-Ready</span>
               </div>
+              ${renderQuickQuizCard(course.id)}
             </div>
           `;
         }
@@ -634,6 +803,9 @@
       const course = COURSE_PATHWAYS[courseId];
       if (!course) return;
       const photoUrl = getCoursePhoto(course.id);
+      const scenario = getScenarioCard(course.id);
+      const ageGroup = COURSE_AGE_GROUPS[course.level] || 'Recommended for curious learners and professionals.';
+      const humor = getHumorStrip(course.id);
 
       document.getElementById('courseListView').style.display = 'none';
       const detailView = document.getElementById('courseDetailView');
@@ -649,6 +821,20 @@
           <h2>${course.title}</h2>
           <div class="subtitle">${course.subtitle}</div>
           <p style="max-width: 800px; margin: 0 auto; color: #e0e0e0; margin-bottom: 2rem;">${course.description}</p>
+          <p style="max-width: 820px; margin: 0.3rem auto 1.4rem; color:#9ecbff;"><strong>Recommended Age Group:</strong> ${ageGroup}</p>
+
+          <div style="max-width: 860px; margin: 0 auto 1.4rem; text-align: left; background: rgba(255,255,255,0.05); border:1px solid rgba(44,157,255,0.3); border-radius:14px; padding:1rem 1.1rem;">
+            <h3 style="margin:0 0 0.6rem; color:#2C9DFF; font-size:1.15rem;">${scenario.title}</h3>
+            <p style="margin:0 0 0.45rem; color:#e8f3ff;"><strong>In Plain Language:</strong> ${scenario.detail}</p>
+            <p style="margin:0 0 0.35rem; color:#b7d8ff;"><strong>Trending Use:</strong> ${scenario.trend}</p>
+            <p style="margin:0; color:#b9f7d0;"><strong>Public/Policy Context:</strong> ${scenario.policy}</p>
+          </div>
+
+          <div style="max-width: 860px; margin: 0 auto 1.3rem; background: rgba(255, 191, 71, 0.1); border:1px solid rgba(255, 191, 71, 0.45); border-radius:12px; padding:0.8rem 1rem; color:#ffe5bd;">
+            <strong>Professional Humor Break:</strong> ${humor}
+          </div>
+
+          ${renderQuickQuizCard(course.id)}
           
           <div class="course-meta">
             <div class="meta-item">
