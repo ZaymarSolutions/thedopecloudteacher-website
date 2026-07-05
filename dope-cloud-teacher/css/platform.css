@@ -1,25 +1,30 @@
 :root {
   --dct-purple: #7b4df2;
+  --dct-pink: #ff3bb8;
   --dct-black: #080b1a;
   --dct-white: #ffffff;
   --dct-blue: #2e90ff;
   --dct-soft: #eef2ff;
-  --dct-border: #d8def5;
+  --dct-border: #e7e0f7;
+  --dct-ink: #11152d;
+  --dct-muted: #4a567d;
 }
 
 .platform-shell {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 2rem 5%;
+  padding: 2.5rem clamp(1rem, 4vw, 3rem) 4rem;
 }
 
 .platform-hero {
-  background: radial-gradient(circle at 10% 20%, rgba(46, 144, 255, 0.25), transparent 45%),
-    linear-gradient(135deg, #120a24 0%, #1f1650 55%, #112a5f 100%);
-  color: var(--dct-white);
-  border-radius: 18px;
-  padding: 2.5rem;
-  box-shadow: 0 16px 36px rgba(8, 11, 26, 0.35);
+  background:
+    linear-gradient(135deg, rgba(123, 77, 242, 0.08), rgba(255, 59, 184, 0.05)),
+    #ffffff;
+  color: var(--dct-ink);
+  border-radius: 28px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--dct-border);
+  box-shadow: 0 18px 42px rgba(17, 21, 45, 0.08);
 }
 
 .platform-hero h1 {
@@ -29,36 +34,38 @@
 
 .platform-hero p {
   max-width: 900px;
-  color: #e7ebff;
+  color: var(--dct-muted);
+  line-height: 1.7;
 }
 
 .path-grid,
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin-top: 1.4rem;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
 }
 
 .path-card,
 .platform-card {
   background: var(--dct-white);
   border: 1px solid var(--dct-border);
-  border-radius: 14px;
-  padding: 1rem;
-  box-shadow: 0 6px 18px rgba(23, 29, 63, 0.08);
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 24px rgba(23, 29, 63, 0.07);
 }
 
 .path-card h3,
 .platform-card h3 {
-  color: #1d2450;
-  margin-bottom: 0.4rem;
+  color: var(--dct-ink);
+  margin-bottom: 0.5rem;
 }
 
 .path-card p,
 .platform-card p {
-  color: #3c456f;
-  margin-bottom: 0.7rem;
+  color: var(--dct-muted);
+  margin-bottom: 0.85rem;
+  line-height: 1.7;
 }
 
 .pill-row {
@@ -69,10 +76,10 @@
 }
 
 .pill {
-  background: #ece4ff;
-  color: #44258c;
+  background: #efe7ff;
+  color: #4c2398;
   border-radius: 999px;
-  padding: 0.2rem 0.65rem;
+  padding: 0.25rem 0.7rem;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -88,34 +95,36 @@
   display: inline-block;
   text-decoration: none;
   font-weight: 700;
-  border-radius: 10px;
-  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  padding: 0.75rem 1.15rem;
   border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .cta.primary {
-  background: var(--dct-purple);
+  background: linear-gradient(135deg, var(--dct-purple), var(--dct-pink));
   color: var(--dct-white);
+  box-shadow: 0 10px 24px rgba(123, 77, 242, 0.18);
 }
 
 .cta.secondary {
-  background: #eaf1ff;
-  color: #12306d;
-  border-color: #c8d8ff;
+  background: #f5f1ff;
+  color: #2b2f55;
+  border-color: #ddd4f7;
 }
 
 .section-head {
-  margin-top: 2rem;
-  margin-bottom: 0.8rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
 }
 
 .section-head h2 {
-  font-size: 1.5rem;
-  color: #1a224b;
+  font-size: 1.45rem;
+  color: var(--dct-ink);
 }
 
 .section-head p {
-  color: #4e5989;
+  color: var(--dct-muted);
 }
 
 .list-clean {
@@ -124,28 +133,28 @@
 }
 
 .list-clean li {
-  padding: 0.5rem 0;
-  border-bottom: 1px dashed #dbe2f7;
+  padding: 0.65rem 0;
+  border-bottom: 1px dashed #e4e8f8;
 }
 
 .data-table {
   width: 100%;
   border-collapse: collapse;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(17, 42, 95, 0.08);
+  box-shadow: 0 10px 24px rgba(17, 21, 45, 0.08);
 }
 
 .data-table th,
 .data-table td {
   text-align: left;
-  padding: 0.7rem;
+  padding: 0.95rem 1rem;
   border-bottom: 1px solid #edf1ff;
 }
 
 .data-table th {
-  background: #112a5f;
+  background: linear-gradient(135deg, #1a224b, #3d2d81);
   color: #f4f7ff;
 }
 
@@ -166,18 +175,19 @@
 
 .poster-meta {
   font-size: 0.88rem;
-  color: #4a588d;
+  color: var(--dct-muted);
 }
 
 .dashboard-shell {
-  background: linear-gradient(180deg, #f5f7ff 0%, #eef4ff 100%);
-  border-radius: 16px;
-  padding: 1rem;
-  border: 1px solid #d9e2ff;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 100%);
+  border-radius: 24px;
+  padding: 1.25rem;
+  border: 1px solid var(--dct-border);
+  box-shadow: 0 10px 24px rgba(17, 21, 45, 0.06);
 }
 
 @media (max-width: 800px) {
   .platform-hero {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 }
