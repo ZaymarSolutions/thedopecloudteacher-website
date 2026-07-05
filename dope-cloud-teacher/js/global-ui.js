@@ -37,6 +37,32 @@
     }) || null;
   }
 
+  function ensureThemeStyles() {
+    var head = document.head || document.querySelector('head');
+    if (!head) return;
+
+    var stylesHref = sitePath('css/styles.css');
+    var existingStyles = Array.prototype.slice.call(head.querySelectorAll('link[rel="stylesheet"]')).find(function (link) {
+      return (link.getAttribute('href') || '').indexOf('css/styles.css') !== -1;
+    });
+
+    if (!existingStyles) {
+      var stylesLink = document.createElement('link');
+      stylesLink.rel = 'stylesheet';
+      stylesLink.href = stylesHref;
+      stylesLink.id = 'dct-core-styles';
+      head.appendChild(stylesLink);
+    }
+
+    if (!head.querySelector('#dct-unified-theme')) {
+      var themeLink = document.createElement('link');
+      themeLink.rel = 'stylesheet';
+      themeLink.href = sitePath('css/unified-theme.css?v=20260705a');
+      themeLink.id = 'dct-unified-theme';
+      head.appendChild(themeLink);
+    }
+  }
+
   function ensureMobileToggle(nav) {
     if (!nav) return;
     var header = nav.closest('header');
@@ -56,7 +82,7 @@
 
   function initBrandLogo() {
     var logoSrc = sitePath('logo.png?v=20260622c');
-    document.querySelectorAll('.logo-img, .pg-home img').forEach(function (img) {
+    document.querySelectorAll('.logo-img, .pg-home img, .dct-workshop-brand img, .logo img').forEach(function (img) {
       if (!img) return;
       img.src = logoSrc;
       img.removeAttribute('srcset');
@@ -220,6 +246,7 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
+      ensureThemeStyles();
       sanitizeCoursesPageLeak();
       initBrandLogo();
       initStandardNav();
@@ -227,6 +254,7 @@
       initFlipCards();
     });
   } else {
+    ensureThemeStyles();
     sanitizeCoursesPageLeak();
     initBrandLogo();
     initStandardNav();
