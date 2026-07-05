@@ -11,14 +11,14 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/platform.css">
   <meta property="og:title" content="Learn Cloud, Security, DevOps, and AI | The Dope Cloud Teacher">
-  <meta prope  <meta prope  <meta prope t=  <meta prope  <meta prope  <meta prope t=  <meta prope  <meta  C  <meta proy students.">
+  <meta property="og:description" content="Cloud and AI pathways for students, teams, and workforce learners through instructor-led classes, live virtual cohorts, and self-paced academy tracks.">
   <meta property="og:type" content="website">
 </head>
 <body>
   <header>
     <div class="header-container">
-      <a href="/index.html" class="logo" aria-label="The Dope Cloud Teacher home">
-        <img src="/logo.svg?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img" onerror="this.style.display='none'">
+      <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="logo.png?v=20260622c" alt="The Dope Cloud Teacher" class="logo-img" onerror="this.style.display='none'">
         <div class="logo-text">
           <span class="main-title">The Dope Cloud Teacher</span>
           <span class="subtitle">Cloud Classes For Real People</span>
@@ -34,9 +34,9 @@
       <h1>Learn Cloud, Security, DevOps, and AI with The Dope Cloud Teacher</h1>
       <p>One curriculum. Three ways to learn. Choose the path that fits your schedule and support needs while staying aligned to real certification goals and job outcomes.</p>
       <div class="cta-row">
-        <a class="cta primary" href="/classes/">Enroll</a>
-        <a class="cta secondary" href="/academy/">View Academy</a>
-        <a class="cta secondary" href="/playbook/">Browse Playbook</a>
+        <a class="cta primary" href="classes/">Enroll</a>
+        <a class="cta secondary" href="academy/">View Academy</a>
+        <a class="cta secondary" href="playbook/">Browse Playbook</a>
       </div>
     </section>
 
@@ -48,17 +48,17 @@
       <article class="path-card">
         <h3>1. Join an In-Person Class</h3>
         <p>PG Parks cohorts with weekly structure, hands-on labs, and in-room support.</p>
-        <a class="cta secondary" href="/classes/pg-parks/">View PG Parks Classes</a>
+        <a class="cta secondary" href="classes/pg-parks/">View PG Parks Classes</a>
       </article>
       <article class="path-card">
         <h3>2. Attend a Live Virtual Class</h3>
         <p>Live online cohorts with schedule accountability, office hours, and replay access.</p>
-        <a class="cta secondary" href="/classes/live/">View Live Virtual Classes</a>
+        <a class="cta secondary" href="classes/live/">View Live Virtual Classes</a>
       </article>
       <article class="path-card">
         <h3>3. Learn Anytime in the Academy</h3>
         <p>Self-paced tracks with modular lessons, quizzes, downloadable resources, and progress tracking.</p>
-        <a class="cta secondary" href="/academy/">Enter Dope Cloud Academy</a>
+        <a class="cta secondary" href="academy/">Enter Dope Cloud Academy</a>
       </article>
     </section>
 
@@ -69,15 +69,54 @@
     <section id="home-featured-posters" class="card-grid"></section>
 
     <section class="section-head">
+      <h2>Real Scenarios, Not Just Theory</h2>
+      <p>Each pathway includes guided visuals and practical case scenarios learners can apply immediately.</p>
+    </section>
+    <section class="scenario-section">
+      <div class="scenario-grid">
+        <article class="scenario-card">
+          <img src="images/programs/cloud-security.svg" alt="Scenario visual for cloud security rollout">
+          <h3>Community Center Security Rollout</h3>
+          <p>Students practice securing cloud identities for a multi-site community center with shared devices.</p>
+          <ul>
+            <li>Role-based access by staff function</li>
+            <li>Incident response and alert workflow</li>
+            <li>Audit-ready controls for leadership</li>
+          </ul>
+        </article>
+        <article class="scenario-card">
+          <img src="images/programs/serverless-microservices.svg" alt="Scenario visual for architecture modernization">
+          <h3>Small Business Modernization</h3>
+          <p>Teams break a monolithic app into resilient services while balancing cost, speed, and reliability.</p>
+          <ul>
+            <li>Architecture choices tied to business goals</li>
+            <li>Performance and resilience checkpoints</li>
+            <li>Phased migration and rollback planning</li>
+          </ul>
+        </article>
+        <article class="scenario-card">
+          <img src="images/programs/enterprise-plans.svg" alt="Scenario visual for workforce development planning">
+          <h3>Workforce Pipeline Buildout</h3>
+          <p>Instructors map cloud and AI skills into a 6-week pathway with measurable outcomes.</p>
+          <ul>
+            <li>Weekly labs mapped to job skills</li>
+            <li>Portfolio artifacts for each learner</li>
+            <li>Certification readiness checkpoints</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-head">
       <h2>Current and Upcoming Cohorts</h2>
       <p>Enrollment windows update as new in-person and live cohorts open.</p>
     </section>
     <section id="home-cohorts" class="card-grid"></section>
   </main>
 
-  <script src="/js/dct-content-model.js"></script>
-  <script src="/js/platform-pages.js"></script>
-  <script src="/js/global-ui.js"></script>
+  <script src="js/dct-content-model.js"></script>
+  <script src="js/platform-pages.js"></script>
+  <script src="js/global-ui.js"></script>
   <script>
     (function () {
       const target = document.getElementById("home-featured-posters");
@@ -88,7 +127,7 @@
           '<p>' + poster.topic + '</p>' +
           '<p class="poster-meta"><strong>Certification:</strong> ' + poster.certificationMapping + '</p>' +
           '<p class="poster-meta"><strong>Related lessons:</strong> ' + poster.relatedLessonIds.length + '</p>' +
-          '<a class="cta secondary" href="/playbook/">Open in Playbook</a>' +
+          '<a class="cta secondary" href="playbook/">Open in Playbook</a>' +
           '</article>';
       }).join("");
 

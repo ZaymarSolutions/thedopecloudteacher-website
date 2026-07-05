@@ -2,6 +2,23 @@
   if (window.__dctGlobalUiLoaded) return;
   window.__dctGlobalUiLoaded = true;
 
+  function sitePath(target) {
+    var cleanTarget = String(target || '').replace(/^\/+/, '');
+    if (!cleanTarget) return '/';
+
+    if (window.location.protocol !== 'file:') {
+      return '/' + cleanTarget;
+    }
+
+    var parts = (window.location.pathname || '').split('/').filter(Boolean);
+    var rootIndex = parts.indexOf('dope-cloud-teacher');
+    if (rootIndex === -1) return cleanTarget;
+
+    var localParts = parts.slice(rootIndex + 1);
+    var depth = window.location.pathname.endsWith('/') ? localParts.length : Math.max(localParts.length - 1, 0);
+    return '../'.repeat(depth) + cleanTarget;
+  }
+
   function findPrimaryNav() {
     var preferred = Array.prototype.slice.call(document.querySelectorAll('header .nav-links, .site-nav__links, .professional-nav .nav-links, .header-container .nav-links, .header-inner .nav-links, .nav-links'));
     var preferredMatch = preferred.find(function (node) {
@@ -37,6 +54,17 @@
     container.appendChild(toggle);
   }
 
+  function initBrandLogo() {
+    var logoSrc = sitePath('logo.png?v=20260622c');
+    document.querySelectorAll('.logo-img, .pg-home img').forEach(function (img) {
+      if (!img) return;
+      img.src = logoSrc;
+      img.removeAttribute('srcset');
+      var logo = img.closest('.logo');
+      if (logo) logo.classList.add('wordmark-mode');
+    });
+  }
+
   function initStandardNav() {
     var nav = findPrimaryNav();
     if (!nav || nav.dataset.standardized === 'true') return;
@@ -50,19 +78,19 @@
     var section = parts[0] || 'home';
     var currentPage = (parts.length ? parts[parts.length - 1] : 'index.html').split('?')[0] || 'index.html';
     var navItems = [
-      { href: '/index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
-      { href: '/classes/', label: 'Classes', sections: ['classes'], pages: ['courses.html', 'pg-parks-direct.html'] },
-      { href: '/academy/', label: 'Academy', sections: ['academy'], pages: ['cloud-fundamentals-course.html', 'cloud-career-starter-kit.html'] },
-      { href: '/playbook/', label: 'Visual Playbook', sections: ['playbook'], pages: ['resources.html'] },
-      { href: '/student-dashboard/', label: 'Student Dashboard', sections: ['student-dashboard'], pages: ['dashboard.html'] },
-      { href: '/corporate-training.html', label: 'For Businesses', sections: [], pages: ['corporate-training.html', 'b2b.html'] },
-      { href: '/about.html', label: 'About', sections: [], pages: ['about.html'] },
-      { href: '/contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
+      { href: 'index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
+      { href: 'classes/', label: 'Classes', sections: ['classes'], pages: ['courses.html', 'pg-parks-direct.html'] },
+      { href: 'academy/', label: 'Academy', sections: ['academy'], pages: ['cloud-fundamentals-course.html', 'cloud-career-starter-kit.html'] },
+      { href: 'playbook/', label: 'Visual Playbook', sections: ['playbook'], pages: ['resources.html'] },
+      { href: 'student-dashboard/', label: 'Student Dashboard', sections: ['student-dashboard'], pages: ['dashboard.html'] },
+      { href: 'corporate-training.html', label: 'For Businesses', sections: [], pages: ['corporate-training.html', 'b2b.html'] },
+      { href: 'about.html', label: 'About', sections: [], pages: ['about.html'] },
+      { href: 'contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
     ];
 
     nav.innerHTML = navItems.map(function (item) {
       var isActive = item.sections.indexOf(section) !== -1 || item.pages.indexOf(currentPage) !== -1;
-      return '<a href="' + item.href + '"' + (isActive ? ' class="active"' : '') + '>' + item.label + '</a>';
+      return '<a href="' + sitePath(item.href) + '"' + (isActive ? ' class="active"' : '') + '>' + item.label + '</a>';
     }).join('') + '<a href="#" id="authButton">Sign In</a>';
 
     nav.dataset.standardized = 'true';
@@ -193,12 +221,14 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       sanitizeCoursesPageLeak();
+      initBrandLogo();
       initStandardNav();
       initMobileNav();
       initFlipCards();
     });
   } else {
     sanitizeCoursesPageLeak();
+    initBrandLogo();
     initStandardNav();
     initMobileNav();
     initFlipCards();
