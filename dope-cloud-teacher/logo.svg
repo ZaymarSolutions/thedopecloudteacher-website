@@ -1,8 +1,14 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Dope Cloud Teacher logo mark">
+<svg width="768" height="768" viewBox="-28 -28 824 824" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The Dope Cloud Teacher logo mark">
   <title>The Dope Cloud Teacher Logo</title>
-  <g fill="none" stroke="#178BE7" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M120 338h264c35 0 64-26 64-58 0-28-22-51-50-54-8-32-37-56-72-56-39 0-71 28-77 67-26 4-47 28-47 57 0 25 20 44 46 44" stroke-width="18"/>
+  <g fill="none" stroke="#178BE7" stroke-width="42" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M138 416c0-66 51-120 116-124 25-89 107-154 204-154 98 0 180 65 204 154 65 4 116 58 116 124 0 69-56 125-125 125H482"/>
+    <path d="M286 541H262c-69 0-124-56-124-125"/>
   </g>
 
-  <path d="M206 214h100v30h-35v118h-30V244h-35z" fill="#178BE7"/>
+  <path d="M290 359h188l62 52H228z" fill="#178BE7"/>
+  <path d="M366 388h36c12 0 22 10 22 22v164l-58 37V410c0-12 10-22 22-22z" fill="#178BE7"/>
+
+  <path d="M528 411v58" stroke="#178BE7" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="528" cy="488" r="11" fill="#178BE7"/>
+  <path d="M528 502l-12 58h24z" fill="#178BE7"/>
 </svg>
