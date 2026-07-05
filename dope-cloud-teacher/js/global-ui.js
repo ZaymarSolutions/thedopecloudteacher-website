@@ -2,11 +2,48 @@
   if (window.__dctGlobalUiLoaded) return;
   window.__dctGlobalUiLoaded = true;
 
+  function findPrimaryNav() {
+    var preferred = Array.prototype.slice.call(document.querySelectorAll('header .nav-links, .site-nav__links, .professional-nav .nav-links, .header-container .nav-links, .header-inner .nav-links, .nav-links'));
+    var preferredMatch = preferred.find(function (node) {
+      if (!node) return false;
+      if (node.closest('.lesson-nav, .session-nav, .top-nav, .top, .pg-nav, .dashboard-nav')) return false;
+      return true;
+    });
+
+    if (preferredMatch) return preferredMatch;
+
+    var fallbacks = Array.prototype.slice.call(document.querySelectorAll('header nav, .header-container nav, .header-inner nav, nav.site-nav, nav.nav'));
+    return fallbacks.find(function (node) {
+      if (!node) return false;
+      if (node.closest('.lesson-nav, .session-nav, .top-nav, .top, .pg-nav, .dashboard-nav')) return false;
+      return true;
+    }) || null;
+  }
+
+  function ensureMobileToggle(nav) {
+    if (!nav) return;
+    var header = nav.closest('header');
+    if (!header) return;
+
+    var container = header.querySelector('.header-container, .header-inner') || header;
+    var existingToggle = container.querySelector('.mobile-menu-toggle');
+    if (existingToggle) return;
+
+    var toggle = document.createElement('button');
+    toggle.className = 'mobile-menu-toggle';
+    toggle.setAttribute('aria-label', 'Toggle mobile menu');
+    toggle.setAttribute('type', 'button');
+    toggle.textContent = '≡';
+    container.appendChild(toggle);
+  }
+
   function initStandardNav() {
-    var nav = document.querySelector('header .nav-links, .professional-nav .nav-links, .header-inner .nav-links, .header-container .nav-links');
+    var nav = findPrimaryNav();
     if (!nav || nav.dataset.standardized === 'true') return;
 
+    nav.classList.add('nav-links');
     nav.classList.add('dct-primary-nav');
+    nav.setAttribute('aria-label', 'Main navigation');
 
     var pathname = window.location.pathname || '/';
     var parts = pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
@@ -29,6 +66,7 @@
     }).join('') + '<a href="#" id="authButton">Sign In</a>';
 
     nav.dataset.standardized = 'true';
+    ensureMobileToggle(nav);
 
     if (typeof window.updateAuthUI === 'function') {
       window.updateAuthUI();
@@ -36,8 +74,8 @@
   }
 
   function initMobileNav() {
-    var toggle = document.querySelector('.mobile-menu-toggle');
-    var nav = document.querySelector('nav.nav-links, .nav-links');
+    var nav = document.querySelector('header nav.nav-links, header .nav-links, nav.dct-primary-nav');
+    var toggle = document.querySelector('header .mobile-menu-toggle, .mobile-menu-toggle');
     if (!toggle || !nav) return;
 
     toggle.setAttribute('aria-expanded', 'false');

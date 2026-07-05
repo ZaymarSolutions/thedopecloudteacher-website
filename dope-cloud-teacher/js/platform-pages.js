@@ -4,7 +4,7 @@
   }
 
   function fmtDate(value) {
-    if (!value) return "TBD";
+    if (!value) return "Date announced soon";
     return new Date(value + "T00:00:00").toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -76,7 +76,7 @@
         '<ul class="list-clean">' +
         lessons.map(function (lesson) {
           const quiz = window.DCT_CONTENT.byId(window.DCT_CONTENT.quizzes, lesson.quizId);
-          return "<li><strong>" + lesson.title + "</strong><br>" + lesson.summary + "<br><span class=\"poster-meta\">Quiz: " + (quiz ? quiz.title : "TBD") + " | Estimated: " + lesson.estimatedTime + "</span></li>";
+          return "<li><strong>" + lesson.title + "</strong><br>" + lesson.summary + "<br><span class=\"poster-meta\">Quiz: " + (quiz ? quiz.title : "Published in class dashboard") + " | Estimated: " + lesson.estimatedTime + "</span></li>";
         }).join("") +
         "</ul>" +
         "</article>"
@@ -163,7 +163,7 @@
         "<h3>Week " + (index + 1) + ": " + lesson.title + "</h3>" +
         "<p>" + lesson.summary + "</p>" +
         "<p><strong>Estimated:</strong> " + lesson.estimatedTime + "</p>" +
-        "<p><strong>Quiz:</strong> " + (quiz ? quiz.title : "TBD") + "</p>" +
+        "<p><strong>Quiz:</strong> " + (quiz ? quiz.title : "Published in class dashboard") + "</p>" +
         "</article>"
       );
     }).join("");
@@ -200,7 +200,7 @@
         return poster.title;
       }).join(", ");
       const quiz = window.DCT_CONTENT.byId(window.DCT_CONTENT.quizzes, lesson.quizId);
-      return "<tr><td>" + lesson.title + "</td><td>" + (posterTitles || "No poster") + "</td><td>" + (quiz ? quiz.title : "TBD") + "</td><td><button>Assign</button></td></tr>";
+      return "<tr><td>" + lesson.title + "</td><td>" + (posterTitles || "No poster") + "</td><td>" + (quiz ? quiz.title : "Set in instructor dashboard") + "</td><td><button>Assign</button></td></tr>";
     }).join("");
   }
 

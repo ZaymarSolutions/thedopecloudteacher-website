@@ -456,7 +456,7 @@
       endDate: "2026-09-18",
       schedule: "Mondays and Wednesdays, 7:00 PM - 9:00 PM EST",
       location: "",
-      virtualLink: "https://zoom.us/j/your-cohort-room",
+      virtualLink: "/classes/live/",
       assignedCourseIds: ["course-cohort-live", "course-az-security"],
       assignedLessonIds: ["lesson-cloud-intro", "lesson-security-baseline", "lesson-portfolio-story"],
       enrolledStudents: 52
