@@ -442,7 +442,7 @@
       startDate: "2026-09-08",
       endDate: "2026-11-21",
       schedule: "Tuesdays and Thursdays, 6:00 PM - 8:00 PM",
-      location: "Southern Regional Technology & Recreation Complex",
+      location: "Southern Regional Tevhnology & Recreaction Complex",
       virtualLink: "",
       assignedCourseIds: ["course-cohort-pg", "course-az-fund"],
       assignedLessonIds: ["lesson-cloud-intro", "lesson-identity-core", "lesson-portfolio-story"],
