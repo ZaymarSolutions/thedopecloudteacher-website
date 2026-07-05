@@ -84,7 +84,7 @@
   }
 
   function initBrandLogo() {
-    var logoSrc = sitePath('logo.png?v=20260705b');
+    var logoSrc = sitePath('logo.svg?v=20260705c');
     document.querySelectorAll('.logo-img, .pg-home img, .dct-workshop-brand img, .logo img').forEach(function (img) {
       if (!img) return;
       img.src = logoSrc;
@@ -93,7 +93,7 @@
       img.style.objectFit = 'contain';
       img.style.objectPosition = 'center';
       img.style.overflow = 'visible';
-      img.style.paddingTop = '4px';
+      img.style.paddingTop = '0';
       if (img.classList.contains('logo-img') || img.closest('.logo')) {
         img.style.height = '76px';
         img.style.width = 'auto';

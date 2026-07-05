@@ -38,85 +38,70 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     :root {
-      --bg: #0b1025;
-      --bg-alt: #171d3f;
-      --panel: #141a39;
-      --border: #28325d;
-      --text: #eef3ff;
-      --muted: #b5bedc;
-      --purple: #178BE7;
-      --teal: #2C9DFF;
-      --gold: #f4c542;
+      --bg: #071429;
+      --bg-alt: #0d2743;
+      --panel: #0c1f39;
+      --panel-soft: #122a49;
+      --border: #1f426b;
+      --text: #eef4ff;
+      --muted: #b9c9e6;
+      --primary: #178BE7;
+      --secondary: #2C9DFF;
+      --accent: #6fd1ff;
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, var(--bg), var(--bg-alt));
+      background:
+        radial-gradient(circle at top right, rgba(23, 139, 231, 0.24), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(44, 157, 255, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--bg), var(--bg-alt));
       color: var(--text);
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(11, 16, 37, 0.92);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(44, 157, 255,0.12);
-    }
-
-    .header-inner,
     .hero,
     .blog-grid-wrap,
+    .spotlight-strip,
     .coming-soon,
     footer {
-      width: min(1160px, calc(100% - 2rem));
+      width: min(1180px, calc(100% - 2rem));
       margin: 0 auto;
     }
 
-    .header-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 0;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .logo img {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--teal);
-    }
-
     .hero {
-      padding: 3rem 0 2rem;
+      padding: 2.8rem 0 1.8rem;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-visual {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, rgba(12, 31, 57, 0.96), rgba(18, 42, 73, 0.9));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-copy {
+      padding: 1.4rem;
+    }
+
+    .hero-visual {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      display: block;
     }
 
     .eyebrow {
@@ -125,9 +110,9 @@
       gap: 0.5rem;
       padding: 0.4rem 0.8rem;
       border-radius: 999px;
-      background: rgba(44, 157, 255,0.1);
-      border: 1px solid rgba(44, 157, 255,0.25);
-      color: var(--teal);
+      background: rgba(44, 157, 255, 0.12);
+      border: 1px solid rgba(44, 157, 255, 0.26);
+      color: var(--accent);
       font-size: 0.75rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -135,42 +120,105 @@
     }
 
     .hero h1 {
-      margin: 1rem 0 0.8rem;
-      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      margin: 0.9rem 0 0.7rem;
+      font-size: clamp(2rem, 4.6vw, 3.4rem);
       line-height: 1.06;
     }
 
     .hero p {
       margin: 0;
-      max-width: 48rem;
+      max-width: 50rem;
       color: var(--muted);
-      font-size: 1.05rem;
+      font-size: 1.03rem;
       line-height: 1.7;
+    }
+
+    .hero-metrics {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-metric {
+      padding: 0.5rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(44, 157, 255, 0.24);
+      background: rgba(23, 139, 231, 0.08);
+      color: #dce8ff;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .spotlight-strip {
+      padding: 0.3rem 0 1.6rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.85rem;
+    }
+
+    .spotlight-card {
+      background: rgba(12, 31, 57, 0.94);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 0.8rem;
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 0.7rem;
+      align-items: center;
+    }
+
+    .spotlight-card img {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(44, 157, 255, 0.25);
+      padding: 0.25rem;
+    }
+
+    .spotlight-card h3 {
+      margin: 0;
+      font-size: 0.96rem;
+      color: #f1f6ff;
+    }
+
+    .spotlight-card p {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+      font-size: 0.84rem;
+      line-height: 1.4;
     }
 
     .blog-grid-wrap {
       padding-bottom: 2rem;
     }
 
+    .section-title {
+      margin: 0 0 0.85rem;
+      font-size: 1.35rem;
+    }
+
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(285px, 1fr));
       gap: 1rem;
     }
 
     .blog-card {
-      background: var(--panel);
+      background: linear-gradient(160deg, var(--panel), var(--panel-soft));
       border: 1px solid var(--border);
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 14px 32px rgba(0,0,0,0.24);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
       display: flex;
       flex-direction: column;
     }
 
     .blog-card img {
       width: 100%;
-      height: 180px;
+      height: 188px;
       object-fit: cover;
       display: block;
     }
@@ -181,57 +229,58 @@
 
     .pill-row {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.65rem;
     }
 
     .pill {
-      padding: 0.3rem 0.6rem;
+      padding: 0.28rem 0.55rem;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.73rem;
       font-weight: 800;
-      background: rgba(23, 139, 231,0.18);
-      color: #efe9ff;
+      background: rgba(23, 139, 231, 0.2);
+      color: #e9f4ff;
     }
 
     .blog-card h2 {
       margin: 0 0 0.5rem;
-      font-size: 1.2rem;
-      line-height: 1.35;
+      font-size: 1.15rem;
+      line-height: 1.33;
     }
 
     .blog-card p {
       margin: 0 0 1rem;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.62;
     }
 
     .blog-card a.read-more {
       display: inline-block;
       text-decoration: none;
-      color: #0b1025;
-      background: var(--teal);
-      padding: 0.8rem 1rem;
+      color: #031022;
+      background: linear-gradient(135deg, var(--secondary), var(--accent));
+      padding: 0.78rem 0.95rem;
       border-radius: 12px;
       font-weight: 800;
     }
 
     .coming-soon {
-      padding: 1rem 0 3rem;
+      padding: 0.4rem 0 3rem;
     }
 
     .coming-soon-box {
       border-radius: 18px;
       padding: 1.2rem;
-      background: linear-gradient(135deg, rgba(23, 139, 231,0.14), rgba(44, 157, 255,0.08));
-      border: 1px solid rgba(44, 157, 255,0.2);
+      background: linear-gradient(135deg, rgba(23, 139, 231, 0.18), rgba(44, 157, 255, 0.1));
+      border: 1px solid rgba(44, 157, 255, 0.25);
     }
 
     .coming-soon-box ul {
       color: var(--muted);
       margin: 0.8rem 0 0;
       padding-left: 1.2rem;
+      line-height: 1.6;
     }
 
     footer {
@@ -240,46 +289,68 @@
       text-align: center;
     }
 
-    @media (max-width: 720px) {
-      .header-inner { flex-direction: column; align-items: flex-start; }
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher logo" onerror="this.style.display='none'">
-        <span>The Dope Cloud Teacher</span>
-      </a>
-      <nav class="nav-links" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="courses.html">Courses</a>
-        <a href="certifications.html">Certifications</a>
-        <a href="start-here.html">Start Here</a>
-        <a href="success-stories.html">Success Stories</a>
-        <a href="corporate-training.html">For Teams</a>
-        <a href="resources.html">Resources</a>
-        <a href="blog.html" class="active">Blog</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
-
   <section class="hero">
-    <div class="eyebrow"><i class="fas fa-pen-nib"></i> Blog & insights</div>
-    <h1>Cloud lessons, Azure strategy, AI conversations, cybersecurity awareness, and career moves that actually help.</h1>
-    <p>
-      This blog breaks down technology in plain language for students, career changers, entrepreneurs, and professionals who want to understand what is happening in tech without drowning in hype or jargon.
-    </p>
+    <article class="hero-copy">
+      <div class="eyebrow"><i class="fas fa-bolt"></i> Blog + visual insights</div>
+      <h1>Cloud lessons, Azure strategy, AI conversations, and cybersecurity guidance people can actually use.</h1>
+      <p>
+        Each post pairs practical explanations with clean visual references so readers get clarity fast, stay longer, and share content that helps their teams.
+      </p>
+      <div class="hero-metrics">
+        <span class="hero-metric">Beginner Friendly</span>
+        <span class="hero-metric">Certification Mapped</span>
+        <span class="hero-metric">Visual-First Learning</span>
+      </div>
+    </article>
+    <article class="hero-visual">
+      <img src="images/programs/stride-threat-modeling.svg" alt="STRIDE threat modeling featured visual">
+    </article>
+  </section>
+
+  <section class="spotlight-strip">
+    <article class="spotlight-card">
+      <img src="images/programs/cloud-security.svg" alt="Cloud security visual icon">
+      <div>
+        <h3>Defender + CNAPP</h3>
+        <p>Break down cloud security architecture in one view.</p>
+      </div>
+    </article>
+    <article class="spotlight-card">
+      <img src="images/programs/devops-automation.svg" alt="DevOps automation visual icon">
+      <div>
+        <h3>Secure CI/CD</h3>
+        <p>From repo setup to monitoring with shift-left security.</p>
+      </div>
+    </article>
+    <article class="spotlight-card">
+      <img src="images/programs/cloud-architecture.svg" alt="Cloud architecture visual icon">
+      <div>
+        <h3>Least Privilege</h3>
+        <p>Role scoping patterns that reduce privilege risk.</p>
+      </div>
+    </article>
+    <article class="spotlight-card">
+      <img src="images/programs/ai-machine-learning.svg" alt="AI and machine learning visual icon">
+      <div>
+        <h3>AI Fundamentals</h3>
+        <p>Practical AI concepts connected to real cloud workflows.</p>
+      </div>
+    </article>
   </section>
 
   <main class="blog-grid-wrap">
+    <h2 class="section-title">Featured Reads</h2>
     <div class="blog-grid">
       <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80" alt="Professional team working on cloud governance planning">
+        <img src="images/programs/enterprise-plans.svg" alt="Cloud governance and enterprise planning visual">
         <div class="blog-card-body">
           <div class="pill-row">
             <span class="pill">Featured</span>
@@ -295,7 +366,7 @@
       </article>
 
       <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80" alt="Students collaborating on cloud and AI learning">
+        <img src="images/programs/cloud-fundamentals.svg" alt="Cloud fundamentals study visual">
         <div class="blog-card-body">
           <div class="pill-row">
             <span class="pill">Featured</span>
@@ -311,7 +382,7 @@
       </article>
 
       <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80" alt="Hands-on laptop learning in a classroom">
+        <img src="images/programs/ai-machine-learning.svg" alt="AI and cloud learning visual">
         <div class="blog-card-body">
           <div class="pill-row">
             <span class="pill">Featured</span>
@@ -327,7 +398,7 @@
       </article>
 
       <article class="blog-card">
-        <img src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?auto=format&fit=crop&w=1400&q=80" alt="Instructor and learner in a classroom">
+        <img src="images/programs/black-women-in-tech-feature.svg" alt="Black women in IT and AI shift visual">
         <div class="blog-card-body">
           <div class="pill-row">
             <span class="pill">Career</span>
@@ -339,6 +410,38 @@
             A timely, deeply personal piece on wage loss, workplace harm, disappearing support systems, and why upskilling matters more than ever.
           </p>
           <a class="read-more" href="black-women-in-it-ai-shift.html">Read article</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <img src="images/programs/devops-automation.svg" alt="Secure Azure DevOps pipeline visual">
+        <div class="blog-card-body">
+          <div class="pill-row">
+            <span class="pill">DevSecOps</span>
+            <span class="pill">Pipeline</span>
+            <span class="pill">Security</span>
+          </div>
+          <h2>Build a Secure Azure DevOps CI/CD Pipeline</h2>
+          <p>
+            A visual-first walkthrough of repo setup, build automation, security scanning, deployment controls, and continuous improvement.
+          </p>
+          <a class="read-more" href="resources.html">Open related resources</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <img src="images/programs/stride-threat-modeling.svg" alt="Think like an attacker STRIDE visual">
+        <div class="blog-card-body">
+          <div class="pill-row">
+            <span class="pill">Security</span>
+            <span class="pill">STRIDE</span>
+            <span class="pill">Threat Modeling</span>
+          </div>
+          <h2>Think Like an Attacker: Practical STRIDE for Azure Teams</h2>
+          <p>
+            Learn how teams use STRIDE to ask better security questions during planning, implementation, and CI/CD reviews.
+          </p>
+          <a class="read-more" href="playbook/">Open visual playbook</a>
         </div>
       </article>
     </div>
@@ -358,6 +461,8 @@
   <footer>
     <p>&copy; 2026 The Dope Cloud Teacher. All rights reserved.</p>
   </footer>
+
+  <script src="js/global-ui.js"></script>
 
   <script src="js/global-ui.js"></script>
   <script src="js/knowledge-guide.js"></script>

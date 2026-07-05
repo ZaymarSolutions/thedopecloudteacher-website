@@ -90,14 +90,19 @@ img.logo-img {
   object-fit: contain !important;
   object-position: center center !important;
   overflow: visible !important;
-  padding-top: 4px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   height: 76px !important;
   width: auto !important;
   max-width: min(320px, 42vw) !important;
+  max-height: none !important;
+  margin-top: 0 !important;
   border-radius: 0 !important;
   display: block !important;
   clip-path: none !important;
   mask-image: none !important;
+  -webkit-mask-image: none !important;
+  background: transparent !important;
 }
 
 .logo,
