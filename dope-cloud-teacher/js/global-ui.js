@@ -349,15 +349,20 @@
     var titleText = (document.title || '').replace(/\s*\|\s*The Dope Cloud Teacher\s*$/i, '').trim();
     var h1 = document.querySelector('main h1, h1');
     var headingText = h1 ? h1.textContent.trim() : '';
-    var pageName = headingText || titleText || 'this section';
+    var pageName = headingText || titleText || 'page';
     var lowerPath = (window.location.pathname || '').toLowerCase();
+    var currentPage = (lowerPath.split('/').pop() || 'index.html').split('?')[0];
+
+    if (pageName.toLowerCase() === 'this section') {
+      pageName = 'page';
+    }
 
     var expectText = 'A clear overview of the topic, key sections you can use right now, and links or actions that help you move forward confidently.';
     if (
-      lowerPath.indexOf('lesson') !== -1 ||
+      currentPage.indexOf('lesson') !== -1 ||
       lowerPath.indexOf('/academy/') !== -1 ||
-      lowerPath.indexOf('course') !== -1 ||
-      lowerPath.indexOf('class') !== -1
+      currentPage.indexOf('course') !== -1 ||
+      lowerPath.indexOf('/classes/') !== -1
     ) {
       expectText = 'Learning objectives, lesson flow, guided activities, and practical resources that support skill-building and progress tracking.';
     } else if (
@@ -383,7 +388,7 @@
       expectText = 'Status information, account or platform actions, and clear controls to help you manage access, progress, and your learning experience.';
     }
 
-    description.textContent = 'This ' + pageName + ' page explains what this section is for, how to use it, and the best way to navigate its content.';
+    description.textContent = 'This ' + pageName + ' explains what this section is for, how to use it, and the best way to navigate its content.';
     expectation.innerHTML = '<strong>What to expect:</strong> ' + expectText;
 
     var body = document.body;

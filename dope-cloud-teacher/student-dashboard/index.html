@@ -1,2 +1,113 @@
-<!-- Testimonials Section --> <section id="testimonials" style="background:#f8fafc;padding:3rem 0;text-align:center;">   <h2 style="color:#178BE7;">Student Success Stories</h2>   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;">     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I landed my first cloud job after finishing the Cloud Fundamentals pathway. The labs and quizzes made all the difference!ΓÇ¥</p>       <strong>- Maya B., Cloud Engineer</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£The certification prep and real-world projects helped me get promoted. Highly recommend for career changers!ΓÇ¥</p>       <strong>- James R., Solutions Architect</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I loved the community and support. The Discord group kept me motivated and accountable.ΓÇ¥</p>       <strong>- Priya S., DevOps Analyst</strong>     </div>   </div> </section>
-  <script src="..\js\global-ui.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | The Dope Cloud Teacher</title>
+  <meta name="description" content="Track course progress, jump to active pathways, and access your student tools.">
+  <link rel="icon" type="image/svg+xml" href="../logo.svg?v=20260705b">
+  <link rel="icon" type="image/png" href="../logo.png?v=20260705b">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(180deg, #f7fbff, #edf5ff); color: #1d2f45; }
+    .wrap { width: min(1120px, calc(100% - 2rem)); margin: 1.25rem auto 2rem; }
+    .top { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .top a { text-decoration: none; color: #1d4d86; font-weight: 700; }
+    .hero, .card { background: #fff; border: 1px solid #d4e3f6; border-radius: 16px; box-shadow: 0 10px 24px rgba(21,40,74,0.08); }
+    .hero { padding: 1.2rem; margin-top: 0.8rem; }
+    .hero h1 { margin: 0 0 0.45rem; }
+    .hero p { margin: 0.35rem 0; line-height: 1.65; color: #3f5878; }
+    .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.9rem; }
+    .btn { text-decoration: none; padding: 0.6rem 0.95rem; border-radius: 999px; font-weight: 700; }
+    .btn.primary { background: #178BE7; color: #fff; }
+    .btn.secondary { background: #fff; border: 1px solid #c9daf0; color: #1d2f45; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+    .card { padding: 0.95rem; }
+    .card h2 { margin: 0 0 0.4rem; font-size: 1.02rem; }
+    .card p { margin: 0 0 0.45rem; color: #46607f; line-height: 1.6; }
+    .progress { margin-top: 0.3rem; font-size: 0.9rem; color: #2a4f78; font-weight: 700; }
+    .meter { margin-top: 0.45rem; height: 10px; border-radius: 999px; background: #e9f1fb; overflow: hidden; }
+    .bar { height: 100%; background: linear-gradient(90deg, #178BE7, #2C9DFF); width: 0; transition: width 220ms ease; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="top" aria-label="Student dashboard navigation">
+      <a href="../index.html">Home</a>
+      <a href="../classes/index.html">Classes</a>
+      <a href="../academy/index.html">DCT Academy</a>
+      <a href="../playbook/index.html">Visual Playbook</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+
+    <section class="hero">
+      <h1>Student Dashboard</h1>
+      <p>Track your progress, return to active learning pathways, and keep momentum across local classes, virtual sessions, and Academy tracks.</p>
+      <div class="cta">
+        <a class="btn primary" href="../dashboard.html">Open Full Dashboard</a>
+        <a class="btn secondary" href="../academy/index.html">Continue Learning</a>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Student dashboard widgets">
+      <article class="card">
+        <h2>Cloud Foundations</h2>
+        <p>Current learning pathway progress.</p>
+        <div class="meter"><div class="bar" id="progressCloud"></div></div>
+        <div class="progress" id="labelCloud">0% complete</div>
+      </article>
+
+      <article class="card">
+        <h2>Cyber Safety Basics</h2>
+        <p>Security fundamentals and digital protection track.</p>
+        <div class="meter"><div class="bar" id="progressCyber"></div></div>
+        <div class="progress" id="labelCyber">0% complete</div>
+      </article>
+
+      <article class="card">
+        <h2>AI Business Starter</h2>
+        <p>Practical AI use for planning, content, and operations.</p>
+        <div class="meter"><div class="bar" id="progressAI"></div></div>
+        <div class="progress" id="labelAI">0% complete</div>
+      </article>
+
+      <article class="card">
+        <h2>Quick Actions</h2>
+        <p><a href="../pg-parks-direct.html">PG Parks Local Programs</a></p>
+        <p><a href="../resources.html">Resource Library</a></p>
+        <p><a href="../courses.html">Course Catalog</a></p>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      function clamp(num) {
+        var n = Number(num || 0);
+        if (Number.isNaN(n)) return 0;
+        return Math.max(0, Math.min(100, Math.round(n)));
+      }
+
+      var saved = null;
+      try {
+        saved = JSON.parse(localStorage.getItem('dctStudentDashboardProgress') || '{}');
+      } catch (error) {
+        saved = {};
+      }
+
+      var cloud = clamp(saved.cloud || 35);
+      var cyber = clamp(saved.cyber || 22);
+      var ai = clamp(saved.ai || 18);
+
+      document.getElementById('progressCloud').style.width = cloud + '%';
+      document.getElementById('progressCyber').style.width = cyber + '%';
+      document.getElementById('progressAI').style.width = ai + '%';
+
+      document.getElementById('labelCloud').textContent = cloud + '% complete';
+      document.getElementById('labelCyber').textContent = cyber + '% complete';
+      document.getElementById('labelAI').textContent = ai + '% complete';
+    })();
+  </script>
+  <script src="../js/global-ui.js"></script>
+</body>
+</html>

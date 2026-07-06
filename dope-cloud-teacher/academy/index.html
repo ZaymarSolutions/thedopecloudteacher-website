@@ -1,2 +1,61 @@
-<!-- Testimonials Section --> <section id="testimonials" style="background:#f8fafc;padding:3rem 0;text-align:center;">   <h2 style="color:#178BE7;">Student Success Stories</h2>   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;">     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I landed my first cloud job after finishing the Cloud Fundamentals pathway. The labs and quizzes made all the difference!ΓÇ¥</p>       <strong>- Maya B., Cloud Engineer</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£The certification prep and real-world projects helped me get promoted. Highly recommend for career changers!ΓÇ¥</p>       <strong>- James R., Solutions Architect</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I loved the community and support. The Discord group kept me motivated and accountable.ΓÇ¥</p>       <strong>- Priya S., DevOps Analyst</strong>     </div>   </div> </section>
-  <script src="..\js\global-ui.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCT Academy | The Dope Cloud Teacher</title>
+  <meta name="description" content="Dope Cloud Academy: virtual and self-paced cloud, AI, and cybersecurity learning from anywhere.">
+  <link rel="icon" type="image/svg+xml" href="../logo.svg?v=20260705b">
+  <link rel="icon" type="image/png" href="../logo.png?v=20260705b">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(180deg, #f8fbff, #eff6ff); color: #1d2f45; }
+    .wrap { width: min(1100px, calc(100% - 2rem)); margin: 1.25rem auto 2rem; }
+    .top { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .top a { text-decoration: none; color: #1d4d86; font-weight: 700; }
+    .hero, .card { background: #fff; border: 1px solid #d4e3f6; border-radius: 16px; box-shadow: 0 10px 24px rgba(21,40,74,0.08); }
+    .hero { padding: 1.2rem; margin-top: 0.8rem; }
+    .hero h1 { margin: 0 0 0.45rem; }
+    .hero p { margin: 0.35rem 0; line-height: 1.65; color: #3f5878; }
+    .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.9rem; }
+    .btn { text-decoration: none; padding: 0.6rem 0.95rem; border-radius: 999px; font-weight: 700; }
+    .btn.primary { background: #178BE7; color: #fff; }
+    .btn.secondary { background: #fff; border: 1px solid #c9daf0; color: #1d2f45; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+    .card { padding: 0.95rem; }
+    .card h2 { margin: 0 0 0.35rem; font-size: 1.04rem; }
+    .card p { margin: 0; color: #46607f; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="top" aria-label="Academy navigation">
+      <a href="../index.html">Home</a>
+      <a href="../courses.html">Courses</a>
+      <a href="../classes/index.html">Classes</a>
+      <a href="../playbook/index.html">Visual Playbook</a>
+      <a href="../dashboard.html">Dashboard</a>
+    </nav>
+
+    <section class="hero">
+      <h1>Dope Cloud Academy</h1>
+      <p>The Academy is the online/self-paced learning platform available from anywhere. It is separate from local scheduled community classes.</p>
+      <p>Use this area to follow structured pathways, complete lessons, and build practical project skills in cloud, AI, cybersecurity, and web delivery.</p>
+      <div class="cta">
+        <a class="btn primary" href="../Cloud-fundamentals-course.html">Start Cloud Foundations</a>
+        <a class="btn secondary" href="../curriculum-paths.html">View Learning Paths</a>
+        <a class="btn secondary" href="../pg-parks-direct.html">Explore Local PG Parks Classes</a>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Academy tracks">
+      <article class="card"><h2>Cloud Foundations</h2><p>Core cloud concepts, account setup, portal literacy, and beginner labs.</p></article>
+      <article class="card"><h2>AI Essentials</h2><p>Practical AI usage, prompt workflows, and safe implementation patterns.</p></article>
+      <article class="card"><h2>Cyber Basics</h2><p>Identity protection, phishing defense, MFA, and digital safety controls.</p></article>
+      <article class="card"><h2>Career Track</h2><p>Portfolio projects, certification prep, and progression milestones.</p></article>
+    </section>
+  </main>
+
+  <script src="../js/global-ui.js"></script>
+</body>
+</html>

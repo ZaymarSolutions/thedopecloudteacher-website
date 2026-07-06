@@ -1,0 +1,41 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="80" x2="1120" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#E5F4FF"/>
+      <stop offset="1" stop-color="#DFFBE9"/>
+    </linearGradient>
+    <linearGradient id="card" x1="300" y1="220" x2="890" y2="700" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F6FCFF"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="300" y1="270" x2="900" y2="270" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#178BE7"/>
+      <stop offset="1" stop-color="#0F6EDB"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1200" height="900" rx="40" fill="url(#bg)"/>
+  <circle cx="170" cy="140" r="78" fill="#BFE9FF"/>
+  <circle cx="1040" cy="140" r="102" fill="#CFF5E1"/>
+  <circle cx="1080" cy="770" r="88" fill="#D5ECFF"/>
+
+  <rect x="230" y="165" width="740" height="565" rx="34" fill="url(#card)" stroke="#CAE0EE" stroke-width="4"/>
+  <rect x="230" y="165" width="740" height="120" rx="34" fill="url(#accent)"/>
+
+  <circle cx="310" cy="225" r="14" fill="#FFFFFF"/>
+  <circle cx="350" cy="225" r="14" fill="#A6DAFF"/>
+  <circle cx="390" cy="225" r="14" fill="#D0F5E5"/>
+
+  <path d="M322 358H878" stroke="#D4E3EF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M322 418H760" stroke="#D4E3EF" stroke-width="10" stroke-linecap="round"/>
+  <path d="M322 478H820" stroke="#D4E3EF" stroke-width="10" stroke-linecap="round"/>
+
+  <rect x="322" y="540" width="250" height="90" rx="20" fill="#178BE7"/>
+  <rect x="596" y="540" width="250" height="90" rx="20" fill="#EAF4FF" stroke="#BDD9EE" stroke-width="4"/>
+
+  <path d="M563 96L600 128L638 96L610 147H591L563 96Z" fill="#F4C84C"/>
+  <text x="368" y="245" fill="#FFFFFF" font-size="42" font-family="Segoe UI, Arial" font-weight="700">The Dope Cloud Teacher</text>
+  <text x="402" y="290" fill="#D7EBFF" font-size="22" font-family="Segoe UI, Arial">Cloud Classes For Real People</text>
+
+  <text x="375" y="596" fill="#FFFFFF" font-size="28" font-family="Segoe UI, Arial" font-weight="700">Enroll Now</text>
+  <text x="644" y="596" fill="#1A3B56" font-size="28" font-family="Segoe UI, Arial" font-weight="700">Explore Courses</text>
+</svg>
