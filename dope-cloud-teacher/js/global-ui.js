@@ -299,10 +299,124 @@
     });
   }
 
+  function initPageGuide() {
+    if (document.getElementById('dct-page-guide')) return;
+
+    var guideStyle = document.getElementById('dct-page-guide-style');
+    if (!guideStyle && document.head) {
+      guideStyle = document.createElement('style');
+      guideStyle.id = 'dct-page-guide-style';
+      guideStyle.textContent =
+        '.dct-page-guide{' +
+          'margin:0;padding:1rem 1.1rem;background:linear-gradient(135deg,#edf7ff 0%,#f7fbff 100%);' +
+          'border-bottom:1px solid #cddff4;color:#1d2f45;position:relative;z-index:2;' +
+          'font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;' +
+        '}' +
+        '.dct-page-guide h2{margin:0 0 0.45rem;font-size:1.1rem;color:#0f2740;}' +
+        '.dct-page-guide p{margin:0.35rem 0;line-height:1.6;font-size:0.96rem;}' +
+        '.dct-page-guide .dct-page-guide-expect{color:#284564;}' +
+        '.dct-page-guide a{color:#0c60c0;font-weight:700;text-decoration:underline;}' +
+        '@media (max-width:768px){' +
+          '.dct-page-guide{padding:0.95rem 0.9rem;}' +
+          '.dct-page-guide h2{font-size:1.02rem;}' +
+        '}';
+      document.head.appendChild(guideStyle);
+    }
+
+    var guide = document.createElement('section');
+    guide.className = 'dct-page-guide';
+    guide.id = 'dct-page-guide';
+    guide.setAttribute('role', 'note');
+    guide.setAttribute('aria-label', 'Page Guide');
+
+    var title = document.createElement('h2');
+    title.textContent = 'About This Page';
+
+    var description = document.createElement('p');
+    description.className = 'dct-page-guide-description';
+
+    var expectation = document.createElement('p');
+    expectation.className = 'dct-page-guide-expect';
+
+    var contact = document.createElement('p');
+    contact.innerHTML = 'If you are experiencing any issues on this page, please contact <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.';
+
+    guide.appendChild(title);
+    guide.appendChild(description);
+    guide.appendChild(expectation);
+    guide.appendChild(contact);
+
+    var titleText = (document.title || '').replace(/\s*\|\s*The Dope Cloud Teacher\s*$/i, '').trim();
+    var h1 = document.querySelector('main h1, h1');
+    var headingText = h1 ? h1.textContent.trim() : '';
+    var pageName = headingText || titleText || 'this section';
+    var lowerPath = (window.location.pathname || '').toLowerCase();
+
+    var expectText = 'A clear overview of the topic, key sections you can use right now, and links or actions that help you move forward confidently.';
+    if (
+      lowerPath.indexOf('lesson') !== -1 ||
+      lowerPath.indexOf('/academy/') !== -1 ||
+      lowerPath.indexOf('course') !== -1 ||
+      lowerPath.indexOf('class') !== -1
+    ) {
+      expectText = 'Learning objectives, lesson flow, guided activities, and practical resources that support skill-building and progress tracking.';
+    } else if (
+      lowerPath.indexOf('blog') !== -1 ||
+      lowerPath.indexOf('resource') !== -1 ||
+      lowerPath.indexOf('playbook') !== -1
+    ) {
+      expectText = 'Practical insights, step-by-step guidance, and reference materials you can apply to your cloud, AI, or cybersecurity learning journey.';
+    } else if (
+      lowerPath.indexOf('contact') !== -1 ||
+      lowerPath.indexOf('about') !== -1 ||
+      lowerPath.indexOf('pricing') !== -1 ||
+      lowerPath.indexOf('terms') !== -1 ||
+      lowerPath.indexOf('privacy') !== -1
+    ) {
+      expectText = 'Key details about this service area, what each section means, and direct options for getting support or taking your next step.';
+    } else if (
+      lowerPath.indexOf('dashboard') !== -1 ||
+      lowerPath.indexOf('login') !== -1 ||
+      lowerPath.indexOf('admin') !== -1 ||
+      lowerPath.indexOf('verify') !== -1
+    ) {
+      expectText = 'Status information, account or platform actions, and clear controls to help you manage access, progress, and your learning experience.';
+    }
+
+    description.textContent = 'This ' + pageName + ' page explains what this section is for, how to use it, and the best way to navigate its content.';
+    expectation.innerHTML = '<strong>What to expect:</strong> ' + expectText;
+
+    var body = document.body;
+    if (!body) return;
+
+    var header = null;
+    for (var i = 0; i < body.children.length; i += 1) {
+      if (body.children[i] && body.children[i].tagName === 'HEADER') {
+        header = body.children[i];
+        break;
+      }
+    }
+    if (!header) {
+      header = body.querySelector('header');
+    }
+    if (header && header.parentNode) {
+      if (header.nextSibling) {
+        header.parentNode.insertBefore(guide, header.nextSibling);
+      } else {
+        header.parentNode.appendChild(guide);
+      }
+    } else if (body.firstChild) {
+      body.insertBefore(guide, body.firstChild);
+    } else {
+      body.appendChild(guide);
+    }
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       ensureThemeStyles();
       sanitizeCoursesPageLeak();
+      initPageGuide();
       initBrandLogo();
       initStandardNav();
       initMobileNav();
@@ -313,6 +427,7 @@
   } else {
     ensureThemeStyles();
     sanitizeCoursesPageLeak();
+    initPageGuide();
     initBrandLogo();
     initStandardNav();
     initMobileNav();

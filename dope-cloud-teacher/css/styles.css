@@ -354,6 +354,14 @@ section + section {
   margin-top: 1.25rem;
 }
 
+.home-page .path-grid {
+  margin-bottom: 2.8rem;
+}
+
+.home-page .path-grid + .section-head {
+  margin-top: 0;
+}
+
 @media (min-width: 900px) {
   .section-header,
   .section-head,
