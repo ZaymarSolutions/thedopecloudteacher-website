@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCT Visual Playbook Guide</title>
+  <meta name="description" content="Visual playbook landing page with downloads, lesson links, labs, quizzes, and related learning assets.">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260704a">
+  <link rel="stylesheet" href="/css/platform.css">
+  <link rel="stylesheet" href="/css/visual-playbook.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="dct-header"></div>
+
+  <main class="platform-shell">
+    <section class="hero-band">
+      <div class="hero-band-inner">
+        <h1 id="posterPageTitle">Visual Playbook Guide</h1>
+        <p>Poster, lesson, video, labs, quiz, certification objectives, and connected resources in one place.</p>
+      </div>
+    </section>
+  </main>
+
+  <section id="posterHero" class="dct-poster-hero"></section>
+
+  <main class="platform-shell">
+    <section class="section">
+      <h2>Guide Details</h2>
+      <div id="posterDetails" class="card-grid"></div>
+    </section>
+
+    <section class="section">
+      <h2>Related Posters</h2>
+      <div id="posterRelated" class="card-grid"></div>
+    </section>
+  </main>
+
+  <script src="/js/site-config.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/js/dct-learning-data.js"></script>
+  <script src="/js/visual-playbook-data.js"></script>
+  <script src="/js/dct-platform.js"></script>
+  <script>
+    DCTPlatform.renderHeader('playbook');
+    DCTPlatform.renderPosterDetail('least-privilege', {
+      titleId: 'posterPageTitle',
+      posterId: 'posterHero',
+      detailsId: 'posterDetails',
+      relatedId: 'posterRelated'
+    });
+  </script>
+</body>
+</html>
