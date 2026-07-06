@@ -117,6 +117,87 @@ body.dct-intentional-theme .press-credibility {
   border-radius: 14px !important;
 }
 
+body.dct-intentional-theme .future-collection-inner,
+body.dct-intentional-theme .automation-wow-grid,
+body.dct-intentional-theme .human-touch-challenge,
+body.dct-intentional-theme .demo-showcase,
+body.dct-intentional-theme .dct-flip-card-back {
+  background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%) !important;
+  color: var(--dct-ink) !important;
+  border: 1px solid var(--dct-line) !important;
+  box-shadow: var(--dct-shadow-soft) !important;
+}
+
+body.dct-intentional-theme .future-collection-copy h2,
+body.dct-intentional-theme .future-collection-copy p,
+body.dct-intentional-theme .future-list li,
+body.dct-intentional-theme .future-collection-side h3,
+body.dct-intentional-theme .future-collection-side ol,
+body.dct-intentional-theme .future-note,
+body.dct-intentional-theme .automation-copy h2,
+body.dct-intentional-theme .automation-copy p,
+body.dct-intentional-theme .human-touch-challenge h3,
+body.dct-intentional-theme .human-touch-challenge p,
+body.dct-intentional-theme .dct-flip-card-back p {
+  color: var(--dct-ink) !important;
+}
+
+body.dct-intentional-theme .future-list li,
+body.dct-intentional-theme .future-collection-side,
+body.dct-intentional-theme .challenge-tag {
+  background: #ffffff !important;
+  border: 1px solid var(--dct-line) !important;
+  color: var(--dct-ink) !important;
+}
+
+body.dct-intentional-theme .demo-showcase .section-header h2,
+body.dct-intentional-theme .demo-showcase .section-header p {
+  color: var(--dct-ink) !important;
+}
+
+body.dct-intentional-theme .hero__panel,
+body.dct-intentional-theme .hero__panel-list li,
+body.dct-intentional-theme .hero__stat {
+  background: #ffffff !important;
+  border: 1px solid var(--dct-line) !important;
+  color: var(--dct-ink) !important;
+  box-shadow: var(--dct-shadow-soft) !important;
+}
+
+body.dct-intentional-theme .hero__panel p,
+body.dct-intentional-theme .hero__panel-list li,
+body.dct-intentional-theme .hero__stat-label {
+  color: var(--dct-muted) !important;
+}
+
+body.dct-intentional-theme .hero__panel h2,
+body.dct-intentional-theme .hero__panel-list strong,
+body.dct-intentional-theme .hero__stat-value {
+  color: var(--dct-navy) !important;
+}
+
+body.dct-intentional-theme .content-section#syllabus .syllabus details {
+  background: #ffffff !important;
+  border: 1px solid var(--dct-line) !important;
+}
+
+body.dct-intentional-theme .content-section#syllabus .syllabus summary,
+body.dct-intentional-theme .content-section#syllabus .syllabus__content h4 {
+  color: var(--dct-navy) !important;
+}
+
+body.dct-intentional-theme .content-section#syllabus .syllabus summary span,
+body.dct-intentional-theme .content-section#syllabus .syllabus__content,
+body.dct-intentional-theme .content-section#syllabus .syllabus__content li {
+  color: var(--dct-muted) !important;
+}
+
+body.dct-intentional-theme .content-section#syllabus .quote-box {
+  background: #eef4ff !important;
+  border-left: 3px solid #3f7fb5 !important;
+  color: #1f3657 !important;
+}
+
 body.dct-intentional-theme .hero,
 body.dct-intentional-theme .hero h1,
 body.dct-intentional-theme .hero p,

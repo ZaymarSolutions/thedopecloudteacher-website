@@ -16,8 +16,47 @@
     return String(id || '').replace(/^poster-/, '').trim();
   }
 
-  function lessonHref(lessonId) {
-    return '/lesson.html?lesson=' + encodeURIComponent(lessonId || '');
+  function lessonHref(lessonId, courseId) {
+    var lessonQuery = '/lesson.html?lesson=' + encodeURIComponent(lessonId || '');
+    if (courseId) {
+      lessonQuery += '&course=' + encodeURIComponent(courseId);
+    }
+    return lessonQuery;
+  }
+
+  function preferredCourseIdForPoster(poster) {
+    if (!poster) return '';
+    var ids = safe(poster.relatedCourseIds);
+    var selfPaced = ids.find(function (id) {
+      return id !== 'course-pg-parks-cohort' && id !== 'course-live-virtual-cohort';
+    });
+    return selfPaced || ids[0] || '';
+  }
+
+  function courseIdForLesson(model, lessonId, poster) {
+    if (model && model.byId && model.byId.lesson && model.byId.module) {
+      var lesson = model.byId.lesson[lessonId];
+      if (lesson && lesson.moduleId && model.byId.module[lesson.moduleId]) {
+        return model.byId.module[lesson.moduleId].courseId || preferredCourseIdForPoster(poster);
+      }
+    }
+    return preferredCourseIdForPoster(poster);
+  }
+
+  function primaryLessonIdForPoster(poster) {
+    if (!poster) return '';
+    var preferred = {
+      'poster-pim-pro': 'lesson-security-pim-01',
+      'poster-least-privilege': 'lesson-security-pim-02',
+      'poster-devsecops-pipeline': 'lesson-devsecops-01',
+      'poster-defender-cnapp': 'lesson-devsecops-02',
+      'poster-zero-trust-azure': 'lesson-arch-01',
+      'poster-azure-regions-map': 'lesson-azure-core-01',
+      'poster-azure-policy-control': 'lesson-azure-core-02',
+      'poster-ai-rag': 'lesson-ai-02',
+      'poster-career-roadmap': 'lesson-career-01'
+    };
+    return preferred[poster.id] || safe(poster.relatedLessonIds)[0] || '';
   }
 
   function courseHref(courseId) {
@@ -139,7 +178,8 @@
 
     var posters = safe(model.visualPosters).slice(0, count || 5);
     target.innerHTML = posters.map(function (poster) {
-      var firstLesson = safe(poster.relatedLessonIds)[0];
+      var firstLesson = primaryLessonIdForPoster(poster);
+      var preferredCourseId = courseIdForLesson(model, firstLesson, poster);
       return (
         '<article class="dct-playbook-feature-card">' +
         '<a class="dct-playbook-card-media" href="' + poster.route + '"><img src="' + poster.thumbnailUrl + '" alt="' + poster.title + '"></a>' +
@@ -149,7 +189,7 @@
         '<p>' + poster.topic + ' | ' + poster.difficulty + ' | ' + poster.estimatedLearningTime + ' min</p>' +
         '<div class="dct-playbook-actions">' +
         '<a class="dct-btn-open" href="' + poster.route + '">Open Guide</a>' +
-        '<a class="dct-btn-start" href="' + lessonHref(firstLesson) + '">Start Lesson</a>' +
+        '<a class="dct-btn-start" href="' + lessonHref(firstLesson, preferredCourseId) + '">Start Lesson</a>' +
         '</div>' +
         '</div>' +
         '</article>'
@@ -173,10 +213,16 @@
       );
     }).join('');
 
+    if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches) {
+      track.style.transform = 'translateX(0)';
+      return;
+    }
+
     var index = 0;
+    var stepPercent = 100;
     var timer = setInterval(function () {
       index = (index + 1) % posters.length;
-      track.style.transform = 'translateX(' + (index * -100) + '%)';
+      track.style.transform = 'translateX(' + (index * -stepPercent) + '%)';
     }, 5000);
 
     window.addEventListener('beforeunload', function () {
@@ -510,7 +556,9 @@
 
       target.innerHTML = posters.map(function (poster) {
         var relatedLessons = byIds(poster.relatedLessonIds, model.byId.lesson);
-        var firstLesson = relatedLessons[0];
+        var firstLessonId = primaryLessonIdForPoster(poster);
+        var firstLesson = model.byId.lesson[firstLessonId] || relatedLessons[0];
+        var preferredCourseId = courseIdForLesson(model, firstLesson && firstLesson.id, poster);
         var favorite = favoriteIds.indexOf(poster.id) !== -1;
         var bookmarked = bookmarkIds.indexOf(poster.id) !== -1;
         return (
@@ -524,6 +572,7 @@
           '<p><strong>Related Lesson:</strong> ' + (firstLesson ? firstLesson.title : 'TBD') + '</p>' +
           '<div class="cta-row">' +
           '<a class="btn primary" href="' + poster.route + '">Open Guide</a>' +
+          '<a class="btn secondary" href="' + (firstLesson ? lessonHref(firstLesson.id, preferredCourseId) : '/lesson.html') + '">Start Lesson</a>' +
           '<a class="btn secondary" href="' + poster.downloadablePdfUrl + '">Download PDF</a>' +
           '<a class="btn secondary" href="' + poster.downloadablePngUrl + '">Download PNG</a>' +
           '<button class="btn secondary dct-favorite-toggle" data-poster-id="' + poster.id + '">' + (favorite ? 'Unfavorite' : 'Favorite') + '</button>' +
@@ -574,8 +623,14 @@
     var relatedEl = $(options.relatedId);
 
     var firstLesson = byIds(poster.relatedLessonIds, model.byId.lesson)[0];
+    var primaryLessonId = primaryLessonIdForPoster(poster);
+    if (model.byId.lesson[primaryLessonId]) {
+      firstLesson = model.byId.lesson[primaryLessonId];
+    }
+    var preferredCourseId = courseIdForLesson(model, firstLesson && firstLesson.id, poster);
     var relatedCourses = byIds(poster.relatedCourseIds, model.byId.course);
     var relatedQuiz = poster.relatedQuizId ? model.byId.quiz[poster.relatedQuizId] : null;
+    var quizCourseId = relatedQuiz ? courseIdForLesson(model, relatedQuiz.relatedLessonId, poster) : preferredCourseId;
 
     if (titleEl) titleEl.textContent = poster.title;
 
@@ -596,10 +651,10 @@
         '<a class="btn primary" href="' + poster.downloadablePdfUrl + '">Download PDF</a>' +
         '<a class="btn secondary" href="' + poster.downloadablePngUrl + '">Download PNG</a>' +
         '<a class="btn secondary" href="' + poster.relatedVideoUrl + '">Watch 8 minute lesson</a>' +
-        '<a class="btn secondary" href="' + (relatedQuiz ? lessonHref(relatedQuiz.relatedLessonId) : (firstLesson ? lessonHref(firstLesson.id) : '/lesson.html')) + '">Take Quiz</a>' +
+        '<a class="btn secondary" href="' + (relatedQuiz ? lessonHref(relatedQuiz.relatedLessonId, quizCourseId) : (firstLesson ? lessonHref(firstLesson.id, preferredCourseId) : '/lesson.html')) + '">Take Quiz</a>' +
         '<a class="btn secondary" href="' + (safe(poster.relatedLabUrls)[0] || '/resources.html') + '">Related Labs</a>' +
         '<a class="btn secondary" href="' + (safe(poster.relatedBlogUrls)[0] || '/blog.html') + '">Related Blog</a>' +
-        '<a class="btn secondary" href="' + (firstLesson ? lessonHref(firstLesson.id) : '/academy/') + '">Related Lesson</a>' +
+        '<a class="btn secondary" href="' + (firstLesson ? lessonHref(firstLesson.id, preferredCourseId) : '/academy/') + '">Related Lesson</a>' +
         '<a class="btn secondary" href="' + (relatedCourses[0] ? courseHref(relatedCourses[0].id) : '/academy/') + '">Related Course</a>' +
         '</div>' +
         '<div class="dct-comment-box">' +
@@ -689,6 +744,11 @@
       if (!body || body.querySelector('.dct-blog-flow')) return;
 
       var firstLesson = byIds(poster.relatedLessonIds, model.byId.lesson)[0];
+      var primaryLessonId = primaryLessonIdForPoster(poster);
+      if (model.byId.lesson[primaryLessonId]) {
+        firstLesson = model.byId.lesson[primaryLessonId];
+      }
+      var preferredCourseId = courseIdForLesson(model, firstLesson && firstLesson.id, poster);
       var flow = document.createElement('div');
       flow.className = 'dct-blog-flow';
       flow.innerHTML =
@@ -698,7 +758,7 @@
         '<a class="btn secondary" href="' + poster.route + '">Poster</a>' +
         '<a class="btn secondary" href="' + poster.relatedVideoUrl + '">Video</a>' +
         '<a class="btn secondary" href="' + (safe(poster.relatedLabUrls)[0] || '/resources.html') + '">Lab</a>' +
-        '<a class="btn secondary" href="' + (firstLesson ? lessonHref(firstLesson.id) : '/lesson.html') + '">Quiz</a>' +
+        '<a class="btn secondary" href="' + (firstLesson ? lessonHref(firstLesson.id, preferredCourseId) : '/lesson.html') + '">Quiz</a>' +
         '<a class="btn secondary" href="' + poster.downloadableCheatSheetUrl + '">Cheat Sheet</a>' +
         '</div>';
       body.appendChild(flow);

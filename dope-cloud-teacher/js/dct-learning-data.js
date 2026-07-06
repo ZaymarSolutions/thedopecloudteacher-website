@@ -354,7 +354,7 @@
       imageUrl: '/images/playbook/least-privilege-poster.svg',
       downloadablePdfUrl: '/resources.html',
       relatedCourseIds: ['course-azure-security', 'course-live-virtual-cohort'],
-      relatedLessonIds: ['lesson-security-pim-01', 'lesson-security-pim-02'],
+      relatedLessonIds: ['lesson-security-pim-02', 'lesson-security-pim-01'],
       tags: ['least-privilege', 'rbac', 'access-reviews'],
       difficulty: 'beginner',
       certificationMapping: ['SC-300', 'AZ-500'],

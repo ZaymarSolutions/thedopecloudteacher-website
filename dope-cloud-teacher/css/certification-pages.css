@@ -417,6 +417,61 @@ a {
   color: #d7f8f0;
 }
 
+/* Brighter AZ-900 syllabus treatment for visibility */
+#syllabus {
+  margin-top: 0.4rem;
+  padding: 1.2rem 1.2rem 2rem;
+  border: 1px solid rgba(184, 199, 224, 0.45);
+  border-radius: 1.25rem;
+  background: linear-gradient(155deg, #f7faff 0%, #eef4ff 55%, #eaf6ff 100%);
+  box-shadow: 0 16px 34px rgba(10, 27, 55, 0.12);
+}
+
+#syllabus .section-heading__kicker {
+  color: #21507a;
+}
+
+#syllabus .section-heading__line {
+  background: linear-gradient(90deg, rgba(33, 80, 122, 0.36), transparent);
+}
+
+#syllabus h2 {
+  color: #10233e;
+}
+
+#syllabus > p {
+  color: #334d6b;
+}
+
+#syllabus .syllabus details {
+  border: 1px solid #cfdbef;
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(16, 35, 62, 0.08);
+}
+
+#syllabus .syllabus summary {
+  color: #112a45;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+}
+
+#syllabus .syllabus summary span {
+  color: #4b6483;
+}
+
+#syllabus .syllabus__content {
+  color: #2b4868;
+}
+
+#syllabus .syllabus__content h4 {
+  color: #10233e;
+}
+
+#syllabus .quote-box {
+  border-left: 3px solid #3f7fb5;
+  background: #eaf3ff;
+  color: #183a60;
+}
+
 .lab-card h3,
 .domain-card h3 {
   display: flex;
