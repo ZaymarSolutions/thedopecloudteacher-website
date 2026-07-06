@@ -13,9 +13,114 @@
   <meta property="og:title" content="Learn Cloud, Security, DevOps, and AI | The Dope Cloud Teacher">
   <meta property="og:description" content="Cloud and AI pathways for students, teams, and workforce learners through instructor-led classes, live virtual cohorts, and self-paced academy tracks.">
   <meta property="og:type" content="website">
+  <style>
+    #dct-growth-banner {
+      display: none !important;
+    }
+
+    .visual-card img,
+    .scenario-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: contain;
+      background: #f8faff;
+      border-radius: 12px;
+      border: 1px solid rgba(23, 29, 63, 0.08);
+      margin-bottom: 0.7rem;
+    }
+
+    .visual-grid,
+    .scenario-grid,
+    .path-grid,
+    #home-featured-posters,
+    #home-cohorts {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+      gap: 1rem !important;
+    }
+
+    .visual-card,
+    .scenario-card,
+    .path-card,
+    #home-featured-posters .platform-card,
+    #home-cohorts .platform-card {
+      width: auto !important;
+      max-width: 100% !important;
+    }
+
+    .path-card .path-visual {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid rgba(23, 29, 63, 0.08);
+      background: #0c0f16;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .visual-card {
+      overflow: hidden;
+    }
+
+    .visual-card img.briefing-visual {
+      object-fit: cover;
+      object-position: center top;
+      transform: scale(1.08);
+      transform-origin: center top;
+    }
+
+    .featured-playbook-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .featured-poster-card {
+      background: #ffffff;
+      border: 1px solid rgba(23, 29, 63, 0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 24px rgba(13, 19, 45, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .featured-poster-card img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      object-position: center 82%;
+      border-bottom: 1px solid rgba(23, 29, 63, 0.1);
+      background: #f2f6ff;
+    }
+
+    .featured-poster-body {
+      padding: 0.95rem;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .featured-poster-body h3 {
+      margin: 0;
+    }
+
+    .featured-poster-body .poster-meta {
+      margin: 0;
+      color: #445072;
+      font-size: 0.9rem;
+    }
+
+    .featured-poster-body .poster-importance {
+      margin: 0;
+      color: #1f2a45;
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
-  <header>
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 5000;">
     <div class="header-container">
       <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">
         <img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img" onerror="this.style.display='none'">
@@ -29,7 +134,7 @@
     </div>
   </header>
 
-  <main class="platform-shell">
+  <main class="platform-shell" style="padding-top: clamp(110px, 12vw, 140px);">
     <section class="platform-hero">
       <h1>Learn Cloud, Security, DevOps, and AI with The Dope Cloud Teacher</h1>
       <p>One curriculum. Three ways to learn. Choose the path that fits your schedule and support needs while staying aligned to real certification goals and job outcomes.</p>
@@ -46,16 +151,19 @@
     </section>
     <section class="path-grid">
       <article class="path-card">
+        <img class="path-visual" src="images/programs/path-01-in-person.svg" alt="In-person class visual showing a live classroom environment">
         <h3>1. Join an In-Person Class</h3>
         <p>PG Parks cohorts with weekly structure, hands-on labs, and in-room support.</p>
         <a class="cta secondary" href="classes/pg-parks/">View PG Parks Classes</a>
       </article>
       <article class="path-card">
+        <img class="path-visual" src="images/programs/path-02-live-virtual.svg" alt="Live virtual class visual showing cohort and office-hours support">
         <h3>2. Attend a Live Virtual Class</h3>
         <p>Live online cohorts with schedule accountability, office hours, and replay access.</p>
         <a class="cta secondary" href="classes/live/">View Live Virtual Classes</a>
       </article>
       <article class="path-card">
+        <img class="path-visual" src="images/programs/path-03-academy.svg" alt="Self-paced academy visual showing progress tracking and learning modules">
         <h3>3. Learn Anytime in the Academy</h3>
         <p>Self-paced tracks with modular lessons, quizzes, downloadable resources, and progress tracking.</p>
         <a class="cta secondary" href="academy/">Enter Dope Cloud Academy</a>
@@ -64,9 +172,9 @@
 
     <section class="section-head">
       <h2>Featured Visual Playbook Posters</h2>
-      <p>Instructional posters are directly mapped to modules, lessons, and certification objectives.</p>
+      <p>These are not decorative graphics. They are teaching assets built to compress complex cloud and security concepts into faster decision-making, stronger certification retention, and clearer team communication.</p>
     </section>
-    <section id="home-featured-posters" class="card-grid"></section>
+    <section id="home-featured-posters" class="featured-playbook-grid"></section>
 
     <section class="section-head">
       <h2>Security Visual Briefings</h2>
@@ -74,7 +182,7 @@
     </section>
     <section class="visual-grid">
       <article class="visual-card">
-        <img src="images/programs/stride-threat-modeling.svg" alt="STRIDE threat modeling visual">
+        <img class="briefing-visual" src="images/briefings/briefing-01-stride.svg" alt="STRIDE threat modeling visual briefing diagram">
         <div class="visual-card-body">
           <h3>STRIDE Threat Modeling</h3>
           <p>Use six concrete prompts to identify risk early in your architecture and CI/CD flow.</p>
@@ -82,7 +190,7 @@
         </div>
       </article>
       <article class="visual-card">
-        <img src="images/programs/cloud-security.svg" alt="Cloud security control visual">
+        <img class="briefing-visual" src="images/briefings/briefing-02-control-layers.svg" alt="Cloud security control layers visual briefing diagram">
         <div class="visual-card-body">
           <h3>Cloud Security Control Layers</h3>
           <p>Break down identity, network, and workload protections in one clear classroom-ready map.</p>
@@ -90,7 +198,7 @@
         </div>
       </article>
       <article class="visual-card">
-        <img src="images/programs/enterprise-plans.svg" alt="Governance and planning visual">
+        <img class="briefing-visual" src="images/briefings/briefing-03-governance-board.svg" alt="Governance planning board visual briefing diagram">
         <div class="visual-card-body">
           <h3>Governance Planning Board</h3>
           <p>Connect policy, cost, and team accountability into a weekly operating rhythm.</p>
@@ -180,13 +288,34 @@
     (function () {
       const target = document.getElementById("home-featured-posters");
       const posters = window.DCT_CONTENT.visualPosters.slice(0, 4);
+
+      const posterVisuals = {
+        "poster-shared-responsibility": "images/playbook/playbook-01-shared-responsibility.svg",
+        "poster-identity-map": "images/playbook/playbook-02-identity-access-map.svg",
+        "poster-zero-trust": "images/playbook/playbook-03-zero-trust-blueprint.svg",
+        "poster-devsecops-loop": "images/playbook/playbook-04-devsecops-loop.svg"
+      };
+
+      const importanceCopy = {
+        "poster-shared-responsibility": "Use this in onboarding and governance workshops so teams stop guessing ownership boundaries and start assigning accountability correctly on day one.",
+        "poster-identity-map": "This visual is critical for identity-first security: it helps learners connect user, device, and workload signals to conditional access decisions that reduce real breach risk.",
+        "poster-zero-trust": "Bring this into architecture reviews to reinforce least privilege and continuous verification so security controls are designed in, not bolted on after incidents.",
+        "poster-devsecops-loop": "Apply this model in sprint planning and release governance to embed security checks across the full delivery lifecycle and improve release confidence without slowing velocity."
+      };
+
       target.innerHTML = posters.map(function (poster) {
-        return '<article class="platform-card">' +
+        const imageUrl = posterVisuals[poster.id] || "images/programs/cloud-architecture.svg";
+        const importance = importanceCopy[poster.id] || "This poster supports practical instruction, faster learner comprehension, and stronger certification alignment.";
+
+        return '<article class="featured-poster-card">' +
+          '<img src="' + imageUrl + '" alt="' + poster.title + ' featured visual playbook poster">' +
+          '<div class="featured-poster-body">' +
           '<h3>' + poster.title + '</h3>' +
-          '<p>' + poster.topic + '</p>' +
-          '<p class="poster-meta"><strong>Certification:</strong> ' + poster.certificationMapping + '</p>' +
-          '<p class="poster-meta"><strong>Related lessons:</strong> ' + poster.relatedLessonIds.length + '</p>' +
+          '<p class="poster-meta"><strong>Focus:</strong> ' + poster.topic + ' · <strong>Certification:</strong> ' + poster.certificationMapping + '</p>' +
+          '<p class="poster-meta"><strong>Lesson support:</strong> ' + poster.relatedLessonIds.length + ' mapped lesson(s)</p>' +
+          '<p class="poster-importance">' + importance + '</p>' +
           '<a class="cta secondary" href="playbook/">Open in Playbook</a>' +
+          '</div>' +
           '</article>';
       }).join("");
 

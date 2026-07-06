@@ -60,7 +60,7 @@
     if (!head.querySelector('#dct-unified-theme')) {
       var themeLink = document.createElement('link');
       themeLink.rel = 'stylesheet';
-      themeLink.href = sitePath('css/unified-theme.css?v=20260705a');
+      themeLink.href = sitePath('css/unified-theme.css?v=20260706b');
       themeLink.id = 'dct-unified-theme';
       head.appendChild(themeLink);
     }

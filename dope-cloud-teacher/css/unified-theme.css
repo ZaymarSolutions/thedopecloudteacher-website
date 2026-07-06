@@ -120,3 +120,39 @@ header .logo {
   align-items: center !important;
   min-height: 80px;
 }
+
+/* Global image normalization for page content */
+main img,
+section img,
+article img {
+  max-width: 100% !important;
+  height: auto;
+}
+
+.visual-card img,
+.scenario-card img,
+.resource-card-photo,
+.course-card-image,
+.course-icon,
+.blog-card img,
+.profile-photo {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(23, 29, 63, 0.1) !important;
+  box-shadow: 0 8px 18px rgba(23, 29, 63, 0.1) !important;
+  background: #f8faff !important;
+}
+
+.module-visual,
+.tech-icon img {
+  object-fit: contain !important;
+}
+
+.course-hero-image {
+  height: 260px !important;
+  object-fit: cover !important;
+}

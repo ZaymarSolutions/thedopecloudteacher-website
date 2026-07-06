@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono','Courier New',monospace">
+  <rect width="800" height="400" fill="#12161F"/>
+
+  <rect width="800" height="72" fill="#E5484D"/>
+  <text x="28" y="28" font-size="10" letter-spacing="3" fill="#12161F">SECURITY VISUAL BRIEFING · SB-01</text>
+  <text x="28" y="58" font-family="'Bebas Neue','Oswald','Arial Narrow',sans-serif" font-size="34" letter-spacing="1.5" fill="#12161F">STRIDE THREAT MODELING</text>
+  <g>
+    <rect x="632" y="24" width="140" height="26" rx="13" fill="none" stroke="#12161F" stroke-width="1.6"/>
+    <text x="702" y="41" text-anchor="middle" font-size="10" letter-spacing="2" fill="#12161F">FAST REFERENCE</text>
+  </g>
+
+  <g>
+    <rect x="28" y="96" width="236" height="96" rx="8" fill="#1A2030" stroke="#2A3242" stroke-width="1.4"/>
+    <text x="52" y="162" font-family="'Bebas Neue','Oswald','Arial Narrow',sans-serif" font-size="58" fill="#E5484D">S</text>
+    <text x="104" y="132" font-size="12" font-weight="bold" letter-spacing="1.5" fill="#EDEDF0">SPOOFING</text>
+    <line x1="104" y1="144" x2="240" y2="144" stroke="#2A3242" stroke-width="1"/>
+    <text x="104" y="162" font-size="8.5" letter-spacing="1" fill="#8A93A6">VIOLATES:</text>
+    <text x="104" y="176" font-size="9.5" letter-spacing="1" fill="#E5484D">AUTHENTICATION</text>
+  </g>
+  <g>
+    <rect x="282" y="96" width="236" height="96" rx="8" fill="#1A2030" stroke="#2A3242" stroke-width="1.4"/>
+    <text x="306" y="162" font-family="'Bebas Neue','Oswald','Arial Narrow',sans-serif" font-size="58" fill="#E5484D">T</text>
+    <text x="356" y="132" font-size="12" font-weight="bold" letter-spacing="1.5" fill="#EDEDF0">TAMPERING</text>
+    <line x1="356" y1="144" x2="494" y2="144" stroke="#2A3242" stroke-width="1"/>
+    <text x="356" y="162" font-size="8.5" letter-spacing="1" fill="#8A93A6">VIOLATES:</text>
+    <text x="356" y="176" font-size="9.5" letter-spacing="1" fill="#E5484D">INTEGRITY</text>
+  </g>
+  <g>
+    <rect x="536" y="96" width="236" height="96" rx="8" fill="#1A2030" stroke="#2A3242" stroke-width="1.4"/>
+    <text x="560" y="162" font-family="'Bebas Neue','Oswald','Arial Narrow',sans-serif" font-size="58" fill="#E5484D">R</text>
+    <text x="612" y="132" font-size="12" font-weight="bold" letter-spacing="1.5" fill="#EDEDF0">REPUDIATION</text>
+    <line x1="612" y1="144" x2="748" y2="144" stroke="#2A3242" stroke-width="1"/>
+    <text x="612" y="162" font-size="8.5" letter-spacing="1" fill="#8A93A6">VIOLATES:</text>
+    <text x="612" y="176" font-size="9.5" letter-spacing="1" fill="#E5484D">NON-REPUDIATION</text>
+  </g>
+
+  <g>
+    <rect x="28" y="208" width="236" height="96" rx="8" fill="#1A2030" stroke="#2A3242" stroke-width="1.4"/>
+    <text x="52" y="274" font-family="'Bebas Neue','Oswald','Arial Narrow',sans-serif" font-size="58" fill="#E5484D">I</text>
+    <text x="104" y="240" font-size="12" font-weight="bold" letter-spacing="1" fill="#EDEDF0">INFO DISCLOSURE</text>
+    <line x1="104" y1="252" x2="240" y2="252" stroke="#2A3242" stroke-width="1"/>
+    <text x="104" y="270" font-size="8.5" letter-spacing="1" fill="#8A93A6">VIOLATES:</text>
+    <text x="104" y="284" font-size="9.5" letter-spacing="1" fill="#E5484D">CONFIDENTIALITY</text>
+  </g>
+  <g>
+    <rect x="282" y="208" width="236" height="96" rx="8" fill="#1A2030" stroke="#2A3242" stroke-width="1.4"/>
+    <text x="306" y="274" font-family="'Bebas Neue','Oswald','Arial Narrow',sans-serif" font-size="58" fill="#E5484D">D</text>
+    <text x="356" y="240" font-size="12" font-weight="bold" letter-spacing="1" fill="#EDEDF0">DENIAL OF SERVICE</text>
+    <line x1="356" y1="252" x2="494" y2="252" stroke="#2A3242" stroke-width="1"/>
+    <text x="356" y="270" font-size="8.5" letter-spacing="1" fill="#8A93A6">VIOLATES:</text>
+    <text x="356" y="284" font-size="9.5" letter-spacing="1" fill="#E5484D">AVAILABILITY</text>
+  </g>
+  <g>
+    <rect x="536" y="208" width="236" height="96" rx="8" fill="#1A2030" stroke="#2A3242" stroke-width="1.4"/>
+    <text x="560" y="274" font-family="'Bebas Neue','Oswald','Arial Narrow',sans-serif" font-size="58" fill="#E5484D">E</text>
+    <text x="612" y="240" font-size="12" font-weight="bold" letter-spacing="1" fill="#EDEDF0">ELEVATION OF PRIV.</text>
+    <line x1="612" y1="252" x2="748" y2="252" stroke="#2A3242" stroke-width="1"/>
+    <text x="612" y="270" font-size="8.5" letter-spacing="1" fill="#8A93A6">VIOLATES:</text>
+    <text x="612" y="284" font-size="9.5" letter-spacing="1" fill="#E5484D">AUTHORIZATION</text>
+  </g>
+
+  <text x="28" y="332" font-size="10" letter-spacing="2" fill="#8A93A6">ASK OF EVERY COMPONENT: "WHICH OF THE SIX CAN HAPPEN HERE?"</text>
+
+  <line x1="28" y1="352" x2="772" y2="352" stroke="#2A3242" stroke-width="1.4"/>
+  <text x="28" y="376" font-size="9" letter-spacing="2" fill="#8A93A6">THE DOPE CLOUD TEACHER · CLOUD SECURITY</text>
+  <text x="772" y="376" text-anchor="end" font-size="9" letter-spacing="2" fill="#E5484D">WORKSHOPS · STUDY GROUPS · CERT PREP</text>
+</svg>

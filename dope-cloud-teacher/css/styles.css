@@ -117,6 +117,58 @@ header {
   letter-spacing: 1px;
 }
 
+/* ============================================
+   GLOBAL IMAGE SYSTEM
+   ============================================ */
+
+main img,
+section img,
+article img {
+  max-width: 100%;
+  height: auto;
+}
+
+.resource-card-photo,
+.course-icon,
+.course-card-image,
+.course-hero-image,
+.blog-card img,
+.profile-photo {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(23, 29, 63, 0.1);
+  box-shadow: 0 8px 20px rgba(23, 29, 63, 0.08);
+}
+
+.resource-card-photo,
+.course-icon,
+.course-card-image,
+.blog-card img {
+  height: 190px;
+  object-fit: cover;
+  display: block;
+}
+
+.course-hero-image {
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.module-visual,
+.visual-card img,
+.scenario-card img {
+  width: 100%;
+  max-width: 100%;
+  height: 170px;
+  object-fit: contain;
+  display: block;
+  background: #f8faff;
+  border-radius: 12px;
+  border: 1px solid rgba(23, 29, 63, 0.08);
+}
+
 nav.nav-links {
   display: flex;
   gap: 0.55rem;
@@ -406,6 +458,43 @@ section + section {
   display: block;
   border-radius: 14px;
   border: 1px solid rgba(23, 29, 63, 0.08);
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.visual-card {
+  border: 1px solid rgba(23, 139, 231, 0.16);
+  background: linear-gradient(160deg, #ffffff 0%, #f6fbff 100%);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.visual-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  display: block;
+  background: #f8faff;
+  border-bottom: 1px solid rgba(23, 29, 63, 0.08);
+}
+
+.visual-card-body {
+  padding: 0.9rem;
+}
+
+.visual-card-body h3 {
+  margin-bottom: 0.4rem;
+  color: var(--text-dark);
+}
+
+.visual-card-body p {
+  margin-bottom: 0.65rem;
+  color: var(--text-gray);
 }
 
 .scenario-section {
