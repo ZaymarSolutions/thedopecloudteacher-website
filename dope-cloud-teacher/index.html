@@ -70,6 +70,11 @@
       transform-origin: center top;
     }
 
+    .scenario-card img.scenario-visual {
+      object-fit: cover;
+      object-position: center;
+    }
+
     .featured-playbook-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -214,7 +219,7 @@
     <section class="scenario-section">
       <div class="scenario-grid">
         <article class="scenario-card">
-          <img src="images/programs/cloud-security.svg" alt="Scenario visual for cloud security rollout">
+          <img class="scenario-visual" src="images/scenarios/community-security-rollout.png" alt="Scenario visual for cloud security rollout">
           <h3>Community Center Security Rollout</h3>
           <p>Students practice securing cloud identities for a multi-site community center with shared devices.</p>
           <ul>
@@ -224,7 +229,7 @@
           </ul>
         </article>
         <article class="scenario-card">
-          <img src="images/programs/serverless-microservices.svg" alt="Scenario visual for architecture modernization">
+          <img class="scenario-visual" src="images/scenarios/small-business-modernization.png" alt="Scenario visual for architecture modernization">
           <h3>Small Business Modernization</h3>
           <p>Teams break a monolithic app into resilient services while balancing cost, speed, and reliability.</p>
           <ul>
@@ -234,7 +239,7 @@
           </ul>
         </article>
         <article class="scenario-card">
-          <img src="images/programs/enterprise-plans.svg" alt="Scenario visual for workforce development planning">
+          <img class="scenario-visual" src="images/scenarios/workforce-pipeline-buildout.png" alt="Scenario visual for workforce development planning">
           <h3>Workforce Pipeline Buildout</h3>
           <p>Instructors map cloud and AI skills into a 6-week pathway with measurable outcomes.</p>
           <ul>
