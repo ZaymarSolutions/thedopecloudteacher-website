@@ -1,2 +1,389 @@
-<!-- Testimonials Section --> <section id="testimonials" style="background:#f8fafc;padding:3rem 0;text-align:center;">   <h2 style="color:#178BE7;">Student Success Stories</h2>   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;">     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I landed my first cloud job after finishing the Cloud Fundamentals pathway. The labs and quizzes made all the difference!ΓÇ¥</p>       <strong>- Maya B., Cloud Engineer</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£The certification prep and real-world projects helped me get promoted. Highly recommend for career changers!ΓÇ¥</p>       <strong>- James R., Solutions Architect</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I loved the community and support. The Discord group kept me motivated and accountable.ΓÇ¥</p>       <strong>- Priya S., DevOps Analyst</strong>     </div>   </div> </section>
-  <script src="..\..\js\global-ui.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PG Parks Classes | The Dope Cloud Teacher</title>
+  <meta name="description" content="PG Parks-aligned Cloud and AI classes with current and upcoming cohorts, schedules, fees, and registration links.">
+  <link rel="icon" type="image/svg+xml" href="../../logo.svg?v=20260705b">
+  <link rel="icon" type="image/png" href="../../logo.png?v=20260705b">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at top left, rgba(23, 139, 231, 0.1), transparent 35%), linear-gradient(180deg, #f6fbff, #ecf5ff);
+      color: #1b2f47;
+    }
+
+    .wrap {
+      width: min(1140px, calc(100% - 2rem));
+      margin: 1.25rem auto 2rem;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: #16528b;
+      font-weight: 700;
+    }
+
+    .hero,
+    .section,
+    .cohort-card,
+    .info-card {
+      background: #ffffff;
+      border: 1px solid #d4e4f8;
+      border-radius: 16px;
+      box-shadow: 0 12px 26px rgba(18, 41, 77, 0.08);
+    }
+
+    .hero {
+      padding: 1.25rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero h1 {
+      margin: 0 0 0.45rem;
+      color: #10263f;
+    }
+
+    .hero p {
+      margin: 0.35rem 0;
+      line-height: 1.7;
+      color: #3e5878;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+    }
+
+    .btn {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.62rem 0.95rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .btn.primary {
+      background: #178BE7;
+      color: #ffffff;
+    }
+
+    .btn.secondary {
+      background: #ffffff;
+      color: #1d2f45;
+      border: 1px solid #c8daef;
+    }
+
+    .section {
+      padding: 1rem;
+      margin-top: 0.9rem;
+    }
+
+    .section h2 {
+      margin: 0 0 0.35rem;
+      color: #10263f;
+    }
+
+    .section p {
+      margin: 0.3rem 0;
+      color: #3f5a79;
+      line-height: 1.65;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.8rem;
+    }
+
+    .info-card {
+      overflow: hidden;
+    }
+
+    .info-card img {
+      width: 100%;
+      height: 180px;
+      max-height: 180px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #d8e7f7;
+    }
+
+    .info-body {
+      padding: 0.85rem;
+    }
+
+    .info-body h3 {
+      margin: 0 0 0.35rem;
+      color: #122b47;
+      font-size: 1.02rem;
+    }
+
+    .info-body p {
+      margin: 0;
+      color: #49617d;
+      line-height: 1.6;
+    }
+
+    .cohorts {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 0.85rem;
+    }
+
+    .cohort-card {
+      padding: 0.95rem;
+    }
+
+    .cohort-card h3 {
+      margin: 0 0 0.4rem;
+      color: #0f2944;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.45rem 0.9rem;
+      margin: 0.65rem 0;
+    }
+
+    .meta p {
+      margin: 0;
+      color: #2f4c6e;
+      line-height: 1.55;
+    }
+
+    .fees {
+      background: #f7fbff;
+      border: 1px solid #d6e6f7;
+      border-radius: 12px;
+      padding: 0.75rem;
+      margin: 0.6rem 0;
+    }
+
+    .fees h4 {
+      margin: 0 0 0.35rem;
+      color: #153a60;
+    }
+
+    .fees ul {
+      margin: 0.2rem 0 0;
+      padding-left: 1.15rem;
+      color: #3d5879;
+      line-height: 1.55;
+    }
+
+    .cohort-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.65rem;
+    }
+
+    .cohort-links a {
+      text-decoration: none;
+      font-weight: 700;
+      color: #0f4f89;
+      border: 1px solid #c7ddf3;
+      border-radius: 999px;
+      padding: 0.42rem 0.72rem;
+      background: #ffffff;
+    }
+
+    .small-note {
+      margin-top: 0.6rem;
+      color: #516b89;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.7rem;
+    }
+
+    .status-badge {
+      border-radius: 999px;
+      padding: 0.42rem 0.74rem;
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: 1px solid #c8ddf3;
+      color: #153d66;
+      background: #f4faff;
+    }
+
+    .status-badge.open {
+      border-color: #b8e6cb;
+      color: #1d5a36;
+      background: #effcf4;
+    }
+
+    .status-badge.waitlist {
+      border-color: #f1df9f;
+      color: #6a4f12;
+      background: #fff9e7;
+    }
+
+    .status-badge.closed {
+      border-color: #efc0c6;
+      color: #7c2230;
+      background: #fff2f4;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="top-nav" aria-label="PG Parks classes navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../index.html">Classes</a>
+      <a href="../../academy/index.html">DCT Academy</a>
+      <a href="../../pg-parks-direct.html">PG Parks Direct</a>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+
+    <section class="hero">
+      <h1>PG Parks-Aligned Cloud and AI Classes</h1>
+      <p>
+        This page lists current and upcoming PG Parks-aligned cohorts for "Cloud & AI Fundamentals for the Next Generation".
+        Dates and registration links below are aligned to the latest section details you provided.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/splash.html" target="_blank" rel="noreferrer">Find a Class</a>
+        <a class="btn secondary" href="../../academy/index.html">Explore DCT Academy Online</a>
+      </div>
+      <div class="status-row" aria-label="Registration status summary">
+        <span class="status-badge" data-status="open">Current Cohort 20677-477A: Open</span>
+        <span class="status-badge" data-status="open">Upcoming Cohort 20677-477B: Open</span>
+      </div>
+      <p class="small-note">Registration through PG Parks when available. Program language here is PG Parks-aligned and does not imply official endorsement.</p>
+    </section>
+
+    <section class="section" aria-labelledby="program-overview-title">
+      <h2 id="program-overview-title">Cloud & AI Fundamentals for the Next Generation - 20677</h2>
+      <p><strong>Intro to Cloud & AI w/Ms. Murphy</strong></p>
+      <p>
+        Gain foundational knowledge in Cloud Computing and Artificial Intelligence (AI) and prepare for Microsoft certification exams such as AZ-900 and AZ-104 while making complex tech concepts relatable.
+      </p>
+
+      <div class="cards" aria-label="Program highlights">
+        <article class="info-card">
+          <img src="../../images/programs/path-01-in-person.svg" alt="Students in a modern community tech learning environment">
+          <div class="info-body">
+            <h3>Certification-Aligned</h3>
+            <p>Structured introduction to Azure and AI fundamentals with practical pathways toward AZ-900 and AZ-104.</p>
+          </div>
+        </article>
+        <article class="info-card">
+          <img src="../../images/programs/path-02-live-virtual.svg" alt="Cloud and AI visual learning track illustration">
+          <div class="info-body">
+            <h3>Community Learning Format</h3>
+            <p>Local cohort schedule with plain-language instruction, guided support, and age-appropriate skill-building.</p>
+          </div>
+        </article>
+        <article class="info-card">
+          <img src="../../images/programs/path-03-self-paced.svg" alt="Student progression from class to online academy pathways">
+          <div class="info-body">
+            <h3>Pathway Continuity</h3>
+            <p>Students can continue learning through DCT Academy for extended virtual and self-paced progression.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cohorts-title">
+      <h2 id="cohorts-title">Current and Upcoming Cohorts</h2>
+      <div class="cohorts">
+        <article class="cohort-card">
+          <h3>Current Cohort: 20677-477A</h3>
+          <div class="meta">
+            <p><strong>Date(s):</strong> 06/08/2026 - 07/08/2026</p>
+            <p><strong>Time:</strong> 6:00 pm - 7:30 pm</p>
+            <p><strong>Days:</strong> Mon, Wed</p>
+            <p><strong>Location:</strong> Southern Reg Tec & Rec Complex, 7007 Bock Rd., Fort Washington, MD 20744, (301)749-4160</p>
+            <p><strong>Ages:</strong> 13-150</p>
+            <p><strong>Status:</strong> Available</p>
+          </div>
+
+          <div class="fees">
+            <h4>Fees</h4>
+            <p><strong>Resident:</strong> (Standard Fee) $120.00</p>
+            <p><strong>Non-Resident:</strong> (Standard Fee) $156.00</p>
+            <p><strong>Range:</strong> $120.00 - $156.00</p>
+          </div>
+
+          <div class="cohort-links">
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/iteminfo.html?Module=AR&FMID=563281660" target="_blank" rel="noreferrer">Activity Details</a>
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/iteminfo.html?Module=AR&FMID=563281660&option=dates&mode=customdates" target="_blank" rel="noreferrer">Meeting Dates</a>
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Action=UpdateSelection&Module=AR&ARFMIDList=563281660&FromProgram=search&GlobalSalesArea_ARItemBeginDate=06/08/2026&GlobalSalesArea_ARItemBeginTime=64800&GlobalSalesArea_ARItemEndDate=07/08/2026&GlobalSalesArea_ARItemEndTime=70200&_csrf_token=Fj6Q1E0Z1S71254D1P4P4E5J72555B5200034M5755046S644Z6I1S5G4N716H006X4V5A55085O5U5E6907614I6M5G0A5O4Q5G54055R4N54546Y5V6E50581V704F5C" target="_blank" rel="noreferrer">Add to Selection List</a>
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Module=AR&FMID=563281660&action=ProcessWishlist&_csrf_token=Fj6Q1E0Z1S71254D1P4P4E5J72555B5200034M5755046S644Z6I1S5G4N716H006X4V5A55085O5U5E6907614I6M5G0A5O4Q5G54055R4N54546Y5V6E50581V704F5C" target="_blank" rel="noreferrer">Add to Wishlist</a>
+          </div>
+        </article>
+
+        <article class="cohort-card">
+          <h3>Upcoming Cohort: 20677-477B</h3>
+          <div class="meta">
+            <p><strong>Date(s):</strong> 07/20/2026 - 08/26/2026</p>
+            <p><strong>Time:</strong> 6:00 pm - 7:30 pm</p>
+            <p><strong>Days:</strong> Mon, Wed</p>
+            <p><strong>Location:</strong> Southern Reg Tec & Rec Complex, 7007 Bock Rd., Fort Washington, MD 20744, (301)749-4160</p>
+            <p><strong>Ages:</strong> 13-150</p>
+            <p><strong>Status:</strong> Available</p>
+          </div>
+
+          <div class="fees">
+            <h4>Fees</h4>
+            <p><strong>Resident:</strong> (Standard Fee) $120.00</p>
+            <p><strong>Non-Resident:</strong> (Standard Fee) $156.00</p>
+            <p><strong>Range:</strong> $120.00 - $156.00</p>
+          </div>
+
+          <div class="cohort-links">
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/iteminfo.html?Module=AR&FMID=563281669" target="_blank" rel="noreferrer">Activity Details</a>
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/iteminfo.html?Module=AR&FMID=563281669&option=dates&mode=customdates" target="_blank" rel="noreferrer">Meeting Dates</a>
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Action=UpdateSelection&Module=AR&ARFMIDList=563281669&FromProgram=search&GlobalSalesArea_ARItemBeginDate=07/20/2026&GlobalSalesArea_ARItemBeginTime=64800&GlobalSalesArea_ARItemEndDate=08/26/2026&GlobalSalesArea_ARItemEndTime=70200&_csrf_token=Fj6Q1E0Z1S71254D1P4P4E5J72555B5200034M5755046S644Z6I1S5G4N716H006X4V5A55085O5U5E6907614I6M5G0A5O4Q5G54055R4N54546Y5V6E50581V704F5C" target="_blank" rel="noreferrer">Add to Selection List</a>
+            <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/search.html?Module=AR&FMID=563281669&action=ProcessWishlist&_csrf_token=Fj6Q1E0Z1S71254D1P4P4E5J72555B5200034M5755046S644Z6I1S5G4N716H006X4V5A55085O5U5E6907614I6M5G0A5O4Q5G54055R4N54546Y5V6E50581V704F5C" target="_blank" rel="noreferrer">Add to Wishlist</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="small-note"><strong>Eligibility:</strong> Age 13-150; resident/non-resident rules and release timings apply per PG Parks registration settings. <strong>Restrictions:</strong> Park Police suspensions and unpaid debt balances may prevent registration.</p>
+    </section>
+  </main>
+
+  <script src="../../js/global-ui.js"></script>
+  <script>
+    (function () {
+      var badges = document.querySelectorAll('.status-badge[data-status]');
+      badges.forEach(function (badge) {
+        var value = String(badge.getAttribute('data-status') || '').toLowerCase().trim();
+        if (value === 'waitlist') {
+          badge.classList.add('waitlist');
+          return;
+        }
+        if (value === 'closed') {
+          badge.classList.add('closed');
+          return;
+        }
+        badge.classList.add('open');
+      });
+    })();
+  </script>
+</body>
+</html>
