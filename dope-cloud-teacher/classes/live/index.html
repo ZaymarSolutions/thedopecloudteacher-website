@@ -1,2 +1,180 @@
-<!-- Testimonials Section --> <section id="testimonials" style="background:#f8fafc;padding:3rem 0;text-align:center;">   <h2 style="color:#178BE7;">Student Success Stories</h2>   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:2rem;">     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I landed my first cloud job after finishing the Cloud Fundamentals pathway. The labs and quizzes made all the difference!ΓÇ¥</p>       <strong>- Maya B., Cloud Engineer</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£The certification prep and real-world projects helped me get promoted. Highly recommend for career changers!ΓÇ¥</p>       <strong>- James R., Solutions Architect</strong>     </div>     <div style="background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(23, 139, 231,0.08);padding:2rem;max-width:340px;">       <p style="font-size:1.1rem;">ΓÇ£I loved the community and support. The Discord group kept me motivated and accountable.ΓÇ¥</p>       <strong>- Priya S., DevOps Analyst</strong>     </div>   </div> </section>
-  <script src="..\..\js\global-ui.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Virtual Classes | The Dope Cloud Teacher</title>
+  <meta name="description" content="Join live virtual cloud, AI, and cybersecurity classes with practical labs, office hours, and certification-aligned pathways.">
+  <link rel="canonical" href="https://thedopecloudteacher.org/classes/live/">
+  <link rel="icon" type="image/svg+xml" href="../../logo.svg?v=20260705b">
+  <link rel="icon" type="image/png" href="../../logo.png?v=20260705b">
+  <link rel="stylesheet" href="../../css/styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: radial-gradient(circle at 100% 0, rgba(23, 139, 231, 0.12), transparent 32%), linear-gradient(180deg, #f8fbff, #eef5ff);
+      color: #1c2f48;
+    }
+
+    .wrap {
+      width: min(1140px, calc(100% - 2rem));
+      margin: 1.25rem auto 2rem;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: #16528b;
+      font-weight: 700;
+    }
+
+    .hero,
+    .section,
+    .card {
+      background: #ffffff;
+      border: 1px solid #d4e4f8;
+      border-radius: 16px;
+      box-shadow: 0 12px 26px rgba(18, 41, 77, 0.08);
+    }
+
+    .hero,
+    .section {
+      padding: 1.1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #122b47;
+      margin-top: 0;
+    }
+
+    p {
+      color: #415d7d;
+      line-height: 1.65;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+    }
+
+    .btn {
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.6rem 0.95rem;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .btn.primary {
+      background: #178be7;
+      color: #ffffff;
+    }
+
+    .btn.secondary {
+      background: #ffffff;
+      color: #1d2f45;
+      border: 1px solid #c8daef;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .card {
+      padding: 0.9rem;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.65rem;
+      margin-top: 0.6rem;
+    }
+
+    .flow .card h3 {
+      margin-bottom: 0.35rem;
+      color: #143d67;
+    }
+
+    .small-note {
+      color: #5a7290;
+      font-size: 0.92rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="top-nav" aria-label="Live classes navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../index.html">Classes</a>
+      <a href="../pg-parks/index.html">PG County In-Person</a>
+      <a href="../../academy/index.html">DCT Academy</a>
+      <a href="../../contact.html">Contact</a>
+    </nav>
+
+    <section class="hero">
+      <h1>Live Virtual Cloud, AI, and Cybersecurity Classes</h1>
+      <p>
+        Join real-time, instructor-led sessions designed for learners who want structure, accountability, and direct support while building practical cloud skills.
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="../../contact.html">Request Upcoming Schedule</a>
+        <a class="btn secondary" href="../../pricing.html">View Pricing Options</a>
+        <a class="btn secondary" href="../../academy/index.html">Start Self-Paced Today</a>
+      </div>
+      <p class="small-note">Live cohorts rotate by demand and instructor availability. Contact us to confirm the next intake date.</p>
+    </section>
+
+    <section class="section">
+      <h2>What To Expect</h2>
+      <div class="grid">
+        <article class="card"><h3>Weekly Live Sessions</h3><p>Guided classes with focused topic blocks, practical labs, and real-world examples.</p></article>
+        <article class="card"><h3>Office Hours Support</h3><p>Dedicated Q and A support for troubleshooting, exam prep, and project feedback.</p></article>
+        <article class="card"><h3>Certification Alignment</h3><p>Learning paths mapped to AZ-900, AZ-104, AI-900, and security fundamentals goals.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Enrollment Flow</h2>
+      <div class="flow">
+        <article class="card"><h3>1. Pick A Track</h3><p>Choose cloud fundamentals, AI fundamentals, cybersecurity, or career prep.</p></article>
+        <article class="card"><h3>2. Confirm Fit</h3><p>Share your goals and schedule so we place you in the right live cohort.</p></article>
+        <article class="card"><h3>3. Start Live</h3><p>Receive class access, prep checklist, and cohort kickoff details.</p></article>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="../../contact.html">Get Placed In A Cohort</a>
+        <a class="btn secondary" href="../../dashboard.html">Student Dashboard</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Student Success Stories</h2>
+      <div class="grid">
+        <article class="card"><p>"I landed my first cloud job after finishing the Cloud Fundamentals pathway. The labs and quizzes made all the difference."</p><strong>- Maya B., Cloud Engineer</strong></article>
+        <article class="card"><p>"The certification prep and real-world projects helped me get promoted. Highly recommend for career changers."</p><strong>- James R., Solutions Architect</strong></article>
+        <article class="card"><p>"I loved the community and support. The accountability kept me moving every week."</p><strong>- Priya S., DevOps Analyst</strong></article>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../js/site-config.js"></script>
+  <script src="../../js/analytics.js"></script>
+  <script src="../../js/global-ui.js"></script>
+</body>
+</html>
