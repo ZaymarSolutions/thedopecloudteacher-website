@@ -442,7 +442,7 @@
       startDate: "2026-09-08",
       endDate: "2026-11-21",
       schedule: "Tuesdays and Thursdays, 6:00 PM - 8:00 PM",
-      location: "Southern Regional Tevhnology & Recreaction Complex",
+      location: "Southern Regional Tech & Rec Complex, 7007 Bock Rd., Fort Washington, MD 20744",
       virtualLink: "",
       assignedCourseIds: ["course-cohort-pg", "course-az-fund"],
       assignedLessonIds: ["lesson-cloud-intro", "lesson-identity-core", "lesson-portfolio-story"],

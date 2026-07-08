@@ -293,7 +293,6 @@
         '<p><strong>Dates:</strong> ' + toPrettyDate(cohort.startDate) + ' to ' + toPrettyDate(cohort.endDate) + '</p>' +
         '<p><strong>Schedule:</strong> ' + cohort.schedule + '</p>' +
         '<p><strong>Location:</strong> ' + cohort.location + '</p>' +
-        '<p><strong>Enrolled:</strong> ' + cohort.enrolledStudents + ' students</p>' +
         (cohort.virtualLink ? '<p><strong>Virtual Access:</strong> ' + cohort.virtualLink + '</p>' : '') +
         '<div class="pill-row">' +
         byIds(cohort.assignedCourseIds, model.byId.course).map(function (course) { return '<span class="pill">' + course.title + '</span>'; }).join('') +
@@ -765,8 +764,31 @@
     });
   }
 
-  function renderStudentDashboard() {
+  async function renderStudentDashboard() {
     var model = getModel();
+    var currentUserId = (window.dopeAuth && dopeAuth.user && dopeAuth.user.id) ? String(dopeAuth.user.id) : 'anon';
+    var checklistKey = 'dct-student-dashboard-checklist:' + currentUserId;
+    var homeworkSyncCourseId = 'dashboard-homework-checklist-v1';
+    var serverLockedTaskIds = {};
+    var authenticatedProgressEnabled = !!(window.dopeAuth && typeof dopeAuth.isAuthenticated === 'function' && dopeAuth.isAuthenticated() && window.dopeProgress);
+
+    function getChecklistState() {
+      try {
+        var raw = localStorage.getItem(checklistKey);
+        return raw ? JSON.parse(raw) : {};
+      } catch (err) {
+        return {};
+      }
+    }
+
+    function setChecklistState(state) {
+      try {
+        localStorage.setItem(checklistKey, JSON.stringify(state));
+      } catch (err) {
+        // no-op
+      }
+    }
+
     var student = {
       name: 'Student View',
       classIds: ['course-pg-parks-cohort', 'course-azure-fundamentals'],
@@ -793,7 +815,62 @@
 
     var currentLesson = model.byId.lesson[student.currentLessonId];
     var currentPoster = currentLesson ? model.byId.poster[safe(currentLesson.relatedPosterIds)[0]] : null;
+    var activeCourseId = currentLesson ? courseIdForLesson(model, currentLesson.id, currentPoster) : null;
     var percent = Math.round((student.completedLessonCount / student.totalLessonCount) * 100);
+    var displayedCompletedCount = student.completedLessonCount;
+    var displayedTotalCount = student.totalLessonCount;
+    var checklistState = getChecklistState();
+
+    if (authenticatedProgressEnabled && currentLesson && activeCourseId) {
+      try {
+        var courseProgress = await dopeProgress.getCourseProgress(activeCourseId);
+        var activeCourse = model.byId.course[activeCourseId];
+        var lessonCount = safe(activeCourse && activeCourse.lessons).length;
+
+        if (lessonCount > 0) {
+          var completedCount = safe(courseProgress).filter(function (item) { return !!item.completed; }).length;
+          displayedCompletedCount = completedCount;
+          displayedTotalCount = lessonCount;
+          percent = Math.round((completedCount / lessonCount) * 100);
+        }
+
+        var lessonProgress = safe(courseProgress).find(function (item) { return item.lesson_id === currentLesson.id && !!item.completed; });
+        if (lessonProgress) {
+          checklistState['lesson:' + currentLesson.id] = true;
+          serverLockedTaskIds['lesson:' + currentLesson.id] = true;
+        }
+      } catch (err) {
+        // Fall back to local-only state when API is unavailable.
+      }
+
+      try {
+        var homeworkProgress = await dopeProgress.getCourseProgress(homeworkSyncCourseId);
+        safe(homeworkProgress).forEach(function (item) {
+          if (!item || !item.completed || typeof item.lesson_id !== 'string') return;
+          if (item.lesson_id.indexOf('homework:') !== 0) return;
+          checklistState[item.lesson_id] = true;
+          serverLockedTaskIds[item.lesson_id] = true;
+        });
+      } catch (err2) {
+        // Keep local-only checkboxes if homework sync cannot load.
+      }
+
+      setChecklistState(checklistState);
+    }
+
+    var autoCompleteAll = percent >= 100;
+
+    if (autoCompleteAll) {
+      if (currentLesson) {
+        checklistState['lesson:' + currentLesson.id] = true;
+      }
+      student.homework.forEach(function (_, index) {
+        checklistState['homework:' + index] = true;
+      });
+      setChecklistState(checklistState);
+    }
+
+    var currentLessonChecked = currentLesson ? !!checklistState['lesson:' + currentLesson.id] : false;
 
     if (continueTarget && currentLesson && currentPoster) {
       continueTarget.innerHTML =
@@ -815,12 +892,20 @@
         '<p>' + currentLesson.summary + '</p>' +
         '<p><strong>Objectives:</strong> ' + safe(currentLesson.objectives).join('; ') + '</p>' +
         '<p><strong>Quiz:</strong> ' + (quiz ? quiz.title : 'TBD') + '</p>' +
+        '<div class="dct-task-list">' +
+        '<label class="dct-task-row' + (currentLessonChecked ? ' done' : '') + '">' +
+        '<input type="checkbox" class="dct-task-check" data-task-id="lesson:' + currentLesson.id + '" ' + (currentLessonChecked ? 'checked ' : '') + ((autoCompleteAll || !!serverLockedTaskIds['lesson:' + currentLesson.id]) ? 'disabled ' : '') + '>' +
+        '<span class="dct-task-text">Mark current lesson complete</span>' +
+        '</label>' +
+        '</div>' +
         '</article>';
     }
 
     if (homeworkTarget) {
-      homeworkTarget.innerHTML = student.homework.map(function (item) {
-        return '<article class="card"><p>' + item + '</p></article>';
+      homeworkTarget.innerHTML = student.homework.map(function (item, index) {
+        var homeworkKey = 'homework:' + index;
+        var isChecked = !!checklistState[homeworkKey];
+        return '<article class="card"><label class="dct-task-row' + (isChecked ? ' done' : '') + '"><input type="checkbox" class="dct-task-check" data-task-id="' + homeworkKey + '" ' + (isChecked ? 'checked ' : '') + ((autoCompleteAll || !!serverLockedTaskIds[homeworkKey]) ? 'disabled ' : '') + '><span class="dct-task-text">' + item + '</span></label></article>';
       }).join('');
     }
 
@@ -834,7 +919,7 @@
       progressTarget.innerHTML =
         '<article class="card">' +
         '<div class="dashboard-kpi">' + percent + '%</div>' +
-        '<p>Progress across active programs (' + student.completedLessonCount + '/' + student.totalLessonCount + ' lessons).</p>' +
+        '<p>Progress across active programs (' + displayedCompletedCount + '/' + displayedTotalCount + ' lessons).</p>' +
         '</article>';
     }
 
@@ -842,6 +927,41 @@
       certsTarget.innerHTML = student.certificates.map(function (cert) {
         return '<article class="card"><h4>' + cert + '</h4><p>Certificate ready for download and sharing.</p></article>';
       }).join('');
+    }
+
+    if (!autoCompleteAll) {
+      Array.prototype.forEach.call(document.querySelectorAll('.dct-task-check[data-task-id]'), function (checkbox) {
+        checkbox.addEventListener('change', async function () {
+          var taskId = checkbox.getAttribute('data-task-id');
+          if (!taskId) return;
+          var nextState = getChecklistState();
+          nextState[taskId] = !!checkbox.checked;
+          setChecklistState(nextState);
+
+          if (checkbox.checked && authenticatedProgressEnabled) {
+            try {
+              if (taskId.indexOf('lesson:') === 0 && currentLesson && activeCourseId) {
+                await dopeProgress.completeLesson(activeCourseId, currentLesson.id, null, 5);
+                checkbox.disabled = true;
+              }
+              if (taskId.indexOf('homework:') === 0) {
+                await dopeProgress.completeLesson(homeworkSyncCourseId, taskId, null, 1);
+                checkbox.disabled = true;
+              }
+            } catch (syncError) {
+              // Keep local check state even if sync call fails.
+            }
+          }
+
+          var row = checkbox.closest('.dct-task-row');
+          if (!row) return;
+          if (checkbox.checked) {
+            row.classList.add('done');
+          } else {
+            row.classList.remove('done');
+          }
+        });
+      });
     }
   }
 
@@ -858,7 +978,6 @@
           '<h3>' + cohort.title + '</h3>' +
           '<p><strong>Type:</strong> ' + cohort.type + '</p>' +
           '<p><strong>Schedule:</strong> ' + cohort.schedule + '</p>' +
-          '<p><strong>Enrolled:</strong> ' + cohort.enrolledStudents + '</p>' +
           '</article>'
         );
       }).join('');

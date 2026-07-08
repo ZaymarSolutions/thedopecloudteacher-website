@@ -27,9 +27,6 @@
         "<p><strong>Schedule:</strong> " + cohort.schedule + "</p>" +
         (cohort.location ? "<p><strong>Location:</strong> " + cohort.location + "</p>" : "") +
         (cohort.virtualLink ? '<p><strong>Live Link:</strong> <a href="' + cohort.virtualLink + '">Access Session</a></p>' : "") +
-        (!cohort.hideEnrollment && typeof cohort.enrolledStudents === "number"
-          ? "<p><strong>Enrolled:</strong> " + cohort.enrolledStudents + " students</p>"
-          : "") +
         "</article>"
       );
     }).join("");

@@ -367,15 +367,51 @@
 .dct-continue-poster {
   display: block;
   margin-top: 0.75rem;
+  text-align: center;
 }
 
 .dct-continue-poster img {
-  width: 100%;
-  aspect-ratio: 3 / 4;
+  width: min(100%, 180px);
+  max-height: 180px;
+  aspect-ratio: 1 / 1;
   object-fit: contain;
   border-radius: 12px;
   background: #f8fafc;
   padding: 0.35rem;
+}
+
+.dct-task-list {
+  margin-top: 0.65rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.dct-task-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  background: #f8fafc;
+  border: 1px solid #dbe3f5;
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+}
+
+.dct-task-row.done {
+  background: #eefcf4;
+  border-color: #bfe6cf;
+}
+
+.dct-task-row input[type='checkbox'] {
+  margin-top: 0.15rem;
+}
+
+.dct-task-row .dct-task-text {
+  color: #1f3657;
+}
+
+.dct-task-row.done .dct-task-text {
+  text-decoration: line-through;
+  color: #486170;
 }
 
 .dct-guide-stock-strip {
