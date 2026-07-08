@@ -68,9 +68,9 @@
     },
     {
       id: "course-cohort-pg",
-      title: "PG Parks Cloud Cohort",
+      title: "PG County Parks & Planning Cloud Cohort",
       description: "Instructor-led community cohort using Azure Fundamentals curriculum and hands-on labs.",
-      audience: "PG Parks learners and local community students",
+      audience: "PG County Parks & Planning learners and local community students",
       deliveryType: "pg-parks",
       modules: ["mod-az-fund-1", "mod-career-1"],
       lessons: ["lesson-cloud-intro", "lesson-identity-core", "lesson-portfolio-story"],
@@ -437,7 +437,7 @@
   const cohorts = [
     {
       id: "cohort-pg-2026-fall",
-      title: "PG Parks Cloud Cohort - Fall 2026",
+      title: "PG County Parks & Planning Cloud Cohort - Fall 2026",
       type: "pg-parks",
       startDate: "2026-09-08",
       endDate: "2026-11-21",
@@ -501,3 +501,4 @@
     postersForLesson: postersForLesson
   };
 })();
+

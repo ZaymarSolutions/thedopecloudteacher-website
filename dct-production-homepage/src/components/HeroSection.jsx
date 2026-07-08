@@ -5,7 +5,7 @@ function HeroSection() {
         <p className="eyebrow">Community Technology Education, Elevated</p>
         <h1>Prince George&apos;s County Learners Can Build Skills Locally or Online With DCT</h1>
         <p>
-          The Dope Cloud Teacher operates in three clear pathways: local PG Parks-aligned
+          The Dope Cloud Teacher operates in three clear pathways: local PG County Parks & Planning-aligned
           programs, virtual and hybrid class options, and the Dope Cloud Academy for self-paced
           growth from anywhere.
         </p>
@@ -26,3 +26,4 @@ function HeroSection() {
 }
 
 export default HeroSection;
+

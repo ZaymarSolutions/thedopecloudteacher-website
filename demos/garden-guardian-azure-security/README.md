@@ -1,7 +1,7 @@
 # 🌱 Garden Guardian: Azure Security Demo
 ## IoT Security with Sentinel, Functions & Purview
 
-**Perfect for:** PG Parks Demo | Johns Hopkins Presentation | Cloud Security Training
+**Perfect for:** PG County Parks & Planning Demo | Johns Hopkins Presentation | Cloud Security Training
 
 ---
 
@@ -15,7 +15,7 @@ A real-world IoT security scenario where:
 - **Zero Trust** principles protect critical infrastructure
 
 ### The Story
-> "PG Parks installs smart sensors in community gardens across the county. How do we secure this IoT network against unauthorized devices and data tampering?"
+> "PG County Parks & Planning installs smart sensors in community gardens across the county. How do we secure this IoT network against unauthorized devices and data tampering?"
 
 ---
 
@@ -114,7 +114,7 @@ python simulate_garden_sensors.py
 See [DEMO_SCRIPT.md](DEMO_SCRIPT.md) for step-by-step presentation guide.
 
 **Timeline:**
-- 0:00-2:00 - Introduce scenario (PG Parks community gardens)
+- 0:00-2:00 - Introduce scenario (PG County Parks & Planning community gardens)
 - 2:00-5:00 - Show legitimate sensors sending data
 - 5:00-8:00 - Trigger security incident (unauthorized device)
 - 8:00-10:00 - Sentinel detection and alert
@@ -171,7 +171,7 @@ Students will learn:
 
 ## 💡 Talking Points for Different Audiences
 
-### For PG Parks (Government)
+### For PG County Parks & Planning (Government)
 > "This same architecture secures critical infrastructure like water treatment facilities, traffic systems, and public safety networks. We're showing you with garden sensors because it's relatable, but the security principles scale to protect entire counties."
 
 ### For Johns Hopkins (Academic)
@@ -295,3 +295,4 @@ MIT License - Free to use for educational purposes.
 
 **Built with 💜 by The Dope Cloud Teacher**  
 *Making cloud security accessible, one garden sensor at a time.* 🌱☁️
+

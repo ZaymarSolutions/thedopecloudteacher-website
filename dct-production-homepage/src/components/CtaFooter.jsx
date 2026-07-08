@@ -20,7 +20,7 @@ function CtaFooter() {
           <h3>Contact</h3>
           <p>Email: thedopecloudteacher@gmail.com</p>
           <p>Support for students, cohorts, and enterprise teams.</p>
-          <a href="#workshops">Request PG Parks/Community Workshop</a>
+          <a href="#workshops">Request PG County Parks & Planning/Community Workshop</a>
         </div>
 
         <div className="footer-column" id="blog">
@@ -41,3 +41,4 @@ function CtaFooter() {
 }
 
 export default CtaFooter;
+

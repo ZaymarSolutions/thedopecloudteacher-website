@@ -2,7 +2,7 @@
 
 ## Recommended Spring & Summer Class Structure
 
-**For TheDopeCloudTeacher.org + PG Parks & Rec Hybrid Model**
+**For TheDopeCloudTeacher.org + PG County Parks & Planning & Rec Hybrid Model**
 
 ---
 
@@ -64,3 +64,4 @@
 ---
 
 **Want a one-page menu, schedule grid, or flyer copy? Let us know!**
+

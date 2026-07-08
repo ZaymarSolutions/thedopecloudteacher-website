@@ -105,7 +105,7 @@ Live scrolling terminal with color-coded messages:
 
 ## Demo Presentation Tips
 
-### For Your PG Parks Presentation:
+### For Your PG County Parks & Planning Presentation:
 
 1. **Open the page on your laptop**
 2. **Connect to projector/screen**
@@ -150,7 +150,7 @@ Live scrolling terminal with color-coded messages:
 1. **Add Video Recording** - Screen capture of actual Azure Portal
 2. **Add Screenshots** - Power BI dashboard images
 3. **Add Testimonials** - "This helped us secure..."
-4. **Add Case Study** - Full PG Parks story after presentation
+4. **Add Case Study** - Full PG County Parks & Planning story after presentation
 
 ### For More Demos:
 You can easily add more demos using the same template:
@@ -190,4 +190,5 @@ demos/garden-guardian-azure-security/
 
 **Your Garden Guardian demo is now live on your website!** 🎉
 
-Visitors can interact with it 24/7, and you can use it in your PG Parks presentation by simply opening your website.
+Visitors can interact with it 24/7, and you can use it in your PG County Parks & Planning presentation by simply opening your website.
+

@@ -5,7 +5,7 @@ function WorkshopsSection() {
         <p className="eyebrow">Workshops</p>
         <h2>Community and Workforce Workshop Experiences</h2>
         <p className="supporting-text">
-          Request a PG Parks/community partnership workshop for youth, families, seniors,
+          Request a PG County Parks & Planning/community partnership workshop for youth, families, seniors,
           entrepreneurs, and community organizations seeking practical technology confidence.
         </p>
       </div>
@@ -37,7 +37,7 @@ function WorkshopsSection() {
           className="btn btn-primary"
           href="mailto:thedopecloudteacher@gmail.com?subject=Request%20PG%20Parks%20Community%20Workshop"
         >
-          Request PG Parks/Community Partnership Workshop
+          Request PG County Parks & Planning/Community Partnership Workshop
         </a>
       </div>
     </section>
@@ -45,3 +45,4 @@ function WorkshopsSection() {
 }
 
 export default WorkshopsSection;
+

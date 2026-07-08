@@ -23,7 +23,7 @@ const starterPrograms = [
     relatedAcademyPath: "Cloud Foundations",
     description:
       "Introductory cloud, AI, cybersecurity, and digital confidence class designed for student learners.",
-    cta: "Register Through PG Parks",
+    cta: "Register Through PG County Parks & Planning",
   },
   {
     title: "AI for Seniors 60+",
@@ -126,11 +126,11 @@ function PgParksProgramsSection() {
   return (
     <section className="section-shell" id="pg-parks-programs">
       <div className="section-headline">
-        <p className="eyebrow">PG Parks Programs</p>
-        <h2>PG Parks-Aligned Programs Built As a Strategic Community Channel</h2>
+        <p className="eyebrow">PG County Parks & Planning Programs</p>
+        <h2>PG County Parks & Planning-Aligned Programs Built As a Strategic Community Channel</h2>
         <p className="supporting-text">
           The Dope Cloud Teacher delivers community technology education through local classes and
-          registration through PG Parks when available. These are local, scheduled, community-based
+          registration through PG County Parks & Planning when available. These are local, scheduled, community-based
           programs and remain distinct from the Dope Cloud Academy online platform.
         </p>
       </div>
@@ -140,7 +140,7 @@ function PgParksProgramsSection() {
           Find a Class
         </a>
         <a className="btn btn-secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/splash.html" target="_blank" rel="noreferrer">
-          Register Through PG Parks
+          Register Through PG County Parks & Planning
         </a>
         <a className="btn btn-secondary" href="#dct-academy">
           Explore DCT Academy Online
@@ -152,17 +152,17 @@ function PgParksProgramsSection() {
 
       <div className="external-links">
         <a href="https://www.pgparks.com/activities-events" target="_blank" rel="noreferrer">
-          PG Parks Activities & Events
+          PG County Parks & Planning Activities & Events
         </a>
         <a href="https://mdpgparksweb.myvscloud.com/webtrac/web/splash.html" target="_blank" rel="noreferrer">
-          PG Parks Find a Class
+          PG County Parks & Planning Find a Class
         </a>
         <a href="https://www.pgparks.com/activities-events/events" target="_blank" rel="noreferrer">
-          PG Parks Events
+          PG County Parks & Planning Events
         </a>
       </div>
 
-      <div className="category-pills" aria-label="PG Parks aligned categories">
+      <div className="category-pills" aria-label="PG County Parks & Planning aligned categories">
         {pgCategories.map((category) => (
           <span key={category} className="category-pill">
             {category}
@@ -181,13 +181,13 @@ function PgParksProgramsSection() {
         <p>
           The Dope Cloud Teacher partners with community organizations to make cloud, AI,
           cybersecurity, and digital skills easier to understand, easier to access, and easier to
-          apply in real life. Our PG Parks-aligned programs support youth, seniors, families,
+          apply in real life. Our PG County Parks & Planning-aligned programs support youth, seniors, families,
           entrepreneurs, and adults seeking practical technology confidence.
         </p>
       </article>
 
       <article className="tracker-block" id="dashboard">
-        <h3>PG Parks Opportunity Tracker</h3>
+        <h3>PG County Parks & Planning Opportunity Tracker</h3>
         <p className="supporting-text">
           Static content structure for now; ready to become dynamic in a future phase.
         </p>
@@ -198,7 +198,7 @@ function PgParksProgramsSection() {
                 <th>Season</th>
                 <th>Program Idea</th>
                 <th>Target Audience</th>
-                <th>PG Parks Category</th>
+                <th>PG County Parks & Planning Category</th>
                 <th>Status</th>
                 <th>Next Action</th>
                 <th>Notes</th>
@@ -225,3 +225,4 @@ function PgParksProgramsSection() {
 }
 
 export default PgParksProgramsSection;
+

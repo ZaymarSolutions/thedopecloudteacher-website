@@ -470,9 +470,9 @@
   const courses = [
     {
       id: 'course-pg-parks-cohort',
-      title: 'PG Parks In-Person Cohort',
+      title: 'PG County Parks & Planning In-Person Cohort',
       description: 'Instructor-led in-person cohort with weekly labs, onboarding, and classroom support.',
-      audience: 'PG Parks learners, youth, and community students',
+      audience: 'PG County Parks & Planning learners, youth, and community students',
       deliveryType: 'pg-parks',
       modules: ['module-azure-core', 'module-security-identity', 'module-career-growth'],
       lessons: ['lesson-azure-core-01', 'lesson-security-pim-01', 'lesson-career-01'],
@@ -561,7 +561,7 @@
   const cohorts = [
     {
       id: 'cohort-pg-2026-summer',
-      title: 'PG Parks Summer Cloud + AI Cohort',
+      title: 'PG County Parks & Planning Summer Cloud + AI Cohort',
       type: 'pg-parks',
       startDate: '2026-07-20',
       endDate: '2026-09-12',
@@ -613,3 +613,4 @@
     }
   };
 })();
+

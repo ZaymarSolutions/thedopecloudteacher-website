@@ -1,6 +1,6 @@
 # 📊 Garden Guardian - Power BI Dashboard Guide
 
-**Create a stunning real-time security dashboard for your PG Parks demo!**
+**Create a stunning real-time security dashboard for your PG County Parks & Planning demo!**
 
 ---
 
@@ -225,7 +225,7 @@ FunctionAppLogs
 
 ## 🎥 Demo Flow with Power BI
 
-### Preparation (Before PG Parks Arrives):
+### Preparation (Before PG County Parks & Planning Arrives):
 1. Open Power BI dashboard
 2. Run normal sensor simulation to show baseline
 3. Leave dashboard open with auto-refresh
@@ -274,7 +274,7 @@ Enable Q&A visual:
 
 ---
 
-## 🎯 Key Talking Points for PG Parks
+## 🎯 Key Talking Points for PG County Parks & Planning
 
 **When showing Power BI dashboard:**
 
@@ -330,7 +330,7 @@ Enable Q&A visual:
 **Power BI Pro:** $10/user/month (needed for sharing/Teams integration)
 **Power BI Premium:** $20/user/month (for advanced features)
 
-**Recommendation for PG Parks:**
+**Recommendation for PG County Parks & Planning:**
 - Start with Desktop (free) for demos
 - Upgrade to Pro if county leadership wants ongoing access
 - Embedded analytics can show in custom web portals (included in Azure costs)
@@ -344,7 +344,7 @@ Enable Q&A visual:
 
 ## 📸 Screenshot Checklist for Demo
 
-Before your PG Parks presentation, capture these Power BI screenshots as backup:
+Before your PG County Parks & Planning presentation, capture these Power BI screenshots as backup:
 
 - [ ] Dashboard with 100% security score (baseline)
 - [ ] Dashboard showing active attacks (security score drops)
@@ -354,3 +354,4 @@ Before your PG Parks presentation, capture these Power BI screenshots as backup:
 - [ ] Sensor activity map with unauthorized device marked in red
 
 **Pro Tip:** Have these screenshots in a PowerPoint deck as backup in case of connectivity issues during live demo!
+

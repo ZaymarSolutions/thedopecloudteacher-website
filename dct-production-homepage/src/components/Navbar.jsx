@@ -3,7 +3,7 @@ import { useState } from "react";
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "Classes", href: "#classes" },
-  { label: "PG Parks Programs", href: "#pg-parks-programs" },
+  { label: "PG County Parks & Planning Programs", href: "#pg-parks-programs" },
   { label: "DCT Academy", href: "#dct-academy" },
   { label: "Workshops", href: "#workshops" },
   { label: "About", href: "#about" },
@@ -51,3 +51,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

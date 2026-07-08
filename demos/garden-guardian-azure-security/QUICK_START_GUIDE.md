@@ -129,7 +129,7 @@ python simulate_garden_sensors.py --mode mixed --duration 120
   - Logs compliance events in Purview
   - All without human intervention!
 
-## 📊 Key Talking Points for PG Parks
+## 📊 Key Talking Points for PG County Parks & Planning
 
 1. **Real-time Threat Detection**
    - "Within 5 minutes of an attack, Sentinel detected and alerted"
@@ -207,3 +207,4 @@ This will delete all resources in the `rg-garden-guardian` resource group.
 ---
 
 *Demo created by The Dope Cloud Teacher | thedopecloudteacher.org*
+

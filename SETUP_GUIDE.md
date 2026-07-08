@@ -11,7 +11,7 @@ The Dope Cloud Teacher is now a **fully monetizable** cloud education platform w
 - ✅ **Certificate generation** upon completion
 - ✅ **Multiple pricing tiers** (courses, memberships, corporate)
 - ✅ **Responsive design** with beautiful purple/gold theme
-- ✅ **Demo section** for PG Parks and Planning
+- ✅ **Demo section** for PG County Parks & Planning
 
 ---
 
@@ -196,7 +196,7 @@ Option B - Using VS Code Live Server:
 
 ---
 
-## 📱 Demo for PG Parks and Planning
+## 📱 Demo for PG County Parks & Planning
 
 The homepage now features a **dedicated demo banner** showcasing:
 - 7+ Course Pathways
@@ -395,7 +395,7 @@ Copyright © 2025 The Dope Cloud Teacher. All rights reserved.
 
 ---
 
-**You're now ready to demo this platform for PG Parks and Planning! 🚀**
+**You're now ready to demo this platform for PG County Parks & Planning! 🚀**
 
 The entire platform is production-ready with:
 - Complete course catalog
@@ -405,3 +405,5 @@ The entire platform is production-ready with:
 - Professional design
 
 **Good luck with your demo! You got this! 💪🏽**
+
+

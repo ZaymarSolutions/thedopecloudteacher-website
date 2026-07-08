@@ -106,7 +106,7 @@ Your backend needs to be deployed separately. Options:
 
 ## Recommended Approach for Your Demo
 
-For PG Parks demo in 2 days:
+For PG County Parks & Planning demo in 2 days:
 
 ✅ **Frontend:** Use Netlify or GitHub Pages (free, instant)
 ✅ **Backend:** Deploy to Railway or Heroku (free tier)
@@ -138,3 +138,4 @@ I'm creating multiple workflow files so you can choose:
 3. ✅ Backend deployment workflows
 
 Choose the one that works best for your timeline and budget.
+

@@ -1,7 +1,7 @@
 const experiences = [
   {
     id: "live-classes",
-    title: "PG Parks & Recreation",
+    title: "PG County Parks & Planning & Recreation",
     description:
       "Community-centered in-person classes with direct facilitation, guided labs, and student success check-ins.",
   },
@@ -39,3 +39,4 @@ function LearningExperiences() {
 }
 
 export default LearningExperiences;
+

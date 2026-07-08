@@ -1,7 +1,7 @@
 # 🎬 Garden Guardian - Live Demo Script
 
 **Total Time:** 15 minutes  
-**Target Audience:** PG Parks leadership, security professionals, cloud students
+**Target Audience:** PG County Parks & Planning leadership, security professionals, cloud students
 
 ---
 
@@ -35,11 +35,11 @@ By the end of this demo, the audience will understand:
 
 **[Show title slide]**
 
-> "Good morning everyone. Today I'm going to show you something that's becoming critical for government agencies like PG Parks - securing IoT devices in the cloud."
+> "Good morning everyone. Today I'm going to show you something that's becoming critical for government agencies like PG County Parks & Planning - securing IoT devices in the cloud."
 
 **[Click to architecture diagram]**
 
-> "Imagine PG Parks installs smart sensors in community gardens across the county. These sensors monitor temperature, humidity, soil moisture - helping maintain healthy gardens while saving water and resources."
+> "Imagine PG County Parks & Planning installs smart sensors in community gardens across the county. These sensors monitor temperature, humidity, soil moisture - helping maintain healthy gardens while saving water and resources."
 
 > "But here's the challenge: How do we prevent unauthorized devices from accessing our network? How do we detect anomalies in real-time? And how do we respond to threats automatically, without waiting for someone to manually intervene?"
 
@@ -160,7 +160,7 @@ FunctionAppLogs
 
 **[Key Talking Point]**
 
-> "For PG Parks, this means:
+> "For PG County Parks & Planning, this means:
 > - **Faster response times:** 5 seconds vs. 30 minutes manual response
 > - **24/7 protection:** No need for a security analyst watching dashboards at 3 AM
 > - **Consistency:** The system responds the same way every time
@@ -196,7 +196,7 @@ FunctionAppLogs
 
 **[Key Talking Point for Government]**
 
-> "For PG Parks, this means:
+> "For PG County Parks & Planning, this means:
 > - **Pass audits faster:** All evidence auto-collected
 > - **Meet FISMA requirements:** Complete audit trails
 > - **Reduce compliance costs:** No manual documentation
@@ -216,7 +216,7 @@ FunctionAppLogs
 > 3. Instant automated response (agentic behavior)
 > 4. Compliance tracking and audit trails
 >
-> **Why this matters for PG Parks:**
+> **Why this matters for PG County Parks & Planning:**
 > - **Protect critical infrastructure:** Gardens today, water systems tomorrow
 > - **Save money:** 99.7% reduction in response time, fewer security staff needed
 > - **Meet compliance requirements:** Automatic audit trails and reporting
@@ -232,7 +232,7 @@ FunctionAppLogs
 
 ## 🎤 Audience-Specific Talking Points
 
-### For PG Parks Leadership (Non-Technical)
+### For PG County Parks & Planning Leadership (Non-Technical)
 > "Think of this like a security guard who never sleeps. It watches your IoT devices 24/7, instantly blocks threats, and keeps detailed records for auditors - all automatically. The same technology that protects Fortune 500 companies, now accessible to county governments."
 
 ### For Johns Hopkins / Academic Audience
@@ -316,3 +316,4 @@ After the demo, you've succeeded if attendees:
 
 **Built with 💜 by The Dope Cloud Teacher**  
 *thedopecloudteacher@gmail.com*
+

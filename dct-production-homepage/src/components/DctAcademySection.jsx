@@ -12,10 +12,10 @@ function DctAcademySection() {
     <section className="section-shell" id="dct-academy">
       <div className="section-headline">
         <p className="eyebrow">DCT Academy</p>
-        <h2>Online Learning Platform, Separate From Local PG Parks Class Scheduling</h2>
+        <h2>Online Learning Platform, Separate From Local PG County Parks & Planning Class Scheduling</h2>
         <p className="supporting-text">
           The Dope Cloud Academy is the virtual and self-paced online platform available from
-          anywhere. It complements local community classes but does not replace PG Parks-aligned
+          anywhere. It complements local community classes but does not replace PG County Parks & Planning-aligned
           in-person programming.
         </p>
       </div>
@@ -29,7 +29,7 @@ function DctAcademySection() {
       </div>
       <div className="cta-cluster">
         <a className="btn btn-primary" href="#pg-parks-programs">
-          View Local PG Parks Classes
+          View Local PG County Parks & Planning Classes
         </a>
       </div>
     </section>
@@ -37,3 +37,4 @@ function DctAcademySection() {
 }
 
 export default DctAcademySection;
+
