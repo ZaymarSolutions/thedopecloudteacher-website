@@ -1,7 +1,7 @@
 const experiences = [
   {
     id: "live-classes",
-    title: "PG County Parks & Planning & Recreation",
+    title: "PG Parks & Recreation",
     description:
       "Community-centered in-person classes with direct facilitation, guided labs, and student success check-ins.",
   },
@@ -13,7 +13,7 @@ const experiences = [
   },
   {
     id: "dashboard",
-    title: "Corporate & Government Training",
+    title: "Corporate Training",
     description:
       "Custom upskilling programs for workforce teams focused on security, cloud operations, and AI readiness.",
   },
@@ -25,6 +25,10 @@ function LearningExperiences() {
       <div className="section-headline">
         <p className="eyebrow">Three Learning Experiences</p>
         <h2>Choose The Delivery Model That Matches Your Mission</h2>
+        <p className="supporting-text">
+          Each experience is connected by the same academy standards: clear outcomes, premium content,
+          accessible delivery, and repeatable learner progress.
+        </p>
       </div>
       <div className="experiences-grid">
         {experiences.map((item) => (

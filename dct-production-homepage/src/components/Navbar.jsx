@@ -2,11 +2,13 @@ import { useState } from "react";
 
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Classes", href: "#classes" },
-  { label: "PG County Parks & Planning Programs", href: "#pg-parks-programs" },
+  { label: "Learning Paths", href: "#courses" },
+  { label: "Experiences", href: "#experiences" },
+  { label: "PG Parks", href: "#pg-parks-programs" },
   { label: "DCT Academy", href: "#dct-academy" },
   { label: "Workshops", href: "#workshops" },
-  { label: "About", href: "#about" },
+  { label: "Results", href: "#success" },
+  { label: "Community", href: "#community" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -24,7 +26,7 @@ function Navbar() {
           />
           <div>
             <p className="brand-title">The Dope Cloud Teacher</p>
-            <p className="brand-subtitle">Cloud Classes For Real People</p>
+            <p className="brand-subtitle">Cloud, AI, Cybersecurity, and Career Growth</p>
           </div>
         </a>
 

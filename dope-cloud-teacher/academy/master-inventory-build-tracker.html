@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DCT Academy Master Inventory & Build Tracker v1.0</title>
+  <meta name="description" content="Master inventory and build tracker for DCT Academy assets, course deliverables, and operations.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://thedopecloudteacher.org/academy/master-inventory-build-tracker.html">
+  <link rel="icon" type="image/svg+xml" href="../logo.svg?v=20260705b">
+  <link rel="icon" type="image/png" href="../logo.png?v=20260705b">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/platform.css">
+  <meta property="og:site_name" content="The Dope Cloud Teacher">
+  <meta property="og:title" content="DCT Academy Master Inventory & Build Tracker v1.0">
+  <meta property="og:description" content="A production tracker for academy infrastructure, flagship course assets, certification tracks, business accelerator content, and operations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thedopecloudteacher.org/academy/master-inventory-build-tracker.html">
+  <meta property="og:image" content="https://thedopecloudteacher.org/logo.png?v=20260705b">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DCT Academy Master Inventory & Build Tracker v1.0">
+  <meta name="twitter:description" content="A production tracker for academy infrastructure, flagship course assets, certification tracks, business accelerator content, and operations.">
+  <meta name="twitter:image" content="https://thedopecloudteacher.org/logo.png?v=20260705b">
+  <style>
+    :root {
+      --bg: #f7fbff;
+      --panel: #ffffff;
+      --line: #d6e4f6;
+      --text: #17304a;
+      --muted: #52677f;
+      --primary: #178BE7;
+      --secondary: #2C9DFF;
+      --warning: #d97706;
+      --success: #15803d;
+      --danger: #b91c1c;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, #edf5ff 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 1.25rem auto 2.5rem;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .top a {
+      text-decoration: none;
+      color: #1d4d86;
+      font-weight: 700;
+    }
+
+    .hero, .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(21, 40, 74, 0.08);
+    }
+
+    .hero { padding: 1.2rem; }
+    .hero h1 { margin: 0 0 0.4rem; }
+    .hero p { margin: 0.35rem 0; line-height: 1.65; color: var(--muted); }
+
+    .status-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      background: #f3f7fd;
+      color: #1d2f45;
+      border: 1px solid #d9e5f4;
+    }
+
+    .pill.complete { background: #e9f8ef; color: var(--success); border-color: #bfe7c9; }
+    .pill.revision { background: #fff7e8; color: var(--warning); border-color: #f6deb0; }
+    .pill.progress { background: #ecf5ff; color: var(--primary); border-color: #c7dbf4; }
+    .pill.empty { background: #f5f6f7; color: #52677f; border-color: #dde3ea; }
+
+    .section {
+      margin-top: 1rem;
+      padding: 1rem;
+    }
+
+    .section h2 {
+      margin: 0 0 0.35rem;
+      color: #123a63;
+    }
+
+    .section p {
+      margin: 0 0 0.6rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 920px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 0.8rem 0.85rem;
+      border-bottom: 1px solid #e7eef7;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f4f8fd;
+      color: #123a63;
+      font-size: 0.93rem;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    .status { font-weight: 800; white-space: nowrap; }
+    .status.complete { color: var(--success); }
+    .status.revision { color: var(--warning); }
+    .status.progress { color: var(--primary); }
+    .status.empty { color: var(--danger); }
+    .muted { color: var(--muted); }
+
+    .note-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 0.9rem;
+    }
+
+    .btn {
+      text-decoration: none;
+      padding: 0.65rem 0.95rem;
+      border-radius: 999px;
+      font-weight: 700;
+      display: inline-block;
+    }
+
+    .btn.primary { background: var(--primary); color: #fff; }
+    .btn.secondary { background: #fff; border: 1px solid #c9daf0; color: #1d2f45; }
+
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 1rem, 1180px); }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="top" aria-label="Academy navigation">
+      <a href="index.html">Academy Home</a>
+      <a href="../student-dashboard/index.html">Student Dashboard</a>
+      <a href="../dashboard.html">Full Dashboard</a>
+      <a href="../courses.html">Course Catalog</a>
+    </nav>
+
+    <section class="hero">
+      <h1>DCT Academy Master Inventory & Build Tracker v1.0</h1>
+      <p>This is the operating system for the academy. It tracks what exists, what needs revision, what is in progress, and what still needs to be built.</p>
+      <p>Rule set: never duplicate an asset, only improve existing work or create a missing deliverable.</p>
+      <div class="status-legend" aria-label="Status legend">
+        <span class="pill complete">Complete</span>
+        <span class="pill revision">Needs Revision</span>
+        <span class="pill progress">In Progress</span>
+        <span class="pill empty">Not Started</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="../student-dashboard/index.html">Open Student Dashboard</a>
+        <a class="btn secondary" href="../classes/index.html">Open Class Formats</a>
+        <a class="btn secondary" href="master-inventory-build-tracker.csv" download>Download CSV</a>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Academy Infrastructure</h2>
+      <p>Foundation assets that support every course and learner journey.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Status</th>
+              <th>Owner Output</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Master Roadmap</td><td class="status progress">🟡 Needs Revision</td><td>Program-wide build order</td><td>Use this tracker as the source of truth.</td></tr>
+            <tr><td>Website Sitemap</td><td class="status empty">❌ Not Started</td><td>Route map</td><td>Needed to prevent duplicate pages and broken routes.</td></tr>
+            <tr><td>Student Dashboard</td><td class="status complete">✅ Complete</td><td>Learner hub</td><td>Keep improving only if parity issues appear.</td></tr>
+            <tr><td>Instructor Dashboard</td><td class="status empty">❌ Not Started</td><td>Instructor hub</td><td>Should mirror student progress and class operations.</td></tr>
+            <tr><td>Course Catalog</td><td class="status empty">❌ Not Started</td><td>Unified course index</td><td>Should connect academy, certification, and class pathways.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Cloud & AI Fundamentals</h2>
+      <p>Flagship course assets for the first academy release.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Status</th>
+              <th>Scope</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Curriculum</td><td class="status progress">🟡 Needs Revision</td><td>6-week learning plan</td><td>Can now be mapped cleanly from the course outline below.</td></tr>
+            <tr><td>Lesson Plans</td><td class="status progress">🟡 Needs Revision</td><td>6 modules</td><td>Should expand each module into a lesson sequence.</td></tr>
+            <tr><td>Slide Decks</td><td class="status progress">🟡 Needs Revision</td><td>Module presentation assets</td><td>One deck per module is the target format.</td></tr>
+            <tr><td>Labs</td><td class="status progress">🟡 Needs Revision</td><td>Guided practice</td><td>Start with portal navigation, VM build, and secure environment labs.</td></tr>
+            <tr><td>Quizzes</td><td class="status progress">🟡 Needs Revision</td><td>Knowledge checks</td><td>One quiz per module is the minimum useful structure.</td></tr>
+            <tr><td>Student Workbook</td><td class="status complete">✅ Complete</td><td>Printable learner guide</td><td>Aligned to the six-module flagship course.</td></tr>
+            <tr><td>Instructor Guide</td><td class="status complete">✅ Complete</td><td>Teaching notes</td><td>Aligned to the six-module flagship course.</td></tr>
+            <tr><td>Final Exam</td><td class="status progress">🟡 Needs Revision</td><td>Capstone assessment</td><td>Should test application, not recall only.</td></tr>
+            <tr><td>Capstone Project</td><td class="status complete">✅ Complete</td><td>Student project</td><td>Five student choice outcomes are now defined.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Certification Track</h2>
+      <p>Pathways that should eventually branch off from the flagship course.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>AZ-900</td><td class="status empty">❌ Not Started</td><td>High</td><td>Best entry-level certification bridge.</td></tr>
+            <tr><td>AI-900</td><td class="status empty">❌ Not Started</td><td>High</td><td>Pairs naturally with the Cloud & AI Fundamentals course.</td></tr>
+            <tr><td>SC-900</td><td class="status empty">❌ Not Started</td><td>Medium</td><td>Security fundamentals extension.</td></tr>
+            <tr><td>AZ-104</td><td class="status empty">❌ Not Started</td><td>High</td><td>Operations and admin pathway.</td></tr>
+            <tr><td>AZ-500</td><td class="status empty">❌ Not Started</td><td>Medium</td><td>Security specialization.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Business Accelerator</h2>
+      <p>Revenue-focused learning products and small business support assets.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>AI for Business</td><td class="status progress">🟡 Needs Revision</td><td>High</td><td>Already queued as a core audience segment.</td></tr>
+            <tr><td>Branding</td><td class="status empty">❌ Not Started</td><td>Medium</td><td>Should define a repeatable business identity package.</td></tr>
+            <tr><td>Marketing</td><td class="status empty">❌ Not Started</td><td>High</td><td>Needed to support launches and lead capture.</td></tr>
+            <tr><td>Website Creation</td><td class="status empty">❌ Not Started</td><td>Medium</td><td>Can become a service bundle or course.</td></tr>
+            <tr><td>CRM</td><td class="status empty">❌ Not Started</td><td>Medium</td><td>Should connect lead capture and follow-up.</td></tr>
+            <tr><td>Automation</td><td class="status empty">❌ Not Started</td><td>High</td><td>Should support ops, content, and sales workflows.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Career Accelerator</h2>
+      <p>Career support assets that turn learning into employment outcomes.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Interview Prep</td><td class="status progress">🟡 Needs Revision</td><td>High</td><td>Already on the queue and should remain a core asset.</td></tr>
+            <tr><td>Resume Course</td><td class="status empty">❌ Not Started</td><td>High</td><td>Can be built from the career roadmap next.</td></tr>
+            <tr><td>LinkedIn Course</td><td class="status empty">❌ Not Started</td><td>High</td><td>Should pair with resume and portfolio work.</td></tr>
+            <tr><td>Portfolio Builder</td><td class="status empty">❌ Not Started</td><td>High</td><td>Should feed directly from capstone outcomes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Academy Operations</h2>
+      <p>Delivery and administration assets that keep the academy running consistently.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Student Onboarding SOP</td><td class="status empty">❌ Not Started</td><td>High</td><td>Should be created before the first cohort launch.</td></tr>
+            <tr><td>Instructor SOP</td><td class="status empty">❌ Not Started</td><td>High</td><td>Needed for repeatable teaching operations.</td></tr>
+            <tr><td>Attendance System</td><td class="status empty">❌ Not Started</td><td>Medium</td><td>Can be lightweight at first, then expanded.</td></tr>
+            <tr><td>Certificate Workflow</td><td class="status empty">❌ Not Started</td><td>High</td><td>Should tie completion to delivery and verification.</td></tr>
+            <tr><td>Lab Management Guide</td><td class="status empty">❌ Not Started</td><td>High</td><td>Important for in-person and remote delivery parity.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Immediate Build Queue</h2>
+      <ol class="note-list">
+        <li>Master inventory tracker</li>
+        <li>Cloud & AI Fundamentals final exam</li>
+        <li>Academy website content</li>
+        <li>Instructor dashboard</li>
+        <li>Course catalog</li>
+      </ol>
+      <div class="cta-row">
+        <a class="btn primary" href="master-inventory-build-tracker.csv" download>Download CSV Tracker</a>
+        <a class="btn secondary" href="../student-dashboard/index.html">Return to Student Dashboard</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/site-config.js"></script>
+  <script src="../js/analytics.js"></script>
+  <script src="../js/global-ui.js"></script>
+</body>
+</html>
