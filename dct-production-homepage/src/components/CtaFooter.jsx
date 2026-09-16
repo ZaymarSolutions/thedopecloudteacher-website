@@ -4,7 +4,7 @@ function CtaFooter() {
       <div className="footer-grid section-shell">
         <div>
           <p className="eyebrow">Call To Action</p>
-          <h2>Stay Connected To Every New Class, Lab, and Enrollment Window</h2>
+          <h2>Stay connected to every new class, lab, and enrollment window.</h2>
           <a href="#pg-parks-programs" className="btn btn-primary">
             Enrollment Options
           </a>
@@ -25,6 +25,8 @@ function CtaFooter() {
 
         <div className="footer-column" id="blog">
           <h3>Social and Links</h3>
+          <a href="#community">Blog Highlights</a>
+          <a href="#community">Newsletter</a>
           <a href="https://thedopecloudteacher.org" target="_blank" rel="noreferrer">
             Official Website
           </a>

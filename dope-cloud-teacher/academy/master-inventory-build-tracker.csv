@@ -1,0 +1,35 @@
+Section,Asset,Status,Priority,Notes
+Academy Infrastructure,Master Roadmap,Needs Revision,High,Use the tracker as the source of truth.
+Academy Infrastructure,Website Sitemap,Not Started,High,Needed to prevent duplicate pages and broken routes.
+Academy Infrastructure,Student Dashboard,Complete,High,Keep improving only if parity issues appear.
+Academy Infrastructure,Instructor Dashboard,Not Started,High,Should mirror student progress and class operations.
+Academy Infrastructure,Course Catalog,Not Started,High,Should connect academy certification and class pathways.
+Cloud & AI Fundamentals,Curriculum,Needs Revision,High,6-week learning plan.
+Cloud & AI Fundamentals,Lesson Plans,Needs Revision,High,Expand each module into lesson sequences.
+Cloud & AI Fundamentals,Slide Decks,Needs Revision,Medium,One deck per module.
+Cloud & AI Fundamentals,Labs,Needs Revision,High,Portal navigation VM build and secure environment labs.
+Cloud & AI Fundamentals,Quizzes,Needs Revision,High,One quiz per module.
+Cloud & AI Fundamentals,Student Workbook,Complete,High,Aligned to the six-module flagship course.
+Cloud & AI Fundamentals,Instructor Guide,Complete,High,Aligned to the six-module flagship course.
+Cloud & AI Fundamentals,Final Exam,Needs Revision,Medium,Should test application not recall only.
+Cloud & AI Fundamentals,Capstone Project,Complete,High,Five student choice outcomes are now defined.
+Certification Track,AZ-900,Not Started,High,Best entry-level certification bridge.
+Certification Track,AI-900,Not Started,High,Pairs naturally with the flagship course.
+Certification Track,SC-900,Not Started,Medium,Security fundamentals extension.
+Certification Track,AZ-104,Not Started,High,Operations and admin pathway.
+Certification Track,AZ-500,Not Started,Medium,Security specialization.
+Business Accelerator,AI for Business,Needs Revision,High,Already queued as a core audience segment.
+Business Accelerator,Branding,Not Started,Medium,Define a repeatable business identity package.
+Business Accelerator,Marketing,Not Started,High,Needed to support launches and lead capture.
+Business Accelerator,Website Creation,Not Started,Medium,Can become a service bundle or course.
+Business Accelerator,CRM,Not Started,Medium,Should connect lead capture and follow-up.
+Business Accelerator,Automation,Not Started,High,Should support ops content and sales workflows.
+Career Accelerator,Interview Prep,Needs Revision,High,Already on the queue and should remain core.
+Career Accelerator,Resume Course,Not Started,High,Can be built from the career roadmap next.
+Career Accelerator,LinkedIn Course,Not Started,High,Should pair with resume and portfolio work.
+Career Accelerator,Portfolio Builder,Not Started,High,Should feed directly from capstone outcomes.
+Academy Operations,Student Onboarding SOP,Not Started,High,Create before the first cohort launch.
+Academy Operations,Instructor SOP,Not Started,High,Needed for repeatable teaching operations.
+Academy Operations,Attendance System,Not Started,Medium,Can be lightweight at first.
+Academy Operations,Certificate Workflow,Not Started,High,Should tie completion to delivery and verification.
+Academy Operations,Lab Management Guide,Not Started,High,Important for in-person and remote parity.
