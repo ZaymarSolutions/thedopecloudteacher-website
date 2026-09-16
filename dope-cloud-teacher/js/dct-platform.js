@@ -121,9 +121,9 @@
       { href: '/index.html', label: 'Home', key: 'home' },
       { href: '/classes/', label: 'Classes', key: 'classes' },
       { href: '/academy/', label: 'Academy', key: 'academy' },
-      { href: '/playbook/', label: 'Visual Playbook', key: 'playbook' },
-      { href: '/student-dashboard/', label: 'Student Dashboard', key: 'student-dashboard' },
-      { href: '/corporate-training.html', label: 'For Businesses', key: 'business' },
+      { href: '/governance-responsible-ai.html', label: 'Governance & Responsible AI', key: 'governance' },
+      { href: '/corporate-training.html', label: 'For Agencies & Business', key: 'business' },
+      { href: '/instructor-apply.html', label: 'Teach With Us', key: 'instructors' },
       { href: '/about.html', label: 'About', key: 'about' },
       { href: '/contact.html', label: 'Contact', key: 'contact' }
     ];

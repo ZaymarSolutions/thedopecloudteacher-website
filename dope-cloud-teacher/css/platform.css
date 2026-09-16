@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Public+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --dct-navy: #12243f;
+  --dct-navy: #0B0B12;
   --dct-ink: #1f2a3b;
   --dct-muted: #51607a;
   --dct-bg: #fafaf8;
   --dct-card: #ffffff;
   --dct-border: #d9e0e8;
-  --dct-accent: #8a6a43;
-  --dct-accent-soft: #f5efe5;
-  --dct-shadow: 0 12px 30px rgba(18, 36, 63, 0.08);
+  --dct-accent: #6D28D9;
+  --dct-accent-soft: #f1e8fc;
+  --dct-shadow: 0 12px 30px rgba(11, 11, 18, 0.08);
 }
 
 * {
@@ -79,7 +79,7 @@ a {
 
 .brand-copy span {
   font-size: 0.74rem;
-  color: #7a6b56;
+  color: #5b21b6;
 }
 
 .platform-nav {
@@ -103,7 +103,7 @@ a {
 .platform-nav a:hover,
 .platform-nav a.active {
   background: var(--dct-accent-soft);
-  color: #6f5432;
+  color: #5b21b6;
 }
 
 .hero-band {
@@ -187,9 +187,9 @@ a {
   border-radius: 999px;
   font-size: 0.76rem;
   font-weight: 700;
-  color: #6f5432;
+  color: #5b21b6;
   background: var(--dct-accent-soft);
-  border: 1px solid #e5d9c6;
+  border: 1px solid #e4d4fb;
 }
 
 .section {
@@ -299,7 +299,7 @@ th {
 .dashboard-kpi {
   font-size: 1.7rem;
   font-weight: 800;
-  color: #6f5432;
+  color: #5b21b6;
 }
 
 .footer-note {

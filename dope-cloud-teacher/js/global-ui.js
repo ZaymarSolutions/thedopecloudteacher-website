@@ -122,12 +122,10 @@
     var navItems = [
       { href: 'index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
       { href: 'classes/', label: 'Classes', sections: ['classes'], pages: ['courses.html', 'pg-parks-direct.html'] },
-      { href: 'curriculum-paths.html', label: 'Curriculum Paths', sections: [], pages: ['curriculum-paths.html'] },
       { href: 'academy/', label: 'Academy', sections: ['academy'], pages: ['cloud-fundamentals-course.html', 'cloud-career-starter-kit.html'] },
-      { href: 'playbook/', label: 'Visual Playbook', sections: ['playbook'], pages: ['resources.html'] },
-      { href: 'student-dashboard/', label: 'Student Dashboard', sections: ['student-dashboard'], pages: ['dashboard.html'] },
-      { href: 'corporate-training.html', label: 'For Businesses', sections: [], pages: ['corporate-training.html', 'b2b.html'] },
-      { href: 'instructor-apply.html', label: 'Instructors', sections: [], pages: ['instructor-apply.html'] },
+      { href: 'governance-responsible-ai.html', label: 'Governance & Responsible AI', sections: [], pages: ['governance-responsible-ai.html'] },
+      { href: 'corporate-training.html', label: 'For Agencies & Business', sections: [], pages: ['corporate-training.html', 'b2b.html'] },
+      { href: 'instructor-apply.html', label: 'Teach With Us', sections: [], pages: ['instructor-apply.html'] },
       { href: 'about.html', label: 'About', sections: [], pages: ['about.html'] },
       { href: 'contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
     ];
@@ -308,113 +306,24 @@
       guideStyle.id = 'dct-page-guide-style';
       guideStyle.textContent =
         '.dct-page-guide{' +
-          'margin:0;padding:1rem 1.1rem;background:linear-gradient(135deg,#edf7ff 0%,#f7fbff 100%);' +
-          'border-bottom:1px solid #cddff4;color:#1d2f45;position:relative;z-index:2;' +
+          'margin:2rem auto 0;padding:0.9rem 1.1rem;max-width:1100px;text-align:center;' +
+          'color:#5a6a85;font-size:0.88rem;' +
           'font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;' +
         '}' +
-        '.dct-page-guide h2{margin:0 0 0.45rem;font-size:1.1rem;color:#0f2740;}' +
-        '.dct-page-guide p{margin:0.35rem 0;line-height:1.6;font-size:0.96rem;}' +
-        '.dct-page-guide .dct-page-guide-expect{color:#284564;}' +
-        '.dct-page-guide a{color:#0c60c0;font-weight:700;text-decoration:underline;}' +
-        '@media (max-width:768px){' +
-          '.dct-page-guide{padding:0.95rem 0.9rem;}' +
-          '.dct-page-guide h2{font-size:1.02rem;}' +
-        '}';
+        '.dct-page-guide a{color:#6D28D9;font-weight:700;text-decoration:underline;}';
       document.head.appendChild(guideStyle);
     }
 
-    var guide = document.createElement('section');
+    var guide = document.createElement('p');
     guide.className = 'dct-page-guide';
     guide.id = 'dct-page-guide';
     guide.setAttribute('role', 'note');
-    guide.setAttribute('aria-label', 'Page Guide');
-
-    var title = document.createElement('h2');
-    title.textContent = 'About This Page';
-
-    var description = document.createElement('p');
-    description.className = 'dct-page-guide-description';
-
-    var expectation = document.createElement('p');
-    expectation.className = 'dct-page-guide-expect';
-
-    var contact = document.createElement('p');
-    contact.innerHTML = 'If you are experiencing any issues on this page, please contact <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.';
-
-    guide.appendChild(title);
-    guide.appendChild(description);
-    guide.appendChild(expectation);
-    guide.appendChild(contact);
-
-    var titleText = (document.title || '').replace(/\s*\|\s*The Dope Cloud Teacher\s*$/i, '').trim();
-    var h1 = document.querySelector('main h1, h1');
-    var headingText = h1 ? h1.textContent.trim() : '';
-    var pageName = headingText || titleText || 'page';
-    var lowerPath = (window.location.pathname || '').toLowerCase();
-    var currentPage = (lowerPath.split('/').pop() || 'index.html').split('?')[0];
-
-    if (pageName.toLowerCase() === 'this section') {
-      pageName = 'page';
-    }
-
-    var expectText = 'A clear overview of the topic, key sections you can use right now, and links or actions that help you move forward confidently.';
-    if (
-      currentPage.indexOf('lesson') !== -1 ||
-      lowerPath.indexOf('/academy/') !== -1 ||
-      currentPage.indexOf('course') !== -1 ||
-      lowerPath.indexOf('/classes/') !== -1
-    ) {
-      expectText = 'Learning objectives, lesson flow, guided activities, and practical resources that support skill-building and progress tracking.';
-    } else if (
-      lowerPath.indexOf('blog') !== -1 ||
-      lowerPath.indexOf('resource') !== -1 ||
-      lowerPath.indexOf('playbook') !== -1
-    ) {
-      expectText = 'Practical insights, step-by-step guidance, and reference materials you can apply to your cloud, AI, or cybersecurity learning journey.';
-    } else if (
-      lowerPath.indexOf('contact') !== -1 ||
-      lowerPath.indexOf('about') !== -1 ||
-      lowerPath.indexOf('pricing') !== -1 ||
-      lowerPath.indexOf('terms') !== -1 ||
-      lowerPath.indexOf('privacy') !== -1
-    ) {
-      expectText = 'Key details about this service area, what each section means, and direct options for getting support or taking your next step.';
-    } else if (
-      lowerPath.indexOf('dashboard') !== -1 ||
-      lowerPath.indexOf('login') !== -1 ||
-      lowerPath.indexOf('admin') !== -1 ||
-      lowerPath.indexOf('verify') !== -1
-    ) {
-      expectText = 'Status information, account or platform actions, and clear controls to help you manage access, progress, and your learning experience.';
-    }
-
-    description.textContent = 'This ' + pageName + ' explains what this section is for, how to use it, and the best way to navigate its content.';
-    expectation.innerHTML = '<strong>What to expect:</strong> ' + expectText;
+    guide.setAttribute('aria-label', 'Page support contact');
+    guide.innerHTML = 'If you are experiencing any issues on this page, please contact <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.';
 
     var body = document.body;
     if (!body) return;
-
-    var header = null;
-    for (var i = 0; i < body.children.length; i += 1) {
-      if (body.children[i] && body.children[i].tagName === 'HEADER') {
-        header = body.children[i];
-        break;
-      }
-    }
-    if (!header) {
-      header = body.querySelector('header');
-    }
-    if (header && header.parentNode) {
-      if (header.nextSibling) {
-        header.parentNode.insertBefore(guide, header.nextSibling);
-      } else {
-        header.parentNode.appendChild(guide);
-      }
-    } else if (body.firstChild) {
-      body.insertBefore(guide, body.firstChild);
-    } else {
-      body.appendChild(guide);
-    }
+    body.appendChild(guide);
   }
 
   if (document.readyState === 'loading') {

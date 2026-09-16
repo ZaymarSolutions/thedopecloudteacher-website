@@ -1,18 +1,18 @@
-:root {
+﻿:root {
   --dct-workshop-bg: #F3F9FF;
   --dct-workshop-panel: rgba(255, 255, 255, 0.92);
   --dct-workshop-panel-strong: rgba(255, 255, 255, 0.98);
   --dct-workshop-text: #11152d;
   --dct-workshop-muted: #4a567d;
-  --dct-workshop-line: rgba(23, 139, 231, 0.14);
-  --dct-workshop-purple: #178BE7;
-  --dct-workshop-pink: #0F6EDB;
-  --dct-workshop-blue: #2C9DFF;
+  --dct-workshop-line: rgba(109, 40, 217, 0.14);
+  --dct-workshop-purple: #6D28D9;
+  --dct-workshop-pink: #4C1D95;
+  --dct-workshop-blue: #A855F7;
   --dct-workshop-teal: #17c8c1;
   --dct-workshop-surface: rgba(255, 255, 255, 0.95);
   --dct-workshop-card: rgba(255, 255, 255, 0.98);
-  --dct-workshop-card-border: rgba(23, 139, 231, 0.12);
-  --dct-workshop-soft: rgba(23, 139, 231, 0.08);
+  --dct-workshop-card-border: rgba(109, 40, 217, 0.12);
+  --dct-workshop-soft: rgba(109, 40, 217, 0.08);
 }
 
 * {
@@ -24,8 +24,8 @@ body {
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--dct-workshop-text);
   background:
-    radial-gradient(circle at top left, rgba(23, 139, 231, 0.06), transparent 30%),
-    radial-gradient(circle at top right, rgba(15, 110, 219, 0.05), transparent 24%),
+    radial-gradient(circle at top left, rgba(109, 40, 217, 0.06), transparent 30%),
+    radial-gradient(circle at top right, rgba(76, 29, 149, 0.05), transparent 24%),
     linear-gradient(180deg, #ffffff 0%, #F3F9FF 100%);
 }
 
@@ -98,7 +98,7 @@ body {
 .dct-btn.primary {
   color: #fff;
   background: linear-gradient(135deg, var(--dct-workshop-purple), var(--dct-workshop-blue));
-  box-shadow: 0 12px 24px rgba(23, 139, 231, 0.22);
+  box-shadow: 0 12px 24px rgba(109, 40, 217, 0.22);
 }
 
 .dct-btn.secondary {
@@ -126,7 +126,7 @@ body {
   gap: 0.35rem;
   padding: 0.3rem 0.7rem;
   border-radius: 999px;
-  background: rgba(23, 139, 231, 0.08);
+  background: rgba(109, 40, 217, 0.08);
   color: var(--dct-workshop-purple);
   font-size: 0.84rem;
   font-weight: 700;
@@ -158,8 +158,8 @@ body {
   border-radius: 999px;
   padding: 0.28rem 0.7rem;
   background: #EAF4FF;
-  border: 1px solid rgba(23, 139, 231, 0.12);
-  color: #0F6EDB;
+  border: 1px solid rgba(109, 40, 217, 0.12);
+  color: #4C1D95;
   font-size: 0.83rem;
   font-weight: 700;
 }
@@ -234,7 +234,7 @@ body.instructor-unlocked .dct-notes {
   margin-top: 0.85rem;
   padding: 0.8rem 0.85rem;
   border-radius: 12px;
-  border: 1px dashed rgba(23, 139, 231, 0.24);
+  border: 1px dashed rgba(109, 40, 217, 0.24);
   background: #F3F9FF;
   color: var(--dct-workshop-muted);
 }

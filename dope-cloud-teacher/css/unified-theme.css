@@ -3,21 +3,21 @@
 /* Global color-schema enforcement for all DCT pages loaded with global-ui.js */
 :root {
   --dct-bg-1: #ffffff;
-  --dct-bg-2: #F3F9FF;
+  --dct-bg-2: #f6f2ff;
   --dct-surface: #ffffff;
   --dct-surface-soft: #f7f5ff;
-  --dct-text: #12162f;
-  --dct-text-soft: #3a4465;
-  --dct-border: #D6E8FA;
-  --dct-primary: #178BE7;
-  --dct-secondary: #0F6EDB;
-  --dct-highlight: #5BB6FF;
+  --dct-text: #0B0B12;
+  --dct-text-soft: #3a3550;
+  --dct-border: #e2d9f7;
+  --dct-primary: #6D28D9;
+  --dct-secondary: #0B0B12;
+  --dct-highlight: #A855F7;
 }
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(23, 139, 231, 0.06), transparent 30%),
-    radial-gradient(circle at top right, rgba(15, 110, 219, 0.05), transparent 26%),
+    radial-gradient(circle at top left, rgba(109, 40, 217, 0.06), transparent 30%),
+    radial-gradient(circle at top right, rgba(11, 11, 18, 0.05), transparent 26%),
     linear-gradient(180deg, var(--dct-bg-1) 0%, var(--dct-bg-2) 100%) !important;
   color: var(--dct-text-soft) !important;
   font-family: "Source Sans 3", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
@@ -27,7 +27,7 @@ body {
 header {
   background: rgba(255, 255, 255, 0.95) !important;
   border-bottom: 1px solid var(--dct-border) !important;
-  box-shadow: 0 10px 30px rgba(23, 29, 63, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(11, 11, 18, 0.08) !important;
 }
 
 h1, h2, h3, h4 {
@@ -55,7 +55,7 @@ p, li, span, small {
 .course-detail-view {
   background: var(--dct-surface) !important;
   border: 1px solid var(--dct-border) !important;
-  box-shadow: 0 8px 20px rgba(23, 29, 63, 0.08) !important;
+  box-shadow: 0 8px 20px rgba(11, 11, 18, 0.08) !important;
   color: var(--dct-text-soft) !important;
 }
 
@@ -72,7 +72,11 @@ button,
 .button,
 .dct-btn.primary,
 .dct-btn.secondary {
-  border: 1px solid rgba(23, 139, 231, 0.2) !important;
+  border: 1px solid rgba(109, 40, 217, 0.2) !important;
+}
+
+.mobile-menu-toggle {
+  border: none !important;
 }
 
 .btn-primary,
@@ -87,7 +91,7 @@ button,
 .cta.secondary,
 .button-secondary,
 .dct-btn.secondary {
-  background: rgba(23, 139, 231, 0.1) !important;
+  background: rgba(109, 40, 217, 0.1) !important;
   color: var(--dct-primary) !important;
 }
 

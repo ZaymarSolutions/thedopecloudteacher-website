@@ -1,15 +1,15 @@
-:root {
-  --page-bg: #0b1025;
+﻿:root {
+  --page-bg: #0B0B12;
   --page-bg-alt: #0B1F33;
   --card-bg: rgba(20, 26, 57, 0.84);
   --card-border: rgba(44, 157, 255, 0.2);
   --text-main: #eef3ff;
   --text-muted: #a1acd0;
-  --accent-primary: #178BE7;
-  --accent-secondary: #2C9DFF;
+  --accent-primary: #6D28D9;
+  --accent-secondary: #A855F7;
   --accent-highlight: #d9deff;
-  --shadow-glow: 0 20px 50px rgba(23, 139, 231, 0.18);
-  --hero-gradient: linear-gradient(135deg, rgba(23, 139, 231, 0.22), rgba(44, 157, 255, 0.12));
+  --shadow-glow: 0 20px 50px rgba(109, 40, 217, 0.18);
+  --hero-gradient: linear-gradient(135deg, rgba(109, 40, 217, 0.22), rgba(44, 157, 255, 0.12));
 }
 
 * {
@@ -22,7 +22,7 @@ body {
   color: var(--text-main);
   background:
     radial-gradient(circle at top right, rgba(44, 157, 255, 0.12), transparent 28%),
-    radial-gradient(circle at top left, rgba(23, 139, 231, 0.2), transparent 36%),
+    radial-gradient(circle at top left, rgba(109, 40, 217, 0.2), transparent 36%),
     linear-gradient(180deg, var(--page-bg), #090d1b 55%, #0c1123 100%);
 }
 
