@@ -1,148 +1,88 @@
-﻿<!DOCTYPE html> <html lang="en"> <head>   <meta charset="UTF-8">   <meta name="viewport" content="width=device-width, initial-scale=1.0">   <title>Cloud, AI &amp; Governance Training | The Dope Cloud Teacher</title>   <meta name="description" content="Cloud, cybersecurity, and AI training for the DMV built around governance, compliance, and responsible use. In-person, live virtual, and self-paced programs for youth, career changers, seniors, agencies, and small business.">   <link rel="canonical" href="https://thedopecloudteacher.org/">   <link rel="icon" type="image/svg+xml" href="logo.svg?v=20260705b">   <link rel="icon" type="image/png" href="logo.png?v=20260705b">   <link rel="stylesheet" href="css/styles.css">   <link rel="stylesheet" href="css/platform.css">   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">   <meta property="og:title" content="Cloud, AI & Governance Training | The Dope Cloud Teacher">   <meta property="og:description" content="Cloud, AI, and cybersecurity training paired with governance, compliance, and responsible-use practices for schools, agencies, and small business across the DMV.">   <meta property="og:type" content="website">   <style>     #dct-growth-banner {       display: none !important;     }      .hero-visual-wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.6rem; align-items: center; padding: 0.4rem 0 0.2rem; }     .hero-copy h1 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin-bottom: 0.6rem; }     .hero-art { background: linear-gradient(150deg, #1a1030 0%, #3a1f66 55%, #6D28D9 100%); border-radius: 22px; padding: 1.6rem; min-height: 220px; display: flex; align-items: center; justify-content: center; gap: 1.1rem; box-shadow: 0 20px 40px rgba(26, 16, 48, 0.28); }     .hero-art .art-icon { width: 62px; height: 62px; border-radius: 50%; background: rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; border: 1px solid rgba(255,255,255,0.28); }     .hero-art .art-icon:nth-child(2) { transform: translateY(-14px); }     .trust-strip { max-width: 1180px; margin: 0 auto; padding: 0.9rem 0 0.2rem; text-align: center; }     .trust-strip p { margin: 0 0 0.55rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6b6480; font-weight: 700; }     .trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }     .trust-badge { background: #f1e8fc; color: #4C1D95; border: 1px solid #ded0f7; padding: 0.42rem 0.9rem; border-radius: 999px; font-weight: 700; font-size: 0.85rem; }     .icon-badge { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #6D28D9, #4C1D95); color: #fff; font-size: 1.05rem; margin-bottom: 0.65rem; }     .band-light { background: #f7f2ff; border-radius: 24px; padding: 1.7rem 1.4rem; margin: 0.4rem 0 1.7rem; }     .band-dark { background: #0B0B12; border-radius: 24px; padding: 1.9rem 1.4rem; margin: 0.4rem 0 1.7rem; color: #f2edfb; }     .band-dark .section-head h2, .band-dark .section-head p { color: #f2edfb; }     .band-dark .path-card { background: #17101f !important; border-color: #332545 !important; }     .band-dark .path-card h3 { color: #e7d9fb !important; }     .band-dark .path-card p { color: #c6b8dd !important; }     .band-dark .cta.secondary { background: rgba(255,255,255,0.08) !important; color: #fff !important; }     @media (max-width: 860px) { .hero-visual-wrap { grid-template-columns: 1fr; } .hero-art { min-height: 160px; } }      .visual-card img,     .scenario-card img {       width: 100%;       height: 170px;       object-fit: contain;       background: #f8faff;       border-radius: 12px;       border: 1px solid rgba(23, 29, 63, 0.08);       margin-bottom: 0.7rem;     }      .visual-grid,     .scenario-grid,     .path-grid,     #home-featured-posters,     #home-cohorts {       display: grid !important;       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;       gap: 1rem !important;     }      .visual-card,     .scenario-card,     .path-card,     #home-featured-posters .platform-card,     #home-cohorts .platform-card {       width: auto !important;       max-width: 100% !important;     }      .path-card .path-visual {       width: 100%;       height: 180px;       object-fit: cover;       border-radius: 12px;       border: 1px solid rgba(23, 29, 63, 0.08);       background: #0c0f16;       margin-bottom: 0.8rem;       display: block;     }      .visual-card {       overflow: hidden;     }      .visual-card img.briefing-visual {       object-fit: cover;       object-position: center top;       transform: scale(1.08);       transform-origin: center top;     }      .scenario-card img.scenario-visual {       object-fit: cover;       object-position: center;     }      .featured-playbook-grid {       display: grid;       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));       gap: 1rem;     }      .featured-poster-card {       background: #ffffff;       border: 1px solid rgba(23, 29, 63, 0.12);       border-radius: 16px;       overflow: hidden;       box-shadow: 0 12px 24px rgba(13, 19, 45, 0.08);       display: flex;       flex-direction: column;     }      .featured-poster-card img {       width: 100%;       height: 270px;       object-fit: cover;       object-position: center 82%;       border-bottom: 1px solid rgba(23, 29, 63, 0.1);       background: #f2f6ff;     }      .featured-poster-body {       padding: 0.95rem;       display: grid;       gap: 0.45rem;     }      .featured-poster-body h3 {       margin: 0;     }      .featured-poster-body .poster-meta {       margin: 0;       color: #445072;       font-size: 0.9rem;     }      .featured-poster-body .poster-importance {       margin: 0;       color: #1f2a45;       font-size: 0.94rem;       line-height: 1.5;     }   </style> </head> <body class="home-page">   <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 5000;">     <div class="header-container">       <a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home">         <img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img" onerror="this.style.display='none'">         <div class="logo-text">           <span class="main-title">The Dope Cloud Teacher</span>           <span class="subtitle">Cloud Classes For Real People</span>         </div>       </a>       <nav class="nav-links" aria-label="Main navigation"></nav>       <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button>     </div>   </header>    <main class="platform-shell" style="padding-top: 0;">
-     <section class="platform-hero">
-       <h1>Cloud and AI skills, taught with the judgment to use them responsibly</h1>
-       <p>The Dope Cloud Teacher trains people across the DMV in cloud computing, cybersecurity, and AI &mdash; and pairs every technical skill with the governance, compliance, and human oversight that keeps technology from being misused. In-person, live virtual, or self-paced.</p>
-       <div class="cta-row">
-         <a class="cta primary" href="classes/">Enroll in a Class</a>
-         <a class="cta secondary" href="governance-responsible-ai.html">Our Governance Approach</a>
-         <a class="cta secondary" href="corporate-training.html">Request Agency/Business Training</a>
-       </div>
-     </section>
-
-     <section class="section-head">
-       <h2>Find Your Path</h2>
-       <p>Programs are built for the person in front of us, not a one-size lesson plan.</p>
-     </section>
-     <section class="path-grid">
-       <article class="path-card">
-         <h3>Youth &amp; Students</h3>
-         <p>Cloud, AI, and cybersecurity basics alongside digital citizenship and honest-use guardrails for schools and youth programs.</p>
-         <a class="cta secondary" href="courses.html">See Student Courses</a>
-       </article>
-       <article class="path-card">
-         <h3>Career Changers</h3>
-         <p>Certification-aligned pathways in Azure, security, and AI, plus the governance literacy employers now expect.</p>
-         <a class="cta secondary" href="certifications.html">See Certification Paths</a>
-       </article>
-       <article class="path-card">
-         <h3>Seniors &amp; Community Members</h3>
-         <p>Plain-language sessions on AI scams, safe cloud habits, and asking the right questions before trusting a "smart" system.</p>
-         <a class="cta secondary" href="corporate-training.html">Request a Community Workshop</a>
-       </article>
-       <article class="path-card">
-         <h3>Government &amp; Public Agencies</h3>
-         <p>Workforce training and responsible-AI workshops built around procurement, records, and compliance realities.</p>
-         <a class="cta secondary" href="corporate-training.html">Request a Proposal</a>
-       </article>
-       <article class="path-card">
-         <h3>Small Business &amp; Nonprofits</h3>
-         <p>Right-sized cloud and AI training with governance built in from day one, no compliance department required.</p>
-         <a class="cta secondary" href="corporate-training.html">Talk to Us</a>
-       </article>
-     </section>
-
-     <section class="section-head">
-       <h2>Governance, Compliance &amp; Responsible AI Come First</h2>
-       <p>Technical skill without oversight is how tools get misused. Every DCT course threads in the questions that keep people, not systems, in charge.</p>
-     </section>
-     <section class="path-grid">
-       <article class="path-card">
-         <h3>Governance</h3>
-         <p>Who owns the decision, who approves it, and how it's written down instead of assumed.</p>
-       </article>
-       <article class="path-card">
-         <h3>Compliance</h3>
-         <p>Practical alignment with the privacy, records, and procurement rules that already apply to your organization.</p>
-       </article>
-       <article class="path-card">
-         <h3>Human Oversight &amp; Morale</h3>
-         <p>Built-in checkpoints so a person confirms the system got it right, and a rollout plan that keeps teams informed instead of anxious.</p>
-       </article>
-     </section>
-     <div class="cta-row" style="margin: 0.75rem 0 1.5rem;">
-       <a class="cta primary" href="governance-responsible-ai.html">Read Our Full Governance Approach</a>
-     </div>
-
-     <section class="section-head" id="teach-with-us">
-       <h2>We're Hiring Instructors &mdash; Now</h2>
-       <p>New contracts across the DMV mean we need experienced facilitators in cloud, security, AI, and DevSecOps immediately, along with mentors comfortable teaching youth, seniors, and career-changers.</p>
-     </section>
-     <section class="path-grid">
-       <article class="path-card">
-         <h3>In-Person Facilitator</h3>
-         <p>Lead classroom sessions for community, school, and workforce cohorts.</p>
-         <a class="cta secondary" href="instructor-inperson-facilitator.html">View Role</a>
-       </article>
-       <article class="path-card">
-         <h3>Live Virtual Instructor</h3>
-         <p>Teach remote cohorts with office hours and milestone support.</p>
-         <a class="cta secondary" href="instructor-live-virtual.html">Apply Now</a>
-       </article>
-       <article class="path-card">
-         <h3>Curriculum Coach</h3>
-         <p>Strengthen lesson quality and assessment across cloud, AI, and cybersecurity tracks.</p>
-         <a class="cta secondary" href="instructor-curriculum-coach.html">Apply Now</a>
-       </article>
-     </section>
-     <div class="cta-row" style="margin: 0.75rem 0 1.5rem;">
-       <a class="cta primary" href="instructor-apply.html">See All Instructor Roles</a>
-     </div>
-
-     <section class="section-head">
-       <h2>Current and Upcoming Cohorts</h2>
-       <p>Enrollment windows update as new in-person and live cohorts open.</p>
-     </section>
-     <section id="home-cohorts" class="card-grid"></section>
-
-     <section class="section-head">
-       <h2>Helpful Visuals You Can Actually Use</h2>
-       <p>Simple, plain-language reference sheets that make cloud and security ideas easier to picture and remember.</p>
-     </section>
-     <section id="home-featured-posters" class="featured-playbook-grid"></section>
-   </main>
-
-   <script src="js/dct-content-model.js"></script>
-   <script src="js/platform-pages.js"></script>
-   <script src="js\global-ui.js"></script>
-   <script>
-     (function () {
-       const target = document.getElementById("home-featured-posters");
-       const posters = window.DCT_CONTENT.visualPosters.slice(0, 4);
-
-       const posterVisuals = {
-         "poster-shared-responsibility": "images/playbook/playbook-01-shared-responsibility.svg",
-         "poster-identity-map": "images/playbook/playbook-02-identity-access-map.svg",
-         "poster-zero-trust": "images/playbook/playbook-03-zero-trust-blueprint.svg",
-         "poster-devsecops-loop": "images/playbook/playbook-04-devsecops-loop.svg"
-       };
-
-       const friendlyTitles = {
-         "poster-shared-responsibility": "Who's Responsible for What",
-         "poster-identity-map": "Keeping the Right People In (and Others Out)",
-         "poster-zero-trust": "Trust, but Double-Check",
-         "poster-devsecops-loop": "Building Things Safely, Start to Finish"
-       };
-
-       const friendlyBlurbs = {
-         "poster-shared-responsibility": "A simple map of who owns what, so nothing important falls through the cracks.",
-         "poster-identity-map": "Plain-language basics on passwords, logins, and access, made visual.",
-         "poster-zero-trust": "Why it's smart to double-check even trusted logins and devices.",
-         "poster-devsecops-loop": "How teams build and ship technology while checking their work along the way."
-       };
-
-       target.innerHTML = posters.map(function (poster) {
-         const imageUrl = posterVisuals[poster.id] || "images/programs/cloud-architecture.svg";
-         const friendlyTitle = friendlyTitles[poster.id] || poster.title;
-         const blurb = friendlyBlurbs[poster.id] || "A quick, visual way to understand a key cloud and security idea.";
-
-         return '<article class="featured-poster-card">' +
-           '<img src="' + imageUrl + '" alt="' + friendlyTitle + ' visual guide">' +
-           '<div class="featured-poster-body">' +
-           '<h3>' + friendlyTitle + '</h3>' +
-           '<p class="poster-importance">' + blurb + '</p>' +
-           '<a class="cta secondary" href="playbook/">See the Full Guide</a>' +
-           '</div>' +
-           '</article>';
-       }).join("");
-
-       DCT_PAGES.renderCohorts("home-cohorts");     })();   </script> </body> </html>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Dope Cloud Teacher | AI, Cloud &amp; Cybersecurity Education</title>
+  <meta name="description" content="The Dope Cloud Teacher makes AI, cloud, and cybersecurity understandable, useful, and accessible for real people and communities. Explore programs or bring DCT to your community.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://thedopecloudteacher.org/">
+  <link rel="icon" type="image/svg+xml" href="logo.svg?v=20260705b">
+  <link rel="icon" type="image/png" href="logo.png?v=20260705b">
+  <meta property="og:site_name" content="The Dope Cloud Teacher">
+  <meta property="og:title" content="The Dope Cloud Teacher | AI, Cloud & Cybersecurity Education">
+  <meta property="og:description" content="Understand. Use. Protect. Create. Practical AI, cloud, and cybersecurity education for real people and communities.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thedopecloudteacher.org/">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root { --front-ink:#0B0B12; --front-purple:#6D28D9; --front-deep:#4C1D95; --front-soft:#f7f2ff; --front-muted:#574e6e; }
+    .front-page { background:#fff; }
+    .front-brand-name { display:flex; flex-direction:column; margin-left:.7rem; line-height:1.05; }
+    .front-brand-name strong { color:#0B0B12; font-size:1rem; }
+    .front-brand-name span { color:#6D28D9; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-top:.25rem; }
+    .front-page header { position:sticky !important; }
+    .front-wrap { width:min(1180px,calc(100% - 2rem)); margin:0 auto; }
+    .front-hero { display:grid; grid-template-columns:1.05fr .95fr; gap:2rem; align-items:center; padding:3rem 0 2.4rem; }
+    .front-kicker { color:var(--front-purple); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem; }
+    .front-hero h1 { color:var(--front-ink); max-width:700px; font-size:clamp(2.2rem,5vw,4.3rem); line-height:1.02; margin:.8rem 0 1rem; }
+    .front-hero h1 em { color:var(--front-purple); font-style:normal; }
+    .front-hero p { color:var(--front-muted); max-width:650px; font-size:1.08rem; line-height:1.7; }
+    .front-tagline { color:var(--front-deep) !important; font-weight:800; font-size:1.1rem !important; }
+    .front-actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.2rem; }
+    .front-btn { display:inline-flex; align-items:center; gap:.45rem; padding:.78rem 1.05rem; border-radius:10px; text-decoration:none; font-weight:800; }
+    .front-btn.primary { background:var(--front-purple); color:#fff; }
+    .front-btn.secondary { background:var(--front-soft); color:var(--front-deep); border:1px solid #ded0f7; }
+    .front-image { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:22px; border:1px solid #e2d9f7; box-shadow:0 18px 38px rgba(11,11,18,.14); }
+    .front-trust { display:flex; flex-wrap:wrap; gap:.6rem; padding:0 0 1.8rem; }
+    .front-trust span { padding:.45rem .8rem; border-radius:999px; background:var(--front-soft); color:var(--front-deep); border:1px solid #e2d9f7; font-size:.85rem; font-weight:800; }
+    .front-band { margin:1rem 0 2rem; padding:2rem 0; }
+    .front-band.soft { background:var(--front-soft); }
+    .front-band.dark { background:var(--front-ink); color:#fff; }
+    .front-band h2 { color:inherit; margin:0 0 .45rem; font-size:clamp(1.6rem,3vw,2.4rem); }
+    .front-band > .front-wrap > p { max-width:720px; color:var(--front-muted); line-height:1.7; }
+    .front-band.dark > .front-wrap > p { color:#ded0f7; }
+    .front-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1rem; }
+    .front-card { background:#fff; border:1px solid #e2d9f7; border-radius:16px; padding:1.1rem; box-shadow:0 10px 24px rgba(11,11,18,.06); }
+    .front-card.dark { background:#17101f; border-color:#332545; }
+    .front-card i { width:44px; height:44px; display:inline-flex; justify-content:center; align-items:center; border-radius:12px; background:#f1e8fc; color:var(--front-purple); font-size:1.2rem; }
+    .front-card h3 { color:var(--front-ink); margin:.75rem 0 .35rem; }
+    .front-card.dark h3 { color:#f1e8fc; }
+    .front-card p { color:var(--front-muted); line-height:1.6; }
+    .front-card.dark p { color:#c6b8dd; }
+    .front-card a { color:var(--front-deep); font-weight:800; text-decoration:none; }
+    .front-card.dark a { color:#d9bfff; }
+    .journey { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-top:1rem; }
+    .journey div { padding:1rem; text-align:center; border:1px solid #e2d9f7; border-radius:14px; background:#fff; color:var(--front-deep); font-weight:800; }
+    .journey strong { display:block; color:var(--front-purple); font-size:1.45rem; margin-bottom:.2rem; }
+    .audience-list { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
+    .audience-list span { padding:.6rem .85rem; border:1px solid #ded0f7; border-radius:999px; background:#fff; color:var(--front-deep); font-weight:800; }
+    .front-split { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1rem; }
+    .front-panel { padding:1.3rem; border-radius:18px; background:#fff; border:1px solid #e2d9f7; }
+    .front-panel h3 { margin-top:0; color:var(--front-ink); }
+    .front-panel p { color:var(--front-muted); line-height:1.65; }
+    .front-final { padding:2.4rem 0 3rem; text-align:center; }
+    .front-final h2 { color:var(--front-ink); }
+    @media(max-width:780px){ .front-hero,.front-split{grid-template-columns:1fr}.journey{grid-template-columns:1fr 1fr}.front-hero{padding-top:2rem} }
+  </style>
+</head>
+<body class="front-page">
+  <header><div class="header-container"><a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
+  <main>
+    <section class="front-wrap front-hero">
+      <div><div class="front-kicker">The Dope Cloud Teacher</div><h1>Technology changed. <em>Let's make sure everybody can change with it.</em></h1><p class="front-tagline">AI, Cloud &amp; Cybersecurity Education</p><p>Practical technology education that helps people understand, use, protect, and create in today's digital world.</p><div class="front-actions"><a class="front-btn primary" href="programs.html">Explore Programs</a><a class="front-btn secondary" href="partners.html">Bring DCT to Your Community</a></div></div>
+      <img class="front-image" src="images/homepage-classroom-hero.png" alt="Black and Brown learners collaborating in a technology classroom">
+    </section>
+    <section class="front-wrap front-trust" aria-label="DCT delivery contexts"><span>Community-centered</span><span>DMV-ready</span><span>Governance-aware</span><span>Built for real people</span></section>
+    <section class="front-band soft"><div class="front-wrap"><h2>Four programs. One practical learning model.</h2><p>We keep the front door simple. The deeper curriculum, certification prep, labs, and historical material remain available behind these clear starting points.</p><div class="front-grid"><article class="front-card"><i class="fas fa-brain" aria-hidden="true"></i><h3>AI Fundamentals</h3><p>Understand AI, use it responsibly, and build confidence with real examples.</p><a href="programs.html">Explore AI Fundamentals</a></article><article class="front-card"><i class="fas fa-cloud" aria-hidden="true"></i><h3>Cloud Fundamentals</h3><p>Learn the cloud language and systems behind the tools people use every day.</p><a href="programs.html">Explore Cloud Fundamentals</a></article><article class="front-card"><i class="fas fa-shield-halved" aria-hidden="true"></i><h3>Cloud Security</h3><p>Protect accounts, data, systems, and communities through practical security habits.</p><a href="programs.html">Explore Cloud Security</a></article><article class="front-card"><i class="fas fa-lock" aria-hidden="true"></i><h3>AI Security</h3><p>Use AI with boundaries, oversight, privacy, and the judgment to know when not to automate.</p><a href="programs.html">Explore AI Security</a></article></div></div></section>
+    <section class="front-wrap front-band"><h2>Understand &rarr; Use &rarr; Protect &rarr; Create</h2><p>Every DCT program follows the same sequence so people leave with more than information: they leave with practical confidence and a next step.</p><div class="journey"><div><strong>01</strong>Understand</div><div><strong>02</strong>Use</div><div><strong>03</strong>Protect</div><div><strong>04</strong>Create</div></div></section>
+    <section class="front-band dark"><div class="front-wrap"><h2>Who DCT serves</h2><p>Youth, adults, seniors, veterans, career changers, community organizations, and workforce programs. Different starting points. The same respect.</p><div class="audience-list"><span>Youth</span><span>Adults</span><span>Seniors</span><span>Veterans</span><span>Career changers</span><span>Community organizations</span><span>Workforce programs</span></div><div class="front-actions"><a class="front-btn primary" href="who-we-serve.html">Find Your Path</a><a class="front-btn secondary" href="classes/">Find a Class</a></div></div></section>
+    <section class="front-wrap front-band"><h2>Learning can happen where people already are.</h2><p>DCT can deliver through community centers, senior centers, schools, libraries, veterans organizations, government and community programs, workforce organizations, and virtual learning.</p><div class="front-split"><article class="front-panel"><h3>For learners</h3><p>Start with a class, a free resource, or a beginner pathway. You do not need to already speak technology to belong here.</p><a class="front-btn primary" href="classes/">Find a Class</a></article><article class="front-panel"><h3>For organizations</h3><p>Host a workshop, build a multi-week program, or discuss a partnership shaped around your community.</p><a class="front-btn primary" href="partners.html">Bring DCT to Your Community</a></article></div></section>
+    <section class="front-wrap front-band soft"><h2>Two paths. One mission.</h2><div class="front-split"><article class="front-panel"><h3>Learn it.</h3><p>Develop modern AI, cloud, and cybersecurity knowledge that supports personal confidence and career development.</p></article><article class="front-panel"><h3>Teach it.</h3><p>Qualified veterans and technology professionals can explore opportunities to train as DCT instructors and bring technology education into their communities.</p><a class="front-btn secondary" href="instructor-apply.html">Become an Instructor</a></article></div></section>
+    <section class="front-wrap front-band"><div class="front-split"><article class="front-panel"><h3>Why DCT</h3><p>Technology education should not be reserved for people who already speak the language. We focus on access, understanding, security, opportunity, and community.</p><a href="about.html" class="front-btn secondary">Why We Exist</a></article><article class="front-panel"><h3>Technology + whole-person empowerment</h3><p>The Dope Cloud Teacher equips people for today's digital world. Our sister brand AskDoGood supports practical whole-person wellness. Together: healthier people, stronger skills, stronger communities.</p></article></div></section>
+    <section class="front-wrap front-final"><h2>Bring The Dope Cloud Teacher to your community.</h2><p>Host a class, discuss a partnership, explore programs, or become an instructor.</p><div class="front-actions" style="justify-content:center"><a class="front-btn primary" href="partners.html">Host a Class</a><a class="front-btn secondary" href="contact.html">Discuss a Partnership</a><a class="front-btn secondary" href="programs.html">Explore Programs</a><a class="front-btn secondary" href="instructor-apply.html">Become an Instructor</a></div></section>
+  </main>
+  <script src="js/global-ui.js"></script>
+</body>
+</html>

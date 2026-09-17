@@ -121,12 +121,11 @@
     var currentPage = (parts.length ? parts[parts.length - 1] : 'index.html').split('?')[0] || 'index.html';
     var navItems = [
       { href: 'index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
-      { href: 'classes/', label: 'Classes', sections: ['classes'], pages: ['courses.html', 'pg-parks-direct.html'] },
-      { href: 'academy/', label: 'Academy', sections: ['academy'], pages: ['cloud-fundamentals-course.html', 'cloud-career-starter-kit.html'] },
-      { href: 'governance-responsible-ai.html', label: 'Governance & Responsible AI', sections: [], pages: ['governance-responsible-ai.html'] },
-      { href: 'corporate-training.html', label: 'For Agencies & Business', sections: [], pages: ['corporate-training.html', 'b2b.html'] },
-      { href: 'instructor-apply.html', label: 'Teach With Us', sections: [], pages: ['instructor-apply.html'] },
-      { href: 'about.html', label: 'About', sections: [], pages: ['about.html'] },
+      { href: 'programs.html', label: 'Programs', sections: ['programs'], pages: ['programs.html', 'courses.html', 'certifications.html'] },
+      { href: 'who-we-serve.html', label: 'Who We Serve', sections: ['who-we-serve'], pages: ['who-we-serve.html', 'veterans-community.html'] },
+      { href: 'about.html', label: 'About', sections: [], pages: ['about.html', 'governance-responsible-ai.html'] },
+      { href: 'partners.html', label: 'Partners', sections: ['partners'], pages: ['partners.html', 'corporate-training.html', 'b2b.html'] },
+      { href: 'resources.html', label: 'Resources', sections: ['resources'], pages: ['resources.html', 'blog.html', 'playbook/index.html'] },
       { href: 'contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
     ];
 

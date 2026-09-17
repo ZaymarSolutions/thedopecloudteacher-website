@@ -119,12 +119,11 @@
   function navItems() {
     return [
       { href: '/index.html', label: 'Home', key: 'home' },
-      { href: '/classes/', label: 'Classes', key: 'classes' },
-      { href: '/academy/', label: 'Academy', key: 'academy' },
-      { href: '/governance-responsible-ai.html', label: 'Governance & Responsible AI', key: 'governance' },
-      { href: '/corporate-training.html', label: 'For Agencies & Business', key: 'business' },
-      { href: '/instructor-apply.html', label: 'Teach With Us', key: 'instructors' },
+      { href: '/programs.html', label: 'Programs', key: 'programs' },
+      { href: '/who-we-serve.html', label: 'Who We Serve', key: 'audiences' },
       { href: '/about.html', label: 'About', key: 'about' },
+      { href: '/partners.html', label: 'Partners', key: 'partners' },
+      { href: '/resources.html', label: 'Resources', key: 'resources' },
       { href: '/contact.html', label: 'Contact', key: 'contact' }
     ];
   }
