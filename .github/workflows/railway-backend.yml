@@ -21,8 +21,8 @@ jobs:
 
       - name: Validate Railway secrets and access
         run: |
-          if [ -z "$RAILWAY_TOKEN" ]; then
-            echo "RAILWAY_TOKEN secret is required"
+          if [ -z "$RAILWAY_API_TOKEN" ]; then
+            echo "RAILWAY API token secret is required"
             exit 1
           fi
 
@@ -33,7 +33,7 @@ jobs:
 
           railway whoami
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_SERVICE_NAME: ${{ secrets.RAILWAY_SERVICE_NAME }}
 
       - name: Deploy to Railway
@@ -45,7 +45,7 @@ jobs:
             railway up --service "$RAILWAY_SERVICE_NAME"
           fi
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
           RAILWAY_SERVICE_NAME: ${{ secrets.RAILWAY_SERVICE_NAME }}
           RAILWAY_ENVIRONMENT: ${{ secrets.RAILWAY_ENVIRONMENT }}
