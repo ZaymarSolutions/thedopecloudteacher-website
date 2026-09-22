@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Teach With DCT | Technology Instructor Application</title>
   <meta name="description" content="Apply for part-time contract technology instructor opportunities with The Dope Cloud TeacHer in Prince George's County, the DMV, and virtual programs.">
+  <script>
+    if (window.location.hostname === 'www.thedopecloudteacher.org') {
+      window.location.replace('https://thedopecloudteacher.org' + window.location.pathname + window.location.search + window.location.hash);
+    }
+  </script>
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://thedopecloudteacher.org/teach/">
   <link rel="icon" type="image/svg+xml" href="../logo.svg?v=20260705c">
@@ -268,7 +273,8 @@
           var data = Object.fromEntries(new FormData(form));
           data.audiences = audienceBoxes.filter(function (box) { return box.checked; }).map(function (box) { return box.value; });
           data.company_website = form.elements['company-website'].value;
-          data.resume = {name: file.name, type: file.type || ({pdf: 'application/pdf', doc: 'application/msword', docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})[file.name.split('.').pop().toLowerCase()], base64: String(reader.result).split(',')[1]};
+          var resumeType = ({pdf: 'application/pdf', doc: 'application/msword', docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})[file.name.split('.').pop().toLowerCase()];
+          data.resume = {name: file.name, type: resumeType, base64: String(reader.result).split(',')[1]};
           data.nonce = crypto.randomUUID();
           var post = document.createElement('form');
           post.method = 'POST';
