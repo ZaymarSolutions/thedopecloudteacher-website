@@ -66,8 +66,7 @@
         <p class="privacy-note"><strong>Please do not submit</strong> your Social Security number, date of birth, banking information, medical information, or full home address. Those details do not belong on an initial application.</p>
       </aside>
 
-      <form class="application-form" name="dct-instructor-application" method="POST" action="/teach/thank-you.html" data-netlify="true" netlify-honeypot="company-website" enctype="multipart/form-data">
-        <input type="hidden" name="form-name" value="dct-instructor-application">
+      <form class="application-form" name="dct-instructor-application" method="POST" enctype="multipart/form-data">
         <p class="honeypot" aria-hidden="true">
           <label>Do not fill this out: <input name="company-website" tabindex="-1" autocomplete="off"></label>
         </p>
@@ -124,7 +123,7 @@
           <div class="field">
             <label for="resume">Résumé <span aria-hidden="true">*</span></label>
             <input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
-            <p class="field-help">PDF, DOC, or DOCX. Please remove sensitive personal information before uploading.</p>
+            <p class="field-help">PDF, DOC, or DOCX; 3 MB maximum. Please remove sensitive personal information before uploading.</p>
           </div>
         </fieldset>
 
@@ -190,8 +189,10 @@
         </div>
 
         <button class="submit-button" type="submit">Submit instructor application</button>
+        <p class="submission-status" role="alert" aria-live="assertive" hidden></p>
         <p class="submit-note">Selected applicants will be contacted about next steps. For accessibility assistance with this application, email <a href="mailto:teach@thedopecloudteacher.org">teach@thedopecloudteacher.org</a>.</p>
       </form>
+      <iframe name="dct-instructor-response" title="Application response" hidden></iframe>
     </section>
   </main>
 
@@ -200,6 +201,7 @@
     <p><strong>The Dope Cloud TeacHer</strong><br>Bringing the Cloud to Life!</p>
     <p class="footer-standard">Skills open doors. Integrity determines what you do once you’re inside.</p>
   </footer>
+  <script src="google-sheet-endpoint.js"></script>
   <script>
     (function () {
       var form = document.querySelector('.application-form');
@@ -212,7 +214,80 @@
       }
 
       audienceBoxes.forEach(function (box) { box.addEventListener('change', validateAudience); });
-      form.addEventListener('submit', validateAudience);
+      var status = document.querySelector('.submission-status');
+      var button = form.querySelector('.submit-button');
+      var frame = document.querySelector('iframe[name="dct-instructor-response"]');
+      var pending = null;
+
+      function showError(message) {
+        status.textContent = message;
+        status.hidden = false;
+        button.disabled = false;
+        button.textContent = 'Submit instructor application';
+        pending = null;
+      }
+
+      window.addEventListener('message', function (event) {
+        var result = event.data;
+        if (!pending || !result || result.type !== 'dct-instructor-result' ||
+            result.nonce !== pending.nonce ||
+            !/^https:\/\/[a-z0-9.-]*googleusercontent\.com$/.test(event.origin)) return;
+        clearTimeout(pending.timer);
+        if (result.ok) {
+          window.location.assign('/teach/thank-you.html');
+        } else {
+          showError(result.message || 'We could not save your application. Please try again.');
+        }
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (pending) return;
+        validateAudience();
+        if (!form.reportValidity()) return;
+        var endpoint = window.DCT_INSTRUCTOR_ENDPOINT || '';
+        if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(endpoint)) {
+          showError('Applications are temporarily unavailable. Please email teach@thedopecloudteacher.org.');
+          return;
+        }
+        var file = form.elements.resume.files[0];
+        if (!file || file.size > 3 * 1024 * 1024) {
+          showError('Please attach a PDF, DOC, or DOCX résumé of 3 MB or less.');
+          return;
+        }
+        if (!/\.(pdf|doc|docx)$/i.test(file.name)) {
+          showError('Please attach a PDF, DOC, or DOCX résumé.');
+          return;
+        }
+        button.disabled = true;
+        button.textContent = 'Submitting…';
+        status.hidden = true;
+        var reader = new FileReader();
+        reader.onerror = function () { showError('Could not read the résumé. Please select it again.'); };
+        reader.onload = function () {
+          var data = Object.fromEntries(new FormData(form));
+          data.audiences = audienceBoxes.filter(function (box) { return box.checked; }).map(function (box) { return box.value; });
+          data.company_website = form.elements['company-website'].value;
+          data.resume = {name: file.name, type: file.type || ({pdf: 'application/pdf', doc: 'application/msword', docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})[file.name.split('.').pop().toLowerCase()], base64: String(reader.result).split(',')[1]};
+          data.nonce = crypto.randomUUID();
+          var post = document.createElement('form');
+          post.method = 'POST';
+          post.action = endpoint;
+          post.target = frame.name;
+          post.hidden = true;
+          var input = document.createElement('input');
+          input.name = 'payload';
+          input.value = JSON.stringify(data);
+          post.appendChild(input);
+          document.body.appendChild(post);
+          pending = {nonce: data.nonce, timer: setTimeout(function () {
+            showError('We could not confirm the submission. Please contact teach@thedopecloudteacher.org before trying again, so we can check whether it arrived.');
+          }, 45000)};
+          post.submit();
+          post.remove();
+        };
+        reader.readAsDataURL(file);
+      });
     }());
   </script>
 </body>
