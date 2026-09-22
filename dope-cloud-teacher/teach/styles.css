@@ -139,6 +139,8 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus { outline: 3px 
 .attestation label { background: #fff; }
 .submit-button { min-height: 56px; border: 0; cursor: pointer; font-size: 16px; }
 .submit-note { margin: -8px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; text-align: center; }
+.submission-status { margin: 0; padding: 14px 16px; border: 1px solid #b42318; border-radius: 8px; color: #8a1c13; background: #fff2f0; font-size: 15px; line-height: 1.5; }
+.submit-button:disabled { opacity: .65; cursor: wait; }
 .honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 
 footer { display: grid; grid-template-columns: auto 1fr minmax(220px, 440px); align-items: center; gap: 18px; padding: 60px 0; }
