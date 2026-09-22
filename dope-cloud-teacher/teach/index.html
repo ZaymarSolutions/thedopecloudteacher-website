@@ -242,6 +242,16 @@
         return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
       }
 
+      form.addEventListener('invalid', function (event) {
+        var label = event.target.id ? form.querySelector('label[for="' + event.target.id + '"]') : null;
+        var fieldName = label ? label.textContent.replace('*', '').replace('Optional', '').trim() : 'a required field';
+        showError('Please review ' + fieldName + '. ' + (event.target.validationMessage || 'This field needs attention.'));
+      }, true);
+
+      form.addEventListener('input', function () {
+        if (!pending) status.hidden = true;
+      });
+
       window.addEventListener('message', function (event) {
         var result = event.data;
         if (!pending || !result || result.type !== 'dct-instructor-result' ||
