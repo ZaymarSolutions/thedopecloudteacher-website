@@ -31,7 +31,7 @@ jobs:
             exit 1
           fi
 
-          railway whoami
+          echo "Railway deployment credentials are present"
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           RAILWAY_SERVICE_NAME: ${{ secrets.RAILWAY_SERVICE_NAME }}
