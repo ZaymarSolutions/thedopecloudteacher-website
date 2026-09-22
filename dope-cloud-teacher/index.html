@@ -64,6 +64,11 @@
     .front-panel p { color:var(--front-muted); line-height:1.65; }
     .front-final { padding:2.4rem 0 3rem; text-align:center; }
     .front-final h2 { color:var(--front-ink); }
+    .hiring-banner { margin:0 auto 2rem; padding:1.35rem 1.5rem; border-radius:18px; background:linear-gradient(135deg,var(--front-deep),var(--front-purple)); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:1.2rem; box-shadow:0 14px 30px rgba(76,29,149,.2); }
+    .hiring-banner h2 { color:#fff; margin:0 0 .35rem; font-size:clamp(1.35rem,2.5vw,1.9rem); }
+    .hiring-banner p { margin:0; color:#f1e8fc; line-height:1.55; max-width:760px; }
+    .hiring-banner .front-btn { flex:0 0 auto; background:#fff; color:var(--front-deep); }
+    @media(max-width:780px){ .hiring-banner{align-items:flex-start;flex-direction:column} }
     @media(max-width:780px){ .front-hero,.front-split{grid-template-columns:1fr}.journey{grid-template-columns:1fr 1fr}.front-hero{padding-top:2rem} }
   </style>
 </head>
@@ -73,6 +78,10 @@
     <section class="front-wrap front-hero">
       <div><div class="front-kicker">The Dope Cloud Teacher</div><h1>Technology changed. <em>Let's make sure everybody can change with it.</em></h1><p class="front-tagline">AI, Cloud &amp; Cybersecurity Education</p><p>Practical technology education that helps people understand, use, protect, and create in today's digital world.</p><div class="front-actions"><a class="front-btn primary" href="programs.html">Explore Programs</a><a class="front-btn secondary" href="partners.html">Bring DCT to Your Community</a></div></div>
       <img class="front-image" src="images/homepage-classroom-hero.png" alt="Black and Brown learners collaborating in a technology classroom">
+    </section>
+    <section class="front-wrap hiring-banner" aria-label="DCT instructor opportunities">
+      <div><div class="front-kicker" style="color:#e9d5ff">We&rsquo;re growing</div><h2>DCT is looking for instructors.</h2><p>Are you a cloud, AI, cybersecurity, or technology professional who can make complex topics feel human? Help us bring practical tech education to youth, adults, seniors, veterans, and communities across the DMV and beyond.</p></div>
+      <a class="front-btn" href="teach/">Explore Instructor Opportunities</a>
     </section>
     <section class="front-wrap front-trust" aria-label="DCT delivery contexts"><span>Community-centered</span><span>DMV-ready</span><span>Governance-aware</span><span>Built for real people</span></section>
     <section class="front-band soft"><div class="front-wrap"><h2>Four programs. One practical learning model.</h2><p>We keep the front door simple. The deeper curriculum, certification prep, labs, and historical material remain available behind these clear starting points.</p><div class="front-grid"><article class="front-card"><i class="fas fa-brain" aria-hidden="true"></i><h3>AI Fundamentals</h3><p>Understand AI, use it responsibly, and build confidence with real examples.</p><a href="programs.html">Explore AI Fundamentals</a></article><article class="front-card"><i class="fas fa-cloud" aria-hidden="true"></i><h3>Cloud Fundamentals</h3><p>Learn the cloud language and systems behind the tools people use every day.</p><a href="programs.html">Explore Cloud Fundamentals</a></article><article class="front-card"><i class="fas fa-shield-halved" aria-hidden="true"></i><h3>Cloud Security</h3><p>Protect accounts, data, systems, and communities through practical security habits.</p><a href="programs.html">Explore Cloud Security</a></article><article class="front-card"><i class="fas fa-lock" aria-hidden="true"></i><h3>AI Security</h3><p>Use AI with boundaries, oversight, privacy, and the judgment to know when not to automate.</p><a href="programs.html">Explore AI Security</a></article></div></div></section>
