@@ -232,6 +232,16 @@
         pending = null;
       }
 
+      function createNonce() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+        if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+          var values = new Uint32Array(4);
+          window.crypto.getRandomValues(values);
+          return Array.prototype.map.call(values, function (value) { return value.toString(16); }).join('-');
+        }
+        return Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
+      }
+
       window.addEventListener('message', function (event) {
         var result = event.data;
         if (!pending || !result || result.type !== 'dct-instructor-result' ||
@@ -249,7 +259,11 @@
         event.preventDefault();
         if (pending) return;
         validateAudience();
-        if (!form.reportValidity()) return;
+        if (!form.checkValidity()) {
+          showError('Please complete every required field and select at least one learner audience.');
+          form.reportValidity();
+          return;
+        }
         var endpoint = window.DCT_INSTRUCTOR_ENDPOINT || '';
         if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(endpoint)) {
           showError('Applications are temporarily unavailable. Please email teach@thedopecloudteacher.org.');
@@ -270,29 +284,40 @@
         var reader = new FileReader();
         reader.onerror = function () { showError('Could not read the résumé. Please select it again.'); };
         reader.onload = function () {
-          var data = Object.fromEntries(new FormData(form));
-          data.audiences = audienceBoxes.filter(function (box) { return box.checked; }).map(function (box) { return box.value; });
-          data.company_website = form.elements['company-website'].value;
-          var resumeType = ({pdf: 'application/pdf', doc: 'application/msword', docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})[file.name.split('.').pop().toLowerCase()];
-          data.resume = {name: file.name, type: resumeType, base64: String(reader.result).split(',')[1]};
-          data.nonce = crypto.randomUUID();
-          var post = document.createElement('form');
-          post.method = 'POST';
-          post.action = endpoint;
-          post.target = frame.name;
-          post.hidden = true;
-          var input = document.createElement('input');
-          input.name = 'payload';
-          input.value = JSON.stringify(data);
-          post.appendChild(input);
-          document.body.appendChild(post);
-          pending = {nonce: data.nonce, timer: setTimeout(function () {
-            showError('We could not confirm the submission. Please contact teach@thedopecloudteacher.org before trying again, so we can check whether it arrived.');
-          }, 45000)};
-          post.submit();
-          post.remove();
+          try {
+            var data = {};
+            new FormData(form).forEach(function (value, key) {
+              if (key !== 'resume' && key !== 'audiences[]') data[key] = value;
+            });
+            data.audiences = audienceBoxes.filter(function (box) { return box.checked; }).map(function (box) { return box.value; });
+            data.company_website = form.elements['company-website'].value;
+            var resumeType = ({pdf: 'application/pdf', doc: 'application/msword', docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'})[file.name.split('.').pop().toLowerCase()];
+            data.resume = {name: file.name, type: resumeType, base64: String(reader.result).split(',')[1]};
+            data.nonce = createNonce();
+            var post = document.createElement('form');
+            post.method = 'POST';
+            post.action = endpoint;
+            post.target = frame.name;
+            post.hidden = true;
+            var input = document.createElement('input');
+            input.name = 'payload';
+            input.value = JSON.stringify(data);
+            post.appendChild(input);
+            document.body.appendChild(post);
+            pending = {nonce: data.nonce, timer: setTimeout(function () {
+              showError('We could not confirm the submission. Please contact teach@thedopecloudteacher.org before trying again, so we can check whether it arrived.');
+            }, 45000)};
+            post.submit();
+            post.remove();
+          } catch (error) {
+            showError('Your browser could not prepare the application. Please refresh the page or open it directly in Safari or Chrome.');
+          }
         };
-        reader.readAsDataURL(file);
+        try {
+          reader.readAsDataURL(file);
+        } catch (error) {
+          showError('Could not read the résumé. Please select it again or open this page directly in Safari or Chrome.');
+        }
       });
     }());
   </script>
