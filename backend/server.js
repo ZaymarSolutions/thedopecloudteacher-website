@@ -960,11 +960,34 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
   try {
     if (!ensureStripeConfigured(res)) return;
 
-    const { planType, planName, price, interval } = req.body;
+    const { planType } = req.body;
+    const membershipPlans = {
+      student: {
+        name: 'Student Membership',
+        price: 9,
+        interval: 'month',
+        description: 'Foundational cloud access, study resources, community support, and course certificates'
+      },
+      pro: {
+        name: 'Pro Membership',
+        price: 19,
+        interval: 'month',
+        description: 'Student benefits plus DevOps, automation, priority support, career guidance, and resume review'
+      },
+      career: {
+        name: 'Career Accelerator',
+        price: 39,
+        interval: 'month',
+        description: 'Pro benefits plus AI/ML, cloud architecture, portfolio, interview, and career acceleration support'
+      }
+    };
+    const selectedPlan = membershipPlans[planType];
 
-    if (!planType || !planName || !price || !interval) {
-      return res.status(400).json({ error: 'Missing required fields' });
+    if (!selectedPlan) {
+      return res.status(400).json({ error: 'Invalid membership plan' });
     }
+
+    const { name: planName, price, interval, description } = selectedPlan;
 
     // Create or retrieve Stripe customer
     const user = db.prepare('SELECT email, stripe_customer_id FROM users WHERE id = ?').get(req.user.userId);
@@ -994,7 +1017,7 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
           currency: 'usd',
           product_data: {
             name: planName,
-            description: `Access to all courses and premium features`,
+            description,
           },
           unit_amount: Math.round(price * 100),
           recurring: {
