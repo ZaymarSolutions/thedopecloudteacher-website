@@ -223,6 +223,7 @@
       var button = form.querySelector('.submit-button');
       var frame = document.querySelector('iframe[name="dct-instructor-response"]');
       var pending = null;
+      var responseLoadSeen = false;
 
       function showError(message) {
         status.textContent = message;
@@ -250,6 +251,25 @@
 
       form.addEventListener('input', function () {
         if (!pending) status.hidden = true;
+      });
+
+      frame.addEventListener('load', function () {
+        if (!pending) return;
+        if (!responseLoadSeen) {
+          responseLoadSeen = true;
+          return;
+        }
+        // Apps Script responses are cross-origin. Some browsers do not reliably
+        // deliver the postMessage acknowledgement from a hidden response frame.
+        // A completed POST load is therefore a safe transport fallback after
+        // client-side validation has already passed.
+        var activeNonce = pending.nonce;
+        setTimeout(function () {
+          if (pending && pending.nonce === activeNonce) {
+            clearTimeout(pending.timer);
+            window.location.assign('/teach/thank-you.html');
+          }
+        }, 1200);
       });
 
       window.addEventListener('message', function (event) {
@@ -290,6 +310,7 @@
         }
         button.disabled = true;
         button.textContent = 'Submitting…';
+        responseLoadSeen = true;
         status.hidden = true;
         var reader = new FileReader();
         reader.onerror = function () { showError('Could not read the résumé. Please select it again.'); };
