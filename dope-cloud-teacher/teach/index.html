@@ -256,7 +256,7 @@
         var result = event.data;
         if (!pending || !result || result.type !== 'dct-instructor-result' ||
             result.nonce !== pending.nonce ||
-            !/^https:\/\/[a-z0-9.-]*googleusercontent\.com$/.test(event.origin)) return;
+            !/^https:\/\/(?:[a-z0-9.-]*googleusercontent\.com|script\.google\.com)$/.test(event.origin)) return;
         clearTimeout(pending.timer);
         if (result.ok) {
           window.location.assign('/teach/thank-you.html');
