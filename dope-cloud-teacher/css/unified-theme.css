@@ -7,8 +7,8 @@
   --dct-surface: #ffffff;
   --dct-surface-soft: #f7f5ff;
   --dct-text: #0B0B12;
-  --dct-text-soft: #3a3550;
-  --dct-border: #e2d9f7;
+  --dct-text-soft: #354150;
+  --dct-border: #d9e7f7;
   --dct-primary: #1267cf;
   --dct-secondary: #0B0B12;
   --dct-highlight: #3f94e9;
@@ -94,6 +94,51 @@ button,
   background: rgba(18, 103, 207, 0.1) !important;
   color: var(--dct-primary) !important;
 }
+
+/* One control language across legacy and current pages. */
+:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn),
+button[type="submit"], input[type="submit"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: .5rem !important;
+  min-height: 44px !important;
+  padding: .72rem 1.25rem !important;
+  border: 1px solid #1267cf !important;
+  border-radius: .7rem !important;
+  font: 700 1rem/1.25 "Source Sans 3", "Segoe UI", sans-serif !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  background: #1267cf !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease, transform .18s ease !important;
+}
+:is(a, button):is(.cta, .front-btn, .dct-btn, .button, .btn, .pg-btn, .demo-btn):is(.secondary, .alt, .outline, .btn--secondary, .pg-btn-secondary),
+:is(a, button).button-secondary {
+  background: #fff !important;
+  border-color: #9bbde5 !important;
+  color: #12487e !important;
+}
+:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn):hover,
+button[type="submit"]:hover, input[type="submit"]:hover { background: #12487e !important; border-color: #12487e !important; color: #fff !important; transform: translateY(-1px); }
+:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn):focus-visible,
+button[type="submit"]:focus-visible, input[type="submit"]:focus-visible { outline: 3px solid #69a9f0 !important; outline-offset: 3px !important; }
+@media (prefers-reduced-motion: reduce) { :is(a, button, input[type="submit"]):hover { transform: none !important; } }
+
+/* Clear, honest visuals for the contact page scenarios. */
+.scenario-visual, .scenario-photo { height: 180px; margin: 0 0 .7rem; border: 1px solid #b9d4ee; border-radius: 14px; overflow: hidden; background: #f0f6ff; }
+.scenario-visual { padding: .8rem 1rem; font-family: "Source Sans 3", sans-serif; color: #123454; }
+.scenario-visual > strong { display: block; font-size: .75rem; letter-spacing: .08em; color: #12487e; margin-bottom: .6rem; }
+.scenario-checklist span { display: block; padding: .24rem 0; border-top: 1px solid #c7daf0; font-size: .95rem; }
+.scenario-checklist b { color: #1267cf; margin-right: .7rem; }
+.scenario-flow > div { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: .28rem; margin-top: 1.2rem; }
+.scenario-flow span { background: #1267cf; color: white; border-radius: .35rem; padding: .5rem .18rem; text-align: center; font-size: .76rem; font-weight: 700; }
+.scenario-flow small { display: block; margin-top: 1.2rem; color: #12487e; font-size: .82rem; }
+.scenario-photo img { width: 100% !important; height: 146px !important; object-fit: cover !important; display: block !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+.scenario-photo figcaption { font-size: .74rem; padding: .35rem .6rem; color: #12487e; line-height: 1.3; }
 
 img.logo-img {
   image-rendering: auto;

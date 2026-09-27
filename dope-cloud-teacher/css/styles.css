@@ -8,8 +8,8 @@
   --primary-pink: #12487e;
   --primary-cyan: #3f94e9;
   --dark-purple: #0B0B12;
-  --accent-gold: #9333EA;
-  --accent-blue: #7C3AED;
+  --accent-gold: #3386ea;
+  --accent-blue: #3a8bed;
   --nav-surface: rgba(255, 255, 255, 0.95);
   --page-bg: #ffffff;
   --page-bg-soft: #F3F9FF;
@@ -298,7 +298,7 @@ nav.nav-links.is-open {
    ============================================ */
 
 .demo-banner {
-  background: linear-gradient(135deg, rgba(18, 103, 207, 0.08) 0%, rgba(18, 72, 126, 0.06) 45%, rgba(168, 85, 247, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(18, 103, 207, 0.08) 0%, rgba(18, 72, 126, 0.06) 45%, rgba(85,159,247, 0.08) 100%);
   color: var(--text-dark);
   padding: 3.25rem clamp(1.25rem, 5vw, 4rem);
   margin: 2rem auto 3rem;
@@ -1000,7 +1000,7 @@ section + section {
 
 .lead-form button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 18px rgba(75, 56, 105, 0.2);
+  box-shadow: 0 8px 18px rgba(56,78,105, 0.2);
 }
 
 .lead-success {
@@ -1034,7 +1034,7 @@ section + section {
 .button-primary:hover {
   background: var(--dark-purple);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(107, 70, 193, 0.4);
+  box-shadow: 0 6px 20px rgba(70,126,193, 0.4);
 }
 
 .button-secondary {
@@ -1189,8 +1189,8 @@ section + section {
   align-items: center;
   padding: 0.32rem 0.75rem;
   border-radius: 999px;
-  background: #e9ddff;
-  color: #4c1d95;
+  background: #ddecff;
+  color: #215695;
   font-size: 0.82rem;
   font-weight: 700;
 }
@@ -1483,7 +1483,7 @@ section + section {
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-weight: 600;
-  background: rgba(107, 70, 193, 0.2);
+  background: rgba(70,126,193, 0.2);
   color: var(--primary-purple);
 }
 

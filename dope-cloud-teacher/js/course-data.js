@@ -9,7 +9,7 @@ const COURSE_PATHWAYS = {
     duration: '15 hours',
     level: 'Beginner',
     category: 'Cloud Basics',
-    color: '#9333ea',
+    color: '#3386ea',
     icon: '️',
     skills: ['Cloud Computing Basics', 'AWS Core Services', 'Azure Fundamentals', 'GCP Essentials', 'Cloud Security'],
     
@@ -4384,7 +4384,7 @@ const COURSE_PATHWAYS = {
     duration: '35 hours',
     level: 'Intermediate',
     category: 'Data',
-    color: '#8b5cf6',
+    color: '#5ca2f6',
     icon: '',
     skills: ['Data Pipelines', 'ETL', 'Data Warehousing', 'Big Data', 'Analytics'],
     

@@ -309,7 +309,7 @@
           'color:#5a6a85;font-size:0.88rem;' +
           'font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;' +
         '}' +
-        '.dct-page-guide a{color:#6D28D9;font-weight:700;text-decoration:underline;}';
+        '.dct-page-guide a{color:#307dd9;font-weight:700;text-decoration:underline;}';
       document.head.appendChild(guideStyle);
     }
 

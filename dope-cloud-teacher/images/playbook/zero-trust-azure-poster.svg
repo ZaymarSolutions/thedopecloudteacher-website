@@ -5,11 +5,11 @@
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#070d22"/>
       <stop offset="55%" stop-color="#0d1f4d"/>
-      <stop offset="100%" stop-color="#150a2c"/>
+      <stop offset="100%" stop-color="#0a192c"/>
     </linearGradient>
     <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#00e1ff"/>
-      <stop offset="100%" stop-color="#9333ea"/>
+      <stop offset="100%" stop-color="#3386ea"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="1600" fill="url(#bg)"/>
@@ -26,10 +26,10 @@
 
   <g font-family="Segoe UI, Arial" font-size="36" font-weight="700" fill="#e2e8f0">
     <circle cx="600" cy="520" r="58" fill="#122b66" stroke="#4cc9ff"/><text x="536" y="530">IDENTITY</text>
-    <circle cx="860" cy="680" r="58" fill="#2c1865" stroke="#a855f7"/><text x="788" y="690">APPS</text>
+    <circle cx="860" cy="680" r="58" fill="#183b65" stroke="#559ff7"/><text x="788" y="690">APPS</text>
     <circle cx="860" cy="1025" r="58" fill="#063c66" stroke="#22d3ee"/><text x="790" y="1035">DATA</text>
     <circle cx="600" cy="1200" r="58" fill="#11356f" stroke="#38bdf8"/><text x="500" y="1210">POLICY</text>
-    <circle cx="340" cy="1025" r="58" fill="#4a1d95" stroke="#c084fc"/><text x="248" y="1035">NETWORK</text>
+    <circle cx="340" cy="1025" r="58" fill="#215695" stroke="#84bafc"/><text x="248" y="1035">NETWORK</text>
     <circle cx="340" cy="680" r="58" fill="#0c4a6e" stroke="#67e8f9"/><text x="246" y="690">DEVICES</text>
   </g>
 
@@ -40,8 +40,8 @@
   <text x="110" y="656" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">3. Assume breach</text>
   <text x="110" y="710" font-family="Segoe UI, Arial" font-size="32" fill="#e2e8f0">4. Monitor continuously</text>
 
-  <rect x="660" y="430" width="460" height="360" rx="16" fill="#1a1140" stroke="#a78bfa"/>
-  <text x="690" y="488" font-family="Segoe UI, Arial" font-size="42" fill="#c4b5fd" font-weight="800">Azure Services</text>
+  <rect x="660" y="430" width="460" height="360" rx="16" fill="#112640" stroke="#8bbdfa"/>
+  <text x="690" y="488" font-family="Segoe UI, Arial" font-size="42" fill="#b5d6fd" font-weight="800">Azure Services</text>
   <text x="690" y="548" font-family="Segoe UI, Arial" font-size="30" fill="#eef2ff">- Microsoft Entra ID</text>
   <text x="690" y="598" font-family="Segoe UI, Arial" font-size="30" fill="#eef2ff">- Conditional Access</text>
   <text x="690" y="648" font-family="Segoe UI, Arial" font-size="30" fill="#eef2ff">- PIM</text>

@@ -12,12 +12,12 @@
     overlay.id = 'dctLessonPaywall';
     overlay.style.cssText = 'position:fixed;inset:0;background:rgba(11,11,18,0.94);display:flex;align-items:center;justify-content:center;z-index:10000;padding:1rem;';
     overlay.innerHTML =
-      '<div style="max-width:520px;text-align:center;padding:2.2rem 1.8rem;background:linear-gradient(135deg,#1A1030,#0B0B12);border:2px solid #6D28D9;border-radius:20px;color:#fff;">' +
-      '<i class="fas fa-lock" style="font-size:2.6rem;color:#A855F7;margin-bottom:0.8rem;"></i>' +
-      '<h2 style="color:#A855F7;margin:0 0 0.6rem;font-size:1.5rem;">This Lesson Is Part of a Paid Course</h2>' +
+      '<div style="max-width:520px;text-align:center;padding:2.2rem 1.8rem;background:linear-gradient(135deg,#101f30,#0B0B12);border:2px solid #307dd9;border-radius:20px;color:#fff;">' +
+      '<i class="fas fa-lock" style="font-size:2.6rem;color:#559ff7;margin-bottom:0.8rem;"></i>' +
+      '<h2 style="color:#559ff7;margin:0 0 0.6rem;font-size:1.5rem;">This Lesson Is Part of a Paid Course</h2>' +
       '<p style="color:#e0e0e0;margin:0 0 1.4rem;line-height:1.6;">You can preview the first ' + FREE_LESSON_LIMIT + ' lessons for free. Unlock the rest of this course with a one-time purchase or an all-access membership.</p>' +
       '<div style="display:flex;gap:0.7rem;justify-content:center;flex-wrap:wrap;">' +
-      '<a href="pricing.html" style="background:#A855F7;color:#0B0B12;text-decoration:none;font-weight:700;padding:0.75rem 1.2rem;border-radius:10px;">See Pricing</a>' +
+      '<a href="pricing.html" style="background:#559ff7;color:#0B0B12;text-decoration:none;font-weight:700;padding:0.75rem 1.2rem;border-radius:10px;">See Pricing</a>' +
       '<a href="courses.html?course=' + COURSE_ID + '" style="background:rgba(255,255,255,0.1);color:#fff;text-decoration:none;font-weight:700;padding:0.75rem 1.2rem;border-radius:10px;border:1px solid rgba(255,255,255,0.25);">Back to Course</a>' +
       '</div>' +
       '</div>';

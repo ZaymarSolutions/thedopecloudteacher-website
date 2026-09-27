@@ -690,7 +690,7 @@ function createAuthModal() {
       transition: 0.3s;
     }
     .auth-button:hover {
-      background: #5f39c7;
+      background: #3979c7;
       transform: translateY(-2px);
     }
     .auth-form p {

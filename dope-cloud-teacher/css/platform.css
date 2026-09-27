@@ -79,7 +79,7 @@ a {
 
 .brand-copy span {
   font-size: 0.74rem;
-  color: #5b21b6;
+  color: #2868b6;
 }
 
 .platform-nav {
@@ -103,7 +103,7 @@ a {
 .platform-nav a:hover,
 .platform-nav a.active {
   background: var(--dct-accent-soft);
-  color: #5b21b6;
+  color: #2868b6;
 }
 
 .hero-band {
@@ -187,9 +187,9 @@ a {
   border-radius: 999px;
   font-size: 0.76rem;
   font-weight: 700;
-  color: #5b21b6;
+  color: #2868b6;
   background: var(--dct-accent-soft);
-  border: 1px solid #e4d4fb;
+  border: 1px solid #d4e6fb;
 }
 
 .section {
@@ -299,7 +299,7 @@ th {
 .dashboard-kpi {
   font-size: 1.7rem;
   font-weight: 800;
-  color: #5b21b6;
+  color: #2868b6;
 }
 
 .footer-note {

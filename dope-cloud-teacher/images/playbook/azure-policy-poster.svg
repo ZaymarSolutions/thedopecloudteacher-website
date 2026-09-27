@@ -6,11 +6,11 @@
   <image href="/logo.svg?v=20260704a" x="78" y="64" width="138" height="138"/>
   <text x="240" y="132" font-family="Segoe UI, Arial" font-size="42" fill="#ffffff" font-weight="700">The Dope Cloud Teacher</text>
   <text x="78" y="250" font-family="Segoe UI, Arial" font-size="86" fill="#ffffff" font-weight="900">CLOUD CONTROL</text>
-  <text x="78" y="332" font-family="Segoe UI, Arial" font-size="76" fill="#a78bfa" font-weight="900">WITH AZURE POLICY</text>
+  <text x="78" y="332" font-family="Segoe UI, Arial" font-size="76" fill="#8bbdfa" font-weight="900">WITH AZURE POLICY</text>
   <text x="78" y="388" font-family="Segoe UI, Arial" font-size="34" fill="#dbeafe">Enforce governance guardrails without slowing down delivery.</text>
 
   <rect x="78" y="430" width="1044" height="250" rx="16" fill="#0f172a" stroke="#818cf8"/>
-  <text x="112" y="496" font-family="Segoe UI, Arial" font-size="40" fill="#c4b5fd" font-weight="800">What Azure Policy Does</text>
+  <text x="112" y="496" font-family="Segoe UI, Arial" font-size="40" fill="#b5d6fd" font-weight="800">What Azure Policy Does</text>
   <text x="112" y="552" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">- Audit and enforce standards at scale</text>
   <text x="112" y="602" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">- Block non-compliant resource deployments</text>
   <text x="112" y="652" font-family="Segoe UI, Arial" font-size="30" fill="#e2e8f0">- Improve security, cost control, and operational consistency</text>
