@@ -19,10 +19,30 @@ The $95 set is one hoodie plus one pair of joggers, with separate sizes.
 The site only offers S, M, L, XL, and 2XL, so all 15 Printify product variants
 must be enabled. Do not advertise a placement the selected provider cannot print.
 
-The tee product URL supplied by the merchant contains candidate Printify ID
-`6ab94e714af43262550fbfc7`. Verify that this product belongs to shop
-`29102601`, uses the approved white tee and sleeve placement, and has the
-intended S–2XL variant IDs before entering it in `MERCH_PRODUCTS_JSON`.
+The saved tee `6ab94e714af43262550fbfc7` was read from Printify shop
+`29102601` on September 27, 2026. It is a white Bella+Canvas 3001 from
+provider 99. Its enabled, available variants include:
+
+| S | M | L | XL | 2XL |
+| ---: | ---: | ---: | ---: | ---: |
+| 18540 | 18541 | 18542 | 18543 | 18544 |
+
+The Printify product has populated `front`, `right_sleeve`, and `neck` areas.
+The front and sleeve are visible in the merchant's preview. Inspect the neck
+artwork and a physical sample before publishing or accepting payments.
+
+Candidates for the remaining drafts, pending Printify catalog and print-area
+verification in the merchant account:
+
+- Black hoodie: Hanes RS170, blueprint 6849, Fulfill Engine. The public listing
+  advertises front and both sleeves, S–4XL. Place the metallic blue lettering
+  on the chest and the DCT logo on the outer sleeve.
+  https://printify.com/app/products/6849/hanes/unisex-perfect-sweats-hooded-sweatshirt
+- Black joggers: Gildan 18200, blueprint 1398, SwiftPOD. The public listing
+  advertises front and back of both legs, S–3XL. Place CLOUD AI on a front
+  thigh and the DCT logo on the opposite back calf; verify actual printable
+  bounds in the product editor before finalizing.
+  https://printify.com/app/products/1398/gildan/unisex-sweatpants
 
 ## Private configuration
 
