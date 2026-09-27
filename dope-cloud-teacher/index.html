@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -17,11 +17,11 @@
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    :root { --front-ink:#0B0B12; --front-purple:#6D28D9; --front-deep:#4C1D95; --front-soft:#f7f2ff; --front-muted:#574e6e; }
+    :root { --front-ink:#0B0B12; --front-purple:#1267cf; --front-deep:#12487e; --front-soft:#edf5ff; --front-muted:#3d536e; }
     .front-page { background:#fff; }
     .front-brand-name { display:flex; flex-direction:column; margin-left:.7rem; line-height:1.05; }
     .front-brand-name strong { color:#0B0B12; font-size:1rem; }
-    .front-brand-name span { color:#6D28D9; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-top:.25rem; }
+    .front-brand-name span { color:#1267cf; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-top:.25rem; }
     .front-page header { position:sticky !important; }
     .front-wrap { width:min(1180px,calc(100% - 2rem)); margin:0 auto; }
     .front-hero { display:grid; grid-template-columns:1.05fr .95fr; gap:2rem; align-items:center; padding:3rem 0 2.4rem; }
@@ -33,44 +33,45 @@
     .front-actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.2rem; }
     .front-btn { display:inline-flex; align-items:center; gap:.45rem; padding:.78rem 1.05rem; border-radius:10px; text-decoration:none; font-weight:800; }
     .front-btn.primary { background:var(--front-purple); color:#fff; }
-    .front-btn.secondary { background:var(--front-soft); color:var(--front-deep); border:1px solid #ded0f7; }
-    .front-image { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:22px; border:1px solid #e2d9f7; box-shadow:0 18px 38px rgba(11,11,18,.14); }
+    .front-btn.secondary { background:var(--front-soft); color:var(--front-deep); border:1px solid #c9ddf6; }
+    .front-image { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:22px; border:1px solid #c9ddf6; box-shadow:0 18px 38px rgba(11,11,18,.14); }
     .front-trust { display:flex; flex-wrap:wrap; gap:.6rem; padding:0 0 1.8rem; }
-    .front-trust span { padding:.45rem .8rem; border-radius:999px; background:var(--front-soft); color:var(--front-deep); border:1px solid #e2d9f7; font-size:.85rem; font-weight:800; }
+    .front-trust span { padding:.45rem .8rem; border-radius:999px; background:var(--front-soft); color:var(--front-deep); border:1px solid #c9ddf6; font-size:.85rem; font-weight:800; }
     .front-band { margin:1rem 0 2rem; padding:2rem 0; }
     .front-band.soft { background:var(--front-soft); }
-    .front-band.dark { background:linear-gradient(135deg,#f7f2ff 0%,#ffffff 100%); color:var(--front-ink); border-top:1px solid #e2d9f7; border-bottom:1px solid #e2d9f7; }
+    .front-band.dark { background:linear-gradient(135deg,#edf5ff 0%,#ffffff 100%); color:var(--front-ink); border-top:1px solid #c9ddf6; border-bottom:1px solid #c9ddf6; }
     .front-band h2 { color:inherit; margin:0 0 .45rem; font-size:clamp(1.6rem,3vw,2.4rem); }
     .front-band > .front-wrap > p { max-width:720px; color:var(--front-muted); line-height:1.7; }
     .front-band.dark > .front-wrap > p { color:var(--front-muted); font-weight:600; }
     .front-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1rem; }
-    .program-image{width:100%;height:180px;object-fit:cover;display:block;border-radius:12px;margin-bottom:.9rem;border:1px solid #e2d9f7}.front-card { background:#fff; border:1px solid #e2d9f7; border-radius:16px; padding:1.1rem; box-shadow:0 10px 24px rgba(11,11,18,.06); }
-    .front-card.dark { background:#17101f; border-color:#332545; }
-    .front-card i { width:44px; height:44px; display:inline-flex; justify-content:center; align-items:center; border-radius:12px; background:#f1e8fc; color:var(--front-purple); font-size:1.2rem; }
+    .program-image{width:100%;height:180px;object-fit:cover;display:block;border-radius:12px;margin-bottom:.9rem;border:1px solid #c9ddf6}.front-card { background:#fff; border:1px solid #c9ddf6; border-radius:16px; padding:1.1rem; box-shadow:0 10px 24px rgba(11,11,18,.06); }
+    .front-card.dark { background:#10253c; border-color:#193b60; }
+    .front-card i { width:44px; height:44px; display:inline-flex; justify-content:center; align-items:center; border-radius:12px; background:#e5f0ff; color:var(--front-purple); font-size:1.2rem; }
     .front-card h3 { color:var(--front-ink); margin:.75rem 0 .35rem; }
-    .front-card.dark h3 { color:#f1e8fc; }
+    .front-card.dark h3 { color:#e5f0ff; }
     .front-card p { color:var(--front-muted); line-height:1.6; }
-    .front-card.dark p { color:#c6b8dd; }
+    .front-card.dark p { color:#c7dbf4; }
     .front-card a { color:var(--front-deep); font-weight:800; text-decoration:none; }
-    .front-card.dark a { color:#d9bfff; }
+    .front-card.dark a { color:#cce5ff; }
     .journey { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-top:1rem; }
-    .journey div { padding:1rem; text-align:center; border:1px solid #e2d9f7; border-radius:14px; background:#fff; color:var(--front-deep); font-weight:800; }
+    .journey div { padding:1rem; text-align:center; border:1px solid #c9ddf6; border-radius:14px; background:#fff; color:var(--front-deep); font-weight:800; }
     .journey strong { display:block; color:var(--front-purple); font-size:1.45rem; margin-bottom:.2rem; }
     .audience-list { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
-    .audience-list span { padding:.6rem .85rem; border:1px solid #ffffff; border-radius:999px; background:#ffffff; color:#32105f; font-weight:800; box-shadow:0 4px 14px rgba(0,0,0,.12); }
+    .audience-list span { padding:.6rem .85rem; border:1px solid #ffffff; border-radius:999px; background:#ffffff; color:#12487e; font-weight:800; box-shadow:0 4px 14px rgba(0,0,0,.12); }
     .front-split { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1rem; }
-    .front-panel { padding:1.3rem; border-radius:18px; background:#fff; border:1px solid #e2d9f7; }
+    .front-panel { padding:1.3rem; border-radius:18px; background:#fff; border:1px solid #c9ddf6; }
     .front-panel h3 { margin-top:0; color:var(--front-ink); }
     .front-panel p { color:var(--front-muted); line-height:1.65; }
     .front-final { padding:2.4rem 0 3rem; text-align:center; }
     .front-final h2 { color:var(--front-ink); }
-    .hiring-banner { margin:0 auto 2rem; padding:1.35rem 1.5rem; border-radius:18px; background:linear-gradient(135deg,var(--front-deep),var(--front-purple)); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:1.2rem; box-shadow:0 14px 30px rgba(76,29,149,.2); }
+    .hiring-banner { margin:0 auto 2rem; padding:1.35rem 1.5rem; border-radius:18px; background:linear-gradient(135deg,var(--front-deep),var(--front-purple)); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:1.2rem; box-shadow:0 14px 30px rgba(18,72,126,.2); }
     .hiring-banner h2 { color:#fff; margin:0 0 .35rem; font-size:clamp(1.35rem,2.5vw,1.9rem); }
-    .hiring-banner p { margin:0; color:#f1e8fc; line-height:1.55; max-width:760px; }
+    .hiring-banner p { margin:0; color:#e5f0ff; line-height:1.55; max-width:760px; }
     .hiring-banner .front-btn { flex:0 0 auto; background:#fff; color:var(--front-deep); }
     @media(max-width:780px){ .hiring-banner{align-items:flex-start;flex-direction:column} }
     @media(max-width:780px){ .front-hero,.front-split{grid-template-columns:1fr}.journey{grid-template-columns:1fr 1fr}.front-hero{padding-top:2rem} }
   </style>
+  <link rel="stylesheet" href="css/security-morale.css">
 </head>
 <body class="front-page">
   <header><div class="header-container"><a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
@@ -79,8 +80,12 @@
       <div><div class="front-kicker">The Dope Cloud Teacher</div><h1>Technology changed. <em>Let's make sure everybody can change with it.</em></h1><p class="front-tagline">AI, Cloud &amp; Cybersecurity Education</p><p>Practical technology education that helps people understand, use, protect, and create in today's digital world.</p><div class="front-actions"><a class="front-btn primary" href="programs.html">Explore Programs</a><a class="front-btn secondary" href="partners.html">Bring DCT to Your Community</a></div></div>
       <img class="front-image" src="images/homepage-classroom-hero.png" alt="Black and Brown learners collaborating in a technology classroom">
     </section>
-    <section class="front-wrap hiring-banner" aria-label="DCT instructor opportunities">
-      <div><div class="front-kicker" style="color:#e9d5ff">We&rsquo;re growing</div><h2>DCT is looking for instructors.</h2><p>Are you a cloud, AI, cybersecurity, or technology professional who can make complex topics feel human? Help us bring practical tech education to youth, adults, seniors, veterans, and communities across the DMV and beyond.</p></div>
+<section class="dct-promise" aria-labelledby="dct-promise-title">
+  <img src="images/cloud-ai-security-morale.png" alt="Cloud AI — Security and Morale" loading="lazy" width="1200" height="400">
+  <div><h2 id="dct-promise-title">Tech skills with security and morale behind them.</h2><p>At DCT, people learn how cloud and AI work, how to protect information, and how to use technology with sound judgment.</p><p><strong>Security</strong> means protecting people, data, and access. <strong>Morale</strong> means building the confidence, care, and accountability to put those skills to good use.</p></div>
+</section>
+        <section class="front-wrap hiring-banner" aria-label="DCT instructor opportunities">
+      <div><div class="front-kicker" style="color:#d5eaff">We&rsquo;re growing</div><h2>DCT is looking for instructors.</h2><p>Are you a cloud, AI, cybersecurity, or technology professional who can make complex topics feel human? Help us bring practical tech education to youth, adults, seniors, veterans, and communities across the DMV and beyond.</p></div>
       <a class="front-btn" href="teach/">Explore Instructor Opportunities</a>
     </section>
     <section class="front-wrap front-trust" aria-label="DCT delivery contexts"><span>Community-centered</span><span>DMV-ready</span><span>Governance-aware</span><span>Built for real people</span></section>
