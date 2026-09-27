@@ -202,7 +202,7 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
     if (!process.env.PRINTIFY_API_TOKEN) return res.status(503).json({ error: 'Printify connection is not configured' });
     try {
       if (!assetCheckCache || assetCheckCache.expires < Date.now()) {
-        const response = await printifyApiRequest('GET', '/v1/uploads.json?limit=100&page=1');
+        const response = await printifyApiRequest('GET', '/v1/uploads.json');
         assetCheckCache = { expires: Date.now() + 60000, result: summarizeArtwork(response) };
       }
       res.json(assetCheckCache.result);
