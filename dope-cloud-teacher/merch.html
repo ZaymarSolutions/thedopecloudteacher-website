@@ -18,7 +18,7 @@
     .merch-head { margin:2.5rem 0 1rem; }
     .merch-head h2 { margin:0 0 .35rem; }
     .merch-head p { color:#334e67; }
-    .merch-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; }
+    .merch-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.2rem; }
     .merch-card { overflow:hidden; border:1px solid #c8dff6; border-radius:1rem; background:#fff; box-shadow:0 10px 25px rgba(10,52,100,.07); }
     .product-frame { position:relative; aspect-ratio:2/3; overflow:hidden; background:#102b48; }
     .product-frame img { display:block!important; position:absolute; top:0; left:0; width:300%!important; max-width:none!important; height:100%!important; object-fit:fill!important; border:0!important; box-shadow:none!important; border-radius:0!important; }
@@ -28,6 +28,10 @@
     .merch-card h3 { color:#102b48; margin:0 0 .45rem; font-size:1.3rem; }
     .merch-card p { color:#334e67; line-height:1.55; font-size:1rem; margin:.5rem 0; }
     .merch-card .item-detail { border-top:1px solid #d9e8f7; padding-top:.8rem; font-size:.94rem; }
+    .merch-price { display:block; color:#12487e !important; font-size:1.4rem; font-weight:800; margin:.55rem 0; }
+    .set-frame { display:grid; grid-template-columns:1fr 1fr; aspect-ratio:4/3; }
+    .set-frame .product-frame { height:100%; aspect-ratio:auto; }
+    .set-frame .product-frame.joggers img { transform:translateX(-66.666%); }
     .merch-card .status { display:inline-block; margin-top:.5rem; padding:.3rem .65rem; background:#eaf4ff; color:#12487e; border-radius:.4rem; font-size:.85rem; font-weight:700; }
     .merch-note { margin-top:1.6rem; padding:1.25rem 1.5rem; border-left:4px solid #1267cf; background:#edf5ff; border-radius:.5rem; }
     .merch-note h2 { margin:0 0 .3rem; font-size:1.3rem; }
@@ -35,7 +39,7 @@
     .merch-note a { color:#12487e; font-weight:700; }
     .merch-foot { margin-top:2rem; }
     .merch-foot a { display:inline-flex; padding:.72rem 1.25rem; border-radius:.7rem; background:#1267cf; color:#fff; text-decoration:none; font-weight:700; }
-    @media(max-width:780px){.merch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:1050px){.merch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:560px){.merch-grid{grid-template-columns:1fr}}
   </style>
 </head>
@@ -45,11 +49,12 @@
   <section class="merch-intro"><span class="eyebrow">New · DCT apparel preview</span><h1>Wear your curiosity.</h1><p>Bold blue details on everyday pieces made for learners, builders, and people who bring the cloud to life. These are design mockups; the finished apparel may vary slightly.</p><img src="images/editorial/dct-merch-trio.webp" alt="DCT black Dope Shitz hoodie, white AI shield tee, and black Cloud AI joggers" width="1774" height="887"></section>
   <div class="merch-head"><h2>Explore the collection</h2><p>Each graphic has its own piece. DCT blue stays the signature color.</p></div>
   <div class="merch-grid">
-    <article class="merch-card"><div class="product-frame hoodie"><img src="images/editorial/dct-merch-trio.webp" alt="Black Dope Shitz hoodie with DCT blue sleeve mark" loading="lazy" width="1774" height="887"></div><div class="merch-card-content"><h3>Dope Shitz Hoodie</h3><p>Black pullover with metallic blue chest artwork and a DCT mark centered on the outer sleeve.</p><p class="item-detail"><strong>Color:</strong> black · <strong>Sizes planned:</strong> S–2XL</p><span class="status">Checkout opening after pricing</span></div></article>
-    <article class="merch-card"><div class="product-frame tee"><img src="images/editorial/dct-merch-trio.webp" alt="White AI shield tee with blue DCT sleeve mark" loading="lazy" width="1774" height="887"></div><div class="merch-card-content"><h3>AI Shield Tee</h3><p>White crewneck with the blue AI shield across the chest and the DCT mark centered on the outer sleeve.</p><p class="item-detail"><strong>Color:</strong> white · <strong>Sizes planned:</strong> S–2XL</p><span class="status">Checkout opening after pricing</span></div></article>
-    <article class="merch-card"><div class="product-frame joggers"><img src="images/editorial/dct-merch-trio.webp" alt="Black Cloud AI joggers with a blue DCT calf mark" loading="lazy" width="1774" height="887"></div><div class="merch-card-content"><h3>Cloud AI Joggers</h3><p>Black joggers with Cloud AI on the front thigh. The DCT mark sits on the opposite back calf.</p><p class="item-detail"><strong>Color:</strong> black · <strong>Sizes planned:</strong> S–2XL · Pair with the hoodie for the set.</p><span class="status">Checkout opening after pricing</span></div></article>
+    <article class="merch-card"><div class="product-frame hoodie"><img src="images/editorial/dct-merch-trio.webp" alt="Black Dope Shitz hoodie with DCT blue sleeve mark" loading="lazy" width="1774" height="887"></div><div class="merch-card-content"><h3>Dope Shitz Hoodie</h3><p>Black pullover with metallic blue chest artwork and a DCT mark centered on the outer sleeve.</p><p class="item-detail"><strong>Color:</strong> black · <strong>Sizes planned:</strong> S–2XL</p><span class="merch-price">$59</span><span class="status">Print-on-demand checkout in setup</span></div></article>
+    <article class="merch-card"><div class="product-frame tee"><img src="images/editorial/dct-merch-trio.webp" alt="White AI shield tee with blue DCT sleeve mark" loading="lazy" width="1774" height="887"></div><div class="merch-card-content"><h3>AI Shield Tee</h3><p>White crewneck with the blue AI shield across the chest and the DCT mark centered on the outer sleeve.</p><p class="item-detail"><strong>Color:</strong> white · <strong>Sizes planned:</strong> S–2XL</p><span class="merch-price">$29</span><span class="status">Print-on-demand checkout in setup</span></div></article>
+    <article class="merch-card"><div class="product-frame joggers"><img src="images/editorial/dct-merch-trio.webp" alt="Black Cloud AI joggers with a blue DCT calf mark" loading="lazy" width="1774" height="887"></div><div class="merch-card-content"><h3>Cloud AI Joggers</h3><p>Black joggers with Cloud AI on the front thigh. The DCT mark sits on the opposite back calf.</p><p class="item-detail"><strong>Color:</strong> black · <strong>Sizes planned:</strong> S–2XL · Pair with the hoodie for the set.</p><span class="merch-price">$45</span><span class="status">Print-on-demand checkout in setup</span></div></article>
+    <article class="merch-card"><div class="set-frame" role="img" aria-label="Black Dope Shitz hoodie paired with black Cloud AI joggers"><div class="product-frame hoodie"><img src="images/editorial/dct-merch-trio.webp" alt="" loading="lazy" width="1774" height="887"></div><div class="product-frame joggers"><img src="images/editorial/dct-merch-trio.webp" alt="" loading="lazy" width="1774" height="887"></div></div><div class="merch-card-content"><h3>Hoodie + Jogger Set</h3><p>The Dope Shitz hoodie and Cloud AI joggers together. Blue DCT marks on the sleeve and opposite back calf.</p><p class="item-detail"><strong>Color:</strong> black · <strong>Sizes planned:</strong> S–2XL for each piece.</p><span class="merch-price">$95 <small>save $9 as a set</small></span><span class="status">Print-on-demand checkout in setup</span></div></article>
   </div>
-  <section class="merch-note" aria-labelledby="merch-next"><h2 id="merch-next">How ordering will work</h2><p>Choose your piece and size, pay securely through Stripe, and receive an order confirmation. Shipping address and shipping cost will be shown before payment. Checkout opens when final prices and shipping terms are set.</p><p>Questions about fit or availability? <a href="mailto:thedopecloudteacher@gmail.com?subject=DCT%20merch%20question">Email the DCT team</a>.</p></section>
+  <section class="merch-note" aria-labelledby="merch-next"><h2 id="merch-next">How ordering will work</h2><p>These are approved retail prices before shipping. We are connecting a print-on-demand partner to handle production and delivery. Once the product templates, placements, and samples are verified, you will choose your size and see shipping costs at checkout. Orders are not open yet.</p><p>Questions about fit or availability? <a href="mailto:thedopecloudteacher@gmail.com?subject=DCT%20merch%20question">Email the DCT team</a>.</p></section>
   <div class="merch-foot"><a href="programs.html">Explore DCT programs</a></div>
 </main>
 <script src="js/global-ui.js"></script><script src="js/site-config.js"></script><script src="js/analytics.js"></script>
