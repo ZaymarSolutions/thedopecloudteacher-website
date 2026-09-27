@@ -126,6 +126,7 @@
       { href: 'about.html', label: 'About', sections: [], pages: ['about.html', 'governance-responsible-ai.html'] },
       { href: 'partners.html', label: 'Partners', sections: ['partners'], pages: ['partners.html', 'corporate-training.html', 'b2b.html'] },
       { href: 'resources.html', label: 'Resources', sections: ['resources'], pages: ['resources.html', 'blog.html', 'playbook/index.html'] },
+      { href: 'merch.html', label: 'Merch', sections: ['merch'], pages: ['merch.html'] },
       { href: 'contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
     ];
 
