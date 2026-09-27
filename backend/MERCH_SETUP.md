@@ -19,6 +19,11 @@ The $95 set is one hoodie plus one pair of joggers, with separate sizes.
 The site only offers S, M, L, XL, and 2XL, so all 15 Printify product variants
 must be enabled. Do not advertise a placement the selected provider cannot print.
 
+The tee product URL supplied by the merchant contains candidate Printify ID
+`6ab94e714af43262550fbfc7`. Verify that this product belongs to shop
+`29102601`, uses the approved white tee and sleeve placement, and has the
+intended S–2XL variant IDs before entering it in `MERCH_PRODUCTS_JSON`.
+
 ## Private configuration
 
 In the backend host's secret environment, set:
