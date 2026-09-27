@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { setupMerch } = require('../merch-checkout');
+const { setupMerch, summarizeArtwork } = require('../merch-checkout');
 
 const address = { first_name: 'Ada', last_name: 'Lovelace', email: 'ada@example.org',
   phone: '', address1: '1 Main St', address2: '', city: 'Albany', region: 'NY', zip: '12207' };
@@ -144,4 +144,13 @@ test('blank check selects black variants and returns provider print areas withou
   assert.deepEqual(body.blanks[1].printAreas.map(area => area.position), ['front', 'right_leg_back']);
   assert.equal(JSON.stringify(body).includes('fixture-token'), false);
   assert.equal(f.catalogCalls.length, 4);
+});
+
+test('media check reveals only matching artwork metadata', () => {
+  const result = summarizeArtwork({ last_page: 2, data: [
+    { id: 'a', file_name: 'DOPE SHITZ.png', width: 1536, height: 1024, preview_url: 'private-url' },
+    { id: 'b', file_name: 'family-photo.png', width: 100, height: 100 }
+  ] });
+  assert.deepEqual(result, { scanned: 2, morePages: true,
+    matches: [{ id: 'a', name: 'DOPE SHITZ.png', width: 1536, height: 1024 }] });
 });
