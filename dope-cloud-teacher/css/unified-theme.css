@@ -3,9 +3,9 @@
 /* Global color-schema enforcement for all DCT pages loaded with global-ui.js */
 :root {
   --dct-bg-1: #ffffff;
-  --dct-bg-2: #f6f2ff;
+  --dct-bg-2: #f2f8ff;
   --dct-surface: #ffffff;
-  --dct-surface-soft: #f7f5ff;
+  --dct-surface-soft: #f5faff;
   --dct-text: #0B0B12;
   --dct-text-soft: #354150;
   --dct-border: #d9e7f7;
