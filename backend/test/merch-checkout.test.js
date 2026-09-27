@@ -55,6 +55,16 @@ function fixture() {
   const printifyCalls = [];
   const requestPrintify = async (method, path, payload) => {
     printifyCalls.push({ method, path, payload });
+    if (path === '/products/6ab94e714af43262550fbfc7.json') return {
+      id: '6ab94e714af43262550fbfc7', shop_id: 29102601, title: 'AI Shield Tee',
+      blueprint_id: 12, print_provider_id: 34,
+      variants: [{ id: 101, title: 'White / S', is_enabled: true, is_available: true },
+        { id: 102, title: 'Black / S', is_enabled: false, is_available: true }],
+      print_areas: [{ placeholders: [
+        { position: 'front', images: [{ id: 'private-image' }] },
+        { position: 'left_sleeve', images: [{ id: 'private-logo' }] }
+      ] }]
+    };
     if (path === '/orders/shipping.json') return { standard: 799 };
     if (path === '/orders.json') return { id: 'printify-order-1' };
     return {};
@@ -94,4 +104,18 @@ test('unpaid webhook and invalid size do not submit to production', async () => 
   assert.equal(f.getRow(), undefined);
   assert.equal(await f.fulfill({ payment_status: 'unpaid', metadata: { orderType: 'merch' } }), true);
   assert.equal(f.printifyCalls.length, 0);
+});
+
+test('tee check reads only the saved product and reveals only review metadata', async () => {
+  const f = fixture();
+  process.env.MERCH_CHECKOUT_ENABLED = 'false';
+  let body;
+  await f.routes['GET /api/merch/tee-check']({}, { json(value) { body = value; } });
+  assert.equal(body.teeFoundInStore, true);
+  assert.deepEqual(body.enabledVariants, [{ id: 101, title: 'White / S', available: true }]);
+  assert.deepEqual(body.printPositions, ['front', 'left_sleeve']);
+  assert.equal(JSON.stringify(body).includes('private-image'), false);
+  assert.equal(f.printifyCalls.length, 1);
+  await f.routes['GET /api/merch/tee-check']({}, { json() {} });
+  assert.equal(f.printifyCalls.length, 1);
 });
