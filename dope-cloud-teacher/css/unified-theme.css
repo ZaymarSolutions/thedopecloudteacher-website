@@ -96,7 +96,7 @@ button,
 }
 
 /* One control language across legacy and current pages. */
-:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn),
+:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .cta-link, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn),
 button[type="submit"], input[type="submit"] {
   display: inline-flex !important;
   align-items: center !important;
@@ -116,15 +116,15 @@ button[type="submit"], input[type="submit"] {
   cursor: pointer;
   transition: background-color .18s ease, border-color .18s ease, transform .18s ease !important;
 }
-:is(a, button):is(.cta, .front-btn, .dct-btn, .button, .btn, .pg-btn, .demo-btn):is(.secondary, .alt, .outline, .btn--secondary, .pg-btn-secondary),
+:is(a, button):is(.cta, .front-btn, .dct-btn, .cta-link, .button, .btn, .pg-btn, .demo-btn):is(.secondary, .alt, .outline, .btn--secondary, .pg-btn-secondary),
 :is(a, button).button-secondary {
   background: #fff !important;
   border-color: #9bbde5 !important;
   color: #12487e !important;
 }
-:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn):hover,
+:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .cta-link, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn):hover,
 button[type="submit"]:hover, input[type="submit"]:hover { background: #12487e !important; border-color: #12487e !important; color: #fff !important; transform: translateY(-1px); }
-:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn):focus-visible,
+:is(a, button, input[type="submit"]):is(.cta, .front-btn, .dct-btn, .btn-primary, .btn-nav, .cta-button, .cta-link, .button, .submit-button, .btn, .pg-btn, .plan-cta, .site-nav__cta, .btn-enroll, .btn-purchase, .demo-btn):focus-visible,
 button[type="submit"]:focus-visible, input[type="submit"]:focus-visible { outline: 3px solid #69a9f0 !important; outline-offset: 3px !important; }
 @media (prefers-reduced-motion: reduce) { :is(a, button, input[type="submit"]):hover { transform: none !important; } }
 

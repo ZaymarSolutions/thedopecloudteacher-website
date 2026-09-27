@@ -29,6 +29,38 @@
     .cta-row { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.2rem; }
     .cta-link { display:inline-flex; padding:.72rem 1rem; border-radius:10px; text-decoration:none; font-weight:800; background:#1267cf; color:#fff; }
     .cta-link.alt { background:#e9f3ff; color:#123e70; border:1px solid #c8dff6; }
+    .intro h1, .intro .eyebrow { color:#fff !important; }
+    .intro p { color:#e3f2ff !important; }
+    .program-card { background:#fff !important; color:#143451 !important; }
+    .program-card h2, .program-card p, .program-card strong { color:#143451 !important; }
+    .program-card p { font-size:1rem; line-height:1.6; }
+    .program-card a.cta-link { color:#12487e !important; }
+    .program-visual { height:190px; margin-bottom:1rem; border:1px solid #bbd8f3; border-radius:12px; overflow:hidden; padding:1rem; color:#11385e; font-family:"Source Sans 3",sans-serif; }
+    .visual-label { display:block; font-size:.75rem; font-weight:800; letter-spacing:.08em; color:#12487e !important; }
+    .visual-cloud { background:#edf5ff; }
+    .cloud-hub { text-align:center; margin-top:.65rem; }
+    .cloud-hub strong { display:inline-block; padding:.28rem 1.5rem; background:#1267cf; color:#fff !important; border-radius:2rem; }
+    .cloud-hub div { display:flex; justify-content:space-around; gap:.3rem; margin-top:.9rem; border-top:2px solid #9cbfe4; padding-top:.55rem; }
+    .cloud-hub span { font-size:.84rem; font-weight:700; color:#123e70 !important; }
+    .visual-security { background:#102b48; }
+    .visual-security .visual-label { color:#b9dbff !important; }
+    .control-list { display:grid; gap:.36rem; margin-top:.6rem; }
+    .control-list span { display:block; color:#fff !important; font-size:.94rem; }
+    .control-list b { color:#95caff; margin-right:.6rem; }
+    .visual-ai { background:#e8f5fa; }
+    .ai-loop { display:flex; align-items:center; gap:.3rem; margin:1.15rem 0 .7rem; }
+    .ai-loop span { flex:1; background:#fff; border:1px solid #a9cce8; border-radius:.5rem; padding:.45rem .1rem; color:#123e70 !important; font-weight:750; text-align:center; font-size:.82rem; line-height:1.2; }
+    .visual-ai small { font-size:.8rem; color:#12487e !important; }
+    .comic-feature { display:grid; grid-template-columns:1fr minmax(220px,.82fr); gap:1.7rem; align-items:center; margin-top:2rem; padding:clamp(1.2rem,3vw,2rem); border-radius:20px; background:#eef5fd; border:1px solid #c8dff6; }
+    .comic-copy h2 { max-width:20ch; margin:.5rem 0; font-size:clamp(1.5rem,3vw,2rem); }
+    .comic-copy p { color:#243d57; font-size:1.05rem; line-height:1.65; max-width:55ch; }
+    .feature-kicker { color:#12487e !important; font-weight:800; text-transform:uppercase; letter-spacing:.08em; font-size:.78rem; }
+    .comic-copy .cta-link { margin-top:.8rem; }
+    .comic-copy .text-link { display:block; margin-top:.8rem; color:#12487e; font-weight:700; }
+    .comic-preview { display:block; position:relative; border-radius:12px; overflow:hidden; box-shadow:0 12px 28px rgba(8,38,75,.2); }
+    .comic-preview img { display:block; width:100%; height:300px; object-fit:cover; object-position:top center; }
+    .comic-preview span { display:block; background:#123e70; color:#fff !important; font-weight:700; text-align:center; padding:.6rem; }
+    @media(max-width:680px){.comic-feature{grid-template-columns:1fr}.comic-preview img{height:260px}}
     @media(max-width:680px){.journey-flow{grid-template-columns:1fr 1fr}.intro{padding:1.4rem}}
   </style>
 </head>
@@ -38,10 +70,14 @@
     <section class="intro"><p class="eyebrow">AI, Cloud &amp; Cybersecurity Education</p><h1>Four clear ways to build technology confidence.</h1><p>Our programs help people understand what technology is, use it with purpose, protect themselves and their communities, and create something useful with it.</p><div class="cta-row"><a class="cta-link" href="corporate-training.html">Bring DCT to Your Community</a><a class="cta-link alt" href="classes/">Find a Class</a></div></section>
     <section><h2>Core Programs</h2><div class="program-grid">
       <article class="program-card"><img src="images/editorial/classroom-real.jpg" alt="Students discussing technology together at a classroom table" loading="lazy"><h2>AI Fundamentals</h2><p>Learn how AI works, where it fits, and how to use it with honesty, privacy, human review, and practical judgment.</p><p><strong>For:</strong> students, adults, seniors, and teams beginning with AI.</p><a href="ai-900-azure-ai-fundamentals.html" class="cta-link alt">Learn More</a></article>
-      <article class="program-card"><img src="images/editorial/cloud-fundamentals.webp" alt="Illustration showing cloud fundamentals in practical use" loading="lazy"><h2>Cloud Fundamentals</h2><p>Build plain-language understanding of cloud services, accounts, storage, identity, cost, and the systems people use every day.</p><p><strong>For:</strong> beginners, youth, career changers, and workforce learners.</p><a href="az-900-azure-fundamentals.html" class="cta-link alt">Learn More</a></article>
-      <article class="program-card"><img src="images/editorial/cloud-security.webp" alt="Illustration showing cloud security in practical use" loading="lazy"><h2>Cloud Security</h2><p>Practice identity, MFA, least privilege, governance, monitoring, and the habits that keep cloud environments trustworthy.</p><p><strong>For:</strong> IT learners, teams, public agencies, and security-minded beginners.</p><a href="az-104-azure-administrator.html" class="cta-link alt">Learn More</a></article>
-      <article class="program-card"><img src="images/editorial/ai-security.webp" alt="Illustration showing ai security in practical use" loading="lazy"><h2>AI Security</h2><p>Understand responsible AI, data boundaries, bias checks, prompt safety, oversight, and what to do when an AI system is wrong.</p><p><strong>For:</strong> educators, agencies, small businesses, and anyone bringing AI into real work.</p><a href="governance-responsible-ai.html" class="cta-link alt">Learn More</a></article>
+      <article class="program-card"><div class="program-visual visual-cloud" role="img" aria-label="Cloud fundamentals diagram connecting identity, storage and compute"><span class="visual-label">HOW THE CLOUD FITS TOGETHER</span><div class="cloud-hub"><strong>Cloud</strong><div><span>Identity</span><span>Storage</span><span>Compute</span></div></div></div><h2>Cloud Fundamentals</h2><p>Build plain-language understanding of cloud services, accounts, storage, identity, cost, and the systems people use every day.</p><p><strong>For:</strong> beginners, youth, career changers, and workforce learners.</p><a href="az-900-azure-fundamentals.html" class="cta-link alt">Learn More</a></article>
+      <article class="program-card"><div class="program-visual visual-security" role="img" aria-label="Cloud security controls: verify identity, limit access, and watch activity"><span class="visual-label">THREE PRACTICAL CONTROLS</span><div class="control-list"><span><b>01</b> Verify identity</span><span><b>02</b> Limit access</span><span><b>03</b> Watch activity</span></div></div><h2>Cloud Security</h2><p>Practice identity, MFA, least privilege, governance, monitoring, and the habits that keep cloud environments trustworthy.</p><p><strong>For:</strong> IT learners, teams, public agencies, and security-minded beginners.</p><a href="az-104-azure-administrator.html" class="cta-link alt">Learn More</a></article>
+      <article class="program-card"><div class="program-visual visual-ai" role="img" aria-label="AI safety workflow: check the input, review the output, then decide as a human"><span class="visual-label">HUMAN JUDGMENT IN THE LOOP</span><div class="ai-loop"><span>Check<br>input</span><span>Review<br>output</span><span>Human<br>decision</span></div><small>Privacy · accuracy · accountability</small></div><h2>AI Security</h2><p>Understand responsible AI, data boundaries, bias checks, prompt safety, oversight, and what to do when an AI system is wrong.</p><p><strong>For:</strong> educators, agencies, small businesses, and anyone bringing AI into real work.</p><a href="governance-responsible-ai.html" class="cta-link alt">Learn More</a></article>
     </div></section>
+    <section class="comic-feature" aria-labelledby="comic-heading">
+      <div class="comic-copy"><span class="feature-kicker">Learn it through a story</span><h2 id="comic-heading">When every admin is locked out, who has the spare key?</h2><p>Meet the Azure “break glass” account: a carefully protected emergency path back into Microsoft Entra when normal sign-in fails. Explore DCT’s illustrated story, then use Microsoft’s current documentation for the actual setup.</p><a class="cta-link" href="images/programs/azure-break-glass-comic.png" target="_blank" rel="noopener">Open the full comic</a><a class="text-link" href="https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access" target="_blank" rel="noopener noreferrer">Read Microsoft’s emergency access guidance ↗</a></div>
+      <a class="comic-preview" href="images/programs/azure-break-glass-comic.png" target="_blank" rel="noopener" aria-label="Open the full Azure break glass illustrated guide"><img src="images/programs/azure-break-glass-comic.png" alt="DCT illustrated guide to the purpose and protection of emergency access accounts" loading="lazy" width="1227" height="1290"><span>View full-size comic</span></a>
+    </section>
     <section class="journey"><h2>Our Learning Model</h2><p>Every program moves through the same practical sequence.</p><div class="journey-flow"><div class="journey-step"><span>01</span>Understand</div><div class="journey-step"><span>02</span>Use</div><div class="journey-step"><span>03</span>Protect</div><div class="journey-step"><span>04</span>Create</div></div></section>
   </main>
   <script src="js/global-ui.js"></script>
