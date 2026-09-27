@@ -13,6 +13,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const https = require('https');
 const { sendEmail } = require('./email-service');
+const { setupMerch } = require('./merch-checkout');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -231,7 +232,13 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-app.use(express.json());
+// Stripe signs the exact request bytes. Preserve them before JSON parsing so
+// webhook verification works with the same middleware used by other API routes.
+app.use(express.json({
+  verify: (req, res, buffer) => {
+    if (req.originalUrl.split('?')[0] === '/api/webhook') req.rawBody = Buffer.from(buffer);
+  }
+}));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -912,6 +919,8 @@ app.get('/api/courses/:courseId/access', authenticateToken, (req, res) => {
 
 // ==================== STRIPE PAYMENT ROUTES ====================
 
+const fulfillMerch = setupMerch(app, db, stripe, buildFrontendUrl());
+
 // Create checkout session
 app.post('/api/create-checkout', authenticateToken, async (req, res) => {
   try {
@@ -1051,7 +1060,7 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
 });
 
 // Stripe webhook handler
-app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
+app.post('/api/webhook', async (req, res) => {
   if (!ensureStripeConfigured(res)) return;
 
   const sig = req.headers['stripe-signature'];
@@ -1059,13 +1068,24 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, 
 
   try {
     event = stripe.webhooks.constructEvent(
-      req.body,
+      req.rawBody,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
   } catch (err) {
     console.error('Webhook signature verification failed:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  // Fulfill merchandise only after confirmed payment. Keep it separate from
+  // course purchases, which require a logged-in user.
+  if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
+    try {
+      if (await fulfillMerch(event.data.object)) return res.json({ received: true });
+    } catch (error) {
+      console.error('Merch fulfillment failed:', error);
+      return res.status(500).json({ error: 'Merch fulfillment will be retried' });
+    }
   }
 
   // Handle the event

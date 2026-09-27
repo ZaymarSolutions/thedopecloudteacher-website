@@ -39,8 +39,17 @@
     .merch-note a { color:#12487e; font-weight:700; }
     .merch-foot { margin-top:2rem; }
     .merch-foot a { display:inline-flex; padding:.72rem 1.25rem; border-radius:.7rem; background:#1267cf; color:#fff; text-decoration:none; font-weight:700; }
+    .merch-checkout { margin-top:1.7rem; padding:1.5rem; border:1px solid #c8dff6; border-radius:1rem; background:white; }
+    .merch-checkout h2 { margin:0 0 .4rem; }
+    .merch-checkout-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:1rem 0; }
+    .merch-checkout label { display:block; color:#102b48; font-weight:700; }
+    .merch-checkout input,.merch-checkout select { display:block; width:100%; margin-top:.3rem; padding:.7rem; border:1px solid #91aac3; border-radius:.45rem; background:white; font:inherit; }
+    .merch-checkout button { border:0; border-radius:.55rem; padding:.85rem 1.4rem; background:#1267cf; color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+    .merch-checkout button:disabled { opacity:.6; cursor:wait; }
+    .merch-checkout .wide { grid-column:1/-1; }
+    .merch-checkout .checkout-message { min-height:1.5em; margin:.6rem 0; }
     @media(max-width:1050px){.merch-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:560px){.merch-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){.merch-grid,.merch-checkout-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -55,8 +64,31 @@
     <article class="merch-card"><div class="set-frame" role="img" aria-label="Black Dope Shitz hoodie paired with black Cloud AI joggers"><div class="product-frame hoodie"><img src="images/editorial/dct-merch-trio.webp" alt="" loading="lazy" width="1774" height="887"></div><div class="product-frame joggers"><img src="images/editorial/dct-merch-trio.webp" alt="" loading="lazy" width="1774" height="887"></div></div><div class="merch-card-content"><h3>Hoodie + Jogger Set</h3><p>The Dope Shitz hoodie and Cloud AI joggers together. Blue DCT marks on the sleeve and opposite back calf.</p><p class="item-detail"><strong>Color:</strong> black · <strong>Sizes planned:</strong> S–2XL for each piece.</p><span class="merch-price">$95 <small>save $9 as a set</small></span><span class="status">Print-on-demand checkout in setup</span></div></article>
   </div>
   <section class="merch-note" aria-labelledby="merch-next"><h2 id="merch-next">How ordering will work</h2><p>These are approved retail prices before shipping. We are connecting a print-on-demand partner to handle production and delivery. Once the product templates, placements, and samples are verified, you will choose your size and see shipping costs at checkout. Orders are not open yet.</p><p>Questions about fit or availability? <a href="mailto:thedopecloudteacher@gmail.com?subject=DCT%20merch%20question">Email the DCT team</a>.</p></section>
+  <section class="merch-checkout" id="merch-checkout" aria-labelledby="merch-checkout-title" hidden>
+    <h2 id="merch-checkout-title">Place your order</h2>
+    <p>Enter your US delivery address to calculate standard shipping. You will review the total and pay securely with Stripe.</p>
+    <form id="merch-order-form">
+      <div class="merch-checkout-grid">
+        <label>Item<select name="product" required><option value="hoodie">Dope Shitz Hoodie — $59</option><option value="tee">AI Shield Tee — $29</option><option value="joggers">Cloud AI Joggers — $45</option><option value="set">Hoodie + Jogger Set — $95</option></select></label>
+        <label data-single-size>Size<select name="size" required><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option></select></label>
+        <label data-set-size hidden>Hoodie size<select name="hoodieSize" disabled><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option></select></label>
+        <label data-set-size hidden>Jogger size<select name="joggersSize" disabled><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option></select></label>
+        <label>First name<input name="first_name" autocomplete="given-name" maxlength="80" required></label>
+        <label>Last name<input name="last_name" autocomplete="family-name" maxlength="80" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+        <label>Phone (optional)<input name="phone" type="tel" autocomplete="tel" maxlength="32"></label>
+        <label class="wide">Street address<input name="address1" autocomplete="address-line1" maxlength="120" required></label>
+        <label class="wide">Apartment or suite (optional)<input name="address2" autocomplete="address-line2" maxlength="120"></label>
+        <label>City<input name="city" autocomplete="address-level2" maxlength="80" required></label>
+        <label>State (two letters)<input name="region" autocomplete="address-level1" maxlength="2" pattern="[A-Za-z]{2}" required></label>
+        <label>ZIP code<input name="zip" autocomplete="postal-code" maxlength="10" pattern="[0-9]{5}(-[0-9]{4})?" required></label>
+      </div>
+      <p class="checkout-message" id="merch-checkout-message" role="status" aria-live="polite"></p>
+      <button type="submit">Calculate shipping and continue to Stripe</button>
+    </form>
+  </section>
   <div class="merch-foot"><a href="programs.html">Explore DCT programs</a></div>
 </main>
-<script src="js/global-ui.js"></script><script src="js/site-config.js"></script><script src="js/analytics.js"></script>
+<script src="js/global-ui.js"></script><script src="js/site-config.js"></script><script src="js/merch-checkout.js"></script><script src="js/analytics.js"></script>
 </body>
 </html>
