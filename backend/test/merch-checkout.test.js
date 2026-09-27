@@ -1,0 +1,97 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { setupMerch } = require('../merch-checkout');
+
+const address = { first_name: 'Ada', last_name: 'Lovelace', email: 'ada@example.org',
+  phone: '', address1: '1 Main St', address2: '', city: 'Albany', region: 'NY', zip: '12207' };
+const sizes = { S: 1, M: 2, L: 3, XL: 4, '2XL': 5 };
+
+function fixture() {
+  process.env.MERCH_CHECKOUT_ENABLED = 'true';
+  process.env.PRINTIFY_SHOP_ID = '29102601';
+  process.env.PRINTIFY_API_TOKEN = 'fixture-token';
+  process.env.STRIPE_WEBHOOK_SECRET = 'fixture-signing-secret';
+  process.env.MERCH_PRODUCTS_JSON = JSON.stringify({
+    hoodie: { product_id: 'hoodie-id', variants: sizes },
+    tee: { product_id: 'tee-id', variants: sizes },
+    joggers: { product_id: 'joggers-id', variants: sizes }
+  });
+  const routes = {};
+  const app = {
+    get(path, handler) { routes[`GET ${path}`] = handler; },
+    post(path, handler) { routes[`POST ${path}`] = handler; }
+  };
+  let row;
+  const db = {
+    exec() {},
+    prepare(sql) {
+      return {
+        run(...args) {
+          if (sql.startsWith('INSERT INTO merch_orders')) {
+            row = { id: args[0], selection: args[1], address: args[2], line_items: args[3],
+              item_total: args[4], shipping_total: args[5], status: 'awaiting_payment' };
+          } else if (sql.includes('stripe_session_id = ?')) row.stripe_session_id = args[0];
+          else if (sql.includes("status = 'submitting'")) {
+            if (row.status !== 'awaiting_payment') return { changes: 0 };
+            row.status = 'submitting';
+          } else if (sql.includes("status = 'created'")) {
+            row.printify_order_id = args[0]; row.status = 'created';
+          } else if (sql.includes("status = 'submitted'")) row.status = 'submitted';
+          else if (sql.includes("status = 'needs_review'")) row.status = 'needs_review';
+          return { changes: 1 };
+        },
+        get(id, sessionId) {
+          if (!row || row.id !== id || (sessionId && row.stripe_session_id !== sessionId)) return undefined;
+          return row;
+        }
+      };
+    }
+  };
+  let stripeInput;
+  const stripe = { checkout: { sessions: { async create(input) {
+    stripeInput = input;
+    return { id: 'cs_test_fixture', url: 'https://checkout.stripe.com/test-fixture' };
+  } } } };
+  const printifyCalls = [];
+  const requestPrintify = async (method, path, payload) => {
+    printifyCalls.push({ method, path, payload });
+    if (path === '/orders/shipping.json') return { standard: 799 };
+    if (path === '/orders.json') return { id: 'printify-order-1' };
+    return {};
+  };
+  const fulfill = setupMerch(app, db, stripe, 'https://thedopecloudteacher.org', requestPrintify);
+  return { routes, fulfill, printifyCalls, getRow: () => row, getStripeInput: () => stripeInput };
+}
+
+test('set charges approved $95 plus quoted shipping, then submits exactly once after payment', async () => {
+  const f = fixture();
+  let status = 200;
+  let body;
+  await f.routes['POST /api/merch/checkout']({ body: {
+    selection: { product: 'set', hoodieSize: 'S', joggersSize: 'M', price: 1 }, address
+  } }, { status(value) { status = value; return this; }, json(value) { body = value; } });
+  assert.equal(status, 200);
+  assert.match(body.url, /^https:\/\/checkout\.stripe\.com/);
+  assert.equal(f.getStripeInput().line_items[0].price_data.unit_amount, 9500);
+  assert.equal(f.getStripeInput().shipping_options[0].shipping_rate_data.fixed_amount.amount, 799);
+  assert.deepEqual(JSON.parse(f.getRow().line_items).map((line) => line.variant_id), [1, 2]);
+  const session = { id: 'cs_test_fixture', currency: 'usd', amount_total: 10299,
+    payment_status: 'paid', metadata: { orderType: 'merch', merchOrderId: f.getRow().id } };
+  assert.equal(await f.fulfill(session), true);
+  assert.equal(await f.fulfill(session), true);
+  assert.equal(f.printifyCalls.filter((call) => call.path === '/orders.json').length, 1);
+  assert.equal(f.printifyCalls.filter((call) => call.path.includes('send_to_production')).length, 1);
+  assert.equal(f.getRow().status, 'submitted');
+});
+
+test('unpaid webhook and invalid size do not submit to production', async () => {
+  const f = fixture();
+  let status = 200;
+  await f.routes['POST /api/merch/checkout']({ body: {
+    selection: { product: 'tee', size: '3XL' }, address
+  } }, { status(value) { status = value; return this; }, json() {} });
+  assert.equal(status, 400);
+  assert.equal(f.getRow(), undefined);
+  assert.equal(await f.fulfill({ payment_status: 'unpaid', metadata: { orderType: 'merch' } }), true);
+  assert.equal(f.printifyCalls.length, 0);
+});
