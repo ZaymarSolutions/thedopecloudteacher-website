@@ -1,7 +1,7 @@
 /* DCT teaching promise, shared by the homepage, About, and Academy. */
-.dct-promise{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);align-items:center;gap:clamp(1rem,3vw,2.5rem);margin:2rem auto;padding:clamp(1.4rem,3vw,2.5rem);max-width:1120px;border-radius:22px;background:#091526;color:#f5faff;box-shadow:0 14px 38px rgba(6,23,50,.16);box-sizing:border-box}
+.dct-promise{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);align-items:center;gap:clamp(1rem,3vw,2.5rem);margin:2rem auto;padding:clamp(1.4rem,3vw,2.5rem);max-width:1120px;border-radius:22px;background:linear-gradient(135deg,#123966,#091d36);color:#f5faff;box-shadow:0 14px 38px rgba(6,23,50,.16);box-sizing:border-box}
 .dct-promise img{display:block;width:100%;max-width:460px;height:auto;margin:auto;filter:drop-shadow(0 12px 20px rgba(0,71,200,.28))}
-.dct-promise h2{color:#fff;font-size:clamp(1.45rem,2.5vw,2.2rem);line-height:1.2;margin:0 0 .8rem}
+.dct-promise h2{color:#ffffff !important;text-shadow:0 2px 14px rgba(0,0,0,.65);font-size:clamp(1.45rem,2.5vw,2.2rem);line-height:1.2;margin:0 0 .8rem}
 .dct-promise p{font-size:1rem;line-height:1.65;color:#d5e6fc;margin:0 0 .8rem}
 .dct-promise strong{color:#8ec4ff}
 @media(max-width:700px){.dct-promise{grid-template-columns:1fr;margin:1.25rem auto}.dct-promise img{max-width:350px}.dct-promise h2{font-size:1.5rem}}
