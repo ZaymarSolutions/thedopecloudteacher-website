@@ -35,7 +35,7 @@
 
   const storedAnalyticsProvider = localStorage.getItem('DCT_ANALYTICS_PROVIDER');
   const storedGa4MeasurementId = localStorage.getItem('DCT_GA4_MEASUREMENT_ID');
-  const ga4MeasurementId = storedGa4MeasurementId || 'G-XXXXXXXXXX';
+  const ga4MeasurementId = storedGa4MeasurementId || 'G-G05YSEYHFN';
 
   const explicitAnalyticsConfig = window.DCT_ANALYTICS && typeof window.DCT_ANALYTICS === 'object';
   if (!explicitAnalyticsConfig) {

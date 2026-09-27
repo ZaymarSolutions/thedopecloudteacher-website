@@ -4,9 +4,9 @@
    ============================================ */
 
 :root {
-  --primary-purple: #6D28D9;
-  --primary-pink: #4C1D95;
-  --primary-cyan: #A855F7;
+  --primary-purple: #1267cf;
+  --primary-pink: #12487e;
+  --primary-cyan: #3f94e9;
   --dark-purple: #0B0B12;
   --accent-gold: #9333EA;
   --accent-blue: #7C3AED;
@@ -35,7 +35,7 @@ body {
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.72;
   background:
-    radial-gradient(circle at top left, rgba(109, 40, 217, 0.06), transparent 28%),
+    radial-gradient(circle at top left, rgba(18, 103, 207, 0.06), transparent 28%),
     radial-gradient(circle at top right, rgba(11, 11, 18, 0.05), transparent 22%),
     linear-gradient(180deg, var(--page-bg) 0%, var(--page-bg-soft) 100%);
   color: var(--text-light);
@@ -186,8 +186,8 @@ nav.nav-links a,
   position: relative;
   border-radius: 999px;
   padding: 0.65rem 0.95rem;
-  background: rgba(109, 40, 217, 0.07);
-  border: 1px solid rgba(109, 40, 217, 0.10);
+  background: rgba(18, 103, 207, 0.07);
+  border: 1px solid rgba(18, 103, 207, 0.10);
 }
 
 nav.nav-links a::after,
@@ -208,7 +208,7 @@ nav.nav-links a.active,
 .dct-primary-nav a.active {
   color: #ffffff;
   background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
-  box-shadow: 0 8px 18px rgba(109, 40, 217, 0.24);
+  box-shadow: 0 8px 18px rgba(18, 103, 207, 0.24);
   transform: translateY(-1px);
 }
 
@@ -281,7 +281,7 @@ nav.nav-links.is-open {
   background: linear-gradient(135deg, var(--primary-purple), var(--primary-pink)) !important;
   color: #ffffff !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 8px 18px rgba(109, 40, 217, 0.22) !important;
+  box-shadow: 0 8px 18px rgba(18, 103, 207, 0.22) !important;
 }
 
 .lesson-nav-right .nav-btn.next {
@@ -298,7 +298,7 @@ nav.nav-links.is-open {
    ============================================ */
 
 .demo-banner {
-  background: linear-gradient(135deg, rgba(109, 40, 217, 0.08) 0%, rgba(76, 29, 149, 0.06) 45%, rgba(168, 85, 247, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(18, 103, 207, 0.08) 0%, rgba(18, 72, 126, 0.06) 45%, rgba(168, 85, 247, 0.08) 100%);
   color: var(--text-dark);
   padding: 3.25rem clamp(1.25rem, 5vw, 4rem);
   margin: 2rem auto 3rem;
@@ -475,7 +475,7 @@ section + section {
 }
 
 .visual-card {
-  border: 1px solid rgba(109, 40, 217, 0.16);
+  border: 1px solid rgba(18, 103, 207, 0.16);
   background: linear-gradient(160deg, #ffffff 0%, #f6fbff 100%);
   border-radius: 16px;
   overflow: hidden;
@@ -520,7 +520,7 @@ section + section {
 }
 
 .scenario-card {
-  border: 1px solid rgba(109, 40, 217, 0.16);
+  border: 1px solid rgba(18, 103, 207, 0.16);
   background: linear-gradient(160deg, #ffffff 0%, #f9f7ff 100%);
   border-radius: 16px;
   padding: 0.95rem;
@@ -657,7 +657,7 @@ section + section {
   align-items: center;
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
-  background: rgba(109, 40, 217, 0.12);
+  background: rgba(18, 103, 207, 0.12);
   color: var(--primary-purple);
   font-size: 0.75rem;
   font-weight: 800;
@@ -688,7 +688,7 @@ section + section {
 .future-list li {
   color: var(--text-light);
   background: #F3F9FF;
-  border: 1px solid rgba(109, 40, 217, 0.12);
+  border: 1px solid rgba(18, 103, 207, 0.12);
   border-radius: 12px;
   padding: 0.7rem 0.75rem;
   line-height: 1.45;
@@ -702,7 +702,7 @@ section + section {
 
 .future-collection-side {
   background: linear-gradient(180deg, #F3F9FF 0%, #f3fbff 100%);
-  border: 1px solid rgba(109, 40, 217, 0.12);
+  border: 1px solid rgba(18, 103, 207, 0.12);
   border-radius: 18px;
   padding: 1.05rem;
 }
@@ -755,7 +755,7 @@ section + section {
   align-items: center;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba(109, 40, 217, 0.12);
+  background: rgba(18, 103, 207, 0.12);
   color: var(--primary-purple);
   font-size: 0.75rem;
   font-weight: 800;
@@ -845,8 +845,8 @@ section + section {
   align-items: center;
   padding: 0.34rem 0.7rem;
   border-radius: 999px;
-  background: rgba(109, 40, 217, 0.08);
-  border: 1px solid rgba(109, 40, 217, 0.12);
+  background: rgba(18, 103, 207, 0.08);
+  border: 1px solid rgba(18, 103, 207, 0.12);
   color: var(--text-light);
   font-size: 0.82rem;
   font-weight: 700;
@@ -868,7 +868,7 @@ section + section {
   align-items: center;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
-  background: rgba(109, 40, 217, 0.12);
+  background: rgba(18, 103, 207, 0.12);
   color: var(--primary-purple);
   font-size: 0.75rem;
   font-weight: 700;
@@ -1202,7 +1202,7 @@ section + section {
 
 .demo-feature-cta {
   margin-top: 1rem;
-  color: #6D28D9;
+  color: #1267cf;
   font-weight: 800;
 }
 
@@ -1584,7 +1584,7 @@ section + section {
   justify-content: center;
   align-self: flex-start;
   text-decoration: none;
-  background: #A855F7;
+  background: #3f94e9;
   color: #0B0B12;
   font-weight: 700;
   border-radius: 8px;

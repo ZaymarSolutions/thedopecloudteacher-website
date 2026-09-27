@@ -5,11 +5,11 @@
   --card-border: rgba(44, 157, 255, 0.2);
   --text-main: #eef3ff;
   --text-muted: #a1acd0;
-  --accent-primary: #6D28D9;
-  --accent-secondary: #A855F7;
+  --accent-primary: #1267cf;
+  --accent-secondary: #3f94e9;
   --accent-highlight: #d9deff;
-  --shadow-glow: 0 20px 50px rgba(109, 40, 217, 0.18);
-  --hero-gradient: linear-gradient(135deg, rgba(109, 40, 217, 0.22), rgba(44, 157, 255, 0.12));
+  --shadow-glow: 0 20px 50px rgba(18, 103, 207, 0.18);
+  --hero-gradient: linear-gradient(135deg, rgba(18, 103, 207, 0.22), rgba(44, 157, 255, 0.12));
 }
 
 * {
@@ -22,7 +22,7 @@ body {
   color: var(--text-main);
   background:
     radial-gradient(circle at top right, rgba(44, 157, 255, 0.12), transparent 28%),
-    radial-gradient(circle at top left, rgba(109, 40, 217, 0.2), transparent 36%),
+    radial-gradient(circle at top left, rgba(18, 103, 207, 0.2), transparent 36%),
     linear-gradient(180deg, var(--page-bg), #090d1b 55%, #0c1123 100%);
 }
 

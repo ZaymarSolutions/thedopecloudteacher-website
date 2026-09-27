@@ -38,6 +38,16 @@
   }
 
   document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (link) {
+      const url = new URL(link.href, location.href);
+      const label = (link.textContent || '').trim().slice(0, 80);
+      if (/^https?:$/.test(url.protocol) && url.hostname !== location.hostname) {
+        trackEvent('outbound_click', { link_url: url.origin + url.pathname, link_text: label });
+      } else if (/^(?:\/)?(?:programs|courses|classes|partners|contact|teach)(?:\/|\.html|$)/i.test(url.pathname.replace(/^\//, ''))) {
+        trackEvent('cta_click', { destination: url.pathname, link_text: label });
+      }
+    }
     const target = event.target.closest('[data-analytics-event]');
     if (!target) return;
     const eventName = target.getAttribute('data-analytics-event');
