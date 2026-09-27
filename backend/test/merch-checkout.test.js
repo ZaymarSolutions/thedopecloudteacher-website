@@ -69,8 +69,21 @@ function fixture() {
     if (path === '/orders.json') return { id: 'printify-order-1' };
     return {};
   };
-  const fulfill = setupMerch(app, db, stripe, 'https://thedopecloudteacher.org', requestPrintify);
-  return { routes, fulfill, printifyCalls, getRow: () => row, getStripeInput: () => stripeInput };
+  const catalogCalls = [];
+  const requestCatalog = async (path) => {
+    catalogCalls.push(path);
+    if (path.endsWith('/print_providers.json')) return [{ id: path.includes('/6849/') ? 7 : 9,
+      title: path.includes('/6849/') ? 'Fulfill Engine' : 'SwiftPOD' }];
+    return { variants: [
+      { id: 11, options: { color: 'Black', size: 'S' }, placeholders: [
+        { position: 'front', decoration_method: 'dtg', width: 3000, height: 4000 },
+        { position: 'right_leg_back', decoration_method: 'dtg', width: 1200, height: 2400 }
+      ] },
+      { id: 12, options: { color: 'White', size: 'S' }, placeholders: [] }
+    ] };
+  };
+  const fulfill = setupMerch(app, db, stripe, 'https://thedopecloudteacher.org', requestPrintify, requestCatalog);
+  return { routes, fulfill, printifyCalls, catalogCalls, getRow: () => row, getStripeInput: () => stripeInput };
 }
 
 test('set charges approved $95 plus quoted shipping, then submits exactly once after payment', async () => {
@@ -118,4 +131,17 @@ test('tee check reads only the saved product and reveals only review metadata', 
   assert.equal(f.printifyCalls.length, 1);
   await f.routes['GET /api/merch/tee-check']({}, { json() {} });
   assert.equal(f.printifyCalls.length, 1);
+});
+
+test('blank check selects black variants and returns provider print areas without credentials', async () => {
+  const f = fixture();
+  process.env.MERCH_CHECKOUT_ENABLED = 'false';
+  let body;
+  await f.routes['GET /api/merch/blank-check']({}, { json(value) { body = value; } });
+  assert.equal(body.blanks.length, 2);
+  assert.equal(body.blanks[0].provider, 'Fulfill Engine');
+  assert.deepEqual(body.blanks[1].variants, [{ size: 'S', id: 11 }]);
+  assert.deepEqual(body.blanks[1].printAreas.map(area => area.position), ['front', 'right_leg_back']);
+  assert.equal(JSON.stringify(body).includes('fixture-token'), false);
+  assert.equal(f.catalogCalls.length, 4);
 });

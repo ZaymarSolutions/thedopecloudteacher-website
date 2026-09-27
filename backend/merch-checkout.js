@@ -11,13 +11,17 @@ const SIZES = ['S', 'M', 'L', 'XL', '2XL'];
 // Product link supplied by the merchant. Check ownership and print areas before
 // using any of its variants in checkout.
 const CANDIDATE_TEE_ID = '6ab94e714af43262550fbfc7';
+const BLANKS_TO_CHECK = [
+  { key: 'hoodie', blueprintId: 6849, provider: 'Fulfill Engine', color: 'Black' },
+  { key: 'joggers', blueprintId: 1398, provider: 'SwiftPOD', color: 'Black' }
+];
 
-function printifyRequest(method, path, payload) {
+function printifyApiRequest(method, path, payload) {
   const body = payload === undefined ? null : JSON.stringify(payload);
   return new Promise((resolve, reject) => {
     const request = https.request({
       hostname: 'api.printify.com',
-      path: `/v1/shops/${encodeURIComponent(process.env.PRINTIFY_SHOP_ID)}${path}`,
+      path,
       method,
       headers: {
         Authorization: `Bearer ${process.env.PRINTIFY_API_TOKEN}`,
@@ -42,6 +46,14 @@ function printifyRequest(method, path, payload) {
     if (body) request.write(body);
     request.end();
   });
+}
+
+function printifyRequest(method, path, payload) {
+  return printifyApiRequest(method, `/v1/shops/${encodeURIComponent(process.env.PRINTIFY_SHOP_ID)}${path}`, payload);
+}
+
+function printifyCatalogRequest(path) {
+  return printifyApiRequest('GET', `/v1/catalog${path}`);
 }
 
 function getConfiguredProducts() {
@@ -89,7 +101,7 @@ function orderLines(selection, config) {
   return lines;
 }
 
-function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequest) {
+function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequest, requestCatalog = printifyCatalogRequest) {
   db.exec(`CREATE TABLE IF NOT EXISTS merch_orders (
     id TEXT PRIMARY KEY,
     stripe_session_id TEXT UNIQUE,
@@ -134,6 +146,42 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
     } catch (error) {
       console.error('Printify tee verification failed:', error);
       res.status(503).json({ connected: false, teeFoundInStore: false, error: 'Could not verify saved tee' });
+    }
+  });
+
+  // Fixed catalog lookups for the two candidate blanks. This cannot modify
+  // products or expose the private token, and disappears when checkout opens.
+  let blankCheckCache;
+  app.get('/api/merch/blank-check', async (req, res) => {
+    if (process.env.MERCH_CHECKOUT_ENABLED === 'true') return res.status(404).json({ error: 'Unavailable' });
+    if (!process.env.PRINTIFY_API_TOKEN) return res.status(503).json({ error: 'Printify connection is not configured' });
+    try {
+      if (!blankCheckCache || blankCheckCache.expires < Date.now()) {
+        const blanks = [];
+        for (const blank of BLANKS_TO_CHECK) {
+          const providers = await requestCatalog(`/blueprints/${blank.blueprintId}/print_providers.json`);
+          const provider = providers.find(p => p.title === blank.provider);
+          if (!provider) {
+            blanks.push({ product: blank.key, providerFound: false });
+            continue;
+          }
+          const response = await requestCatalog(`/blueprints/${blank.blueprintId}/print_providers/${provider.id}/variants.json`);
+          const variants = Array.isArray(response) ? response : response.variants || [];
+          const selected = variants.filter(v =>
+            v.options?.color?.toLowerCase() === blank.color.toLowerCase() && SIZES.includes(v.options?.size));
+          const positions = [...new Map(selected.flatMap(v => v.placeholders || []).map(p =>
+            [p.position, { position: p.position, method: p.decoration_method, widthPx: p.width, heightPx: p.height }])).values()];
+          blanks.push({ product: blank.key, blueprintId: blank.blueprintId,
+            provider: provider.title, providerId: provider.id,
+            variants: selected.map(v => ({ size: v.options.size, id: v.id })),
+            printAreas: positions.sort((a, b) => a.position.localeCompare(b.position)) });
+        }
+        blankCheckCache = { expires: Date.now() + 60000, result: { blanks } };
+      }
+      res.json(blankCheckCache.result);
+    } catch (error) {
+      console.error('Printify blank verification failed:', error);
+      res.status(503).json({ error: 'Could not verify candidate blanks' });
     }
   });
 
