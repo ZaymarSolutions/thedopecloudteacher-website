@@ -56,6 +56,16 @@ function printifyCatalogRequest(path) {
   return printifyApiRequest('GET', `/v1/catalog${path}`);
 }
 
+function summarizeArtwork(response) {
+  const data = response.data || [];
+  return {
+    scanned: data.length,
+    morePages: Number(response.last_page || 1) > 1,
+    matches: data.filter(a => /dope|shitz|cloud|security|morale|shield|dct/i.test(a.file_name || ''))
+      .slice(0, 30).map(a => ({ id: a.id, name: a.file_name, width: a.width, height: a.height }))
+  };
+}
+
 function getConfiguredProducts() {
   try {
     const config = JSON.parse(process.env.MERCH_PRODUCTS_JSON || '{}');
@@ -185,6 +195,23 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
     }
   });
 
+  // Check only merchant artwork names; do not disclose unrelated media or URLs.
+  let assetCheckCache;
+  app.get('/api/merch/assets-check', async (req, res) => {
+    if (process.env.MERCH_CHECKOUT_ENABLED === 'true') return res.status(404).json({ error: 'Unavailable' });
+    if (!process.env.PRINTIFY_API_TOKEN) return res.status(503).json({ error: 'Printify connection is not configured' });
+    try {
+      if (!assetCheckCache || assetCheckCache.expires < Date.now()) {
+        const response = await printifyApiRequest('GET', '/v1/uploads.json?limit=100&page=1');
+        assetCheckCache = { expires: Date.now() + 60000, result: summarizeArtwork(response) };
+      }
+      res.json(assetCheckCache.result);
+    } catch (error) {
+      console.error('Printify media check failed:', error);
+      res.status(503).json({ error: 'Could not check Printify media' });
+    }
+  });
+
   app.post('/api/merch/checkout', async (req, res) => {
     if (!ready(stripe)) return res.status(503).json({ error: 'Merch checkout is not open yet.' });
     const config = getConfiguredProducts();
@@ -279,4 +306,4 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
   };
 }
 
-module.exports = { setupMerch, cleanAddress, orderLines, getConfiguredProducts };
+module.exports = { setupMerch, cleanAddress, orderLines, getConfiguredProducts, summarizeArtwork };
