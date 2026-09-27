@@ -8,6 +8,9 @@ const PRODUCTS = {
   set: { name: 'Dope Shitz Hoodie + Cloud AI Joggers', price: 9500 }
 };
 const SIZES = ['S', 'M', 'L', 'XL', '2XL'];
+// Product link supplied by the merchant. Check ownership and print areas before
+// using any of its variants in checkout.
+const CANDIDATE_TEE_ID = '6ab94e714af43262550fbfc7';
 
 function printifyRequest(method, path, payload) {
   const body = payload === undefined ? null : JSON.stringify(payload);
@@ -102,6 +105,36 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
 
   app.get('/api/merch/catalog', (req, res) => {
     res.json({ available: ready(stripe), products: PRODUCTS, sizes: SIZES });
+  });
+
+  // A narrow, read-only deployment check. Never return the token, image URLs,
+  // original print data, or an arbitrary Printify product requested by a caller.
+  let teeCheckCache;
+  app.get('/api/merch/tee-check', async (req, res) => {
+    if (process.env.MERCH_CHECKOUT_ENABLED === 'true') return res.status(404).json({ error: 'Unavailable' });
+    if (!process.env.PRINTIFY_API_TOKEN || !/^\d+$/.test(process.env.PRINTIFY_SHOP_ID || '')) {
+      return res.status(503).json({ connected: false, error: 'Printify connection is not configured' });
+    }
+    try {
+      if (!teeCheckCache || teeCheckCache.expires < Date.now()) {
+        const product = await requestPrintify('GET', `/products/${CANDIDATE_TEE_ID}.json`);
+        const shopMatches = String(product.shop_id) === process.env.PRINTIFY_SHOP_ID;
+        teeCheckCache = { expires: Date.now() + 60000, result: {
+          connected: true,
+          teeFoundInStore: shopMatches && product.id === CANDIDATE_TEE_ID,
+          title: product.title,
+          blueprintId: product.blueprint_id,
+          printProviderId: product.print_provider_id,
+          enabledVariants: (product.variants || []).filter(v => v.is_enabled).map(v => ({ id: v.id, title: v.title, available: v.is_available })),
+          printPositions: [...new Set((product.print_areas || []).flatMap(area =>
+            (area.placeholders || []).filter(p => (p.images || []).length).map(p => p.position)))].sort()
+        } };
+      }
+      res.json(teeCheckCache.result);
+    } catch (error) {
+      console.error('Printify tee verification failed:', error);
+      res.status(503).json({ connected: false, teeFoundInStore: false, error: 'Could not verify saved tee' });
+    }
   });
 
   app.post('/api/merch/checkout', async (req, res) => {
