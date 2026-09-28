@@ -35,7 +35,15 @@ function printifyApiRequest(method, path, payload) {
       response.on('data', (chunk) => { result += chunk; });
       response.on('end', () => {
         if (response.statusCode < 200 || response.statusCode >= 300) {
-          return reject(new Error(`Printify returned HTTP ${response.statusCode}`));
+          const error = new Error(`Printify returned HTTP ${response.statusCode}`);
+          error.upstreamStatus = response.statusCode;
+          try {
+            const details = JSON.parse(result);
+            const message = details.message || details.error;
+            if (typeof message === 'string' && message.length <= 160 &&
+                !/[\\r\\n@/\\\\]|bearer|token|key|secret/i.test(message)) error.upstreamMessage = message;
+          } catch (_) { /* Keep non-JSON error bodies private. */ }
+          return reject(error);
         }
         try { resolve(result ? JSON.parse(result) : {}); }
         catch (error) { reject(new Error('Printify returned invalid JSON')); }
@@ -208,7 +216,9 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
       res.json(assetCheckCache.result);
     } catch (error) {
       console.error('Printify media check failed:', error);
-      res.status(503).json({ error: 'Could not check Printify media' });
+      res.status(503).json({ error: 'Could not check Printify media',
+        upstreamStatus: error.upstreamStatus || null,
+        ...(error.upstreamMessage ? { upstreamMessage: error.upstreamMessage } : {}) });
     }
   });
 
