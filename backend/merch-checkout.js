@@ -41,7 +41,7 @@ function printifyApiRequest(method, path, payload) {
             const details = JSON.parse(result);
             const message = details.message || details.error;
             if (typeof message === 'string' && message.length <= 160 &&
-                !/[\\r\\n@/\\\\]|bearer|token|key|secret/i.test(message)) error.upstreamMessage = message;
+                /^[a-zA-Z0-9 .,:;!?()_-]+$/.test(message)) error.upstreamMessage = message;
           } catch (_) { /* Keep non-JSON error bodies private. */ }
           return reject(error);
         }
