@@ -21,13 +21,21 @@
   fetch(`${api}/merch/catalog`)
     .then((response) => response.ok ? response.json() : null)
     .then((catalog) => {
-      if (!catalog?.available) return;
+      if (!catalog?.available) {
+        message.textContent = 'Live checkout is not open yet. Product details are available now; please check back shortly or email the DCT team.';
+        submit.disabled = true;
+        return;
+      }
       section.hidden = false;
-      document.querySelectorAll('.merch-card .status').forEach((status) => { status.textContent = 'Order below'; });
+      message.textContent = 'Live checkout is available. Complete your delivery details to continue.';
+      document.querySelectorAll('.merch-card .status').forEach((status) => { status.textContent = 'Available to order'; });
       document.querySelector('.merch-note p').textContent =
         'Prices shown are before shipping. Enter your delivery address below to see standard shipping at Stripe checkout.';
     })
-    .catch(() => {}); // The shop remains visibly closed if the API is unavailable.
+    .catch(() => {
+      message.textContent = 'We could not verify live checkout right now. Please try again shortly or email the DCT team.';
+      submit.disabled = true;
+    });
 
   const params = new URLSearchParams(location.search);
   if (params.get('order') === 'received') {
