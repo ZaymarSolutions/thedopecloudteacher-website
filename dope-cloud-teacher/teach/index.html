@@ -195,7 +195,7 @@
 
         <button class="submit-button" type="submit">Submit instructor application</button>
         <p class="submission-status" role="alert" aria-live="assertive" hidden></p>
-        <p class="submit-note">Selected applicants will be contacted about next steps. For accessibility assistance with this application, email <a href="mailto:teach@thedopecloudteacher.org">teach@thedopecloudteacher.org</a>.</p>
+        <p class="submit-note">Selected applicants will be contacted about next steps. For accessibility assistance with this application, email <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.</p>
       </form>
       <iframe name="dct-instructor-response" title="Application response" hidden></iframe>
     </section>
@@ -296,7 +296,7 @@
         }
         var endpoint = window.DCT_INSTRUCTOR_ENDPOINT || '';
         if (!/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(endpoint)) {
-          showError('Applications are temporarily unavailable. Please email teach@thedopecloudteacher.org.');
+          showError('Applications are temporarily unavailable. Please email thedopecloudteacher@gmail.com.');
           return;
         }
         var file = form.elements.resume.files[0];
@@ -336,7 +336,7 @@
             post.appendChild(input);
             document.body.appendChild(post);
             pending = {nonce: data.nonce, timer: setTimeout(function () {
-              showError('We could not confirm the submission. Please contact teach@thedopecloudteacher.org before trying again, so we can check whether it arrived.');
+              showError('We could not confirm the submission. Please contact thedopecloudteacher@gmail.com before trying again, so we can check whether it arrived.');
             }, 45000)};
             post.submit();
             post.remove();
