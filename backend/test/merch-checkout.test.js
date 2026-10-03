@@ -154,3 +154,22 @@ test('media check reveals only matching artwork metadata', () => {
   assert.deepEqual(result, { scanned: 2, morePages: true,
     matches: [{ id: 'a', name: 'DOPE SHITZ.png', width: 1536, height: 1024 }] });
 });
+
+ test('tee-only catalog opens tee checkout and rejects unmapped products', async () => {
+  const f = fixture();
+  process.env.MERCH_PRODUCTS_JSON = JSON.stringify({ tee: { product_id: 'tee-id', variants: sizes } });
+  let catalog;
+  f.routes['GET /api/merch/catalog']({}, { json(value) { catalog = value; } });
+  assert.equal(catalog.available, true);
+  assert.equal(catalog.products.tee.available, true);
+  assert.equal(catalog.products.hoodie.available, false);
+  assert.equal(catalog.products.set.available, false);
+  let status = 200;
+  await f.routes['POST /api/merch/checkout']({ body: {selection: {product: 'hoodie', size: 'S'}, address} }, {status(value) { status = value; return this; }, json() {} });
+  assert.equal(status, 400);
+  assert.equal(f.printifyCalls.length, 0);
+  let body;
+  await f.routes['POST /api/merch/checkout']({body: {selection: {product:'tee', size:'M'}, address}}, {status(value) {status=value; return this;}, json(value) {body=value;}});
+  assert.match(body.url, /^https:\/\/checkout.stripe.com/);
+  assert.equal(f.getStripeInput().line_items[0].price_data.unit_amount, 2900);
+ });
