@@ -26,9 +26,26 @@
         submit.disabled = true;
         return;
       }
+      const availableProducts = Object.entries(catalog.products).filter(([, item]) => item.available !== false).map(([key]) => key);
+      Array.from(product.options).forEach((option) => {
+        option.disabled = !availableProducts.includes(option.value);
+        if (option.disabled) option.textContent += ' — Coming soon';
+      });
+      if (!availableProducts.includes(product.value)) product.value = availableProducts[0];
+      updateSizeFields();
       section.hidden = false;
       message.textContent = 'Live checkout is available. Complete your delivery details to continue.';
-      document.querySelectorAll('.merch-card .status').forEach((status) => { status.textContent = 'Available to order'; });
+      document.querySelectorAll('[data-merch-product]').forEach((link) => {
+        const available = availableProducts.includes(link.dataset.merchProduct);
+        link.closest('.merch-card').querySelector('.status').textContent = available ? 'Available to order' : 'Coming soon';
+        if (!available) {
+          link.textContent = 'Coming soon';
+          link.removeAttribute('href');
+          link.removeAttribute('data-merch-product');
+          link.setAttribute('aria-disabled', 'true');
+          link.style.pointerEvents = 'none';
+        }
+      });
       document.querySelector('.merch-note p').textContent =
         'Prices shown are before shipping. Enter your delivery address below to see standard shipping at Stripe checkout.';
     })
