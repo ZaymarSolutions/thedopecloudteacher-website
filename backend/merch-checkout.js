@@ -77,11 +77,14 @@ function summarizeArtwork(response) {
 function getConfiguredProducts() {
   try {
     const config = JSON.parse(process.env.MERCH_PRODUCTS_JSON || '{}');
+    const configured = {};
     for (const key of ['hoodie', 'tee', 'joggers']) {
-      if (!config[key] || typeof config[key].product_id !== 'string' || !config[key].product_id.trim()) return null;
-      if (!SIZES.every((size) => Number.isSafeInteger(config[key].variants?.[size]) && config[key].variants[size] > 0)) return null;
+      const item = config[key];
+      if (!item || typeof item.product_id !== 'string' || !item.product_id.trim()) continue;
+      if (!SIZES.every((size) => Number.isSafeInteger(item.variants?.[size]) && item.variants[size] > 0)) continue;
+      configured[key] = item;
     }
-    return config;
+    return Object.keys(configured).length ? configured : null;
   } catch (_) { return null; }
 }
 
@@ -134,7 +137,12 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
   )`);
 
   app.get('/api/merch/catalog', (req, res) => {
-    res.json({ available: ready(stripe), products: PRODUCTS, sizes: SIZES });
+    const config = getConfiguredProducts();
+    const available = ready(stripe);
+    const products = Object.fromEntries(Object.entries(PRODUCTS).map(([key, item]) => [key, {
+      ...item, available: available && (key === 'set' ? !!config?.hoodie && !!config?.joggers : !!config?.[key])
+    }]));
+    res.json({ available, products, sizes: SIZES });
   });
 
   // A narrow, read-only deployment check. Never return the token, image URLs,
