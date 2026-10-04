@@ -51,7 +51,7 @@ function fixture() {
   const stripe = { checkout: { sessions: { async create(input) {
     stripeInput = input;
     return { id: 'cs_test_fixture', url: 'https://checkout.stripe.com/test-fixture' };
-  } } } };
+  }, async retrieve(id) { return { id, currency: 'usd', amount_total: row.item_total + row.shipping_total, payment_status: 'paid', metadata: { orderType: 'merch', merchOrderId: row.id } }; } } } };
   const printifyCalls = [];
   const requestPrintify = async (method, path, payload) => {
     printifyCalls.push({ method, path, payload });
@@ -96,6 +96,8 @@ test('set charges approved $95 plus quoted shipping, then submits exactly once a
   assert.equal(status, 200);
   assert.match(body.url, /^https:\/\/checkout\.stripe\.com/);
   assert.equal(f.getStripeInput().line_items[0].price_data.unit_amount, 9500);
+  assert.equal(f.getStripeInput().payment_intent_data.receipt_email, address.email);
+  assert.match(f.getStripeInput().success_url, /session_id=\{CHECKOUT_SESSION_ID\}#order-confirmation$/);
   assert.equal(f.getStripeInput().shipping_options[0].shipping_rate_data.fixed_amount.amount, 799);
   assert.deepEqual(JSON.parse(f.getRow().line_items).map((line) => line.variant_id), [1, 2]);
   const session = { id: 'cs_test_fixture', currency: 'usd', amount_total: 10299,
@@ -173,3 +175,18 @@ test('media check reveals only matching artwork metadata', () => {
   assert.match(body.url, /^https:\/\/checkout.stripe.com/);
   assert.equal(f.getStripeInput().line_items[0].price_data.unit_amount, 2900);
  });
+
+ test('order confirmation verifies the matching Stripe session and excludes customer details', async () => {
+  const f = fixture();
+  await f.routes['POST /api/merch/checkout']({ body: { selection: { product: 'tee', size: 'S' }, address } }, { json() {} });
+  let body, status = 200;
+  const response = { status(value) { status = value; return this; }, json(value) { body = value; } };
+  await f.routes['GET /api/merch/order-status']({ query: { session_id: 'cs_test_fixture' } }, response);
+  assert.equal(body.paid, true);
+  assert.equal(body.total, 3699);
+  assert.equal(body.fulfillment, 'processing');
+  assert.equal(JSON.stringify(body).includes(address.email), false);
+  assert.equal(JSON.stringify(body).includes(address.address1), false);
+  await f.routes['GET /api/merch/order-status']({ query: { session_id: 'invalid' } }, response);
+  assert.equal(status, 400);
+});
