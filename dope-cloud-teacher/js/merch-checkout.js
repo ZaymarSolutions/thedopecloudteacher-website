@@ -56,9 +56,46 @@
 
   const params = new URLSearchParams(location.search);
   if (params.get('order') === 'received') {
-    const note = document.querySelector('.merch-note');
-    note.querySelector('h2').textContent = 'Payment received';
-    note.querySelector('p').textContent = 'Thank you. Your order is being processed. Contact the DCT team if you need help.';
+    const confirmation = document.createElement('section');
+    confirmation.id = 'order-confirmation';
+    confirmation.className = 'merch-note';
+    confirmation.setAttribute('role', 'status');
+    confirmation.setAttribute('tabindex', '-1');
+    const heading = document.createElement('h2');
+    heading.textContent = 'Thank you for your order';
+    const detail = document.createElement('p');
+    detail.textContent = 'Checking your payment. Please do not submit another order.';
+    const support = document.createElement('a');
+    support.href = 'mailto:thedopecloudteacher@gmail.com';
+    support.textContent = 'Questions? Email the DCT team';
+    confirmation.append(heading, detail, support);
+    document.querySelector('main').prepend(confirmation);
+    confirmation.focus({ preventScroll: true });
+    confirmation.scrollIntoView({ block: 'center' });
+    const sessionId = params.get('session_id');
+    if (!sessionId) {
+      detail.textContent = 'Your checkout has returned to DCT. If you completed payment, please do not pay again. Contact us to confirm your order.';
+    } else {
+      fetch(`${api}/merch/order-status?session_id=${encodeURIComponent(sessionId)}`)
+        .then(async response => {
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error);
+          if (!result.paid) {
+            heading.textContent = 'Payment has not been confirmed';
+            detail.textContent = 'Please do not pay again until you have checked your payment status with the DCT team.';
+            return;
+          }
+          heading.textContent = 'Payment confirmed — thank you!';
+          const total = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.total / 100);
+          detail.textContent = `Order ${result.orderReference}. Total paid: ${total}. ${result.fulfillment === 'production' ? 'Your order has been sent to production.' : 'Your order is being processed for fulfillment.'} Your payment receipt will be emailed to the address used at checkout.`;
+          form.hidden = true;
+          document.getElementById('checkout-title').textContent = 'Your order is confirmed';
+        })
+        .catch(error => {
+          heading.textContent = 'We are checking your order';
+          detail.textContent = error.message || 'Please do not pay again. Contact the DCT team to confirm your order.';
+        });
+    }
   }
 
   form.addEventListener('submit', async (event) => {
