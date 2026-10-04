@@ -148,6 +148,23 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
   // A narrow, read-only deployment check. Never return the token, image URLs,
   // original print data, or an arbitrary Printify product requested by a caller.
   let teeCheckCache;
+  let apparelCheckCache;
+  app.get('/api/merch/apparel-check', async (req, res) => {
+    try {
+      if (!apparelCheckCache || apparelCheckCache.expires < Date.now()) {
+        const products = [];
+        for (const [key, id] of Object.entries({ hoodie: '6ac2354ec4300a8ab10a345f', joggers: '6ac236df17b6abfbf901ddcb' })) {
+          const product = await requestPrintify('GET', `/products/${id}.json`);
+          if (String(product.shop_id) !== process.env.PRINTIFY_SHOP_ID || product.id !== id) throw new Error('Product store mismatch');
+          products.push({ key, id, title: product.title,
+            variants: (product.variants || []).filter(v => v.is_enabled).map(v => ({ id: v.id, title: v.title, available: v.is_available })),
+            printPositions: [...new Set((product.print_areas || []).flatMap(a => (a.placeholders || []).filter(p => p.images?.length).map(p => p.position)))].sort() });
+        }
+        apparelCheckCache = { expires: Date.now() + 60000, result: { products } };
+      }
+      res.json(apparelCheckCache.result);
+    } catch (_) { res.status(503).json({ error: 'Could not verify apparel' }); }
+  });
   app.get('/api/merch/tee-check', async (req, res) => {
     if (process.env.MERCH_CHECKOUT_ENABLED === 'true') return res.status(404).json({ error: 'Unavailable' });
     if (!process.env.PRINTIFY_API_TOKEN || !/^\d+$/.test(process.env.PRINTIFY_SHOP_ID || '')) {
