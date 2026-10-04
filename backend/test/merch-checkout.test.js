@@ -204,3 +204,24 @@ test('media check reveals only matching artwork metadata', () => {
   assert.equal(f.printifyCalls.filter(call => call.path === '/orders.json').length, 1);
   assert.equal(f.printifyCalls.find(call => call.path === '/orders.json').payload.send_shipping_notification, true);
  });
+
+test('AskDoGood set uses its own products, independent sizes and branded return URL', async () => {
+  const f = fixture();
+  const config = JSON.parse(process.env.MERCH_PRODUCTS_JSON);
+  config.adg_hoodie = { product_id: 'adg-hoodie', variants: sizes };
+  config.adg_joggers = { product_id: 'adg-joggers', variants: sizes };
+  process.env.MERCH_PRODUCTS_JSON = JSON.stringify(config);
+  let body;
+  await f.routes['POST /api/merch/checkout']({ body: { selection: {
+    product: 'adg_set', hoodieSize: 'M', joggersSize: '2XL', price: 1, returnUrl: 'https://attacker.example'
+  }, address } }, { status() { return this; }, json(value) { body = value; } });
+  assert.ok(body.url);
+  assert.deepEqual(JSON.parse(f.getRow().line_items), [
+    { product_id: 'adg-hoodie', variant_id: 2, quantity: 1 },
+    { product_id: 'adg-joggers', variant_id: 5, quantity: 1 }
+  ]);
+  assert.equal(f.getStripeInput().line_items[0].price_data.unit_amount, 9500);
+  assert.match(f.getStripeInput().success_url, /^https:\/\/askdogood.com\/merch\?order=received/);
+  assert.equal(f.getStripeInput().cancel_url, 'https://askdogood.com/merch?order=canceled');
+  assert.equal(f.getStripeInput().payment_intent_data.receipt_email, address.email);
+});
