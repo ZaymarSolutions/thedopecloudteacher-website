@@ -158,7 +158,7 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
     try {
       if (!apparelCheckCache || apparelCheckCache.expires < Date.now()) {
         const products = [];
-        for (const [key, id] of Object.entries({ hoodie: '6ac2354ec4300a8ab10a345f', joggers: '6ac236df17b6abfbf901ddcb', adg_hoodie: '6ac239430a61e8cef702fcbc' })) {
+        for (const [key, id] of Object.entries({ hoodie: '6ac2354ec4300a8ab10a345f', joggers: '6ac236df17b6abfbf901ddcb', adg_hoodie: '6ac239430a61e8cef702fcbc', adg_joggers: '6ac23a43943f9147b90106fa', adg_tee: '6ac23b7b82fa998d6d0178a9' })) {
           const product = await requestPrintify('GET', `/products/${id}.json`);
           if (String(product.shop_id) !== process.env.PRINTIFY_SHOP_ID || product.id !== id) throw new Error('Product store mismatch');
           products.push({ key, id, title: product.title,
