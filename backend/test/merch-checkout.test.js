@@ -6,7 +6,7 @@ const address = { first_name: 'Ada', last_name: 'Lovelace', email: 'ada@example.
   phone: '', address1: '1 Main St', address2: '', city: 'Albany', region: 'NY', zip: '12207' };
 const sizes = { S: 1, M: 2, L: 3, XL: 4, '2XL': 5 };
 
-function fixture() {
+function fixture(options = {}) {
   process.env.MERCH_CHECKOUT_ENABLED = 'true';
   process.env.PRINTIFY_SHOP_ID = '29102601';
   process.env.PRINTIFY_API_TOKEN = 'fixture-token';
@@ -65,6 +65,8 @@ function fixture() {
         { position: 'left_sleeve', images: [{ id: 'private-logo' }] }
       ] }]
     };
+    if (options.alreadyInProduction && path.includes('send_to_production')) throw new Error('Order already approved');
+    if (options.alreadyInProduction && method === 'GET' && path === '/orders/printify-order-1.json') return { status: 'in-production' };
     if (path === '/orders/shipping.json') return { standard: 799 };
     if (path === '/orders.json') return { id: 'printify-order-1' };
     return {};
@@ -190,3 +192,15 @@ test('media check reveals only matching artwork metadata', () => {
   await f.routes['GET /api/merch/order-status']({ query: { session_id: 'invalid' } }, response);
   assert.equal(status, 400);
 });
+
+ test('automatic Printify approval reconciles without creating another order', async () => {
+  const f = fixture({ alreadyInProduction: true });
+  await f.routes['POST /api/merch/checkout']({ body: { selection: { product: 'tee', size: 'S' }, address } }, { json() {} });
+  const session = { id: 'cs_test_fixture', currency: 'usd', amount_total: 3699,
+    payment_status: 'paid', metadata: { orderType: 'merch', merchOrderId: f.getRow().id } };
+  await f.fulfill(session);
+  await f.fulfill(session);
+  assert.equal(f.getRow().status, 'submitted');
+  assert.equal(f.printifyCalls.filter(call => call.path === '/orders.json').length, 1);
+  assert.equal(f.printifyCalls.find(call => call.path === '/orders.json').payload.send_shipping_notification, true);
+ });
