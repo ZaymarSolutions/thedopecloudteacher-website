@@ -5,7 +5,11 @@ const PRODUCTS = {
   hoodie: { name: 'Dope Shitz Hoodie', price: 5900 },
   tee: { name: 'AI Shield Tee', price: 2900 },
   joggers: { name: 'Cloud AI Joggers', price: 4500 },
-  set: { name: 'Dope Shitz Hoodie + Cloud AI Joggers', price: 9500 }
+  set: { name: 'Dope Shitz Hoodie + Cloud AI Joggers', price: 9500 },
+  adg_hoodie: { name: 'AskDoGood Embroidered Hoodie', price: 5900 },
+  adg_tee: { name: 'AskDoGood Cream Tee', price: 2900 },
+  adg_joggers: { name: 'AskDoGood Joggers', price: 4500 },
+  adg_set: { name: 'AskDoGood Hoodie + Jogger Set', price: 9500 }
 };
 const SIZES = ['S', 'M', 'L', 'XL', '2XL'];
 // Product link supplied by the merchant. Check ownership and print areas before
@@ -78,7 +82,7 @@ function getConfiguredProducts() {
   try {
     const config = JSON.parse(process.env.MERCH_PRODUCTS_JSON || '{}');
     const configured = {};
-    for (const key of ['hoodie', 'tee', 'joggers']) {
+    for (const key of ['hoodie', 'tee', 'joggers', 'adg_hoodie', 'adg_tee', 'adg_joggers']) {
       const item = config[key];
       if (!item || typeof item.product_id !== 'string' || !item.product_id.trim()) continue;
       if (!SIZES.every((size) => Number.isSafeInteger(item.variants?.[size]) && item.variants[size] > 0)) continue;
@@ -111,10 +115,11 @@ function cleanAddress(value) {
 
 function orderLines(selection, config) {
   if (!selection || !Object.hasOwn(PRODUCTS, selection.product)) return null;
-  const keys = selection.product === 'set' ? ['hoodie', 'joggers'] : [selection.product];
+  const isSet = ['set', 'adg_set'].includes(selection.product);
+  const keys = selection.product === 'set' ? ['hoodie', 'joggers'] : selection.product === 'adg_set' ? ['adg_hoodie', 'adg_joggers'] : [selection.product];
   const lines = [];
   for (const key of keys) {
-    const size = selection.product === 'set' ? selection[`${key}Size`] : selection.size;
+    const size = isSet ? selection[`${key.replace('adg_', '')}Size`] : selection.size;
     if (!SIZES.includes(size)) return null;
     if (!Number.isSafeInteger(config[key]?.variants?.[size]) || config[key].variants[size] <= 0) return null;
     lines.push({ product_id: config[key].product_id, variant_id: config[key].variants[size], quantity: 1 });
@@ -140,7 +145,7 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
     const config = getConfiguredProducts();
     const available = ready(stripe);
     const products = Object.fromEntries(Object.entries(PRODUCTS).map(([key, item]) => [key, {
-      ...item, available: available && (key === 'set' ? !!config?.hoodie && !!config?.joggers : !!config?.[key])
+      ...item, available: available && (key === 'set' ? !!config?.hoodie && !!config?.joggers : key === 'adg_set' ? !!config?.adg_hoodie && !!config?.adg_joggers : !!config?.[key])
     }]));
     res.json({ available, products, sizes: SIZES });
   });
@@ -153,10 +158,11 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
     try {
       if (!apparelCheckCache || apparelCheckCache.expires < Date.now()) {
         const products = [];
-        for (const [key, id] of Object.entries({ hoodie: '6ac2354ec4300a8ab10a345f', joggers: '6ac236df17b6abfbf901ddcb' })) {
+        for (const [key, id] of Object.entries({ hoodie: '6ac2354ec4300a8ab10a345f', joggers: '6ac236df17b6abfbf901ddcb', adg_hoodie: '6ac239430a61e8cef702fcbc' })) {
           const product = await requestPrintify('GET', `/products/${id}.json`);
           if (String(product.shop_id) !== process.env.PRINTIFY_SHOP_ID || product.id !== id) throw new Error('Product store mismatch');
           products.push({ key, id, title: product.title,
+            image: (product.images || []).find(image => image.is_default)?.src || (product.images || [])[0]?.src || null,
             variants: (product.variants || []).filter(v => v.is_enabled).map(v => ({ id: v.id, title: v.title, available: v.is_available })),
             printPositions: [...new Set((product.print_areas || []).flatMap(a => (a.placeholders || []).filter(p => p.images?.length).map(p => p.position)))].sort() });
         }
@@ -288,6 +294,7 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
         id, JSON.stringify(selection), JSON.stringify(address), JSON.stringify(lines), item.price, quote.standard
       );
       const base = frontendUrl.replace(/\/$/, '');
+      const returnPage = selection.product.startsWith('adg_') ? 'https://askdogood.com/merch' : `${base}/merch.html`;
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
         payment_method_types: ['card'],
@@ -298,8 +305,8 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
           type: 'fixed_amount', fixed_amount: { amount: quote.standard, currency: 'usd' },
           display_name: 'Standard shipping'
         } }],
-        success_url: `${base}/merch.html?order=received&session_id={CHECKOUT_SESSION_ID}#order-confirmation`,
-        cancel_url: `${base}/merch.html?order=canceled`,
+        success_url: `${returnPage}?order=received&session_id={CHECKOUT_SESSION_ID}#order-confirmation`,
+        cancel_url: `${returnPage}?order=canceled`,
         client_reference_id: id,
         metadata: { orderType: 'merch', merchOrderId: id }
       });
