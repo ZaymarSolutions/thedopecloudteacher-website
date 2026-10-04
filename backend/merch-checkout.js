@@ -318,7 +318,7 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
           external_id: order.id,
           line_items: JSON.parse(order.line_items),
           shipping_method: 1,
-          send_shipping_notification: false,
+          send_shipping_notification: true,
           address_to: JSON.parse(order.address)
         });
         if (!result.id) throw new Error('Printify did not return an order ID');
