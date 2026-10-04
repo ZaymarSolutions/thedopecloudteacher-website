@@ -230,6 +230,27 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
     }
   });
 
+  app.get('/api/merch/order-status', async (req, res) => {
+    const sessionId = req.query?.session_id;
+    if (typeof sessionId !== 'string' || !/^cs_(live|test)_[A-Za-z0-9]+$/.test(sessionId)) {
+      return res.status(400).json({ error: 'A valid checkout reference is required.' });
+    }
+    res.set?.('Cache-Control', 'no-store');
+    try {
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+      const order = db.prepare('SELECT * FROM merch_orders WHERE id = ? AND stripe_session_id = ?')
+        .get(session.metadata?.merchOrderId, session.id);
+      if (session.metadata?.orderType !== 'merch' || !order) return res.status(404).json({ error: 'Order not found.' });
+      const paid = session.payment_status === 'paid' && session.currency === 'usd'
+        && session.amount_total === order.item_total + order.shipping_total;
+      res.json({ paid, orderReference: order.id, total: order.item_total + order.shipping_total,
+        fulfillment: order.status === 'submitted' ? 'production' : 'processing' });
+    } catch (error) {
+      console.error('Merch order verification failed:', error.message);
+      res.status(503).json({ error: 'We could not verify the order right now. Please do not pay again; contact the DCT team.' });
+    }
+  });
+
   app.post('/api/merch/checkout', async (req, res) => {
     if (!ready(stripe)) return res.status(503).json({ error: 'Merch checkout is not open yet.' });
     const config = getConfiguredProducts();
@@ -254,12 +275,13 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
         mode: 'payment',
         payment_method_types: ['card'],
         customer_email: address.email,
+        payment_intent_data: { receipt_email: address.email },
         line_items: [{ price_data: { currency: 'usd', product_data: { name: item.name }, unit_amount: item.price }, quantity: 1 }],
         shipping_options: [{ shipping_rate_data: {
           type: 'fixed_amount', fixed_amount: { amount: quote.standard, currency: 'usd' },
           display_name: 'Standard shipping'
         } }],
-        success_url: `${base}/merch.html?order=received`,
+        success_url: `${base}/merch.html?order=received&session_id={CHECKOUT_SESSION_ID}#order-confirmation`,
         cancel_url: `${base}/merch.html?order=canceled`,
         client_reference_id: id,
         metadata: { orderType: 'merch', merchOrderId: id }
@@ -316,8 +338,15 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
         await requestPrintify('POST', `/orders/${encodeURIComponent(current.printify_order_id)}/send_to_production.json`);
         db.prepare(`UPDATE merch_orders SET status = 'submitted' WHERE id = ?`).run(order.id);
       } catch (error) {
-        console.error('Printify production submission failed:', order.id, error);
-        throw error; // Stripe retries this webhook; the existing Printify order is reused.
+        // Automatic approval can start production before this request arrives.
+        // Reconcile the same order rather than sending a duplicate production request.
+        const saved = await requestPrintify('GET', `/orders/${encodeURIComponent(current.printify_order_id)}.json`);
+        if (['sending-to-production', 'in-production', 'fulfilled', 'partially-fulfilled'].includes(saved.status)) {
+          db.prepare(`UPDATE merch_orders SET status = 'submitted' WHERE id = ?`).run(order.id);
+        } else {
+          console.error('Printify production submission failed:', order.id, error);
+          throw error; // Stripe retries using the existing order.
+        }
       }
     }
     return true;
