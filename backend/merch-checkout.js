@@ -267,6 +267,8 @@ function setupMerch(app, db, stripe, frontendUrl, requestPrintify = printifyRequ
       const paid = session.payment_status === 'paid' && session.currency === 'usd'
         && session.amount_total === order.item_total + order.shipping_total;
       res.json({ paid, orderReference: order.id, total: order.item_total + order.shipping_total,
+        itemTotal: order.item_total, shippingTotal: order.shipping_total, currency: session.currency,
+        live: session.livemode === true,
         fulfillment: order.status === 'submitted' ? 'production' : 'processing' });
     } catch (error) {
       console.error('Merch order verification failed:', error.message);

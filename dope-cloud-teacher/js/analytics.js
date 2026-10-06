@@ -37,11 +37,20 @@
     window.gtag('config', config.measurementId);
   }
 
+  if (location.pathname.endsWith('/cloud101.html')) {
+    trackEvent('view_item', { currency: 'USD', value: 97,
+      items: [{ item_id: 'cloud101', item_name: 'Cloud Fundamentals 101', item_brand: 'DCT', price: 97, quantity: 1 }] });
+  }
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[href]');
     if (link) {
       const url = new URL(link.href, location.href);
       const label = (link.textContent || '').trim().slice(0, 80);
+      if (url.hostname === 'roseecraft.gumroad.com' && url.pathname === '/l/cloud-fundamentals-101') {
+        trackEvent('begin_checkout', { currency: 'USD', value: 97,
+          items: [{ item_id: 'cloud101', item_name: 'Cloud Fundamentals 101', item_brand: 'DCT', price: 97, quantity: 1 }] });
+      }
+      if (url.protocol === 'mailto:') trackEvent('contact_click', { page: location.pathname });
       if (/^https?:$/.test(url.protocol) && url.hostname !== location.hostname) {
         trackEvent('outbound_click', { link_url: url.origin + url.pathname, link_text: label });
       } else if (/^(?:\/)?(?:programs|courses|classes|partners|contact|teach)(?:\/|\.html|$)/i.test(url.pathname.replace(/^\//, ''))) {

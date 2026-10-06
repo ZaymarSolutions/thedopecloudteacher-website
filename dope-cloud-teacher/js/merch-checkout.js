@@ -86,6 +86,17 @@
             return;
           }
           heading.textContent = 'Payment confirmed — thank you!';
+          if (result.live && Number.isFinite(result.itemTotal) && typeof window.DCTTrackEvent === 'function') {
+            const key = 'dct_purchase_' + sessionId;
+            let recorded = false;
+            try { recorded = localStorage.getItem(key) === '1'; } catch (_) {}
+            if (!recorded) {
+              window.DCTTrackEvent('purchase', { transaction_id: sessionId, value: result.itemTotal / 100,
+                shipping: result.shippingTotal / 100, currency: 'USD',
+                items: [{ item_id: 'dct_merch_order', item_name: 'DCT merchandise order', item_brand: 'DCT', price: result.itemTotal / 100, quantity: 1 }] });
+              try { localStorage.setItem(key, '1'); } catch (_) {}
+            }
+          }
           const total = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.total / 100);
           detail.textContent = `Order ${result.orderReference}. Total paid: ${total}. ${result.fulfillment === 'production' ? 'Your order has been sent to production.' : 'Your order is being processed for fulfillment.'} Your payment receipt will be emailed to the address used at checkout.`;
           form.hidden = true;
@@ -122,6 +133,9 @@
       });
       const result = await response.json();
       if (!response.ok || !result.url) throw new Error(result.error || 'Checkout is unavailable.');
+      if (typeof window.DCTTrackEvent === 'function') window.DCTTrackEvent('begin_checkout', {
+        currency: 'USD', items: [{ item_id: selection.product, item_brand: 'DCT', quantity: 1 }]
+      });
       location.assign(result.url);
     } catch (error) {
       message.textContent = error.message || 'Checkout is unavailable. Please try again later.';

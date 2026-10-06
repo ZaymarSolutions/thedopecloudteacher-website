@@ -30,7 +30,7 @@
       localStorage.setItem('starterKitEmail', email);
 
       try {
-        await fetch(`${API_URL}/leads`, {
+        const response = await fetch(`${API_URL}/leads`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -40,6 +40,9 @@
             referrer: document.referrer || null
           })
         });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error('Lead was not saved');
+        trackEvent('generate_lead', { lead_source: source, page: window.location.pathname });
       } catch (error) {
         console.error('Lead capture failed:', error);
       }
@@ -48,7 +51,7 @@
         successMessage.style.display = 'block';
       }
 
-      trackEvent('lead_capture', { source, page: window.location.pathname });
+      trackEvent('resource_access', { source, page: window.location.pathname });
 
       setTimeout(() => {
         window.location.href = redirectTarget;
