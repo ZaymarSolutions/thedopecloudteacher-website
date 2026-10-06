@@ -88,9 +88,9 @@ const GUMROAD_STORE_URL = 'https://roseecraft.gumroad.com';
 
 const HOSTED_CHECKOUT_LINKS = {
   'cloud-fundamentals-101': `${GUMROAD_STORE_URL}/l/cloud-fundamentals-101`,
-  'cloud-security-engineer': 'https://roseecraft.gumroad.com/l/ffudfq',
-  'devops-automation': 'https://roseecraft.gumroad.com/l/cpqdtk',
-  'serverless-microservices': 'https://roseecraft.gumroad.com/l/cqkceh',
+  'cloud-security-engineer': 'https://thedopecloudteacher.org/classes/#schedule',
+  'devops-automation': 'https://thedopecloudteacher.org/classes/#schedule',
+  'serverless-microservices': 'https://thedopecloudteacher.org/classes/#schedule',
   'intro-to-ai-ml': `${GUMROAD_STORE_URL}/l/intro-to-ai-ml`,
   student: `${GUMROAD_STORE_URL}/l/student-membership`,
   pro: `${GUMROAD_STORE_URL}/l/pro-membership`,
