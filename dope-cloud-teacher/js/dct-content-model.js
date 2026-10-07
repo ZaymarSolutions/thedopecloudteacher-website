@@ -209,7 +209,7 @@
       quizId: "quiz-security-baseline",
       downloadIds: ["download-security-baseline"],
       estimatedTime: "45 minutes",
-      certificationMapping: "AZ-500 objective alignment: identity and platform protection"
+      certificationMapping: "Historical AZ-500 alignment (retired August 31, 2026); current credential: SC-500, Cloud and AI Security Engineer Associate"
     },
     {
       id: "lesson-ci-cd-security",
@@ -308,7 +308,7 @@
       relatedLessonIds: ["lesson-identity-core"],
       tags: ["identity", "mfa", "zero-trust"],
       difficulty: "Intermediate",
-      certificationMapping: "AZ-900, AZ-500"
+      certificationMapping: "AZ-900, SC-500 (replaces AZ-500, retired August 31, 2026)"
     },
     {
       id: "poster-zero-trust",
@@ -322,7 +322,7 @@
       relatedLessonIds: ["lesson-security-baseline", "lesson-identity-core"],
       tags: ["security", "governance", "identity"],
       difficulty: "Intermediate",
-      certificationMapping: "AZ-500"
+      certificationMapping: "SC-500 (replaces AZ-500, retired August 31, 2026)"
     },
     {
       id: "poster-devsecops-loop",

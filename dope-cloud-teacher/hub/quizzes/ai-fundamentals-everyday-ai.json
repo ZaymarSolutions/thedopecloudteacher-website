@@ -1,0 +1,184 @@
+{
+  "course": "DCT-AIF",
+  "title": "AI Fundamentals \u2014 Everyday AI",
+  "slug": "ai-fundamentals-everyday-ai",
+  "verified": "October 6, 2026",
+  "quizzes": [
+    {
+      "index": 0,
+      "questions": [
+        {
+          "id": "ai-fundamentals-everyday-ai-0-0",
+          "prompt": "How does a chatbot usually produce an answer?",
+          "options": [
+            "It phones an expert",
+            "It predicts likely next words based on patterns it learned",
+            "It always searches the web first",
+            "It reads your mind"
+          ],
+          "answer_index": 1,
+          "explanation": "Unless connected to search or documents, it predicts text."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-0-1",
+          "prompt": "Which is an example of AI you may already use?",
+          "options": [
+            "A paper calendar",
+            "Your bank's fraud alert texts",
+            "A light switch",
+            "A printed map"
+          ],
+          "answer_index": 1,
+          "explanation": "Fraud detection is predictive AI."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-0-2",
+          "prompt": "Who is responsible for decisions you make using AI's answer?",
+          "options": [
+            "The AI",
+            "The company that made it",
+            "You",
+            "Nobody"
+          ],
+          "answer_index": 2,
+          "explanation": "AI is a tool; people stay accountable."
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "questions": [
+        {
+          "id": "ai-fundamentals-everyday-ai-1-0",
+          "prompt": "In R.E.C.I.P.E., what does the C stand for?",
+          "options": [
+            "Copy",
+            "Context",
+            "Code",
+            "Cost"
+          ],
+          "answer_index": 1,
+          "explanation": "Context \u2014 who it's for and the situation."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-1-1",
+          "prompt": "Which prompt will most likely get a useful answer?",
+          "options": [
+            "\"Help.\"",
+            "\"Write something about money.\"",
+            "\"Act as a financial coach. Create a simple monthly budget for a single parent earning $3,200/month in Prince George's County, as a table.\"",
+            "\"Budget?\""
+          ],
+          "answer_index": 2,
+          "explanation": "Role, task, context and format make the difference."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-1-2",
+          "prompt": "What's a smart follow-up after the first answer?",
+          "options": [
+            "\"What assumptions did you make, and what could be wrong?\"",
+            "Close the app",
+            "Copy it without reading",
+            "Ask the same question again with no changes"
+          ],
+          "answer_index": 0,
+          "explanation": "Evaluate & edit \u2014 make it check itself."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "questions": [
+        {
+          "id": "ai-fundamentals-everyday-ai-2-0",
+          "prompt": "Which is safe to paste into a public AI chatbot?",
+          "options": [
+            "Your Social Security number",
+            "Your bank login",
+            "A letter with names and numbers replaced by placeholders like [NAME]",
+            "Your doctor's notes with your full name"
+          ],
+          "answer_index": 2,
+          "explanation": "Redact private details first."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-2-1",
+          "prompt": "Your \"grandson\" calls crying, needs bail money, and asks you not to tell anyone. Best first step?",
+          "options": [
+            "Send gift cards quickly",
+            "Hang up and call him or a family member on a number you already know",
+            "Ask the caller for proof",
+            "Wire money but only half"
+          ],
+          "answer_index": 1,
+          "explanation": "Voice clones are convincing; verify through a known number and use a family code word."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-2-2",
+          "prompt": "AI gives you a link to a law. What's the first fact-check step?",
+          "options": [
+            "Trust it if it looks official",
+            "Open the link yourself and confirm it exists and says what AI claimed",
+            "Share it on social media",
+            "Ask AI if it's sure"
+          ],
+          "answer_index": 1,
+          "explanation": "Fake or wrong citations are common; verify sources directly."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-2-3",
+          "prompt": "Where do you report a scam to the Federal Trade Commission?",
+          "options": [
+            "ReportFraud.ftc.gov",
+            "Any AI chatbot",
+            "The scammer's website",
+            "Nowhere"
+          ],
+          "answer_index": 0,
+          "explanation": "The FTC collects fraud reports at ReportFraud.ftc.gov."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "questions": [
+        {
+          "id": "ai-fundamentals-everyday-ai-3-0",
+          "prompt": "Which order matches the DCT learning model?",
+          "options": [
+            "Understand \u2192 Use \u2192 Protect \u2192 Create",
+            "Create \u2192 Copy \u2192 Paste \u2192 Post",
+            "Use \u2192 Trust \u2192 Share \u2192 Forget",
+            "Protect \u2192 Avoid \u2192 Ignore \u2192 Quit"
+          ],
+          "answer_index": 0,
+          "explanation": "Every DCT program follows Understand, Use, Protect, Create."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-3-1",
+          "prompt": "After AI drafts your project, what should you always do before sharing it?",
+          "options": [
+            "Nothing \u2014 it's done",
+            "Fact-check and edit it in your own voice",
+            "Remove your name",
+            "Ask AI to post it"
+          ],
+          "answer_index": 1,
+          "explanation": "You're the editor and you're accountable."
+        },
+        {
+          "id": "ai-fundamentals-everyday-ai-3-2",
+          "prompt": "Which use of AI keeps your judgment in charge?",
+          "options": [
+            "Using AI to draft a letter, then checking facts and editing before sending",
+            "Letting AI decide whether to sign a lease",
+            "Sending AI's medical advice to a relative as fact",
+            "Pasting a client's file into a free chatbot"
+          ],
+          "answer_index": 0,
+          "explanation": "AI assists; people decide."
+        }
+      ]
+    }
+  ]
+}

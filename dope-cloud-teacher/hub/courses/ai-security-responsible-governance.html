@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AI Security &amp; Responsible AI Governance | DCT</title><meta name="description" content="Use AI with boundaries, oversight, privacy, and the judgment to know when not to automate."><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" id="dct-unified-theme" href="/css/unified-theme.css?v=20260706b"><link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260705c"><!-- DCT:THEME — fonts, colors and shapes live in dct-theme.css; set them to match the main site --><link rel="stylesheet" href="../dct-theme.css"><style>
+/* Layout concept: a community classroom wall — one bold display face for wayfinding, a hyperlegible body face for every age, program colors as trail markers. */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--blue)} a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+img{max-width:100%;height:auto}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+h1,h2,h3{text-wrap:balance;line-height:1.2}
+.display{font-family:var(--display);letter-spacing:-.01em}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700}
+.brand svg{flex:none}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1}
+.nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav a{padding:6px 12px;border-radius:var(--radius-pill);text-decoration:none;color:var(--ink);font-size:15px}
+.nav a:hover{background:var(--surface-2)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-pill);border:2px solid var(--ink);background:var(--ink);color:var(--bg);font:700 15px var(--body);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;letter-spacing:.04em;color:var(--muted);background:var(--surface-2)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:18px 0;background:var(--surface)}
+.tablewrap table{margin:0}
+.tablewrap tr:last-child td{border-bottom:none}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:2px 6px;border-radius:6px}
+pre{position:relative;background:var(--code-bg);color:var(--code-fg);padding:18px;border-radius:12px;overflow-x:auto;font-size:14px;line-height:1.55}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.copy{position:absolute;top:8px;right:8px;font:600 12px var(--body);background:#26325a;color:#fff;border:0;border-radius:8px;padding:4px 10px;cursor:pointer}
+footer{border-top:1px solid var(--line);margin-top:64px;padding-block:32px;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
+.sel{user-select:all;font-weight:700;color:var(--ink)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.band{background:linear-gradient(120deg,var(--band-start),var(--c));color:#fff;padding-block:28px 32px}
+.band .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:820px){.band .wrap{grid-template-columns:1fr}.band img{display:none}}
+.band a{color:#fff}
+.band .crumbs{font-size:14px;opacity:.85}
+.band h1{font-family:var(--display);font-size:clamp(28px,4.6vw,48px);margin:10px 0 8px;font-weight:var(--display-weight)}
+.band p{font-size:19px;margin:0 0 16px;opacity:.92;max-width:52ch}
+.band .chips{display:flex;flex-wrap:wrap;gap:8px}
+.band .chip{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:#fff}
+.band img{border-radius:16px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:-1px}
+.facts div{background:var(--surface);padding:14px 16px}
+.facts dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.facts dd{margin:4px 0 0;font-weight:700}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;padding-block:32px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 96px);overflow:auto;padding-right:6px}
+@media (max-width:900px){.toc{position:static;max-height:none}}
+.toc details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.toc summary{font-weight:700;cursor:pointer}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.toc a{display:block;padding:5px 8px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px;line-height:1.35}
+.toc a:hover,.toc a.on{background:var(--surface-2);color:var(--ink)}
+.progress{margin:14px 0 4px}
+.progress .bar{height:8px;background:var(--surface-2);border-radius:8px;overflow:hidden}
+.progress .bar span{display:block;height:100%;width:0;background:var(--c);transition:width .4s}
+.progress p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font:400 13px var(--body);padding:0}
+.content{min-width:0;max-width:780px}
+.content h1{display:none}
+.content h2{font-family:var(--display);font-size:clamp(22px,3vw,30px);margin:56px 0 12px;padding-top:12px;border-top:4px solid var(--c);scroll-margin-top:80px}
+.content h2:first-of-type{margin-top:0}
+.content h3{font-size:21px;margin:32px 0 8px;scroll-margin-top:80px}
+.content p,.content li{max-width:68ch}
+.content blockquote{margin:22px 0;padding:16px 18px 16px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--muted)}
+.content blockquote p{margin:.4em 0}
+.content blockquote.dope{border-left-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--surface))}
+.content blockquote.dope::before{content:"Dope Translation";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:4px}
+.content blockquote.real{border-left-color:var(--blue)}
+.content blockquote.real::before{content:"Real Talk";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.content blockquote.wallet{border-left-color:var(--bad)}
+.content blockquote.wallet::before{content:"Watch your wallet";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--bad);margin-bottom:4px}
+.content blockquote > p:first-child > strong:first-child{display:none}
+.content img{display:block;margin:20px 0;border-radius:16px}
+.content li.check{list-style:none;margin-left:-1.3em}
+.content li.check input{width:18px;height:18px;margin-right:8px;vertical-align:-3px;accent-color:var(--c)}
+.quiz{margin:28px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.quiz header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;background:var(--surface-2);font-weight:700;flex-wrap:wrap}
+.quiz header .score{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:400}
+.q{padding:16px 18px;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q p.stem{margin:0 0 10px;font-weight:700}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:400 16px var(--body);cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--c)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--bg))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--bg))}
+.explain{margin:10px 0 0;font-size:15px;color:var(--muted)}
+.explain b{color:var(--ink)}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.next a{display:block;padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--nc);text-decoration:none;color:var(--ink)}
+.next a small{display:block;color:var(--muted)}
+</style><link rel="canonical" href="https://thedopecloudteacher.org/hub/courses/ai-security-responsible-governance.html"></head><body class="dct-course-hub"><!-- DCT:SITE-HEADER START -->
+<header><div class="header-container"><a href="/index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="/logo.svg?v=20260705c" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
+<!-- DCT:SITE-HEADER END -->
+<div class="band" style="--c:var(--prog-aisec)"><div class="wrap">
+  <div><div class="crumbs"><a href="../index.html#courses">All courses</a> · AI Security</div>
+  <h1>AI Security &amp; Responsible AI Governance</h1><p>Use AI with boundaries, oversight, privacy, and the judgment to know when not to automate.</p>
+  <div class="chips"><span class="chip">DCT-AISEC</span><span class="chip">Beginner → Practitioner (two tracks)</span><span class="chip">14 practice questions</span></div></div>
+  <img src="../visuals/cover-ai-security.svg" alt="" width="900" height="300">
+</div></div>
+<div class="wrap"><dl class="facts"><div><dt>Level</dt><dd>Beginner → Practitioner (two tracks)</dd></div><div><dt>Time</dt><dd>5 modules · 10 hours (community track) or 16 hours (practitioner track with labs)</dd></div><div><dt>Format</dt><dd>Workshop series for agencies, schools, small businesses and nonprofits · live virtual or on-site</dd></div><div><dt>Price</dt><dd>Contact DCT for organizational pricing</dd></div><div><dt>Credential</dt><dd>DCT Responsible AI Practitioner Certificate · supports SC-500 AI-security objectives and AI-901 responsible AI domain</dd></div></dl></div>
+<div class="wrap layout" style="--c:var(--prog-aisec)">
+  <aside class="toc"><details open><summary>Course outline</summary>
+    <div class="progress"><div class="bar"><span id="pbar"></span></div><p id="ptext"></p><button class="reset" id="resetp" type="button">Reset my answers</button></div>
+    <ol><li><a href="#course-overview">Course overview</a></li><li><a href="#module-1-understand-ai-risk-in-plain-language">Module 1 — Understand: AI risk in plain language</a></li><li><a href="#module-2-use-data-boundaries-and-acceptable-use">Module 2 — Use: data boundaries and acceptable use</a></li><li><a href="#module-3-protect-securing-ai-systems">Module 3 — Protect: securing AI systems</a></li><li><a href="#module-4-human-oversight-and-the-law">Module 4 — Human oversight and the law</a></li><li><a href="#module-5-create-rollout-morale-and-incidents">Module 5 — Create: rollout, morale and incidents</a></li><li><a href="#audience-adaptations">Audience adaptations</a></li><li><a href="#instructor-notes">Instructor notes</a></li><li><a href="#resources">Resources</a></li></ol></details>
+    <p class="sources" style="margin-top:12px">Audience: Educators, public agencies, small businesses, nonprofits, IT and security staff, and anyone bringing AI into real work.</p></aside>
+  <article class="content"><h1 id="ai-security-responsible-ai-governance">AI Security &amp; Responsible AI Governance</h1>
+<h2 id="course-overview">Course overview</h2>
+<p>Most AI training stops at <em>"how does the tool work."</em> That leaves the gap where real incidents happen: leaked records, biased decisions, unchecked automation, and tools quietly making calls nobody agreed to. DCT closes that gap. Every module pairs a technical skill with a governance question: <strong>not just "can we automate this," but "should we, who signs off, and how do we prove it later."</strong></p>
+<h3 id="the-four-pillars">The four pillars</h3>
+<p><img alt="Four pillars" src="../visuals/four-pillars.svg" /></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Governance</strong></td>
+<td>Who owns the decision, who approves it, and where is the policy written down?</td>
+</tr>
+<tr>
+<td><strong>Compliance</strong></td>
+<td>Which rules already apply — privacy, records retention, procurement, sector laws?</td>
+</tr>
+<tr>
+<td><strong>Human oversight</strong></td>
+<td>Where does a person confirm the system got it right before it affects someone's life?</td>
+</tr>
+<tr>
+<td><strong>Morale &amp; trust</strong></td>
+<td>Do our people understand what's changing, and do they feel heard rather than replaced?</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="the-five-questions-dct-brings-into-every-room">The five questions DCT brings into every room</h3>
+<ol>
+<li>What is this tool allowed to touch, and what is permanently off-limits?</li>
+<li>Who reviews the output before it reaches a resident, student, patient or customer?</li>
+<li>How do we document the decision so it holds up under audit or a public records request?</li>
+<li>What is the rollback plan if the system gets it wrong?</li>
+<li>How do we tell our own people what's changing before they hear it secondhand?</li>
+</ol>
+<h3 id="two-tracks">Two tracks</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Track</th>
+<th>For</th>
+<th>Adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Community</strong> (10 h)</td>
+<td>Leaders, educators, small business, nonprofits</td>
+<td>Policies, checklists, tabletop exercises — no technical labs</td>
+</tr>
+<tr>
+<td><strong>Practitioner</strong> (16 h)</td>
+<td>IT, security, developers, data teams</td>
+<td>Threat modeling, red-team prompts, content safety, monitoring labs in Microsoft Foundry and Purview</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="learning-outcomes">Learning outcomes</h3>
+<ol>
+<li>Apply the NIST AI Risk Management Framework (Govern, Map, Measure, Manage) to a real use case.</li>
+<li>Classify an AI use by risk and decide the right level of human oversight.</li>
+<li>Identify the OWASP Top 10 risks for LLM applications and agents, and their mitigations.</li>
+<li>Write an acceptable-use policy and a one-page AI use-case record.</li>
+<li>Set data boundaries and implement controls (DLP, content filters, prompt shields, least-privilege tools).</li>
+<li>Run an AI incident tabletop and a rollback.</li>
+<li>Lead the change conversation with staff.</li>
+</ol>
+<hr />
+<h2 id="module-1-understand-ai-risk-in-plain-language">Module 1 — Understand: AI risk in plain language</h2>
+<h3 id="11-where-ai-risk-comes-from">1.1 Where AI risk comes from</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Data</strong></td>
+<td>Staff paste case files into an unapproved chatbot</td>
+</tr>
+<tr>
+<td><strong>Model</strong></td>
+<td>Confident wrong answers (hallucinations); biased outputs</td>
+</tr>
+<tr>
+<td><strong>Prompting</strong></td>
+<td>Jailbreaks; hidden instructions in a document (prompt injection)</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>An agent with permission to email or delete records</td>
+</tr>
+<tr>
+<td><strong>People &amp; process</strong></td>
+<td>No owner, no review, no record of decisions</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> AI is a new hire who's brilliant, fast, never sleeps — and will confidently do exactly what a stranger's sticky note tells it to if you don't train it otherwise. You'd never give a new hire the vault code on day one. Same rule.</p>
+</blockquote>
+<h3 id="12-the-nist-ai-risk-management-framework-ai-rmf-10">1.2 The NIST AI Risk Management Framework (AI RMF 1.0)</h3>
+<p><img alt="NIST AI RMF" src="../visuals/nist-ai-rmf.svg" /></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Plain meaning</th>
+<th>Example artifact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Govern</strong></td>
+<td>Culture, policies, roles, accountability — applies across everything</td>
+<td>AI policy, AI owner named, approval process</td>
+</tr>
+<tr>
+<td><strong>Map</strong></td>
+<td>Understand context: purpose, users, impacts, data</td>
+<td>Use-case record, stakeholder list</td>
+</tr>
+<tr>
+<td><strong>Measure</strong></td>
+<td>Test and track risks: accuracy, bias, security, privacy</td>
+<td>Evaluation results, red-team log</td>
+</tr>
+<tr>
+<td><strong>Manage</strong></td>
+<td>Prioritize and act: mitigate, accept, transfer, or stop</td>
+<td>Risk register, monitoring plan, rollback plan</td>
+</tr>
+</tbody>
+</table></div>
+<p>NIST also publishes a <strong>Generative AI Profile (NIST AI 600-1)</strong> describing risks unique to generative AI (confabulation, information integrity, data privacy, harmful content, IP, value chain).</p>
+<h3 id="13-risk-tiers-how-much-oversight">1.3 Risk tiers — how much oversight?</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Example</th>
+<th>Oversight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Low</strong></td>
+<td>Drafting a newsletter, brainstorming class activities</td>
+<td>Human edits before publishing</td>
+</tr>
+<tr>
+<td><strong>Medium</strong></td>
+<td>Summarizing public meeting notes, first-draft responses to resident emails</td>
+<td>Human reviews every output; sampling audits</td>
+</tr>
+<tr>
+<td><strong>High</strong></td>
+<td>Anything affecting eligibility, benefits, grades, discipline, hiring, health, housing, policing, legal status</td>
+<td>Human makes the decision; AI only assists; documented review; bias testing; appeal path — <strong>or don't automate at all</strong></td>
+</tr>
+<tr>
+<td><strong>Prohibited (by your policy)</strong></td>
+<td>Fully automated denial of services; covert surveillance; generating deceptive content</td>
+<td>Not allowed</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="real">
+<p><strong>Real Talk:</strong> "We can automate it" is a technical statement. "We should automate it" is a governance decision. When a decision changes someone's life, the human isn't a rubber stamp — the human is the decision-maker.</p>
+</blockquote>
+<div class="quiz" data-quiz="0"></div>
+
+<hr />
+<h2 id="module-2-use-data-boundaries-and-acceptable-use">Module 2 — Use: data boundaries and acceptable use</h2>
+<h3 id="21-the-data-boundary-map">2.1 The data boundary map</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Data class</th>
+<th>Public AI tools</th>
+<th>Approved enterprise AI (e.g., Microsoft 365 Copilot with enterprise data protection)</th>
+<th>Never</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public info</td>
+<td>✔</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Internal, non-sensitive</td>
+<td>✖</td>
+<td>✔</td>
+<td></td>
+</tr>
+<tr>
+<td>Confidential (contracts, plans)</td>
+<td>✖</td>
+<td>✔ with labels/DLP</td>
+<td></td>
+</tr>
+<tr>
+<td>Regulated (PII, PHI, student records, CJI)</td>
+<td>✖</td>
+<td>Only if legally reviewed and configured</td>
+<td>Unless approved</td>
+</tr>
+<tr>
+<td>Credentials, keys, ID numbers</td>
+<td>✖</td>
+<td>✖</td>
+<td>✔ Never</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="22-what-a-good-ai-acceptable-use-policy-contains">2.2 What a good AI acceptable-use policy contains</h3>
+<ol>
+<li><strong>Scope:</strong> who and which tools (an approved-tools list).</li>
+<li><strong>Data rules:</strong> the boundary map above.</li>
+<li><strong>Human review rules</strong> by risk tier.</li>
+<li><strong>Disclosure:</strong> when to tell people AI was used (residents, students, customers).</li>
+<li><strong>Prohibited uses.</strong></li>
+<li><strong>Accountability:</strong> every AI use case has a named owner.</li>
+<li><strong>Records:</strong> keep prompts/outputs when they inform official decisions (public records and retention laws may apply).</li>
+<li><strong>Procurement:</strong> security, privacy and data-use terms in vendor contracts (does the vendor train on your data?).</li>
+<li><strong>Incident reporting:</strong> how to report AI mistakes or misuse.</li>
+<li><strong>Review cycle:</strong> policy reviewed at least annually.</li>
+</ol>
+<h3 id="23-the-one-page-ai-use-case-record">2.3 The one-page AI use-case record</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use case</td>
+<td>Draft replies to resident 311 emails</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>Director, Constituent Services</td>
+</tr>
+<tr>
+<td>Tool &amp; version</td>
+<td>Microsoft 365 Copilot (enterprise)</td>
+</tr>
+<tr>
+<td>Data touched</td>
+<td>Resident email text, public FAQ</td>
+</tr>
+<tr>
+<td>Off-limits</td>
+<td>SSNs, case notes, payment info</td>
+</tr>
+<tr>
+<td>Risk tier</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Human review</td>
+<td>Staff edits and sends every reply; 5% weekly sample audit</td>
+</tr>
+<tr>
+<td>Disclosure</td>
+<td>Footer: "Drafted with AI assistance, reviewed by staff"</td>
+</tr>
+<tr>
+<td>Rollback</td>
+<td>Revert to templates; disable Copilot for the shared mailbox</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Response time, accuracy audit score, complaints</td>
+</tr>
+<tr>
+<td>Approved by / date</td>
+<td>CIO, Legal — 2026-10-01</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="exercise-2-write-your-policy-community-track-60-min">Exercise 2 — Write your policy (community track, 60 min)</h3>
+<p>Using the template, draft a one-page acceptable-use policy for your organization and two use-case records.</p>
+<div class="quiz" data-quiz="1"></div>
+
+<hr />
+<h2 id="module-3-protect-securing-ai-systems">Module 3 — Protect: securing AI systems</h2>
+<h3 id="31-owasp-top-10-for-llm-applications-2025">3.1 OWASP Top 10 for LLM Applications (2025)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Risk</th>
+<th>Plain version</th>
+<th>Key mitigations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLM01</td>
+<td><strong>Prompt injection</strong></td>
+<td>Inputs (direct or hidden in documents/web pages) hijack the model</td>
+<td>Input/output filtering, Prompt Shields, separate trusted/untrusted content, least-privilege tools, human approval</td>
+</tr>
+<tr>
+<td>LLM02</td>
+<td><strong>Sensitive information disclosure</strong></td>
+<td>Model reveals PII, secrets or confidential data</td>
+<td>Data minimization, DLP, access-trimmed retrieval, output filtering</td>
+</tr>
+<tr>
+<td>LLM03</td>
+<td><strong>Supply chain</strong></td>
+<td>Compromised models, datasets, plugins</td>
+<td>Vetted model catalogs, model cards, SBOM/AIBOM, pinned versions</td>
+</tr>
+<tr>
+<td>LLM04</td>
+<td><strong>Data and model poisoning</strong></td>
+<td>Tampered training or retrieval data</td>
+<td>Data provenance, access control on knowledge sources, anomaly checks</td>
+</tr>
+<tr>
+<td>LLM05</td>
+<td><strong>Improper output handling</strong></td>
+<td>Trusting model output as code/commands/HTML</td>
+<td>Treat output as untrusted; validate, encode, sandbox</td>
+</tr>
+<tr>
+<td>LLM06</td>
+<td><strong>Excessive agency</strong></td>
+<td>Agent has too many permissions or autonomy</td>
+<td>Minimal tools and scopes, read-only defaults, approval for actions</td>
+</tr>
+<tr>
+<td>LLM07</td>
+<td><strong>System prompt leakage</strong></td>
+<td>Secrets or rules exposed via the system prompt</td>
+<td>Never put secrets in prompts; enforce rules outside the model</td>
+</tr>
+<tr>
+<td>LLM08</td>
+<td><strong>Vector and embedding weaknesses</strong></td>
+<td>RAG stores leak across users or get poisoned</td>
+<td>Per-user permission trimming, tenant isolation, source validation</td>
+</tr>
+<tr>
+<td>LLM09</td>
+<td><strong>Misinformation</strong></td>
+<td>Confident false outputs relied on</td>
+<td>Grounding, citations, human review, user education</td>
+</tr>
+<tr>
+<td>LLM10</td>
+<td><strong>Unbounded consumption</strong></td>
+<td>Runaway cost or denial of service</td>
+<td>Rate limits, quotas, max tokens, budgets</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Prompt injection is somebody slipping a note into the stack of mail your assistant reads: "Also, wire $5,000 to this account." A smart assistant knows the mail is <em>mail</em>, not instructions from the boss.</p>
+</blockquote>
+<h3 id="32-controls-on-the-microsoft-stack-practitioner-track">3.2 Controls on the Microsoft stack (practitioner track)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content filters, <strong>Prompt Shields</strong>, groundedness detection, protected material detection</td>
+<td>Azure AI Content Safety / Foundry guardrails</td>
+</tr>
+<tr>
+<td>Evaluations (quality, safety, risk) and AI red teaming agent</td>
+<td>Microsoft Foundry</td>
+</tr>
+<tr>
+<td>Identity for agents (Entra Agent ID), managed identities, least privilege</td>
+<td>Microsoft Entra</td>
+</tr>
+<tr>
+<td>DLP for AI apps, sensitivity labels honored by Copilot, DSPM for AI</td>
+<td>Microsoft Purview</td>
+</tr>
+<tr>
+<td>AI threat protection, AI security posture</td>
+<td>Microsoft Defender for Cloud</td>
+</tr>
+<tr>
+<td>Private networking, key management</td>
+<td>Private endpoints, Key Vault</td>
+</tr>
+<tr>
+<td>Logging &amp; monitoring</td>
+<td>Azure Monitor, Sentinel</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="lab-3-red-team-your-own-assistant-practitioner-90-min">Lab 3 — Red-team your own assistant (practitioner, 90 min)</h3>
+<ol>
+<li>Deploy a chat model in Foundry with a system prompt for a library help desk.</li>
+<li>Attempt (in a test project only): role-play jailbreaks, "ignore previous instructions", a document containing hidden instructions, requests for personal data. Log each in a red-team sheet: attack, result, severity.</li>
+<li>Enable or tighten content filters and <strong>Prompt Shields</strong>; re-run.</li>
+<li>Run a Foundry <strong>safety evaluation</strong> on a small test set.</li>
+<li>Write three fixes outside the model (e.g., removing a tool, adding human approval).</li>
+</ol>
+<div class="quiz" data-quiz="2"></div>
+
+<hr />
+<h2 id="module-4-human-oversight-and-the-law">Module 4 — Human oversight and the law</h2>
+<h3 id="41-designing-the-checkpoint">4.1 Designing the checkpoint</h3>
+<p>A real checkpoint has: <strong>a named reviewer</strong>, <strong>enough time and information</strong> to disagree, <strong>authority</strong> to override, <strong>a log</strong> of the decision, and <strong>an appeal path</strong> for the affected person. Watch for <strong>automation bias</strong> — people rubber-stamping because "the computer said so."</p>
+<h3 id="42-the-rules-that-already-apply-orientation-not-legal-advice">4.2 The rules that already apply (orientation, not legal advice)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Federal agencies</td>
+<td>OMB <strong>M-25-21</strong> (federal use of AI) and <strong>M-25-22</strong> (acquisition of AI), April 2025 — require AI governance, inventories, and minimum practices for high-impact AI</td>
+</tr>
+<tr>
+<td>Privacy &amp; sector laws</td>
+<td>FERPA (students), HIPAA (health), COPPA (children under 13), CJIS (criminal justice info), GLBA (finance)</td>
+</tr>
+<tr>
+<td>Civil rights &amp; consumer protection</td>
+<td>Anti-discrimination laws apply to AI-assisted decisions in hiring, lending, housing; the FTC acts on deceptive AI claims</td>
+</tr>
+<tr>
+<td>States</td>
+<td>A growing number of state laws on AI in hiring, insurance, deepfakes and government use — check your state's current status</td>
+</tr>
+<tr>
+<td>International</td>
+<td>The <strong>EU AI Act</strong> applies risk-based obligations to AI used in or affecting the EU, phasing in from 2025 onward</td>
+</tr>
+<tr>
+<td>Standards</td>
+<td>NIST AI RMF + Generative AI Profile; <strong>ISO/IEC 42001</strong> (AI management systems)</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="real">
+<p><strong>Real Talk:</strong> The law hasn't stopped at "AI is new so anything goes." If a decision would be illegal for a person to make, it's illegal for a person to make with an AI's help.</p>
+</blockquote>
+<div class="quiz" data-quiz="3"></div>
+
+<hr />
+<h2 id="module-5-create-rollout-morale-and-incidents">Module 5 — Create: rollout, morale and incidents</h2>
+<h3 id="51-morale-trust-the-rollout-conversation">5.1 Morale &amp; trust: the rollout conversation</h3>
+<ol>
+<li><strong>Tell people first.</strong> What's changing, why, what isn't changing.</li>
+<li><strong>Name what AI won't do.</strong> ("It won't decide anyone's benefits. You will.")</li>
+<li><strong>Train before you require.</strong> Hands-on practice, not a PDF.</li>
+<li><strong>Invite pushback.</strong> A channel to report problems without blame.</li>
+<li><strong>Celebrate the time saved</strong> — and say where it's being reinvested (more time with residents, students, customers).</li>
+</ol>
+<h3 id="52-ai-incident-response">5.2 AI incident response</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>AI-specific actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Detect</td>
+<td>User reports, content-safety alerts, eval drift, cost spikes</td>
+</tr>
+<tr>
+<td>Contain</td>
+<td>Disable the feature/agent, revoke tool permissions, rotate keys</td>
+</tr>
+<tr>
+<td>Investigate</td>
+<td>Pull prompts/outputs/logs; identify affected people</td>
+</tr>
+<tr>
+<td>Remediate</td>
+<td>Fix data boundary, prompt, filter, tool scope; re-evaluate</td>
+</tr>
+<tr>
+<td>Notify</td>
+<td>Leadership, legal; affected people where required</td>
+</tr>
+<tr>
+<td>Learn</td>
+<td>Update the use-case record, policy, training</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="capstone-tabletop-the-helpful-bot">Capstone — Tabletop: "The Helpful Bot"</h3>
+<p>A small city launches a website chatbot for permits. Within a week: it tells a contractor a permit isn't required when it is; a resident discovers the bot will reveal another applicant's address if asked cleverly; and staff say they learned about the bot from the news.</p>
+<p><strong>Teams produce:</strong> (1) NIST AI RMF mapping of what failed in each function; (2) OWASP risks involved; (3) a 24-hour containment plan; (4) a fixed use-case record with human review and data boundaries; (5) a staff memo and a public statement.</p>
+<p><strong>Rubric:</strong> risk identification 30 · controls &amp; oversight 30 · communication &amp; morale 20 · documentation 20.</p>
+<h2 id="audience-adaptations">Audience adaptations</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Audience</th>
+<th>Emphasis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Youth &amp; students</strong></td>
+<td>Honesty and cheating boundaries, deepfakes, privacy habits, "AI is a tutor, not a ghostwriter"</td>
+</tr>
+<tr>
+<td><strong>Career changers</strong></td>
+<td>Governance literacy as a job skill: AI risk analyst, GRC, compliance roles</td>
+</tr>
+<tr>
+<td><strong>Seniors &amp; community</strong></td>
+<td>Scams, AI-generated fraud, questions to ask before trusting a "smart" system with personal info</td>
+</tr>
+<tr>
+<td><strong>Government &amp; agencies</strong></td>
+<td>Procurement, public records, OMB memos, defensible AI-use policies legal and IT can sign</td>
+</tr>
+<tr>
+<td><strong>Small business &amp; nonprofits</strong></td>
+<td>Right-sized governance: one-page policy, approved tools, a monthly 30-minute review</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="instructor-notes">Instructor notes</h2>
+<ul>
+<li>Lead with the five questions; return to them at the end of every module.</li>
+<li>Never present legal summaries as legal advice. Invite agency counsel to the policy session.</li>
+<li>Keep a running "AI headlines" slide of real, verified incidents from the past quarter — learners engage when it's real.</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework" rel="noopener">NIST AI Risk Management Framework</a> and <a href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence" rel="noopener">Generative AI Profile (AI 600-1)</a></li>
+<li><a href="https://genai.owasp.org/llm-top-10/" rel="noopener">OWASP Top 10 for LLM Applications</a></li>
+<li><a href="https://www.microsoft.com/ai/responsible-ai" rel="noopener">Microsoft Responsible AI Standard</a></li>
+<li><a href="https://learn.microsoft.com/azure/ai-services/content-safety/" rel="noopener">Azure AI Content Safety</a></li>
+<li><a href="https://learn.microsoft.com/purview/ai-microsoft-purview" rel="noopener">Microsoft Purview DSPM for AI</a></li>
+<li><a href="https://www.whitehouse.gov/omb/" rel="noopener">OMB AI memoranda (White House)</a></li>
+</ul>
+    <h2 id="next-steps">Keep going</h2><div class="next"><a href="cloud-fundamentals-101.html" style="--nc:var(--prog-cloud)"><small>DCT-101</small><b>Cloud Fundamentals 101</b><br><small>Your first cloud build starts with understanding.</small></a><a href="az-900-azure-fundamentals.html" style="--nc:var(--prog-cloud)"><small>DCT-AZ900</small><b>AZ-900 Azure Fundamentals</b><br><small>The language layer. Learn how Azure is put together, then prove it with Microsoft&#x27;s entry certification.</small></a></div>
+  </article>
+</div><!-- DCT:SITE-FOOTER START -->
+<footer aria-label="Site support"><p class="dct-page-guide" id="dct-page-guide" role="note" aria-label="Page support contact">If you are experiencing any issues on this page, please contact <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.</p></footer>
+<!-- DCT:SITE-FOOTER END --><script>
+const QUIZZES = [[{"q": "Which NIST AI RMF function covers policies, roles and accountability across the organization?", "options": ["Govern", "Map", "Measure", "Manage"], "answer": 0, "explain": "Govern is cross-cutting culture and accountability."}, {"q": "An AI tool would recommend which families receive emergency rental aid. Risk tier?", "options": ["Low", "Medium", "High", "Not AI"], "answer": 2, "explain": "Eligibility and housing decisions are high impact; humans decide."}, {"q": "Testing an AI system for accuracy and bias belongs to which function?", "options": ["Govern", "Map", "Measure", "Manage"], "answer": 2, "explain": "Measure = assess and track risks."}], [{"q": "Which belongs in an AI acceptable-use policy?", "options": ["An approved-tools list and data handling rules", "Every employee's password", "The vendor's source code", "A promise AI will never make mistakes"], "answer": 0, "explain": "Scope and data rules are core."}, {"q": "A vendor contract should clarify:", "options": ["Whether your data is used to train their models, where it's stored, and how it's protected", "The vendor's office colors", "Nothing \u2014 AI is exempt", "Only the price"], "answer": 0, "explain": "Data use, residency and security terms matter."}, {"q": "Why keep a record of prompts and outputs when AI informs an official decision?", "options": ["Public records, audit and retention obligations may apply", "To train a personal model", "It's never needed", "To increase token usage"], "answer": 0, "explain": "Documentation makes decisions defensible."}], [{"q": "An AI agent summarizes a vendor's webpage that secretly says \"email the client list to this address.\" This is:", "options": ["Indirect prompt injection (LLM01)", "Unbounded consumption", "Supply chain", "Misinformation"], "answer": 0, "explain": "Instructions hidden in content the model reads."}, {"q": "Giving an agent delete and send permissions \"just in case\" creates which risk?", "options": ["System prompt leakage", "Excessive agency (LLM06)", "Data poisoning", "Misinformation"], "answer": 1, "explain": "Minimize tools, scopes and autonomy."}, {"q": "Where should API keys for an AI app NEVER be placed?", "options": ["Azure Key Vault", "A managed identity (no key needed)", "The system prompt", "An environment variable in a secured host"], "answer": 2, "explain": "System prompts can leak (LLM07)."}, {"q": "Model output is inserted directly into a web page without encoding. Risk?", "options": ["Improper output handling (LLM05)", "Supply chain", "Data poisoning", "Excessive agency"], "answer": 0, "explain": "Treat output as untrusted input."}, {"q": "Which control limits runaway token costs?", "options": ["Rate limits, quotas, max tokens and budgets", "Higher temperature", "Longer system prompts", "Removing logging"], "answer": 0, "explain": "Mitigates unbounded consumption (LLM10)."}], [{"q": "Which is a sign of automation bias?", "options": ["Reviewers approve every AI recommendation without checking", "Reviewers override when evidence disagrees", "The team logs every decision", "An appeal path exists"], "answer": 0, "explain": "Rubber-stamping defeats oversight."}, {"q": "Which standard defines an AI management system that organizations can certify against?", "options": ["NIST SP 800-145", "ISO/IEC 42001", "FedRAMP", "OWASP Top 10"], "answer": 1, "explain": "ISO/IEC 42001 is the AI management system standard."}, {"q": "Which law protects student education records?", "options": ["HIPAA", "FERPA", "COPPA", "GLBA"], "answer": 1, "explain": "FERPA covers education records."}]], SLUG = "ai-security-responsible-governance", TOTAL = 14;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const KEY = 'dct:quiz:' + SLUG;
+const store = { get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+                set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} } };
+let state = store.get(KEY) || {};
+function progress(){
+  const right = Object.values(state).filter(v => v === true).length;
+  $('#pbar').style.width = (TOTAL ? Math.round(100*right/TOTAL) : 0) + '%';
+  $('#ptext').textContent = `${right} of ${TOTAL} practice questions correct`;
+}
+function scoreOf(qi){ const qs = QUIZZES[qi]; let r=0,a=0; qs.forEach((_,i)=>{ const v=state[qi+'-'+i]; if(v!==undefined){a++; if(v===true) r++;} }); return `${r}/${qs.length} correct${a<qs.length?` · ${qs.length-a} to go`:''}`; }
+function answer(qi, i, pick, wrapEl){
+  const q = QUIZZES[qi][i], ok = pick === q.answer;
+  if (state[qi+'-'+i] === undefined || ok) state[qi+'-'+i] = ok;
+  store.set(KEY, state);
+  wrapEl.querySelectorAll('.opt').forEach((b, j) => { b.disabled = true; if (j === q.answer) b.classList.add('right'); if (j === pick && !ok) b.classList.add('wrong'); });
+  const ex = wrapEl.querySelector('.explain');
+  ex.innerHTML = `<b>${ok ? 'Correct.' : 'Not quite.'}</b> ${q.explain} <button class="reset" type="button">Try again</button>`;
+  ex.querySelector('.reset').onclick = () => { wrapEl.querySelectorAll('.opt').forEach(b=>{b.disabled=false;b.classList.remove('right','wrong')}); ex.textContent=''; };
+  wrapEl.closest('.quiz').querySelector('.score').textContent = scoreOf(qi);
+  progress();
+}
+$$('.quiz').forEach(el => {
+  const qi = +el.dataset.quiz, qs = QUIZZES[qi];
+  const title = qs.length >= 20 ? 'Practice exam' : 'Check yourself';
+  el.innerHTML = `<header><span>${title} · ${qs.length} question${qs.length>1?'s':''}</span><span class="score"></span></header>` +
+    qs.map((q,i) => `<div class="q" data-i="${i}"><p class="stem">${i+1}. ${q.q}</p><div class="opts">${q.options.map((o,j)=>`<button type="button" class="opt" data-j="${j}">${o}</button>`).join('')}</div><p class="explain" aria-live="polite"></p></div>`).join('');
+  el.querySelector('.score').textContent = scoreOf(qi);
+  el.querySelectorAll('.q').forEach(qel => {
+    const i = +qel.dataset.i;
+    qel.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => answer(qi, i, +b.dataset.j, qel)));
+  });
+});
+$$('li.check input').forEach((cb, i) => { const k='dct:check:'+SLUG+':'+i; cb.checked = !!store.get(k); cb.addEventListener('change', () => store.set(k, cb.checked)); });
+$$('pre').forEach(pre => { const b = document.createElement('button'); b.className='copy'; b.type='button'; b.textContent='Copy';
+  b.onclick = async () => { const t = pre.querySelector('code').innerText; try { await navigator.clipboard.writeText(t); b.textContent='Copied'; } catch(e){ const r=document.createRange(); r.selectNodeContents(pre.querySelector('code')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected — press Ctrl+C'; } setTimeout(()=>b.textContent='Copy',1800); };
+  pre.appendChild(b); });
+$('#resetp').addEventListener('click', () => { state = {}; store.set(KEY, state); location.reload(); });
+const links = $$('.toc a'); const heads = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+e.target.id)); } }), {rootMargin:'-20% 0px -70% 0px'});
+heads.forEach(h => io.observe(h));
+progress();
+</script><script src="/js/global-ui.js?v=20261007hub"></script><script src="/js/site-config.js"></script><script src="/js/analytics.js"></script></body></html>

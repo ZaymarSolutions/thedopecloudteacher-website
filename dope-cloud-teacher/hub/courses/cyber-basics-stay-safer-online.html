@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Cyber Basics — Stay Safer Online | DCT</title><meta name="description" content="Phishing, passwords, passkeys, scams and what to do when something goes wrong. For every age."><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" id="dct-unified-theme" href="/css/unified-theme.css?v=20260706b"><link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260705c"><!-- DCT:THEME — fonts, colors and shapes live in dct-theme.css; set them to match the main site --><link rel="stylesheet" href="../dct-theme.css"><style>
+/* Layout concept: a community classroom wall — one bold display face for wayfinding, a hyperlegible body face for every age, program colors as trail markers. */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--blue)} a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+img{max-width:100%;height:auto}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+h1,h2,h3{text-wrap:balance;line-height:1.2}
+.display{font-family:var(--display);letter-spacing:-.01em}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700}
+.brand svg{flex:none}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1}
+.nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav a{padding:6px 12px;border-radius:var(--radius-pill);text-decoration:none;color:var(--ink);font-size:15px}
+.nav a:hover{background:var(--surface-2)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-pill);border:2px solid var(--ink);background:var(--ink);color:var(--bg);font:700 15px var(--body);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;letter-spacing:.04em;color:var(--muted);background:var(--surface-2)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:18px 0;background:var(--surface)}
+.tablewrap table{margin:0}
+.tablewrap tr:last-child td{border-bottom:none}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:2px 6px;border-radius:6px}
+pre{position:relative;background:var(--code-bg);color:var(--code-fg);padding:18px;border-radius:12px;overflow-x:auto;font-size:14px;line-height:1.55}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.copy{position:absolute;top:8px;right:8px;font:600 12px var(--body);background:#26325a;color:#fff;border:0;border-radius:8px;padding:4px 10px;cursor:pointer}
+footer{border-top:1px solid var(--line);margin-top:64px;padding-block:32px;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
+.sel{user-select:all;font-weight:700;color:var(--ink)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.band{background:linear-gradient(120deg,var(--band-start),var(--c));color:#fff;padding-block:28px 32px}
+.band .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:820px){.band .wrap{grid-template-columns:1fr}.band img{display:none}}
+.band a{color:#fff}
+.band .crumbs{font-size:14px;opacity:.85}
+.band h1{font-family:var(--display);font-size:clamp(28px,4.6vw,48px);margin:10px 0 8px;font-weight:var(--display-weight)}
+.band p{font-size:19px;margin:0 0 16px;opacity:.92;max-width:52ch}
+.band .chips{display:flex;flex-wrap:wrap;gap:8px}
+.band .chip{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:#fff}
+.band img{border-radius:16px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:-1px}
+.facts div{background:var(--surface);padding:14px 16px}
+.facts dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.facts dd{margin:4px 0 0;font-weight:700}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;padding-block:32px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 96px);overflow:auto;padding-right:6px}
+@media (max-width:900px){.toc{position:static;max-height:none}}
+.toc details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.toc summary{font-weight:700;cursor:pointer}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.toc a{display:block;padding:5px 8px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px;line-height:1.35}
+.toc a:hover,.toc a.on{background:var(--surface-2);color:var(--ink)}
+.progress{margin:14px 0 4px}
+.progress .bar{height:8px;background:var(--surface-2);border-radius:8px;overflow:hidden}
+.progress .bar span{display:block;height:100%;width:0;background:var(--c);transition:width .4s}
+.progress p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font:400 13px var(--body);padding:0}
+.content{min-width:0;max-width:780px}
+.content h1{display:none}
+.content h2{font-family:var(--display);font-size:clamp(22px,3vw,30px);margin:56px 0 12px;padding-top:12px;border-top:4px solid var(--c);scroll-margin-top:80px}
+.content h2:first-of-type{margin-top:0}
+.content h3{font-size:21px;margin:32px 0 8px;scroll-margin-top:80px}
+.content p,.content li{max-width:68ch}
+.content blockquote{margin:22px 0;padding:16px 18px 16px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--muted)}
+.content blockquote p{margin:.4em 0}
+.content blockquote.dope{border-left-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--surface))}
+.content blockquote.dope::before{content:"Dope Translation";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:4px}
+.content blockquote.real{border-left-color:var(--blue)}
+.content blockquote.real::before{content:"Real Talk";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.content blockquote.wallet{border-left-color:var(--bad)}
+.content blockquote.wallet::before{content:"Watch your wallet";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--bad);margin-bottom:4px}
+.content blockquote > p:first-child > strong:first-child{display:none}
+.content img{display:block;margin:20px 0;border-radius:16px}
+.content li.check{list-style:none;margin-left:-1.3em}
+.content li.check input{width:18px;height:18px;margin-right:8px;vertical-align:-3px;accent-color:var(--c)}
+.quiz{margin:28px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.quiz header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;background:var(--surface-2);font-weight:700;flex-wrap:wrap}
+.quiz header .score{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:400}
+.q{padding:16px 18px;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q p.stem{margin:0 0 10px;font-weight:700}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:400 16px var(--body);cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--c)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--bg))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--bg))}
+.explain{margin:10px 0 0;font-size:15px;color:var(--muted)}
+.explain b{color:var(--ink)}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.next a{display:block;padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--nc);text-decoration:none;color:var(--ink)}
+.next a small{display:block;color:var(--muted)}
+</style><link rel="canonical" href="https://thedopecloudteacher.org/hub/courses/cyber-basics-stay-safer-online.html"></head><body class="dct-course-hub"><!-- DCT:SITE-HEADER START -->
+<header><div class="header-container"><a href="/index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="/logo.svg?v=20260705c" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
+<!-- DCT:SITE-HEADER END -->
+<div class="band" style="--c:var(--prog-security)"><div class="wrap">
+  <div><div class="crumbs"><a href="../index.html#courses">All courses</a> · Cloud Security</div>
+  <h1>Cyber Basics — Stay Safer Online</h1><p>Phishing, passwords, passkeys, scams and what to do when something goes wrong. For every age.</p>
+  <div class="chips"><span class="chip">DCT-CYB</span><span class="chip">Beginner · all ages 10+</span><span class="chip">13 practice questions</span></div></div>
+  <img src="../visuals/cover-cyber-basics.svg" alt="" width="900" height="300">
+</div></div>
+<div class="wrap"><dl class="facts"><div><dt>Level</dt><dd>Beginner · all ages 10+</dd></div><div><dt>Time</dt><dd>3 sessions × 75 minutes (about 4 hours) · or one 2-hour express workshop</dd></div><div><dt>Format</dt><dd>Community workshop at rec centers, senior centers, libraries, churches, schools · live virtual</dd></div><div><dt>Price</dt><dd>Set by host organization · free at many partner sites</dd></div><div><dt>Credential</dt><dd>DCT Cyber Basics Certificate of Completion · on-ramp to Cloud Security and SC-900</dd></div></dl></div>
+<div class="wrap layout" style="--c:var(--prog-security)">
+  <aside class="toc"><details open><summary>Course outline</summary>
+    <div class="progress"><div class="bar"><span id="pbar"></span></div><p id="ptext"></p><button class="reset" id="resetp" type="button">Reset my answers</button></div>
+    <ol><li><a href="#course-overview">Course overview</a></li><li><a href="#session-1-spot-the-trick">Session 1 — Spot the trick</a></li><li><a href="#session-2-lock-the-doors">Session 2 — Lock the doors</a></li><li><a href="#session-3-protect-your-stuff-and-bounce-back">Session 3 — Protect your stuff and bounce back</a></li><li><a href="#take-home-checklist">Take-home checklist</a></li><li><a href="#facilitator-guide">Facilitator guide</a></li><li><a href="#resources">Resources</a></li></ol></details>
+    <p class="sources" style="margin-top:12px">Audience: Seniors, teens, parents, veterans, small-business owners, anyone with a phone and a bank account.</p></aside>
+  <article class="content"><h1 id="cyber-basics-stay-safer-online">Cyber Basics — Stay Safer Online</h1>
+<h2 id="course-overview">Course overview</h2>
+<p>Criminals don't need to be geniuses. They need you to be <strong>rushed, scared, or excited</strong> for ten seconds. This workshop teaches the habits that stop most attacks on regular people — and a calm plan for what to do if something already happened.</p>
+<h3 id="youll-leave-able-to">You'll leave able to</h3>
+<ol>
+<li>Spot phishing emails, texts (smishing) and calls (vishing) — including AI voice clones.</li>
+<li>Create strong passphrases and use a password manager.</li>
+<li>Turn on MFA and passkeys for email, banking and social media.</li>
+<li>Update devices and back up what matters.</li>
+<li>Lock down social media and home Wi-Fi.</li>
+<li>Follow a step-by-step recovery plan if you're hacked or scammed.</li>
+</ol>
+<h3 id="session-plan">Session plan</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Session</th>
+<th>Theme</th>
+<th>Hands-on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Spot the trick</strong> — phishing, scams, AI fakes</td>
+<td>"Real or Scam?" card game</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Lock the doors</strong> — passwords, passkeys, MFA, updates</td>
+<td>Turn on MFA on your own email, live</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Protect your stuff &amp; bounce back</strong> — privacy, Wi-Fi, backups, recovery</td>
+<td>Build your personal recovery card</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="session-1-spot-the-trick">Session 1 — Spot the trick</h2>
+<h3 id="11-the-scam-formula">1.1 The scam formula</h3>
+<p><img alt="Scam formula" src="../visuals/scam-formula.svg" /></p>
+<p><strong>Urgency + Emotion + Unusual payment = STOP.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Ingredient</th>
+<th>Sounds like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Urgency</td>
+<td>"Act within 24 hours or your account will be closed."</td>
+</tr>
+<tr>
+<td>Emotion</td>
+<td>Fear ("warrant for your arrest"), love ("Grandma, I'm in trouble"), greed ("you've won"), shame</td>
+</tr>
+<tr>
+<td>Secrecy</td>
+<td>"Don't tell anyone." "Don't hang up."</td>
+</tr>
+<tr>
+<td>Unusual payment</td>
+<td>Gift cards, wire transfers, cryptocurrency, payment apps to strangers, cash couriers, gold bars</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Every scam is a hustle with the same three moves: rush you, rattle you, and get paid in a way you can't take back. Real banks, real government, real family — none of them need gift cards.</p>
+</blockquote>
+<h3 id="12-phishing-smishing-vishing">1.2 Phishing, smishing, vishing</h3>
+<p><strong>Red flags:</strong>
+- Sender address doesn't match the company (<code>support@paypa1-secure.co</code>).
+- Links that don't go where they say — on a computer, hover; on a phone, press and hold to preview.
+- Requests for passwords, codes, PINs, or ID numbers.
+- Package-delivery, toll-road, bank-fraud, and "your account is locked" texts.
+- <strong>Any one-time code you didn't request</strong> — someone is trying to log in as you. <strong>Never read a code to anyone.</strong></p>
+<p><strong>The golden rule:</strong> Don't use the contact info in the message. <strong>Go to the real app, website, or the number on the back of your card.</strong></p>
+<h3 id="13-common-scams-right-now">1.3 Common scams right now</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Scam</th>
+<th>How it works</th>
+<th>Defense</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Grandparent / voice-clone</strong></td>
+<td>AI copies a relative's voice from social media clips</td>
+<td>Family code word; call back on a known number</td>
+</tr>
+<tr>
+<td><strong>Government impostor</strong></td>
+<td>"IRS / Social Security / police — pay now or be arrested"</td>
+<td>Agencies don't demand gift cards or threaten arrest by phone</td>
+</tr>
+<tr>
+<td><strong>Tech support</strong></td>
+<td>Pop-up says your computer is infected, call this number</td>
+<td>Close the browser (force quit); never let strangers remote in</td>
+</tr>
+<tr>
+<td><strong>Romance</strong></td>
+<td>Online sweetheart who can't meet, then needs money</td>
+<td>Never send money to someone you haven't met in person</td>
+</tr>
+<tr>
+<td><strong>Investment / crypto</strong></td>
+<td>Guaranteed returns, "AI trading," new friend who's a crypto expert</td>
+<td>Guaranteed = scam; check <a href="https://www.investor.gov/" rel="noopener">Investor.gov</a></td>
+</tr>
+<tr>
+<td><strong>Job scams</strong></td>
+<td>Easy remote job, they send you a check, you send some back</td>
+<td>Real employers don't pay you to buy equipment from them</td>
+</tr>
+<tr>
+<td><strong>Toll / package texts</strong></td>
+<td>"Unpaid toll" or "delivery failed" with a link</td>
+<td>Check the real E-ZPass / USPS / UPS site yourself</td>
+</tr>
+<tr>
+<td><strong>QR code scams</strong></td>
+<td>Fake QR stickers on parking meters or flyers</td>
+<td>Type the official website yourself</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="activity-real-or-scam-30-min">Activity — Real or Scam? (30 min)</h3>
+<p>Tables get 12 printed message cards (emails, texts, call scripts). Sort into <strong>Real</strong>, <strong>Scam</strong>, <strong>Check first</strong>. Each table explains one card's red flags. (Facilitator key in the notes.)</p>
+<div class="quiz" data-quiz="0"></div>
+
+<hr />
+<h2 id="session-2-lock-the-doors">Session 2 — Lock the doors</h2>
+<h3 id="21-passphrases-and-password-managers">2.1 Passphrases and password managers</h3>
+<ul>
+<li><strong>Long beats complicated:</strong> four or more random words — <code>copper-harbor-tulip-rhythm</code>. Length makes it hard to crack.</li>
+<li><strong>Never reuse</strong> passwords. One breach shouldn't open every door.</li>
+<li><strong>Password manager:</strong> one strong master passphrase protects all the others. Options: built into your phone/browser (Apple Passwords, Google Password Manager, Microsoft Edge) or dedicated apps (Bitwarden, 1Password).</li>
+<li><strong>Check breaches:</strong> <a href="https://haveibeenpwned.com/" rel="noopener">haveibeenpwned.com</a>.</li>
+</ul>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Reusing one password is using the same key for your house, your car, your mailbox, and your safe. Lose it once, lose everything. A password manager is a key ring locked in a safe — you only have to remember the safe's combination.</p>
+</blockquote>
+<h3 id="22-mfa-and-passkeys">2.2 MFA and passkeys</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Strength</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Passkey</strong> (Face ID, fingerprint, or PIN on your device)</td>
+<td>Strongest and easiest — can't be phished</td>
+</tr>
+<tr>
+<td><strong>Authenticator app</strong> (Microsoft Authenticator, Google Authenticator)</td>
+<td>Strong</td>
+</tr>
+<tr>
+<td><strong>Text message code</strong></td>
+<td>Better than nothing; vulnerable to SIM swap</td>
+</tr>
+<tr>
+<td><strong>Password only</strong></td>
+<td>Weak</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Turn it on first for:</strong> email (it resets everything else), banking, phone carrier account (add a <strong>port-out/transfer PIN</strong>), social media, Social Security account, health portal.</p>
+<h3 id="23-updates-and-devices">2.3 Updates and devices</h3>
+<ul>
+<li>Turn on <strong>automatic updates</strong> for phone, computer, browser and apps. Updates fix holes criminals already know about.</li>
+<li>Use a <strong>screen lock</strong> (6-digit PIN or more, plus face/fingerprint).</li>
+<li>Turn on <strong>Find My</strong> (iPhone) / <strong>Find My Device</strong> (Android).</li>
+<li>Only install apps from official app stores; review app permissions.</li>
+</ul>
+<h3 id="activity-turn-on-mfa-live-35-min">Activity — Turn on MFA live (35 min)</h3>
+<p>Facilitators help each person:
+1. Turn on 2-step verification for their <strong>email</strong> (Gmail, Outlook, Yahoo, iCloud).
+2. Add a <strong>passkey</strong> where offered.
+3. Save <strong>backup codes</strong> somewhere safe (printed, in a locked drawer).
+4. Check that phone and computer updates are on.</p>
+<div class="quiz" data-quiz="1"></div>
+
+<hr />
+<h2 id="session-3-protect-your-stuff-and-bounce-back">Session 3 — Protect your stuff and bounce back</h2>
+<h3 id="31-privacy-on-social-media">3.1 Privacy on social media</h3>
+<ul>
+<li>Set accounts to <strong>private / friends only</strong>; review who can see your posts, phone, email, birthday.</li>
+<li>Don't post: travel while you're away, full birth date, address, kids' school and schedule, boarding passes, ID cards, check images.</li>
+<li>Short public videos of your voice can feed voice clones — another reason for a family code word.</li>
+<li>Quizzes like "your first car + street you grew up on = your rapper name" harvest security-question answers.</li>
+</ul>
+<h3 id="32-home-and-public-wi-fi">3.2 Home and public Wi-Fi</h3>
+<ul>
+<li>Change the router's <strong>default admin password</strong>; use <strong>WPA3</strong> (or WPA2) with a strong Wi-Fi password; update router firmware; set up a <strong>guest network</strong> for visitors and smart devices.</li>
+<li>On public Wi-Fi, stick to sites with HTTPS and your official apps; use your phone's hotspot for banking if unsure.</li>
+</ul>
+<h3 id="33-backups-the-3-2-1-rule">3.3 Backups: the 3-2-1 rule</h3>
+<p><strong>3</strong> copies of important files, on <strong>2</strong> different kinds of storage, with <strong>1</strong> off-site (cloud). Turn on iCloud/Google Photos/OneDrive backup for photos and documents. Backups beat ransomware and broken phones.</p>
+<h3 id="34-kids-teens-and-families">3.4 Kids, teens and families</h3>
+<ul>
+<li>Talk early and often: "If anything online makes you feel scared or weird, you won't be in trouble for telling me."</li>
+<li><strong>Sextortion warning for teens:</strong> criminals pose as peers, get images, then threaten. <em>Stop replying, don't pay, save evidence, tell a trusted adult,</em> and report to the <a href="https://report.cybertip.org/" rel="noopener">NCMEC CyberTipline</a> or 1-800-843-5678. NCMEC's <a href="https://takeitdown.ncmec.org/" rel="noopener">Take It Down</a> helps remove images of minors.</li>
+<li>Use built-in parental controls (Apple Screen Time, Google Family Link, Microsoft Family Safety) as guardrails, not replacements for conversation.</li>
+</ul>
+<h3 id="35-if-something-already-happened-the-recovery-plan">3.5 If something already happened — the recovery plan</h3>
+<p><img alt="Recovery steps" src="../visuals/recovery-plan.svg" /></p>
+<ol>
+<li><strong>Stop and breathe.</strong> Don't send more money. Stop talking to the scammer.</li>
+<li><strong>Call your bank / card company</strong> using the number on your card. Ask to stop or reverse payments; freeze cards.</li>
+<li><strong>Change passwords</strong> starting with email; turn on MFA; sign out of all sessions.</li>
+<li><strong>Freeze your credit</strong> — free at all three bureaus: <a href="https://www.equifax.com/personal/credit-report-services/" rel="noopener">Equifax</a>, <a href="https://www.experian.com/freeze/" rel="noopener">Experian</a>, <a href="https://www.transunion.com/credit-freeze" rel="noopener">TransUnion</a>.</li>
+<li><strong>Report:</strong>
+   - Scams and fraud: <a href="https://reportfraud.ftc.gov/" rel="noopener">ReportFraud.ftc.gov</a>
+   - Identity theft recovery plan: <a href="https://www.identitytheft.gov/" rel="noopener">IdentityTheft.gov</a>
+   - Internet crime: FBI <a href="https://www.ic3.gov/" rel="noopener">ic3.gov</a>
+   - Gift card scam: call the card company's number on the back of the card right away
+   - Local police (you may need a report for banks)</li>
+<li><strong>Check your accounts and credit reports</strong> — free weekly at <a href="https://www.annualcreditreport.com/" rel="noopener">AnnualCreditReport.com</a>.</li>
+<li><strong>Tell someone you trust.</strong> Scams happen to smart people. Shame is the scammer's best friend.</li>
+</ol>
+<p><strong>Seniors:</strong> AARP Fraud Watch Network Helpline <strong>877-908-3360</strong>. <strong>Veterans:</strong> VA and military-specific scams can be reported to the VA OIG and the <a href="https://www.militaryconsumer.gov/" rel="noopener">Military Consumer</a> program.</p>
+<h3 id="activity-my-recovery-card-20-min">Activity — My recovery card (20 min)</h3>
+<p>Fill in a wallet card: bank fraud number, card company numbers, carrier support number, your family code word hint, and the three report websites.</p>
+<div class="quiz" data-quiz="2"></div>
+
+<hr />
+<h2 id="take-home-checklist">Take-home checklist</h2>
+<ul>
+<li class="check"><input type="checkbox" aria-label="Done"> Family code word set</li>
+<li class="check"><input type="checkbox" aria-label="Done"> MFA or passkey on email, bank, phone carrier, social media</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Carrier port-out PIN set</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Password manager in use; no reused passwords</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Automatic updates on (phone, computer, browser, apps)</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Social media set to private</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Router admin password changed; WPA2/WPA3</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Photos and documents backed up</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Credit frozen at all three bureaus</li>
+<li class="check"><input type="checkbox" aria-label="Done"> Recovery card in wallet</li>
+</ul>
+<h2 id="facilitator-guide">Facilitator guide</h2>
+<ul>
+<li><strong>Real or Scam? key:</strong> include 4 real (bank app alert with no link, pharmacy pickup reminder from a saved contact, school closure from district site, 2FA code you requested), 6 scam (toll text, "Grandma help", Geek Squad renewal, Social Security suspension, crypto mentor, fake job check), 2 check-first (package from a store you did order from, a friend's "can you buy gift cards" message).</li>
+<li><strong>Tone:</strong> never shame. Many in the room have been targeted; some have lost money. Invite stories only if offered.</li>
+<li><strong>Accessibility:</strong> print in 16-pt or larger; have readers; leave time for device settings.</li>
+<li><strong>Partners:</strong> invite a local bank's fraud team, police community liaison, or AARP volunteer for Q&amp;A.</li>
+<li><strong>Follow-up:</strong> a 30-day text/email check-in: "Did you set your family code word?"</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://consumer.ftc.gov/" rel="noopener">FTC Consumer Advice</a> · <a href="https://reportfraud.ftc.gov/" rel="noopener">ReportFraud.ftc.gov</a> · <a href="https://www.identitytheft.gov/" rel="noopener">IdentityTheft.gov</a></li>
+<li><a href="https://www.ic3.gov/" rel="noopener">FBI IC3</a> · <a href="https://www.cisa.gov/secure-our-world" rel="noopener">CISA Secure Our World</a></li>
+<li><a href="https://www.aarp.org/money/scams-fraud/" rel="noopener">AARP Fraud Watch Network</a></li>
+<li><a href="https://report.cybertip.org/" rel="noopener">NCMEC CyberTipline</a> · <a href="https://takeitdown.ncmec.org/" rel="noopener">Take It Down</a></li>
+</ul>
+    <h2 id="next-steps">Keep going</h2><div class="next"><a href="cloud-security.html" style="--nc:var(--prog-security)"><small>DCT-CSEC</small><b>Cloud Security — Verify, Limit, Watch</b><br><small>Protect accounts, data, systems and communities with the three controls that stop most real-world breaches.</small></a><a href="cloud-fundamentals-101.html" style="--nc:var(--prog-cloud)"><small>DCT-101</small><b>Cloud Fundamentals 101</b><br><small>Your first cloud build starts with understanding.</small></a></div>
+  </article>
+</div><!-- DCT:SITE-FOOTER START -->
+<footer aria-label="Site support"><p class="dct-page-guide" id="dct-page-guide" role="note" aria-label="Page support contact">If you are experiencing any issues on this page, please contact <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.</p></footer>
+<!-- DCT:SITE-FOOTER END --><script>
+const QUIZZES = [[{"q": "A text says your bank account is locked and gives a link. What's the safest move?", "options": ["Click the link quickly", "Reply STOP", "Open your bank's official app or call the number on your card", "Forward it to friends"], "answer": 2, "explain": "Use contact info you already trust, never the message's."}, {"q": "Someone calls saying they're from your bank and asks for the code just texted to you. You should:", "options": ["Read them the code", "Hang up \u2014 never share one-time codes", "Give half the code", "Ask them to text it back"], "answer": 1, "explain": "A code you didn't request means someone is trying to get into your account."}, {"q": "Which payment method is a big red flag?", "options": ["Gift cards", "A check to your utility company from your own bank", "Paying your rent through the landlord's official portal", "Autopay you set up yourself"], "answer": 0, "explain": "Scammers demand gift cards, wires, crypto because they're hard to reverse."}, {"q": "Your \"grandson\" calls in a panic needing bail money and says not to tell his parents. Best response?", "options": ["Hang up and call him or his parents on a number you know; use your family code word", "Send the money fast", "Ask for his birthday", "Send half now"], "answer": 0, "explain": "AI voice cloning makes voices convincing; verify independently."}], [{"q": "Which is the strongest password?", "options": ["P@ssw0rd!", "Your dog's name and birth year", "copper-harbor-tulip-rhythm", "123456789"], "answer": 2, "explain": "Long random-word passphrases beat short complex ones."}, {"q": "Which account should get MFA first because it can reset your other accounts?", "options": ["Email", "A game", "A recipe site", "A weather app"], "answer": 0, "explain": "Email is the key to password resets."}, {"q": "Why install updates promptly?", "options": ["They fix security holes attackers already know about", "They always add games", "They slow down hackers' Wi-Fi", "They're optional decoration"], "answer": 0, "explain": "Patches close known vulnerabilities."}, {"q": "What protects you from a SIM-swap takeover of your phone number?", "options": ["A port-out / account PIN with your mobile carrier and app-based MFA instead of SMS", "Turning off Wi-Fi", "A new phone case", "Posting your number publicly"], "answer": 0, "explain": "Carrier PINs and non-SMS MFA reduce SIM-swap risk."}], [{"q": "What does the 3-2-1 backup rule mean?", "options": ["3 copies, 2 different storage types, 1 off-site", "3 passwords, 2 phones, 1 computer", "Back up every 3 days, 2 times, 1 week", "3 apps, 2 accounts, 1 cloud"], "answer": 0, "explain": "Multiple copies across media and locations."}, {"q": "You sent money to a scammer by debit card an hour ago. First call?", "options": ["The scammer", "Your bank, using the number on your card", "A friend on social media", "Nobody \u2014 it's too late"], "answer": 1, "explain": "Speed matters; banks may stop or reverse payments."}, {"q": "Freezing your credit at the three bureaus costs:", "options": ["Nothing \u2014 it's free by law", "$10 each", "$100 total", "It's only for businesses"], "answer": 0, "explain": "Credit freezes and thaws are free."}, {"q": "A teen is being threatened after sending a photo to someone online. What's the right first advice?", "options": ["Stop replying, don't pay, save evidence, tell a trusted adult and report to NCMEC", "Pay so it goes away", "Delete everything and tell no one", "Send more photos"], "answer": 0, "explain": "Paying rarely ends it; reporting and support do."}, {"q": "Which site gives a personalized identity theft recovery plan?", "options": ["haveibeenpwned.com", "IdentityTheft.gov", "Any social media site", "The scammer's site"], "answer": 1, "explain": "The FTC's IdentityTheft.gov builds a recovery plan."}]], SLUG = "cyber-basics-stay-safer-online", TOTAL = 13;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const KEY = 'dct:quiz:' + SLUG;
+const store = { get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+                set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} } };
+let state = store.get(KEY) || {};
+function progress(){
+  const right = Object.values(state).filter(v => v === true).length;
+  $('#pbar').style.width = (TOTAL ? Math.round(100*right/TOTAL) : 0) + '%';
+  $('#ptext').textContent = `${right} of ${TOTAL} practice questions correct`;
+}
+function scoreOf(qi){ const qs = QUIZZES[qi]; let r=0,a=0; qs.forEach((_,i)=>{ const v=state[qi+'-'+i]; if(v!==undefined){a++; if(v===true) r++;} }); return `${r}/${qs.length} correct${a<qs.length?` · ${qs.length-a} to go`:''}`; }
+function answer(qi, i, pick, wrapEl){
+  const q = QUIZZES[qi][i], ok = pick === q.answer;
+  if (state[qi+'-'+i] === undefined || ok) state[qi+'-'+i] = ok;
+  store.set(KEY, state);
+  wrapEl.querySelectorAll('.opt').forEach((b, j) => { b.disabled = true; if (j === q.answer) b.classList.add('right'); if (j === pick && !ok) b.classList.add('wrong'); });
+  const ex = wrapEl.querySelector('.explain');
+  ex.innerHTML = `<b>${ok ? 'Correct.' : 'Not quite.'}</b> ${q.explain} <button class="reset" type="button">Try again</button>`;
+  ex.querySelector('.reset').onclick = () => { wrapEl.querySelectorAll('.opt').forEach(b=>{b.disabled=false;b.classList.remove('right','wrong')}); ex.textContent=''; };
+  wrapEl.closest('.quiz').querySelector('.score').textContent = scoreOf(qi);
+  progress();
+}
+$$('.quiz').forEach(el => {
+  const qi = +el.dataset.quiz, qs = QUIZZES[qi];
+  const title = qs.length >= 20 ? 'Practice exam' : 'Check yourself';
+  el.innerHTML = `<header><span>${title} · ${qs.length} question${qs.length>1?'s':''}</span><span class="score"></span></header>` +
+    qs.map((q,i) => `<div class="q" data-i="${i}"><p class="stem">${i+1}. ${q.q}</p><div class="opts">${q.options.map((o,j)=>`<button type="button" class="opt" data-j="${j}">${o}</button>`).join('')}</div><p class="explain" aria-live="polite"></p></div>`).join('');
+  el.querySelector('.score').textContent = scoreOf(qi);
+  el.querySelectorAll('.q').forEach(qel => {
+    const i = +qel.dataset.i;
+    qel.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => answer(qi, i, +b.dataset.j, qel)));
+  });
+});
+$$('li.check input').forEach((cb, i) => { const k='dct:check:'+SLUG+':'+i; cb.checked = !!store.get(k); cb.addEventListener('change', () => store.set(k, cb.checked)); });
+$$('pre').forEach(pre => { const b = document.createElement('button'); b.className='copy'; b.type='button'; b.textContent='Copy';
+  b.onclick = async () => { const t = pre.querySelector('code').innerText; try { await navigator.clipboard.writeText(t); b.textContent='Copied'; } catch(e){ const r=document.createRange(); r.selectNodeContents(pre.querySelector('code')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected — press Ctrl+C'; } setTimeout(()=>b.textContent='Copy',1800); };
+  pre.appendChild(b); });
+$('#resetp').addEventListener('click', () => { state = {}; store.set(KEY, state); location.reload(); });
+const links = $$('.toc a'); const heads = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+e.target.id)); } }), {rootMargin:'-20% 0px -70% 0px'});
+heads.forEach(h => io.observe(h));
+progress();
+</script><script src="/js/global-ui.js?v=20261007hub"></script><script src="/js/site-config.js"></script><script src="/js/analytics.js"></script></body></html>

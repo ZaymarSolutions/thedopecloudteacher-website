@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AI Fundamentals — Everyday AI | DCT</title><meta name="description" content="AI, with your judgment intact. Useful prompts, private info protected, and the habit of checking what AI gets wrong."><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" id="dct-unified-theme" href="/css/unified-theme.css?v=20260706b"><link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260705c"><!-- DCT:THEME — fonts, colors and shapes live in dct-theme.css; set them to match the main site --><link rel="stylesheet" href="../dct-theme.css"><style>
+/* Layout concept: a community classroom wall — one bold display face for wayfinding, a hyperlegible body face for every age, program colors as trail markers. */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--blue)} a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+img{max-width:100%;height:auto}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+h1,h2,h3{text-wrap:balance;line-height:1.2}
+.display{font-family:var(--display);letter-spacing:-.01em}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700}
+.brand svg{flex:none}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1}
+.nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav a{padding:6px 12px;border-radius:var(--radius-pill);text-decoration:none;color:var(--ink);font-size:15px}
+.nav a:hover{background:var(--surface-2)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-pill);border:2px solid var(--ink);background:var(--ink);color:var(--bg);font:700 15px var(--body);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;letter-spacing:.04em;color:var(--muted);background:var(--surface-2)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:18px 0;background:var(--surface)}
+.tablewrap table{margin:0}
+.tablewrap tr:last-child td{border-bottom:none}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:2px 6px;border-radius:6px}
+pre{position:relative;background:var(--code-bg);color:var(--code-fg);padding:18px;border-radius:12px;overflow-x:auto;font-size:14px;line-height:1.55}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.copy{position:absolute;top:8px;right:8px;font:600 12px var(--body);background:#26325a;color:#fff;border:0;border-radius:8px;padding:4px 10px;cursor:pointer}
+footer{border-top:1px solid var(--line);margin-top:64px;padding-block:32px;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
+.sel{user-select:all;font-weight:700;color:var(--ink)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.band{background:linear-gradient(120deg,var(--band-start),var(--c));color:#fff;padding-block:28px 32px}
+.band .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:820px){.band .wrap{grid-template-columns:1fr}.band img{display:none}}
+.band a{color:#fff}
+.band .crumbs{font-size:14px;opacity:.85}
+.band h1{font-family:var(--display);font-size:clamp(28px,4.6vw,48px);margin:10px 0 8px;font-weight:var(--display-weight)}
+.band p{font-size:19px;margin:0 0 16px;opacity:.92;max-width:52ch}
+.band .chips{display:flex;flex-wrap:wrap;gap:8px}
+.band .chip{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:#fff}
+.band img{border-radius:16px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:-1px}
+.facts div{background:var(--surface);padding:14px 16px}
+.facts dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.facts dd{margin:4px 0 0;font-weight:700}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;padding-block:32px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 96px);overflow:auto;padding-right:6px}
+@media (max-width:900px){.toc{position:static;max-height:none}}
+.toc details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.toc summary{font-weight:700;cursor:pointer}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.toc a{display:block;padding:5px 8px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px;line-height:1.35}
+.toc a:hover,.toc a.on{background:var(--surface-2);color:var(--ink)}
+.progress{margin:14px 0 4px}
+.progress .bar{height:8px;background:var(--surface-2);border-radius:8px;overflow:hidden}
+.progress .bar span{display:block;height:100%;width:0;background:var(--c);transition:width .4s}
+.progress p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font:400 13px var(--body);padding:0}
+.content{min-width:0;max-width:780px}
+.content h1{display:none}
+.content h2{font-family:var(--display);font-size:clamp(22px,3vw,30px);margin:56px 0 12px;padding-top:12px;border-top:4px solid var(--c);scroll-margin-top:80px}
+.content h2:first-of-type{margin-top:0}
+.content h3{font-size:21px;margin:32px 0 8px;scroll-margin-top:80px}
+.content p,.content li{max-width:68ch}
+.content blockquote{margin:22px 0;padding:16px 18px 16px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--muted)}
+.content blockquote p{margin:.4em 0}
+.content blockquote.dope{border-left-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--surface))}
+.content blockquote.dope::before{content:"Dope Translation";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:4px}
+.content blockquote.real{border-left-color:var(--blue)}
+.content blockquote.real::before{content:"Real Talk";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.content blockquote.wallet{border-left-color:var(--bad)}
+.content blockquote.wallet::before{content:"Watch your wallet";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--bad);margin-bottom:4px}
+.content blockquote > p:first-child > strong:first-child{display:none}
+.content img{display:block;margin:20px 0;border-radius:16px}
+.content li.check{list-style:none;margin-left:-1.3em}
+.content li.check input{width:18px;height:18px;margin-right:8px;vertical-align:-3px;accent-color:var(--c)}
+.quiz{margin:28px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.quiz header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;background:var(--surface-2);font-weight:700;flex-wrap:wrap}
+.quiz header .score{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:400}
+.q{padding:16px 18px;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q p.stem{margin:0 0 10px;font-weight:700}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:400 16px var(--body);cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--c)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--bg))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--bg))}
+.explain{margin:10px 0 0;font-size:15px;color:var(--muted)}
+.explain b{color:var(--ink)}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.next a{display:block;padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--nc);text-decoration:none;color:var(--ink)}
+.next a small{display:block;color:var(--muted)}
+</style><link rel="canonical" href="https://thedopecloudteacher.org/hub/courses/ai-fundamentals-everyday-ai.html"></head><body class="dct-course-hub"><!-- DCT:SITE-HEADER START -->
+<header><div class="header-container"><a href="/index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="/logo.svg?v=20260705c" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
+<!-- DCT:SITE-HEADER END -->
+<div class="band" style="--c:var(--prog-ai)"><div class="wrap">
+  <div><div class="crumbs"><a href="../index.html#courses">All courses</a> · AI Fundamentals</div>
+  <h1>AI Fundamentals — Everyday AI</h1><p>AI, with your judgment intact. Useful prompts, private info protected, and the habit of checking what AI gets wrong.</p>
+  <div class="chips"><span class="chip">DCT-AIF</span><span class="chip">Beginner · all ages 13+</span><span class="chip">13 practice questions</span></div></div>
+  <img src="../visuals/cover-everyday-ai.svg" alt="" width="900" height="300">
+</div></div>
+<div class="wrap"><dl class="facts"><div><dt>Level</dt><dd>Beginner · all ages 13+</dd></div><div><dt>Time</dt><dd>4 sessions × 90 minutes (6 hours) + optional take-home challenges</dd></div><div><dt>Format</dt><dd>Community workshop (in person or live virtual) · also self-paced</dd></div><div><dt>Price</dt><dd>Workshop pricing set by host organization · free for some partner programs</dd></div><div><dt>Credential</dt><dd>DCT Everyday AI Certificate of Completion · on-ramp to AI-901</dd></div></dl></div>
+<div class="wrap layout" style="--c:var(--prog-ai)">
+  <aside class="toc"><details open><summary>Course outline</summary>
+    <div class="progress"><div class="bar"><span id="pbar"></span></div><p id="ptext"></p><button class="reset" id="resetp" type="button">Reset my answers</button></div>
+    <ol><li><a href="#course-overview">Course overview</a></li><li><a href="#session-1-understand-what-ai-is-and-how-it-answers">Session 1 — Understand: what AI is and how it answers</a></li><li><a href="#session-2-use-prompts-that-work">Session 2 — Use: prompts that work</a></li><li><a href="#session-3-protect-privacy-accuracy-and-scams">Session 3 — Protect: privacy, accuracy and scams</a></li><li><a href="#session-4-create-make-something-useful">Session 4 — Create: make something useful</a></li><li><a href="#take-home-cards-printable">Take-home cards (printable)</a></li><li><a href="#facilitator-guide">Facilitator guide</a></li><li><a href="#resources">Resources</a></li></ol></details>
+    <p class="sources" style="margin-top:12px">Audience: Students, adults, seniors, parents, small-business owners, church and community groups, teams beginning with AI.</p></aside>
+  <article class="content"><h1 id="ai-fundamentals-everyday-ai">AI Fundamentals — Everyday AI</h1>
+<h2 id="course-overview">Course overview</h2>
+<p>You've heard about ChatGPT, Copilot, Gemini and Claude. Maybe you've tried one. Maybe a grandchild set it up for you, or your boss told you to "use AI" with no instructions. This workshop gives you four things in four sessions:</p>
+<ol>
+<li><strong>Understand</strong> what AI is and how it comes up with answers.</li>
+<li><strong>Use</strong> it with prompts that actually work.</li>
+<li><strong>Protect</strong> your private information and check what AI gets wrong.</li>
+<li><strong>Create</strong> something useful you'll keep using.</li>
+</ol>
+<p>No coding. No jargon you won't get a translation for. Bring a phone, tablet or laptop.</p>
+<h3 id="learning-outcomes">Learning outcomes</h3>
+<ul>
+<li>Explain in your own words how a chatbot produces an answer and why it can be confidently wrong.</li>
+<li>Write prompts using the <strong>R.E.C.I.P.E.</strong> method.</li>
+<li>Name five kinds of information you should never paste into an AI tool.</li>
+<li>Fact-check an AI answer in under two minutes.</li>
+<li>Spot AI-powered scams: voice clones, fake videos, fake "AI investment" pitches.</li>
+<li>Build a personal "AI toolkit": three prompts you'll use every week.</li>
+</ul>
+<h3 id="session-plan">Session plan</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Session</th>
+<th>Theme</th>
+<th>You leave with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Understand:</strong> What AI is and how it answers</td>
+<td>Your first conversation with an AI tool + a "what AI is / isn't" card</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Use:</strong> Prompts that work</td>
+<td>The R.E.C.I.P.E. card + 3 saved prompts</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Protect:</strong> Privacy, accuracy and scams</td>
+<td>The "Never paste" list + the 2-minute fact check</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Create:</strong> Make something useful</td>
+<td>A finished project (letter, plan, flyer, budget, study guide)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="tools-we-use">Tools we use</h3>
+<p>Any free general AI assistant works: <strong>Microsoft Copilot</strong>, <strong>ChatGPT</strong>, <strong>Google Gemini</strong>, <strong>Claude</strong> or <strong>Meta AI</strong>. Facilitators should check each tool's current age requirements and terms before class; many require users to be 13+ (and some 18+, or 13–17 with parental permission). If a school or agency provides an approved tool, use that.</p>
+<hr />
+<h2 id="session-1-understand-what-ai-is-and-how-it-answers">Session 1 — Understand: what AI is and how it answers</h2>
+<h3 id="11-warm-up-10-min">1.1 Warm-up (10 min)</h3>
+<p>Ask the room: <em>"Where did you already use AI this week without calling it AI?"</em> Collect answers: phone autocorrect, face unlock, Netflix suggestions, spam filters, GPS traffic, bank fraud alerts, smart speakers.</p>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> AI has been in your pocket for years. Autocorrect is AI. "Recommended for you" is AI. The new chatbots are just the version that talks back.</p>
+</blockquote>
+<h3 id="12-what-ai-is">1.2 What AI is</h3>
+<p><strong>Artificial intelligence</strong> is software that learns patterns from lots of examples so it can make predictions or create things — instead of following only rules a person typed in by hand.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>What it does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Predictive AI</td>
+<td>Guesses what's likely</td>
+<td>Fraud alert from your bank</td>
+</tr>
+<tr>
+<td>Recognition AI</td>
+<td>Identifies things</td>
+<td>Face unlock, voice assistants</td>
+</tr>
+<tr>
+<td><strong>Generative AI</strong></td>
+<td>Creates new text, images, audio, video</td>
+<td>Chatbots, image makers</td>
+</tr>
+<tr>
+<td><strong>Agentic AI</strong></td>
+<td>Takes steps and actions for you</td>
+<td>An assistant that books an appointment</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="13-how-a-chatbot-answers">1.3 How a chatbot answers</h3>
+<p><img alt="How AI answers" src="../visuals/llm-flow.svg" /></p>
+<ol>
+<li>It learned from enormous amounts of text.</li>
+<li>Your question gets broken into pieces (tokens).</li>
+<li>It predicts, one piece at a time, what words most likely come next.</li>
+<li>It doesn't "look up the truth" unless it's connected to search or documents — it <strong>predicts</strong>.</li>
+</ol>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Picture the friend who's been on every group chat in the city for twenty years. Start a sentence and they can finish it — smooth, confident, in your style. But sometimes they're just making it sound right. That's AI. Great at sounding right. Your job is checking if it <em>is</em> right.</p>
+</blockquote>
+<h3 id="14-what-ai-is-and-isnt">1.4 What AI is — and isn't</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>AI is</th>
+<th>AI isn't</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fast at drafting, summarizing, explaining, brainstorming</td>
+<td>A person, a friend, or a professional with a license</td>
+</tr>
+<tr>
+<td>Good with patterns in language</td>
+<td>Always correct, current or fair</td>
+</tr>
+<tr>
+<td>A tool you direct</td>
+<td>Responsible for decisions — you are</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="15-hands-on-40-min">1.5 Hands-on (40 min)</h3>
+<ol>
+<li>Open your AI tool. Type: <em>"Explain what you are in three sentences, like I'm 12."</em></li>
+<li>Ask: <em>"What's one thing you're bad at?"</em></li>
+<li>Ask it something you already know well — your neighborhood, your job, your favorite team's 2023 season. <strong>Grade it.</strong> Where was it wrong?</li>
+<li>Share one surprising right answer and one wrong answer with your table.</li>
+</ol>
+<h3 id="session-1-check">Session 1 check</h3>
+<div class="quiz" data-quiz="0"></div>
+
+<hr />
+<h2 id="session-2-use-prompts-that-work">Session 2 — Use: prompts that work</h2>
+<h3 id="21-the-recipe-method">2.1 The R.E.C.I.P.E. method</h3>
+<p><img alt="RECIPE prompt card" src="../visuals/recipe-prompt.svg" /></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Letter</th>
+<th>Means</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>R</strong> — Role</td>
+<td>Who should the AI act like?</td>
+<td>"Act as a patient computer teacher…"</td>
+</tr>
+<tr>
+<td><strong>E</strong> — Explain the task</td>
+<td>What do you want?</td>
+<td>"…explain how to set up a passkey…"</td>
+</tr>
+<tr>
+<td><strong>C</strong> — Context</td>
+<td>Who's it for? What's the situation?</td>
+<td>"…for my 74-year-old dad who uses an iPhone…"</td>
+</tr>
+<tr>
+<td><strong>I</strong> — Instructions &amp; limits</td>
+<td>Rules, length, tone, what to avoid</td>
+<td>"…in 5 short numbered steps, no tech words…"</td>
+</tr>
+<tr>
+<td><strong>P</strong> — Presentation</td>
+<td>Format</td>
+<td>"…as a list I can print in large type."</td>
+</tr>
+<tr>
+<td><strong>E</strong> — Evaluate &amp; edit</td>
+<td>Ask follow-ups to improve it</td>
+<td>"Make step 3 simpler." / "What could go wrong?"</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Walking into a barbershop and saying "cut it" gets you a haircut. Walking in and saying "low taper, keep the length on top, line it up, no part" gets you <em>your</em> haircut. Prompts work the same way.</p>
+</blockquote>
+<h3 id="22-before-and-after">2.2 Before and after</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Weak prompt</th>
+<th>R.E.C.I.P.E. prompt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Write a resume."</td>
+<td>"Act as a career coach. Write a one-page resume summary for a U.S. Army veteran (MOS 25B, IT specialist, 6 years) applying for a help-desk job. Use 4 bullet points with numbers where possible. Plain, confident tone."</td>
+</tr>
+<tr>
+<td>"Healthy meals."</td>
+<td>"Act as a budget-minded home cook. Give me 5 dinners under $10 each for a family of 4, using ingredients from a regular grocery store. Include a shopping list grouped by aisle."</td>
+</tr>
+<tr>
+<td>"Explain the cloud."</td>
+<td>"Explain cloud computing to a high-school sophomore who loves basketball, using a basketball analogy, in under 100 words."</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="23-power-moves">2.3 Power moves</h3>
+<ul>
+<li><strong>Ask for options:</strong> "Give me three versions: formal, friendly, short."</li>
+<li><strong>Ask it to ask you:</strong> "Before you answer, ask me 3 questions so you get it right."</li>
+<li><strong>Make it check itself:</strong> "What assumptions did you make? What might be wrong?"</li>
+<li><strong>Change the reading level:</strong> "Rewrite at a 6th-grade reading level."</li>
+<li><strong>Translate:</strong> "Translate into Spanish for a parent newsletter, warm tone." (Have a fluent speaker review anything important.)</li>
+</ul>
+<h3 id="24-hands-on-45-min-build-your-three-keeper-prompts">2.4 Hands-on (45 min) — build your three keeper prompts</h3>
+<p>Pick three from this menu and customize each with R.E.C.I.P.E.:</p>
+<ul>
+<li>Weekly meal plan + grocery list on a budget</li>
+<li>Email to a landlord, teacher, or employer</li>
+<li>Study guide and practice quiz on any topic</li>
+<li>Explain a confusing letter (with private info removed — see Session 3)</li>
+<li>Plan a family event or church program</li>
+<li>Small-business social media posts for a week</li>
+<li>Practice job interview: "Interview me for a ___ job, one question at a time, and give feedback."</li>
+</ul>
+<p>Save them in your phone's notes app.</p>
+<h3 id="session-2-check">Session 2 check</h3>
+<div class="quiz" data-quiz="1"></div>
+
+<hr />
+<h2 id="session-3-protect-privacy-accuracy-and-scams">Session 3 — Protect: privacy, accuracy and scams</h2>
+<h3 id="31-the-never-paste-list">3.1 The "Never paste" list</h3>
+<p>Unless you're using a tool your school, employer or agency has <strong>approved</strong> for that kind of data, never paste:</p>
+<ol>
+<li><strong>Government ID numbers</strong> — Social Security, driver's license, passport, Medicare/Medicaid numbers.</li>
+<li><strong>Money details</strong> — bank or card numbers, account logins, PINs.</li>
+<li><strong>Passwords, codes, security answers</strong> — and never one-time codes, ever.</li>
+<li><strong>Health details</strong> that identify you or someone else.</li>
+<li><strong>Other people's private information</strong> — students' records, clients' files, a friend's screenshot.</li>
+<li><strong>Work confidential information</strong> — contracts, customer lists, internal plans — unless your employer allows it in that tool.</li>
+</ol>
+<p><strong>Redact instead:</strong> replace names and numbers with placeholders. "My landlord [NAME] sent me a notice saying I owe [AMOUNT]…"</p>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Treat an AI chat like a crowded bus. You can talk about your day. You don't read your bank card number out loud.</p>
+</blockquote>
+<h3 id="32-why-ai-gets-things-wrong">3.2 Why AI gets things wrong</h3>
+<ul>
+<li><strong>Hallucinations:</strong> it invents facts, quotes, links, laws or court cases that sound real.</li>
+<li><strong>Out of date:</strong> its training has a cutoff date unless it can search.</li>
+<li><strong>Bias:</strong> it can repeat unfair patterns from the data it learned from.</li>
+<li><strong>Agrees too easily:</strong> it may go along with a wrong assumption in your question.</li>
+</ul>
+<h3 id="33-the-2-minute-fact-check">3.3 The 2-minute fact check</h3>
+<p><img alt="Two-minute fact check" src="../visuals/fact-check.svg" /></p>
+<ol>
+<li><strong>Stop</strong> — Is this something that matters (health, money, law, news, your job)?</li>
+<li><strong>Source</strong> — Ask: "What are your sources?" then <strong>open them yourself</strong>. Fake links are common.</li>
+<li><strong>Second opinion</strong> — Check one trusted site (.gov, a major hospital, your bank's real website, a reputable news outlet).</li>
+<li><strong>Ask a human</strong> for anything with real consequences — doctor, pharmacist, lawyer, banker, teacher.</li>
+</ol>
+<h3 id="34-ai-powered-scams">3.4 AI-powered scams</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Scam</th>
+<th>What it looks like</th>
+<th>Your move</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Voice clone "family emergency"</strong></td>
+<td>A call that sounds exactly like your grandson: "I'm in jail, send money, don't tell Mom."</td>
+<td>Hang up. Call him back on his real number. Set a <strong>family code word</strong>.</td>
+</tr>
+<tr>
+<td><strong>Deepfake video</strong></td>
+<td>A celebrity or official "endorsing" an investment or giveaway</td>
+<td>Real public figures don't DM you investment deals. Check official accounts.</td>
+</tr>
+<tr>
+<td><strong>"AI trading bot" investments</strong></td>
+<td>Guaranteed returns from secret AI</td>
+<td>Guaranteed returns = scam. Check with <a href="https://www.investor.gov/" rel="noopener">Investor.gov</a>.</td>
+</tr>
+<tr>
+<td><strong>Perfect-grammar phishing</strong></td>
+<td>Polished emails/texts from "your bank" or "USPS"</td>
+<td>Don't click. Go to the real site or app yourself.</td>
+</tr>
+<tr>
+<td><strong>Fake AI apps</strong></td>
+<td>Lookalike "ChatGPT" apps charging subscriptions</td>
+<td>Download only from the official company in the official app store.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Report scams:</strong> <a href="https://reportfraud.ftc.gov/" rel="noopener">ReportFraud.ftc.gov</a> · internet crime to the FBI at <a href="https://www.ic3.gov/" rel="noopener">ic3.gov</a> · if your identity was stolen: <a href="https://www.identitytheft.gov/" rel="noopener">IdentityTheft.gov</a>.</p>
+<h3 id="35-hands-on-40-min">3.5 Hands-on (40 min)</h3>
+<ol>
+<li><strong>Catch the hallucination:</strong> Ask your AI for "three Supreme Court cases about [some odd topic] with citations." Try to verify them. (Many will be wrong or invented.)</li>
+<li><strong>Redaction drill:</strong> Rewrite a sample letter (provided) removing every private detail, then ask AI to explain it.</li>
+<li><strong>Family code word:</strong> Write yours down (don't share it here). Plan who you'll tell.</li>
+</ol>
+<h3 id="session-3-check">Session 3 check</h3>
+<div class="quiz" data-quiz="2"></div>
+
+<hr />
+<h2 id="session-4-create-make-something-useful">Session 4 — Create: make something useful</h2>
+<h3 id="41-choose-a-project-pick-one-track">4.1 Choose a project (pick one track)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Project</th>
+<th>Prompt starter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Youth</strong></td>
+<td>Study guide + 10-question practice quiz for a real class</td>
+<td>"Act as a tutor. Make a one-page study guide on [topic] for 10th grade, then 10 multiple-choice questions with answers at the end."</td>
+</tr>
+<tr>
+<td><strong>Seniors</strong></td>
+<td>Large-print medication &amp; appointment schedule template (no real health details)</td>
+<td>"Create a weekly table with columns Day, Morning, Afternoon, Evening, Appointments, Notes. Large clear headings."</td>
+</tr>
+<tr>
+<td><strong>Job seekers</strong></td>
+<td>Résumé bullets + mock interview</td>
+<td>"Turn these job duties into 5 résumé bullets with numbers: [duties]."</td>
+</tr>
+<tr>
+<td><strong>Small business</strong></td>
+<td>One week of social posts + a customer reply template</td>
+<td>"Act as a marketing assistant for a [type] business in [city]. Write 5 posts…"</td>
+</tr>
+<tr>
+<td><strong>Families &amp; churches</strong></td>
+<td>Event plan with timeline, roles and flyer text</td>
+<td>"Plan a youth tech night for 40 people with a $300 budget…"</td>
+</tr>
+<tr>
+<td><strong>Gardeners &amp; hobbyists</strong></td>
+<td>Planting calendar for your area</td>
+<td>"Make a fall planting schedule for a small raised bed in USDA zone 7b, Maryland."</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="42-make-it-yours">4.2 Make it yours</h3>
+<ol>
+<li>Draft with R.E.C.I.P.E.</li>
+<li>Improve with two follow-ups.</li>
+<li><strong>Fact-check</strong> anything factual.</li>
+<li><strong>Edit by hand</strong> — add your voice, fix anything off.</li>
+<li>Decide if you'll <strong>disclose</strong> AI use (school and work rules vary — ask).</li>
+</ol>
+<h3 id="43-share-out-and-certificate-20-min">4.3 Share-out and certificate (20 min)</h3>
+<p>Each person shows their project and names one thing AI got wrong that they fixed.</p>
+<h3 id="final-reflection">Final reflection</h3>
+<div class="quiz" data-quiz="3"></div>
+
+<hr />
+<h2 id="take-home-cards-printable">Take-home cards (printable)</h2>
+<p><strong>What AI is:</strong> a pattern-predicting tool that's fast and fluent — and sometimes wrong.
+<strong>R.E.C.I.P.E.:</strong> Role · Explain · Context · Instructions · Presentation · Evaluate.
+<strong>Never paste:</strong> IDs · money details · passwords/codes · health info · other people's info · work secrets.
+<strong>2-minute check:</strong> Stop · Source · Second opinion · Ask a human.
+<strong>Scam rule:</strong> Urgent + secret + money = hang up and verify.</p>
+<h2 id="facilitator-guide">Facilitator guide</h2>
+<ul>
+<li><strong>Room setup:</strong> tables of 4–6, one confident tech user per table. Charge stations. Wi-Fi password large on the wall.</li>
+<li><strong>Accounts:</strong> many tools now work without an account for basic use; have one demo account on the projector. Check age rules for youth groups and get parent permission where required.</li>
+<li><strong>Seniors:</strong> slow pace, larger fonts (phone accessibility settings), print every card. Celebrate wins out loud.</li>
+<li><strong>Teens:</strong> be direct about school academic-honesty rules. Frame AI as a tutor, not a ghostwriter. Discuss deepfakes and sextortion awareness with school counselors' guidance.</li>
+<li><strong>Mixed audiences:</strong> "Explain it to my grandma / explain it to my grandson" pairs are gold.</li>
+<li><strong>Hard questions you'll get:</strong> <em>Will AI take my job?</em> (It changes tasks; people who use it well have an edge.) <em>Is it listening to me?</em> (Show where privacy settings and chat history controls are in each tool.) <em>Is it a sin / is it evil?</em> (Respect faith perspectives; focus on honest, careful use.)</li>
+<li><strong>Evaluation:</strong> pre/post confidence survey (1–5) on: explaining AI, writing prompts, protecting info, spotting scams.</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://copilot.microsoft.com/" rel="noopener">Microsoft Copilot</a> · <a href="https://chatgpt.com/" rel="noopener">ChatGPT</a> · <a href="https://gemini.google.com/" rel="noopener">Google Gemini</a> · <a href="https://claude.ai/" rel="noopener">Claude</a></li>
+<li><a href="https://consumer.ftc.gov/" rel="noopener">FTC: Consumer advice on AI and scams</a></li>
+<li><a href="https://www.aarp.org/money/scams-fraud/" rel="noopener">AARP Fraud Watch Network</a> — helpline 877-908-3360</li>
+<li><a href="https://www.commonsensemedia.org/ai" rel="noopener">Common Sense Media: AI ratings and guides</a></li>
+</ul>
+    <h2 id="next-steps">Keep going</h2><div class="next"><a href="ai-901-azure-ai-fundamentals.html" style="--nc:var(--prog-ai)"><small>DCT-AI901</small><b>AI-901 Azure AI Fundamentals</b><br><small>Understand AI, then build with it. Prompts, agents, speech, vision and document extraction in Microsoft Foundry.</small></a><a href="ai-security-responsible-governance.html" style="--nc:var(--prog-aisec)"><small>DCT-AISEC</small><b>AI Security &amp; Responsible AI Governance</b><br><small>Use AI with boundaries, oversight, privacy, and the judgment to know when not to automate.</small></a></div>
+  </article>
+</div><!-- DCT:SITE-FOOTER START -->
+<footer aria-label="Site support"><p class="dct-page-guide" id="dct-page-guide" role="note" aria-label="Page support contact">If you are experiencing any issues on this page, please contact <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.</p></footer>
+<!-- DCT:SITE-FOOTER END --><script>
+const QUIZZES = [[{"q": "How does a chatbot usually produce an answer?", "options": ["It phones an expert", "It predicts likely next words based on patterns it learned", "It always searches the web first", "It reads your mind"], "answer": 1, "explain": "Unless connected to search or documents, it predicts text."}, {"q": "Which is an example of AI you may already use?", "options": ["A paper calendar", "Your bank's fraud alert texts", "A light switch", "A printed map"], "answer": 1, "explain": "Fraud detection is predictive AI."}, {"q": "Who is responsible for decisions you make using AI's answer?", "options": ["The AI", "The company that made it", "You", "Nobody"], "answer": 2, "explain": "AI is a tool; people stay accountable."}], [{"q": "In R.E.C.I.P.E., what does the C stand for?", "options": ["Copy", "Context", "Code", "Cost"], "answer": 1, "explain": "Context \u2014 who it's for and the situation."}, {"q": "Which prompt will most likely get a useful answer?", "options": ["\"Help.\"", "\"Write something about money.\"", "\"Act as a financial coach. Create a simple monthly budget for a single parent earning $3,200/month in Prince George's County, as a table.\"", "\"Budget?\""], "answer": 2, "explain": "Role, task, context and format make the difference."}, {"q": "What's a smart follow-up after the first answer?", "options": ["\"What assumptions did you make, and what could be wrong?\"", "Close the app", "Copy it without reading", "Ask the same question again with no changes"], "answer": 0, "explain": "Evaluate & edit \u2014 make it check itself."}], [{"q": "Which is safe to paste into a public AI chatbot?", "options": ["Your Social Security number", "Your bank login", "A letter with names and numbers replaced by placeholders like [NAME]", "Your doctor's notes with your full name"], "answer": 2, "explain": "Redact private details first."}, {"q": "Your \"grandson\" calls crying, needs bail money, and asks you not to tell anyone. Best first step?", "options": ["Send gift cards quickly", "Hang up and call him or a family member on a number you already know", "Ask the caller for proof", "Wire money but only half"], "answer": 1, "explain": "Voice clones are convincing; verify through a known number and use a family code word."}, {"q": "AI gives you a link to a law. What's the first fact-check step?", "options": ["Trust it if it looks official", "Open the link yourself and confirm it exists and says what AI claimed", "Share it on social media", "Ask AI if it's sure"], "answer": 1, "explain": "Fake or wrong citations are common; verify sources directly."}, {"q": "Where do you report a scam to the Federal Trade Commission?", "options": ["ReportFraud.ftc.gov", "Any AI chatbot", "The scammer's website", "Nowhere"], "answer": 0, "explain": "The FTC collects fraud reports at ReportFraud.ftc.gov."}], [{"q": "Which order matches the DCT learning model?", "options": ["Understand \u2192 Use \u2192 Protect \u2192 Create", "Create \u2192 Copy \u2192 Paste \u2192 Post", "Use \u2192 Trust \u2192 Share \u2192 Forget", "Protect \u2192 Avoid \u2192 Ignore \u2192 Quit"], "answer": 0, "explain": "Every DCT program follows Understand, Use, Protect, Create."}, {"q": "After AI drafts your project, what should you always do before sharing it?", "options": ["Nothing \u2014 it's done", "Fact-check and edit it in your own voice", "Remove your name", "Ask AI to post it"], "answer": 1, "explain": "You're the editor and you're accountable."}, {"q": "Which use of AI keeps your judgment in charge?", "options": ["Using AI to draft a letter, then checking facts and editing before sending", "Letting AI decide whether to sign a lease", "Sending AI's medical advice to a relative as fact", "Pasting a client's file into a free chatbot"], "answer": 0, "explain": "AI assists; people decide."}]], SLUG = "ai-fundamentals-everyday-ai", TOTAL = 13;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const KEY = 'dct:quiz:' + SLUG;
+const store = { get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+                set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} } };
+let state = store.get(KEY) || {};
+function progress(){
+  const right = Object.values(state).filter(v => v === true).length;
+  $('#pbar').style.width = (TOTAL ? Math.round(100*right/TOTAL) : 0) + '%';
+  $('#ptext').textContent = `${right} of ${TOTAL} practice questions correct`;
+}
+function scoreOf(qi){ const qs = QUIZZES[qi]; let r=0,a=0; qs.forEach((_,i)=>{ const v=state[qi+'-'+i]; if(v!==undefined){a++; if(v===true) r++;} }); return `${r}/${qs.length} correct${a<qs.length?` · ${qs.length-a} to go`:''}`; }
+function answer(qi, i, pick, wrapEl){
+  const q = QUIZZES[qi][i], ok = pick === q.answer;
+  if (state[qi+'-'+i] === undefined || ok) state[qi+'-'+i] = ok;
+  store.set(KEY, state);
+  wrapEl.querySelectorAll('.opt').forEach((b, j) => { b.disabled = true; if (j === q.answer) b.classList.add('right'); if (j === pick && !ok) b.classList.add('wrong'); });
+  const ex = wrapEl.querySelector('.explain');
+  ex.innerHTML = `<b>${ok ? 'Correct.' : 'Not quite.'}</b> ${q.explain} <button class="reset" type="button">Try again</button>`;
+  ex.querySelector('.reset').onclick = () => { wrapEl.querySelectorAll('.opt').forEach(b=>{b.disabled=false;b.classList.remove('right','wrong')}); ex.textContent=''; };
+  wrapEl.closest('.quiz').querySelector('.score').textContent = scoreOf(qi);
+  progress();
+}
+$$('.quiz').forEach(el => {
+  const qi = +el.dataset.quiz, qs = QUIZZES[qi];
+  const title = qs.length >= 20 ? 'Practice exam' : 'Check yourself';
+  el.innerHTML = `<header><span>${title} · ${qs.length} question${qs.length>1?'s':''}</span><span class="score"></span></header>` +
+    qs.map((q,i) => `<div class="q" data-i="${i}"><p class="stem">${i+1}. ${q.q}</p><div class="opts">${q.options.map((o,j)=>`<button type="button" class="opt" data-j="${j}">${o}</button>`).join('')}</div><p class="explain" aria-live="polite"></p></div>`).join('');
+  el.querySelector('.score').textContent = scoreOf(qi);
+  el.querySelectorAll('.q').forEach(qel => {
+    const i = +qel.dataset.i;
+    qel.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => answer(qi, i, +b.dataset.j, qel)));
+  });
+});
+$$('li.check input').forEach((cb, i) => { const k='dct:check:'+SLUG+':'+i; cb.checked = !!store.get(k); cb.addEventListener('change', () => store.set(k, cb.checked)); });
+$$('pre').forEach(pre => { const b = document.createElement('button'); b.className='copy'; b.type='button'; b.textContent='Copy';
+  b.onclick = async () => { const t = pre.querySelector('code').innerText; try { await navigator.clipboard.writeText(t); b.textContent='Copied'; } catch(e){ const r=document.createRange(); r.selectNodeContents(pre.querySelector('code')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected — press Ctrl+C'; } setTimeout(()=>b.textContent='Copy',1800); };
+  pre.appendChild(b); });
+$('#resetp').addEventListener('click', () => { state = {}; store.set(KEY, state); location.reload(); });
+const links = $$('.toc a'); const heads = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+e.target.id)); } }), {rootMargin:'-20% 0px -70% 0px'});
+heads.forEach(h => io.observe(h));
+progress();
+</script><script src="/js/global-ui.js?v=20261007hub"></script><script src="/js/site-config.js"></script><script src="/js/analytics.js"></script></body></html>

@@ -1930,7 +1930,7 @@ const COURSE_PATHWAYS = {
     // Certification Exam Preparation
     certifications: [
       { name: 'AWS Certified Security - Specialty', provider: 'AWS', code: 'SCS-C02' },
-      { name: 'Microsoft Azure Security Engineer Associate', provider: 'Microsoft', code: 'AZ-500' },
+      { name: 'Microsoft Cloud and AI Security Engineer Associate (replaces AZ-500, retired August 31, 2026)', provider: 'Microsoft', code: 'SC-500' },
       { name: 'Certified Cloud Security Professional', provider: '(ISC)²', code: 'CCSP' }
     ],
     

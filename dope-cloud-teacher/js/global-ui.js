@@ -121,6 +121,7 @@
     var currentPage = (parts.length ? parts[parts.length - 1] : 'index.html').split('?')[0] || 'index.html';
     var navItems = [
       { href: 'index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
+      { href: 'hub/index.html', label: 'Courses', sections: ['hub'], pages: [] },
       { href: 'programs.html', label: 'Programs', sections: ['programs'], pages: ['programs.html', 'courses.html', 'certifications.html'] },
       { href: 'who-we-serve.html', label: 'Who We Serve', sections: ['who-we-serve'], pages: ['who-we-serve.html', 'veterans-community.html'] },
       { href: 'about.html', label: 'About', sections: [], pages: ['about.html', 'governance-responsible-ai.html'] },
@@ -131,7 +132,7 @@
     ];
 
     nav.innerHTML = navItems.map(function (item) {
-      var isActive = item.sections.indexOf(section) !== -1 || item.pages.indexOf(currentPage) !== -1;
+      var isActive = item.sections.indexOf(section) !== -1 || (section !== 'hub' && item.pages.indexOf(currentPage) !== -1);
       return '<a href="' + sitePath(item.href) + '"' + (isActive ? ' class="active"' : '') + '>' + item.label + '</a>';
     }).join('') + '<a href="' + sitePath('login.html') + '" id="authButton">Sign In</a>';
 

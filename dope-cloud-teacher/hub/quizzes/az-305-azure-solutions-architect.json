@@ -1,0 +1,737 @@
+{
+  "course": "DCT-AZ305",
+  "title": "AZ-305 Azure Solutions Architect",
+  "slug": "az-305-azure-solutions-architect",
+  "verified": "October 6, 2026",
+  "quizzes": [
+    {
+      "index": 0,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-0-0",
+          "prompt": "Logs must be streamed to a third-party SIEM in near real time. Route them to:",
+          "options": [
+            "A storage account",
+            "Event Hubs",
+            "Azure Files",
+            "Recovery Services vault"
+          ],
+          "answer_index": 1,
+          "explanation": "Event Hubs is the streaming destination for diagnostic settings."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-0-1",
+          "prompt": "Every new resource must automatically send logs to the central workspace. Recommend:",
+          "options": [
+            "Azure Policy with DeployIfNotExists diagnostic settings",
+            "Manual configuration",
+            "Resource locks",
+            "Azure Advisor"
+          ],
+          "answer_index": 0,
+          "explanation": "DINE policies enforce diagnostics at scale."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-0-2",
+          "prompt": "Which provides distributed tracing for microservices?",
+          "options": [
+            "Activity log",
+            "Application Insights",
+            "Service Health",
+            "Network Watcher"
+          ],
+          "answer_index": 1,
+          "explanation": "Application Insights supports distributed tracing."
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-1-0",
+          "prompt": "An App Service app must access Azure SQL without storing credentials. Recommend:",
+          "options": [
+            "A managed identity with Entra authentication to Azure SQL",
+            "A connection string in app settings",
+            "A SAS token",
+            "A shared admin account"
+          ],
+          "answer_index": 0,
+          "explanation": "Managed identities eliminate stored secrets."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-1-1",
+          "prompt": "Admins should hold Owner only when needed, with approval and expiry. Recommend:",
+          "options": [
+            "Permanent Owner assignment",
+            "Privileged Identity Management",
+            "A ReadOnly lock",
+            "Azure Policy"
+          ],
+          "answer_index": 1,
+          "explanation": "PIM provides just-in-time elevation."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-1-2",
+          "prompt": "Keys must be in a single-tenant, FIPS 140-3 Level 3 HSM. Recommend:",
+          "options": [
+            "Key Vault Standard",
+            "Azure Key Vault Managed HSM",
+            "Storage account encryption only",
+            "App settings"
+          ],
+          "answer_index": 1,
+          "explanation": "Managed HSM is single-tenant and FIPS 140-3 Level 3 validated."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-2-0",
+          "prompt": "In the CAF landing zone model, shared networking (hubs, firewalls) lives under:",
+          "options": [
+            "Sandbox",
+            "Platform \u2192 Connectivity",
+            "Decommissioned",
+            "Corp landing zone"
+          ],
+          "answer_index": 1,
+          "explanation": "Connectivity is a platform subscription."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-2-1",
+          "prompt": "Which is the primary unit of scale and isolation for workloads in CAF?",
+          "options": [
+            "Resource group",
+            "Subscription",
+            "Tag",
+            "Region"
+          ],
+          "answer_index": 1,
+          "explanation": "Subscriptions isolate workloads, billing and quotas."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-2-2",
+          "prompt": "Contractors should get time-limited access packages with automatic expiry and approvals. Recommend:",
+          "options": [
+            "Entra ID Governance entitlement management",
+            "Guest accounts with permanent Owner",
+            "Resource locks",
+            "Azure Arc"
+          ],
+          "answer_index": 0,
+          "explanation": "Access packages handle request, approval, expiry."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-3-0",
+          "prompt": "A legacy app uses SQL Agent jobs and cross-database queries; the team wants PaaS. Recommend:",
+          "options": [
+            "Azure SQL Database single database",
+            "Azure SQL Managed Instance",
+            "Cosmos DB",
+            "Table Storage"
+          ],
+          "answer_index": 1,
+          "explanation": "Managed Instance supports instance-scoped features."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-3-1",
+          "prompt": "A dev database is used a few hours a week. Minimize compute cost with:",
+          "options": [
+            "Azure SQL Database serverless with auto-pause",
+            "Business Critical",
+            "Hyperscale with 4 replicas",
+            "SQL on a VM running 24/7"
+          ],
+          "answer_index": 0,
+          "explanation": "Serverless auto-pauses and bills per use."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-3-2",
+          "prompt": "A global app needs multi-region writes and single-digit millisecond reads. Recommend:",
+          "options": [
+            "Azure SQL Database",
+            "Azure Cosmos DB",
+            "Azure Files",
+            "SQL Managed Instance"
+          ],
+          "answer_index": 1,
+          "explanation": "Cosmos DB supports multi-region writes and global distribution."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-3-3",
+          "prompt": "Sensitive columns must stay encrypted even from database administrators. Recommend:",
+          "options": [
+            "TDE",
+            "Always Encrypted",
+            "Dynamic data masking",
+            "Firewall rules"
+          ],
+          "answer_index": 1,
+          "explanation": "Always Encrypted keeps keys on the client side."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-4-0",
+          "prompt": "Which service orchestrates data movement and transformation pipelines with many connectors?",
+          "options": [
+            "Azure Data Factory",
+            "Azure Policy",
+            "Application Gateway",
+            "Azure Bastion"
+          ],
+          "answer_index": 0,
+          "explanation": "ADF is the integration/orchestration service."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-4-1",
+          "prompt": "A team wants one SaaS platform for lakehouse, warehouse, pipelines and Power BI. Recommend:",
+          "options": [
+            "Azure Files",
+            "Microsoft Fabric",
+            "Azure Arc",
+            "VM Scale Sets"
+          ],
+          "answer_index": 1,
+          "explanation": "Fabric unifies analytics in OneLake."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-5-0",
+          "prompt": "An Azure SQL Database must fail over to another region automatically with a single connection endpoint. Recommend:",
+          "options": [
+            "Long-term retention",
+            "Auto-failover group",
+            "Geo-restore only",
+            "Read scale-out"
+          ],
+          "answer_index": 1,
+          "explanation": "Failover groups provide listener endpoints and automatic failover."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-5-1",
+          "prompt": "Which metric describes how much data you can afford to lose?",
+          "options": [
+            "RPO",
+            "RTO",
+            "SLA",
+            "MTTR"
+          ],
+          "answer_index": 0,
+          "explanation": "Recovery point objective."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-5-2",
+          "prompt": "Two services in series each have 99.9% SLA. The composite SLA is approximately:",
+          "options": [
+            "99.99%",
+            "99.9%",
+            "99.8%",
+            "99.0%"
+          ],
+          "answer_index": 2,
+          "explanation": "0.999 \u00d7 0.999 \u2248 0.998."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-5-3",
+          "prompt": "Replicate on-premises VMware VMs to Azure for DR. Recommend:",
+          "options": [
+            "Azure Backup only",
+            "Azure Site Recovery",
+            "AzCopy",
+            "Azure File Sync"
+          ],
+          "answer_index": 1,
+          "explanation": "ASR supports VMware/Hyper-V/physical to Azure."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-6-0",
+          "prompt": "Orders must be processed exactly in order with dead-letter support. Recommend:",
+          "options": [
+            "Service Bus sessions/queues",
+            "Event Grid",
+            "Storage Queues",
+            "Event Hubs"
+          ],
+          "answer_index": 0,
+          "explanation": "Service Bus supports FIFO via sessions and dead-lettering."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-6-1",
+          "prompt": "Trigger a function whenever a blob is uploaded, with push delivery. Recommend:",
+          "options": [
+            "Service Bus",
+            "Event Grid",
+            "API Management",
+            "Redis"
+          ],
+          "answer_index": 1,
+          "explanation": "Event Grid delivers resource events."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-6-2",
+          "prompt": "Expose internal APIs to partners with keys, rate limits and versioning. Recommend:",
+          "options": [
+            "Application Gateway alone",
+            "Azure API Management",
+            "Front Door alone",
+            "Logic Apps"
+          ],
+          "answer_index": 1,
+          "explanation": "APIM handles API publishing and policies."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-6-3",
+          "prompt": "Containerized microservices need autoscaling including scale-to-zero, without managing Kubernetes. Recommend:",
+          "options": [
+            "AKS",
+            "Azure Container Apps",
+            "VMSS",
+            "Azure Batch"
+          ],
+          "answer_index": 1,
+          "explanation": "Container Apps abstracts Kubernetes."
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-7-0",
+          "prompt": "A retailer has 200 branch offices needing any-to-any connectivity to Azure. Recommend:",
+          "options": [
+            "One VPN gateway per VNet",
+            "Azure Virtual WAN",
+            "VNet peering only",
+            "Traffic Manager"
+          ],
+          "answer_index": 1,
+          "explanation": "Virtual WAN scales branch connectivity with a managed hub."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-7-1",
+          "prompt": "A global web app needs WAF, TLS offload, caching and fastest-region routing. Recommend:",
+          "options": [
+            "Azure Front Door Premium with WAF",
+            "Azure Load Balancer",
+            "Traffic Manager alone",
+            "Application Gateway in one region"
+          ],
+          "answer_index": 0,
+          "explanation": "Front Door is global L7 with CDN and WAF."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-7-2",
+          "prompt": "Which CAF \"R\" means moving a VM as-is to Azure IaaS?",
+          "options": [
+            "Rehost",
+            "Refactor",
+            "Retire",
+            "Rebuild"
+          ],
+          "answer_index": 0,
+          "explanation": "Rehost = lift and shift."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-7-3",
+          "prompt": "Outbound traffic from all spokes must be inspected with IDPS and TLS inspection. Recommend:",
+          "options": [
+            "NSGs only",
+            "Azure Firewall Premium in the hub with UDRs",
+            "Service endpoints",
+            "Traffic Manager"
+          ],
+          "answer_index": 1,
+          "explanation": "Firewall Premium provides IDPS and TLS inspection."
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "questions": [
+        {
+          "id": "az-305-azure-solutions-architect-8-0",
+          "prompt": "You need to retain security logs 2 years at the lowest cost while querying the last 30 days interactively. Recommend:",
+          "options": [
+            "Log Analytics with 30-day interactive retention and long-term retention for the rest",
+            "Keep everything in Analytics tier for 2 years",
+            "Delete after 30 days",
+            "Store in Redis"
+          ],
+          "answer_index": 0,
+          "explanation": "Long-term retention is far cheaper than interactive retention."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-1",
+          "prompt": "Which design best removes secrets from application code?",
+          "options": [
+            "Managed identities + Key Vault references",
+            "Encrypted connection strings in Git",
+            "Environment variables in the Dockerfile",
+            "Shared service accounts"
+          ],
+          "answer_index": 0,
+          "explanation": "Managed identities avoid storing credentials."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-2",
+          "prompt": "Hybrid users need SSO to cloud apps with the simplest, most resilient auth. Recommend:",
+          "options": [
+            "Password hash synchronization with Seamless SSO",
+            "AD FS federation",
+            "Separate cloud passwords",
+            "Pass-through authentication with one agent"
+          ],
+          "answer_index": 0,
+          "explanation": "PHS is Microsoft's recommended default for resilience."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-3",
+          "prompt": "Which structure applies policies consistently to all production subscriptions?",
+          "options": [
+            "A management group for production with policy assignments",
+            "Tags on each resource",
+            "One resource group per subscription",
+            "Individual RBAC assignments"
+          ],
+          "answer_index": 0,
+          "explanation": "Management groups provide inheritance."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-4",
+          "prompt": "A workload must be evaluated against NIST SP 800-53 Rev. 5. Use:",
+          "options": [
+            "The built-in regulatory compliance initiative in Azure Policy / Defender for Cloud",
+            "Azure Advisor alone",
+            "Resource locks",
+            "Service Health"
+          ],
+          "answer_index": 0,
+          "explanation": "Built-in initiatives map controls to policies."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-5",
+          "prompt": "Many small tenant databases with unpredictable, non-overlapping peaks. Recommend:",
+          "options": [
+            "Azure SQL Database elastic pool",
+            "One Business Critical database per tenant",
+            "Cosmos DB",
+            "SQL on VMs"
+          ],
+          "answer_index": 0,
+          "explanation": "Elastic pools share resources across databases."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-6",
+          "prompt": "Database up to 100 TB with fast backups and rapid scale. Recommend:",
+          "options": [
+            "General Purpose",
+            "Hyperscale",
+            "Basic DTU",
+            "Table Storage"
+          ],
+          "answer_index": 1,
+          "explanation": "Hyperscale supports very large databases."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-7",
+          "prompt": "Cosmos DB default consistency level:",
+          "options": [
+            "Strong",
+            "Session",
+            "Eventual",
+            "Bounded staleness"
+          ],
+          "answer_index": 1,
+          "explanation": "Session is the default."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-8",
+          "prompt": "Data scientists need a hierarchical namespace for big-data files. Recommend:",
+          "options": [
+            "Azure Data Lake Storage (Blob with hierarchical namespace)",
+            "Azure Files Standard",
+            "Queue Storage",
+            "Table Storage"
+          ],
+          "answer_index": 0,
+          "explanation": "ADLS adds hierarchical namespace and POSIX ACLs."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-9",
+          "prompt": "Weekly analytics combining several sources into dashboards with minimal infrastructure. Recommend:",
+          "options": [
+            "Microsoft Fabric with Power BI",
+            "VMs running SQL Server Reporting Services",
+            "Azure Batch",
+            "Event Grid"
+          ],
+          "answer_index": 0,
+          "explanation": "Fabric is SaaS analytics."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-10",
+          "prompt": "Blob data must be immutable for 7 years for compliance. Recommend:",
+          "options": [
+            "Immutable storage with time-based retention policy",
+            "Soft delete for 7 years",
+            "Archive tier only",
+            "ReadOnly lock on the account"
+          ],
+          "answer_index": 0,
+          "explanation": "WORM immutability policies meet regulatory retention."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-11",
+          "prompt": "RTO 1 hour, RPO 15 minutes for Azure VMs across regions. Recommend:",
+          "options": [
+            "Azure Site Recovery",
+            "Daily Azure Backup only",
+            "Availability set",
+            "Manual redeploy"
+          ],
+          "answer_index": 0,
+          "explanation": "ASR provides continuous replication with low RPO."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-12",
+          "prompt": "In-region HA for VMs with 99.99% SLA:",
+          "options": [
+            "Two or more VMs across availability zones",
+            "One VM with Premium SSD",
+            "Availability set",
+            "Two VMs in one zone"
+          ],
+          "answer_index": 0,
+          "explanation": "Zones provide the highest in-region SLA."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-13",
+          "prompt": "Unstructured data must survive a regional outage AND a zone outage in the primary region. Recommend:",
+          "options": [
+            "LRS",
+            "ZRS",
+            "GRS",
+            "GZRS"
+          ],
+          "answer_index": 3,
+          "explanation": "GZRS covers zone and region."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-14",
+          "prompt": "Which compute suits an HPC rendering job of 10,000 parallel tasks?",
+          "options": [
+            "App Service",
+            "Azure Batch",
+            "Logic Apps",
+            "Functions Consumption"
+          ],
+          "answer_index": 1,
+          "explanation": "Batch schedules large-scale parallel jobs."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-15",
+          "prompt": "Which service delivers high-throughput telemetry ingestion with partitioned consumers?",
+          "options": [
+            "Service Bus",
+            "Event Grid",
+            "Event Hubs",
+            "Storage Queues"
+          ],
+          "answer_index": 2,
+          "explanation": "Event Hubs is a streaming platform."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-16",
+          "prompt": "Feature flags and centralized app settings across microservices:",
+          "options": [
+            "Azure App Configuration",
+            "Azure Policy",
+            "Tags",
+            "Key Vault alone"
+          ],
+          "answer_index": 0,
+          "explanation": "App Configuration manages settings and flags."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-17",
+          "prompt": "Reduce database load for frequently read product catalogs. Recommend:",
+          "options": [
+            "Azure Managed Redis cache",
+            "More DTUs only",
+            "Event Grid",
+            "Azure Backup"
+          ],
+          "answer_index": 0,
+          "explanation": "Caching offloads reads."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-18",
+          "prompt": "Repeatable, reviewable infrastructure deployments across environments. Recommend:",
+          "options": [
+            "Bicep or Terraform in a CI/CD pipeline",
+            "Portal clicks documented in Word",
+            "Resource locks",
+            "Manual scripts on a laptop"
+          ],
+          "answer_index": 0,
+          "explanation": "IaC + pipelines = consistency."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-19",
+          "prompt": "Assess 400 on-prem servers for Azure readiness and sizing. Recommend:",
+          "options": [
+            "Azure Migrate",
+            "Azure Arc alone",
+            "Data Box",
+            "Advisor"
+          ],
+          "answer_index": 0,
+          "explanation": "Azure Migrate discovers and assesses."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-20",
+          "prompt": "Migrate SQL Server with minimal downtime (online). Recommend:",
+          "options": [
+            "Azure Database Migration Service (online mode)",
+            "Backup to USB",
+            "Data Box Heavy",
+            "Storage Explorer"
+          ],
+          "answer_index": 0,
+          "explanation": "DMS supports online migrations."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-21",
+          "prompt": "Private, predictable connectivity with consistent latency to Azure. Recommend:",
+          "options": [
+            "ExpressRoute",
+            "Site-to-site VPN",
+            "Public internet",
+            "Traffic Manager"
+          ],
+          "answer_index": 0,
+          "explanation": "ExpressRoute uses a private circuit."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-22",
+          "prompt": "Regional web app needs path-based routing and WAF. Recommend:",
+          "options": [
+            "Application Gateway with WAF",
+            "Load Balancer",
+            "Traffic Manager",
+            "VPN Gateway"
+          ],
+          "answer_index": 0,
+          "explanation": "App Gateway is regional L7."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-23",
+          "prompt": "Protect public IPs from volumetric attacks with cost protection and rapid response support. Recommend:",
+          "options": [
+            "Azure DDoS Network Protection",
+            "NSGs",
+            "Azure Policy",
+            "Private endpoints"
+          ],
+          "answer_index": 0,
+          "explanation": "DDoS Network Protection adds mitigation, telemetry, cost protection and rapid response."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-24",
+          "prompt": "Which design reduces latency between tightly coupled VMs?",
+          "options": [
+            "Proximity placement group with accelerated networking",
+            "Spread VMs across regions",
+            "Use Traffic Manager",
+            "Use Basic SKUs"
+          ],
+          "answer_index": 0,
+          "explanation": "PPGs co-locate VMs."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-25",
+          "prompt": "DNS-based failover between two regions for a non-HTTP service. Recommend:",
+          "options": [
+            "Front Door",
+            "Traffic Manager (priority routing)",
+            "Application Gateway",
+            "Internal Load Balancer"
+          ],
+          "answer_index": 1,
+          "explanation": "Traffic Manager routes at the DNS level for any protocol."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-26",
+          "prompt": "Which WAF pillar focuses on deploying and observing workloads repeatably?",
+          "options": [
+            "Reliability",
+            "Security",
+            "Operational Excellence",
+            "Performance Efficiency"
+          ],
+          "answer_index": 2,
+          "explanation": "Operational Excellence covers DevOps, IaC, monitoring."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-27",
+          "prompt": "Customers (not employees) need sign-up with social accounts for a public portal. Recommend:",
+          "options": [
+            "Microsoft Entra External ID for customers",
+            "B2B guest invitations",
+            "Entra Domain Services",
+            "Local accounts in SQL"
+          ],
+          "answer_index": 0,
+          "explanation": "External ID handles CIAM."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-28",
+          "prompt": "Grant on-prem servers Azure RBAC, Policy and Defender for Cloud coverage. Recommend:",
+          "options": [
+            "Azure Arc-enabled servers",
+            "ExpressRoute",
+            "Azure Migrate",
+            "Bastion"
+          ],
+          "answer_index": 0,
+          "explanation": "Arc projects servers into Azure."
+        },
+        {
+          "id": "az-305-azure-solutions-architect-8-29",
+          "prompt": "Which is NOT a valid Cosmos DB consistency level?",
+          "options": [
+            "Strong",
+            "Consistent prefix",
+            "Bounded staleness",
+            "Immediate replication"
+          ],
+          "answer_index": 3,
+          "explanation": "The five levels are Strong, Bounded staleness, Session, Consistent prefix, Eventual."
+        }
+      ]
+    }
+  ]
+}

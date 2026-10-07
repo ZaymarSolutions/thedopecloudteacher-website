@@ -1,0 +1,179 @@
+{
+  "course": "DCT-CYB",
+  "title": "Cyber Basics \u2014 Stay Safer Online",
+  "slug": "cyber-basics-stay-safer-online",
+  "verified": "October 6, 2026",
+  "quizzes": [
+    {
+      "index": 0,
+      "questions": [
+        {
+          "id": "cyber-basics-stay-safer-online-0-0",
+          "prompt": "A text says your bank account is locked and gives a link. What's the safest move?",
+          "options": [
+            "Click the link quickly",
+            "Reply STOP",
+            "Open your bank's official app or call the number on your card",
+            "Forward it to friends"
+          ],
+          "answer_index": 2,
+          "explanation": "Use contact info you already trust, never the message's."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-0-1",
+          "prompt": "Someone calls saying they're from your bank and asks for the code just texted to you. You should:",
+          "options": [
+            "Read them the code",
+            "Hang up \u2014 never share one-time codes",
+            "Give half the code",
+            "Ask them to text it back"
+          ],
+          "answer_index": 1,
+          "explanation": "A code you didn't request means someone is trying to get into your account."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-0-2",
+          "prompt": "Which payment method is a big red flag?",
+          "options": [
+            "Gift cards",
+            "A check to your utility company from your own bank",
+            "Paying your rent through the landlord's official portal",
+            "Autopay you set up yourself"
+          ],
+          "answer_index": 0,
+          "explanation": "Scammers demand gift cards, wires, crypto because they're hard to reverse."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-0-3",
+          "prompt": "Your \"grandson\" calls in a panic needing bail money and says not to tell his parents. Best response?",
+          "options": [
+            "Hang up and call him or his parents on a number you know; use your family code word",
+            "Send the money fast",
+            "Ask for his birthday",
+            "Send half now"
+          ],
+          "answer_index": 0,
+          "explanation": "AI voice cloning makes voices convincing; verify independently."
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "questions": [
+        {
+          "id": "cyber-basics-stay-safer-online-1-0",
+          "prompt": "Which is the strongest password?",
+          "options": [
+            "P@ssw0rd!",
+            "Your dog's name and birth year",
+            "copper-harbor-tulip-rhythm",
+            "123456789"
+          ],
+          "answer_index": 2,
+          "explanation": "Long random-word passphrases beat short complex ones."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-1-1",
+          "prompt": "Which account should get MFA first because it can reset your other accounts?",
+          "options": [
+            "Email",
+            "A game",
+            "A recipe site",
+            "A weather app"
+          ],
+          "answer_index": 0,
+          "explanation": "Email is the key to password resets."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-1-2",
+          "prompt": "Why install updates promptly?",
+          "options": [
+            "They fix security holes attackers already know about",
+            "They always add games",
+            "They slow down hackers' Wi-Fi",
+            "They're optional decoration"
+          ],
+          "answer_index": 0,
+          "explanation": "Patches close known vulnerabilities."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-1-3",
+          "prompt": "What protects you from a SIM-swap takeover of your phone number?",
+          "options": [
+            "A port-out / account PIN with your mobile carrier and app-based MFA instead of SMS",
+            "Turning off Wi-Fi",
+            "A new phone case",
+            "Posting your number publicly"
+          ],
+          "answer_index": 0,
+          "explanation": "Carrier PINs and non-SMS MFA reduce SIM-swap risk."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "questions": [
+        {
+          "id": "cyber-basics-stay-safer-online-2-0",
+          "prompt": "What does the 3-2-1 backup rule mean?",
+          "options": [
+            "3 copies, 2 different storage types, 1 off-site",
+            "3 passwords, 2 phones, 1 computer",
+            "Back up every 3 days, 2 times, 1 week",
+            "3 apps, 2 accounts, 1 cloud"
+          ],
+          "answer_index": 0,
+          "explanation": "Multiple copies across media and locations."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-2-1",
+          "prompt": "You sent money to a scammer by debit card an hour ago. First call?",
+          "options": [
+            "The scammer",
+            "Your bank, using the number on your card",
+            "A friend on social media",
+            "Nobody \u2014 it's too late"
+          ],
+          "answer_index": 1,
+          "explanation": "Speed matters; banks may stop or reverse payments."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-2-2",
+          "prompt": "Freezing your credit at the three bureaus costs:",
+          "options": [
+            "Nothing \u2014 it's free by law",
+            "$10 each",
+            "$100 total",
+            "It's only for businesses"
+          ],
+          "answer_index": 0,
+          "explanation": "Credit freezes and thaws are free."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-2-3",
+          "prompt": "A teen is being threatened after sending a photo to someone online. What's the right first advice?",
+          "options": [
+            "Stop replying, don't pay, save evidence, tell a trusted adult and report to NCMEC",
+            "Pay so it goes away",
+            "Delete everything and tell no one",
+            "Send more photos"
+          ],
+          "answer_index": 0,
+          "explanation": "Paying rarely ends it; reporting and support do."
+        },
+        {
+          "id": "cyber-basics-stay-safer-online-2-4",
+          "prompt": "Which site gives a personalized identity theft recovery plan?",
+          "options": [
+            "haveibeenpwned.com",
+            "IdentityTheft.gov",
+            "Any social media site",
+            "The scammer's site"
+          ],
+          "answer_index": 1,
+          "explanation": "The FTC's IdentityTheft.gov builds a recovery plan."
+        }
+      ]
+    }
+  ]
+}

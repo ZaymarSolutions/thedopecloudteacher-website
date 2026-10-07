@@ -357,7 +357,7 @@
       relatedLessonIds: ['lesson-security-pim-02', 'lesson-security-pim-01'],
       tags: ['least-privilege', 'rbac', 'access-reviews'],
       difficulty: 'beginner',
-      certificationMapping: ['SC-300', 'AZ-500'],
+      certificationMapping: ['SC-300', 'SC-500 (replaces AZ-500, retired August 31, 2026)'],
       blogUrl: '/blog.html#poster-least-privilege'
     },
     {
@@ -387,7 +387,7 @@
       relatedLessonIds: ['lesson-devsecops-02', 'lesson-arch-02'],
       tags: ['defender', 'cnapp', 'cspm', 'cwpp'],
       difficulty: 'advanced',
-      certificationMapping: ['AZ-500', 'SC-200'],
+      certificationMapping: ['SC-500 (replaces AZ-500, retired August 31, 2026)', 'SC-200'],
       blogUrl: '/blog.html#poster-defender-cnapp'
     },
     {

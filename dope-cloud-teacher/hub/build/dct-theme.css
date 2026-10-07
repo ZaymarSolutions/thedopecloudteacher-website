@@ -1,0 +1,64 @@
+/* =====================================================================
+   DCT COURSE HUB — THEME
+   Every font, color and shape in the hub comes from this one file.
+   To match thedopecloudteacher.org: replace the values below with the
+   main site's own fonts and colors. Do NOT rename the variables.
+   ===================================================================== */
+
+/* 1. FONTS — replace with the main site's font import (Google Fonts URL or @font-face rules). */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@600;800&display=swap");
+
+:root{
+  /* 2. TYPE — the site's heading font, body font, and code font */
+  --display:"Merriweather", "Georgia", serif;          /* site heading font */
+  --display-weight:700;                                               /* site heading weight */
+  --body:"Source Sans 3", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;  /* site body font */
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+
+  /* 3. CORE COLORS (light mode) */
+  --bg:#ffffff;          /* page background */
+  --surface:#ffffff;     /* cards, panels */
+  --surface-2:#f5faff;   /* chips, table headers, hover fills */
+  --ink:#0B0B12;         /* main text and dark buttons */
+  --muted:#354150;       /* secondary text */
+  --line:#d9e7f7;        /* borders and dividers */
+  --blue:#1267cf;        /* links and primary accent (the site's main brand color) */
+  --gold:#3f94e9;        /* highlight accent ("Dope Translation" callouts) */
+  --gold-ink:#12487e;    /* readable text on gold tints */
+  --focus:#69a9f0;       /* keyboard focus ring */
+  --good:#0f8a5f;        /* correct answers, "Active" */
+  --bad:#c2352f;         /* wrong answers, "Retired", cost warnings */
+  --band-start:#0B0B12;  /* dark start of each course header band */
+  --code-bg:#0d1530; --code-fg:#e7ecff;
+
+  /* 4. PROGRAM COLORS — one per program on the Programs page */
+  --prog-cloud:#1267cf;     /* Cloud Fundamentals: Cloud 101, AZ-900 */
+  --prog-security:#102b48;  /* Cloud Security: AZ-104, Cloud Security, Cyber Basics */
+  --prog-arch:#12487e;      /* Cloud Architecture: AZ-305 */
+  --prog-ai:#1267cf;        /* AI Fundamentals: AI-901, Everyday AI */
+  --prog-aisec:#123e70;     /* AI Security: AI Security & Governance */
+
+  /* 5. SHAPES */
+  --radius:14px;         /* tables, small panels */
+  --radius-lg:16px;      /* cards and large panels */
+  --radius-pill:.7rem;   /* buttons and chips (use the site's button radius) */
+}
+
+/* Shared-site integration. Keep hub layout and lesson markup unchanged. */
+body.dct-course-hub {font-family:var(--body)!important;color:var(--ink)!important;}
+.dct-course-hub :is(h1,h2,h3,h4) {font-family:var(--display)!important;}
+.dct-course-hub .front-brand-name {display:flex;flex-direction:column;margin-left:.7rem;line-height:1.05;}
+.dct-course-hub .front-brand-name strong {color:var(--ink);font-size:1rem;}
+.dct-course-hub .front-brand-name span {color:var(--blue);font-size:.68rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;margin-top:.25rem;}
+.dct-course-hub .hero {border:0!important;box-shadow:none!important;background:transparent!important;}
+.dct-course-hub .band :is(h1,p,span) {color:#fff!important;}
+.dct-course-hub .hero h1 em {color:var(--blue);}
+.dct-course-hub .btn.ghost {background:var(--surface)!important;color:var(--ink)!important;}
+.dct-course-hub footer {margin-top:2rem;padding:0;border:0;background:transparent;}
+.dct-course-hub .dct-page-guide {margin:2rem auto 0;padding:.9rem 1.1rem;max-width:1100px;text-align:center;color:var(--muted);font-size:.88rem;font-family:var(--body);}
+.dct-course-hub .dct-page-guide a {color:var(--blue);font-weight:700;text-decoration:underline;}
+.dct-course-hub .layout {padding-top:32px;}
+.dct-course-hub .toc {top:130px;max-height:calc(100vh - 150px);}
+.dct-course-hub section, .dct-course-hub [id] {scroll-margin-top:140px;}
+@media(max-width:900px){.dct-course-hub .toc{position:static;max-height:none;}}
+@media(max-width:540px){.dct-course-hub .front-brand-name{display:none;} .dct-course-hub .grid{grid-template-columns:minmax(0,1fr);}}

@@ -1,0 +1,1225 @@
+{
+  "course": "DCT-AZ104",
+  "title": "AZ-104 Azure Administrator",
+  "slug": "az-104-azure-administrator",
+  "verified": "October 6, 2026",
+  "quizzes": [
+    {
+      "index": 0,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-0-0",
+          "prompt": "You need all members of the Finance department to automatically join a group. What do you configure?",
+          "options": [
+            "Assigned membership",
+            "Dynamic membership rule based on department",
+            "Group-based licensing",
+            "SSPR"
+          ],
+          "answer_index": 1,
+          "explanation": "Dynamic groups evaluate user attributes (requires Entra ID P1)."
+        },
+        {
+          "id": "az-104-azure-administrator-0-1",
+          "prompt": "A license assignment fails for a new user. What property must be set first?",
+          "options": [
+            "Job title",
+            "Usage location",
+            "Manager",
+            "Department"
+          ],
+          "answer_index": 1,
+          "explanation": "Usage location is required for license assignment."
+        },
+        {
+          "id": "az-104-azure-administrator-0-2",
+          "prompt": "Which SSPR method is NOT available to administrators?",
+          "options": [
+            "Mobile app",
+            "Email",
+            "Security questions",
+            "Mobile phone"
+          ],
+          "answer_index": 2,
+          "explanation": "Admins must use stronger methods; security questions aren't allowed."
+        },
+        {
+          "id": "az-104-azure-administrator-0-3",
+          "prompt": "A vendor needs to access a SharePoint site with their own corporate account. You should:",
+          "options": [
+            "Invite them as a B2B guest user",
+            "Create a member account with a new password",
+            "Share your password",
+            "Add them to Entra Domain Services"
+          ],
+          "answer_index": 0,
+          "explanation": "External users are invited as guests."
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-1-0",
+          "prompt": "A user has Reader at the subscription and Contributor on one resource group. What can they do in that resource group?",
+          "options": [
+            "Only read",
+            "Manage resources (Contributor), because RBAC is additive",
+            "Nothing \u2014 the assignments conflict",
+            "Assign roles to others"
+          ],
+          "answer_index": 1,
+          "explanation": "Effective permissions are the union of assignments."
+        },
+        {
+          "id": "az-104-azure-administrator-1-1",
+          "prompt": "Which role lets someone manage resources but not grant access?",
+          "options": [
+            "Owner",
+            "Contributor",
+            "User Access Administrator",
+            "Role Based Access Control Administrator"
+          ],
+          "answer_index": 1,
+          "explanation": "Contributor excludes Microsoft.Authorization write actions."
+        },
+        {
+          "id": "az-104-azure-administrator-1-2",
+          "prompt": "An Owner of a storage account can't read blobs when using Entra ID authentication. Why?",
+          "options": [
+            "Blob reading is a DataAction; they need a Storage Blob Data role",
+            "Owners are read-only",
+            "The storage firewall is off",
+            "SAS is required for all access"
+          ],
+          "answer_index": 0,
+          "explanation": "Control-plane and data-plane permissions are separate."
+        },
+        {
+          "id": "az-104-azure-administrator-1-3",
+          "prompt": "Where do you assign a role so it applies to every subscription in a department?",
+          "options": [
+            "Each resource",
+            "A tag",
+            "The department's management group",
+            "Entra ID group properties"
+          ],
+          "answer_index": 2,
+          "explanation": "Management-group assignments inherit to all child subscriptions."
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-2-0",
+          "prompt": "Existing storage accounts lack a required tag. Which policy capability fixes them?",
+          "options": [
+            "Deny effect",
+            "A Modify policy with a remediation task",
+            "A resource lock",
+            "An RBAC assignment"
+          ],
+          "answer_index": 1,
+          "explanation": "Remediation tasks apply Modify/DeployIfNotExists to existing resources using a managed identity."
+        },
+        {
+          "id": "az-104-azure-administrator-2-1",
+          "prompt": "Which lock blocks updates AND deletions?",
+          "options": [
+            "CanNotDelete",
+            "ReadOnly",
+            "Deny assignment",
+            "Audit"
+          ],
+          "answer_index": 1,
+          "explanation": "ReadOnly blocks both."
+        },
+        {
+          "id": "az-104-azure-administrator-2-2",
+          "prompt": "Tags applied to a resource group are inherited by its resources by default.",
+          "options": [
+            "True",
+            "False"
+          ],
+          "answer_index": 1,
+          "explanation": "Use the \"Inherit a tag from the resource group\" policy to propagate tags."
+        },
+        {
+          "id": "az-104-azure-administrator-2-3",
+          "prompt": "You need to exclude one dev subscription from a policy assigned at a management group. Use:",
+          "options": [
+            "An exclusion on the assignment",
+            "A ReadOnly lock",
+            "A new tenant",
+            "Reader role"
+          ],
+          "answer_index": 0,
+          "explanation": "Assignments support exclusions (or exemptions)."
+        },
+        {
+          "id": "az-104-azure-administrator-2-4",
+          "prompt": "During a resource move between resource groups:",
+          "options": [
+            "The resource changes region",
+            "Both source and target resource groups are locked for changes until the move completes",
+            "All tags are deleted",
+            "The resource gets a new resource ID only if it's a VM"
+          ],
+          "answer_index": 1,
+          "explanation": "RGs are locked during moves; region is unchanged; the resource ID changes because the path changes."
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-3-0",
+          "prompt": "You must be able to revoke a set of SAS tokens without rotating account keys. Use:",
+          "options": [
+            "Account SAS",
+            "A service SAS tied to a stored access policy",
+            "A ReadOnly lock",
+            "Anonymous access"
+          ],
+          "answer_index": 1,
+          "explanation": "Changing or deleting the stored access policy revokes associated SAS tokens."
+        },
+        {
+          "id": "az-104-azure-administrator-3-1",
+          "prompt": "Object replication requires which settings?",
+          "options": [
+            "Blob versioning on source and destination, and change feed on source",
+            "GRS on both accounts",
+            "A private endpoint",
+            "Premium performance"
+          ],
+          "answer_index": 0,
+          "explanation": "These are the prerequisites for object replication."
+        },
+        {
+          "id": "az-104-azure-administrator-3-2",
+          "prompt": "Which SAS type is signed with Microsoft Entra credentials?",
+          "options": [
+            "Account SAS",
+            "Service SAS",
+            "User delegation SAS",
+            "Stored access policy"
+          ],
+          "answer_index": 2,
+          "explanation": "User delegation SAS uses a user delegation key from Entra ID."
+        },
+        {
+          "id": "az-104-azure-administrator-3-3",
+          "prompt": "Hybrid users need Kerberos access to Azure Files without domain controllers in Azure. Use:",
+          "options": [
+            "Microsoft Entra Kerberos for hybrid identities",
+            "Shared key only",
+            "Anonymous access",
+            "Account SAS"
+          ],
+          "answer_index": 0,
+          "explanation": "Entra Kerberos supports identity-based access for hybrid users."
+        },
+        {
+          "id": "az-104-azure-administrator-3-4",
+          "prompt": "Infrastructure (double) encryption for a storage account must be enabled:",
+          "options": [
+            "When the account is created",
+            "Any time later",
+            "Only with LRS",
+            "Only for Azure Files"
+          ],
+          "answer_index": 0,
+          "explanation": "Infrastructure encryption is a create-time setting."
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-4-0",
+          "prompt": "A user overwrote a critical blob 2 hours ago. Which feature lets you retrieve the earlier content most directly?",
+          "options": [
+            "Blob versioning",
+            "Container soft delete",
+            "Lifecycle management",
+            "Archive tier"
+          ],
+          "answer_index": 0,
+          "explanation": "Versioning keeps prior versions on overwrite."
+        },
+        {
+          "id": "az-104-azure-administrator-4-1",
+          "prompt": "What is the maximum number of snapshots per Azure file share?",
+          "options": [
+            "50",
+            "100",
+            "200",
+            "Unlimited"
+          ],
+          "answer_index": 2,
+          "explanation": "Azure Files supports up to 200 share snapshots."
+        },
+        {
+          "id": "az-104-azure-administrator-4-2",
+          "prompt": "Which tier has a 90-day minimum retention?",
+          "options": [
+            "Hot",
+            "Cool",
+            "Cold",
+            "Archive"
+          ],
+          "answer_index": 2,
+          "explanation": "Cool 30 days, Cold 90, Archive 180."
+        },
+        {
+          "id": "az-104-azure-administrator-4-3",
+          "prompt": "To tier blobs based on last access time you must first:",
+          "options": [
+            "Enable GRS",
+            "Enable last access time tracking",
+            "Disable versioning",
+            "Use Premium storage"
+          ],
+          "answer_index": 1,
+          "explanation": "Access-time-based rules require tracking to be enabled."
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-5-0",
+          "prompt": "Which deployment mode removes resources in the resource group that are not in the template?",
+          "options": [
+            "Incremental",
+            "Complete",
+            "What-if",
+            "Validate"
+          ],
+          "answer_index": 1,
+          "explanation": "Complete mode deletes resources not defined in the template."
+        },
+        {
+          "id": "az-104-azure-administrator-5-1",
+          "prompt": "Which disk loses its data when a VM is deallocated or moved to new hardware?",
+          "options": [
+            "OS disk",
+            "Data disk",
+            "Temporary disk",
+            "Premium SSD v2"
+          ],
+          "answer_index": 2,
+          "explanation": "The temp disk is non-persistent."
+        },
+        {
+          "id": "az-104-azure-administrator-5-2",
+          "prompt": "For the highest VM SLA in a region, deploy two or more VMs across:",
+          "options": [
+            "An availability set",
+            "Availability zones",
+            "Two resource groups",
+            "Two subscriptions"
+          ],
+          "answer_index": 1,
+          "explanation": "Zone deployments offer 99.99%."
+        },
+        {
+          "id": "az-104-azure-administrator-5-3",
+          "prompt": "Which command previews what a Bicep deployment will change?",
+          "options": [
+            "az bicep build",
+            "az deployment group what-if",
+            "az group export",
+            "az vm list"
+          ],
+          "answer_index": 1,
+          "explanation": "What-if shows creates, modifies and deletes before deployment."
+        },
+        {
+          "id": "az-104-azure-administrator-5-4",
+          "prompt": "You need to move a VM to another Azure region. Which tool is designed for this?",
+          "options": [
+            "Resource lock",
+            "Azure Resource Mover (or Site Recovery)",
+            "Azure Policy",
+            "AzCopy"
+          ],
+          "answer_index": 1,
+          "explanation": "Moves between RGs/subscriptions don't change region; Resource Mover handles region moves."
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-6-0",
+          "prompt": "Which App Service tier is the minimum for deployment slots?",
+          "options": [
+            "Free",
+            "Basic",
+            "Standard",
+            "Shared"
+          ],
+          "answer_index": 2,
+          "explanation": "Slots and autoscale start at Standard."
+        },
+        {
+          "id": "az-104-azure-administrator-6-1",
+          "prompt": "Which container service can scale to zero based on HTTP traffic or events?",
+          "options": [
+            "ACI",
+            "Azure Container Apps",
+            "ACR",
+            "App Service Free tier"
+          ],
+          "answer_index": 1,
+          "explanation": "Container Apps uses KEDA-based autoscaling, including to zero."
+        },
+        {
+          "id": "az-104-azure-administrator-6-2",
+          "prompt": "To verify a custom domain on App Service you add:",
+          "options": [
+            "A TXT record (asuid) plus a CNAME or A record",
+            "An MX record",
+            "A private endpoint",
+            "An NSG rule"
+          ],
+          "answer_index": 0,
+          "explanation": "Domain verification uses asuid TXT records."
+        },
+        {
+          "id": "az-104-azure-administrator-6-3",
+          "prompt": "A web app must reach a database in a private VNet. Configure:",
+          "options": [
+            "Access restrictions",
+            "VNet integration",
+            "A deployment slot",
+            "A custom domain"
+          ],
+          "answer_index": 1,
+          "explanation": "VNet integration handles outbound traffic into a VNet."
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-7-0",
+          "prompt": "VNet A is peered with B, and B with C. Can A reach C by default?",
+          "options": [
+            "Yes, peering is transitive",
+            "No, peering is non-transitive",
+            "Only over IPv6",
+            "Only if all VNets are in the same region"
+          ],
+          "answer_index": 1,
+          "explanation": "Use a hub NVA/firewall, Virtual WAN, or direct A\u2013C peering."
+        },
+        {
+          "id": "az-104-azure-administrator-7-1",
+          "prompt": "Two NSG rules match: priority 200 Deny and priority 300 Allow. Result?",
+          "options": [
+            "Denied \u2014 the lower number is processed first",
+            "Allowed \u2014 Allow always wins",
+            "Both apply",
+            "Error"
+          ],
+          "answer_index": 0,
+          "explanation": "Lowest priority number wins; processing stops at the first match."
+        },
+        {
+          "id": "az-104-azure-administrator-7-2",
+          "prompt": "What subnet name does Azure Bastion require?",
+          "options": [
+            "BastionSubnet",
+            "GatewaySubnet",
+            "AzureBastionSubnet",
+            "AzureFirewallSubnet"
+          ],
+          "answer_index": 2,
+          "explanation": "The name is mandatory."
+        },
+        {
+          "id": "az-104-azure-administrator-7-3",
+          "prompt": "How many IP addresses does Azure reserve in each subnet?",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "answer_index": 3,
+          "explanation": "The first four and the last address are reserved."
+        },
+        {
+          "id": "az-104-azure-administrator-7-4",
+          "prompt": "A private endpoint resolves to a public IP from your VM. What's most likely missing?",
+          "options": [
+            "A service endpoint",
+            "Private DNS zone integration",
+            "A public IP",
+            "A UDR"
+          ],
+          "answer_index": 1,
+          "explanation": "Private endpoints need privatelink DNS records."
+        },
+        {
+          "id": "az-104-azure-administrator-7-5",
+          "prompt": "You want NSG rules that target \"all web servers\" without listing IPs. Use:",
+          "options": [
+            "Application security groups",
+            "Service tags only",
+            "Route tables",
+            "Peering"
+          ],
+          "answer_index": 0,
+          "explanation": "ASGs group NICs logically."
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-8-0",
+          "prompt": "A Standard Load Balancer's backends receive no traffic. NSGs allow port 80 from the internet only. What's missing?",
+          "options": [
+            "An allow rule for the AzureLoadBalancer service tag so health probes succeed",
+            "A Basic SKU public IP",
+            "An MX record",
+            "A deployment slot"
+          ],
+          "answer_index": 0,
+          "explanation": "Probes come from 168.63.129.16 (AzureLoadBalancer); if probes fail, instances are removed."
+        },
+        {
+          "id": "az-104-azure-administrator-8-1",
+          "prompt": "Which record type lets an apex domain point directly at an Azure public IP resource and update automatically?",
+          "options": [
+            "CNAME",
+            "Alias record",
+            "MX",
+            "SRV"
+          ],
+          "answer_index": 1,
+          "explanation": "Alias records reference Azure resources."
+        },
+        {
+          "id": "az-104-azure-administrator-8-2",
+          "prompt": "VMs should register their own names in a private zone automatically. Enable:",
+          "options": [
+            "Auto-registration on the virtual network link",
+            "Public zone delegation",
+            "An outbound rule",
+            "Session persistence"
+          ],
+          "answer_index": 0,
+          "explanation": "Auto-registration creates A records for VMs in the linked VNet."
+        },
+        {
+          "id": "az-104-azure-administrator-8-3",
+          "prompt": "Which load balancer operates at Layer 4?",
+          "options": [
+            "Azure Load Balancer",
+            "Application Gateway",
+            "Front Door",
+            "Traffic Manager"
+          ],
+          "answer_index": 0,
+          "explanation": "Load Balancer works on TCP/UDP."
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-9-0",
+          "prompt": "Which component determines who is notified when an alert fires?",
+          "options": [
+            "Alert processing rule",
+            "Action group",
+            "Diagnostic setting",
+            "Data collection rule"
+          ],
+          "answer_index": 1,
+          "explanation": "Action groups define notifications and actions."
+        },
+        {
+          "id": "az-104-azure-administrator-9-1",
+          "prompt": "You must silence alerts during Saturday maintenance without editing every rule. Use:",
+          "options": [
+            "An alert processing rule with suppression",
+            "Delete the action group",
+            "A resource lock",
+            "Disable the workspace"
+          ],
+          "answer_index": 0,
+          "explanation": "Alert processing rules apply at scale and on schedules."
+        },
+        {
+          "id": "az-104-azure-administrator-9-2",
+          "prompt": "Which vault type is required for Azure Site Recovery?",
+          "options": [
+            "Recovery Services vault",
+            "Backup vault",
+            "Key Vault",
+            "Storage account"
+          ],
+          "answer_index": 0,
+          "explanation": "ASR lives in Recovery Services vaults."
+        },
+        {
+          "id": "az-104-azure-administrator-9-3",
+          "prompt": "Which Site Recovery action validates DR without affecting production?",
+          "options": [
+            "Failover",
+            "Test failover",
+            "Commit",
+            "Re-protect"
+          ],
+          "answer_index": 1,
+          "explanation": "Test failover uses an isolated network."
+        },
+        {
+          "id": "az-104-azure-administrator-9-4",
+          "prompt": "Resource logs aren't in Log Analytics. What's missing?",
+          "options": [
+            "An action group",
+            "A diagnostic setting on the resource",
+            "Backup policy",
+            "An NSG"
+          ],
+          "answer_index": 1,
+          "explanation": "Resource logs require diagnostic settings to be routed."
+        },
+        {
+          "id": "az-104-azure-administrator-9-5",
+          "prompt": "Which Network Watcher tool shows where a VM's traffic to a destination will be routed?",
+          "options": [
+            "Packet capture",
+            "Next hop",
+            "Connection monitor",
+            "Flow logs"
+          ],
+          "answer_index": 1,
+          "explanation": "Next hop reveals the effective route."
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "questions": [
+        {
+          "id": "az-104-azure-administrator-10-0",
+          "prompt": "You need to give 300 users the same Microsoft 365 license with the least admin effort.",
+          "options": [
+            "Group-based licensing",
+            "Assign licenses individually",
+            "SSPR",
+            "Dynamic DNS"
+          ],
+          "answer_index": 0,
+          "explanation": "Assign the license to a group."
+        },
+        {
+          "id": "az-104-azure-administrator-10-1",
+          "prompt": "Guest users show UserType:",
+          "options": [
+            "Member",
+            "Guest",
+            "External",
+            "Partner"
+          ],
+          "answer_index": 1,
+          "explanation": "B2B users are UserType Guest."
+        },
+        {
+          "id": "az-104-azure-administrator-10-2",
+          "prompt": "A help-desk group should be able to reset passwords themselves. You configure SSPR scope as:",
+          "options": [
+            "All",
+            "Selected, targeting the group",
+            "None",
+            "Dynamic"
+          ],
+          "answer_index": 1,
+          "explanation": "Selected scopes SSPR to one group."
+        },
+        {
+          "id": "az-104-azure-administrator-10-3",
+          "prompt": "Which role assigns roles to others, optionally constrained to a list of roles?",
+          "options": [
+            "Contributor",
+            "Role Based Access Control Administrator",
+            "Reader",
+            "Virtual Machine Contributor"
+          ],
+          "answer_index": 1,
+          "explanation": "RBAC Administrator supports conditions limiting assignable roles."
+        },
+        {
+          "id": "az-104-azure-administrator-10-4",
+          "prompt": "Where is an RBAC assignment at a resource group inherited?",
+          "options": [
+            "To all resources in that group",
+            "To the subscription",
+            "To the management group",
+            "Nowhere"
+          ],
+          "answer_index": 0,
+          "explanation": "Inheritance flows down only."
+        },
+        {
+          "id": "az-104-azure-administrator-10-5",
+          "prompt": "Which policy effect deploys a missing diagnostic setting?",
+          "options": [
+            "Audit",
+            "Deny",
+            "DeployIfNotExists",
+            "Append"
+          ],
+          "answer_index": 2,
+          "explanation": "DINE deploys related resources when absent."
+        },
+        {
+          "id": "az-104-azure-administrator-10-6",
+          "prompt": "Which is TRUE about resource locks?",
+          "options": [
+            "Owners bypass them",
+            "They apply to all users including Owners until removed",
+            "They're inherited upward",
+            "They only apply to VMs"
+          ],
+          "answer_index": 1,
+          "explanation": "Locks override RBAC."
+        },
+        {
+          "id": "az-104-azure-administrator-10-7",
+          "prompt": "Maximum management group depth (excluding root):",
+          "options": [
+            "3",
+            "4",
+            "6",
+            "10"
+          ],
+          "answer_index": 2,
+          "explanation": "Six levels below root."
+        },
+        {
+          "id": "az-104-azure-administrator-10-8",
+          "prompt": "Which tool recommends shutting down an idle VM?",
+          "options": [
+            "Azure Advisor",
+            "Network Watcher",
+            "Service Health",
+            "Azure Policy"
+          ],
+          "answer_index": 0,
+          "explanation": "Advisor cost recommendations."
+        },
+        {
+          "id": "az-104-azure-administrator-10-9",
+          "prompt": "You need tags copied from resource groups onto resources automatically.",
+          "options": [
+            "Tags inherit by default",
+            "Assign the \"Inherit a tag from the resource group\" policy",
+            "Use a ReadOnly lock",
+            "Use RBAC"
+          ],
+          "answer_index": 1,
+          "explanation": "A Modify policy propagates tags."
+        },
+        {
+          "id": "az-104-azure-administrator-10-10",
+          "prompt": "A partner needs read access to one blob for 2 hours, without an Entra account. Best option?",
+          "options": [
+            "Share the account key",
+            "A SAS token with read permission and 2-hour expiry",
+            "Make the container public",
+            "Add them as Owner"
+          ],
+          "answer_index": 1,
+          "explanation": "SAS grants scoped, time-limited access."
+        },
+        {
+          "id": "az-104-azure-administrator-10-11",
+          "prompt": "Which storage setting blocks requests signed with account keys?",
+          "options": [
+            "Allow storage account key access = Disabled",
+            "Minimum TLS 1.2",
+            "Soft delete",
+            "Versioning"
+          ],
+          "answer_index": 0,
+          "explanation": "Disabling shared key forces Entra authorization."
+        },
+        {
+          "id": "az-104-azure-administrator-10-12",
+          "prompt": "Which redundancy should you choose for read access to data during a regional outage, with zone protection in the primary?",
+          "options": [
+            "GRS",
+            "ZRS",
+            "RA-GZRS",
+            "LRS"
+          ],
+          "answer_index": 2,
+          "explanation": "RA-GZRS combines zone + geo + read access to secondary."
+        },
+        {
+          "id": "az-104-azure-administrator-10-13",
+          "prompt": "AzCopy authenticates with Entra ID by running:",
+          "options": [
+            "azcopy login",
+            "azcopy sas",
+            "az storage login",
+            "azcopy key"
+          ],
+          "answer_index": 0,
+          "explanation": "azcopy login uses Entra ID."
+        },
+        {
+          "id": "az-104-azure-administrator-10-14",
+          "prompt": "Archive-tier blobs must be ___ before reading.",
+          "options": [
+            "Deleted",
+            "Rehydrated to an online tier",
+            "Encrypted",
+            "Snapshotted"
+          ],
+          "answer_index": 1,
+          "explanation": "Archive is offline."
+        },
+        {
+          "id": "az-104-azure-administrator-10-15",
+          "prompt": "Which feature protects deleted containers?",
+          "options": [
+            "Blob versioning",
+            "Container soft delete",
+            "Lifecycle management",
+            "Object replication"
+          ],
+          "answer_index": 1,
+          "explanation": "Container soft delete retains deleted containers."
+        },
+        {
+          "id": "az-104-azure-administrator-10-16",
+          "prompt": "Azure Files snapshots are:",
+          "options": [
+            "Read-only and incremental",
+            "Writable copies",
+            "Full copies each time",
+            "Only for Premium"
+          ],
+          "answer_index": 0,
+          "explanation": "Share snapshots are incremental and read-only."
+        },
+        {
+          "id": "az-104-azure-administrator-10-17",
+          "prompt": "An ARM template section that holds values supplied at deployment time:",
+          "options": [
+            "variables",
+            "parameters",
+            "outputs",
+            "resources"
+          ],
+          "answer_index": 1,
+          "explanation": "Parameters are inputs."
+        },
+        {
+          "id": "az-104-azure-administrator-10-18",
+          "prompt": "Convert an exported ARM JSON template to Bicep with:",
+          "options": [
+            "az bicep build",
+            "az bicep decompile",
+            "az deployment export",
+            "az group convert"
+          ],
+          "answer_index": 1,
+          "explanation": "Decompile converts ARM JSON to Bicep."
+        },
+        {
+          "id": "az-104-azure-administrator-10-19",
+          "prompt": "VM resize fails because the size isn't available on the current cluster. You should:",
+          "options": [
+            "Deallocate the VM, then resize",
+            "Delete the OS disk",
+            "Change the region",
+            "Add a lock"
+          ],
+          "answer_index": 0,
+          "explanation": "Deallocating allows moving to hardware that supports the size."
+        },
+        {
+          "id": "az-104-azure-administrator-10-20",
+          "prompt": "Which encrypts the VM temp disk and disk caches at the host?",
+          "options": [
+            "Storage Service Encryption only",
+            "Encryption at host",
+            "TLS 1.2",
+            "SAS"
+          ],
+          "answer_index": 1,
+          "explanation": "Encryption at host covers temp disk and caches."
+        },
+        {
+          "id": "az-104-azure-administrator-10-21",
+          "prompt": "Availability sets protect against:",
+          "options": [
+            "Rack/hardware failures and planned maintenance within a datacenter",
+            "Regional outages",
+            "Zone failures",
+            "Accidental deletion"
+          ],
+          "answer_index": 0,
+          "explanation": "Fault and update domains."
+        },
+        {
+          "id": "az-104-azure-administrator-10-22",
+          "prompt": "Which VMSS orchestration mode is recommended for new deployments?",
+          "options": [
+            "Uniform",
+            "Flexible",
+            "Classic",
+            "Spot"
+          ],
+          "answer_index": 1,
+          "explanation": "Flexible orchestration is recommended."
+        },
+        {
+          "id": "az-104-azure-administrator-10-23",
+          "prompt": "Which service stores private container images?",
+          "options": [
+            "ACI",
+            "Azure Container Registry",
+            "Container Apps",
+            "App Service"
+          ],
+          "answer_index": 1,
+          "explanation": "ACR is the registry."
+        },
+        {
+          "id": "az-104-azure-administrator-10-24",
+          "prompt": "ACI is billed:",
+          "options": [
+            "Per second for CPU and memory allocated",
+            "Monthly flat fee",
+            "Per HTTP request only",
+            "Not at all"
+          ],
+          "answer_index": 0,
+          "explanation": "Per-second billing for container group resources."
+        },
+        {
+          "id": "az-104-azure-administrator-10-25",
+          "prompt": "Which App Service feature lets an app setting stay with the slot during swap?",
+          "options": [
+            "Deployment slot setting (sticky)",
+            "Autoscale",
+            "VNet integration",
+            "Backup"
+          ],
+          "answer_index": 0,
+          "explanation": "Sticky settings don't swap."
+        },
+        {
+          "id": "az-104-azure-administrator-10-26",
+          "prompt": "App Service must be reachable only from a private network. Configure:",
+          "options": [
+            "VNet integration",
+            "A private endpoint (and disable public access)",
+            "A deployment slot",
+            "Autoscale"
+          ],
+          "answer_index": 1,
+          "explanation": "Private endpoints handle inbound privately; VNet integration is outbound."
+        },
+        {
+          "id": "az-104-azure-administrator-10-27",
+          "prompt": "Scaling an App Service plan from S1 to P1v3 is:",
+          "options": [
+            "Scale up",
+            "Scale out",
+            "Autoscale",
+            "Slot swap"
+          ],
+          "answer_index": 0,
+          "explanation": "Changing tier is vertical."
+        },
+        {
+          "id": "az-104-azure-administrator-10-28",
+          "prompt": "VNets 10.0.0.0/16 and 10.0.5.0/24 cannot be peered because:",
+          "options": [
+            "Address spaces overlap",
+            "They're in different regions",
+            "Peering requires VPN",
+            "/24 is too small"
+          ],
+          "answer_index": 0,
+          "explanation": "Overlapping address spaces block peering."
+        },
+        {
+          "id": "az-104-azure-administrator-10-29",
+          "prompt": "How many usable addresses in a /27 subnet in Azure?",
+          "options": [
+            "32",
+            "30",
+            "27",
+            "16"
+          ],
+          "answer_index": 2,
+          "explanation": "32 minus 5 reserved = 27."
+        },
+        {
+          "id": "az-104-azure-administrator-10-30",
+          "prompt": "Which forces subnet traffic through a firewall appliance?",
+          "options": [
+            "NSG",
+            "User-defined route with next hop VirtualAppliance",
+            "Service endpoint",
+            "ASG"
+          ],
+          "answer_index": 1,
+          "explanation": "UDRs override system routes."
+        },
+        {
+          "id": "az-104-azure-administrator-10-31",
+          "prompt": "An NSG on a subnet allows 443; the NIC's NSG has no allow for 443. Inbound 443 is:",
+          "options": [
+            "Allowed",
+            "Denied",
+            "Allowed only from the VNet",
+            "Redirected"
+          ],
+          "answer_index": 1,
+          "explanation": "Both NSGs must allow inbound traffic."
+        },
+        {
+          "id": "az-104-azure-administrator-10-32",
+          "prompt": "Service endpoints differ from private endpoints because service endpoints:",
+          "options": [
+            "Keep the PaaS service on its public endpoint but restrict access to your subnet",
+            "Give the service a private IP",
+            "Require private DNS zones",
+            "Cost per hour"
+          ],
+          "answer_index": 0,
+          "explanation": "Private endpoints give a private IP; service endpoints don't."
+        },
+        {
+          "id": "az-104-azure-administrator-10-33",
+          "prompt": "Which Bastion SKU is free with limited features?",
+          "options": [
+            "Developer",
+            "Basic",
+            "Standard",
+            "Premium"
+          ],
+          "answer_index": 0,
+          "explanation": "Developer SKU is free (shared infrastructure, limited)."
+        },
+        {
+          "id": "az-104-azure-administrator-10-34",
+          "prompt": "Public IP SKU for new deployments:",
+          "options": [
+            "Basic",
+            "Standard",
+            "Classic",
+            "Dynamic only"
+          ],
+          "answer_index": 1,
+          "explanation": "Basic public IPs retired Sept 30, 2025."
+        },
+        {
+          "id": "az-104-azure-administrator-10-35",
+          "prompt": "Which DNS feature resolves on-premises names from Azure without custom DNS VMs?",
+          "options": [
+            "Azure DNS Private Resolver",
+            "Alias records",
+            "Public DNS zone",
+            "Traffic Manager"
+          ],
+          "answer_index": 0,
+          "explanation": "Private Resolver provides inbound/outbound forwarding."
+        },
+        {
+          "id": "az-104-azure-administrator-10-36",
+          "prompt": "Health probes for Azure Load Balancer originate from:",
+          "options": [
+            "The client IP",
+            "168.63.129.16 (AzureLoadBalancer tag)",
+            "10.0.0.1",
+            "The VNet gateway"
+          ],
+          "answer_index": 1,
+          "explanation": "Allow the AzureLoadBalancer tag."
+        },
+        {
+          "id": "az-104-azure-administrator-10-37",
+          "prompt": "To RDP to one specific VM behind a public load balancer on port 50001, configure:",
+          "options": [
+            "A load-balancing rule",
+            "An inbound NAT rule",
+            "An outbound rule",
+            "A health probe"
+          ],
+          "answer_index": 1,
+          "explanation": "Inbound NAT maps a frontend port to one backend."
+        },
+        {
+          "id": "az-104-azure-administrator-10-38",
+          "prompt": "Which log shows who deleted a VM?",
+          "options": [
+            "Activity log",
+            "VM metrics",
+            "Guest OS logs",
+            "Application Insights"
+          ],
+          "answer_index": 0,
+          "explanation": "Control-plane operations are in the Activity log."
+        },
+        {
+          "id": "az-104-azure-administrator-10-39",
+          "prompt": "To query storage read operations in KQL, first:",
+          "options": [
+            "Enable versioning",
+            "Create a diagnostic setting sending storage logs to Log Analytics",
+            "Turn on SFTP",
+            "Add a lock"
+          ],
+          "answer_index": 1,
+          "explanation": "Resource logs need diagnostic settings."
+        },
+        {
+          "id": "az-104-azure-administrator-10-40",
+          "prompt": "Which tool continuously tests connectivity between a VM and an endpoint and reports latency?",
+          "options": [
+            "IP flow verify",
+            "Connection monitor",
+            "Next hop",
+            "Effective routes"
+          ],
+          "answer_index": 1,
+          "explanation": "Connection monitor provides ongoing monitoring."
+        },
+        {
+          "id": "az-104-azure-administrator-10-41",
+          "prompt": "Which vault protects Azure Blobs with operational/vaulted backup?",
+          "options": [
+            "Recovery Services vault",
+            "Backup vault",
+            "Key Vault",
+            "Storage account"
+          ],
+          "answer_index": 1,
+          "explanation": "Backup vaults handle blobs, disks, PostgreSQL, AKS."
+        },
+        {
+          "id": "az-104-azure-administrator-10-42",
+          "prompt": "A deleted VM backup can be recovered for how long by default with soft delete?",
+          "options": [
+            "7 days",
+            "14 days",
+            "30 days",
+            "365 days"
+          ],
+          "answer_index": 1,
+          "explanation": "Default soft delete retention is 14 days."
+        },
+        {
+          "id": "az-104-azure-administrator-10-43",
+          "prompt": "Restore one accidentally deleted file from a VM backup without restoring the VM:",
+          "options": [
+            "File recovery",
+            "Replace existing disk",
+            "Cross-region restore",
+            "Test failover"
+          ],
+          "answer_index": 0,
+          "explanation": "File recovery mounts recovery points."
+        },
+        {
+          "id": "az-104-azure-administrator-10-44",
+          "prompt": "After a real ASR failover, which step finalizes the recovery point?",
+          "options": [
+            "Test failover",
+            "Commit",
+            "Re-protect",
+            "Cleanup"
+          ],
+          "answer_index": 1,
+          "explanation": "Commit finalizes the failover."
+        },
+        {
+          "id": "az-104-azure-administrator-10-45",
+          "prompt": "RPO measures:",
+          "options": [
+            "Maximum acceptable data loss (time)",
+            "Time to restore service",
+            "Cost of recovery",
+            "Number of replicas"
+          ],
+          "answer_index": 0,
+          "explanation": "RPO = data loss tolerance; RTO = downtime tolerance."
+        },
+        {
+          "id": "az-104-azure-administrator-10-46",
+          "prompt": "Which alert type notifies when Azure has an incident in your region?",
+          "options": [
+            "Metric alert",
+            "Service Health alert",
+            "Log search alert",
+            "Budget alert"
+          ],
+          "answer_index": 1,
+          "explanation": "Service Health alerts."
+        },
+        {
+          "id": "az-104-azure-administrator-10-47",
+          "prompt": "VM insights requires which agent?",
+          "options": [
+            "Azure Monitor Agent with a data collection rule",
+            "Log Analytics (MMA) agent only",
+            "No agent",
+            "Bastion"
+          ],
+          "answer_index": 0,
+          "explanation": "AMA + DCR is the current agent model."
+        },
+        {
+          "id": "az-104-azure-administrator-10-48",
+          "prompt": "Which ARM deployment command validates changes without deploying?",
+          "options": [
+            "az deployment group what-if",
+            "az deployment group create",
+            "az vm create",
+            "az group delete"
+          ],
+          "answer_index": 0,
+          "explanation": "What-if previews."
+        },
+        {
+          "id": "az-104-azure-administrator-10-49",
+          "prompt": "You need blobs in \"logs/\" deleted after 90 days automatically.",
+          "options": [
+            "Lifecycle management rule with prefix \"logs/\"",
+            "Soft delete for 90 days",
+            "Archive tier",
+            "Object replication"
+          ],
+          "answer_index": 0,
+          "explanation": "Lifecycle rules can delete by age and prefix."
+        }
+      ]
+    }
+  ]
+}

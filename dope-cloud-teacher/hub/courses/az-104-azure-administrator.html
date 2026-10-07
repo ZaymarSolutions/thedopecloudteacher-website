@@ -1,0 +1,1168 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>AZ-104 Azure Administrator | DCT</title><meta name="description" content="The operator layer. Configure, secure and keep Azure running under real-world rules."><link rel="stylesheet" href="/css/styles.css"><link rel="stylesheet" id="dct-unified-theme" href="/css/unified-theme.css?v=20260706b"><link rel="icon" type="image/svg+xml" href="/logo.svg?v=20260705c"><!-- DCT:THEME — fonts, colors and shapes live in dct-theme.css; set them to match the main site --><link rel="stylesheet" href="../dct-theme.css"><style>
+/* Layout concept: a community classroom wall — one bold display face for wayfinding, a hyperlegible body face for every age, program colors as trail markers. */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+a{color:var(--blue)} a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:6px}
+img{max-width:100%;height:auto}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+h1,h2,h3{text-wrap:balance;line-height:1.2}
+.display{font-family:var(--display);letter-spacing:-.01em}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;padding-block:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700}
+.brand svg{flex:none}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px;line-height:1}
+.nav{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
+.nav a{padding:6px 12px;border-radius:var(--radius-pill);text-decoration:none;color:var(--ink);font-size:15px}
+.nav a:hover{background:var(--surface-2)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-pill);border:2px solid var(--ink);background:var(--ink);color:var(--bg);font:700 15px var(--body);text-decoration:none;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;letter-spacing:.04em;color:var(--muted);background:var(--surface-2)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;margin:18px 0;background:var(--surface)}
+.tablewrap table{margin:0}
+.tablewrap tr:last-child td{border-bottom:none}
+code{font-family:var(--mono);font-size:.88em;background:var(--surface-2);padding:2px 6px;border-radius:6px}
+pre{position:relative;background:var(--code-bg);color:var(--code-fg);padding:18px;border-radius:12px;overflow-x:auto;font-size:14px;line-height:1.55}
+pre code{background:none;padding:0;color:inherit;font-size:inherit}
+.copy{position:absolute;top:8px;right:8px;font:600 12px var(--body);background:#26325a;color:#fff;border:0;border-radius:8px;padding:4px 10px;cursor:pointer}
+footer{border-top:1px solid var(--line);margin-top:64px;padding-block:32px;color:var(--muted);font-size:15px}
+footer .wrap{display:flex;gap:24px;flex-wrap:wrap;justify-content:space-between}
+.sel{user-select:all;font-weight:700;color:var(--ink)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.band{background:linear-gradient(120deg,var(--band-start),var(--c));color:#fff;padding-block:28px 32px}
+.band .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
+@media (max-width:820px){.band .wrap{grid-template-columns:1fr}.band img{display:none}}
+.band a{color:#fff}
+.band .crumbs{font-size:14px;opacity:.85}
+.band h1{font-family:var(--display);font-size:clamp(28px,4.6vw,48px);margin:10px 0 8px;font-weight:var(--display-weight)}
+.band p{font-size:19px;margin:0 0 16px;opacity:.92;max-width:52ch}
+.band .chips{display:flex;flex-wrap:wrap;gap:8px}
+.band .chip{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25);color:#fff}
+.band img{border-radius:16px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:-1px}
+.facts div{background:var(--surface);padding:14px 16px}
+.facts dt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.facts dd{margin:4px 0 0;font-weight:700}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;padding-block:32px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}}
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start;max-height:calc(100vh - 96px);overflow:auto;padding-right:6px}
+@media (max-width:900px){.toc{position:static;max-height:none}}
+.toc details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.toc summary{font-weight:700;cursor:pointer}
+.toc ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.toc a{display:block;padding:5px 8px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px;line-height:1.35}
+.toc a:hover,.toc a.on{background:var(--surface-2);color:var(--ink)}
+.progress{margin:14px 0 4px}
+.progress .bar{height:8px;background:var(--surface-2);border-radius:8px;overflow:hidden}
+.progress .bar span{display:block;height:100%;width:0;background:var(--c);transition:width .4s}
+.progress p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.reset{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;font:400 13px var(--body);padding:0}
+.content{min-width:0;max-width:780px}
+.content h1{display:none}
+.content h2{font-family:var(--display);font-size:clamp(22px,3vw,30px);margin:56px 0 12px;padding-top:12px;border-top:4px solid var(--c);scroll-margin-top:80px}
+.content h2:first-of-type{margin-top:0}
+.content h3{font-size:21px;margin:32px 0 8px;scroll-margin-top:80px}
+.content p,.content li{max-width:68ch}
+.content blockquote{margin:22px 0;padding:16px 18px 16px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--muted)}
+.content blockquote p{margin:.4em 0}
+.content blockquote.dope{border-left-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--surface))}
+.content blockquote.dope::before{content:"Dope Translation";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:4px}
+.content blockquote.real{border-left-color:var(--blue)}
+.content blockquote.real::before{content:"Real Talk";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.content blockquote.wallet{border-left-color:var(--bad)}
+.content blockquote.wallet::before{content:"Watch your wallet";display:block;font:800 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--bad);margin-bottom:4px}
+.content blockquote > p:first-child > strong:first-child{display:none}
+.content img{display:block;margin:20px 0;border-radius:16px}
+.content li.check{list-style:none;margin-left:-1.3em}
+.content li.check input{width:18px;height:18px;margin-right:8px;vertical-align:-3px;accent-color:var(--c)}
+.quiz{margin:28px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.quiz header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 18px;background:var(--surface-2);font-weight:700;flex-wrap:wrap}
+.quiz header .score{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:400}
+.q{padding:16px 18px;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0}
+.q p.stem{margin:0 0 10px;font-weight:700}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;padding:10px 14px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:400 16px var(--body);cursor:pointer}
+.opt:hover:not([disabled]){border-color:var(--c)}
+.opt[disabled]{cursor:default}
+.opt.right{border-color:var(--good);background:color-mix(in srgb,var(--good) 14%,var(--bg))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--bg))}
+.explain{margin:10px 0 0;font-size:15px;color:var(--muted)}
+.explain b{color:var(--ink)}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.next a{display:block;padding:16px;border-radius:14px;background:var(--surface);border:1px solid var(--line);border-top:5px solid var(--nc);text-decoration:none;color:var(--ink)}
+.next a small{display:block;color:var(--muted)}
+</style><link rel="canonical" href="https://thedopecloudteacher.org/hub/courses/az-104-azure-administrator.html"></head><body class="dct-course-hub"><!-- DCT:SITE-HEADER START -->
+<header><div class="header-container"><a href="/index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="/logo.svg?v=20260705c" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
+<!-- DCT:SITE-HEADER END -->
+<div class="band" style="--c:var(--prog-security)"><div class="wrap">
+  <div><div class="crumbs"><a href="../index.html#courses">All courses</a> · Cloud Security</div>
+  <h1>AZ-104 Azure Administrator</h1><p>The operator layer. Configure, secure and keep Azure running under real-world rules.</p>
+  <div class="chips"><span class="chip">DCT-AZ104</span><span class="chip">Intermediate</span><span class="chip">97 practice questions</span></div></div>
+  <img src="../visuals/cover-az104.svg" alt="" width="900" height="300">
+</div></div>
+<div class="wrap"><dl class="facts"><div><dt>Level</dt><dd>Intermediate</dd></div><div><dt>Time</dt><dd>10 lessons · about 40 hours (16 h instruction + 24 h labs)</dd></div><div><dt>Format</dt><dd>Live virtual, hybrid, or self-paced with weekly office hours</dd></div><div><dt>Price</dt><dd>$597 course path · Microsoft exam fee separate ($165 US)</dd></div><div><dt>Credential</dt><dd>Microsoft Certified Azure Administrator Associate (Exam AZ-104) — skills measured as of April 17, 2026</dd></div></dl></div>
+<div class="wrap layout" style="--c:var(--prog-security)">
+  <aside class="toc"><details open><summary>Course outline</summary>
+    <div class="progress"><div class="bar"><span id="pbar"></span></div><p id="ptext"></p><button class="reset" id="resetp" type="button">Reset my answers</button></div>
+    <ol><li><a href="#course-overview">Course overview</a></li><li><a href="#lesson-1-microsoft-entra-users-and-groups">Lesson 1 — Microsoft Entra users and groups</a></li><li><a href="#lesson-2-manage-access-to-azure-resources-rbac">Lesson 2 — Manage access to Azure resources (RBAC)</a></li><li><a href="#lesson-3-subscriptions-and-governance">Lesson 3 — Subscriptions and governance</a></li><li><a href="#lesson-4-storage-access-and-storage-accounts">Lesson 4 — Storage access and storage accounts</a></li><li><a href="#lesson-5-azure-files-and-blob-storage-operations">Lesson 5 — Azure Files and Blob Storage operations</a></li><li><a href="#lesson-6-arm-templates-bicep-and-virtual-machines">Lesson 6 — ARM templates, Bicep and virtual machines</a></li><li><a href="#lesson-7-containers-and-app-service">Lesson 7 — Containers and App Service</a></li><li><a href="#lesson-8-virtual-networks-and-secure-access">Lesson 8 — Virtual networks and secure access</a></li><li><a href="#lesson-9-name-resolution-and-load-balancing">Lesson 9 — Name resolution and load balancing</a></li><li><a href="#lesson-10-monitor-and-maintain">Lesson 10 — Monitor and maintain</a></li><li><a href="#capstone-ward-7-community-health">Capstone — Ward 7 Community Health</a></li><li><a href="#practice-exam-50-questions">Practice exam (50 questions)</a></li><li><a href="#glossary">Glossary</a></li><li><a href="#instructor-notes">Instructor notes</a></li><li><a href="#resources">Resources</a></li></ol></details>
+    <p class="sources" style="margin-top:12px">Audience: AZ-900 holders, help-desk and sysadmins moving to cloud, veterans with IT/comms backgrounds, developers who need to run what they build.</p></aside>
+  <article class="content"><h1 id="az-104-azure-administrator">AZ-104 Azure Administrator</h1>
+<h2 id="course-overview">Course overview</h2>
+<p>If AZ-900 taught you the language, AZ-104 teaches you to <strong>run the building.</strong> Azure administrators create identities, assign access, enforce policy, build networks, deploy compute, protect storage, watch everything and recover when it breaks. This course follows Microsoft's <strong>skills outline as of April 17, 2026</strong> and puts a keyboard in your hands for every objective — portal <em>and</em> command line <em>and</em> Bicep.</p>
+<h3 id="the-exam-at-a-glance">The exam at a glance</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exam</td>
+<td>AZ-104: Microsoft Azure Administrator</td>
+</tr>
+<tr>
+<td>Credential</td>
+<td>Microsoft Certified: Azure Administrator Associate</td>
+</tr>
+<tr>
+<td>Passing score</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>$165 USD in the U.S. (varies by country)</td>
+</tr>
+<tr>
+<td>Renewal</td>
+<td>Annually, by a <strong>free</strong> online assessment on Microsoft Learn</td>
+</tr>
+<tr>
+<td>Recommended background</td>
+<td>OS, networking, servers, virtualization; PowerShell, Azure CLI, the portal, ARM templates or Bicep, Microsoft Entra ID</td>
+</tr>
+<tr>
+<td>Free prep</td>
+<td><a href="https://aka.ms/AZ104-StudyGuide" rel="noopener">Study guide</a> · <a href="https://learn.microsoft.com/credentials/certifications/exams/az-104/practice/assessment?assessment-type=practice&amp;assessmentId=21" rel="noopener">Practice assessment</a> · <a href="https://aka.ms/examdemo" rel="noopener">Exam sandbox</a></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="exam-weights-current">Exam weights (current)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Weight</th>
+<th>DCT lessons</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manage Azure identities and governance</td>
+<td>20–25%</td>
+<td>1, 2, 3</td>
+</tr>
+<tr>
+<td>Implement and manage storage</td>
+<td>15–20%</td>
+<td>4, 5</td>
+</tr>
+<tr>
+<td>Deploy and manage Azure compute resources</td>
+<td>20–25%</td>
+<td>6, 7</td>
+</tr>
+<tr>
+<td>Implement and manage virtual networking</td>
+<td>15–20%</td>
+<td>8, 9</td>
+</tr>
+<tr>
+<td>Monitor and maintain Azure resources</td>
+<td>10–15%</td>
+<td>10</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="AZ-104 domain weights" src="../visuals/az104-weights.svg" /></p>
+<h3 id="learning-outcomes">Learning outcomes</h3>
+<ol>
+<li>Manage Entra users, groups, licenses, guests and SSPR.</li>
+<li>Assign and interpret Azure RBAC at every scope.</li>
+<li>Govern subscriptions with Policy, locks, tags, management groups and budgets.</li>
+<li>Secure and configure storage accounts, SAS, keys, redundancy, replication and encryption.</li>
+<li>Operate Blob Storage and Azure Files: tiers, soft delete, snapshots, lifecycle, versioning.</li>
+<li>Read, modify and deploy ARM templates and Bicep files.</li>
+<li>Build and manage VMs, disks, zones, scale sets, containers and App Service.</li>
+<li>Build VNets, peering, routes, NSGs/ASGs, Bastion, service and private endpoints, DNS and load balancers — and troubleshoot them.</li>
+<li>Monitor with metrics, logs (KQL), alerts, Insights and Network Watcher.</li>
+<li>Back up and recover with Recovery Services vaults, Backup vaults and Site Recovery.</li>
+</ol>
+<h3 id="lab-environment">Lab environment</h3>
+<ul>
+<li>Your own Azure subscription (pay-as-you-go with a <strong>$25 budget</strong>, or Azure for Students). Every lab ends with a <strong>teardown</strong> step. Budget ~$10–20 total if you tear down promptly.</li>
+<li>Tools: Azure portal, <strong>Cloud Shell</strong> (Bash), optionally local <a href="https://learn.microsoft.com/cli/azure/install-azure-cli" rel="noopener">Azure CLI</a> and VS Code with the Bicep extension.</li>
+<li>Naming convention used: <code>rg-104-&lt;lesson&gt;</code>, region <code>eastus</code> (swap for yours).</li>
+<li>Microsoft's free official lab repo: <a href="https://github.com/MicrosoftLearning/AZ-104-MicrosoftAzureAdministrator" rel="noopener">AZ-104 labs on GitHub</a>.</li>
+</ul>
+<blockquote class="wallet">
+<p><strong>Watch your wallet:</strong> Bastion, VPN gateways, Application Gateway, Site Recovery and premium SKUs bill by the hour whether you use them or not. Labs that create these tell you to delete them the same day.</p>
+</blockquote>
+<h3 id="assessment">Assessment</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lesson knowledge checks (10)</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>Labs with evidence (10)</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>Capstone: build and defend "Ward 7 Community Health" environment</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>50-question practice exam</td>
+<td>15%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="lesson-1-microsoft-entra-users-and-groups">Lesson 1 — Microsoft Entra users and groups</h2>
+<p><strong>Exam objectives:</strong> create users and groups; manage user and group properties; manage licenses in Entra ID; manage external users; configure SSPR.</p>
+<h3 id="11-identities-youll-manage">1.1 Identities you'll manage</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Member users</strong></td>
+<td>Cloud-only or synced from on-prem AD (Entra Connect / Cloud Sync)</td>
+</tr>
+<tr>
+<td><strong>Guest (external) users</strong></td>
+<td>B2B collaboration; <code>UserType = Guest</code>; invited by email; sign in with their own identity</td>
+</tr>
+<tr>
+<td><strong>Security groups</strong></td>
+<td>Grant access to resources and apps</td>
+</tr>
+<tr>
+<td><strong>Microsoft 365 groups</strong></td>
+<td>Collaboration (shared mailbox, Teams, SharePoint)</td>
+</tr>
+<tr>
+<td><strong>Assigned vs. dynamic membership</strong></td>
+<td>Dynamic groups use rules like <code>(user.department -eq "Finance")</code> — requires Entra ID P1</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> You're running HR and the front desk at the same time. Users are employees. Guests are vendors with a visitor badge. Groups are crews — give the crew the key once instead of cutting 40 separate keys.</p>
+</blockquote>
+<h3 id="12-licenses">1.2 Licenses</h3>
+<p>Licenses (Microsoft 365, Entra ID P1/P2) are assigned to users <strong>or groups</strong> (group-based licensing). A user needs a <strong>usage location</strong> set before a license can be assigned. Group-based licensing is the admin-efficient answer on the exam.</p>
+<h3 id="13-self-service-password-reset-sspr">1.3 Self-service password reset (SSPR)</h3>
+<ul>
+<li>Scope: <strong>None / Selected (one group) / All</strong>.</li>
+<li>Authentication methods required: 1 or 2 (admins always need 2).</li>
+<li>Methods: mobile app notification/code, email, mobile phone, office phone, security questions (not for admins).</li>
+<li>Registration can be required at next sign-in; re-confirm every N days.</li>
+<li><strong>Password writeback</strong> (for synced users) requires Entra Connect/Cloud Sync and P1.</li>
+</ul>
+<h3 id="14-beyond-the-exam-but-your-job">1.4 Beyond the exam — but your job</h3>
+<p>Privileged Identity Management (PIM): just-in-time, time-bound admin roles with approval (Entra ID P2). Not in the AZ-104 outline; it's covered in DCT Cloud Security and SC-500.</p>
+<h3 id="lab-1-identity-operations-60-min">Lab 1 — Identity operations (60 min)</h3>
+<pre><code class="language-bash"># Create a user
+DOMAIN=$(az ad signed-in-user show --query userPrincipalName -o tsv | cut -d@ -f2)
+az ad user create --display-name &quot;Kai Brooks&quot; \
+  --user-principal-name kai.brooks@$DOMAIN \
+  --password &quot;Use-A-Long-Passphrase-2026!&quot; --force-change-password-next-sign-in true
+
+# Create a security group and add the user
+az ad group create --display-name &quot;sg-helpdesk&quot; --mail-nickname sg-helpdesk
+az ad group member add --group sg-helpdesk \
+  --member-id $(az ad user show --id kai.brooks@$DOMAIN --query id -o tsv)
+</code></pre>
+<p>Portal tasks:
+1. Set Kai's <strong>usage location</strong> and <strong>department = IT</strong>.
+2. <em>Users → New user → Invite external user</em>: invite a personal email address as a guest. Accept it from that inbox.
+3. <em>Password reset → Properties</em>: enable SSPR for <strong>Selected → sg-helpdesk</strong>, 2 methods.
+4. If you have a P1 trial: create a <strong>dynamic</strong> group <code>dg-it</code> with rule <code>user.department -eq "IT"</code> and watch Kai appear.</p>
+<p><strong>Evidence:</strong> screenshots of group membership, guest user (UserType Guest), SSPR settings. <strong>Teardown:</strong> delete test users and guest.</p>
+<h3 id="lesson-1-knowledge-check">Lesson 1 knowledge check</h3>
+<div class="quiz" data-quiz="0"></div>
+
+<hr />
+<h2 id="lesson-2-manage-access-to-azure-resources-rbac">Lesson 2 — Manage access to Azure resources (RBAC)</h2>
+<p><strong>Exam objectives:</strong> manage built-in Azure roles; assign roles at different scopes; interpret access assignments.</p>
+<h3 id="21-the-rbac-formula">2.1 The RBAC formula</h3>
+<p><strong>Security principal</strong> (who) + <strong>role definition</strong> (what) + <strong>scope</strong> (where) = <strong>role assignment.</strong></p>
+<p><img alt="RBAC scope inheritance" src="../visuals/rbac-scope.svg" /></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Inherits to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management group</td>
+<td>All child MGs, subscriptions, RGs, resources</td>
+</tr>
+<tr>
+<td>Subscription</td>
+<td>All RGs and resources</td>
+</tr>
+<tr>
+<td>Resource group</td>
+<td>All resources in it</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>Only that resource</td>
+</tr>
+</tbody>
+</table></div>
+<p>Key built-ins: <strong>Owner</strong>, <strong>Contributor</strong>, <strong>Reader</strong>, <strong>User Access Administrator</strong>, <strong>Role Based Access Control Administrator</strong> (can assign roles, with optional conditions limiting which roles), and service roles like <strong>Virtual Machine Contributor</strong>, <strong>Storage Blob Data Reader/Contributor</strong>, <strong>Network Contributor</strong>.</p>
+<h3 id="22-interpreting-access">2.2 Interpreting access</h3>
+<ul>
+<li>RBAC is <strong>additive</strong>: effective permissions = union of all assignments.</li>
+<li><strong>Deny assignments</strong> (created by Azure, e.g., managed apps/deployment stacks) override allows.</li>
+<li>Role definitions split <strong>Actions</strong> (control plane: manage the resource) and <strong>DataActions</strong> (data plane: read the blob). <strong>Owner on a storage account does not automatically let you read blob data with Entra auth</strong> — you need a <em>Storage Blob Data</em> role.</li>
+<li>Azure RBAC roles ≠ Entra roles (Global Administrator manages the directory, not Azure resources — though a Global Admin can elevate to User Access Administrator at root).</li>
+</ul>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Owning the building (Owner) doesn't mean you can read the mail inside tenant mailboxes (DataActions). Different key. Microsoft did that on purpose.</p>
+</blockquote>
+<h3 id="lab-2-assign-and-prove-45-min">Lab 2 — Assign and prove (45 min)</h3>
+<pre><code class="language-bash">az group create -n rg-104-rbac -l eastus
+GID=$(az ad group show --group sg-helpdesk --query id -o tsv)
+az role assignment create --assignee-object-id $GID --assignee-principal-type Group \
+  --role &quot;Virtual Machine Contributor&quot; --resource-group rg-104-rbac
+az role assignment list -g rg-104-rbac -o table
+</code></pre>
+<ol>
+<li>Portal → <code>rg-104-rbac</code> → <em>Access control (IAM)</em> → <strong>Check access</strong> for Kai. Note inherited vs. direct assignments.</li>
+<li>Open the role definition JSON for <em>Virtual Machine Contributor</em>. Can it manage the VNet the VM's NIC connects to? (Read the Actions to answer.)</li>
+<li><strong>Teardown:</strong> remove the assignment.</li>
+</ol>
+<h3 id="lesson-2-knowledge-check">Lesson 2 knowledge check</h3>
+<div class="quiz" data-quiz="1"></div>
+
+<hr />
+<h2 id="lesson-3-subscriptions-and-governance">Lesson 3 — Subscriptions and governance</h2>
+<p><strong>Exam objectives:</strong> implement and manage Azure Policy; configure resource locks; apply and manage tags; manage resource groups; manage subscriptions; manage costs with alerts, budgets and Advisor; configure management groups.</p>
+<h3 id="31-azure-policy">3.1 Azure Policy</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Definition</strong></td>
+<td>One rule (JSON) with an <strong>effect</strong></td>
+</tr>
+<tr>
+<td><strong>Initiative</strong> (policy set)</td>
+<td>A bundle of definitions — e.g., <em>Microsoft cloud security benchmark</em>, <em>NIST SP 800-53 Rev. 5</em>, <em>FedRAMP High</em></td>
+</tr>
+<tr>
+<td><strong>Assignment</strong></td>
+<td>Definition/initiative applied at a scope, with parameters and <strong>exclusions</strong></td>
+</tr>
+<tr>
+<td><strong>Effects</strong></td>
+<td><code>Deny</code>, <code>Audit</code>, <code>Append</code>, <code>Modify</code>, <code>AuditIfNotExists</code>, <code>DeployIfNotExists</code>, <code>Disabled</code>, <code>DenyAction</code>, <code>Manual</code></td>
+</tr>
+<tr>
+<td><strong>Remediation</strong></td>
+<td>For <code>Modify</code>/<code>DeployIfNotExists</code>, a remediation task fixes <em>existing</em> resources using a <strong>managed identity</strong></td>
+</tr>
+<tr>
+<td><strong>Compliance</strong></td>
+<td>Evaluated on create/update and on a periodic cycle; trigger on demand with <code>az policy state trigger-scan</code></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> RBAC decides <em>who</em> can walk in the kitchen. Policy decides <em>what's allowed to be cooked</em>. Even the head chef can't put shellfish on the menu if the policy says no shellfish.</p>
+</blockquote>
+<h3 id="32-locks-tags-resource-groups-subscriptions-management-groups">3.2 Locks, tags, resource groups, subscriptions, management groups</h3>
+<ul>
+<li><strong>Locks:</strong> <code>CanNotDelete</code> / <code>ReadOnly</code>; inherit downward; override RBAC. ReadOnly can have side effects (e.g., listing storage keys is a POST and gets blocked).</li>
+<li><strong>Tags:</strong> up to 50 per resource; <strong>not inherited</strong> — use the built-in <em>Inherit a tag from the resource group</em> policy (Modify effect).</li>
+<li><strong>Moving resources:</strong> between RGs/subscriptions — source and target RGs are locked during the move; not every resource type supports moves; the resource's region doesn't change.</li>
+<li><strong>Subscriptions:</strong> transfer billing ownership, change the directory, rename, cancel; subscription-level budgets.</li>
+<li><strong>Management groups:</strong> root MG per tenant, up to 6 levels deep (excluding root), each subscription in exactly one MG.</li>
+</ul>
+<h3 id="33-cost-controls">3.3 Cost controls</h3>
+<p><strong>Budgets</strong> (actual/forecast alerts, action groups), <strong>cost alerts</strong>, <strong>Advisor</strong> cost recommendations (resize/shut down idle VMs, buy reservations), <strong>reservations</strong> and <strong>savings plans</strong>.</p>
+<h3 id="lab-3-governance-build-60-min">Lab 3 — Governance build (60 min)</h3>
+<pre><code class="language-bash">az group create -n rg-104-gov -l eastus --tags env=lab dept=it
+# Require a 'dept' tag on resource groups (built-in definition)
+DEF=$(az policy definition list --query &quot;[?displayName=='Require a tag on resource groups'].name&quot; -o tsv)
+az policy assignment create --name require-dept-tag --policy $DEF \
+  --scope /subscriptions/$(az account show --query id -o tsv) \
+  --params '{&quot;tagName&quot;:{&quot;value&quot;:&quot;dept&quot;}}'
+# Try to break it
+az group create -n rg-104-notag -l eastus   # should be denied
+# Lock
+az lock create --name nodelete --lock-type CanNotDelete --resource-group rg-104-gov
+az group delete -n rg-104-gov --yes        # should fail
+</code></pre>
+<p>Then: create a $10 <strong>budget</strong> on <code>rg-104-gov</code> with an <strong>action group</strong> that emails you; open <strong>Advisor → Cost</strong>.
+<strong>Teardown:</strong> remove the lock, delete the policy assignment, delete the RG.</p>
+<h3 id="lesson-3-knowledge-check">Lesson 3 knowledge check</h3>
+<div class="quiz" data-quiz="2"></div>
+
+<hr />
+<h2 id="lesson-4-storage-access-and-storage-accounts">Lesson 4 — Storage access and storage accounts</h2>
+<p><strong>Exam objectives:</strong> storage firewalls and virtual networks; SAS tokens; stored access policies; access keys; identity-based access for Azure Files; create/configure accounts; redundancy; object replication; encryption; Storage Explorer and AzCopy.</p>
+<h3 id="41-ways-in-from-strongest-to-weakest">4.1 Ways in, from strongest to weakest</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Entra ID + RBAC</strong> (data roles)</td>
+<td>Preferred. No secrets. Audit-friendly</td>
+</tr>
+<tr>
+<td><strong>User delegation SAS</strong></td>
+<td>SAS signed with Entra credentials; Blob only; max 7 days</td>
+</tr>
+<tr>
+<td><strong>Service SAS</strong></td>
+<td>Access to one service's resources; can reference a <strong>stored access policy</strong></td>
+</tr>
+<tr>
+<td><strong>Account SAS</strong></td>
+<td>Multiple services; powerful; signed with account key</td>
+</tr>
+<tr>
+<td><strong>Access keys</strong></td>
+<td>Two keys = full control. Rotate (key1/key2 swap) or store in Key Vault. Consider <strong>disabling shared key access</strong></td>
+</tr>
+<tr>
+<td><strong>Anonymous public read</strong></td>
+<td>Off by default; keep it off at the account level unless hosting public content</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Stored access policy:</strong> defines start/expiry/permissions on a container/share/queue/table; SAS tokens that reference it can be <strong>revoked</strong> by changing or deleting the policy (up to 5 per container).</p>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Access keys are the landlord's master key — lose it, rekey the whole building. A SAS is a valet ticket: one car, one night, one parking deck. A stored access policy is the valet stand's list — scratch your name off and every ticket under it stops working.</p>
+</blockquote>
+<h3 id="42-network-rules">4.2 Network rules</h3>
+<p>Storage <strong>firewall</strong>: allow selected VNets/subnets (service endpoints), IP ranges, resource instances and trusted Microsoft services; or disable public access and use <strong>private endpoints</strong>.</p>
+<h3 id="43-account-configuration">4.3 Account configuration</h3>
+<ul>
+<li><strong>Kind/performance:</strong> Standard GPv2; Premium block blob, file, page blob.</li>
+<li><strong>Redundancy:</strong> LRS, ZRS, GRS, RA-GRS, GZRS, RA-GZRS; change via portal (some conversions need a request or migration).</li>
+<li><strong>Object replication:</strong> async copy of block blobs between accounts; requires <strong>blob versioning</strong> on both accounts and <strong>change feed</strong> on source.</li>
+<li><strong>Encryption:</strong> always on (AES-256) with Microsoft-managed keys by default; <strong>customer-managed keys</strong> in Key Vault; <strong>infrastructure (double) encryption</strong> set at creation; <strong>encryption scopes</strong> per container/blob.</li>
+<li><strong>Azure Files identity-based access:</strong> on-prem AD DS, Microsoft Entra Domain Services, or <strong>Microsoft Entra Kerberos</strong> (for hybrid identities); share-level RBAC (<em>Storage File Data SMB Share Reader/Contributor/Elevated Contributor</em>) + NTFS permissions.</li>
+</ul>
+<h3 id="44-data-movement">4.4 Data movement</h3>
+<p><strong>AzCopy</strong> (<code>azcopy login</code>, <code>azcopy copy</code>, <code>azcopy sync</code>) and <strong>Storage Explorer</strong>.</p>
+<h3 id="lab-4-lock-down-a-storage-account-75-min">Lab 4 — Lock down a storage account (75 min)</h3>
+<pre><code class="language-bash">RG=rg-104-stor; LOC=eastus; SA=st104$RANDOM
+az group create -n $RG -l $LOC --tags dept=it
+az storage account create -n $SA -g $RG -l $LOC --sku Standard_ZRS --kind StorageV2 \
+  --min-tls-version TLS1_2 --allow-blob-public-access false
+ME=$(az ad signed-in-user show --query id -o tsv)
+az role assignment create --assignee $ME --role &quot;Storage Blob Data Contributor&quot; \
+  --scope $(az storage account show -n $SA -g $RG --query id -o tsv)
+az storage container create --account-name $SA -n reports --auth-mode login
+echo &quot;Q3 attendance: 412&quot; &gt; report.txt
+az storage blob upload --account-name $SA -c reports -n report.txt -f report.txt --auth-mode login
+# User delegation SAS, read-only, 1 hour
+END=$(date -u -d &quot;+1 hour&quot; '+%Y-%m-%dT%H:%MZ')
+az storage blob generate-sas --account-name $SA -c reports -n report.txt \
+  --permissions r --expiry $END --auth-mode login --as-user --full-uri
+</code></pre>
+<ol>
+<li>Open the SAS URL in a browser (works). Wait for expiry or regenerate with a past <code>--start</code> to see failure.</li>
+<li><em>Networking</em> → <strong>Enabled from selected virtual networks and IP addresses</strong> → add only your client IP. Test from Cloud Shell (blocked unless its IP is added).</li>
+<li><em>Access keys</em> → rotate key1. <em>Configuration</em> → set <strong>Allow storage account key access = Disabled</strong> and observe what breaks.</li>
+<li>Use <strong>Storage Explorer</strong> with your Entra account to browse the container.
+<strong>Teardown:</strong> delete <code>rg-104-stor</code>.</li>
+</ol>
+<h3 id="lesson-4-knowledge-check">Lesson 4 knowledge check</h3>
+<div class="quiz" data-quiz="3"></div>
+
+<hr />
+<h2 id="lesson-5-azure-files-and-blob-storage-operations">Lesson 5 — Azure Files and Blob Storage operations</h2>
+<p><strong>Exam objectives:</strong> file shares; blob containers; storage tiers; soft delete for blobs and containers; snapshots and soft delete for Azure Files; blob lifecycle management; blob versioning.</p>
+<h3 id="51-data-protection-features">5.1 Data protection features</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Protects against</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blob soft delete</strong></td>
+<td>Deleted/overwritten blobs</td>
+<td>Retention 1–365 days</td>
+</tr>
+<tr>
+<td><strong>Container soft delete</strong></td>
+<td>Deleted containers</td>
+<td>Retention 1–365 days</td>
+</tr>
+<tr>
+<td><strong>Blob versioning</strong></td>
+<td>Overwrites — keeps prior versions automatically</td>
+<td>Pairs with soft delete; adds storage cost</td>
+</tr>
+<tr>
+<td><strong>Point-in-time restore</strong></td>
+<td>Restore block blobs to an earlier state</td>
+<td>Requires versioning, change feed, soft delete</td>
+</tr>
+<tr>
+<td><strong>Azure Files share snapshots</strong></td>
+<td>Accidental changes to files</td>
+<td>Read-only, incremental, up to 200 per share</td>
+</tr>
+<tr>
+<td><strong>Azure Files soft delete</strong></td>
+<td>Deleted shares</td>
+<td>1–365 days</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-tiers-and-lifecycle">5.2 Tiers and lifecycle</h3>
+<p>Online tiers: <strong>Hot, Cool (30-day min), Cold (90-day min)</strong>; offline <strong>Archive (180-day min)</strong>, rehydrate with <em>Standard</em> or <em>High</em> priority. <strong>Lifecycle management</strong> rules move or delete blobs based on days since creation, modification or last access (last-access tracking must be enabled).</p>
+<pre><code class="language-json">{
+  &quot;rules&quot;: [{
+    &quot;name&quot;: &quot;age-out-reports&quot;,
+    &quot;enabled&quot;: true,
+    &quot;type&quot;: &quot;Lifecycle&quot;,
+    &quot;definition&quot;: {
+      &quot;filters&quot;: { &quot;blobTypes&quot;: [&quot;blockBlob&quot;], &quot;prefixMatch&quot;: [&quot;reports/&quot;] },
+      &quot;actions&quot;: { &quot;baseBlob&quot;: {
+        &quot;tierToCool&quot;:   { &quot;daysAfterModificationGreaterThan&quot;: 30 },
+        &quot;tierToArchive&quot;:{ &quot;daysAfterModificationGreaterThan&quot;: 180 },
+        &quot;delete&quot;:       { &quot;daysAfterModificationGreaterThan&quot;: 2555 }
+      }}
+    }
+  }]
+}
+</code></pre>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Lifecycle management is the rule in grandma's house: if you haven't worn it in a month it goes to the closet, six months it goes to the attic, seven years it goes to Goodwill. Nobody has to remember — the house does it.</p>
+</blockquote>
+<h3 id="lab-5-protect-and-age-data-60-min">Lab 5 — Protect and age data (60 min)</h3>
+<ol>
+<li>New account (<code>Standard_LRS</code>). <em>Data protection</em>: enable blob soft delete (7 days), container soft delete (7 days), <strong>versioning</strong>.</li>
+<li>Upload <code>notes.txt</code>, overwrite it twice, then delete it. Use <em>Show deleted blobs</em> and <em>Versions</em> to restore the first version.</li>
+<li>Save the JSON above as <code>policy.json</code> and apply:
+   <code>bash
+   az storage account management-policy create --account-name $SA -g $RG --policy @policy.json</code></li>
+<li>Create an Azure Files share <code>teamshare</code> (Transaction optimized), upload a file, take a <strong>snapshot</strong>, edit the file, restore from snapshot.
+<strong>Teardown:</strong> delete the RG.</li>
+</ol>
+<h3 id="lesson-5-knowledge-check">Lesson 5 knowledge check</h3>
+<div class="quiz" data-quiz="4"></div>
+
+<hr />
+<h2 id="lesson-6-arm-templates-bicep-and-virtual-machines">Lesson 6 — ARM templates, Bicep and virtual machines</h2>
+<p><strong>Exam objectives:</strong> interpret, modify and deploy ARM templates and Bicep files; export a deployment / convert ARM to Bicep; create VMs; encryption at host; move VMs; sizes; disks; availability zones and sets; Virtual Machine Scale Sets.</p>
+<h3 id="61-reading-infrastructure-as-code">6.1 Reading infrastructure as code</h3>
+<p>ARM template sections: <code>$schema</code>, <code>contentVersion</code>, <code>parameters</code>, <code>variables</code>, <code>resources</code>, <code>outputs</code> (plus <code>functions</code>). Bicep is the same thing, readable:</p>
+<pre><code class="language-bicep">@description('Storage account name')
+param name string = 'st${uniqueString(resourceGroup().id)}'
+param location string = resourceGroup().location
+@allowed(['Standard_LRS','Standard_ZRS'])
+param sku string = 'Standard_LRS'
+
+resource sa 'Microsoft.Storage/storageAccounts@2023-05-01' = {
+  name: name
+  location: location
+  sku: { name: sku }
+  kind: 'StorageV2'
+  properties: {
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: false
+  }
+}
+output endpoint string = sa.properties.primaryEndpoints.blob
+</code></pre>
+<p>Deploy and convert:</p>
+<pre><code class="language-bash">az deployment group create -g rg-104-iac --template-file main.bicep --parameters sku=Standard_ZRS
+az deployment group what-if -g rg-104-iac --template-file main.bicep   # preview changes
+az bicep decompile --file exported-template.json                        # ARM → Bicep
+</code></pre>
+<p>Deployment <strong>modes</strong>: <em>Incremental</em> (default — adds/updates, leaves others) vs. <em>Complete</em> (deletes resources in the RG not in the template).</p>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> A Bicep file is the recipe card. ARM is the kitchen that cooks it exactly the same every time. <code>what-if</code> is tasting the sauce before you serve it.</p>
+</blockquote>
+<h3 id="62-virtual-machines-admin-essentials">6.2 Virtual machines — admin essentials</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Key facts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sizes</strong></td>
+<td>Families: B (burstable), D (general), E (memory), F (compute), L (storage), N (GPU). Resize may need a deallocate if the size isn't on the current hardware cluster</td>
+</tr>
+<tr>
+<td><strong>Disks</strong></td>
+<td>OS disk, data disks, temporary disk (non-persistent!). Types: Standard HDD, Standard SSD, Premium SSD, Premium SSD v2, Ultra. Expand size; attach/detach; snapshots</td>
+</tr>
+<tr>
+<td><strong>Encryption at host</strong></td>
+<td>Encrypts temp disk and caches at the host; register the <code>EncryptionAtHost</code> feature; set at create or while deallocated. (Azure Disk Encryption is on a retirement path — prefer encryption at host)</td>
+</tr>
+<tr>
+<td><strong>Availability</strong></td>
+<td><strong>Availability set</strong>: fault domains + update domains in one datacenter (99.95% SLA). <strong>Availability zones</strong>: separate datacenters (99.99% with 2+ zones)</td>
+</tr>
+<tr>
+<td><strong>Scale sets (VMSS)</strong></td>
+<td>Flexible orchestration (recommended) vs. Uniform; autoscale on metrics or schedule; span zones</td>
+</tr>
+<tr>
+<td><strong>Move</strong></td>
+<td>To another RG/subscription via <em>Move</em>; to another region via <strong>Azure Resource Mover</strong> or Site Recovery</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="lab-6-code-it-build-it-resize-it-90-min">Lab 6 — Code it, build it, resize it (90 min)</h3>
+<pre><code class="language-bash">az group create -n rg-104-vm -l eastus --tags dept=it
+az feature register --namespace Microsoft.Compute --name EncryptionAtHost   # one-time
+az vm create -g rg-104-vm -n vm-web1 --image Ubuntu2404 --size Standard_B2s \
+  --admin-username azureuser --generate-ssh-keys --zone 1 \
+  --public-ip-sku Standard --encryption-at-host true --nsg-rule NONE
+az vm disk attach -g rg-104-vm --vm-name vm-web1 --name vm-web1-data --new --size-gb 32 --sku StandardSSD_LRS
+az vm list-vm-resize-options -g rg-104-vm -n vm-web1 -o table
+az vm resize -g rg-104-vm -n vm-web1 --size Standard_B2ms
+az vmss create -g rg-104-vm -n vmss-web --image Ubuntu2404 --instance-count 2 \
+  --zones 1 2 3 --orchestration-mode Flexible --admin-username azureuser --generate-ssh-keys
+</code></pre>
+<p>Then deploy the Bicep storage file above into <code>rg-104-iac</code>, run <code>what-if</code> after changing the SKU, and export the VM's template from the portal and <code>decompile</code> it.
+<strong>Teardown:</strong> delete <code>rg-104-vm</code> and <code>rg-104-iac</code> today.</p>
+<h3 id="lesson-6-knowledge-check">Lesson 6 knowledge check</h3>
+<div class="quiz" data-quiz="5"></div>
+
+<hr />
+<h2 id="lesson-7-containers-and-app-service">Lesson 7 — Containers and App Service</h2>
+<p><strong>Exam objectives:</strong> Azure Container Registry; ACI; Azure Container Apps; container sizing and scaling; App Service plans and scaling; create App Service; TLS/certificates; custom DNS; backup; networking; deployment slots.</p>
+<h3 id="71-containers">7.1 Containers</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Use</th>
+<th>Scaling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Azure Container Registry (ACR)</strong></td>
+<td>Private image registry; SKUs Basic/Standard/Premium (geo-replication, private link)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Azure Container Instances (ACI)</strong></td>
+<td>Single containers/groups, fast, per-second billing</td>
+<td>Manual; set CPU/memory per container group</td>
+</tr>
+<tr>
+<td><strong>Azure Container Apps</strong></td>
+<td>Serverless containers on managed Kubernetes (KEDA-based)</td>
+<td>Autoscale on HTTP, events, CPU; <strong>scale to zero</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72-app-service">7.2 App Service</h3>
+<ul>
+<li><strong>Plan</strong> = the compute (tier + instance count). Tiers: Free/Shared → Basic → Standard → Premium v3 → Isolated v2. Slots, autoscale and daily backups start at <strong>Standard</strong>; Basic supports manual scale out.</li>
+<li><strong>Scale up</strong> (bigger tier) vs. <strong>scale out</strong> (more instances, manual or autoscale rules).</li>
+<li><strong>Custom domains:</strong> verify with a TXT record (<code>asuid.&lt;subdomain&gt;</code>) plus CNAME (subdomain) or A record (apex). <strong>TLS:</strong> free App Service managed certificate, imported cert, or Key Vault cert; enforce <strong>HTTPS only</strong> and minimum TLS 1.2.</li>
+<li><strong>Backup:</strong> automatic backups (supported tiers) or custom backups to a storage account.</li>
+<li><strong>Networking:</strong> <em>inbound</em> — access restrictions, private endpoints; <em>outbound</em> — <strong>VNet integration</strong> to reach private resources.</li>
+<li><strong>Deployment slots:</strong> staging slot → warm up → <strong>swap</strong> (zero-downtime); slot-specific ("sticky") settings stay with the slot.</li>
+</ul>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> A deployment slot is the dressing room. The new outfit gets checked in the mirror backstage. When it's right, swap — the crowd sees you walk out already dressed. Something's off? Swap back.</p>
+</blockquote>
+<h3 id="lab-7-ship-it-with-zero-downtime-75-min">Lab 7 — Ship it with zero downtime (75 min)</h3>
+<pre><code class="language-bash">RG=rg-104-app; az group create -n $RG -l eastus --tags dept=it
+az acr create -g $RG -n acr104$RANDOM --sku Basic
+az container create -g $RG -n aci-hello --image mcr.microsoft.com/azuredocs/aci-helloworld \
+  --os-type Linux --cpu 1 --memory 1.5 --ports 80 --dns-name-label aci104$RANDOM
+az containerapp up -g $RG -n ca-hello --image mcr.microsoft.com/k8se/quickstart:latest \
+  --ingress external --target-port 80
+az appservice plan create -g $RG -n plan104 --sku S1 --is-linux
+APP=web104$RANDOM
+az webapp create -g $RG -p plan104 -n $APP --runtime &quot;NODE:20-lts&quot;
+az webapp update -g $RG -n $APP --https-only true
+az webapp deployment slot create -g $RG -n $APP --slot staging
+az webapp deployment slot swap -g $RG -n $APP --slot staging --target-slot production
+</code></pre>
+<p>In the portal: add an <strong>autoscale</strong> rule on the plan (CPU &gt; 70% → +1 instance, max 3), set an app setting as <strong>deployment slot setting</strong>, and review <em>Networking</em> → access restrictions.
+<strong>Teardown:</strong> delete <code>rg-104-app</code> (the S1 plan bills hourly).</p>
+<h3 id="lesson-7-knowledge-check">Lesson 7 knowledge check</h3>
+<div class="quiz" data-quiz="6"></div>
+
+<hr />
+<h2 id="lesson-8-virtual-networks-and-secure-access">Lesson 8 — Virtual networks and secure access</h2>
+<p><strong>Exam objectives:</strong> VNets and subnets; peering; public IPs; user-defined routes; troubleshoot connectivity; NSGs and ASGs; effective security rules; Azure Bastion; service endpoints; private endpoints.</p>
+<h3 id="81-address-planning">8.1 Address planning</h3>
+<p>CIDR refresher: <code>/16</code> = 65,536 addresses; <code>/24</code> = 256; <code>/26</code> = 64; <code>/27</code> = 32. <strong>Azure reserves 5 IPs per subnet</strong> (first four and last). Address spaces in peered VNets <strong>must not overlap.</strong></p>
+<p><img alt="Hub and spoke" src="../visuals/hub-spoke.svg" /></p>
+<h3 id="82-connectivity">8.2 Connectivity</h3>
+<ul>
+<li><strong>Peering:</strong> non-transitive (A↔B and B↔C does <strong>not</strong> give A↔C); configure both directions; options: allow forwarded traffic, gateway transit, use remote gateways.</li>
+<li><strong>Public IPs:</strong> Standard SKU (zone-redundant, secure by default, static) — Basic SKU was retired September 30, 2025.</li>
+<li><strong>User-defined routes (UDRs):</strong> route tables on subnets to override system routes — e.g., <code>0.0.0.0/0 → VirtualAppliance 10.0.0.4</code> (a firewall).</li>
+</ul>
+<h3 id="83-filtering">8.3 Filtering</h3>
+<ul>
+<li><strong>NSG rules:</strong> priority 100–4096, <strong>lower number wins</strong>, first match stops processing; 5-tuple (source, source port, destination, destination port, protocol); default rules (65000+) allow VNet and load balancer traffic, deny the rest inbound.</li>
+<li>NSG on <strong>subnet and NIC</strong>: inbound traffic is evaluated by the subnet NSG then the NIC NSG; both must allow.</li>
+<li><strong>Application security groups (ASGs):</strong> group NICs by role (<code>asg-web</code>, <code>asg-db</code>) and write rules against them instead of IPs.</li>
+<li><strong>Effective security rules:</strong> the merged view per NIC — your first stop when troubleshooting.</li>
+</ul>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> NSG rules are the bouncer's list read top to bottom. The first line that matches your name decides — in or out — and he stops reading. Lower number = higher on the list.</p>
+</blockquote>
+<h3 id="84-secure-admin-access-and-paas-access">8.4 Secure admin access and PaaS access</h3>
+<ul>
+<li><strong>Azure Bastion:</strong> browser-based RDP/SSH over TLS without public IPs on VMs. Needs a subnet named <strong><code>AzureBastionSubnet</code></strong> (/26 or larger for Basic/Standard). SKUs: Developer (free, limited), Basic, Standard, Premium.</li>
+<li><strong>Service endpoints:</strong> extend a subnet's identity to a PaaS service; traffic uses the Azure backbone; the service still has a public endpoint.</li>
+<li><strong>Private endpoints:</strong> a NIC with a private IP from your subnet for a specific PaaS resource; needs <strong>private DNS</strong> (<code>privatelink.blob.core.windows.net</code>) to resolve correctly.</li>
+</ul>
+<h3 id="lab-8-hub-spoke-and-lockdown-120-min-delete-the-same-day">Lab 8 — Hub, spoke, and lockdown (120 min — delete the same day)</h3>
+<pre><code class="language-bash">RG=rg-104-net; L=eastus; az group create -n $RG -l $L --tags dept=it
+az network vnet create -g $RG -n vnet-hub --address-prefixes 10.0.0.0/16 \
+  --subnet-name AzureBastionSubnet --subnet-prefixes 10.0.1.0/26
+az network vnet create -g $RG -n vnet-spoke1 --address-prefixes 10.1.0.0/16 \
+  --subnet-name web --subnet-prefixes 10.1.1.0/24
+az network vnet peering create -g $RG -n hub-to-spoke1 --vnet-name vnet-hub \
+  --remote-vnet vnet-spoke1 --allow-vnet-access
+az network vnet peering create -g $RG -n spoke1-to-hub --vnet-name vnet-spoke1 \
+  --remote-vnet vnet-hub --allow-vnet-access
+az network asg create -g $RG -n asg-web
+az network nsg create -g $RG -n nsg-web
+az network nsg rule create -g $RG --nsg-name nsg-web -n allow-http --priority 100 \
+  --direction Inbound --access Allow --protocol Tcp --destination-port-ranges 80 \
+  --destination-asgs asg-web
+az network vnet subnet update -g $RG --vnet-name vnet-spoke1 -n web --network-security-group nsg-web
+az vm create -g $RG -n vm-spoke1 --image Ubuntu2404 --size Standard_B1s \
+  --vnet-name vnet-spoke1 --subnet web --public-ip-address &quot;&quot; --nsg &quot;&quot; \
+  --asgs asg-web --admin-username azureuser --generate-ssh-keys
+</code></pre>
+<ol>
+<li>Deploy <strong>Bastion (Basic)</strong> into the hub; connect to <code>vm-spoke1</code> over SSH in the browser through peering.</li>
+<li>NIC → <strong>Effective security rules</strong>. Explain each line.</li>
+<li>Create a storage account; add a <strong>private endpoint</strong> in <code>web</code> with private DNS integration; from the VM, <code>nslookup &lt;account&gt;.blob.core.windows.net</code> returns a 10.x address.</li>
+<li>Create a route table with <code>0.0.0.0/0 → VirtualAppliance 10.0.0.4</code>, associate to <code>web</code>, and observe broken internet egress in <strong>Network Watcher → Next hop</strong>. Remove it.
+<strong>Teardown:</strong> delete <code>rg-104-net</code> today (Bastion bills hourly).</li>
+</ol>
+<h3 id="lesson-8-knowledge-check">Lesson 8 knowledge check</h3>
+<div class="quiz" data-quiz="7"></div>
+
+<hr />
+<h2 id="lesson-9-name-resolution-and-load-balancing">Lesson 9 — Name resolution and load balancing</h2>
+<p><strong>Exam objectives:</strong> configure Azure DNS; configure an internal or public load balancer; troubleshoot load balancing.</p>
+<h3 id="91-azure-dns">9.1 Azure DNS</h3>
+<ul>
+<li><strong>Public DNS zones:</strong> host your domain's records (A, AAAA, CNAME, MX, TXT, SRV, CAA, NS); delegate by updating NS records at your registrar. <strong>Alias records</strong> point at Azure resources (public IP, Front Door, Traffic Manager) and update automatically.</li>
+<li><strong>Private DNS zones:</strong> name resolution inside VNets; <strong>virtual network links</strong> with optional <strong>auto-registration</strong> of VM records.</li>
+<li><strong>Azure DNS Private Resolver:</strong> conditional forwarding between on-prem and Azure private zones.</li>
+</ul>
+<h3 id="92-azure-load-balancer-layer-4">9.2 Azure Load Balancer (Layer 4)</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend IP</td>
+<td>Public (internet-facing) or private (internal)</td>
+</tr>
+<tr>
+<td>Backend pool</td>
+<td>VMs/VMSS instances (by NIC or IP)</td>
+</tr>
+<tr>
+<td>Health probe</td>
+<td>TCP/HTTP/HTTPS check; unhealthy instances removed</td>
+</tr>
+<tr>
+<td>Load-balancing rule</td>
+<td>Frontend port → backend port; distribution (5-tuple hash default, or session persistence by client IP)</td>
+</tr>
+<tr>
+<td>Inbound NAT rule</td>
+<td>Port-forward to a specific VM</td>
+</tr>
+<tr>
+<td>Outbound rule</td>
+<td>SNAT for backend internet egress</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Standard SKU</strong> only (Basic retired Sept 30, 2025): zone-redundant, secure by default — <strong>backends need an NSG that allows the traffic.</strong></p>
+<h3 id="93-troubleshooting-checklist">9.3 Troubleshooting checklist</h3>
+<ol>
+<li>Health probe status (Insights / metrics <em>Health Probe Status</em>). Is the app listening on the probe port/path?</li>
+<li>NSG on backend allows traffic from the client <strong>and</strong> from the <code>AzureLoadBalancer</code> service tag (probe source 168.63.129.16).</li>
+<li>Backend in the right pool, VM running, guest firewall open.</li>
+<li>Rule ports correct; floating IP settings match the app design.</li>
+<li>Use <strong>Network Watcher</strong> (IP flow verify, connection troubleshoot).</li>
+</ol>
+<h3 id="beyond-the-exam-choosing-a-load-balancer">Beyond the exam: choosing a load balancer</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Layer</th>
+<th>Scope</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Load Balancer</td>
+<td>4</td>
+<td>Regional</td>
+<td>TCP/UDP for VMs</td>
+</tr>
+<tr>
+<td>Application Gateway (+ WAF)</td>
+<td>7</td>
+<td>Regional</td>
+<td>HTTP routing by path/host, TLS termination, WAF</td>
+</tr>
+<tr>
+<td>Front Door</td>
+<td>7</td>
+<td>Global</td>
+<td>Global HTTP acceleration, CDN, WAF</td>
+</tr>
+<tr>
+<td>Traffic Manager</td>
+<td>DNS</td>
+<td>Global</td>
+<td>DNS-based routing (priority, performance, geographic)</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Load Balancer is the host at the door sending each party to the next open table. App Gateway reads your reservation and sends you to the right room. Front Door is the host stand in every city. Traffic Manager is the phone directory telling you which city to drive to.</p>
+</blockquote>
+<h3 id="lab-9-balance-it-and-break-it-75-min">Lab 9 — Balance it and break it (75 min)</h3>
+<ol>
+<li>Create two Ubuntu VMs in a backend subnet with <code>cloud-init</code> installing nginx (<code>apt-get install -y nginx</code> and write the hostname into <code>index.html</code>).</li>
+<li>Create a <strong>Standard public Load Balancer</strong>: frontend IP, backend pool (both VMs), HTTP probe on <code>/</code>, rule 80→80.</li>
+<li>Refresh the frontend IP — watch both hostnames appear.</li>
+<li><strong>Break it:</strong> stop nginx on one VM → probe marks it down → traffic shifts. Then remove the NSG allow rule → everything fails. Fix it with the checklist.</li>
+<li>Create a <strong>private DNS zone</strong> <code>corp.dct</code> linked to the VNet with auto-registration; <code>nslookup vm1.corp.dct</code> from the other VM.
+<strong>Teardown:</strong> delete the RG.</li>
+</ol>
+<h3 id="lesson-9-knowledge-check">Lesson 9 knowledge check</h3>
+<div class="quiz" data-quiz="8"></div>
+
+<hr />
+<h2 id="lesson-10-monitor-and-maintain">Lesson 10 — Monitor and maintain</h2>
+<p><strong>Exam objectives:</strong> interpret metrics; configure log settings; query and analyze logs; alert rules, action groups and alert processing rules; Insights for VMs, storage and networks; Network Watcher and Connection monitor; Recovery Services vault; Backup vault; backup policies; backup and restore; Site Recovery; failover; backup reports and alerts.</p>
+<h3 id="101-azure-monitor-building-blocks">10.1 Azure Monitor building blocks</h3>
+<p><img alt="Azure Monitor flow" src="../visuals/monitor-flow.svg" /></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Piece</th>
+<th>Admin action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Metrics</strong></td>
+<td>Numeric time series (CPU %, requests); Metrics Explorer; near-real-time</td>
+</tr>
+<tr>
+<td><strong>Activity log</strong></td>
+<td>Who did what at the control plane (create/delete); 90 days by default</td>
+</tr>
+<tr>
+<td><strong>Resource logs</strong></td>
+<td>Per-resource detailed logs; need a <strong>diagnostic setting</strong> to send to Log Analytics, storage or Event Hubs</td>
+</tr>
+<tr>
+<td><strong>Log Analytics workspace</strong></td>
+<td>Central log store queried with <strong>KQL</strong></td>
+</tr>
+<tr>
+<td><strong>Azure Monitor Agent + data collection rules</strong></td>
+<td>Collect guest OS logs/perf from VMs</td>
+</tr>
+<tr>
+<td><strong>Alert rules</strong></td>
+<td>Metric, log search, activity log, resource health, service health</td>
+</tr>
+<tr>
+<td><strong>Action groups</strong></td>
+<td><em>Who/what</em> gets notified (email, SMS, webhook, Logic App, Function, ITSM)</td>
+</tr>
+<tr>
+<td><strong>Alert processing rules</strong></td>
+<td>Suppress (e.g., during maintenance) or add action groups at scale</td>
+</tr>
+<tr>
+<td><strong>Insights</strong></td>
+<td>VM insights, Storage insights, Network insights — prebuilt workbooks</td>
+</tr>
+<tr>
+<td><strong>Network Watcher</strong></td>
+<td>IP flow verify, next hop, connection troubleshoot, <strong>Connection monitor</strong>, packet capture, flow logs</td>
+</tr>
+</tbody>
+</table></div>
+<p>KQL you should be able to read:</p>
+<pre><code class="language-kusto">// VMs that stopped sending heartbeats in the last 15 minutes
+Heartbeat
+| summarize LastBeat = max(TimeGenerated) by Computer
+| where LastBeat &lt; ago(15m)
+
+// Who deleted resources today
+AzureActivity
+| where TimeGenerated &gt; startofday(now())
+| where OperationNameValue endswith &quot;DELETE&quot; and ActivityStatusValue == &quot;Success&quot;
+| project TimeGenerated, Caller, ResourceGroup, _ResourceId
+</code></pre>
+<blockquote class="dope">
+<p><strong>Dope Translation:</strong> Metrics are the dashboard gauges. Logs are the receipts. KQL is how you search the shoebox of receipts in two seconds. Action groups are who gets the phone call when the alarm goes off.</p>
+</blockquote>
+<h3 id="102-backup-and-disaster-recovery">10.2 Backup and disaster recovery</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Recovery Services vault</th>
+<th>Backup vault</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protects</td>
+<td>Azure VMs, SQL/SAP HANA in VMs, Azure Files, on-prem (MARS/MABS)</td>
+<td>Azure Disks, Blobs, Azure Database for PostgreSQL, AKS</td>
+</tr>
+<tr>
+<td>Also hosts</td>
+<td><strong>Azure Site Recovery</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Backup policy:</strong> schedule (daily/hourly enhanced), retention (daily/weekly/monthly/yearly), instant restore snapshots.</li>
+<li><strong>Restore options (VM):</strong> create new VM, restore disks, replace existing disk, <strong>file-level recovery</strong>, cross-region restore (GRS vault).</li>
+<li><strong>Soft delete for backups</strong> (14 days default) and <strong>immutable vaults</strong> protect against ransomware.</li>
+<li><strong>Azure Site Recovery:</strong> replicate VMs to a secondary region; <strong>test failover</strong> (isolated network, no impact), <strong>failover</strong>, <strong>commit</strong>, <strong>re-protect</strong>, <strong>failback</strong>. RPO = how much data you can lose; RTO = how long until you're back.</li>
+<li><strong>Backup reports</strong> (Log Analytics + Backup center/Business Continuity Center) and built-in Azure Monitor alerts for job failures.</li>
+</ul>
+<h3 id="lab-10-watch-alert-back-up-fail-over-120-min">Lab 10 — Watch, alert, back up, fail over (120 min)</h3>
+<ol>
+<li>Create a Log Analytics workspace. On a lab VM, enable <strong>VM insights</strong> (installs Azure Monitor Agent + DCR).</li>
+<li>Add a <strong>diagnostic setting</strong> on a storage account → send <code>StorageRead/Write/Delete</code> to the workspace. Run the KQL above.</li>
+<li>Create an action group (your email) and a <strong>metric alert</strong>: CPU &gt; 80% for 5 min. Run <code>stress</code> (<code>sudo apt install stress &amp;&amp; stress --cpu 2 --timeout 600</code>) and get the email. Then create an <strong>alert processing rule</strong> that suppresses it for one hour.</li>
+<li><strong>Network Watcher → Connection troubleshoot</strong> from the VM to <code>www.microsoft.com:443</code>.</li>
+<li>Create a <strong>Recovery Services vault</strong>; back up the VM with the default policy; <strong>Backup now</strong>; perform <strong>file recovery</strong> of one file.</li>
+<li>Enable <strong>Site Recovery</strong> replication of the VM to a paired region; run a <strong>test failover</strong>; clean up the test failover.
+<strong>Teardown:</strong> stop protection and delete backup data (soft delete may hold it 14 days), disable replication, delete RGs.</li>
+</ol>
+<h3 id="lesson-10-knowledge-check">Lesson 10 knowledge check</h3>
+<div class="quiz" data-quiz="9"></div>
+
+<hr />
+<h2 id="capstone-ward-7-community-health">Capstone — Ward 7 Community Health</h2>
+<p>A nonprofit clinic network in Washington, DC is moving to Azure. Build it, document it, and defend it in a 10-minute walkthrough.</p>
+<p><strong>Requirements</strong></p>
+<ol>
+<li><strong>Identity &amp; governance:</strong> groups <code>clinic-admins</code>, <code>front-desk</code>, <code>it-contractors (guests)</code>; SSPR for staff; RBAC at RG scope; management group with an <em>Allowed locations</em> policy (two U.S. regions) and <em>Require tag <code>dept</code></em>; CanNotDelete lock on data RG; $50 budget with action group.</li>
+<li><strong>Storage:</strong> patient-intake files in a private-endpoint-only storage account (GZRS), versioning + soft delete, lifecycle to Cool at 30 days and Archive at 365, no shared key access; staff share in Azure Files with snapshots.</li>
+<li><strong>Compute:</strong> intake web app on App Service (Standard) with staging slot and VNet integration; a Linux VMSS (2 instances, zones) behind an internal Standard Load Balancer for a legacy scheduling API; one container job on Container Apps.</li>
+<li><strong>Network:</strong> hub (Bastion) + two spokes, peering, NSGs with ASGs, private DNS zone, UDR to a (simulated) firewall IP in the hub.</li>
+<li><strong>Operations:</strong> Log Analytics + VM insights, CPU and backup-failure alerts, Recovery Services vault backing up VMs daily (30-day retention), ASR test failover documented with RPO/RTO.</li>
+<li><strong>IaC:</strong> at least the storage and network layers in Bicep, deployed with <code>what-if</code> output captured.</li>
+</ol>
+<p><strong>Rubric:</strong> working build &amp; evidence 40 · security &amp; least privilege 20 · IaC quality 15 · operations &amp; recovery 15 · explanation to a non-technical director 10.</p>
+<p><strong>Cost note:</strong> build, record evidence, and tear down in one sitting. Estimated cost if deleted same day: under $10.</p>
+<h2 id="practice-exam-50-questions">Practice exam (50 questions)</h2>
+<div class="quiz" data-quiz="10"></div>
+
+<hr />
+<h2 id="glossary">Glossary</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Plain meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Action group</td>
+<td>The call list for alerts</td>
+</tr>
+<tr>
+<td>ASG</td>
+<td>A nametag for NICs you can write NSG rules against</td>
+</tr>
+<tr>
+<td>Bastion</td>
+<td>Browser SSH/RDP without public IPs</td>
+</tr>
+<tr>
+<td>Bicep</td>
+<td>Readable infrastructure-as-code for Azure</td>
+</tr>
+<tr>
+<td>DataActions</td>
+<td>Permissions on the data inside a resource</td>
+</tr>
+<tr>
+<td>DINE</td>
+<td>DeployIfNotExists policy effect</td>
+</tr>
+<tr>
+<td>Effective rules</td>
+<td>The merged NSG view on a NIC</td>
+</tr>
+<tr>
+<td>KQL</td>
+<td>Kusto Query Language</td>
+</tr>
+<tr>
+<td>Peering</td>
+<td>Private VNet-to-VNet link, non-transitive</td>
+</tr>
+<tr>
+<td>RPO / RTO</td>
+<td>Data you can lose / time you can be down</td>
+</tr>
+<tr>
+<td>SAS</td>
+<td>Time- and scope-limited access token</td>
+</tr>
+<tr>
+<td>SSPR</td>
+<td>Self-service password reset</td>
+</tr>
+<tr>
+<td>UDR</td>
+<td>Custom route that overrides Azure's defaults</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="instructor-notes">Instructor notes</h2>
+<ul>
+<li><strong>Correct our own website:</strong> domain weights changed; networking is 15–20% and monitoring 10–15%. Identity &amp; governance is 20–25%. PIM, Traffic Manager and Front Door are <em>beyond</em> the exam outline — teach them as career context.</li>
+<li><strong>Teardown discipline:</strong> start every session by having learners run <code>az group list -o table</code> and delete anything left from last week. Show a real bill line from an orphaned Bastion.</li>
+<li><strong>Veterans:</strong> map RBAC scope to a chain of command and NSG priority to an ROE card read top-down.</li>
+<li><strong>Teach the "control plane vs. data plane" split early.</strong> It explains RBAC, locks (ReadOnly breaking key listing), and storage access.</li>
+<li><strong>Exam style:</strong> expect scenario case studies and some lab-like question formats. Drill reading CLI/Bicep snippets.</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://aka.ms/AZ104-StudyGuide" rel="noopener">Official AZ-104 study guide</a></li>
+<li><a href="https://github.com/MicrosoftLearning/AZ-104-MicrosoftAzureAdministrator" rel="noopener">Microsoft AZ-104 lab repository</a></li>
+<li><a href="https://learn.microsoft.com/cli/azure/" rel="noopener">Azure CLI reference</a></li>
+<li><a href="https://learn.microsoft.com/azure/azure-resource-manager/bicep/" rel="noopener">Bicep documentation</a></li>
+<li><a href="https://learn.microsoft.com/azure/data-explorer/kql-quick-reference" rel="noopener">Azure Monitor KQL quick reference</a></li>
+</ul>
+    <h2 id="next-steps">Keep going</h2><div class="next"><a href="az-305-azure-solutions-architect.html" style="--nc:var(--prog-arch)"><small>DCT-AZ305</small><b>AZ-305 Azure Solutions Architect</b><br><small>The decision layer. Turn business requirements into Azure designs you can defend in a room full of skeptics.</small></a><a href="cloud-fundamentals-101.html" style="--nc:var(--prog-cloud)"><small>DCT-101</small><b>Cloud Fundamentals 101</b><br><small>Your first cloud build starts with understanding.</small></a></div>
+  </article>
+</div><!-- DCT:SITE-FOOTER START -->
+<footer aria-label="Site support"><p class="dct-page-guide" id="dct-page-guide" role="note" aria-label="Page support contact">If you are experiencing any issues on this page, please contact <a href="mailto:thedopecloudteacher@gmail.com">thedopecloudteacher@gmail.com</a>.</p></footer>
+<!-- DCT:SITE-FOOTER END --><script>
+const QUIZZES = [[{"q": "You need all members of the Finance department to automatically join a group. What do you configure?", "options": ["Assigned membership", "Dynamic membership rule based on department", "Group-based licensing", "SSPR"], "answer": 1, "explain": "Dynamic groups evaluate user attributes (requires Entra ID P1)."}, {"q": "A license assignment fails for a new user. What property must be set first?", "options": ["Job title", "Usage location", "Manager", "Department"], "answer": 1, "explain": "Usage location is required for license assignment."}, {"q": "Which SSPR method is NOT available to administrators?", "options": ["Mobile app", "Email", "Security questions", "Mobile phone"], "answer": 2, "explain": "Admins must use stronger methods; security questions aren't allowed."}, {"q": "A vendor needs to access a SharePoint site with their own corporate account. You should:", "options": ["Invite them as a B2B guest user", "Create a member account with a new password", "Share your password", "Add them to Entra Domain Services"], "answer": 0, "explain": "External users are invited as guests."}], [{"q": "A user has Reader at the subscription and Contributor on one resource group. What can they do in that resource group?", "options": ["Only read", "Manage resources (Contributor), because RBAC is additive", "Nothing \u2014 the assignments conflict", "Assign roles to others"], "answer": 1, "explain": "Effective permissions are the union of assignments."}, {"q": "Which role lets someone manage resources but not grant access?", "options": ["Owner", "Contributor", "User Access Administrator", "Role Based Access Control Administrator"], "answer": 1, "explain": "Contributor excludes Microsoft.Authorization write actions."}, {"q": "An Owner of a storage account can't read blobs when using Entra ID authentication. Why?", "options": ["Blob reading is a DataAction; they need a Storage Blob Data role", "Owners are read-only", "The storage firewall is off", "SAS is required for all access"], "answer": 0, "explain": "Control-plane and data-plane permissions are separate."}, {"q": "Where do you assign a role so it applies to every subscription in a department?", "options": ["Each resource", "A tag", "The department's management group", "Entra ID group properties"], "answer": 2, "explain": "Management-group assignments inherit to all child subscriptions."}], [{"q": "Existing storage accounts lack a required tag. Which policy capability fixes them?", "options": ["Deny effect", "A Modify policy with a remediation task", "A resource lock", "An RBAC assignment"], "answer": 1, "explain": "Remediation tasks apply Modify/DeployIfNotExists to existing resources using a managed identity."}, {"q": "Which lock blocks updates AND deletions?", "options": ["CanNotDelete", "ReadOnly", "Deny assignment", "Audit"], "answer": 1, "explain": "ReadOnly blocks both."}, {"q": "Tags applied to a resource group are inherited by its resources by default.", "options": ["True", "False"], "answer": 1, "explain": "Use the \"Inherit a tag from the resource group\" policy to propagate tags."}, {"q": "You need to exclude one dev subscription from a policy assigned at a management group. Use:", "options": ["An exclusion on the assignment", "A ReadOnly lock", "A new tenant", "Reader role"], "answer": 0, "explain": "Assignments support exclusions (or exemptions)."}, {"q": "During a resource move between resource groups:", "options": ["The resource changes region", "Both source and target resource groups are locked for changes until the move completes", "All tags are deleted", "The resource gets a new resource ID only if it's a VM"], "answer": 1, "explain": "RGs are locked during moves; region is unchanged; the resource ID changes because the path changes."}], [{"q": "You must be able to revoke a set of SAS tokens without rotating account keys. Use:", "options": ["Account SAS", "A service SAS tied to a stored access policy", "A ReadOnly lock", "Anonymous access"], "answer": 1, "explain": "Changing or deleting the stored access policy revokes associated SAS tokens."}, {"q": "Object replication requires which settings?", "options": ["Blob versioning on source and destination, and change feed on source", "GRS on both accounts", "A private endpoint", "Premium performance"], "answer": 0, "explain": "These are the prerequisites for object replication."}, {"q": "Which SAS type is signed with Microsoft Entra credentials?", "options": ["Account SAS", "Service SAS", "User delegation SAS", "Stored access policy"], "answer": 2, "explain": "User delegation SAS uses a user delegation key from Entra ID."}, {"q": "Hybrid users need Kerberos access to Azure Files without domain controllers in Azure. Use:", "options": ["Microsoft Entra Kerberos for hybrid identities", "Shared key only", "Anonymous access", "Account SAS"], "answer": 0, "explain": "Entra Kerberos supports identity-based access for hybrid users."}, {"q": "Infrastructure (double) encryption for a storage account must be enabled:", "options": ["When the account is created", "Any time later", "Only with LRS", "Only for Azure Files"], "answer": 0, "explain": "Infrastructure encryption is a create-time setting."}], [{"q": "A user overwrote a critical blob 2 hours ago. Which feature lets you retrieve the earlier content most directly?", "options": ["Blob versioning", "Container soft delete", "Lifecycle management", "Archive tier"], "answer": 0, "explain": "Versioning keeps prior versions on overwrite."}, {"q": "What is the maximum number of snapshots per Azure file share?", "options": ["50", "100", "200", "Unlimited"], "answer": 2, "explain": "Azure Files supports up to 200 share snapshots."}, {"q": "Which tier has a 90-day minimum retention?", "options": ["Hot", "Cool", "Cold", "Archive"], "answer": 2, "explain": "Cool 30 days, Cold 90, Archive 180."}, {"q": "To tier blobs based on last access time you must first:", "options": ["Enable GRS", "Enable last access time tracking", "Disable versioning", "Use Premium storage"], "answer": 1, "explain": "Access-time-based rules require tracking to be enabled."}], [{"q": "Which deployment mode removes resources in the resource group that are not in the template?", "options": ["Incremental", "Complete", "What-if", "Validate"], "answer": 1, "explain": "Complete mode deletes resources not defined in the template."}, {"q": "Which disk loses its data when a VM is deallocated or moved to new hardware?", "options": ["OS disk", "Data disk", "Temporary disk", "Premium SSD v2"], "answer": 2, "explain": "The temp disk is non-persistent."}, {"q": "For the highest VM SLA in a region, deploy two or more VMs across:", "options": ["An availability set", "Availability zones", "Two resource groups", "Two subscriptions"], "answer": 1, "explain": "Zone deployments offer 99.99%."}, {"q": "Which command previews what a Bicep deployment will change?", "options": ["az bicep build", "az deployment group what-if", "az group export", "az vm list"], "answer": 1, "explain": "What-if shows creates, modifies and deletes before deployment."}, {"q": "You need to move a VM to another Azure region. Which tool is designed for this?", "options": ["Resource lock", "Azure Resource Mover (or Site Recovery)", "Azure Policy", "AzCopy"], "answer": 1, "explain": "Moves between RGs/subscriptions don't change region; Resource Mover handles region moves."}], [{"q": "Which App Service tier is the minimum for deployment slots?", "options": ["Free", "Basic", "Standard", "Shared"], "answer": 2, "explain": "Slots and autoscale start at Standard."}, {"q": "Which container service can scale to zero based on HTTP traffic or events?", "options": ["ACI", "Azure Container Apps", "ACR", "App Service Free tier"], "answer": 1, "explain": "Container Apps uses KEDA-based autoscaling, including to zero."}, {"q": "To verify a custom domain on App Service you add:", "options": ["A TXT record (asuid) plus a CNAME or A record", "An MX record", "A private endpoint", "An NSG rule"], "answer": 0, "explain": "Domain verification uses asuid TXT records."}, {"q": "A web app must reach a database in a private VNet. Configure:", "options": ["Access restrictions", "VNet integration", "A deployment slot", "A custom domain"], "answer": 1, "explain": "VNet integration handles outbound traffic into a VNet."}], [{"q": "VNet A is peered with B, and B with C. Can A reach C by default?", "options": ["Yes, peering is transitive", "No, peering is non-transitive", "Only over IPv6", "Only if all VNets are in the same region"], "answer": 1, "explain": "Use a hub NVA/firewall, Virtual WAN, or direct A\u2013C peering."}, {"q": "Two NSG rules match: priority 200 Deny and priority 300 Allow. Result?", "options": ["Denied \u2014 the lower number is processed first", "Allowed \u2014 Allow always wins", "Both apply", "Error"], "answer": 0, "explain": "Lowest priority number wins; processing stops at the first match."}, {"q": "What subnet name does Azure Bastion require?", "options": ["BastionSubnet", "GatewaySubnet", "AzureBastionSubnet", "AzureFirewallSubnet"], "answer": 2, "explain": "The name is mandatory."}, {"q": "How many IP addresses does Azure reserve in each subnet?", "options": ["2", "3", "4", "5"], "answer": 3, "explain": "The first four and the last address are reserved."}, {"q": "A private endpoint resolves to a public IP from your VM. What's most likely missing?", "options": ["A service endpoint", "Private DNS zone integration", "A public IP", "A UDR"], "answer": 1, "explain": "Private endpoints need privatelink DNS records."}, {"q": "You want NSG rules that target \"all web servers\" without listing IPs. Use:", "options": ["Application security groups", "Service tags only", "Route tables", "Peering"], "answer": 0, "explain": "ASGs group NICs logically."}], [{"q": "A Standard Load Balancer's backends receive no traffic. NSGs allow port 80 from the internet only. What's missing?", "options": ["An allow rule for the AzureLoadBalancer service tag so health probes succeed", "A Basic SKU public IP", "An MX record", "A deployment slot"], "answer": 0, "explain": "Probes come from 168.63.129.16 (AzureLoadBalancer); if probes fail, instances are removed."}, {"q": "Which record type lets an apex domain point directly at an Azure public IP resource and update automatically?", "options": ["CNAME", "Alias record", "MX", "SRV"], "answer": 1, "explain": "Alias records reference Azure resources."}, {"q": "VMs should register their own names in a private zone automatically. Enable:", "options": ["Auto-registration on the virtual network link", "Public zone delegation", "An outbound rule", "Session persistence"], "answer": 0, "explain": "Auto-registration creates A records for VMs in the linked VNet."}, {"q": "Which load balancer operates at Layer 4?", "options": ["Azure Load Balancer", "Application Gateway", "Front Door", "Traffic Manager"], "answer": 0, "explain": "Load Balancer works on TCP/UDP."}], [{"q": "Which component determines who is notified when an alert fires?", "options": ["Alert processing rule", "Action group", "Diagnostic setting", "Data collection rule"], "answer": 1, "explain": "Action groups define notifications and actions."}, {"q": "You must silence alerts during Saturday maintenance without editing every rule. Use:", "options": ["An alert processing rule with suppression", "Delete the action group", "A resource lock", "Disable the workspace"], "answer": 0, "explain": "Alert processing rules apply at scale and on schedules."}, {"q": "Which vault type is required for Azure Site Recovery?", "options": ["Recovery Services vault", "Backup vault", "Key Vault", "Storage account"], "answer": 0, "explain": "ASR lives in Recovery Services vaults."}, {"q": "Which Site Recovery action validates DR without affecting production?", "options": ["Failover", "Test failover", "Commit", "Re-protect"], "answer": 1, "explain": "Test failover uses an isolated network."}, {"q": "Resource logs aren't in Log Analytics. What's missing?", "options": ["An action group", "A diagnostic setting on the resource", "Backup policy", "An NSG"], "answer": 1, "explain": "Resource logs require diagnostic settings to be routed."}, {"q": "Which Network Watcher tool shows where a VM's traffic to a destination will be routed?", "options": ["Packet capture", "Next hop", "Connection monitor", "Flow logs"], "answer": 1, "explain": "Next hop reveals the effective route."}], [{"q": "You need to give 300 users the same Microsoft 365 license with the least admin effort.", "options": ["Group-based licensing", "Assign licenses individually", "SSPR", "Dynamic DNS"], "answer": 0, "explain": "Assign the license to a group."}, {"q": "Guest users show UserType:", "options": ["Member", "Guest", "External", "Partner"], "answer": 1, "explain": "B2B users are UserType Guest."}, {"q": "A help-desk group should be able to reset passwords themselves. You configure SSPR scope as:", "options": ["All", "Selected, targeting the group", "None", "Dynamic"], "answer": 1, "explain": "Selected scopes SSPR to one group."}, {"q": "Which role assigns roles to others, optionally constrained to a list of roles?", "options": ["Contributor", "Role Based Access Control Administrator", "Reader", "Virtual Machine Contributor"], "answer": 1, "explain": "RBAC Administrator supports conditions limiting assignable roles."}, {"q": "Where is an RBAC assignment at a resource group inherited?", "options": ["To all resources in that group", "To the subscription", "To the management group", "Nowhere"], "answer": 0, "explain": "Inheritance flows down only."}, {"q": "Which policy effect deploys a missing diagnostic setting?", "options": ["Audit", "Deny", "DeployIfNotExists", "Append"], "answer": 2, "explain": "DINE deploys related resources when absent."}, {"q": "Which is TRUE about resource locks?", "options": ["Owners bypass them", "They apply to all users including Owners until removed", "They're inherited upward", "They only apply to VMs"], "answer": 1, "explain": "Locks override RBAC."}, {"q": "Maximum management group depth (excluding root):", "options": ["3", "4", "6", "10"], "answer": 2, "explain": "Six levels below root."}, {"q": "Which tool recommends shutting down an idle VM?", "options": ["Azure Advisor", "Network Watcher", "Service Health", "Azure Policy"], "answer": 0, "explain": "Advisor cost recommendations."}, {"q": "You need tags copied from resource groups onto resources automatically.", "options": ["Tags inherit by default", "Assign the \"Inherit a tag from the resource group\" policy", "Use a ReadOnly lock", "Use RBAC"], "answer": 1, "explain": "A Modify policy propagates tags."}, {"q": "A partner needs read access to one blob for 2 hours, without an Entra account. Best option?", "options": ["Share the account key", "A SAS token with read permission and 2-hour expiry", "Make the container public", "Add them as Owner"], "answer": 1, "explain": "SAS grants scoped, time-limited access."}, {"q": "Which storage setting blocks requests signed with account keys?", "options": ["Allow storage account key access = Disabled", "Minimum TLS 1.2", "Soft delete", "Versioning"], "answer": 0, "explain": "Disabling shared key forces Entra authorization."}, {"q": "Which redundancy should you choose for read access to data during a regional outage, with zone protection in the primary?", "options": ["GRS", "ZRS", "RA-GZRS", "LRS"], "answer": 2, "explain": "RA-GZRS combines zone + geo + read access to secondary."}, {"q": "AzCopy authenticates with Entra ID by running:", "options": ["azcopy login", "azcopy sas", "az storage login", "azcopy key"], "answer": 0, "explain": "azcopy login uses Entra ID."}, {"q": "Archive-tier blobs must be ___ before reading.", "options": ["Deleted", "Rehydrated to an online tier", "Encrypted", "Snapshotted"], "answer": 1, "explain": "Archive is offline."}, {"q": "Which feature protects deleted containers?", "options": ["Blob versioning", "Container soft delete", "Lifecycle management", "Object replication"], "answer": 1, "explain": "Container soft delete retains deleted containers."}, {"q": "Azure Files snapshots are:", "options": ["Read-only and incremental", "Writable copies", "Full copies each time", "Only for Premium"], "answer": 0, "explain": "Share snapshots are incremental and read-only."}, {"q": "An ARM template section that holds values supplied at deployment time:", "options": ["variables", "parameters", "outputs", "resources"], "answer": 1, "explain": "Parameters are inputs."}, {"q": "Convert an exported ARM JSON template to Bicep with:", "options": ["az bicep build", "az bicep decompile", "az deployment export", "az group convert"], "answer": 1, "explain": "Decompile converts ARM JSON to Bicep."}, {"q": "VM resize fails because the size isn't available on the current cluster. You should:", "options": ["Deallocate the VM, then resize", "Delete the OS disk", "Change the region", "Add a lock"], "answer": 0, "explain": "Deallocating allows moving to hardware that supports the size."}, {"q": "Which encrypts the VM temp disk and disk caches at the host?", "options": ["Storage Service Encryption only", "Encryption at host", "TLS 1.2", "SAS"], "answer": 1, "explain": "Encryption at host covers temp disk and caches."}, {"q": "Availability sets protect against:", "options": ["Rack/hardware failures and planned maintenance within a datacenter", "Regional outages", "Zone failures", "Accidental deletion"], "answer": 0, "explain": "Fault and update domains."}, {"q": "Which VMSS orchestration mode is recommended for new deployments?", "options": ["Uniform", "Flexible", "Classic", "Spot"], "answer": 1, "explain": "Flexible orchestration is recommended."}, {"q": "Which service stores private container images?", "options": ["ACI", "Azure Container Registry", "Container Apps", "App Service"], "answer": 1, "explain": "ACR is the registry."}, {"q": "ACI is billed:", "options": ["Per second for CPU and memory allocated", "Monthly flat fee", "Per HTTP request only", "Not at all"], "answer": 0, "explain": "Per-second billing for container group resources."}, {"q": "Which App Service feature lets an app setting stay with the slot during swap?", "options": ["Deployment slot setting (sticky)", "Autoscale", "VNet integration", "Backup"], "answer": 0, "explain": "Sticky settings don't swap."}, {"q": "App Service must be reachable only from a private network. Configure:", "options": ["VNet integration", "A private endpoint (and disable public access)", "A deployment slot", "Autoscale"], "answer": 1, "explain": "Private endpoints handle inbound privately; VNet integration is outbound."}, {"q": "Scaling an App Service plan from S1 to P1v3 is:", "options": ["Scale up", "Scale out", "Autoscale", "Slot swap"], "answer": 0, "explain": "Changing tier is vertical."}, {"q": "VNets 10.0.0.0/16 and 10.0.5.0/24 cannot be peered because:", "options": ["Address spaces overlap", "They're in different regions", "Peering requires VPN", "/24 is too small"], "answer": 0, "explain": "Overlapping address spaces block peering."}, {"q": "How many usable addresses in a /27 subnet in Azure?", "options": ["32", "30", "27", "16"], "answer": 2, "explain": "32 minus 5 reserved = 27."}, {"q": "Which forces subnet traffic through a firewall appliance?", "options": ["NSG", "User-defined route with next hop VirtualAppliance", "Service endpoint", "ASG"], "answer": 1, "explain": "UDRs override system routes."}, {"q": "An NSG on a subnet allows 443; the NIC's NSG has no allow for 443. Inbound 443 is:", "options": ["Allowed", "Denied", "Allowed only from the VNet", "Redirected"], "answer": 1, "explain": "Both NSGs must allow inbound traffic."}, {"q": "Service endpoints differ from private endpoints because service endpoints:", "options": ["Keep the PaaS service on its public endpoint but restrict access to your subnet", "Give the service a private IP", "Require private DNS zones", "Cost per hour"], "answer": 0, "explain": "Private endpoints give a private IP; service endpoints don't."}, {"q": "Which Bastion SKU is free with limited features?", "options": ["Developer", "Basic", "Standard", "Premium"], "answer": 0, "explain": "Developer SKU is free (shared infrastructure, limited)."}, {"q": "Public IP SKU for new deployments:", "options": ["Basic", "Standard", "Classic", "Dynamic only"], "answer": 1, "explain": "Basic public IPs retired Sept 30, 2025."}, {"q": "Which DNS feature resolves on-premises names from Azure without custom DNS VMs?", "options": ["Azure DNS Private Resolver", "Alias records", "Public DNS zone", "Traffic Manager"], "answer": 0, "explain": "Private Resolver provides inbound/outbound forwarding."}, {"q": "Health probes for Azure Load Balancer originate from:", "options": ["The client IP", "168.63.129.16 (AzureLoadBalancer tag)", "10.0.0.1", "The VNet gateway"], "answer": 1, "explain": "Allow the AzureLoadBalancer tag."}, {"q": "To RDP to one specific VM behind a public load balancer on port 50001, configure:", "options": ["A load-balancing rule", "An inbound NAT rule", "An outbound rule", "A health probe"], "answer": 1, "explain": "Inbound NAT maps a frontend port to one backend."}, {"q": "Which log shows who deleted a VM?", "options": ["Activity log", "VM metrics", "Guest OS logs", "Application Insights"], "answer": 0, "explain": "Control-plane operations are in the Activity log."}, {"q": "To query storage read operations in KQL, first:", "options": ["Enable versioning", "Create a diagnostic setting sending storage logs to Log Analytics", "Turn on SFTP", "Add a lock"], "answer": 1, "explain": "Resource logs need diagnostic settings."}, {"q": "Which tool continuously tests connectivity between a VM and an endpoint and reports latency?", "options": ["IP flow verify", "Connection monitor", "Next hop", "Effective routes"], "answer": 1, "explain": "Connection monitor provides ongoing monitoring."}, {"q": "Which vault protects Azure Blobs with operational/vaulted backup?", "options": ["Recovery Services vault", "Backup vault", "Key Vault", "Storage account"], "answer": 1, "explain": "Backup vaults handle blobs, disks, PostgreSQL, AKS."}, {"q": "A deleted VM backup can be recovered for how long by default with soft delete?", "options": ["7 days", "14 days", "30 days", "365 days"], "answer": 1, "explain": "Default soft delete retention is 14 days."}, {"q": "Restore one accidentally deleted file from a VM backup without restoring the VM:", "options": ["File recovery", "Replace existing disk", "Cross-region restore", "Test failover"], "answer": 0, "explain": "File recovery mounts recovery points."}, {"q": "After a real ASR failover, which step finalizes the recovery point?", "options": ["Test failover", "Commit", "Re-protect", "Cleanup"], "answer": 1, "explain": "Commit finalizes the failover."}, {"q": "RPO measures:", "options": ["Maximum acceptable data loss (time)", "Time to restore service", "Cost of recovery", "Number of replicas"], "answer": 0, "explain": "RPO = data loss tolerance; RTO = downtime tolerance."}, {"q": "Which alert type notifies when Azure has an incident in your region?", "options": ["Metric alert", "Service Health alert", "Log search alert", "Budget alert"], "answer": 1, "explain": "Service Health alerts."}, {"q": "VM insights requires which agent?", "options": ["Azure Monitor Agent with a data collection rule", "Log Analytics (MMA) agent only", "No agent", "Bastion"], "answer": 0, "explain": "AMA + DCR is the current agent model."}, {"q": "Which ARM deployment command validates changes without deploying?", "options": ["az deployment group what-if", "az deployment group create", "az vm create", "az group delete"], "answer": 0, "explain": "What-if previews."}, {"q": "You need blobs in \"logs/\" deleted after 90 days automatically.", "options": ["Lifecycle management rule with prefix \"logs/\"", "Soft delete for 90 days", "Archive tier", "Object replication"], "answer": 0, "explain": "Lifecycle rules can delete by age and prefix."}]], SLUG = "az-104-azure-administrator", TOTAL = 97;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const KEY = 'dct:quiz:' + SLUG;
+const store = { get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+                set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} } };
+let state = store.get(KEY) || {};
+function progress(){
+  const right = Object.values(state).filter(v => v === true).length;
+  $('#pbar').style.width = (TOTAL ? Math.round(100*right/TOTAL) : 0) + '%';
+  $('#ptext').textContent = `${right} of ${TOTAL} practice questions correct`;
+}
+function scoreOf(qi){ const qs = QUIZZES[qi]; let r=0,a=0; qs.forEach((_,i)=>{ const v=state[qi+'-'+i]; if(v!==undefined){a++; if(v===true) r++;} }); return `${r}/${qs.length} correct${a<qs.length?` · ${qs.length-a} to go`:''}`; }
+function answer(qi, i, pick, wrapEl){
+  const q = QUIZZES[qi][i], ok = pick === q.answer;
+  if (state[qi+'-'+i] === undefined || ok) state[qi+'-'+i] = ok;
+  store.set(KEY, state);
+  wrapEl.querySelectorAll('.opt').forEach((b, j) => { b.disabled = true; if (j === q.answer) b.classList.add('right'); if (j === pick && !ok) b.classList.add('wrong'); });
+  const ex = wrapEl.querySelector('.explain');
+  ex.innerHTML = `<b>${ok ? 'Correct.' : 'Not quite.'}</b> ${q.explain} <button class="reset" type="button">Try again</button>`;
+  ex.querySelector('.reset').onclick = () => { wrapEl.querySelectorAll('.opt').forEach(b=>{b.disabled=false;b.classList.remove('right','wrong')}); ex.textContent=''; };
+  wrapEl.closest('.quiz').querySelector('.score').textContent = scoreOf(qi);
+  progress();
+}
+$$('.quiz').forEach(el => {
+  const qi = +el.dataset.quiz, qs = QUIZZES[qi];
+  const title = qs.length >= 20 ? 'Practice exam' : 'Check yourself';
+  el.innerHTML = `<header><span>${title} · ${qs.length} question${qs.length>1?'s':''}</span><span class="score"></span></header>` +
+    qs.map((q,i) => `<div class="q" data-i="${i}"><p class="stem">${i+1}. ${q.q}</p><div class="opts">${q.options.map((o,j)=>`<button type="button" class="opt" data-j="${j}">${o}</button>`).join('')}</div><p class="explain" aria-live="polite"></p></div>`).join('');
+  el.querySelector('.score').textContent = scoreOf(qi);
+  el.querySelectorAll('.q').forEach(qel => {
+    const i = +qel.dataset.i;
+    qel.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => answer(qi, i, +b.dataset.j, qel)));
+  });
+});
+$$('li.check input').forEach((cb, i) => { const k='dct:check:'+SLUG+':'+i; cb.checked = !!store.get(k); cb.addEventListener('change', () => store.set(k, cb.checked)); });
+$$('pre').forEach(pre => { const b = document.createElement('button'); b.className='copy'; b.type='button'; b.textContent='Copy';
+  b.onclick = async () => { const t = pre.querySelector('code').innerText; try { await navigator.clipboard.writeText(t); b.textContent='Copied'; } catch(e){ const r=document.createRange(); r.selectNodeContents(pre.querySelector('code')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected — press Ctrl+C'; } setTimeout(()=>b.textContent='Copy',1800); };
+  pre.appendChild(b); });
+$('#resetp').addEventListener('click', () => { state = {}; store.set(KEY, state); location.reload(); });
+const links = $$('.toc a'); const heads = links.map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean);
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+e.target.id)); } }), {rootMargin:'-20% 0px -70% 0px'});
+heads.forEach(h => io.observe(h));
+progress();
+</script><script src="/js/global-ui.js?v=20261007hub"></script><script src="/js/site-config.js"></script><script src="/js/analytics.js"></script></body></html>
