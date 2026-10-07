@@ -14,6 +14,7 @@ const fs = require('fs');
 const https = require('https');
 const { sendEmail } = require('./email-service');
 const { setupMerch } = require('./merch-checkout');
+const { setupHubAccess, COURSE_SLUGS } = require('./hub-access');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -165,7 +166,7 @@ const seedCourse = db.prepare(`
 `);
 
 [
-  ['cloud-fundamentals-101', 'Cloud Fundamentals 101', 'Master the basics of cloud computing with AWS, Azure, and GCP. Perfect for beginners.', 297.0, 15, 10, 'Beginner', 'Cloud Basics'],
+  ['cloud-fundamentals-101', 'Cloud Fundamentals 101', 'Master the basics of cloud computing with AWS, Azure, and GCP. Perfect for beginners.', 97.0, 8, 5, 'Beginner', 'Cloud Basics'],
   ['cloud-architect-pathway', 'Cloud Architect Professional Pathway', 'Comprehensive training to become a certified cloud architect. Design scalable, secure cloud infrastructure.', 797.0, 40, 12, 'Advanced', 'Architecture'],
   ['cloud-security-engineer', 'Cloud Security Engineer Track', 'Master cloud security best practices, compliance, and threat mitigation across all major platforms.', 697.0, 35, 10, 'Intermediate', 'Security'],
   ['devops-automation', 'DevOps & Automation Mastery', 'CI/CD pipelines, Infrastructure as Code, Docker, Kubernetes, and automation tools.', 597.0, 30, 12, 'Intermediate', 'DevOps'],
@@ -917,6 +918,8 @@ app.get('/api/courses/:courseId/access', authenticateToken, (req, res) => {
   res.json({ hasAccess: !!purchase });
 });
 
+setupHubAccess(app, db, stripe, authenticateToken, requireAdmin);
+
 // ==================== STRIPE PAYMENT ROUTES ====================
 
 const fulfillMerch = setupMerch(app, db, stripe, buildFrontendUrl());
@@ -926,15 +929,19 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
   try {
     if (!ensureStripeConfigured(res)) return;
 
-    const { courseId, priceId } = req.body;
+    const { courseId } = req.body;
+    if (COURSE_SLUGS.has(courseId)) {
+      const ready = db.prepare('SELECT 1 FROM private_course_content WHERE course_id = ?').get(courseId);
+      if (!ready || process.env.HUB_CHECKOUT_ENABLED !== 'true') return res.status(503).json({ error: 'Enrollment is being prepared; please contact DCT before purchasing.' });
+    }
 
     const course = db.prepare('SELECT * FROM courses WHERE id = ?').get(courseId);
     if (!course) {
       return res.status(404).json({ error: 'Course not found' });
     }
 
+    if (!Number.isFinite(course.price) || course.price <= 0) return res.status(400).json({ error: 'Contact DCT for course pricing' });
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
       line_items: [{
         price_data: {
           currency: 'usd',
@@ -953,7 +960,8 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
       metadata: {
         courseId,
         userId: req.user.userId.toString()
-      }
+      },
+      payment_intent_data: { metadata: { courseId, userId: req.user.userId.toString() } }
     });
 
     res.json({ url: session.url, sessionId: session.id });
@@ -1089,11 +1097,11 @@ app.post('/api/webhook', async (req, res) => {
   }
 
   // Handle the event
-  if (event.type === 'checkout.session.completed') {
+  if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
     const session = event.data.object;
     
     // Check if this is a subscription or one-time purchase
-    if (session.mode === 'subscription') {
+    if (session.mode === 'subscription' && session.payment_status === 'paid' && session.livemode === true) {
       // Handle subscription
       db.prepare(`
         INSERT OR REPLACE INTO subscriptions (user_id, plan_type, stripe_subscription_id, stripe_customer_id, status)
@@ -1105,16 +1113,11 @@ app.post('/api/webhook', async (req, res) => {
         session.customer
       );
     } else {
-      // Grant course access (one-time purchase)
-      db.prepare(`
-        INSERT INTO purchases (user_id, product_type, product_id, stripe_payment_id, amount, status)
-        VALUES (?, 'course', ?, ?, ?, 'active')
-      `).run(
-        parseInt(session.metadata.userId),
-        session.metadata.courseId,
-        session.payment_intent,
-        session.amount_total / 100
-      );
+      // Fulfillment requires a live confirmed payment; repeat events are idempotent.
+      if (session.payment_status === 'paid' && session.livemode === true && session.metadata?.courseId && session.metadata?.userId) {
+        const exists = db.prepare('SELECT id FROM purchases WHERE stripe_payment_id = ? AND user_id = ? AND product_id = ?').get(session.payment_intent, Number(session.metadata.userId), session.metadata.courseId);
+        if (!exists) db.prepare("INSERT INTO purchases (user_id, product_type, product_id, stripe_payment_id, amount, status) VALUES (?, 'course', ?, ?, ?, 'active')").run(Number(session.metadata.userId), session.metadata.courseId, session.payment_intent, session.amount_total / 100);
+      }
     }
   }
 
@@ -1288,6 +1291,8 @@ app.get('/api/admin/stats', authenticateToken, (req, res) => {
 // Get video for specific lesson
 app.get('/api/videos/:courseId/:lessonId', authenticateToken, (req, res) => {
   const { courseId, lessonId } = req.params;
+  const purchase = db.prepare("SELECT id FROM purchases WHERE user_id=? AND product_id=? AND product_type='course' AND status='active' AND (expires_at IS NULL OR expires_at > datetime('now'))").get(req.user.userId, courseId);
+  if (!purchase) return res.status(403).json({ error: 'Course enrollment required' });
   
   // Map courseId to folder name
   const courseFolderMap = {

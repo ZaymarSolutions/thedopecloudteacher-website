@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {"route":"/hub/source/*","statusCode":404,"headers":{"Cache-Control":"no-store"}},
+    {"route":"/hub/quizzes/*","statusCode":404,"headers":{"Cache-Control":"no-store"}},
+    {"route":"/hub/build/*","statusCode":404,"headers":{"Cache-Control":"no-store"}},
+    {"route":"/hub/courses/*","headers":{"Cache-Control":"no-store"}},
+    {"route":"/hub/index.html","headers":{"Cache-Control":"no-store"}}
+  ],
+  "globalHeaders":{"X-Content-Type-Options":"nosniff","Referrer-Policy":"strict-origin-when-cross-origin"}
+}

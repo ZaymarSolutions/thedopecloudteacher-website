@@ -1,0 +1,11 @@
+const test=require('node:test');const assert=require('node:assert/strict');const {verifyPaidAccess}=require('../hub-access');
+const course={id:'az-900-azure-fundamentals',price:297};
+const purchase={user_id:12,product_type:'course',product_id:course.id,status:'active',stripe_payment_id:'pi_example'};
+function processor(payment={},charge={}) {return {paymentIntents:{retrieve:async()=>({livemode:true,status:'succeeded',currency:'usd',amount_received:29700,metadata:{userId:'12',courseId:course.id},latest_charge:'ch_example',...payment})},charges:{retrieve:async()=>({livemode:true,paid:true,refunded:false,disputed:false,amount_refunded:0,...charge})}};}
+async function access(p=purchase,s=processor()){return verifyPaidAccess({purchase:p,course,stripe:s});}
+test('only a paid live enrollment for this user/course opens the classroom',async()=>{assert.equal(await access(),true);});
+test('missing, inactive, expired and invalid-expiry enrollments are denied',async()=>{for(const p of [null,{...purchase,status:'refunded'},{...purchase,expires_at:'2000-01-01 00:00:00'},{...purchase,expires_at:'invalid'}])assert.equal(await access(p),false);});
+test('an account cannot borrow another account or course payment',async()=>{assert.equal(await access(purchase,processor({metadata:{userId:'13',courseId:course.id}})),false);assert.equal(await access(purchase,processor({metadata:{userId:'12',courseId:'other'}})),false);assert.equal(await access({...purchase,product_id:'other'}),false);});
+test('test-mode, pending and underpaid payments do not unlock live content',async()=>{for(const patch of [{livemode:false},{status:'processing'},{amount_received:100},{currency:'eur'},{latest_charge:null}])assert.equal(await access(purchase,processor(patch)),false);});
+test('refunds, partial refunds, disputes and unpaid charges revoke access',async()=>{for(const patch of [{refunded:true},{amount_refunded:1},{disputed:true},{paid:false},{livemode:false}])assert.equal(await access(purchase,processor({},patch)),false);});
+test('processor failure propagates to the route which fails closed',async()=>{await assert.rejects(access(purchase,{paymentIntents:{retrieve:async()=>{throw new Error('offline')}}}));});
