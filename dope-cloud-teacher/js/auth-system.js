@@ -273,8 +273,10 @@ class DopeCloudAuth {
       });
 
       if (!response.ok) {
-        this.clearSession();
-        updateAuthUI();
+        if (response.status === 401 || response.status === 403) {
+          this.clearSession();
+          updateAuthUI();
+        }
         return null;
       }
 

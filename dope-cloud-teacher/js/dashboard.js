@@ -70,7 +70,7 @@
   async function loadDashboard() {
     if (!dopeAuth.isAuthenticated()) { window.location.replace('/login.html'); return; }
     const user = await dopeAuth.getCurrentUser();
-    if (!user) { byId('dashboardStatus').textContent = 'Please sign in again to load your account.'; window.location.replace('/login.html'); return; }
+    if (!user) { byId('dashboardStatus').textContent = dopeAuth.isAuthenticated() ? 'Your account server is temporarily unavailable. Refresh in a moment; your sign-in and saved photo are unchanged.' : 'Your session has expired. Please sign in again.'; if (!dopeAuth.isAuthenticated()) window.location.replace('/login.html'); return; }
     byId('welcomeName').textContent = String(user.name || 'learner').trim().split(/\s+/)[0];
     byId('profileTitle').textContent = user.name || 'Your account';
     byId('accountEmail').textContent = user.email || '';
