@@ -236,6 +236,7 @@ app.use(cors({
 // Stripe signs the exact request bytes. Preserve them before JSON parsing so
 // webhook verification works with the same middleware used by other API routes.
 app.use(express.json({
+  limit: '512kb',
   verify: (req, res, buffer) => {
     if (req.originalUrl.split('?')[0] === '/api/webhook') req.rawBody = Buffer.from(buffer);
   }

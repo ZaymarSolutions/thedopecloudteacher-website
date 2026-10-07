@@ -19,6 +19,17 @@ async function verifyPaidAccess({ purchase, course, stripe }) {
 function setupHubAccess(app, db, stripe, authenticateToken, requireAdmin) {
   db.exec(`CREATE TABLE IF NOT EXISTS private_course_content (course_id TEXT PRIMARY KEY, html TEXT NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(course_id) REFERENCES courses(id));
     CREATE TABLE IF NOT EXISTS instructor_readiness (user_id INTEGER PRIMARY KEY, modules TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'pending_review', updated_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id));`);
+  app.post('/api/admin/hub/import', authenticateToken, requireAdmin, (req,res) => {
+    const {slug,title,html}=req.body;
+    const prices={'cloud-fundamentals-101':97,'az-900-azure-fundamentals':297,'az-104-azure-administrator':597,'ai-901-azure-ai-fundamentals':297};
+    if (!COURSE_SLUGS.has(slug) || typeof title !== 'string' || title.length>200 || typeof html !== 'string' || Buffer.byteLength(html)>450000 || !html.includes('<article class="content">')) return res.status(400).json({error:'Invalid private course file'});
+    const price=prices[slug] ?? null;
+    db.transaction(()=>{
+      db.prepare("INSERT INTO courses (id,title,price,status) VALUES (?,?,?,'active') ON CONFLICT(id) DO UPDATE SET title=excluded.title,price=excluded.price").run(slug,title,price);
+      db.prepare('INSERT INTO private_course_content (course_id,html) VALUES (?,?) ON CONFLICT(course_id) DO UPDATE SET html=excluded.html,updated_at=CURRENT_TIMESTAMP').run(slug,html);
+    })();
+    res.set('Cache-Control','no-store').json({imported:slug});
+  });
   app.get('/api/hub/catalog', (req, res) => {
     const courses = db.prepare('SELECT c.id, c.title, c.price FROM courses c JOIN private_course_content p ON p.course_id = c.id').all();
     res.json({ courses: courses.filter(c => COURSE_SLUGS.has(c.id)).map(c => ({...c, checkoutReady: !!stripe && process.env.HUB_CHECKOUT_ENABLED === 'true' && c.price > 0})) });
