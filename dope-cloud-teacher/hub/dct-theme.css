@@ -6,7 +6,7 @@
    ===================================================================== */
 
 /* 1. FONTS — replace with the main site's font import (Google Fonts URL or @font-face rules). */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Unbounded:wght@600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;500;600;700&display=swap');
 
 :root{
   /* 2. TYPE — the site's heading font, body font, and code font */
