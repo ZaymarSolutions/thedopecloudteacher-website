@@ -125,6 +125,7 @@
       { href: 'programs.html', label: 'Programs', sections: ['programs'], pages: ['programs.html', 'courses.html', 'certifications.html'] },
       { href: 'who-we-serve.html', label: 'Who We Serve', sections: ['who-we-serve'], pages: ['who-we-serve.html', 'veterans-community.html'] },
       { href: 'about.html', label: 'About', sections: [], pages: ['about.html', 'governance-responsible-ai.html'] },
+      { href: 'team.html', label: 'Our Team', sections: [], pages: ['team.html'] },
       { href: 'partners.html', label: 'Partners', sections: ['partners'], pages: ['partners.html', 'corporate-training.html', 'b2b.html'] },
       { href: 'resources.html', label: 'Resources', sections: ['resources'], pages: ['resources.html', 'blog.html', 'playbook/index.html'] },
       { href: 'current-intelligence.html', label: 'News', sections: [], pages: ['current-intelligence.html'] },
