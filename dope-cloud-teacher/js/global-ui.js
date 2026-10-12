@@ -353,3 +353,19 @@
     normalizeLocalLinks();
   }
 })();
+
+(function () {
+  function addSaleStrip() {
+    if (Date.now() >= Date.parse('2027-01-01T05:00:00Z') || document.getElementById('dct-sale-strip')) return;
+    var style = document.createElement('style'); style.textContent = ".dct-sale-strip{display:flex;align-items:center;background:#073d79;color:#fff;border-bottom:3px solid #ffdf00;position:relative;z-index:20;font-family:system-ui,sans-serif}.dct-sale-link{flex:1;min-width:0;overflow:hidden;color:#fff;text-decoration:none;padding:12px 0;font-weight:800}.dct-sale-track{display:flex;width:max-content;animation:dct-sale-scroll 36s linear infinite}.dct-sale-copy{white-space:nowrap;padding:0 36px;font-size:clamp(14px,2vw,17px)}.dct-sale-strip:hover .dct-sale-track,.dct-sale-strip:focus-within .dct-sale-track,.dct-sale-strip[data-paused=\"true\"] .dct-sale-track{animation-play-state:paused}.dct-sale-control{background:#fff;color:#073d79;border:0;border-radius:6px;padding:7px 10px;margin:6px 10px;font:700 12px system-ui;cursor:pointer}.dct-sale-link:focus-visible,.dct-sale-control:focus-visible{outline:3px solid #ffdf00;outline-offset:-3px}@keyframes dct-sale-scroll{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.dct-sale-track{animation:none;width:auto}.dct-sale-copy{white-space:normal;padding:0 16px}.dct-sale-copy[aria-hidden=\"true\"]{display:none}.dct-sale-control{display:none}}"; document.head.appendChild(style);
+    var strip=document.createElement('aside'); strip.id='dct-sale-strip'; strip.className='dct-sale-strip'; strip.setAttribute('aria-label','DCT year-end course promotion');
+    var link=document.createElement('a'); link.className='dct-sale-link'; link.href='/hub/enroll.html?utm_source=dct&utm_medium=announcement&utm_campaign=year_end_25';
+    var track=document.createElement('span'); track.className='dct-sale-track';
+    for(var i=0;i<2;i++){var copy=document.createElement('span');copy.className='dct-sale-copy';copy.textContent="💥 DCT — HOME OF THE $25 CLASSES • Cloud · AI · Cybersecurity • Self-paced online • $25 per course through Dec. 31, 2026 • Bring your curiosity. Start here →";if(i===1)copy.setAttribute('aria-hidden','true');track.appendChild(copy);}
+    link.appendChild(track);strip.appendChild(link);
+    var button=document.createElement('button');button.type='button';button.className='dct-sale-control';button.textContent='Pause';button.setAttribute('aria-label','Pause scrolling announcement');button.setAttribute('aria-pressed','false');
+    button.addEventListener('click',function(){var paused=strip.dataset.paused!=='true';strip.dataset.paused=String(paused);button.textContent=paused?'Play':'Pause';button.setAttribute('aria-pressed',String(paused));button.setAttribute('aria-label',paused?'Resume scrolling announcement':'Pause scrolling announcement');});strip.appendChild(button);
+    var header=document.querySelector('header');if(header)header.insertAdjacentElement('afterend',strip);else document.body.prepend(strip);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addSaleStrip);else addSaleStrip();
+})();
