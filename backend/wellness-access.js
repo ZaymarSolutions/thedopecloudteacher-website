@@ -38,6 +38,8 @@ function setupWellnessAccess(app,db,stripe,env=process.env) {
     if(available)try {
       const prices=await Promise.all(Object.values(offers).map(o=>stripe.prices.retrieve(o.price)));
       available=prices.every(p=>p.active && p.livemode && p.currency==='usd' && p.unit_amount===2500 && p.type==='one_time');
+      const links=await Promise.all(Object.values(offers).map(o=>stripe.paymentLinks.retrieve(o.link)));
+      available=available && links.every(l=>l.active && l.livemode && l.metadata?.brand==='AskDoGood');
     }catch(error){available=false;console.warn('AskDoGood Stripe price verification:',error.code || error.type || 'unavailable');}
     res.set('Cache-Control','no-store');
     res.json({ready:available,offers:Object.entries(offers).map(([id,value])=>({id,name:content[id].title,price:25,checkoutUrl:available?value.url:null}))});

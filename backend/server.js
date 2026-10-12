@@ -239,7 +239,7 @@ app.use(cors({
 app.use(express.json({
   limit: '512kb',
   verify: (req, res, buffer) => {
-    if (req.originalUrl.split('?')[0] === '/api/webhook') req.rawBody = Buffer.from(buffer);
+    if (['/api/webhook','/api/askdogood/webhook'].includes(req.originalUrl.split('?')[0])) req.rawBody = Buffer.from(buffer);
   }
 }));
 
@@ -1070,7 +1070,19 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
   }
 });
 
-const wellnessAccess = require('./wellness-access').setupWellnessAccess(app, db, stripe);
+const wellnessStripe=process.env.ASKDOGOOD_STRIPE_SECRET_KEY ? require('stripe')(process.env.ASKDOGOOD_STRIPE_SECRET_KEY) : null;
+const wellnessAccess=require('./wellness-access').setupWellnessAccess(app,db,wellnessStripe,{STRIPE_WEBHOOK_SECRET:process.env.ASKDOGOOD_STRIPE_WEBHOOK_SECRET});
+app.post('/api/askdogood/webhook',async(req,res)=>{
+  if(!wellnessStripe || !process.env.ASKDOGOOD_STRIPE_WEBHOOK_SECRET)return res.status(503).json({error:'Toolkit payment service is not configured'});
+  let event;
+  try{event=wellnessStripe.webhooks.constructEvent(req.rawBody,req.headers['stripe-signature'],process.env.ASKDOGOOD_STRIPE_WEBHOOK_SECRET);}
+  catch(error){return res.status(400).json({error:'Webhook signature could not be verified'});}
+  if(event.livemode!==true)return res.status(400).json({error:'Live payment events required'});
+  if(['checkout.session.completed','checkout.session.async_payment_succeeded'].includes(event.type) && event.data.object.metadata?.wellnessOffer && event.data.object.payment_status==='paid'){
+    try{await wellnessAccess.fulfill(event.data.object.id);}catch(error){return res.status(503).json({error:'Toolkit fulfillment will be retried'});}
+  }
+  return res.json({received:true});
+});
 
 // Stripe webhook handler
 app.post('/api/webhook', async (req, res) => {
