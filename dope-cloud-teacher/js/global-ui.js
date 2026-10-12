@@ -371,3 +371,18 @@
 })();
 
 (function(){var style=document.createElement('style');style.textContent="main :is(.front-actions,.cta-row,.actions,.dct-word-actions,.sale-buttons){display:flex!important;justify-content:center!important;align-items:center;flex-wrap:wrap;gap:14px!important}main :is(.front-actions,.cta-row,.actions,.dct-word-actions) > :is(a,button){margin:0!important;text-align:center;max-width:100%;white-space:normal}main :is(.front-btn,.btn,.cta){justify-content:center;text-align:center;min-height:44px}main :is(figure,.dct-confidence img,.merch-feature img,.front-card img,.visual-card img){margin-left:auto;margin-right:auto}main img{max-width:100%}main :is(.front-card,.visual-card,.card)>a:only-of-type{display:table;margin:16px auto 0;text-align:center}main .dct-confidence .front-btn{display:table;margin:20px auto 0}main .tech-tabs{justify-content:center}main .sale-sponsor{text-align:center}@media(max-width:600px){main :is(.front-actions,.cta-row,.actions)>:is(a,button){width:min(100%,340px)}main :is(.front-actions,.cta-row,.actions){margin-top:20px;margin-bottom:12px}}";document.head.appendChild(style);})();
+
+;(()=>{
+ const notes=[
+ ['A second lock is a smart move.','Multifactor authentication asks for more than one proof of identity. Turn it on for important accounts.','https://www.cisa.gov/audiences/small-and-medium-businesses/secure-your-business/require-multifactor-authentication','CISA • Account security'],
+ ['She checked the math.','Katherine Johnson rechecked computer calculations for John Glenn’s 1962 orbital mission.','https://science.nasa.gov/people/katherine-johnson/','NASA • Katherine Johnson'],
+ ['The cloud has room for you.','Mae Jemison became the first African American woman in space in 1992. Curiosity belongs to everyone.','https://www.nasa.gov/image-article/mae-jemison-first-african-american-woman-space/','NASA • Mae Jemison'],
+ ['Ask the “basic” question.','Learning starts with a question. You deserve an explanation that makes sense.','','An original DCT reminder'],
+ ['A little Black tech history.','Mark Dean and Dennis Moeller helped develop the ISA bus used in the IBM PC.','https://www.ibm.com/history/personal-computer','IBM • Personal computer']
+ ];
+ function add(){if(document.querySelector('.dct-fact-note'))return;const main=document.querySelector('main');if(!main)return;
+ const style=document.createElement('style');style.textContent='.dct-fact-note{max-width:440px;margin:28px auto;background:#ffe0eb;color:#402038;border:1px solid #e9a7bf;padding:18px 22px;border-radius:18px;box-shadow:4px 5px 0 #f7bed3;text-align:center;line-height:1.6}.dct-fact-note summary{cursor:pointer;font-weight:750}.dct-fact-note p{margin:12px 0}.dct-fact-note a{color:#653253;text-decoration:underline}';document.head.append(style);
+ const seed=[...location.pathname+new Date().toISOString().slice(0,10)].reduce((n,c)=>n+c.charCodeAt(0),0);
+ [0,2].forEach((offset,i)=>{const note=notes[(seed+offset)%notes.length],el=document.createElement('details');el.className='dct-fact-note';const s=document.createElement('summary');s.textContent=note[0];el.append(s);const p=document.createElement('p');p.textContent=note[1];el.append(p);const a=document.createElement(note[2]?'a':'small');a.textContent=note[3];if(note[2]){a.href=note[2];a.target='_blank';a.rel='noopener noreferrer'}el.append(a);const sections=main.querySelectorAll(':scope > section');if(sections.length>1)sections[i===0?0:Math.max(0,sections.length-2)].after(el);else main.append(el)});
+ }if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',add);else add();
+})();

@@ -1070,6 +1070,8 @@ app.post('/api/create-subscription', authenticateToken, async (req, res) => {
   }
 });
 
+const wellnessAccess = require('./wellness-access').setupWellnessAccess(app, db, stripe);
+
 // Stripe webhook handler
 app.post('/api/webhook', async (req, res) => {
   if (!ensureStripeConfigured(res)) return;
@@ -1086,6 +1088,12 @@ app.post('/api/webhook', async (req, res) => {
   } catch (err) {
     console.error('Webhook signature verification failed:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
+  }
+
+  if ((event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') && event.data.object.metadata?.wellnessOffer) {
+    if(event.data.object.payment_status !== 'paid') return res.json({received:true});
+    try { await wellnessAccess.fulfill(event.data.object.id); return res.json({received:true}); }
+    catch(error) { return res.status(503).json({error:'Wellness fulfillment will be retried'}); }
   }
 
   // Fulfill merchandise only after confirmed payment. Keep it separate from

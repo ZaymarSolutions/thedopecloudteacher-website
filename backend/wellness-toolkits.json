@@ -1,0 +1,430 @@
+{
+  "food-with-purpose": {
+    "title": "Food With Purpose",
+    "subtitle": "A practical food-learning and planning workbook",
+    "format": "Self-paced educational toolkit",
+    "sections": [
+      {
+        "title": "Start here: your food, your real life",
+        "body": [
+          "You do not need a new personality to eat with more intention. Start with the foods you enjoy, your budget, your schedule and the kitchen you actually have.",
+          "This workbook teaches general food planning. It does not prescribe a diet for a diagnosis, calculate your clinical needs or replace care from a registered dietitian. If you have kidney disease, diabetes, food allergies, swallowing problems, pregnancy-related needs or a prescribed diet, adapt meals with your care team.",
+          "Pick one practical goal: cook twice this week, add a vegetable to one familiar meal, compare labels, or bring a nutrition question to your appointment. A smaller plan you can repeat is more useful than an impressive plan you never use."
+        ]
+      },
+      {
+        "title": "Build a plate without a chemistry degree",
+        "bullets": [
+          "Choose a protein food you enjoy: beans, lentils, tofu, eggs, fish or poultry.",
+          "Choose produce: vegetables and fruit you can afford and tolerate. Fresh, frozen and canned options can all fit a practical plan; compare ingredient lists and sodium.",
+          "Add a grain or another familiar starch, choosing whole grains when they fit your needs and preferences.",
+          "Finish with flavor: herbs, spices, garlic, a little oil, or a sauce you enjoy. Look at sauces and packaged foods when comparing sodium.",
+          "Portions and restrictions depend on your needs. This is a flexible meal-building framework, not a prescribed plate size."
+        ]
+      },
+      {
+        "title": "Food pairings that have a reason",
+        "body": [
+          "Vitamin C helps the body absorb iron from plant sources. White beans with red peppers, lentils with tomatoes, or an iron-fortified breakfast with strawberries are practical examples. This does not diagnose or treat anemia; fatigue and low iron deserve clinical assessment.",
+          "Some combinations are useful because they make a meal easier to enjoy and repeat: a grain bowl with beans and roasted vegetables, fruit with yogurt if tolerated, or soup with a whole-grain side.",
+          "There is no food combination that guarantees happiness, hormonal balance or relaxation. Flavor, a satisfying meal and a calmer setting can be part of a pleasant routine without being medical treatment."
+        ],
+        "sources": [
+          [
+            "NIH Office of Dietary Supplements: iron",
+            "https://ods.od.nih.gov/factsheets/Iron-Consumer/"
+          ]
+        ]
+      },
+      {
+        "title": "Concern to conversation: ask the right next question",
+        "table": {
+          "headers": [
+            "What you are wondering about",
+            "A useful question for qualified care"
+          ],
+          "rows": [
+            [
+              "Blood pressure",
+              "Would a DASH-style eating pattern fit my health needs? What sodium target, if any, should I follow?"
+            ],
+            [
+              "Low energy or suspected low iron",
+              "Should my symptoms be assessed or my iron status checked? Could a medicine or health condition contribute?"
+            ],
+            [
+              "Kidney health",
+              "Do I need to adjust potassium, phosphorus, protein, sodium or fluids based on my labs?"
+            ],
+            [
+              "Digestive symptoms",
+              "Which symptoms need evaluation? Should I keep a food and symptom record before making restrictions?"
+            ],
+            [
+              "Diabetes or glucose concerns",
+              "What meal timing and carbohydrate approach fits my medicines and glucose plan?"
+            ],
+            [
+              "Medicines and supplements",
+              "Are there food interactions or supplements I should avoid or separate from my medicines?"
+            ]
+          ]
+        },
+        "body": [
+          "DASH is an evidence-based eating pattern for blood pressure. Kidney nutrition can require different limits; do not assume a high-potassium diet or potassium-containing salt substitute is right for you. Ask your clinician or pharmacist.",
+          "AskDoGood is not claiming an established doctor network. Use the care-finding resources below, verify coverage and credentials, and ask about appointment availability."
+        ],
+        "sources": [
+          [
+            "NHLBI: DASH eating plan",
+            "https://www.nhlbi.nih.gov/health/dash-eating-plan"
+          ],
+          [
+            "NIDDK: eating with chronic kidney disease",
+            "https://www.niddk.nih.gov/health-information/kidney-disease/chronic-kidney-disease-ckd/eating-nutrition"
+          ],
+          [
+            "FDA: pharmacists and medicine safety",
+            "https://www.fda.gov/consumers/consumer-updates/fda-pharmacists-help-you-use-medicines-safely"
+          ]
+        ]
+      },
+      {
+        "title": "Ten meal starters: choose, prepare, repeat",
+        "table": {
+          "headers": [
+            "Meal idea",
+            "Practical preparation"
+          ],
+          "rows": [
+            [
+              "Bean and pepper bowl",
+              "Warm cooked brown rice and no-salt-added white beans. Add chopped red pepper, herbs and a little olive oil. Adjust seasonings to your needs."
+            ],
+            [
+              "Lentil and tomato soup",
+              "Simmer cooked lentils with chopped tomatoes, onion and water or a broth that fits your sodium needs until vegetables are soft."
+            ],
+            [
+              "Oats with berries",
+              "Cook plain oats according to the package. Add berries and yogurt or a fortified alternative that suits you."
+            ],
+            [
+              "Egg and vegetable toast",
+              "Cook an egg and a handful of vegetables. Serve with your preferred bread; keep toppings and portions appropriate for you."
+            ],
+            [
+              "Tofu and broccoli skillet",
+              "Cook tofu and broccoli in a little oil with garlic or ginger. Serve with a familiar grain. Compare sodium in sauces."
+            ],
+            [
+              "Fish and vegetables",
+              "Prepare fish according to safe cooking guidance and pair with vegetables and a grain. Use a bean or tofu alternative if preferred."
+            ],
+            [
+              "Chickpea salad wrap",
+              "Mash chickpeas with a little yogurt or suitable dressing. Add chopped vegetables and fill a wrap."
+            ],
+            [
+              "Roasted vegetable pasta",
+              "Toss cooked pasta with roasted vegetables, beans and herbs. Keep some pasta water to loosen the sauce."
+            ],
+            [
+              "Yogurt and fruit bowl",
+              "Pair plain yogurt or a suitable fortified alternative with fruit and oats. Check allergen labels."
+            ],
+            [
+              "Leftover remix",
+              "Combine a leftover protein, grain and vegetables in soup, a wrap or a bowl. Refrigerate and reheat leftovers safely."
+            ]
+          ]
+        },
+        "body": [
+          "These are flexible preparation ideas, not medically tailored recipes or calculated nutrition plans. Follow food-safety instructions, check allergens, and use substitutions that fit any prescribed restrictions."
+        ]
+      },
+      {
+        "title": "Shop your kitchen first",
+        "bullets": [
+          "List what is already in the pantry, fridge and freezer before you buy.",
+          "Choose two protein foods, two grain or starch options, and several produce items you will actually use.",
+          "Plan one ingredient in more than one meal: beans in a bowl and a wrap; peppers in a skillet and salad.",
+          "Compare unit prices and labels. A smaller package can still be the better choice if a larger one will go unused.",
+          "Keep a quick backup meal for busy days. Consistency needs a Plan B."
+        ]
+      },
+      {
+        "title": "Your first seven days",
+        "table": {
+          "headers": [
+            "Day",
+            "One doable move"
+          ],
+          "rows": [
+            [
+              "1",
+              "Choose your goal and list what you already have."
+            ],
+            [
+              "2",
+              "Choose three meal starters and the ingredients you need."
+            ],
+            [
+              "3",
+              "Prepare one protein or grain you can use twice."
+            ],
+            [
+              "4",
+              "Try a produce-and-protein pairing you enjoy."
+            ],
+            [
+              "5",
+              "Compare sodium or ingredients in two products you normally buy."
+            ],
+            [
+              "6",
+              "Repeat your easiest meal and adjust what did not work."
+            ],
+            [
+              "7",
+              "Review what you enjoyed, what you spent and one question for your care team."
+            ]
+          ]
+        }
+      },
+      {
+        "title": "Print-and-use planning pages",
+        "worksheets": [
+          "Weekly meal map: day / meal idea / what I already have / what I need",
+          "Shopping list: protein foods / produce / grains or starches / flavor extras",
+          "Food and comfort notes: time / food / how I felt / question for clinician",
+          "Appointment questions: concern / what I noticed / what I want to ask / next step"
+        ],
+        "body": [
+          "Use the blank planning space below each worksheet title. Keep medical details private. The online toolkit does not upload what you type in the workbook. Print or save your completed pages before leaving."
+        ]
+      },
+      {
+        "title": "Find qualified care and keep the conversation going",
+        "sources": [
+          [
+            "HRSA: Find a Health Center",
+            "https://findahealthcenter.hrsa.gov/"
+          ],
+          [
+            "Medicare Care Compare",
+            "https://www.medicare.gov/care-compare/"
+          ],
+          [
+            "FDA: ask your pharmacist about medicines and foods",
+            "https://www.fda.gov/consumers/consumer-updates/fda-pharmacists-help-you-use-medicines-safely"
+          ]
+        ],
+        "body": [
+          "Also use your insurer's provider directory and your current clinician's referral process. Verify insurance, fees, professional credentials and accessibility directly with the provider.",
+          "Questions about this educational toolkit: askdogood@gmail.com. Personal support is requested separately and is not included in this $25 purchase."
+        ]
+      }
+    ]
+  },
+  "proactive-days": {
+    "title": "Proactive Days",
+    "subtitle": "A 14-day workbook for routines you can actually repeat",
+    "format": "Self-paced educational toolkit",
+    "sections": [
+      {
+        "title": "You deserve care before everything is urgent",
+        "body": [
+          "A proactive life is not a perfect life. It is having a few small plans that support you before a busy day decides everything for you.",
+          "This workbook supports reflection, organization and everyday habits. It does not provide medical treatment, therapy, substance-withdrawal guidance or an exercise prescription. A health condition or new symptoms may call for qualified care.",
+          "Choose one focus for the next two weeks: a calmer evening, a manageable movement habit, regular meal planning, or getting prepared for appointments. You can change the plan when your life changes."
+        ]
+      },
+      {
+        "title": "Find your smallest useful step",
+        "bullets": [
+          "Name the habit in plain language. 'I want a wind-down routine' is easier to act on than 'fix my whole life'.",
+          "Attach it to something already happening: after brushing teeth, after lunch, or when the work bag lands by the door.",
+          "Choose a minimum version. On a hard day, a two-minute check-in may be enough to keep the thread.",
+          "Arrange the environment: put the notebook where you sit, choose comfortable shoes, or set out a meal container.",
+          "Write a fallback. If the day gets crowded, what is the smallest safe version you can still do?"
+        ]
+      },
+      {
+        "title": "Four routine menus—choose one",
+        "table": {
+          "headers": [
+            "Focus",
+            "Start",
+            "Make it easier",
+            "Ask qualified care when needed"
+          ],
+          "rows": [
+            [
+              "Evening calm",
+              "Choose a short, repeatable wind-down activity.",
+              "Prepare tomorrow's essentials, dim distractions and choose a quiet activity.",
+              "Ask about persistent sleep trouble, symptoms or medicine effects."
+            ],
+            [
+              "Everyday movement",
+              "Choose a comfortable activity that fits your abilities.",
+              "Invite a friend, choose an accessible route or try a familiar seated activity.",
+              "Ask what activity fits your health needs if you are unsure."
+            ],
+            [
+              "Food planning",
+              "Choose tomorrow's first meal and a backup.",
+              "Keep a short shopping list and repeat meals you enjoy.",
+              "Ask a registered dietitian about medical nutrition needs."
+            ],
+            [
+              "Care preparation",
+              "Write your top three appointment questions.",
+              "Keep a current medicine list and organize practical records.",
+              "Ask your clinician or pharmacist about medicine questions; do not change doses yourself."
+            ]
+          ]
+        }
+      },
+      {
+        "title": "Days 1–7: build the base",
+        "table": {
+          "headers": [
+            "Day",
+            "Prompt",
+            "Action"
+          ],
+          "rows": [
+            [
+              "1",
+              "What needs less chaos?",
+              "Choose one routine and write why it matters to you."
+            ],
+            [
+              "2",
+              "Where can this fit?",
+              "Attach your step to an existing part of the day."
+            ],
+            [
+              "3",
+              "What can I remove?",
+              "Reduce one practical obstacle: clutter, missing supplies or an unclear plan."
+            ],
+            [
+              "4",
+              "What is my minimum?",
+              "Try the short version without grading yourself."
+            ],
+            [
+              "5",
+              "Who can encourage me?",
+              "Invite one trusted person to check in, with your permission."
+            ],
+            [
+              "6",
+              "What did I notice?",
+              "Write what made the step easier or harder. Avoid turning one day into a diagnosis."
+            ],
+            [
+              "7",
+              "What is worth keeping?",
+              "Keep one thing, adjust one thing, and plan the next week."
+            ]
+          ]
+        }
+      },
+      {
+        "title": "Days 8–14: make it yours",
+        "table": {
+          "headers": [
+            "Day",
+            "Prompt",
+            "Action"
+          ],
+          "rows": [
+            [
+              "8",
+              "What deserves a place on the calendar?",
+              "Schedule your chosen routine and any care appointment you need."
+            ],
+            [
+              "9",
+              "What supports my attention?",
+              "Choose a setting with fewer distractions for your step."
+            ],
+            [
+              "10",
+              "Where does joy fit?",
+              "Add music, a friend, a garden moment or another pleasant activity."
+            ],
+            [
+              "11",
+              "What happens on a hard day?",
+              "Use the fallback plan you wrote; revise it if it is still too big."
+            ],
+            [
+              "12",
+              "What do I need to ask?",
+              "Write questions for a clinician or qualified support provider."
+            ],
+            [
+              "13",
+              "What is progress here?",
+              "Notice completion, preparation or learning—not only a body or health result."
+            ],
+            [
+              "14",
+              "What can I repeat next week?",
+              "Choose your next two-week plan and keep it practical."
+            ]
+          ]
+        }
+      },
+      {
+        "title": "Conversation scripts you can make your own",
+        "bullets": [
+          "To a clinician: 'I am trying to build a more sustainable routine. What changes would fit my health needs, and what should I monitor?'",
+          "To a pharmacist: 'Can we review how I take my medicines and whether any foods or supplements could interact?'",
+          "To a friend: 'Could you check in with me once this week? I need encouragement, not a report card.'",
+          "At home: 'I want a little time for this routine. Can we agree on a window that works for everybody?'",
+          "To yourself: 'Today needs the smaller version. That still counts as showing up.'"
+        ]
+      },
+      {
+        "title": "Your printable routine workbook",
+        "worksheets": [
+          "My routine plan: focus / why it matters / cue / smallest step / fallback",
+          "14-day record: day / what I tried / what helped / next adjustment",
+          "Weekly review: keep / change / ask for help",
+          "Appointment preparation: top questions / relevant notes / follow-up task"
+        ],
+        "body": [
+          "Your writing stays in the browser page's memory. Print or save it before leaving; it is not automatically saved or sent to AskDoGood. Keep any private health information secure."
+        ]
+      },
+      {
+        "title": "When support needs to be more than a workbook",
+        "body": [
+          "Persistent symptoms, medicine side effects, mental-health concerns or substance-use needs deserve qualified care. This toolkit is not a substitute for treatment. Do not stop a medicine or attempt withdrawal on the strength of a checklist.",
+          "Use your existing care team, insurer directory, HRSA's health-center finder or Medicare Care Compare to begin. Confirm availability, cost and credentials directly.",
+          "If you want personal education or resource-navigation support from AskDoGood, ask about scope and scheduling separately. No personal session is included in this $25 toolkit."
+        ],
+        "sources": [
+          [
+            "HRSA: Find a Health Center",
+            "https://findahealthcenter.hrsa.gov/"
+          ],
+          [
+            "Medicare Care Compare",
+            "https://www.medicare.gov/care-compare/"
+          ],
+          [
+            "FDA: pharmacists help you use medicines safely",
+            "https://www.fda.gov/consumers/consumer-updates/fda-pharmacists-help-you-use-medicines-safely"
+          ]
+        ]
+      }
+    ]
+  }
+}
