@@ -1401,8 +1401,6 @@ app.get('/api/videos/metadata/:courseId/:lessonId', (req, res) => {
   }
 });
 
-require('./merch-votes').setupMerchVotes(app, db);
-
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
