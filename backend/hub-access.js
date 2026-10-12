@@ -1,5 +1,6 @@
 // Paid course HTML is imported into the private database, never the static site.
 const COURSE_SLUGS = new Set(['cloud-fundamentals-101','az-900-azure-fundamentals','az-104-azure-administrator','az-305-azure-solutions-architect','ai-901-azure-ai-fundamentals','ai-fundamentals-everyday-ai','cloud-security','ai-security-responsible-governance','cyber-basics-stay-safer-online']);
+const {coursePrice,promotionActive,sections,guide,communityGrant,checkoutReady,setupLearningOffer} = require('./learning-offer');
 async function verifyPaidAccess({ purchase, course, stripe }) {
   if (!purchase || purchase.status !== 'active' || purchase.product_type !== 'course' || purchase.product_id !== course.id || !purchase.stripe_payment_id || !stripe) return false;
   if (purchase.expires_at) {
@@ -10,7 +11,9 @@ async function verifyPaidAccess({ purchase, course, stripe }) {
   // Re-check the processor, including refunds/disputes. A database checkbox,
   // browser success flag or test payment cannot unlock a live paid course.
   const payment = await stripe.paymentIntents.retrieve(purchase.stripe_payment_id);
-  if (payment.livemode !== true || payment.status !== 'succeeded' || payment.currency !== 'usd' || !Number.isFinite(course.price) || course.price <= 0 || payment.amount_received < Math.round(course.price * 100)) return false;
+  // Preserve a valid sale after the promotion ends; compare against its server-stored paid amount.
+  const expected = Number.isFinite(purchase.amount) && purchase.amount > 0 ? purchase.amount : course.price;
+  if (payment.livemode !== true || payment.status !== 'succeeded' || payment.currency !== 'usd' || !Number.isFinite(expected) || expected <= 0 || payment.amount_received < Math.round(expected * 100)) return false;
   if (String(payment.metadata?.userId) !== String(purchase.user_id) || payment.metadata?.courseId !== course.id) return false;
   if (!payment.latest_charge) return false;
   const charge = await stripe.charges.retrieve(typeof payment.latest_charge === 'string' ? payment.latest_charge : payment.latest_charge.id);
@@ -19,11 +22,11 @@ async function verifyPaidAccess({ purchase, course, stripe }) {
 function setupHubAccess(app, db, stripe, authenticateToken, requireAdmin) {
   db.exec(`CREATE TABLE IF NOT EXISTS private_course_content (course_id TEXT PRIMARY KEY, html TEXT NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(course_id) REFERENCES courses(id));
     CREATE TABLE IF NOT EXISTS instructor_readiness (user_id INTEGER PRIMARY KEY, modules TEXT NOT NULL, status TEXT NOT NULL DEFAULT 'pending_review', updated_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(user_id) REFERENCES users(id));`);
+  setupLearningOffer(app,db,stripe,authenticateToken,verifyPaidAccess);
   app.post('/api/admin/hub/import', authenticateToken, requireAdmin, (req,res) => {
     const {slug,title,html}=req.body;
-    const prices={'cloud-fundamentals-101':97,'az-900-azure-fundamentals':297,'az-104-azure-administrator':597,'ai-901-azure-ai-fundamentals':297};
     if (!COURSE_SLUGS.has(slug) || typeof title !== 'string' || title.length>200 || typeof html !== 'string' || Buffer.byteLength(html)>450000 || !html.includes('<article class="content">')) return res.status(400).json({error:'Invalid private course file'});
-    const price=prices[slug] ?? null;
+    const price=coursePrice(slug);
     db.transaction(()=>{
       db.prepare("INSERT INTO courses (id,title,price,status) VALUES (?,?,?,'active') ON CONFLICT(id) DO UPDATE SET title=excluded.title,price=excluded.price").run(slug,title,price);
       db.prepare('INSERT INTO private_course_content (course_id,html) VALUES (?,?) ON CONFLICT(course_id) DO UPDATE SET html=excluded.html,updated_at=CURRENT_TIMESTAMP').run(slug,html);
@@ -31,8 +34,8 @@ function setupHubAccess(app, db, stripe, authenticateToken, requireAdmin) {
     res.set('Cache-Control','no-store').json({imported:slug});
   });
   app.get('/api/hub/catalog', (req, res) => {
-    const courses = db.prepare('SELECT c.id, c.title, c.price FROM courses c JOIN private_course_content p ON p.course_id = c.id').all();
-    res.json({ courses: courses.filter(c => COURSE_SLUGS.has(c.id)).map(c => ({...c, checkoutReady: !!stripe && process.env.HUB_CHECKOUT_ENABLED === 'true' && c.price > 0})) });
+    const courses = db.prepare('SELECT c.id,c.title,c.price,p.html FROM courses c JOIN private_course_content p ON p.course_id = c.id').all();
+    res.set('Cache-Control','no-store').json({promotion:{active:promotionActive(),price:25,endsAt:'2027-01-01T05:00:00Z'},courses:courses.filter(c=>COURSE_SLUGS.has(c.id)).map(c=>({id:c.id,title:c.title,price:coursePrice(c.id),regularPrice:c.price,lessonCount:sections(c.html).length,promotionEndsAt:'2027-01-01T05:00:00Z',checkoutReady:checkoutReady(stripe)&&coursePrice(c.id)>0&&sections(c.html).length>=2,communityAccessReady:promotionActive()&&sections(c.html).length>=2}))});
   });
   app.get('/api/hub/courses/:slug/content', authenticateToken, async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
@@ -41,10 +44,12 @@ function setupHubAccess(app, db, stripe, authenticateToken, requireAdmin) {
     const course = db.prepare('SELECT * FROM courses WHERE id = ?').get(req.params.slug);
     const content = db.prepare('SELECT html FROM private_course_content WHERE course_id = ?').get(req.params.slug);
     if (!course || !content) return res.status(503).json({ error: 'Your course classroom is being prepared. Please contact DCT with your enrollment reference; do not send tax forms or identity documents.' });
+    const grant=communityGrant(db,req.user.userId,course.id);
+    if(grant)return res.json({html:content.html,guide:guide(course.id,content.html),source:grant.source});
     const purchases = db.prepare("SELECT * FROM purchases WHERE user_id = ? AND product_id = ? AND product_type = 'course' AND status = 'active'").all(req.user.userId, course.id);
     try {
       for (const purchase of purchases) {
-        if (await verifyPaidAccess({purchase,course,stripe})) return res.json({html:content.html});
+        if (await verifyPaidAccess({purchase,course,stripe})) return res.json({html:content.html,guide:guide(course.id,content.html),source:'paid'});
       }
       return res.status(403).json({ error: 'Verified paid enrollment is required for this classroom. Gumroad starter purchases are accessed through your Gumroad library.' });
     } catch (_) { return res.status(503).json({error:'We could not verify your enrollment right now. Please try again or contact DCT.'}); }

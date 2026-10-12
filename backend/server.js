@@ -15,6 +15,7 @@ const https = require('https');
 const { sendEmail } = require('./email-service');
 const { setupMerch } = require('./merch-checkout');
 const { setupHubAccess, COURSE_SLUGS } = require('./hub-access');
+const {coursePrice,checkoutReady,sections,fulfillSponsorship,verifySponsorPayment} = require('./learning-offer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -932,8 +933,8 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
 
     const { courseId } = req.body;
     if (COURSE_SLUGS.has(courseId)) {
-      const ready = db.prepare('SELECT 1 FROM private_course_content WHERE course_id = ?').get(courseId);
-      if (!ready || process.env.HUB_CHECKOUT_ENABLED !== 'true') return res.status(503).json({ error: 'Enrollment is being prepared; please contact DCT before purchasing.' });
+      const ready = db.prepare('SELECT html FROM private_course_content WHERE course_id = ?').get(courseId);
+      if (!ready || sections(ready.html).length<2 || !checkoutReady(stripe)) return res.status(503).json({ error: 'Enrollment is being prepared; please try again shortly.' });
     }
 
     const course = db.prepare('SELECT * FROM courses WHERE id = ?').get(courseId);
@@ -941,6 +942,7 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
       return res.status(404).json({ error: 'Course not found' });
     }
 
+    if(COURSE_SLUGS.has(courseId))course.price=coursePrice(courseId);
     if (!Number.isFinite(course.price) || course.price <= 0) return res.status(400).json({ error: 'Contact DCT for course pricing' });
     const session = await stripe.checkout.sessions.create({
       line_items: [{
@@ -955,8 +957,8 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/dashboard.html?success=true&course=${courseId}`,
-      cancel_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/pricing.html?canceled=true`,
+      success_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/hub/classroom.html?course=${courseId}&checkout=complete&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.FRONTEND_URL || 'https://thedopecloudteacher.org'}/hub/enroll.html?course=${courseId}&canceled=true`,
       client_reference_id: req.user.userId.toString(),
       metadata: {
         courseId,
@@ -1089,6 +1091,11 @@ app.post('/api/webhook', async (req, res) => {
   // Fulfill merchandise only after confirmed payment. Keep it separate from
   // course purchases, which require a logged-in user.
   if (event.type === 'checkout.session.completed' || event.type === 'checkout.session.async_payment_succeeded') {
+    if(event.data.object.metadata?.productType==='seat-sponsorship'){
+      const session=event.data.object;
+      try{if(await verifySponsorPayment(stripe,session.payment_intent,session.amount_total))fulfillSponsorship(db,session);return res.json({received:true});}
+      catch(_){return res.status(503).json({error:'Sponsorship payment verification will be retried'});}
+    }
     try {
       if (await fulfillMerch(event.data.object)) return res.json({ received: true });
     } catch (error) {
@@ -1123,6 +1130,11 @@ app.post('/api/webhook', async (req, res) => {
   }
 
   // Handle subscription updates
+  if(event.type==='charge.refunded'||event.type==='charge.dispute.created'){
+    const object=event.data.object;
+    if(object.livemode===true&&object.payment_intent)db.prepare("UPDATE seat_sponsorships SET status='reversed' WHERE payment_id=?").run(typeof object.payment_intent==='string'?object.payment_intent:object.payment_intent.id);
+    // Already allocated community seats remain DCT-funded; no learner is billed retroactively.
+  }
   if (event.type === 'customer.subscription.updated') {
     const subscription = event.data.object;
     db.prepare(`
