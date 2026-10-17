@@ -1,6 +1,7 @@
 (()=>{'use strict';
 const api='https://energetic-endurance-production.up.railway.app/api', $=id=>document.getElementById(id);let courses=[],promotion={},busy=false;
 const token=()=>localStorage.getItem('dct_token');
+if(new URLSearchParams(location.search).get('sponsor')==='1')document.querySelector('input[name="path"][value="sponsor"]').checked=true;
 if(new URLSearchParams(location.search).get('access')==='community')document.querySelector('input[name="path"][value="community"]').checked=true;
 function status(message,error=false){$('enrollment-status').textContent=message;$('enrollment-status').classList.toggle('error',error);}
 async function request(path,body){const headers={};if(token())headers.Authorization=`Bearer ${token()}`;if(body)headers['Content-Type']='application/json';const response=await fetch(api+path,{method:body?'POST':'GET',headers,body:body?JSON.stringify(body):undefined,cache:'no-store'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||data.message||'This step is temporarily unavailable. Please try again.');return data;}
