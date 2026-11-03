@@ -99,6 +99,7 @@ section > .wrap > h2{font-family:var(--display);font-size:clamp(24px,3.4vw,34px)
     <div class="personas" role="group" aria-label="Choose who you are"><button class="persona" type="button" data-p="new" aria-pressed="false">New to tech</button><button class="persona" type="button" data-p="senior" aria-pressed="false">Senior or family</button><button class="persona" type="button" data-p="teen" aria-pressed="false">Teen or student</button><button class="persona" type="button" data-p="career" aria-pressed="false">Career changer</button><button class="persona" type="button" data-p="veteran" aria-pressed="false">Veteran</button><button class="persona" type="button" data-p="cert" aria-pressed="false">Cert chaser</button><button class="persona" type="button" data-p="org" aria-pressed="false">School, agency or business</button><button class="persona" type="button" data-p="pro" aria-pressed="false">IT or security pro</button></div>
     <div class="search"><input id="q" type="search" placeholder="Search a topic: MFA, scams, Bicep, agents, budgets, AZ-104…" aria-label="Search courses"><button class="btn ghost" id="clear" type="button">Show everything</button></div>
     <div class="pathstrip" id="pathstrip" aria-live="polite"></div>
+    <div id="starting-course" role="status" aria-live="polite" style="padding:1rem;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)" hidden></div>
   </div>
 </div></section>
 
@@ -159,8 +160,12 @@ function render(){
   $('#empty').hidden = shown > 0;
   $('#count').textContent = shown + (shown === 1 ? ' course' : ' courses');
   const strip = $('#pathstrip');
-  if (!active){ strip.innerHTML = '<p class="why">Pick what fits you and we’ll line up the courses in the order that makes sense. Or search any topic: MFA, scams, Bicep, agents, budgets…</p>'; return; }
+  if (!active){ $('#starting-course').hidden = true; strip.innerHTML = '<p class="why">Pick what fits you and we’ll line up the courses in the order that makes sense. Or search any topic: MFA, scams, Bicep, agents, budgets…</p>'; return; }
   const p = PERSONAS[active];
+  const first = p.courses[0];
+  const start = $('#starting-course');
+  start.hidden = false;
+  start.innerHTML = `<strong>Recommended first course: ${COURSES[first].short}</strong><p>${p.why}</p><p><strong>Format:</strong> Self-paced online · <strong>Promotional course price:</strong> $25 per course through December 31, 2026. Exam fees, cloud usage and live workshops are separate.</p><a class="btn" href="courses/${first}.html">View recommended course</a> <a href="#courses" style="margin-left:12px">View all courses</a>`;
   strip.innerHTML = p.courses.map((s,i) => `${i? '<span class="arrow" aria-hidden="true">→</span>':''}<a class="step" style="--c:${COURSES[s].color}" href="courses/${s}.html">${i+1}. ${COURSES[s].short}</a>`).join('') + `<p class="why">${p.why}</p>`;
 }
 $$('.persona').forEach(b => b.addEventListener('click', () => {
