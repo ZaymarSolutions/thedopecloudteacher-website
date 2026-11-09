@@ -15,178 +15,140 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://thedopecloudteacher.org/">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root { --front-ink:#0B0B12; --front-purple:#1267cf; --front-deep:#12487e; --front-soft:#edf5ff; --front-muted:#3d536e; }
-    .front-page { background:#fff; }
-    .front-brand-name { display:flex; flex-direction:column; margin-left:.7rem; line-height:1.05; }
-    .front-brand-name strong { color:#0B0B12; font-size:1rem; }
-    .front-brand-name span { color:#1267cf; font-size:.68rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-top:.25rem; }
-    .front-page header { position:sticky !important; }
-    .front-wrap { width:min(1180px,calc(100% - 2rem)); margin:0 auto; }
-    .front-hero { display:grid; grid-template-columns:1.05fr .95fr; gap:2rem; align-items:center; padding:3rem 0 2.4rem; }
-    .front-kicker { color:var(--front-purple); font-weight:800; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem; }
-    .front-hero h1 { color:var(--front-ink); max-width:700px; font-size:clamp(2.2rem,5vw,4.3rem); line-height:1.02; margin:.8rem 0 1rem; }
-    .front-hero h1 em { color:var(--front-purple); font-style:normal; }
-    .front-hero p { color:var(--front-muted); max-width:650px; font-size:1.08rem; line-height:1.7; }
-    .front-tagline { color:var(--front-deep) !important; font-weight:800; font-size:1.1rem !important; }
-    .front-actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.2rem; }
-    .front-btn { display:inline-flex; align-items:center; gap:.45rem; padding:.78rem 1.05rem; border-radius:10px; text-decoration:none; font-weight:800; }
-    .front-btn.primary { background:var(--front-purple); color:#fff; }
-    .front-btn.secondary { background:var(--front-soft); color:var(--front-deep); border:1px solid #c9ddf6; }
-    .front-image { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:22px; border:1px solid #c9ddf6; box-shadow:0 18px 38px rgba(11,11,18,.14); }
-    .front-trust { display:flex; flex-wrap:wrap; gap:.6rem; padding:0 0 1.8rem; }
-    .front-trust span { padding:.45rem .8rem; border-radius:999px; background:var(--front-soft); color:var(--front-deep); border:1px solid #c9ddf6; font-size:.85rem; font-weight:800; }
-    .front-band { margin:1rem 0 2rem; padding:2rem 0; }
-    .front-band.soft { background:var(--front-soft); }
-    .front-band.dark { background:linear-gradient(135deg,#edf5ff 0%,#ffffff 100%); color:var(--front-ink); border-top:1px solid #c9ddf6; border-bottom:1px solid #c9ddf6; }
-    .front-band h2 { color:inherit; margin:0 0 .45rem; font-size:clamp(1.6rem,3vw,2.4rem); }
-    .front-band > .front-wrap > p { max-width:720px; color:var(--front-muted); line-height:1.7; }
-    .front-band.dark > .front-wrap > p { color:var(--front-muted); font-weight:600; }
-    .front-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1rem; margin-top:1rem; }
-    .program-image{width:100%;height:190px;object-fit:cover;display:block;border-radius:12px;margin-bottom:.9rem;border:1px solid #7daae0;background:#0d2440}.front-card { transition:transform .2s ease,box-shadow .2s ease; overflow:hidden; background:#fff; border:1px solid #c9ddf6; border-radius:16px; padding:1.1rem; box-shadow:0 10px 24px rgba(11,11,18,.06); }
-    .program-visual { height:190px; border-radius:12px; margin-bottom:.9rem; padding:1rem; overflow:hidden; border:1px solid #7daae0; font-family:"Source Sans 3", "Segoe UI",sans-serif; }
-    .program-visual .visual-overline { display:block; font-size:.72rem; font-weight:800; letter-spacing:.08em; }
-    .security-map { background:#102b48; color:#fff; }
-    .security-map .visual-overline { color:#b9dbff; }
-    .security-list { display:grid; gap:.35rem; margin-top:.65rem; }
-    .security-list span { display:block; color:#fff !important; font-size:.92rem; border-bottom:1px solid #3f6388; padding-bottom:.22rem; }
-    .security-list b { color:#83bcff; margin-right:.45rem; }
-    .ai-review-map { background:#edf6fc; color:#123e70; }
-    .ai-review-map .visual-overline { color:#12487e; }
-    .review-steps { display:flex; gap:.35rem; margin:1rem 0 .65rem; }
-    .review-steps span { flex:1; border:1px solid #abcde9; background:#fff; border-radius:.45rem; padding:.45rem .2rem; color:#123e70 !important; font-size:.76rem; font-weight:750; text-align:center; line-height:1.2; }
-    .ai-review-map small { color:#12487e !important; font-size:.79rem; }
-    .front-card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(10,52,100,.17)}
-    .front-card.dark { background:#10253c; border-color:#193b60; }
-    .front-card i { width:44px; height:44px; display:inline-flex; justify-content:center; align-items:center; border-radius:12px; background:#e5f0ff; color:var(--front-purple); font-size:1.2rem; }
-    .front-card h3 { color:var(--front-ink); margin:.75rem 0 .35rem; }
-    .front-card.dark h3 { color:#e5f0ff; }
-    .front-card p { color:var(--front-muted); line-height:1.6; }
-    .front-card.dark p { color:#c7dbf4; }
-    .front-card a { color:var(--front-deep); font-weight:800; text-decoration:none; }
-    .front-card.dark a { color:#cce5ff; }
-    .journey { display:grid; grid-template-columns:repeat(4,1fr); gap:.7rem; margin-top:1rem; }
-    .journey div { padding:1rem; text-align:center; border:1px solid #c9ddf6; border-radius:14px; background:#fff; color:var(--front-deep); font-weight:800; }
-    .journey strong { display:block; color:var(--front-purple); font-size:1.45rem; margin-bottom:.2rem; }
-    .audience-list { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
-    .audience-list span { padding:.6rem .85rem; border:1px solid #ffffff; border-radius:999px; background:#ffffff; color:#12487e; font-weight:800; box-shadow:0 4px 14px rgba(0,0,0,.12); }
-    .front-split { display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1rem; }
-    .front-panel { padding:1.3rem; border-radius:18px; background:#fff; border:1px solid #c9ddf6; }
-    .front-panel h3 { margin-top:0; color:var(--front-ink); }
-    .front-panel p { color:var(--front-muted); line-height:1.65; }
-    .front-final { padding:2.4rem 0 3rem; text-align:center; }
-    .front-final h2 { color:var(--front-ink); }
-    .hiring-banner { margin:0 auto 2rem; padding:1.35rem 1.5rem; border-radius:18px; background:linear-gradient(135deg,var(--front-deep),var(--front-purple)); color:#fff; display:flex; align-items:center; justify-content:space-between; gap:1.2rem; box-shadow:0 14px 30px rgba(18,72,126,.2); }
-    .hiring-banner h2 { color:#fff; margin:0 0 .35rem; font-size:clamp(1.35rem,2.5vw,1.9rem); }
-    .hiring-banner p { margin:0; color:#e5f0ff; line-height:1.55; max-width:760px; }
-    .hiring-banner .front-btn { flex:0 0 auto; background:#fff; color:var(--front-deep); }
-    .merch-feature { display:grid; grid-template-columns:1fr 1.1fr; gap:clamp(1rem,3vw,2rem); align-items:center; padding:clamp(1.25rem,3vw,2rem); border:1px solid #c9ddf6; border-radius:20px; background:#102b48; margin:1.5rem auto 2.5rem; overflow:hidden; }
-    .merch-feature .merch-kicker { display:inline-block; padding:.35rem .65rem; background:#d9ebff; color:#12487e !important; border-radius:.35rem; font-weight:800; letter-spacing:.06em; font-size:.8rem; }
-    .merch-feature h2 { color:#fff !important; font-size:clamp(1.7rem,3vw,2.7rem); line-height:1.1; margin:.8rem 0; }
-    .merch-feature p { color:#e1efff !important; line-height:1.65; max-width:52ch; }
-    .merch-feature img { display:block; width:100%; height:auto; border-radius:12px; }
-    .merch-feature .front-btn { margin-top:.4rem; background:#fff !important; color:#12487e !important; border-color:#fff !important; }
-    .merch-actions { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:.8rem; }
-    .merch-actions .front-btn { margin-top:0; }
-    .merch-actions .front-btn.buy { background:#1267cf !important; color:#fff !important; border:1px solid #6fb1ff !important; }
-    .trust-panel { margin:1.4rem auto 2.2rem; padding:1.4rem; border:1px solid #c9ddf6; border-radius:20px; background:#f7fbff; }
-    .trust-panel h2 { margin:.1rem 0 .35rem; color:#0b1f33; }
-    .trust-panel > p { color:#3d536e; max-width:820px; line-height:1.65; }
-    .trust-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.8rem; margin-top:1rem; }
-    .trust-org { padding:1rem; background:#fff; border:1px solid #d6e8fa; border-radius:14px; }
-    .trust-org strong { display:block; color:#0f2140; margin-bottom:.35rem; }
-    .trust-org span { display:inline-block; font-size:.76rem; font-weight:800; color:#12487e; background:#e8f2ff; border-radius:999px; padding:.25rem .55rem; margin-bottom:.45rem; }
-    .trust-org p { margin:.15rem 0 0; color:#4d587a; line-height:1.5; font-size:.94rem; }
-    @media(max-width:780px){.merch-feature{grid-template-columns:1fr}.merch-feature img{order:-1}}
-    @media(max-width:780px){ .hiring-banner{align-items:flex-start;flex-direction:column} }
-    @media(max-width:780px){ .front-hero,.front-split{grid-template-columns:1fr}.journey{grid-template-columns:1fr 1fr}.front-hero{padding-top:2rem} }
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body class="dct-home">
+  <header>
+    <div class="header-container">
+      <a href="/" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="/logo.svg?v=20260705c" alt="" class="logo-img">
+        <span class="home-brand">The Dope Cloud Teacher</span>
+      </a>
+      <nav class="nav-links" id="home-nav" data-standardized="true" aria-label="Main navigation">
+        <a href="#online">Learn Online</a>
+        <a href="#local">Local Classes</a>
+        <a href="#invite">Invite DCT</a>
+        <a href="/login.html" id="authButton">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-controls="home-nav" aria-expanded="false">&#9776;</button>
+    </div>
+  </header>
+  <main>
+    <section class="home-hero">
+      <div class="home-wrap home-split">
+        <div>
+          <p class="home-label">Beginner-friendly tech education · DMV and online</p>
+          <h1>Demystifying Cloud, AI &amp; Cybersecurity for Real People</h1>
+          <p class="home-lead">Build something you can use. Learn at your own pace, find a classroom near you, or bring practical tech education to the people you serve.</p>
+        </div>
+        <figure class="home-hero-photo">
+          <img src="/images/editorial/classroom-real.jpg" alt="Learners collaborating around a laptop">
+          <figcaption><a href="https://unsplash.com/photos/diverse-group-of-students-collaborating-around-a-laptop--X4Qx4_4iMU">Vitaly Gariev / Unsplash</a></figcaption>
+        </figure>
+      </div>
+      <nav class="home-wrap home-grid home-paths" aria-label="Choose your starting point">
+        <a class="home-card" href="#online"><span class="home-label">01 · Your pace</span><strong>Learn online</strong><span>Compare beginner courses and see what you’ll practice. →</span></a>
+        <a class="home-card" href="#local"><span class="home-label">02 · In person</span><strong>Find a local class</strong><span>See where DCT teaches and check registration. →</span></a>
+        <a class="home-card" href="#invite"><span class="home-label">03 · For organizers</span><strong>Invite DCT</strong><span>Request training, a speaker, or an event vendor. →</span></a>
+      </nav>
+    </section>
 
-    .front-hero{background:linear-gradient(135deg,#fff 35%,#e5f3ff);border-radius:0 0 32px 32px}
-    .tech-play{padding:1.7rem;margin-bottom:2rem;border:2px solid #b6d9ff;border-radius:24px;background:#f3f9ff;box-sizing:border-box;scroll-margin-top:100px}
-    .tech-play h2{color:#123e70;font-size:clamp(1.6rem,3vw,2.3rem);margin:.5rem 0}.tech-play p{color:#3d536e;font-size:1rem;line-height:1.6}
-    .tech-tabs,.tech-steps{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.2rem 0}
-    .tech-tabs button,.tech-steps button{font:inherit;font-weight:700;cursor:pointer;padding:.9rem 1rem;border:1px solid #8cb7e6;border-radius:12px;color:#123e70;background:white;min-height:48px}
-    .tech-tabs button[aria-pressed=true]{background:#1267cf;color:white;border-color:#1267cf}
-    .tech-steps button{flex:1;min-width:150px;text-align:left}.tech-steps button[aria-pressed=true]{border:2px solid #1267cf;background:#e5f1ff}
-    .tech-steps b{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:#1267cf;color:white;margin-right:.5rem}
-    .tech-answer{padding:1.3rem;background:white;border:1px solid #c9ddf6;border-radius:16px}.tech-answer h3{color:#123e70;font-size:1.3rem;margin:.6rem 0}.tech-try{border-left:4px solid #1267cf;padding-left:1rem}
-    .tech-play button:focus-visible,.front-btn:focus-visible{outline:3px solid #153a60;outline-offset:4px}
-    @media(prefers-reduced-motion:reduce){.front-card{transition:none}.front-card:hover{transform:none}}
-    @media(max-width:480px){.tech-play{padding:1rem}.tech-tabs button{width:100%}.tech-steps{flex-direction:column}.front-brand-name strong{font-size:.9rem}}
-    .front-founder{grid-template-columns:.6fr 1fr}.front-founder img{max-height:460px}@media(max-width:760px){.front-founder{grid-template-columns:1fr}.front-founder img{max-width:380px;margin:auto}}
-  </style>
-  <link rel="stylesheet" href="css/security-morale.css">
-<style>
-.dct-confidence{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:center;background:#eef7ff;border:1px solid #b9d9f4;border-radius:22px;padding:24px;margin:28px auto}.dct-confidence img{display:block;width:100%;height:auto;border-radius:16px}.dct-confidence h2{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.15}.dct-word{max-width:900px!important;text-align:center;padding:32px 24px;background:linear-gradient(140deg,#082b53,#085db5);border-radius:24px;color:#fff;margin:32px auto;box-shadow:0 12px 30px #06356724}.dct-word h2,.dct-word h3,.dct-word p{color:#fff}.dct-word h3{font-size:clamp(2rem,5vw,3.1rem);margin:16px 0}.dct-word details{text-align:left;background:#ffffff14;padding:18px;border-radius:16px;margin-top:20px}.dct-word summary{cursor:pointer;font-weight:800;min-height:44px}.dct-word-answers{display:grid;gap:10px;margin-top:16px}.dct-word button{font:inherit;font-weight:700;cursor:pointer;border:2px solid #c8e6ff;border-radius:12px;background:#fff;color:#073c70;padding:12px 16px;min-height:44px}.dct-word button[aria-pressed=true]{background:#ffdf00;border-color:#ffdf00}.dct-word a{color:#fff}.dct-word [data-feedback]{min-height:28px;font-weight:700}.dct-word-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}.dct-word a:focus-visible,.dct-word button:focus-visible,.dct-word summary:focus-visible{outline:3px solid #ffdf00;outline-offset:4px}@media(max-width:760px){.dct-confidence{grid-template-columns:1fr;margin:24px 16px}.dct-word{margin:24px 16px}}
-</style><style>.sale-buttons{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:14px}.sale-sponsor{text-align:center;margin:18px 0}.sale-sponsor a{display:inline-block;color:#0757a8;font-weight:700}[data-year-end-offer] .sale-buttons .btn{margin:0;text-align:center}@media(max-width:600px){.sale-buttons .btn{width:100%;max-width:340px}}</style><style>.civic-vote{max-width:1120px;margin:32px auto;padding:clamp(24px,5vw,50px);background:linear-gradient(135deg,#fff3db,#e2f1ff);border:2px solid #abcce9;border-radius:26px;text-align:center;color:#103b63}.civic-vote-icon{font-size:3rem}.civic-vote-kicker{font-weight:900;letter-spacing:.15em;font-size:.85rem}.civic-vote h2{font:900 clamp(2.6rem,7vw,5rem)/.95 system-ui;color:#073d79;margin:20px 0}.civic-vote>p{max-width:760px;margin:18px auto;line-height:1.65}.civic-vote-date{background:white;display:table;padding:12px 20px;border-radius:99px}.civic-vote-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:26px 0}.civic-vote-links a{display:flex;flex-direction:column;gap:12px;justify-content:center;min-height:120px;padding:22px 16px;background:#fff;border:2px solid #7facd0;border-radius:18px;text-decoration:none;color:#073d79}.civic-vote-links strong{font-size:1.3rem}.civic-vote-links a:hover{background:#eef7ff;border-color:#1267cf}.civic-vote-links a:focus-visible{outline:3px solid #1267cf;outline-offset:4px}.civic-vote-note{font-size:.85rem}@media(max-width:650px){.civic-vote{margin:24px 16px}.civic-vote-links{grid-template-columns:1fr}.civic-vote-links a{min-height:95px}}</style><style id="civic-flag-theme">.civic-vote{position:relative;isolation:isolate;background:#f7faff;overflow:hidden;box-shadow:0 16px 40px #12386b18}.civic-vote::before{content:"";position:absolute;inset:0;z-index:-1;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201000%20600%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22s%22%20width%3D%221000%22%20height%3D%2292%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cpath%20d%3D%22M0%2015%20Q250%20-15%20500%2015%20T1000%2015%20V61%20Q750%2031%20500%2061%20T0%2061Z%22%20fill%3D%22%23bf1535%22%2F%3E%3C%2Fpattern%3E%3C%2Fdefs%3E%3Crect%20width%3D%221000%22%20height%3D%22600%22%20fill%3D%22white%22%2F%3E%3Crect%20width%3D%221000%22%20height%3D%22600%22%20fill%3D%22url(%23s)%22%2F%3E%3Cpath%20d%3D%22M0%200H420V280Q210%20250%200%20280Z%22%20fill%3D%22%2312386b%22%2F%3E%3Cg%20fill%3D%22white%22%20font-family%3D%22serif%22%20font-size%3D%2248%22%3E%3Ctext%20x%3D%2235%22%20y%3D%2265%22%3E%E2%98%85%20%E2%98%85%20%E2%98%85%20%E2%98%85%20%E2%98%85%3C%2Ftext%3E%3Ctext%20x%3D%2255%22%20y%3D%22125%22%3E%E2%98%85%20%E2%98%85%20%E2%98%85%20%E2%98%85%3C%2Ftext%3E%3Ctext%20x%3D%2235%22%20y%3D%22185%22%3E%E2%98%85%20%E2%98%85%20%E2%98%85%20%E2%98%85%20%E2%98%85%3C%2Ftext%3E%3Ctext%20x%3D%2255%22%20y%3D%22245%22%3E%E2%98%85%20%E2%98%85%20%E2%98%85%20%E2%98%85%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E") center/cover no-repeat;opacity:.16}.civic-vote-links a{box-shadow:0 7px 0 #0a254b,0 13px 20px #12386b28;transition:transform .18s,box-shadow .18s;border-color:#fff}.civic-vote-links a:nth-child(3n+1){background:#ac1731;color:#fff}.civic-vote-links a:nth-child(3n+2){background:#fff;color:#12386b;border-color:#b6c8de}.civic-vote-links a:nth-child(3n){background:#12386b;color:#fff}.civic-vote-links a:hover{transform:translateY(-4px);box-shadow:0 11px 0 #0a254b,0 18px 24px #12386b30}.civic-vote-links a:active{transform:translateY(5px);box-shadow:0 2px 0 #0a254b}.civic-vote-links a:focus-visible{outline:3px solid #073d79;outline-offset:6px}@media(prefers-reduced-motion:reduce){.civic-vote-links a{transition:none}}</style><style id="civic-readability-fix">.civic-vote .civic-vote-links a:nth-child(3n+1),.civic-vote .civic-vote-links a:nth-child(3n){color:#fff!important}.civic-vote .civic-vote-links a:nth-child(3n+2){color:#12386b!important}.civic-vote .civic-vote-links a strong,.civic-vote .civic-vote-links a span{color:inherit!important;opacity:1;text-shadow:none}.civic-vote .civic-vote-links a strong{font-weight:850;font-size:clamp(1.35rem,3vw,1.65rem);line-height:1.25}.civic-vote .civic-vote-links a span{font-size:1rem;font-weight:600;line-height:1.4}.civic-vote-photo{max-width:640px;margin:0 auto 26px}.civic-vote-photo img{display:block;width:100%;height:auto;border-radius:18px;border:2px solid #fff;box-shadow:0 10px 25px #12386b24}.civic-vote-photo figcaption{font-size:.75rem;line-height:1.5;margin-top:10px;color:#12386b;background:#fffffff0;border-radius:8px;padding:8px}.civic-vote-photo figcaption a{color:#12386b;text-decoration:underline}</style></head>
-<body class="front-page">
-  <header><div class="header-container"><a href="index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="logo.png?v=20260705b" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
-  <main><section data-year-end-offer aria-label="Year-end learning offer" style="background:#eaf5ff;border:1px solid #b5d9f9;border-radius:18px;padding:24px;margin:24px auto;max-width:1180px"><a href="/hub/enroll.html" aria-label="Explore DCT courses for $25 each"><img src="/assets/dct-25-logo-money.webp" alt="DCT logo with a hand offering money. Year-end blowout: all self-paced courses $25 each through December 31, 2026." width="1254" height="1254" style="display:block;width:min(100%,520px);height:auto;margin:0 auto 24px;border-radius:14px" fetchpriority="high"></a><p style="font-weight:700;color:#0969b9;margin:0">YEAR-END BLOWOUT · THROUGH DECEMBER 31, 2026</p><h2 style="margin:8px 0">Every DCT self-paced online course. $25 each.</h2><p>One complete course per purchase: written lessons, curated official videos, practical activities and knowledge checks. Start online from any location. Exam fees, cloud usage and live group instruction are separate.</p><p class="sale-buttons"><a class="btn" href="/hub/enroll.html">Choose your $25 course</a> <a class="btn ghost" href="/hub/enroll.html?access=community">Need fee assistance?</a></p><p class="sale-sponsor"><a href="/hub/enroll.html?sponsor=1">Sponsor a learner</a></p><p>Fee assistance for learners in DC Wards 7 and 8 and Prince George’s County is funded by DCT’s access program or confirmed sponsors. Your enrollment continues after the sale ends.</p></section>
-    <section class="front-wrap front-hero">
-      <div><div class="front-kicker">The Dope Cloud Teacher</div><h1>You belong in tech. <em>Let’s find your starting point.</em></h1><p class="front-tagline">AI, Cloud &amp; Cybersecurity Education</p><p>New to AI or cloud? You’re in the right place. Bring your questions. Build useful skills, practice safely, and take your next step with confidence.</p><div class="front-actions"><a class="front-btn primary" href="/hub/index.html">Find my course</a><a class="front-btn secondary" href="partners.html">Bring DCT to my organization</a><a class="front-btn secondary" href="#try-tech">Try a free lesson</a></div></div>
-      <div><img class="front-image" src="images/editorial/classroom-real.jpg" alt="Diverse students collaborating around a laptop in a classroom"><small style="display:block;margin-top:.4rem;color:#3d536e">Photo: <a href="https://unsplash.com/photos/diverse-group-of-students-collaborating-around-a-laptop--X4Qx4_4iMU" target="_blank" rel="noopener noreferrer">Vitaly Gariev / Unsplash</a></small></div>
+    <section class="home-wrap home-section" id="online" aria-labelledby="online-title">
+      <p class="home-label">01 · Self-paced online courses</p>
+      <h2 id="online-title">Choose what you want to learn</h2>
+      <p>Start with a course preview, then enroll when you’re ready. <strong data-offer-price>$25 per self-paced course through December 31, 2026, Eastern time.</strong></p>
+      <div class="home-grid">
+        <article class="home-card">
+          <span class="home-label">Cloud · Build</span>
+          <h3>Cloud Fundamentals 101</h3>
+          <p>Learn how the cloud works, then practice deploying a static website and exploring a virtual machine.</p>
+          <p class="home-result"><strong>Example result</strong><br>A published practice site you can explain and show.</p>
+          <a href="/hub/courses/cloud-fundamentals-101.html">Preview Cloud Fundamentals</a>
+        </article>
+        <article class="home-card">
+          <span class="home-label">AI · Apply</span>
+          <h3>Everyday AI</h3>
+          <p>Practice writing useful prompts, checking the answers, and deciding what information to keep private.</p>
+          <p class="home-result"><strong>Example result</strong><br>A reusable prompt and a checklist for reviewing the output.</p>
+          <a href="/hub/courses/ai-fundamentals-everyday-ai.html">Preview Everyday AI</a>
+        </article>
+        <article class="home-card">
+          <span class="home-label">Cybersecurity · Protect</span>
+          <h3>Cyber Basics</h3>
+          <p>Practice spotting suspicious messages, protecting accounts, and responding to common scams.</p>
+          <p class="home-result"><strong>Example result</strong><br>A personal account safety checklist and a plan for suspicious messages.</p>
+          <a href="/hub/courses/cyber-basics-stay-safer-online.html">Preview Cyber Basics</a>
+        </article>
+      </div>
+      <div class="home-actions">
+        <a class="home-button" href="/hub/enroll.html">Choose a course and enroll</a>
+        <a href="/hub/">See the full online catalog</a>
+        <a href="/classes/#pathways">Explore certification pathways</a>
+        <a href="/hub/enroll.html?access=community">Ask about fee assistance</a>
+      </div>
     </section>
-<section class="front-wrap" id="group-workshops" aria-labelledby="group-workshops-title" style="padding:2rem 0 2.5rem">
-  <div class="front-kicker" style="text-align:center">Bring learning to your people</div><h2 id="group-workshops-title" style="text-align:center;color:#123e70">Three workshops. Real confidence. A place for everyone.</h2>
-  <p style="text-align:center;max-width:780px;margin:0 auto 1.5rem;color:#3d536e;line-height:1.7">For employers, colleges, libraries, community groups and neighbors ready for a new chapter. We plan group sessions around your audience, then confirm the date, delivery format and quote together. No public dates are confirmed yet.</p>
-  <div class="front-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem">
-    <article class="front-card" style="text-align:center;padding:1.5rem"><img src="images/editorial/classroom-real.jpg" alt="Real students collaborating at a classroom laptop" loading="lazy" style="width:100%;height:175px;object-fit:cover;border-radius:14px"><p class="front-kicker">DCT · COMMUNITY LEARNING</p><h3>Digital Confidence: AI Without Fear</h3><p>Technology should open doors, not make you feel left behind. Explore everyday AI tools at a comfortable pace, learn to spot scams and misinformation, protect personal information, and practice asking useful questions. No prior tech experience needed. Especially welcoming to seniors and first-time learners.</p><a class="front-btn primary" href="partners.html">Request a group workshop →</a></article>
-    <article class="front-card" style="text-align:center;padding:1.5rem"><img src="images/editorial/classroom-real.jpg" alt="Learners practicing digital skills together" loading="lazy" style="width:100%;height:175px;object-fit:cover;border-radius:14px"><p class="front-kicker">DCT · WORKPLACE LEARNING</p><h3>AI at Work: Use It. Verify It. Protect It.</h3><p>Turn AI curiosity into safer, more effective work. Learn where AI saves time, how to fact-check outputs, when not to share sensitive information, and how to build a responsible workflow. Includes relatable exercises and take-home practices for teams, employers, nonprofits and college departments.</p><a class="front-btn primary" href="partners.html">Plan workplace training →</a></article>
-    <article class="front-card" style="text-align:center;padding:1.5rem"><p class="front-kicker">ASKDOGOOD · WELLNESS & LIFE SKILLS</p><h3>The Life Reset Lab</h3><p>Need a fresh start that feels possible? Our sister brand AskDoGood creates welcoming, practical conversations about affordable healthy habits, navigating resources, life transitions and building a personal next-step plan. No judgment, no pressure—just tools you can use and a community that cares. Educational, not clinical services.</p><a class="front-btn secondary" href="https://www.askdogood.com/work-with-askdogood">Discover AskDoGood →</a></article>
-  </div><p style="text-align:center;color:#3d536e;margin-top:1rem">Interested in sponsoring access for community learners? Ask us about funded seats and group programs.</p>
-</section>
-<section class="front-wrap dct-confidence" aria-labelledby="confidence-title"><figure style="margin:0"><img src="/assets/seniors-tech-confidence.webp" alt="Illustration of older adults smiling as they learn together using a tablet and laptop. Secure, confident, connected." width="1774" height="887" loading="lazy"></figure><div><div class="front-kicker">Security + morale · Every age belongs</div><h2 id="confidence-title">Less fear. More “I’ve got this.”</h2><p>Send the photo. Join the video call. Recognize a suspicious message. Ask the question you thought everybody else already knew.</p><p><strong>Security</strong> helps you protect your information. <strong>Morale</strong> means confidence, encouragement and the freedom to keep learning. A little fun belongs here, too.</p><p>For our neighbors in Landover, Greenbelt, College Park, Hyattsville, Fort Washington, Northern Virginia—and learners joining online from anywhere.</p><a class="front-btn primary" href="/hub/enroll.html?course=cyber-basics-stay-safer-online">Explore safer online skills · $25</a></div></section>
-<section class="front-band soft" aria-labelledby="everyday-ai-feature"><div class="front-wrap"><div class="front-kicker">Featured self-paced course · Everyday AI</div><h2 id="everyday-ai-feature">Use AI. Protect your information. Build your confidence.</h2><p>Make everyday tasks easier while keeping your judgment in charge. Practice useful prompts, recognize suspicious content, and learn what to keep private. Learn at your pace, with room to ask questions and try again.</p><div class="front-actions"><a class="front-btn primary" href="/hub/courses/ai-fundamentals-everyday-ai.html">Take a free look inside</a><a class="front-btn secondary" href="/hub/enroll.html?course=ai-fundamentals-everyday-ai">Choose Everyday AI</a></div><p>Course questions? <a href="mailto:thedopecloudteacher@gmail.com">Email DCT learner support</a>.</p></div></section>
-<section id="daily-tech-word" class="front-wrap dct-word" aria-labelledby="daily-word-title"><p class="front-kicker" style="color:#b9e3ff">A new word. A little wisdom. One good move.</p><h2 id="daily-word-title">Learn a tech word today.</h2><h3 data-term>Small words. Big confidence.</h3><p data-definition>Explore everyday technology in language that makes sense.</p><p data-example></p><details><summary>Play the 30-second “What’s your move?” challenge</summary><p data-question></p><div class="dct-word-answers" data-answers></div><p data-feedback role="status" aria-live="polite"></p></details><div class="dct-word-actions"><button type="button" data-share>Share today’s word</button><a class="front-btn primary" href="/hub/enroll.html">Turn curiosity into a $25 class →</a></div><p style="font-size:.8rem;opacity:.85">A fresh word each day. No account needed to play.</p></section>
-<section class="civic-vote" aria-labelledby="civic-vote-title"><figure class="civic-vote-photo"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Voting_booths_at_a_polling_station_in_Washington_DC%2C_5_Nov._2024.jpg/960px-Voting_booths_at_a_polling_station_in_Washington_DC%2C_5_Nov._2024.jpg" alt="A voter using a voting booth at a Washington, DC polling station" width="960" height="640" loading="lazy"><figcaption>Washington, DC polling station · November 5, 2024. Photo: <a href="https://commons.wikimedia.org/wiki/File:Voting_booths_at_a_polling_station_in_Washington_DC,_5_Nov._2024.jpg" target="_blank" rel="noopener noreferrer">OSCE Parliamentary Assembly</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 2.0</a>.</figcaption></figure><p class="civic-vote-kicker">SHOW UP. BE HEARD.</p><h2 id="civic-vote-title">YOUR VOICE.<br>YOUR VOTE.</h2><p>Primary or general election, make your plan and participate. Check your registration, learn what is on your ballot, and choose when and where you will vote.</p><p class="civic-vote-date"><strong>2026 general election: November 3, 2026</strong></p><div class="civic-vote-links"><a href="https://dcboe.org/" target="_blank" rel="noopener noreferrer"><strong>Washington, DC</strong><span>Official voter information →</span></a><a href="https://elections.maryland.gov/elections/2026/vote2026/" target="_blank" rel="noopener noreferrer"><strong>Maryland</strong><span>Registration, ballots &amp; voting →</span></a><a href="https://www.elections.virginia.gov/casting-a-ballot/calendars-schedules/upcoming-elections.html" target="_blank" rel="noopener noreferrer"><strong>Virginia</strong><span>Dates, registration &amp; voting →</span></a></div><p class="civic-vote-note">Nonpartisan voter information. Every eligible voter is welcome. Official election offices determine eligibility, deadlines and voting options. No purchase required.</p></section>
-<section id="try-tech" class="front-wrap tech-play" aria-labelledby="tech-play-title">
-  <div class="tech-play-intro"><span class="front-kicker">A little curiosity goes a long way</span><h2 id="tech-play-title">You already use technology. Now see how it works.</h2><p>Pick a topic. Tap a step. Leave with one thing you understand better.</p></div>
-  <div class="tech-tabs" aria-label="Choose a mini lesson"><button type="button" data-lesson="cloud" aria-pressed="true">☁ Cloud in everyday life</button><button type="button" data-lesson="ai" aria-pressed="false">✦ How AI answers</button><button type="button" data-lesson="safety" aria-pressed="false">✓ Stay safer online</button></div>
-  <div class="tech-steps" aria-label="Lesson steps"></div>
-  <div class="tech-answer" aria-live="polite" aria-atomic="true"><span class="front-kicker" id="tech-step-number"></span><h3 id="tech-answer-title"></h3><p id="tech-answer-text"></p><p class="tech-try" id="tech-try"></p></div>
-  <a class="front-btn secondary" href="learn-in-pictures.html">Explore the visual learning room</a><div class="front-actions"><a class="front-btn primary" id="tech-next" href="#cloud101">Keep learning cloud</a><a class="front-btn secondary" href="partners.html">Bring this learning to your community</a></div>
-</section>
-<section class="dct-promise" aria-labelledby="dct-promise-title">
-  <img src="images/cloud-ai-security-morale.png" alt="Cloud AI — Security and Morale" loading="lazy" width="1200" height="400">
-  <div><h2 id="dct-promise-title">Tech skills with security and morale behind them.</h2><p>At DCT, people learn how cloud and AI work, how to protect information, and how to use technology with sound judgment.</p><p><strong>Security</strong> means protecting people, data, and access. <strong>Morale</strong> means building the confidence, care, and accountability to put those skills to good use.</p></div>
-</section>
-        <section class="front-wrap hiring-banner" aria-label="DCT instructor opportunities">
-      <div><div class="front-kicker" style="color:#d5eaff">We&rsquo;re growing</div><h2>Your knowledge could open somebody else’s next door.</h2><p>We’re recruiting cloud, AI, and technology professionals to teach in the community. No prior teaching experience required; technical knowledge, clear communication, and sound judgment matter. Part-time and contract assignments depend on program demand and selection.</p></div>
-      <a class="front-btn" href="teach/">Explore Instructor Opportunities</a>
+
+    <section class="home-band" id="local" aria-labelledby="local-title">
+      <div class="home-wrap home-section home-split">
+        <div>
+          <p class="home-label">02 · Learn in person</p>
+          <h2 id="local-title">Find a local class</h2>
+          <p>DCT has taught Cloud &amp; AI Fundamentals through Prince George’s County Parks and Recreation, including at the Southern Regional Technology and Recreation Complex in Fort Washington.</p>
+          <p>Check PARKS DIRECT for open sessions. Search <strong>20677</strong> or <strong>Cloud &amp; AI Fundamentals for the Next Generation</strong>, then review the location, ages, dates, and fees before registering with the county.</p>
+        </div>
+        <div class="home-card">
+          <p class="home-label">Prince George’s County Parks and Recreation</p>
+          <h3>Cloud &amp; AI Fundamentals</h3>
+          <p>William Beanes Community Center · Suitland, MD<br>Adults 18+ · Tuesdays and Thursdays, 6–7:30 p.m.</p>
+          <p>Check the county listing for session dates, fees, and when registration opens for your household.</p>
+          <div class="home-actions">
+            <a class="home-button" href="https://mdpgparksweb.myvscloud.com/webtrac/web/iteminfo.html?FMID=621562312&amp;Module=AR">View class and check registration</a>
+            <a href="/classes/pg-parks/">See the county program</a>
+            <a href="mailto:thedopecloudteacher@gmail.com?subject=Upcoming%20DCT%20local%20classes">Ask about upcoming classes</a>
+          </div>
+        </div>
+      </div>
     </section>
-    <section class="front-wrap front-trust" aria-label="DCT delivery contexts"><span>Community-centered</span><span>DMV-ready</span><span>Governance-aware</span><span>Built for real people</span></section>
-<section id="cloud101" class="front-band soft"><div class="front-wrap"><div class="front-kicker">Available now · Self-paced digital starter</div><div class="front-split"><div><h2>Your cloud career starts with one real build.</h2><p>You do not need to know all the acronyms to begin. Cloud Fundamentals 101 helps you understand the language, protect your account, and practice building a static website and a virtual machine.</p><p><strong data-offer-price>$25 per course through December 31, 2026, Eastern time.</strong> Beginner friendly. Start on your own schedule.</p><div class="front-actions"><a class="front-btn primary" href="cloud101.html">Preview the course &amp; see details</a><a class="front-btn secondary" href="classes/#schedule">Prefer a live class?</a></div></div><article class="front-panel"><div style="background:#edf5ff;border:1px solid #abcde9;border-radius:12px;padding:1.2rem"><p class="front-kicker">Course contents preview</p><h3>Cloud Fundamentals 101</h3><p>01 · Understand the cloud<br>02 · Protect your account<br>03 · Build a website<br>04 · Explore a virtual machine</p><a href="cloud101.html">Take a look inside</a></div><h3>What you get</h3><ul><li>A structured self-paced DCT classroom with written lessons, curated official videos and activities.</li><li>Cloud concepts and an AWS / Azure / Google Cloud comparison map.</li><li>Account safety and cost-awareness checklist.</li><li>Two practice builds, official walkthroughs, knowledge checks, and cleanup guidance.</li></ul><p>Live cohorts and certification exams are separate. Cloud-provider usage may incur charges. Read the full course details before checkout.</p></article></div></div></section>
-<section class="front-band soft"><div class="front-wrap"><div class="front-kicker">Learn it · Build it · Share it</div><h2>The cloud isn’t somewhere far away. Your next move shouldn’t be, either.</h2><p>Start with cloud basics, learn safer ways to use AI, or build toward a Microsoft, AWS, or Google Cloud credential. See our proposed timetable and tell us which class fits your next chapter.</p><div class="front-grid"><article class="front-card"><h3>New to cloud?</h3><p>Cloud From Scratch: six guided sessions with Azure concepts, a practical project, and AZ-900 preparation.</p><a href="classes/#schedule">Explore upcoming cohort plans</a></article><article class="front-card"><h3>AI, with your judgment intact.</h3><p>Learn useful prompts, protect private information, and check what AI gets wrong. Four sessions. Everyday applications.</p><a href="classes/#schedule">Explore AI workshops</a></article><article class="front-card"><h3>Opportunity grows when we teach.</h3><p>Bring your professional experience into classrooms, libraries, community centers, and virtual learning.</p><a href="teach/">Apply to teach with DCT</a></article></div><p><strong>New cohorts are in planning.</strong> Instructor assignments, dates, and prices are confirmed before enrollment or payment.</p><div class="front-actions"><a class="front-btn primary" href="classes/#schedule">See Class Schedule</a><a class="front-btn secondary" href="classes/#pathways">Compare Certification Pathways</a></div></div></section>
-    <section class="front-band soft"><div class="front-wrap"><h2>Four programs. One practical learning model.</h2><p>We keep the front door simple. The deeper curriculum, certification prep, labs, and historical material remain available behind these clear starting points.</p><div class="front-grid"><article class="front-card"><img class="program-image" src="images/editorial/classroom-real.jpg" alt="Students discussing how to use technology together"><h3>AI Fundamentals</h3><p>Understand AI, use it responsibly, and build confidence with real examples.</p><a href="programs.html">Explore AI Fundamentals</a></article><article class="front-card"><img class="program-image" src="images/editorial/cloud-fundamentals.webp" alt="Cloud portal showing practical resources and services used in cloud fundamentals"><h3>Cloud Fundamentals</h3><p>Learn the cloud language and systems behind the tools people use every day.</p><a href="programs.html">Explore Cloud Fundamentals</a></article><article class="front-card"><div class="program-visual security-map" role="img" aria-label="Cloud security essentials: verify sign-in, limit access, and monitor activity"><span class="visual-overline">CLOUD SECURITY / THREE CONTROLS</span><div class="security-list"><span><b>01</b> Verify sign-in</span><span><b>02</b> Limit access</span><span><b>03</b> Watch activity</span></div></div><h3>Cloud Security</h3><p>Protect accounts, data, systems, and communities through practical security habits.</p><a href="programs.html">Explore Cloud Security</a></article><article class="front-card"><div class="program-visual ai-review-map" role="img" aria-label="Responsible AI workflow: protect the input, check the output, and make a human decision"><span class="visual-overline">AI SECURITY / HUMAN IN THE LOOP</span><div class="review-steps"><span>Protect<br>the input</span><span>Check<br>the output</span><span>Human<br>decision</span></div><small>Privacy · accuracy · accountability</small></div><h3>AI Security</h3><p>Use AI with boundaries, oversight, privacy, and the judgment to know when not to automate.</p><a href="programs.html">Explore AI Security</a></article></div></div></section>
-    <section class="front-wrap merch-feature" aria-labelledby="merch-feature-title"><div><span class="merch-kicker">NEW · DCT APPAREL PREVIEW</span><h2 id="merch-feature-title">The cloud looks good on you.</h2><p>Explore the blue DCT drop: a black Dope Shitz hoodie, a white AI Shield tee, and black Cloud AI joggers. See the pieces and how the details are placed.</p><div class="merch-actions"><a class="front-btn" href="merch.html">View product details</a><a class="front-btn buy" href="merch.html#shop">Shop DCT merch</a></div></div><img src="images/editorial/dct-merch-trio.webp" alt="DCT hoodie, tee, and joggers in the new blue collection" loading="lazy" width="1774" height="887"></section>
-<section class="front-band soft" id="in-community"><div class="front-wrap"><div class="front-kicker">Learning where life happens</div><h2>Recent community highlights.</h2><div class="front-grid"><article class="front-card"><p>OCTOBER 10, 2026 · 10 A.M.–1 P.M. EASTERN</p><h3>Digital Inclusion &amp; Tech Fair</h3><p>Hosted by The Code for Change<br>Trinidad Baptist Church<br>6611 Walker Mill Rd, Capitol Heights, MD 20743</p><p>DCT and AskDoGood participated in community conversations about cloud, AI, cybersecurity, and digital skills.</p><a href="https://thecodeforchange.org/events/">Organizer details &amp; registration →</a></article><article class="front-card"><p>OCTOBER 10, 2026 · 10 A.M.–1 P.M. EASTERN</p><h3>YPD Community Impact Event</h3><p>Youth Professional Development<br>10201 Martin Luther King Jr. Hwy, Conference Room, Bowie, MD 20720</p><p>Our sister brand AskDoGood participated with practical wellness resources and community conversation.</p><a href="https://askdogood.com/community">Community appearances &amp; connections →</a></article></div><p id="event-date-note" style="margin-top:1rem">Community appearances are listed with their dates. They do not imply sponsorship or endorsement.</p><div class="front-actions"><a class="front-btn secondary" href="https://askdogood.com/community">See community dates</a><a class="front-btn primary" href="partners.html">Plan a workshop for your group</a></div></div></section>
-<section class="front-wrap front-band"><div class="front-hero front-founder"><img class="front-image" style="aspect-ratio:4/5;object-position:center" src="images/rosee-outdoors.webp" alt="RoSeé smiling outdoors" loading="lazy"><div><div class="front-kicker">A real person. A practical purpose.</div><h2>There’s a person behind the lesson.</h2><p>I’m RoSeé. I believe people deserve a place to ask questions, build confidence, and learn something they can use. God’s grace and mercy gave me another chance; making useful knowledge more accessible is one way I pay it forward.</p><div class="front-actions"><a class="front-btn secondary" href="about.html">Get to know DCT</a><a class="front-btn secondary" href="team.html">Meet Our Team</a><a class="front-btn primary" href="partners.html">Bring learning to your community</a></div></div></div></section>
-    <section class="front-wrap trust-panel" aria-labelledby="community-trust-title"><div class="front-kicker">Community credibility</div><h2 id="community-trust-title">Built in community. Growing through real relationships.</h2><p>DCT has delivered programming with Prince George's County Parks & Recreation and is actively developing additional school, veteran, workforce, and community pathways. We label each relationship clearly because trust matters more than logo collecting.</p><div class="trust-grid"><article class="trust-org"><span>PROGRAM DELIVERY</span><strong>M-NCPPC · Prince George's County Parks & Recreation</strong><p>Community technology instruction and county program delivery experience.</p></article><article class="trust-org"><span>IN PROCESS</span><strong>Prince George's County Public Schools</strong><p>Vendor/contractor pathway and education opportunities under development.</p></article><article class="trust-org"><span>ACTIVE CONVERSATION</span><strong>Veteran Women's Enterprise Center</strong><p>Exploring veteran-focused technology education and partnership scope.</p></article><article class="trust-org"><span>REFERRAL NETWORK</span><strong>Veteran career & workforce ecosystem</strong><p>Growing instructor, curriculum, and workforce relationships through veteran-serving professionals and organizations.</p></article></div><div class="front-actions"><a class="front-btn primary" href="partners.html">See Partnership Options</a></div></section>
-    <section class="front-wrap front-band"><h2>Understand &rarr; Use &rarr; Protect &rarr; Create</h2><p>Every DCT program follows the same sequence so people leave with more than information: they leave with practical confidence and a next step.</p><div class="journey"><div><strong>01</strong>Understand</div><div><strong>02</strong>Use</div><div><strong>03</strong>Protect</div><div><strong>04</strong>Create</div></div></section>
-    <section class="front-band dark"><div class="front-wrap"><h2>Who DCT serves</h2><p>Youth, adults, seniors, veterans, career changers, community organizations, and workforce programs. Different starting points. The same respect.</p><div class="audience-list"><span>Youth</span><span>Adults</span><span>Seniors</span><span>Veterans</span><span>Career changers</span><span>Community organizations</span><span>Workforce programs</span></div><div class="front-actions"><a class="front-btn primary" href="/hub/index.html#find">Find Your Path</a><a class="front-btn secondary" href="/hub/index.html">Find a Class</a></div></div></section>
-    <section class="front-wrap front-band"><h2>Learning can happen where people already are.</h2><p>DCT can deliver through community centers, senior centers, schools, libraries, veterans organizations, government and community programs, workforce organizations, and virtual learning.</p><div class="front-split"><article class="front-panel"><h3>For learners</h3><p>Start with a class, a free resource, or a beginner pathway. You do not need to already speak technology to belong here.</p><a class="front-btn primary" href="/hub/index.html">Find a Class</a></article><article class="front-panel"><h3>For organizations</h3><p>Host a workshop, build a multi-week program, or discuss a partnership shaped around your community.</p><a class="front-btn primary" href="partners.html">Bring DCT to Your Community</a></article></div></section>
-    <section class="front-wrap front-band soft"><h2>Two paths. One mission.</h2><div class="front-split"><article class="front-panel"><h3>Learn it.</h3><p>Develop modern AI, cloud, and cybersecurity knowledge that supports personal confidence and career development.</p></article><article class="front-panel"><h3>Teach it.</h3><p>Qualified veterans and technology professionals can explore opportunities to train as DCT instructors and bring technology education into their communities.</p><a class="front-btn secondary" href="teach/">Become an Instructor</a><p><a href="/teach/onboarding.html">Instructor onboarding &amp; training →</a></p></article></div></section>
-    <section class="front-wrap front-band"><div class="front-split"><article class="front-panel"><h3>Why DCT</h3><p>Technology education should not be reserved for people who already speak the language. We focus on access, understanding, security, opportunity, and community.</p><a href="about.html" class="front-btn secondary">Why We Exist</a></article><article class="front-panel"><h3>Technology + whole-person empowerment</h3><p>The Dope Cloud Teacher equips people for today's digital world. Our sister brand AskDoGood supports practical whole-person wellness. Together: healthier people, stronger skills, stronger communities.</p></article></div></section>
-    <section class="front-wrap front-final" aria-labelledby="learn-your-way"><h2 id="learn-your-way">Your pace. Your classroom. Your next step.</h2><p>Learn independently online, join a live class, or arrange training for your organization.</p><div class="front-grid" style="text-align:left"><article class="front-card"><div class="front-kicker">Individual learners</div><h3>Learn on your schedule</h3><p>Explore course previews before enrolling. Your learner account brings together your courses and saved lesson progress.</p><a class="front-btn primary" href="/hub/index.html">Browse self-paced courses</a><p><a href="/hub/enroll.html">Already enrolled? Sign in and continue →</a></p></article><article class="front-card"><div class="front-kicker">Live instruction</div><h3>Learn with a group</h3><p>Review proposed classes and express interest. Dates and instructor assignments are confirmed before enrollment.</p><a class="front-btn secondary" href="/classes/#schedule">Explore live classes</a></article><article class="front-card"><div class="front-kicker">Organizations</div><h3>Bring learning to your people</h3><p>Discuss a workshop or multi-week program for your workplace, church, community center, or nonprofit.</p><a class="front-btn secondary" href="/partners.html">Request group training</a></article></div></section>
+
+    <section class="home-wrap home-section" id="invite" aria-labelledby="invite-title">
+      <p class="home-label">03 · For hosts and organizers</p>
+      <h2 id="invite-title">Bring DCT to your organization or event</h2>
+      <p>Tell us who you serve and what you want them to leave knowing how to do. Include your venue, audience size, and preferred dates when you reach out.</p>
+      <div class="home-grid">
+        <article class="home-card">
+          <h3>Host a class or workshop</h3>
+          <p>Cloud and AI fundamentals for schools, libraries, workforce programs, and recreation centers. Everyday AI and scam awareness for senior centers and faith groups. Responsible AI and digital safety for workplace teams.</p>
+          <a href="mailto:thedopecloudteacher@gmail.com?subject=DCT%20workshop%20proposal%20request">Request a workshop proposal</a>
+        </article>
+        <article class="home-card">
+          <h3>Book a speaker</h3>
+          <p>Invite DCT to speak at a staff learning day, conference, or community gathering about AI literacy, digital confidence, or pathways into cloud careers.</p>
+          <a href="mailto:thedopecloudteacher@gmail.com?subject=DCT%20speaking%20invitation">Email a speaking invitation</a>
+        </article>
+        <article class="home-card">
+          <h3>Invite DCT as an event vendor</h3>
+          <p>Bring a DCT resource table or technology demo to a career fair, community resource day, or digital inclusion event.</p>
+          <a href="mailto:thedopecloudteacher@gmail.com?subject=DCT%20event%20vendor%20invitation">Email an event vendor invitation</a>
+        </article>
+      </div>
+      <div class="home-actions"><a href="/partners.html">See partnership options</a><a href="/corporate-training.html">Explore team training</a></div>
+    </section>
+
+    <section class="home-band">
+      <div class="home-wrap home-section">
+        <p class="home-label">The DCT teaching approach</p>
+        <h2>Understand → Use → Protect → Create</h2>
+        <p>We teach cloud, AI, and cybersecurity in plain language, with hands-on practice and human judgment at every step.</p>
+        <div class="home-actions"><a href="/about.html">About DCT</a><a href="/teach/">Teach with DCT</a><a href="/resources.html">Explore free resources</a><a href="/contact.html">Contact learner support</a></div>
+      </div>
+    </section>
   </main>
-  <script src="js/global-ui.js"></script>
-<script src="js/site-config.js"></script>
-<script src="js/analytics.js"></script>
-
-<script>
-if(Date.now()>Date.parse("2026-10-10T13:00:00-04:00")){document.querySelector("#in-community h2").textContent="Recent scheduled community dates.";document.querySelector("#event-date-note").textContent="These event dates have passed. Contact us about upcoming learning and community opportunities.";}
-(() => {
-const lessons={
-cloud:{cta:'Keep learning cloud',url:'#cloud101',steps:[['Save a file','Your device sends it','When you save a photo to a cloud service, your device sends data over the internet to computers operated by that service.','Think of a photo you backed up. Where else can you open it?'],['Store it','The service stores it','Cloud storage uses physical computers and storage systems. The cloud is real equipment you access remotely.','Your login controls who can access your account. Turn on multi-factor authentication.'],['Open it again','Your account brings it back','Sign in on another device and the service can retrieve the file. Access depends on permissions, connectivity, and the service’s settings.','Try explaining the cloud in one sentence: remote computing services accessed over a network.']]},
-ai:{cta:'Explore AI learning',url:'programs.html',steps:[['Ask','Start with a useful question','A language model generates an answer from your prompt and patterns learned during training. Some tools can also retrieve information from connected sources.','Try: “Explain cloud storage to a beginner using a photo album example.”'],['Generate','A fluent answer is a starting point','The model generates text. It can make mistakes or invent details, even when the answer sounds confident.','Ask for sources, then open them and check whether they support the answer.'],['Review','Your judgment finishes the job','Check important claims and protect private information. A person should review consequential decisions rather than accept an answer automatically.','Before sharing: Is it accurate? Is it appropriate? Does it expose anyone’s private information?']]},
-safety:{cta:'Explore security learning',url:'programs.html',steps:[['Pause','Urgency is a reason to slow down','A message that pressures you to pay or sign in immediately deserves a closer look. Names and logos can be copied.','Pause before opening an unexpected link or attachment.'],['Verify','Use a route you trust','Open the official app or type the known website address yourself. Contact the organization using a number you already trust.','Never share a one-time sign-in code with someone who contacts you.'],['Protect','Give your account another layer','Use a unique password and enable multi-factor authentication. Where available, consider a passkey.','Choose one important account and review its sign-in and recovery settings today.']]}
-};
-let topic='cloud';const tabs=[...document.querySelectorAll('[data-lesson]')];const steps=document.querySelector('.tech-steps');
-function showStep(index){const item=lessons[topic].steps[index];document.querySelector('#tech-step-number').textContent='STEP '+(index+1)+' OF 3';document.querySelector('#tech-answer-title').textContent=item[1];document.querySelector('#tech-answer-text').textContent=item[2];document.querySelector('#tech-try').textContent='Make it yours: '+item[3];[...steps.children].forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));}
-function showLesson(next){topic=next;tabs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lesson===topic)));steps.replaceChildren();lessons[topic].steps.forEach((item,i)=>{const b=document.createElement('button');b.type='button';b.innerHTML='<b>'+(i+1)+'</b>'+item[0];b.addEventListener('click',()=>showStep(i));steps.append(b)});const link=document.querySelector('#tech-next');link.textContent=lessons[topic].cta;link.setAttribute('href',lessons[topic].url);showStep(0)}
-tabs.forEach(b=>b.addEventListener('click',()=>showLesson(b.dataset.lesson)));showLesson('cloud');
-})();
-</script>
-<script src="/hub/year-end-offer.js"></script><script src="/js/daily-tech.js"></script></body>
+  <footer id="dct-page-guide">
+    <div class="home-wrap home-actions"><a href="/team.html">Our team</a><a href="/blog.html">Blog</a><a href="/merch.html">Merch</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+  </footer>
+  <script src="/js/global-ui.js?v=focused-home"></script>
+  <script src="/js/site-config.js"></script>
+  <script src="/js/analytics.js"></script>
+  <script src="/hub/year-end-offer.js"></script>
+</body>
 </html>
