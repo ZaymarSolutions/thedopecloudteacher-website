@@ -105,3 +105,17 @@
  .home-visual-guide { grid-template-columns: 1fr; gap: .75rem; }
  .home-card-photo { aspect-ratio: 16 / 10; }
 }
+
+/* A small, intentional photo set: founder, learning, classroom, community. */
+.home-paths .home-card { padding: 0 0 1.4rem; gap: .6rem; }
+.home-paths .home-card > :not(img) { margin-inline: 1.4rem; }
+.home-paths .home-card-photo { border-radius: 15px 15px 0 0; margin: 0 0 .6rem; aspect-ratio: 16 / 10; }
+.home-paths .home-card:nth-child(1) img { object-position: center 36%; }
+.home-paths .home-card:nth-child(2) img { object-position: center 48%; }
+.home-paths .home-card:nth-child(3) img { object-position: center 42%; }
+.home-method { max-width: 900px; }
+.home-method h2 { max-width: 22ch; }
+.home-hero-photo img { aspect-ratio: 5 / 4; object-position: center 28%; }
+@media (max-width: 768px) {
+ .home-hero-photo img { aspect-ratio: 4 / 3; }
+}
