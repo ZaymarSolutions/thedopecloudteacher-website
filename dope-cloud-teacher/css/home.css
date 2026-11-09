@@ -34,7 +34,7 @@
 .dct-home footer .home-actions { justify-content: center; }
 @media (max-width: 768px) {
   .home-split, .home-grid { grid-template-columns: 1fr; }
-  .home-hero-photo { display: none; }
+  .home-hero-photo { display: block; }
 }
 .home-brand { font-size: clamp(.85rem, 2.4vw, 1.1rem); color: #102743; font-weight: 800; line-height: 1.1; }
 
@@ -87,4 +87,21 @@
 @media (max-width: 520px) {
   .home-event-photo { grid-template-columns: minmax(0, 1fr); }
   .home-event-photo img { max-width: 260px; }
+}
+
+/* Photography stays visible at every screen size. */
+.home-hero-photo img { aspect-ratio: 1 / 1; object-position: 50% 38%; box-shadow: 0 16px 40px #17365220; }
+.home-card-photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: center 35%; border-radius: 10px; margin-bottom: .4rem; }
+.home-paths .home-card { padding-top: 1rem; }
+.home-paths .home-card:nth-child(1) img { object-position: center 26%; }
+.home-visual-guide { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.75rem; align-items: center; margin: 2rem 0; padding: 1rem; border: 1px solid #c9dbef; border-radius: 18px; background: #f7faff; }
+.home-visual-guide img { display: block; width: 100%; height: auto; border-radius: 10px; }
+.home-visual-guide figcaption { padding: .5rem; }
+.home-visual-guide a { font-weight: 750; }
+.home-visual-note { font-size: .8rem; color: #4b6074; margin-top: .8rem; }
+@media (max-width: 768px) {
+ .home-hero-photo img { aspect-ratio: 4 / 3; object-position: center 30%; }
+ .home-hero-photo { margin-top: .5rem; }
+ .home-visual-guide { grid-template-columns: 1fr; gap: .75rem; }
+ .home-card-photo { aspect-ratio: 16 / 10; }
 }
