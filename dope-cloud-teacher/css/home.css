@@ -37,3 +37,36 @@
   .home-hero-photo { display: none; }
 }
 .home-brand { font-size: clamp(.85rem, 2.4vw, 1.1rem); color: #102743; font-weight: 800; line-height: 1.1; }
+
+/* Keep the DCT blue while softening the space around the cards. */
+.home-hero { background: linear-gradient(135deg, #eef6ff, #fffbf4 70%, #fff); }
+.home-band { background: #f8f4ec; }
+.home-paths .home-card { position: relative; overflow: hidden; padding-top: 2rem; }
+.home-path-icon {
+  position: absolute;
+  top: .3rem;
+  right: .65rem;
+  width: 4.25rem;
+  height: 4.25rem;
+  color: #1267cf;
+  opacity: .15;
+  transform: rotate(-10deg);
+  pointer-events: none;
+}
+.home-paths .home-card:nth-child(2) { background: #fffbf4; }
+.home-paths .home-card:nth-child(2) .home-path-icon { color: #a46030; }
+.home-paths .home-card:nth-child(3) { background: #f1f8f6; }
+.home-paths .home-card:nth-child(3) .home-path-icon { color: #246b58; }
+.home-course-art { width: 100%; aspect-ratio: 2 / 1; height: auto; object-fit: cover; border-radius: 10px; margin-bottom: .4rem; }
+.home-founder { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 1.4rem; }
+.home-founder img { width: clamp(84px, 14vw, 144px); height: auto; aspect-ratio: 1; object-fit: cover; object-position: center 34%; border-radius: 20px; }
+@media (max-width: 520px) { .home-founder { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: no-preference) {
+  .home-paths .home-card { transition: transform .2s ease, box-shadow .2s ease; }
+  .home-path-icon { transition: transform .2s ease; }
+  .home-paths .home-card:focus-visible { transform: translateY(-3px); }
+  @media (hover: hover) {
+    .home-paths .home-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px #15345719; }
+    .home-paths .home-card:hover .home-path-icon { transform: translateY(-2px) rotate(0); }
+  }
+}
