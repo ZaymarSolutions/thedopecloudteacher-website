@@ -227,3 +227,18 @@ body:not(.dct-home) :is(a,button,input,textarea,select):focus-visible{outline:3p
 body:not(.dct-home) footer{background:#0a1c34!important;color:#dceaf6!important}
 body:not(.dct-home) footer a{color:#a8dfff!important}
 @media(max-width:768px){body:not(.dct-home) header .nav-links.is-open{background:#102743!important;border:1px solid #426482!important}body:not(.dct-home) header .nav-links a{display:block}}
+
+/* Contrast repairs for existing public pages. Scoped; preserve approved homepage. */
+body.dct-corporate .business-hero,body.dct-corporate .business-card,body.dct-corporate .business-form,
+body.dct-playbook .hero,body.dct-playbook .card{background:#f7fbff!important;color:#102743!important;border-color:#c4dff2!important}
+body.dct-corporate :is(.business-hero,.business-card,.business-form) :is(h1,h2,h3,h4,p,span,strong,small,li),
+body.dct-playbook :is(.hero,.card) :is(h1,h2,h3,h4,p,span,strong,small){color:#173b5a!important;-webkit-text-fill-color:#173b5a!important;opacity:1!important}
+body.dct-playbook .top a{color:#b8e3ff!important;-webkit-text-fill-color:#b8e3ff!important}
+body.dct-playbook .hero .btn.primary{color:#fff!important;-webkit-text-fill-color:#fff!important}
+body.dct-playbook .hero .btn.secondary{color:#12487e!important;-webkit-text-fill-color:#12487e!important}
+body.dct-course-hub [data-year-end-offer]{background:#eaf5ff!important;color:#102743!important}
+body.dct-course-hub [data-year-end-offer] :is(h1,h2,h3,p,span,strong,small){color:#102743!important;-webkit-text-fill-color:#102743!important;opacity:1!important}
+body.dct-course-hub [data-year-end-offer] .btn:not(.ghost){color:#fff!important;-webkit-text-fill-color:#fff!important}
+body.dct-course-hub [data-year-end-offer] .btn.ghost{color:#075a9e!important;-webkit-text-fill-color:#075a9e!important}
+body.dct-course-hub .model>div{background:#f7fbff!important}
+body.dct-course-hub .model>div :is(b,span){color:#173b5a!important;-webkit-text-fill-color:#173b5a!important}
