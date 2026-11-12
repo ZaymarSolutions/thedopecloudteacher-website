@@ -28,3 +28,14 @@ body.dct-home{background:#102743!important;color:#edf6ff!important;font-family:I
 .dct-home .focus-bottom h2{color:#fff!important;font-size:1.4rem;margin:0 0 .4rem}.focus-bottom p{color:#dceaf6;max-width:60ch}
 .dct-home a:focus-visible,.dct-home button:focus-visible{outline:3px solid #a8dfff!important;outline-offset:4px}
 @media(max-width:760px){.focus-intro{grid-template-columns:1fr}.focus-photo{max-width:420px;margin:auto}.focus-grid{grid-template-columns:1fr}.focus-card img{height:200px}.focus-bottom{align-items:stretch;flex-direction:column}.dct-home header .home-brand{font-size:.88rem!important;max-width:50vw;overflow-wrap:anywhere}.dct-home header .logo-img{height:48px!important;max-width:60px!important}.dct-home header .header-container{gap:.5rem!important}.dct-home header .mobile-menu-toggle{flex-shrink:0}}
+
+/* DCT technology constellation replaces founder portrait */
+.focus-tech-visual{min-width:0;display:grid;place-items:center;aspect-ratio:1/1;border-radius:24px;background:radial-gradient(circle at 50% 45%,#275c88 0%,#163c60 42%,#102743 77%);border:1px solid #426f94;overflow:hidden}
+.focus-tech-orbit{position:relative;width:min(100%,430px);aspect-ratio:1/1}
+.focus-tech-orbit::before,.focus-tech-orbit::after{content:"";position:absolute;inset:17%;border:1px dashed #7ac4ee70;border-radius:50%}
+.focus-tech-orbit::after{inset:32%;border-style:solid;border-color:#a3dfff55}
+.tech-node{position:absolute;z-index:1;display:grid;place-items:center;text-align:center;min-width:70px;min-height:70px;padding:10px;border-radius:50%;font-weight:800;font-size:clamp(.72rem,1.3vw,.94rem);line-height:1.2;color:#102743;background:#d9efff;box-shadow:0 7px 20px #071d3b55;border:2px solid #fff}
+.tech-center{left:50%;top:50%;transform:translate(-50%,-50%);width:116px;height:116px;background:#a4dcff;font-size:1.7rem;display:flex;flex-direction:column;justify-content:center}
+.tech-center span{font-size:.72rem}
+.tech-ai{top:5%;left:39%}.tech-cloud{top:20%;right:3%}.tech-azure{top:58%;right:1%}.tech-aws{bottom:4%;right:27%}.tech-gcp{bottom:14%;left:3%}.tech-security{top:39%;left:0%;font-size:.72rem}.tech-prompts{top:5%;left:5%;font-size:.76rem}
+@media(max-width:430px){.focus-tech-orbit{width:100%}.tech-node{min-width:59px;min-height:59px;padding:6px;font-size:.7rem}.tech-center{width:93px;height:93px;font-size:1.35rem}.tech-center span{font-size:.63rem}.tech-security,.tech-prompts{font-size:.62rem}}
