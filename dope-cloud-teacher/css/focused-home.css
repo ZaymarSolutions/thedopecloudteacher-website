@@ -1,0 +1,30 @@
+/* Focused DCT homepage: single navy foundation, accessible white surfaces */
+body.dct-home{background:#102743!important;color:#edf6ff!important;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.dct-home header{background:#102743!important}
+.dct-home header .home-brand,.dct-home header .nav-links a,.dct-home header .mobile-menu-toggle{color:#fff!important;text-shadow:none!important}
+.dct-home header .mobile-menu-toggle{background:#204b72!important;border:2px solid #c5e8ff!important;border-radius:8px!important;padding:.45rem .7rem!important;opacity:1!important;display:block}
+.dct-home header .nav-links{background:#102743}
+.dct-home header .nav-links a{font-weight:700}
+.focus-shell{width:min(1120px,calc(100% - 2.25rem));margin-inline:auto}
+.focus-hero{background:#102743;padding:clamp(2rem,5vw,5rem) 0}
+.focus-intro{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr);align-items:center;gap:clamp(1.5rem,5vw,4rem)}
+.focus-kicker{color:#9edbff!important;font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;font-weight:800;margin:0 0 1rem}
+.dct-home .focus-intro h1{color:#fff!important;font-size:clamp(2.3rem,5.5vw,4.5rem);line-height:1.1;letter-spacing:-.035em;margin:0 0 1.25rem}
+.focus-lead{font-size:clamp(1rem,2vw,1.22rem);color:#e5f0fc;line-height:1.65;max-width:54ch}
+.focus-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem}
+.focus-primary,.focus-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:9px;padding:.8rem 1.15rem;font-weight:800;text-decoration:none!important}
+.focus-primary{background:#a8dfff;color:#102743!important}
+.focus-secondary{background:transparent;color:#fff!important;border:2px solid #a8dfff}
+.focus-photo{margin:0}.focus-photo img{width:100%;aspect-ratio:4/4;object-fit:cover;object-position:center 30%;border-radius:20px;display:block}.focus-photo figcaption{font-size:.85rem;color:#d7e9f7;text-align:center;margin-top:.6rem}
+.focus-choices{text-align:center;padding:clamp(2rem,5vw,4rem) 0}.dct-home .focus-choices h2{color:#fff!important;font-size:clamp(1.8rem,3vw,2.5rem);margin:0 0 1.8rem}
+.focus-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;text-align:left}
+.focus-card{display:flex;flex-direction:column;background:#f7fbff!important;color:#102743!important;border:1px solid #d2e5f6;border-radius:16px;overflow:hidden;text-decoration:none!important;box-shadow:0 12px 30px #07182955}
+.focus-card img{display:block;width:100%;height:180px;object-fit:cover}
+.focus-card-body{display:flex;flex:1;flex-direction:column;gap:.65rem;padding:1.35rem}
+.focus-card-body strong{color:#102743;font-size:1.28rem;line-height:1.25}
+.focus-card-body span{color:#314b62;line-height:1.55}
+.focus-card-body .focus-card-link{color:#125ca4;font-weight:800;margin-top:auto;padding-top:.6rem}
+.focus-bottom{border-top:1px solid #426482;padding:2rem 0 3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+.dct-home .focus-bottom h2{color:#fff!important;font-size:1.4rem;margin:0 0 .4rem}.focus-bottom p{color:#dceaf6;max-width:60ch}
+.dct-home a:focus-visible,.dct-home button:focus-visible{outline:3px solid #a8dfff!important;outline-offset:4px}
+@media(max-width:760px){.focus-intro{grid-template-columns:1fr}.focus-photo{max-width:420px;margin:auto}.focus-grid{grid-template-columns:1fr}.focus-card img{height:200px}.focus-bottom{align-items:stretch;flex-direction:column}.dct-home header .home-brand{font-size:.88rem!important;max-width:50vw;overflow-wrap:anywhere}.dct-home header .logo-img{height:48px!important;max-width:60px!important}.dct-home header .header-container{gap:.5rem!important}.dct-home header .mobile-menu-toggle{flex-shrink:0}}
