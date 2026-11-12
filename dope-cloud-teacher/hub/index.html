@@ -128,6 +128,26 @@ html body.dct-course-hub main > section.dct-welcome a.dct-welcome-primary{backgr
 html body.dct-course-hub main > section.dct-welcome a.dct-welcome-secondary{background:#fff!important;color:#075a9e!important;-webkit-text-fill-color:#075a9e!important;border:2px solid #075a9e!important}
 html body.dct-course-hub main > section.hero h1,html body.dct-course-hub main > section.hero h1 em{color:#fff!important;-webkit-text-fill-color:#fff!important}
 @media(max-width:640px){.dct-welcome-content{padding:24px 20px;border-radius:18px}.dct-welcome-content::before{font-size:23px;right:13px;top:8px}.dct-welcome-benefits{gap:7px}.dct-welcome-benefits span{font-size:.79rem;padding:7px 9px}}
+
+/* Emergency readability patch: scoped to Learn hub only, overrides global white text rules. */
+html body.dct-course-hub main>section.dct-welcome,
+html body.dct-course-hub main>section.dct-welcome .dct-welcome-content{background:#ffffff!important;background-image:none!important;color:#102743!important}
+html body.dct-course-hub main>section.dct-welcome .dct-welcome-content{border:2px solid #b9d9ef!important;box-shadow:0 12px 30px rgba(16,39,67,.12)!important}
+html body.dct-course-hub main>section.dct-welcome :is(h1,h2,h3,p,span,strong,small),
+html body.dct-course-hub main>section.dct-welcome .dct-welcome-content :is(h1,h2,h3,p,span,strong,small){color:#102743!important;-webkit-text-fill-color:#102743!important;opacity:1!important;text-shadow:none!important}
+html body.dct-course-hub main>section.dct-welcome .dct-welcome-kicker{color:#075a9e!important;-webkit-text-fill-color:#075a9e!important}
+html body.dct-course-hub main>section.dct-welcome .dct-welcome-benefits span{color:#102743!important;-webkit-text-fill-color:#102743!important;background:#e9f4ff!important}
+html body.dct-course-hub main>section.dct-welcome .dct-welcome-benefits span::before{color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body.dct-course-hub main>section.dct-welcome a.dct-welcome-primary{color:#fff!important;-webkit-text-fill-color:#fff!important;background:#075a9e!important}
+html body.dct-course-hub main>section.dct-welcome a.dct-welcome-secondary{color:#075a9e!important;-webkit-text-fill-color:#075a9e!important;background:#fff!important}
+html body.dct-course-hub main>section[data-year-end-offer]{background:#eaf5ff!important;background-image:none!important;color:#102743!important}
+html body.dct-course-hub main>section[data-year-end-offer] :is(h1,h2,h3,p,span,strong,small){color:#102743!important;-webkit-text-fill-color:#102743!important;opacity:1!important}
+html body.dct-course-hub main>section[data-year-end-offer] .btn:not(.ghost){color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body.dct-course-hub main>section[data-year-end-offer] .btn.ghost{color:#075a9e!important;-webkit-text-fill-color:#075a9e!important}
+html body.dct-course-hub main>section.hero{background:#102743!important;color:#fff!important}
+html body.dct-course-hub main>section.hero :is(h1,h2,p.lead){color:#fff!important;-webkit-text-fill-color:#fff!important}
+html body.dct-course-hub main>section.hero .finder{background:#fff!important;color:#102743!important}
+html body.dct-course-hub main>section.hero .finder :is(label,button,.pathstrip,.pathstrip span){color:#102743!important;-webkit-text-fill-color:#102743!important}
 </style><link rel="canonical" href="https://thedopecloudteacher.org/hub/index.html"></head><body class="dct-course-hub"><!-- DCT:SITE-HEADER START -->
 <header><div class="header-container"><a href="/index.html" class="logo" aria-label="The Dope Cloud Teacher home"><img src="/logo.svg?v=20260705c" alt="The Dope Cloud Teacher" class="logo-img"><span class="front-brand-name"><strong>The Dope Cloud Teacher</strong><span>Bringing the Cloud to Life!</span></span></a><nav class="nav-links" aria-label="Main navigation"></nav><button class="mobile-menu-toggle" aria-label="Toggle mobile menu">&#9776;</button></div></header>
 <!-- DCT:SITE-HEADER END -->
