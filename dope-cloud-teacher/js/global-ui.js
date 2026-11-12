@@ -41,6 +41,9 @@
   }
 
   function ensureThemeStyles() {
+    // Learn hub owns its vetted page-specific palette. Injecting the global theme
+    // after its inline CSS reintroduces white-on-white headings on light cards.
+    if (document.body && document.body.classList.contains('dct-course-hub')) return;
     var head = document.head || document.querySelector('head');
     if (!head) return;
 
