@@ -1757,3 +1757,11 @@ button:focus {
   outline-offset: 2px;
 }
 
+
+/* DCT shared navigation system: consistent navy bar and responsive links */
+:root{--nav-surface:#102743;--border-color:#31506a}
+body header:has(.header-container){background:#102743;color:#fff;border-bottom:1px solid #31506a}
+body header:has(.header-container) .nav-links a,body header:has(.header-container) .home-brand,body header:has(.header-container) .logo-text .main-title,body header:has(.header-container) .logo-text .subtitle{color:#f5faff}
+body header:has(.header-container) .nav-links a:hover,body header:has(.header-container) .nav-links a:focus-visible{color:#a9ddff}
+body header:has(.header-container) .mobile-menu-toggle{color:#fff}
+body header:has(.header-container) .header-container{max-width:1200px}
