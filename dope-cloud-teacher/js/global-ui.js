@@ -57,10 +57,12 @@
       head.appendChild(stylesLink);
     }
 
-    if (!head.querySelector('#dct-unified-theme')) {
+    var oldTheme = head.querySelector('#dct-unified-theme');
+    if (oldTheme && oldTheme.getAttribute('href') !== sitePath('css/unified-theme.css?v=20261112-unified')) oldTheme.setAttribute('href', sitePath('css/unified-theme.css?v=20261112-unified'));
+    if (!oldTheme) {
       var themeLink = document.createElement('link');
       themeLink.rel = 'stylesheet';
-      themeLink.href = sitePath('css/unified-theme.css?v=20260706b');
+      themeLink.href = sitePath('css/unified-theme.css?v=20261112-unified');
       themeLink.id = 'dct-unified-theme';
       head.appendChild(themeLink);
     }
