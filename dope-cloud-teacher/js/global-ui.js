@@ -121,16 +121,11 @@
     var currentPage = (parts.length ? parts[parts.length - 1] : 'index.html').split('?')[0] || 'index.html';
     var navItems = [
       { href: 'index.html', label: 'Home', sections: ['home'], pages: ['index.html', ''] },
-      { href: 'hub/index.html', label: 'Courses', sections: ['hub'], pages: [] },
-      { href: 'programs.html', label: 'Programs', sections: ['programs'], pages: ['programs.html', 'courses.html', 'certifications.html'] },
-      { href: 'who-we-serve.html', label: 'Who We Serve', sections: ['who-we-serve'], pages: ['who-we-serve.html', 'veterans-community.html'] },
-      { href: 'about.html', label: 'About', sections: [], pages: ['about.html', 'governance-responsible-ai.html'] },
-      { href: 'team.html', label: 'Our Team', sections: [], pages: ['team.html'] },
-      { href: 'partners.html', label: 'Partners', sections: ['partners'], pages: ['partners.html', 'corporate-training.html', 'b2b.html'] },
-      { href: 'resources.html', label: 'Resources', sections: ['resources'], pages: ['resources.html', 'blog.html', 'playbook/index.html'] },
-      { href: 'current-intelligence.html', label: 'News', sections: [], pages: ['current-intelligence.html'] },
-      { href: 'merch.html', label: 'Merch', sections: ['merch'], pages: ['merch.html'] },
-      { href: 'contact.html', label: 'Contact', sections: [], pages: ['contact.html'] }
+      { href: 'courses.html', label: 'Learn with DCT', sections: ['hub'], pages: ['courses.html', 'programs.html', 'certifications.html'] },
+      { href: 'instructor-apply.html', label: 'Teach with DCT', sections: [], pages: ['instructor-apply.html', 'instructor-live-virtual.html', 'instructor-inperson-facilitator.html'] },
+      { href: 'partners.html', label: 'Partner with DCT', sections: [], pages: ['partners.html', 'corporate-training.html', 'b2b.html'] },
+      { href: 'blog.html', label: 'Tech Talk', sections: [], pages: ['blog.html', 'resources.html'] },
+      { href: 'about.html', label: 'About', sections: [], pages: ['about.html', 'team.html'] }
     ];
 
     nav.innerHTML = navItems.map(function (item) {
