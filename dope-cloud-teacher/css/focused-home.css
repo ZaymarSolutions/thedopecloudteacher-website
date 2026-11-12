@@ -39,3 +39,16 @@ body.dct-home{background:#102743!important;color:#edf6ff!important;font-family:I
 .tech-center span{font-size:.72rem}
 .tech-ai{top:5%;left:39%}.tech-cloud{top:20%;right:3%}.tech-azure{top:58%;right:1%}.tech-aws{bottom:4%;right:27%}.tech-gcp{bottom:14%;left:3%}.tech-security{top:39%;left:0%;font-size:.72rem}.tech-prompts{top:5%;left:5%;font-size:.76rem}
 @media(max-width:430px){.focus-tech-orbit{width:100%}.tech-node{min-width:59px;min-height:59px;padding:6px;font-size:.7rem}.tech-center{width:93px;height:93px;font-size:1.35rem}.tech-center span{font-size:.63rem}.tech-security,.tech-prompts{font-size:.62rem}}
+
+/* 2026-11-12: show every pixel of approved card artwork on all screen sizes. */
+.dct-home .focus-card img{width:100%;height:auto;aspect-ratio:16/10;object-fit:contain!important;object-position:center center!important;background:#102743;display:block}
+@media(max-width:760px){.dct-home .focus-card img{height:auto;aspect-ratio:16/10;object-fit:contain!important;object-position:center!important}}
+/* Elevated 3D cloud-tech constellation; retains accessible text and original DCT identity. */
+.dct-home .focus-tech-visual{perspective:900px;background:radial-gradient(ellipse at 48% 45%,#1d70b9 0%,#123b6b 43%,#091b35 82%);border:1px solid #48b9f2;box-shadow:inset 0 0 65px #29a8f633,0 24px 65px #020b1f99;position:relative}
+.dct-home .focus-tech-visual:before{content:"";position:absolute;inset:9%;border-radius:50%;background:radial-gradient(circle,#52d9ff25 0%,transparent 65%);filter:blur(8px)}
+.dct-home .focus-tech-orbit:before{border:2px solid #3bc5ff55;box-shadow:0 0 22px #36bfff55;transform:rotateX(65deg) rotate(-22deg)}
+.dct-home .focus-tech-orbit:after{border:1px solid #9ceaff88;box-shadow:0 0 28px #45c8ff33}
+.dct-home .tech-node{border-radius:18px;background:linear-gradient(145deg,#e9faff,#7ed5ff 55%,#288cc9);border:1px solid #e8fbff;box-shadow:inset 3px 3px 9px #ffffffc9,inset -6px -7px 12px #084b8c88,0 10px 0 #064778,0 18px 27px #020b24a6;color:#072647;text-shadow:0 1px 0 #ffffff88;transform:rotate(-3deg)}
+.dct-home .tech-center{border-radius:50%;background:radial-gradient(circle at 30% 25%,#e5ffff,#5bcfff 60%,#0874b7);box-shadow:inset 5px 6px 15px #fff9,inset -7px -9px 20px #005c9e99,0 13px 0 #064a80,0 22px 36px #010d25b8;transform:translate(-50%,-50%)}
+.dct-home .tech-node:not(.tech-center):nth-child(even){transform:rotate(4deg)}
+@media(prefers-reduced-motion:no-preference){.dct-home .focus-tech-visual{transition:box-shadow .25s ease}.dct-home .focus-tech-visual:hover{box-shadow:inset 0 0 75px #29a8f655,0 26px 70px #020b1fcc}}
