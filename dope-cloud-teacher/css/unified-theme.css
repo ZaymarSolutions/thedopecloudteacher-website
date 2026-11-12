@@ -205,3 +205,25 @@ article img {
   height: 260px !important;
   object-fit: cover !important;
 }
+
+
+/* DCT unified visual system: matches the approved navy/blue homepage.
+   Scoped to public content; light cards/forms retain readable dark text. */
+:root{--dct-bg-1:#102743;--dct-bg-2:#102743;--dct-surface:#f7fbff;--dct-surface-soft:#eef7ff;--dct-text:#102743;--dct-text-soft:#dceaf6;--dct-border:#426482;--dct-primary:#59b8f2;--dct-secondary:#102743;--dct-highlight:#a8dfff}
+body:not(.dct-home){background:#102743!important;color:#e8f2fc!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important}
+body:not(.dct-home) header{background:#102743!important;border-bottom:1px solid #426482!important;box-shadow:0 10px 28px #061b3555!important}
+body:not(.dct-home) header .nav-links,body:not(.dct-home) header .dct-primary-nav{background:#102743!important}
+body:not(.dct-home) header .nav-links a,body:not(.dct-home) header .dct-primary-nav a{color:#f7fbff!important;background:transparent!important;border-color:transparent!important;border-radius:9px!important;font-weight:700!important}
+body:not(.dct-home) header .nav-links a:hover,body:not(.dct-home) header .nav-links a.active,body:not(.dct-home) header .dct-primary-nav a:hover,body:not(.dct-home) header .dct-primary-nav a.active{background:#24547c!important;color:#fff!important;box-shadow:none!important}
+body:not(.dct-home) header .mobile-menu-toggle{background:#204b72!important;color:#fff!important;border:2px solid #c5e8ff!important;border-radius:8px!important}
+body:not(.dct-home) main h1,body:not(.dct-home) main>h1,body:not(.dct-home) main>section>h1,body:not(.dct-home) main>section>h2{color:#fff!important}
+body:not(.dct-home) main>p,body:not(.dct-home) main>section>p{color:#dceaf6!important}
+body:not(.dct-home) :is(.contact-card,.role-card,.status-card,.offer-card,.step-card,.course-card,.resource-card,.blog-card,.card,.panel,.form-card,.pricing-card,.scenario-card,.visual-card,.testimonial-card,.faq-item,.outcome-card){background:#f7fbff!important;color:#102743!important;border-color:#d2e5f6!important;box-shadow:0 12px 30px #061b3540}
+body:not(.dct-home) :is(.contact-card,.role-card,.status-card,.offer-card,.step-card,.course-card,.resource-card,.blog-card,.card,.panel,.form-card,.pricing-card,.scenario-card,.visual-card,.testimonial-card,.faq-item,.outcome-card) :is(h1,h2,h3,h4,p,label,small,strong){color:#173b5a!important}
+body:not(.dct-home) :is(input,textarea,select){background:#fff;color:#102743;border:1px solid #9dbdd7;border-radius:8px;max-width:100%}
+body:not(.dct-home) :is(input,textarea,select):focus-visible{outline:3px solid #59b8f2;outline-offset:2px}
+body:not(.dct-home) :is(button,.btn,.cta.primary,button[type=submit],input[type=submit]){border-radius:9px}
+body:not(.dct-home) :is(a,button,input,textarea,select):focus-visible{outline:3px solid #a8dfff!important;outline-offset:3px}
+body:not(.dct-home) footer{background:#0a1c34!important;color:#dceaf6!important}
+body:not(.dct-home) footer a{color:#a8dfff!important}
+@media(max-width:768px){body:not(.dct-home) header .nav-links.is-open{background:#102743!important;border:1px solid #426482!important}body:not(.dct-home) header .nav-links a{display:block}}
