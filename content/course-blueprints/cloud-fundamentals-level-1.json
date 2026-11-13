@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "template": "dct-course-v1",
+  "branding": {
+    "siteBase": "navy",
+    "colorRule": "topic",
+    "levelsUseLabels": true,
+    "topics": {
+      "cloud": {
+        "name": "Cloud Fundamentals",
+        "accent": "#4169E1",
+        "accentName": "Royal Blue"
+      },
+      "ai": {
+        "name": "AI Fundamentals",
+        "accent": "#C34E91",
+        "accentName": "Berry Pink"
+      }
+    }
+  },
+  "pricing": {
+    "singleLevelUSD": 25,
+    "levelsOneTwoUSD": 45,
+    "levelsOneTwoThreeUSD": 65,
+    "careerReadinessUSD": 99
+  },
+  "course": {
+    "id": "cloud-fundamentals-level-1",
+    "title": "Cloud Fundamentals",
+    "level": 1,
+    "topic": "cloud",
+    "status": "draft",
+    "publishWhenComplete": true,
+    "objectives": [
+      "Explain what cloud computing is",
+      "Distinguish IaaS, PaaS, and SaaS",
+      "Identify public, private, and hybrid cloud models",
+      "Describe basic cloud security and shared responsibility"
+    ],
+    "modules": [
+      {
+        "id": "welcome",
+        "title": "Welcome and learning roadmap",
+        "type": "orientation"
+      },
+      {
+        "id": "cloud-basics",
+        "title": "What is cloud computing?",
+        "type": "interactive-diagram"
+      },
+      {
+        "id": "service-models",
+        "title": "IaaS, PaaS and SaaS",
+        "type": "clickable-comparison"
+      },
+      {
+        "id": "deployment-models",
+        "title": "Public, private and hybrid cloud",
+        "type": "scenario-activity"
+      },
+      {
+        "id": "cloud-security",
+        "title": "Security and shared responsibility",
+        "type": "interactive-exercise"
+      },
+      {
+        "id": "practice",
+        "title": "Choose the right cloud approach",
+        "type": "guided-practice"
+      },
+      {
+        "id": "assessment",
+        "title": "Knowledge check",
+        "type": "quiz"
+      },
+      {
+        "id": "completion",
+        "title": "Summary and next steps",
+        "type": "completion"
+      }
+    ],
+    "resources": [
+      "course-overview.pdf",
+      "learner-workbook.pdf",
+      "cloud-glossary.pdf",
+      "cloud-models-reference.pdf",
+      "practice-scenarios.pdf",
+      "study-checklist.pdf"
+    ],
+    "studentExperience": [
+      "purchase-confirmation",
+      "welcome-email",
+      "student-dashboard",
+      "course-overview",
+      "interactive-lessons",
+      "practice",
+      "assessment",
+      "completion"
+    ],
+    "accessibility": {
+      "reducedMotion": true,
+      "keyboardNavigation": true,
+      "highContrast": true,
+      "mobileFirst": true
+    },
+    "releaseChecks": [
+      "backend-deployment-success",
+      "stripe-test-checkout",
+      "webhook-enrollment-entitlement",
+      "welcome-email-links",
+      "resources-exist",
+      "lesson-access-authorized",
+      "mobile-and-accessibility-test"
+    ]
+  }
+}
