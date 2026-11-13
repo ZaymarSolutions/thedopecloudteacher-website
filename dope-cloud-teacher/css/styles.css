@@ -1765,3 +1765,23 @@ body header:has(.header-container) .nav-links a,body header:has(.header-containe
 body header:has(.header-container) .nav-links a:hover,body header:has(.header-container) .nav-links a:focus-visible{color:#a9ddff}
 body header:has(.header-container) .mobile-menu-toggle{color:#fff}
 body header:has(.header-container) .header-container{max-width:1200px}
+
+
+/* DCT readability guardrails — light surfaces only; preserve navy hero sections and branded buttons. */
+:is(.module-card,.program-card,.contact-card,.visual-card,.scenario-card,.human-touch-photo-card,.faq-item,.resource-card,.course-card,.profile-card,.step-card,.status-card,.offer-card) {
+  color:#17324d;
+}
+:is(.module-card,.program-card,.contact-card,.visual-card,.scenario-card,.human-touch-photo-card,.faq-item,.resource-card,.course-card,.profile-card,.step-card,.status-card,.offer-card) :is(h2,h3,h4) {
+  color:#102743;
+  -webkit-text-fill-color:#102743;
+}
+:is(.module-card,.program-card,.contact-card,.visual-card,.scenario-card,.human-touch-photo-card,.faq-item,.resource-card,.course-card,.profile-card,.step-card,.status-card,.offer-card) :is(p,li,small) {
+  color:#294760;
+  -webkit-text-fill-color:#294760;
+}
+:is(.module-card,.program-card,.contact-card,.visual-card,.scenario-card,.human-touch-photo-card,.faq-item,.resource-card,.course-card,.profile-card,.step-card,.status-card,.offer-card) a:not(.button):not(.btn) {
+  color:#075a9e;
+  -webkit-text-fill-color:#075a9e;
+}
+/* Do not override text within deliberately dark panels or button-like links. */
+:is(.module-card,.program-card,.contact-card,.visual-card,.scenario-card,.human-touch-photo-card,.faq-item,.resource-card,.course-card,.profile-card,.step-card,.status-card,.offer-card) :is(.dct-flip-card-back,.dark-panel,.dark-card,.button,.btn) :is(h2,h3,h4,p,li,small,a){color:inherit;-webkit-text-fill-color:currentColor}
