@@ -639,3 +639,58 @@ th {
     flex-direction: column;
   }
 }
+
+
+/* DCT accessibility refresh: consistent deep-blue cards and readable controls. */
+:root {
+  --dct-card-blue: #102b53;
+  --dct-card-blue-deep: #091d3b;
+  --dct-card-text: #ffffff;
+  --dct-card-muted: #e1ecfa;
+}
+.info-card,
+.experience-card,
+.testimonial-card,
+.program-card,
+.stat-card {
+  background: linear-gradient(155deg, var(--dct-card-blue), var(--dct-card-blue-deep));
+  border-color: #42648e;
+  color: var(--dct-card-text);
+  box-shadow: 0 12px 26px rgba(8, 27, 55, 0.18);
+}
+.info-card :is(h3, p, a, span, strong),
+.experience-card :is(h3, p, a, span, strong),
+.testimonial-card :is(h3, p, a, span, strong),
+.program-card :is(h3, p, a, span, strong),
+.stat-card :is(h3, p, a, span, strong),
+.program-card .program-description,
+.program-card .program-meta :is(dt, dd),
+.testimonial-card .person,
+.testimonial-card .role {
+  color: var(--dct-card-text);
+}
+.info-card p,
+.experience-card p,
+.testimonial-card p,
+.program-card .program-description,
+.stat-card span,
+.program-card .program-meta dt {
+  color: var(--dct-card-muted);
+}
+:is(.info-card, .experience-card, .testimonial-card, .program-card, .stat-card) a:not(.btn) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+:is(.info-card, .experience-card, .testimonial-card, .program-card, .stat-card) .btn-primary {
+  background: #f5d98f;
+  color: #10213a;
+}
+:is(.info-card, .experience-card, .testimonial-card, .program-card, .stat-card) .btn-secondary {
+  background: #ffffff;
+  color: #102b53;
+  border-color: #ffffff;
+}
+:is(a, button):focus-visible {
+  outline: 3px solid #ffdb79;
+  outline-offset: 3px;
+}
