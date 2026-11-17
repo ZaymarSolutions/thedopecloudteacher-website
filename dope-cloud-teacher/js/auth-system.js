@@ -87,7 +87,7 @@ async function readApiError(response, fallbackMessage) {
 const GUMROAD_STORE_URL = 'https://roseecraft.gumroad.com';
 
 const HOSTED_CHECKOUT_LINKS = {
-  'cloud-fundamentals-101': `${GUMROAD_STORE_URL}/l/cloud-fundamentals-101`,
+  'cloud-fundamentals-101': '/hub/enroll.html?course=cloud-fundamentals-101',
   'cloud-security-engineer': 'https://thedopecloudteacher.org/classes/#schedule',
   'devops-automation': 'https://thedopecloudteacher.org/classes/#schedule',
   'serverless-microservices': 'https://thedopecloudteacher.org/classes/#schedule',
@@ -111,6 +111,7 @@ function isStripeConfigurationIssue(message = '') {
 
 function getFriendlyCheckoutError(message = '', productId = '') {
   if (isStripeConfigurationIssue(message)) {
+    if (productId === 'cloud-fundamentals-101') return `Cloud Fundamentals enrollment is temporarily unavailable. Please contact ${PAYMENT_SUPPORT_EMAIL} for help; do not purchase an unrelated Gumroad product.`;
     const hostedUrl = getHostedCheckoutUrl(productId);
     return hostedUrl
       ? 'Checkout is being redirected through the Gumroad storefront.'
@@ -118,6 +119,7 @@ function getFriendlyCheckoutError(message = '', productId = '') {
   }
 
   if (/Unable to reach the app server/i.test(String(message))) {
+    if (productId === 'cloud-fundamentals-101') return `The DCT enrollment service is temporarily unreachable. Please try again later or contact ${PAYMENT_SUPPORT_EMAIL}.`;
     return 'The app server is temporarily unreachable. Please try again shortly or use the Gumroad storefront.';
   }
 
