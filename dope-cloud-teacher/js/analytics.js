@@ -37,18 +37,20 @@
     window.gtag('config', config.measurementId);
   }
 
-  if (location.pathname.endsWith('/cloud101.html')) {
-    trackEvent('view_item', { currency: 'USD', value: 97,
-      items: [{ item_id: 'cloud101', item_name: 'Cloud Fundamentals 101', item_brand: 'DCT', price: 97, quantity: 1 }] });
+  const cloud101Price = Date.now() < Date.parse('2027-01-01T05:00:00Z') ? 25 : 97;
+  if (['/cloud101.html', '/shop.html', '/hub/courses/cloud-fundamentals-101.html'].includes(location.pathname)) {
+    trackEvent('view_item', { currency: 'USD', value: cloud101Price,
+      items: [{ item_id: 'cloud-fundamentals-101', item_name: 'Cloud Fundamentals 101', item_brand: 'DCT', price: cloud101Price, quantity: 1 }] });
   }
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[href]');
     if (link) {
       const url = new URL(link.href, location.href);
       const label = (link.textContent || '').trim().slice(0, 80);
-      if (url.hostname === 'roseecraft.gumroad.com' && url.pathname === '/l/cloud-fundamentals-101') {
-        trackEvent('begin_checkout', { currency: 'USD', value: 97,
-          items: [{ item_id: 'cloud101', item_name: 'Cloud Fundamentals 101', item_brand: 'DCT', price: 97, quantity: 1 }] });
+      if (url.pathname === '/hub/enroll.html' && url.searchParams.get('course') === 'cloud-fundamentals-101') {
+        trackEvent('select_item', { currency: 'USD',
+          enrollment_path: url.searchParams.get('access') === 'community' ? 'fee_assistance' : 'paid',
+          items: [{ item_id: 'cloud-fundamentals-101', item_name: 'Cloud Fundamentals 101', item_brand: 'DCT', price: cloud101Price, quantity: 1 }] });
       }
       if (url.protocol === 'mailto:') trackEvent('contact_click', { page: location.pathname });
       if (/^https?:$/.test(url.protocol) && url.hostname !== location.hostname) {
