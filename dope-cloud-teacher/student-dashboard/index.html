@@ -9,29 +9,43 @@
   <link rel="icon" type="image/png" href="../logo.png?v=20260705b">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
-    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(180deg, #f7fbff, #edf5ff); color: #1d2f45; }
+    body { margin: 0; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: #102743; color: #e8f2fc; }
     .wrap { width: min(1120px, calc(100% - 2rem)); margin: 1.25rem auto 2rem; }
     .top { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-    .top a { text-decoration: none; color: #1d4d86; font-weight: 700; }
+    .top a { text-decoration: none; color: #b8e3ff; font-weight: 700; }
     .hero, .card { background: #fff; border: 1px solid #d4e3f6; border-radius: 16px; box-shadow: 0 10px 24px rgba(21,40,74,0.08); }
     .hero { padding: 1.2rem; margin-top: 0.8rem; }
-    .hero h1 { margin: 0 0 0.45rem; }
-    .hero p { margin: 0.35rem 0; line-height: 1.65; color: #3f5878; }
-    .cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.9rem; }
+    .student-dashboard .wrap > .hero > h1 {
+      margin: 0 0 0.45rem;
+      color: #102743 !important;
+    }
+    .student-dashboard .wrap > .hero > p {
+      margin: 0.35rem auto;
+      line-height: 1.65;
+      color: #294760 !important;
+    }
+    .dashboard-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.9rem; }
     .btn { text-decoration: none; padding: 0.6rem 0.95rem; border-radius: 999px; font-weight: 700; }
     .btn.primary { background: #1267cf; color: #fff; }
     .btn.secondary { background: #fff; border: 1px solid #c9daf0; color: #1d2f45; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.8rem; margin-top: 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr)); gap: 0.8rem; margin-top: 1rem; }
     .card { padding: 0.95rem; }
     .card h2 { margin: 0 0 0.4rem; font-size: 1.02rem; }
     .card p { margin: 0 0 0.45rem; color: #46607f; line-height: 1.6; }
+    .student-dashboard .card a { color: #075a9e; }
+    .student-dashboard #dct-page-guide { color: #dceaf6; }
+    .student-dashboard #dct-page-guide a { color: #b8e3ff; }
+    .student-dashboard .wrap :is(.hero, .card) a:focus-visible {
+      outline-color: #075a9e !important;
+    }
+    .top a:hover { text-decoration: underline; }
     .progress { margin-top: 0.3rem; font-size: 0.9rem; color: #2a4f78; font-weight: 700; }
     .meter { margin-top: 0.45rem; height: 10px; border-radius: 999px; background: #e9f1fb; overflow: hidden; }
     .bar { height: 100%; background: linear-gradient(90deg, #1267cf, #3f94e9); width: 0; transition: width 220ms ease; }
   </style>
 <meta name="robots" content="noindex, nofollow">
 </head>
-<body>
+<body class="student-dashboard">
   <main class="wrap">
     <nav class="top" aria-label="Student dashboard navigation">
       <a href="../index.html">Home</a>
@@ -44,7 +58,7 @@
     <section class="hero">
       <h1>Student Dashboard</h1>
       <p>Track your progress, return to active learning pathways, and keep momentum across local classes, virtual sessions, and Academy tracks.</p>
-      <div class="cta">
+      <div class="dashboard-actions">
         <a class="btn primary" href="../dashboard.html">Open Full Dashboard</a>
         <a class="btn secondary" href="https://mdpgparksweb.myvscloud.com/webtrac/web/splash.html" target="_blank" rel="noreferrer">In-Person PG Parks & Planning (Direct)</a>
         <a class="btn secondary" href="../academy/index.html">Continue Learning</a>
