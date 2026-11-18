@@ -13,6 +13,7 @@ const crypto = require('crypto');
 const fs = require('fs');
 const https = require('https');
 const { sendEmail } = require('./email-service');
+const { setupIntakeRoutes } = require('./intake-workflow');
 const { setupMerch } = require('./merch-checkout');
 const { setupHubAccess, COURSE_SLUGS } = require('./hub-access');
 const {coursePrice,checkoutReady,sections,fulfillSponsorship,verifySponsorPayment} = require('./learning-offer');
@@ -829,6 +830,10 @@ app.get('/api/leads/export', authenticateToken, requireAdmin, (req, res) => {
   res.setHeader('Content-Disposition', 'attachment; filename="leads.csv"');
   res.send(csv);
 });
+
+// DCT founder-owned intake: contact -> classified inquiry -> reviewed next steps.
+// Additive SQLite schema only. No changes to auth, enrollment, payments or current leads.
+setupIntakeRoutes(app, db, authenticateToken, requireAdmin);
 
 // ==================== AI ASSISTANT ====================
 app.post('/api/assistant/chat', async (req, res) => {
