@@ -76,7 +76,7 @@ async function notifyInquiry(db,record) {
   try {
     await transporter.sendMail({
       from:process.env.EMAIL_FROM, to:process.env.ADMIN_EMAIL,
-      subject:'DCT inquiry for review: '+record.category+' ('+record.id+')',
+      subject:'DCT Pathway | New '+record.category+' inquiry ('+record.id+')',
       text:'New '+record.category+' inquiry '+record.id+
         ' awaits founder review. Sign in at https://thedopecloudteacher.org/admin/intake.html.'+
         '\nPersonal details are not forwarded in this notification.'
