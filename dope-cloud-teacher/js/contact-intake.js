@@ -37,7 +37,17 @@
     setStatus('Preview mode: this form is displayed for review. Submissions are disabled until production deployment.');
     return;
   }
-  const endpoint = 'https://energetic-endurance-production.up.railway.app/api/intake/inquiries';
+  const apiRoot = 'https://energetic-endurance-production.up.railway.app/api';
+  const endpoint = apiRoot+'/intake/inquiries';
+  // Do not collect customer contact information when nobody can be notified.
+  button.disabled = true;
+  fetch(apiRoot+'/intake/status',{cache:'no-store'})
+    .then(response=>response.ok?response.json():{accepting:false})
+    .then(data=>{
+      if(data.accepting){button.disabled=false;status.hidden=true;}
+      else setStatus('Online inquiry submissions are being prepared. Please use the direct DCT email link above for now.');
+    })
+    .catch(()=>setStatus('The inquiry service is unavailable. Please email thedopecloudteacher@gmail.com directly.'));
   let submissionKey = '';
   const freshKey = () => {
     if (crypto.randomUUID) return crypto.randomUUID();
