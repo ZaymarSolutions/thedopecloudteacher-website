@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DCT · Private Inquiry Review</title>
+<link rel="icon" href="/logo.svg">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/unified-theme.css">
+<link rel="stylesheet" href="/admin/intake.css?v=20261118a">
+</head>
+<body>
+<header>
+    <div class="header-container">
+      <a href="/" class="logo" aria-label="The Dope Cloud Teacher home">
+        <img src="/logo.svg?v=20260705c" alt="" class="logo-img">
+        <span class="home-brand">The Dope Cloud TeacHer</span>
+      </a>
+      <nav class="nav-links" id="home-nav" data-standardized="true" aria-label="Main navigation">
+        <a href="/courses.html">Learn with DCT</a>
+        <a href="/local-classes.html">Local Classes</a>
+        <a href="/instructor-apply.html">Teach with DCT</a>
+        <a href="/partners.html">Partner with DCT</a>
+        <a href="/login.html" id="authButton">Sign In</a>
+      </nav>
+      <button class="mobile-menu-toggle" type="button" aria-label="Toggle menu" aria-controls="home-nav" aria-expanded="false">&#9776;</button>
+    </div>
+  </header>
+<main class="admin-intake-shell" id="main-content">
+<h1>DCT inquiry and follow-up dashboard</h1>
+<p>This dashboard is for founder-approved administrators. New inquiries and opt-in career support requests are recorded here, but no one is automatically hired, enrolled in paid courses, approved for aid, or referred to outside people.</p>
+<p id="dct-admin-notice" class="admin-message" role="status" aria-live="polite">Loading your access…</p>
+<p id="dct-admin-signin" hidden><a href="/login.html?redirect=%2Fadmin%2Fintake.html">Sign in to a DCT admin account</a></p>
+<div class="admin-bar" aria-label="Inquiry filters">
+<label>Inquiry type<select id="dct-filter-category">
+<option value="">All types</option><option value="learner">Learner</option>
+<option value="instructor">Instructor</option><option value="staff">Staff</option>
+<option value="partner">Partner</option><option value="support">Support</option>
+</select></label>
+<label>Stage<select id="dct-filter-status">
+<option value="">All stages</option><option>New</option><option>Reviewing</option>
+<option>Contacted</option><option>Scheduled</option><option>Proposal</option>
+<option>On Hold</option><option>Closed</option></select></label>
+<button id="dct-admin-refresh" type="button">Refresh requests</button>
+</div>
+<section aria-labelledby="dct-case-heading">
+<h2 id="dct-case-heading">Requests and next actions</h2>
+<p class="muted">Changes are recorded as administrative case updates only. Assigning a review queue is not a personnel notification.</p>
+<div class="cases" id="dct-admin-cases"></div>
+</section>
+<section aria-labelledby="dct-referral-heading">
+<h2 id="dct-referral-heading">Career-readiness requests — opt-in only</h2>
+<p class="muted">Private founder review. No information is forwarded to Norine until the appropriate review and authorized handoff occur.</p>
+<div class="cases" id="dct-admin-referrals"></div>
+</section>
+</main>
+<script src="/js/global-ui.js"></script>
+<script src="/admin/intake.js?v=20261118a"></script>
+</body></html>

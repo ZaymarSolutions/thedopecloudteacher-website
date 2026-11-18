@@ -1,0 +1,27 @@
+body{background:#102743!important;color:#eaf6ff;font:16px/1.55 system-ui,sans-serif}
+.admin-intake-shell{width:min(1200px,calc(100% - 36px));margin:2rem auto 4rem}
+.admin-intake-shell h1{font-size:clamp(2.1rem,4vw,3.2rem);color:#fff;line-height:1.13}
+.admin-intake-shell h2{color:#f7fbff;font-size:1.5rem}
+.admin-intake-shell p,.admin-intake-shell label{color:#d9eafb}
+.admin-intake-shell a{color:#a8dfff;text-underline-offset:3px}
+.admin-intake-shell .muted{color:#bed6e8;font-size:.92rem}
+.admin-intake-shell .admin-bar{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;padding:22px;background:#1d3e5d;border:1px solid #537b99;border-radius:17px;margin-bottom:22px}
+.admin-intake-shell .admin-bar label{display:grid;gap:5px;min-width:170px}
+.admin-intake-shell :is(select,input){background:#fff;color:#102743;border:1px solid #98bfd8;border-radius:9px;min-height:42px;padding:9px;font:inherit}
+.admin-intake-shell button{background:#f2bd60;color:#102743;border:0;border-radius:9px;min-height:42px;padding:9px 17px;font:800 1rem system-ui;cursor:pointer}
+.admin-intake-shell button:hover{background:#ffd48f}
+.admin-intake-shell button:focus-visible,.admin-intake-shell :is(select,input):focus-visible{outline:3px solid #a8dfff;outline-offset:2px}
+.admin-intake-shell .admin-message{border-left:5px solid #f2bd60;padding:14px 18px;background:#244766;border-radius:11px;color:#f7fbff;margin-bottom:17px}
+.admin-intake-shell .admin-message.error{background:#fff0eb;color:#8a2519;border-color:#ca513a}
+.admin-intake-shell .cases{display:grid;gap:18px}
+.admin-intake-shell .case-card{padding:22px;background:#1b3a59;border:1px solid #597e9c;border-radius:18px;min-width:0}
+.admin-intake-shell .case-card h3{font-size:1.22rem;color:#fff;margin:0 0 12px}
+.admin-intake-shell .case-card p{margin:.4rem 0;color:#e4f1fb;overflow-wrap:anywhere}
+.admin-intake-shell .case-card .case-meta{font-size:.9rem;color:#b6daef;margin:0 0 12px}
+.admin-intake-shell .case-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:16px}
+.admin-intake-shell .case-controls label{display:grid;gap:5px}
+.admin-intake-shell .case-controls .wide{grid-column:1/-1}
+.admin-intake-shell .referral-card{border-left:5px solid #f2bd60}
+.admin-intake-shell .case-feedback{font-size:.9rem;color:#c3ecde;margin-left:12px}
+@media(max-width:650px){.admin-intake-shell .case-controls{grid-template-columns:1fr}.admin-intake-shell .case-controls .wide{grid-column:auto}.admin-intake-shell{width:calc(100% - 22px)}}
+@media(prefers-reduced-motion:reduce){.admin-intake-shell *{scroll-behavior:auto}}

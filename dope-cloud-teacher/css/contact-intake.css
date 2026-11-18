@@ -1,0 +1,26 @@
+/* DCT intake: sandbox-level polish without changing the site's logo/navigation */
+.dct-intake-card { background:#193a59!important; border:1px solid #537b9c!important; border-radius:22px!important; color:#f2f8ff!important; padding:clamp(24px,4vw,42px)!important; box-shadow:0 16px 38px rgba(4,16,37,.22); }
+.dct-intake-card :is(h2,p,label,legend) { color:#f2f8ff!important; }
+.dct-intake-card h2 { font-size:clamp(1.5rem,2.6vw,2.2rem); line-height:1.2; margin:0 0 .65rem; }
+.dct-intake-card .intake-lead { line-height:1.7; color:#d5e8f5!important; max-width:70ch; }
+.dct-intake-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px 22px; margin-top:25px; }
+.dct-intake-field { display:flex; flex-direction:column; gap:7px; min-width:0; }
+.dct-intake-field.full { grid-column:1/-1; }
+.dct-intake-field label { font-size:.98rem; font-weight:700; line-height:1.4; }
+.dct-intake-field :is(input,select,textarea) { width:100%; min-height:47px; background:#fff!important; color:#19344c!important; -webkit-text-fill-color:#19344c!important; border:1px solid #aac4d9!important; border-radius:10px; padding:12px 14px; font:inherit; }
+.dct-intake-field textarea { min-height:128px; resize:vertical; }
+.dct-intake-field :is(input,select,textarea):focus-visible { outline:3px solid #f2bd60; outline-offset:2px; }
+.dct-intake-card .intake-help { font-size:.88rem; color:#c5ddeb!important; }
+.dct-intake-card .intake-checkbox { display:flex; align-items:flex-start; gap:12px; line-height:1.6; background:#214863; border:1px solid #6389a8; padding:13px 16px; border-radius:12px; }
+.dct-intake-card .intake-checkbox input { width:20px; height:20px; flex:none; margin-top:4px; accent-color:#eab65a; }
+.dct-intake-card .intake-checkbox span { color:#fff; font-size:.95rem; }
+.dct-intake-card .intake-career { grid-column:1/-1; }
+.dct-intake-card .intake-submit { margin-top:22px; min-height:50px; border-radius:11px; background:#f2bd60!important; color:#132b45!important; border:1px solid #f2bd60; font-weight:800; font-size:1rem; padding:12px 22px; cursor:pointer; }
+.dct-intake-card .intake-submit:hover { background:#ffd487!important; }
+.dct-intake-card .intake-submit:disabled { opacity:.7; cursor:wait; }
+.dct-intake-card .intake-status { margin-top:18px; padding:16px 18px; border:1px solid #9cc6e6; border-left:5px solid #f2bd60; background:#234963; color:#fff!important; border-radius:12px; line-height:1.6; }
+.dct-intake-card .intake-status.error { background:#fff1eb; color:#812a18!important; border-color:#b43a26; }
+.dct-intake-card .intake-status a { color:#c1e7ff!important; }
+.dct-intake-card a { color:#b9e4ff; text-underline-offset:3px; }
+.dct-intake-card .intake-hidden-trap { position:absolute!important;left:-9999px; width:1px; height:1px; overflow:hidden; }
+@media(max-width:700px){ .dct-intake-fields{grid-template-columns:1fr;} .dct-intake-field.full,.dct-intake-card .intake-career{grid-column:auto;} }
