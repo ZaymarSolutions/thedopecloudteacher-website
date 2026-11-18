@@ -27,6 +27,21 @@
         });
         const confirmation = await response.json();
         if (!response.ok || confirmation.confirmed !== true) throw new Error(confirmation.error || 'Your payment has not yet been confirmed.');
+        // Count revenue only after the backend verifies a real, paid Stripe session.
+        if (confirmation.source === 'paid' && Number.isFinite(confirmation.amountPaid) &&
+            confirmation.amountPaid > 0 && typeof window.DCTTrackEvent === 'function') {
+          window.DCTTrackEvent('purchase', {
+            transaction_id: sessionId,
+            currency: confirmation.currency || 'USD',
+            value: confirmation.amountPaid,
+            items: [{
+              item_id: slug,
+              item_name: slug,
+              price: confirmation.amountPaid,
+              quantity: 1
+            }]
+          });
+        }
         const cleanURL = new URL(location.href); cleanURL.searchParams.delete('session_id'); history.replaceState(null, '', cleanURL.pathname + cleanURL.search + cleanURL.hash);
       } catch (error) {
         message.textContent = `${error.message || 'We could not verify payment.'} Reload this page to retry verification, or contact DCT with your receipt. Your classroom will open once enrollment is verified.`;
@@ -35,6 +50,9 @@
     }
     const data = await request('/content');
     if (typeof data.html !== 'string') throw new Error('Course content is unavailable.');
+    if (typeof window.DCTTrackEvent === 'function') {
+      window.DCTTrackEvent('course_content_loaded', { course_id: slug });
+    }
     const doc = new DOMParser().parseFromString(data.html, 'text/html');
     const article = doc.querySelector('article.content') || doc.querySelector('article');
     const modules = Array.isArray(data.guide?.sections) && data.guide.sections.length ? data.guide.sections : [...(article || doc).querySelectorAll('h2[id]')].filter(h => !['course-overview','enrollment-full-course'].includes(h.id)).map(h => ({ id: h.id, title: h.textContent.trim() }));
