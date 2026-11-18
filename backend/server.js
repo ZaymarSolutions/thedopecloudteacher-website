@@ -8,6 +8,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 // This guard is included on the sandbox branch only. Never allow the
 // isolated test environment to run with live Stripe credentials or a live URL.
+if (process.env.DCT_PAYMENT_SANDBOX !== 'true') {
+  throw new Error('This test branch must run only with DCT_PAYMENT_SANDBOX=true.');
+}
 if (process.env.DCT_PAYMENT_SANDBOX === 'true') {
   const testKey = process.env.STRIPE_SECRET_KEY || '';
   const frontendOrigin = process.env.FRONTEND_URL || '';
@@ -935,6 +938,18 @@ app.get('/api/courses/:courseId/access', authenticateToken, (req, res) => {
 });
 
 setupHubAccess(app, db, stripe, authenticateToken, requireAdmin);
+
+// Test data and browser pages are available only in this sandbox branch.
+// The sandbox must run in a separate Railway project with a separate database.
+if (process.env.DCT_PAYMENT_SANDBOX === 'true') {
+  const courseId = 'cloud-fundamentals-101';
+  const sampleHtml = '<article class="content"><h2 id="sandbox-introduction">Sandbox introduction</h2><p>Sandbox demonstration lesson. Test content only, not the paid DCT curriculum.</p><h2 id="sandbox-practice">Sandbox practice</h2><p>This protected module verifies that a completed Stripe test payment grants classroom access in an isolated database.</p></article>';
+  db.prepare("INSERT INTO courses (id,title,price,status) VALUES (?, ?, ?, 'active') ON CONFLICT(id) DO UPDATE SET title=excluded.title,price=excluded.price")
+    .run(courseId, 'Cloud Fundamentals 101 — Stripe Sandbox', 25);
+  db.prepare('INSERT INTO private_course_content (course_id,html) VALUES (?,?) ON CONFLICT(course_id) DO UPDATE SET html=excluded.html')
+    .run(courseId, sampleHtml);
+  app.use('/hub', express.static(path.join(__dirname, 'sandbox-hub'), { extensions:['html'] }));
+}
 
 // ==================== STRIPE PAYMENT ROUTES ====================
 
