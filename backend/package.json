@@ -9,7 +9,11 @@
     "init-db": "node init-database.js",
     "check-db": "node check-db.js"
   },
-  "keywords": ["cloud", "education", "api"],
+  "keywords": [
+    "cloud",
+    "education",
+    "api"
+  ],
   "author": "The Dope Cloud Teacher",
   "license": "MIT",
   "dependencies": {
@@ -26,5 +30,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
