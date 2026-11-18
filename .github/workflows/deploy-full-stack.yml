@@ -1,4 +1,4 @@
-name: Full Stack Deployment
+name: DCT Full Stack Validation
 
 on:
   push:
@@ -8,139 +8,48 @@ on:
 
 jobs:
   test-frontend:
-    name: Test Frontend
+    name: Validate Frontend
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Check HTML files
+      - name: Check site files
         run: |
-          echo "Checking HTML files for syntax errors..."
-          find dope-cloud-teacher -name "*.html" -type f
-          echo "✅ Frontend files validated"
+          test -f dope-cloud-teacher/index.html
+          find dope-cloud-teacher -name "*.html" -type f -print | head -30
+          echo "Frontend source files found."
 
   test-backend:
-    name: Test Backend
+    name: Validate Backend
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      
-      - name: Install dependencies
+          node-version: '20'
+      - name: Install backend dependencies
         run: npm install
-        working-directory: ./backend
-      
-      - name: Initialize database
+      - name: Check server syntax
+        run: node --check server.js
+      - name: Initialize disposable CI database
         run: npm run init-db
-        working-directory: ./backend
-      
-      - name: Check database
+      - name: Verify disposable CI database
         run: npm run check-db
-        working-directory: ./backend
-      
-      - name: Test backend startup
-        run: |
-          timeout 10s npm start || true
-          echo "✅ Backend validated"
-        working-directory: ./backend
-
-  deploy-frontend:
-    name: Deploy Frontend
-    needs: [test-frontend]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.1
-        with:
-          publish-dir: './dope-cloud-teacher'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "🚀 Production deployment"
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 2
-
-  deploy-backend:
-    name: Deploy Backend
-    needs: [test-backend]
-    runs-on: ubuntu-latest
-    env:
-      RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      RAILWAY_SERVICE_NAME: ${{ secrets.RAILWAY_SERVICE_NAME }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check Railway deployment configuration
-        id: railway-config
-        shell: bash
-        run: |
-          if [ -n "$RAILWAY_TOKEN" ] && [ -n "$RAILWAY_SERVICE_NAME" ]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Skipping Railway deploy: RAILWAY_TOKEN or RAILWAY_SERVICE_NAME is not configured."
-          fi
-
-      - name: Validate Railway secrets and access
-        if: steps.railway-config.outputs.ready == 'true'
-        run: |
-          if [ -z "$RAILWAY_TOKEN" ]; then
-            echo "RAILWAY_TOKEN secret is required"
-            exit 1
-          fi
-
-          if [ -z "$RAILWAY_SERVICE_NAME" ]; then
-            echo "RAILWAY_SERVICE_NAME secret is required"
-            exit 1
-          fi
-
-          npm install -g @railway/cli
-          railway whoami
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      
-      - name: Deploy to Railway
-        if: steps.railway-config.outputs.ready == 'true'
-        run: |
-          if [ -n "$RAILWAY_PROJECT_ID" ]; then
-            RAILWAY_ENVIRONMENT_NAME=${RAILWAY_ENVIRONMENT:-production}
-            railway up --project "$RAILWAY_PROJECT_ID" --environment "$RAILWAY_ENVIRONMENT_NAME" --service "$RAILWAY_SERVICE_NAME"
-          else
-            railway up --service "$RAILWAY_SERVICE_NAME"
-          fi
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID }}
-          RAILWAY_SERVICE_NAME: ${{ secrets.RAILWAY_SERVICE_NAME }}
-          RAILWAY_ENVIRONMENT: ${{ secrets.RAILWAY_ENVIRONMENT }}
-        working-directory: ./backend
 
   summary:
-    name: Deployment Summary
-    needs: [deploy-frontend, deploy-backend]
-    runs-on: ubuntu-latest
+    name: Deployment Ownership
+    needs: [test-frontend, test-backend]
     if: always()
+    runs-on: ubuntu-latest
     steps:
-      - name: Summary
+      - name: Document the production deployment path
         run: |
-          echo "## 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Frontend" >> $GITHUB_STEP_SUMMARY
-          echo "- Status: ${{ needs.deploy-frontend.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Platform: Netlify or GitHub Pages" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Backend" >> $GITHUB_STEP_SUMMARY
-          echo "- Status: ${{ needs.deploy-backend.result }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Platform: Railway" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
-          echo "1. Configure deployment secrets in repository settings" >> $GITHUB_STEP_SUMMARY
-          echo "2. Check deployment URLs in Actions log" >> $GITHUB_STEP_SUMMARY
-          echo "3. Test the live site" >> $GITHUB_STEP_SUMMARY
+          echo "## DCT deployment ownership" >> "$GITHUB_STEP_SUMMARY"
+          echo "Frontend: Azure Static Web Apps deploys from the separate Azure workflow." >> "$GITHUB_STEP_SUMMARY"
+          echo "Backend: Railway auto-deploys the existing energetic-endurance service from main (backend root)." >> "$GITHUB_STEP_SUMMARY"
+          echo "This workflow validates source code; it does not deploy, replace tokens, or modify production databases." >> "$GITHUB_STEP_SUMMARY"
+          echo "Frontend check: ${{ needs.test-frontend.result }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Backend check: ${{ needs.test-backend.result }}" >> "$GITHUB_STEP_SUMMARY"
