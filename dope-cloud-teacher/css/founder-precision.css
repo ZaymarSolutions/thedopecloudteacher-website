@@ -1,0 +1,96 @@
+/* DCT Founder + Precision theme
+   Focused homepage enhancement. This file does NOT alter the DCT wordmark or navigation. */
+:root {
+  --dct-precision-navy: #102743;
+  --dct-precision-panel: #1c3b59;
+  --dct-precision-panel-hover: #234969;
+  --dct-precision-border: #416a89;
+  --dct-precision-text: #f3f8ff;
+  --dct-precision-muted: #c8dced;
+  --dct-precision-gold: #f2bd60;
+  --dct-precision-sky: #a8dfff;
+}
+
+body.dct-home .focus-hero { padding-block:clamp(2.5rem,5vw,5rem) clamp(2rem,4vw,3.25rem); }
+body.dct-home .focus-intro { grid-template-columns:minmax(0,1.07fr) minmax(300px,.93fr); gap:clamp(1.75rem,5vw,4rem); }
+body.dct-home .focus-intro h1 { max-width:12ch; font-size:clamp(2.5rem,5.5vw,4.85rem); line-height:1.08; text-wrap:balance; }
+body.dct-home .focus-lead { color:var(--dct-precision-muted)!important; max-width:54ch; }
+body.dct-home .focus-kicker { color:var(--dct-precision-sky)!important; }
+body.dct-home .focus-primary {
+  background:var(--dct-precision-gold)!important;
+  color:#102743!important;
+  border:1px solid var(--dct-precision-gold);
+  box-shadow:0 8px 22px rgba(8,25,43,.24);
+}
+body.dct-home .focus-primary:hover { background:#ffd288!important; transform:translateY(-1px); }
+body.dct-home .focus-secondary { border-color:#8bbddd!important; color:#f3f8ff!important; background:transparent!important; }
+body.dct-home .focus-secondary:hover { background:rgba(168,223,255,.10)!important; }
+
+.dct-founder-portrait {
+  position:relative;
+  margin:0;
+  background:var(--dct-precision-panel);
+  border:1px solid #557b99;
+  border-radius:23px;
+  padding:12px;
+  min-width:0;
+  box-shadow:0 20px 52px rgba(4,16,32,.3);
+}
+.dct-founder-portrait img {
+  display:block;
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  object-position:center 43%;
+  border-radius:14px;
+  height:auto;
+}
+.dct-founder-portrait figcaption {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:15px 8px 5px;
+  font-size:.94rem;
+  line-height:1.35;
+  color:#e7f2ff;
+}
+.dct-founder-portrait figcaption strong { color:#fff; font-weight:800; }
+.dct-founder-portrait figcaption span { color:#bad9ed; }
+.dct-founder-note { margin:1.5rem 0 0; padding-left:15px; border-left:3px solid var(--dct-precision-gold); color:#e8f3ff!important; max-width:58ch; line-height:1.65; }
+.dct-founder-note strong { color:#fff; }
+.dct-founder-note a { color:#b9e5ff!important; font-weight:700; text-underline-offset:3px; }
+
+.dct-home .focus-choices { padding-top:clamp(2rem,4.5vw,3.5rem); }
+body.dct-home .focus-choices h2 { color:#fff!important; line-height:1.2; }
+body.dct-home .focus-grid { gap:clamp(1rem,2vw,1.4rem); }
+body.dct-home .focus-card {
+  background:var(--dct-precision-panel)!important;
+  border:1px solid var(--dct-precision-border)!important;
+  box-shadow:0 15px 38px rgba(1,10,23,.2);
+  border-radius:20px;
+  transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+body.dct-home .focus-card:hover { border-color:#8bc7ee!important; transform:translateY(-3px); box-shadow:0 18px 40px rgba(0,8,20,.28); }
+body.dct-home .focus-card img { background:#102743; }
+body.dct-home .focus-card-body { padding:1.5rem; gap:.65rem; }
+body.dct-home .focus-card-body strong { color:#f8fbff!important; }
+body.dct-home .focus-card-body > span:not(.focus-card-link) { color:#cfdfef!important; }
+body.dct-home .focus-card-body .focus-card-link { color:#f2bd60!important; }
+body.dct-home .focus-bottom { border-color:#416382; }
+body.dct-home .focus-bottom p { color:#d2e6f8!important; }
+body.dct-home .focus-bottom .focus-secondary { white-space:nowrap; }
+
+@media (max-width:760px) {
+  body.dct-home .focus-intro { grid-template-columns:1fr; }
+  body.dct-home .focus-intro h1 { max-width:15ch; }
+  .dct-founder-portrait { max-width:540px; width:100%; margin:auto; }
+  body.dct-home .focus-hero { padding-top:2rem; }
+  body.dct-home .focus-grid { grid-template-columns:1fr; }
+  body.dct-home .focus-bottom .focus-secondary { white-space:normal; }
+}
+@media (prefers-reduced-motion:reduce) {
+  body.dct-home .focus-card, body.dct-home .focus-primary { transition:none; }
+  body.dct-home .focus-card:hover, body.dct-home .focus-primary:hover { transform:none; }
+}
