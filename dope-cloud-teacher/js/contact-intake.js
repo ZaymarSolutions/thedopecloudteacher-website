@@ -73,12 +73,13 @@
       if (!response.ok || !data.received || !data.reference) {
         throw new Error(data.error || 'We could not confirm your submission. Please email DCT before retrying.');
       }
+      const submittedCategory = category.value;
       form.reset();showCareerOption();
       setStatus('Received! Your DCT reference is '+data.reference+
         '. We will review your inquiry. This is not a course enrollment, scholarship approval, job offer or agreement.');
       const a = document.createElement('a');
-      a.href = category.value === 'instructor' ? '/teach/' : '/hub/index.html';
-      a.textContent = category.value === 'instructor' ? ' Continue to the instructor application' : ' Browse DCT courses';
+      a.href = submittedCategory === 'instructor' ? '/teach/' : '/hub/index.html';
+      a.textContent = submittedCategory === 'instructor' ? ' Continue to the instructor application' : ' Browse DCT courses';
       status.append(a);
       button.textContent = 'Inquiry recorded';
       submissionKey = ''; // New intentional form submission gets a new key.
