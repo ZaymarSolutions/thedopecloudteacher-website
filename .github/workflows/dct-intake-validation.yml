@@ -1,0 +1,35 @@
+name: DCT Intake Safety Checks
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'backend/intake-workflow.js'
+      - 'backend/server.js'
+      - 'backend/test/intake-workflow.test.js'
+      - 'dope-cloud-teacher/js/contact-intake.js'
+      - 'dope-cloud-teacher/admin/intake.js'
+      - '.github/workflows/dct-intake-validation.yml'
+  push:
+    branches: [feature/dct-intake-routing-20261118]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check JavaScript syntax
+        run: |
+          node --check backend/server.js
+          node --check backend/intake-workflow.js
+          node --check dope-cloud-teacher/js/contact-intake.js
+          node --check dope-cloud-teacher/admin/intake.js
+      - name: Install test dependencies without native build
+        run: npm install --ignore-scripts --no-audit --no-fund
+        working-directory: backend
+      - name: Verify intake validation and consent gates
+        run: node --test test/intake-workflow.test.js
+        working-directory: backend
