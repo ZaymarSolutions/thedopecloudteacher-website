@@ -1,0 +1,52 @@
+/* DCT enrollment precision treatment
+   A purely visual layer; preserves all checkout, auth, and community logic. */
+body.dct-course-hub .enrollment-shell { max-width:1180px; padding-top:clamp(34px,5vw,60px); }
+body.dct-course-hub .enrollment-hero { max-width:800px; margin:0 0 32px; }
+body.dct-course-hub .enrollment-hero h1 {
+  font-size:clamp(2.1rem,4vw,3.4rem);
+  line-height:1.17;
+  margin:10px 0 20px;
+  color:#f8fbff!important;
+  text-wrap:balance;
+}
+body.dct-course-hub .enrollment-hero p { color:#d7e8f6!important; font-size:clamp(1rem,1.5vw,1.13rem); line-height:1.7; }
+body.dct-course-hub .enrollment-hero .eyebrow {color:#a8dfff!important;letter-spacing:.11em;}
+body.dct-course-hub .enrollment-grid {gap:clamp(16px,3vw,28px);}
+body.dct-course-hub .enrollment-card {
+  background:#1c3b59!important;
+  border:1px solid #557b9b!important;
+  border-radius:22px!important;
+  padding:clamp(22px,3vw,36px)!important;
+  box-shadow:0 16px 36px #06182b36!important;
+}
+body.dct-course-hub .enrollment-card h2 {font-size:clamp(1.3rem,2vw,1.55rem);line-height:1.26;}
+body.dct-course-hub .enrollment-card :is(select,input:not([type=radio]):not([type=checkbox])) {
+  min-height:47px;
+  border:1px solid #a2c4df!important;
+  border-radius:10px!important;
+  padding:12px 14px!important;
+  background:#fff!important;
+  color:#132b45!important;
+}
+body.dct-course-hub .enrollment-card .path-option {padding:17px!important;border-radius:13px!important;background:#214662!important;}
+body.dct-course-hub .enrollment-card .path-option:has(input:checked) {background:#275777!important;border-color:#a8dfff!important;}
+body.dct-course-hub .enrollment-card .selected-path-description {border-radius:15px!important;}
+body.dct-course-hub .enrollment-card :is(#enroll-action,#account-button):not(:disabled) {
+  background:#f2bd60!important;
+  border:1px solid #f2bd60!important;
+  color:#102743!important;
+  -webkit-text-fill-color:#102743!important;
+  border-radius:10px!important;
+  min-height:48px;
+  font-weight:800!important;
+  box-shadow:0 8px 21px #061a2b40;
+}
+body.dct-course-hub .enrollment-card :is(#enroll-action,#account-button):not(:disabled):hover {background:#ffd18a!important;filter:none!important;}
+body.dct-course-hub .enrollment-card :is(#enroll-action,#account-button):disabled {opacity:.68; cursor:not-allowed;}
+body.dct-course-hub #enrollment-status:not(:empty) {background:#254762;border:1px solid #7ca9c7;border-left:5px solid #f2bd60;color:#f7fbff;border-radius:12px;padding:16px 20px;line-height:1.5;}
+body.dct-course-hub #enrollment-status.error {background:#fff0eb;color:#812a18;border-color:#cc4936;}
+body.dct-course-hub .enrollment-card a {text-underline-offset:3px;}
+@media(max-width:760px){
+  body.dct-course-hub .enrollment-shell {padding-inline:16px;}
+  body.dct-course-hub .enrollment-card {padding:22px 18px!important;}
+}
