@@ -1,0 +1,37 @@
+/* Focused course guidance: clear choices, strong contrast, no changed navigation. */
+#starting-course {
+  background:#193c5b!important;
+  color:#f5faff!important;
+  border:1px solid #668eac!important;
+  border-radius:18px!important;
+  padding:clamp(20px,3vw,30px)!important;
+  box-shadow:0 12px 30px rgba(4,15,35,.22);
+  margin-top:20px;
+}
+#starting-course :is(p,dt,dd,strong) { color:#f5faff!important; -webkit-text-fill-color:#f5faff!important; opacity:1!important; }
+#starting-course .starting-title { display:block;font-size:clamp(1.2rem,2.1vw,1.65rem);line-height:1.28; }
+#starting-course .starting-facts {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin:20px 0;
+}
+#starting-course .starting-facts > div {
+  padding:14px 18px;
+  background:#285170;
+  border:1px solid #5d88a9;
+  border-radius:12px;
+}
+#starting-course .starting-facts dt { font-size:.84rem;font-weight:700;letter-spacing:.02em;color:#bfe0f4!important;-webkit-text-fill-color:#bfe0f4!important;margin-bottom:4px; }
+#starting-course .starting-facts dd { margin:0;font-weight:700;line-height:1.45; }
+#starting-course .starting-details { color:#d4e9f7!important; }
+#starting-course .starting-actions { display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:20px; }
+#starting-course .starting-actions .btn { text-decoration:none;min-height:46px;display:inline-flex;align-items:center;justify-content:center;background:#b8e6ff!important;color:#12324b!important;-webkit-text-fill-color:#12324b!important;border:1px solid #b8e6ff;border-radius:10px;font-weight:800;padding:10px 18px; }
+#starting-course .starting-actions .btn.starting-buy { background:#f2bd60!important;border-color:#f2bd60!important;color:#102743!important;-webkit-text-fill-color:#102743!important; }
+#starting-course .starting-actions .btn:hover { filter:brightness(1.07); }
+#starting-course .starting-actions .starting-all { color:#d1edff!important;-webkit-text-fill-color:#d1edff!important; font-weight:700;text-underline-offset:4px; }
+#starting-course a:focus-visible { outline:3px solid #fff;outline-offset:3px; }
+@media(max-width:700px) {
+ #starting-course .starting-facts { grid-template-columns:1fr; }
+ #starting-course .starting-actions .btn { flex:1 1 100%; }
+}
