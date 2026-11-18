@@ -13,11 +13,12 @@ async function verifyPaidAccess({ purchase, course, stripe }) {
   const payment = await stripe.paymentIntents.retrieve(purchase.stripe_payment_id);
   // Preserve a valid sale after the promotion ends; compare against its server-stored paid amount.
   const expected = Number.isFinite(purchase.amount) && purchase.amount > 0 ? purchase.amount : course.price;
-  if (payment.livemode !== true || payment.status !== 'succeeded' || payment.currency !== 'usd' || !Number.isFinite(expected) || expected <= 0 || payment.amount_received < Math.round(expected * 100)) return false;
+  const expectedLivemode = process.env.DCT_PAYMENT_SANDBOX === 'true' ? false : true;
+  if (payment.livemode !== expectedLivemode || payment.status !== 'succeeded' || payment.currency !== 'usd' || !Number.isFinite(expected) || expected <= 0 || payment.amount_received < Math.round(expected * 100)) return false;
   if (String(payment.metadata?.userId) !== String(purchase.user_id) || payment.metadata?.courseId !== course.id) return false;
   if (!payment.latest_charge) return false;
   const charge = await stripe.charges.retrieve(typeof payment.latest_charge === 'string' ? payment.latest_charge : payment.latest_charge.id);
-  return charge.livemode === true && charge.paid === true && !charge.refunded && !charge.disputed && charge.amount_refunded === 0;
+  return charge.livemode === expectedLivemode && charge.paid === true && !charge.refunded && !charge.disputed && charge.amount_refunded === 0;
 }
 function setupHubAccess(app, db, stripe, authenticateToken, requireAdmin) {
   db.exec(`CREATE TABLE IF NOT EXISTS private_course_content (course_id TEXT PRIMARY KEY, html TEXT NOT NULL, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(course_id) REFERENCES courses(id));
