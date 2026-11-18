@@ -12,12 +12,12 @@ const userCount = db.prepare('SELECT COUNT(*) as count FROM users').get();
 console.log(`👥 Total Users: ${userCount.count}`);
 
 // Courses
-const courseCount = db.prepare('SELECT COUNT(*) as count FROM courses WHERE status = "active"').get();
+const courseCount = db.prepare('SELECT COUNT(*) as count FROM courses WHERE status = ?').get('active');
 console.log(`📚 Active Courses: ${courseCount.count}`);
 
 // List courses
 console.log('\n📖 Available Courses:');
-const courses = db.prepare('SELECT id, title, price, level FROM courses WHERE status = "active"').all();
+const courses = db.prepare('SELECT id, title, price, level FROM courses WHERE status = ?').all('active');
 courses.forEach((course, index) => {
   console.log(`  ${index + 1}. ${course.title}`);
   console.log(`     Price: $${course.price} | Level: ${course.level}`);
