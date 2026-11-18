@@ -5,8 +5,12 @@
     <link>https://thedopecloudteacher.org/blog.html</link>
     <description>Cloud, security, DevSecOps, AI, architecture, and career content aligned to the DCT Visual Playbook.</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Jul 2026 18:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Nov 2026 10:13:00 GMT</lastBuildDate>
 
+    <item><title>Defender + CNAPP: See the Whole Cloud Security Picture</title><link>https://thedopecloudteacher.org/defender-cnapp-explained.html</link><guid>https://thedopecloudteacher.org/defender-cnapp-explained.html</guid><pubDate>Wed, 18 Nov 2026 10:13:00 GMT</pubDate><description>Learn how posture management, workload protection, and DevSecOps fit together.</description></item>
+    <item><title>Secure CI/CD: From First Commit to Safer Deployment</title><link>https://thedopecloudteacher.org/secure-cicd-pipeline.html</link><guid>https://thedopecloudteacher.org/secure-cicd-pipeline.html</guid><pubDate>Wed, 18 Nov 2026 10:13:00 GMT</pubDate><description>Build safer pipelines with repository security, scanning, approvals, and monitoring.</description></item>
+    <item><title>Least Privilege: The Right Access, the Right Scope, the Right Time</title><link>https://thedopecloudteacher.org/least-privilege-azure-entra.html</link><guid>https://thedopecloudteacher.org/least-privilege-azure-entra.html</guid><pubDate>Wed, 18 Nov 2026 10:13:00 GMT</pubDate><description>Understand RBAC, Microsoft Entra roles, and just-in-time access.</description></item>
+    <item><title>AI Fundamentals: What It Does, How It Learns, and Where Humans Fit</title><link>https://thedopecloudteacher.org/ai-fundamentals-real-world.html</link><guid>https://thedopecloudteacher.org/ai-fundamentals-real-world.html</guid><pubDate>Wed, 18 Nov 2026 10:13:00 GMT</pubDate><description>Explore machine learning, generative AI, responsible use, and real-world cloud workflows.</description></item>
     <item>
       <title>Enable Microsoft Entra PIM Like a Pro</title>
       <link>https://thedopecloudteacher.org/blog.html#poster-pim-pro</link>

@@ -26,7 +26,7 @@
   </ns0:url>
   <ns0:url>
     <ns0:loc>https://thedopecloudteacher.org/blog.html</ns0:loc>
-    <ns0:lastmod>2026-09-27</ns0:lastmod>
+    <ns0:lastmod>2026-11-18</ns0:lastmod>
     <ns0:changefreq>weekly</ns0:changefreq>
     <ns0:priority>0.85</ns0:priority>
   </ns0:url>
@@ -292,4 +292,8 @@
     <ns0:changefreq>weekly</ns0:changefreq>
     <ns0:priority>0.7</ns0:priority>
   </ns0:url>
+  <ns0:url><ns0:loc>https://thedopecloudteacher.org/defender-cnapp-explained.html</ns0:loc><ns0:lastmod>2026-11-18</ns0:lastmod><ns0:changefreq>monthly</ns0:changefreq><ns0:priority>0.8</ns0:priority></ns0:url>
+  <ns0:url><ns0:loc>https://thedopecloudteacher.org/secure-cicd-pipeline.html</ns0:loc><ns0:lastmod>2026-11-18</ns0:lastmod><ns0:changefreq>monthly</ns0:changefreq><ns0:priority>0.8</ns0:priority></ns0:url>
+  <ns0:url><ns0:loc>https://thedopecloudteacher.org/least-privilege-azure-entra.html</ns0:loc><ns0:lastmod>2026-11-18</ns0:lastmod><ns0:changefreq>monthly</ns0:changefreq><ns0:priority>0.8</ns0:priority></ns0:url>
+  <ns0:url><ns0:loc>https://thedopecloudteacher.org/ai-fundamentals-real-world.html</ns0:loc><ns0:lastmod>2026-11-18</ns0:lastmod><ns0:changefreq>monthly</ns0:changefreq><ns0:priority>0.8</ns0:priority></ns0:url>
 </ns0:urlset>
