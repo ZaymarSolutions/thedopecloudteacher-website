@@ -44,6 +44,8 @@ function createIntakeTables(db) {
       "message TEXT NOT NULL, career_consent INTEGER NOT NULL DEFAULT 0,"+
       "status TEXT NOT NULL DEFAULT 'New', assigned_owner TEXT NOT NULL DEFAULT 'Founder review',"+
       "notification_state TEXT NOT NULL DEFAULT 'not_configured',"+
+      "source TEXT NOT NULL DEFAULT 'website', next_action TEXT NOT NULL DEFAULT '',"+
+      "due_date TEXT NOT NULL DEFAULT '',"+
       "created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,"+
       "updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP);"+
     "CREATE INDEX IF NOT EXISTS dct_inquiry_recent ON dct_inquiries(created_at DESC);"+
@@ -131,7 +133,8 @@ function setupIntakeRoutes(app,db,authenticateToken,requireAdmin) {
     const rows=db.prepare(
       'SELECT id,name,email,category,organization,interest,delivery_format AS format,timing,message,'+
       'career_consent AS careerConsent,assigned_owner AS assignedOwner,status,'+
-      'notification_state AS notification,created_at AS createdAt,updated_at AS updatedAt '+
+      'notification_state AS notification,source,next_action AS nextAction,due_date AS dueDate,'+
+      'created_at AS createdAt,updated_at AS updatedAt '+ 
       'FROM dct_inquiries WHERE (? IS NULL OR category=?) AND (? IS NULL OR status=?) '+
       'ORDER BY created_at DESC LIMIT ?'
     ).all(category,category,status,status,limit);
@@ -140,13 +143,16 @@ function setupIntakeRoutes(app,db,authenticateToken,requireAdmin) {
   app.patch('/api/admin/intake/inquiries/:id',authenticateToken,requireAdmin,(req,res)=>{
     const id=clean(req.params.id,80);
     const status=clean(req.body?.status,40), owner=clean(req.body?.assignedOwner,80);
+    const nextAction=clean(req.body?.nextAction,240), dueDate=clean(req.body?.dueDate,10);
+    if (dueDate && !/^\d{4}-\d{2}-\d{2}$/.test(dueDate))
+      return res.status(400).json({error:'Use YYYY-MM-DD for the next-action date.'});
     if (!CASE_STATES.has(status)||!OWNER_OPTIONS.has(owner))
       return res.status(400).json({error:'Invalid status or owner.'});
     const row=db.prepare('SELECT status,assigned_owner FROM dct_inquiries WHERE id=?').get(id);
     if (!row) return res.status(404).json({error:'Inquiry not found.'});
     db.transaction(()=>{
-      db.prepare('UPDATE dct_inquiries SET status=?,assigned_owner=?,updated_at=CURRENT_TIMESTAMP WHERE id=?')
-        .run(status,owner,id);
+      db.prepare('UPDATE dct_inquiries SET status=?,assigned_owner=?,next_action=?,due_date=?,updated_at=CURRENT_TIMESTAMP WHERE id=?')
+        .run(status,owner,nextAction,dueDate,id);
       db.prepare('INSERT INTO dct_inquiry_history(inquiry_id,action,actor_id,detail) VALUES (?,?,?,?)')
         .run(id,'reviewed',req.user.userId,row.status+' to '+status);
     })();
