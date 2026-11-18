@@ -1,0 +1,30 @@
+/* DCT Tech Talk – accessible article layout */
+.dct-tech-article{background:#102743!important;color:#eff7ff!important;font-family:Segoe UI,Arial,sans-serif}
+.dct-tech-article *{box-sizing:border-box}
+.dct-tech-article header{background:#102743!important;border-bottom:1px solid #4d7395}
+.dct-tech-article .logo-wordmark{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:#fff;font-weight:800;font-size:.94rem}
+.dct-tech-article .logo-wordmark img{height:70px;width:auto;object-fit:contain}
+.dct-tech-article .article-shell{width:min(930px,calc(100% - 2rem));margin:1.5rem auto 3.5rem}
+.dct-tech-article .crumbs,.dct-tech-article .crumbs a{color:#d1eaff;font-size:.94rem}
+.dct-tech-article .article-hero{margin-top:1rem;border:1px solid #527a9e;border-radius:22px;overflow:hidden;background:#173d5d}
+.dct-tech-article .article-hero-text{padding:clamp(1.15rem,4vw,2.35rem)}
+.dct-tech-article .eyebrow-article{font-size:.8rem;color:#bce2ff!important;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.dct-tech-article h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.16;color:#fff!important;margin:.75rem 0;max-width:22ch}
+.dct-tech-article .article-hero p{font-size:1.1rem;line-height:1.65;color:#ebf6ff!important;max-width:690px}
+.dct-tech-article .article-hero img{width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover;display:block}
+.dct-tech-article .article-body{background:#f7fbff!important;border:1px solid #d2e1ee;border-radius:20px;margin-top:1.15rem;padding:clamp(1.2rem,4vw,2.8rem);color:#1a3851!important}
+.dct-tech-article .article-body h2{font-size:clamp(1.3rem,2.8vw,1.7rem);line-height:1.35;color:#133f64!important;margin:2rem 0 .65rem}
+.dct-tech-article .article-body section:first-child h2{margin-top:0}
+.dct-tech-article .article-body p,.dct-tech-article .article-body li{color:#29475f!important;font-size:1.07rem;line-height:1.82}
+.dct-tech-article .article-body p{margin:.4rem 0 1.2rem}
+.dct-tech-article .article-body a{color:#075ba9!important;text-underline-offset:3px}
+.dct-tech-article .article-sources{margin-top:2rem;border-top:1px solid #b9cddd;padding-top:.7rem}
+.dct-tech-article .article-sources ul{padding-left:1.2rem}
+.dct-tech-article .article-cta{border:1px solid #537f9b;border-radius:18px;background:#183c5c;padding:1.5rem;margin-top:1.15rem}
+.dct-tech-article .article-cta h2{color:#fff!important;font-size:1.5rem;margin:0 0 .5rem}
+.dct-tech-article .article-cta p{color:#e3effa!important;line-height:1.6}
+.dct-tech-article .article-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+.dct-tech-article .article-actions a{background:#90d4ff;color:#102743!important;font-weight:800;text-decoration:none;border-radius:10px;padding:.78rem 1rem}
+.dct-tech-article .article-actions a+ a{background:#fff}
+.dct-tech-article .article-footer{text-align:center;padding:1.5rem;color:#d1e0ef;font-size:.92rem}
+@media(max-width:680px){.dct-tech-article .article-shell{width:calc(100% - 1.25rem)}.dct-tech-article .article-body p{font-size:1rem}.dct-tech-article .logo-wordmark{font-size:.82rem}.dct-tech-article .logo-wordmark img{height:58px}}
