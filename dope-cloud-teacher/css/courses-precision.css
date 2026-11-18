@@ -1,0 +1,67 @@
+/* DCT Course Catalog — precise navy surfaces and readable pricing */
+body.dct-courses-page {
+  background:#102743!important;
+  color:#f0f8ff!important;
+}
+body.dct-courses-page main.wrap { max-width:1180px; margin:auto; padding:clamp(18px,3vw,32px)!important; }
+body.dct-courses-page main.wrap .dct-course-overview {
+  padding:clamp(24px,4vw,46px);
+  margin:24px 0;
+  background:#1c3b59;
+  border:1px solid #527b9b;
+  border-radius:22px;
+  box-shadow:0 16px 36px #04142945;
+}
+body.dct-courses-page .dct-course-kicker {
+  color:#a8dfff!important;
+  font:800 .84rem/1.4 "Segoe UI",sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin:0 0 13px;
+}
+body.dct-courses-page .dct-course-overview h1 {
+  color:#fff!important;
+  font-size:clamp(2.1rem,4.4vw,3.6rem);
+  line-height:1.12;
+  margin:0 0 19px;
+  text-wrap:balance;
+}
+body.dct-courses-page main.wrap :is(h2,h3) {color:#f8fbff!important;}
+body.dct-courses-page main.wrap p {color:#d5e6f4!important;line-height:1.7;}
+body.dct-courses-page main.wrap section[aria-labelledby="everyday-ai-title"] {
+  background:#1c3b59!important;
+  color:#f3f8ff!important;
+  border:1px solid #527b9b!important;
+  border-radius:20px!important;
+  box-shadow:0 12px 32px #06192b30;
+  padding:clamp(22px,3vw,32px)!important;
+}
+body.dct-courses-page main.wrap section[data-year-end-offer] {
+  border-radius:20px!important;
+  padding:clamp(24px,4vw,40px)!important;
+  background:linear-gradient(115deg,#173b5f,#214b74)!important;
+  border:1px solid #5787ac!important;
+}
+body.dct-courses-page main.wrap .btn {
+  display:inline-flex!important;
+  align-items:center;justify-content:center;
+  min-height:46px;
+  background:#f2bd60!important;
+  border:1px solid #f2bd60!important;
+  color:#102743!important;
+  -webkit-text-fill-color:#102743!important;
+  padding:.75rem 1.2rem;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:800;
+  margin:6px 8px 6px 0;
+}
+body.dct-courses-page main.wrap .btn:hover {background:#ffd18a!important;}
+body.dct-courses-page main.wrap .btn.ghost {background:transparent!important;color:#f3f8ff!important;-webkit-text-fill-color:#f3f8ff!important;border-color:#9bc7e4!important;}
+body.dct-courses-page main.wrap a:not(.btn) {color:#b4e4ff!important;text-underline-offset:3px;}
+body.dct-courses-page footer {color:#c7dceb!important;}
+body.dct-courses-page footer a {color:#b4e4ff!important;}
+@media(max-width:640px){
+  body.dct-courses-page main.wrap{padding:16px!important;}
+  body.dct-courses-page main.wrap .btn{width:100%;margin:7px 0;}
+}
