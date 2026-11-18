@@ -6,6 +6,20 @@ const rateLimit = require('express-rate-limit');
 const Database = require('better-sqlite3');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+// This guard is included on the sandbox branch only. Never allow the
+// isolated test environment to run with live Stripe credentials or a live URL.
+if (process.env.DCT_PAYMENT_SANDBOX === 'true') {
+  const testKey = process.env.STRIPE_SECRET_KEY || '';
+  const frontendOrigin = process.env.FRONTEND_URL || '';
+  const databasePath = process.env.DATABASE_PATH || '';
+  if (!testKey.startsWith('sk_test_') ||
+      !/^https:\/\//.test(frontendOrigin) ||
+      /thedopecloudteacher\.(org|com)/i.test(frontendOrigin) ||
+      !databasePath || databasePath === '/data/database.sqlite' ||
+      !process.env.JWT_SECRET || !process.env.STRIPE_WEBHOOK_SECRET) {
+    throw new Error('DCT sandbox configuration is incomplete or unsafe. Use a Stripe TEST key, separate database, distinct sandbox URL, JWT secret and test webhook secret.');
+  }
+}
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = stripeSecretKey ? require('stripe')(stripeSecretKey) : null;
 const path = require('path');
@@ -1142,7 +1156,7 @@ app.post('/api/webhook', async (req, res) => {
       );
     } else {
       // Fulfillment requires a live confirmed payment; repeat events are idempotent.
-      if (session.payment_status === 'paid' && session.livemode === true && session.metadata?.courseId && session.metadata?.userId) {
+      if (session.payment_status === 'paid' && session.livemode === (process.env.DCT_PAYMENT_SANDBOX === 'true' ? false : true) && session.metadata?.courseId && session.metadata?.userId) {
         const exists = db.prepare('SELECT id FROM purchases WHERE stripe_payment_id = ? AND user_id = ? AND product_id = ?').get(session.payment_intent, Number(session.metadata.userId), session.metadata.courseId);
         if (!exists) db.prepare("INSERT INTO purchases (user_id, product_type, product_id, stripe_payment_id, amount, status) VALUES (?, 'course', ?, ?, ?, 'active')").run(Number(session.metadata.userId), session.metadata.courseId, session.payment_intent, session.amount_total / 100);
       }
