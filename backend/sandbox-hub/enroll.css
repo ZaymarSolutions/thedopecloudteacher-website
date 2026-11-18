@@ -1,0 +1,6 @@
+body{font:16px/1.5 system-ui,sans-serif;background:#10263f;color:#fff;margin:0}
+main{max-width:740px;margin:4rem auto;padding:2rem;background:#1c3b59;border-radius:16px}
+h1{margin-top:0}label{display:block;margin:1rem 0}input{box-sizing:border-box;width:100%;padding:.7rem;border-radius:6px}
+button{padding:.85rem 1.1rem;margin:.5rem .4rem .5rem 0;background:#f2b94b;color:#152b43;border:0;border-radius:8px;font-weight:700;cursor:pointer}
+small,.muted{color:#d7e1ec}#message{white-space:pre-wrap;background:#254b6e;padding:1rem;border-radius:8px}
+a{color:#b7e0ff}
