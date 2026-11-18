@@ -73,7 +73,7 @@ body.dct-home .focus-card {
   transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
 }
 body.dct-home .focus-card:hover { border-color:#8bc7ee!important; transform:translateY(-3px); box-shadow:0 18px 40px rgba(0,8,20,.28); }
-body.dct-home .focus-card img { background:#102743; }
+body.dct-home .focus-card img { width:100%; aspect-ratio:16/10; height:auto; object-fit:cover!important; object-position:center!important; background:#102743; }
 body.dct-home .focus-card-body { padding:1.5rem; gap:.65rem; }
 body.dct-home .focus-card-body strong { color:#f8fbff!important; }
 body.dct-home .focus-card-body > span:not(.focus-card-link) { color:#cfdfef!important; }
