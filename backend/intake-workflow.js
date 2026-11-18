@@ -88,10 +88,18 @@ async function notifyInquiry(db,record) {
 }
 function setupIntakeRoutes(app,db,authenticateToken,requireAdmin) {
   createIntakeTables(db);
+  // Two-key release gate: verified mail configuration AND deliberate enablement.
+  const intakeReady=()=>process.env.DCT_INTAKE_ENABLED==='true'&&
+    Boolean(transporter&&process.env.SMTP_PASSWORD&&process.env.ADMIN_EMAIL&&process.env.EMAIL_FROM);
+  app.get('/api/intake/status',(req,res)=>{
+    res.set('Cache-Control','no-store');
+    res.json({accepting:intakeReady()});
+  });
   const intakeLimiter=rateLimit({windowMs:15*60*1000,limit:5,
     standardHeaders:'draft-7',legacyHeaders:false,
     message:{error:'Too many requests. Please try again later or email DCT.'}});
   app.post('/api/intake/inquiries',intakeLimiter,(req,res)=>{
+    if(!intakeReady())return res.status(503).json({error:'Online submissions are not yet available. Please email DCT directly.'});
     const parsed=normalizeInquiry(req.body);
     if (parsed.honeypot) return res.status(202).json({received:true});
     if (parsed.error) return res.status(400).json({error:parsed.error});
