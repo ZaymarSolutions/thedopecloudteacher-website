@@ -4,7 +4,44 @@ const token=()=>localStorage.getItem('dct_token');
 if(new URLSearchParams(location.search).get('sponsor')==='1')document.querySelector('input[name="path"][value="sponsor"]').checked=true;
 if(new URLSearchParams(location.search).get('access')==='community')document.querySelector('input[name="path"][value="community"]').checked=true;
 function status(message,error=false){$('enrollment-status').textContent=message;$('enrollment-status').classList.toggle('error',error);}
-async function request(path,body){const headers={};if(token())headers.Authorization=`Bearer ${token()}`;if(body)headers['Content-Type']='application/json';const response=await fetch(api+path,{method:body?'POST':'GET',headers,body:body?JSON.stringify(body):undefined,cache:'no-store'});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||data.message||'This step is temporarily unavailable. Please try again.');return data;}
+function expireLearnerSession(){
+  let lastEmail='';
+  try{lastEmail=JSON.parse(localStorage.getItem('dct_user')||'null')?.email||'';}catch(_){}
+  localStorage.removeItem('dct_token');
+  localStorage.removeItem('dct_user');
+  const login=document.querySelector('input[name="auth-mode"][value="login"]');
+  if(login)login.checked=true;
+  $('name-field').hidden=true;
+  $('name').required=false;
+  $('password').autocomplete='current-password';
+  $('password').minLength=1;
+  $('password').value='';
+  $('account-button').textContent='Sign in';
+  if(lastEmail&&!$('email').value)$('email').value=lastEmail;
+  $('account-form').hidden=false;
+  $('account-state').textContent='Your previous session expired. Sign in to continue with your selected course.';
+  $('my-courses').textContent='Sign in to see your courses.';
+  status('Your learner session has expired. Please sign in again below to continue to secure checkout.',true);
+  update();
+}
+async function request(path,body){
+  const currentToken=token();
+  const headers={};
+  if(currentToken)headers.Authorization=`Bearer ${currentToken}`;
+  if(body)headers['Content-Type']='application/json';
+  const response=await fetch(api+path,{method:body?'POST':'GET',headers,body:body?JSON.stringify(body):undefined,cache:'no-store'});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok){
+    if(currentToken&&(response.status===401||response.status===403)&&/^(Invalid or expired token|Access token required)$/i.test(data.error||'')){
+      expireLearnerSession();
+      const error=new Error('Your session expired. Sign in again below to continue.');
+      error.sessionExpired=true;
+      throw error;
+    }
+    throw new Error(data.error||data.message||'This step is temporarily unavailable. Please try again.');
+  }
+  return data;
+}
 function track(event, details = {}) {
  if (typeof window.DCTTrackEvent === 'function') window.DCTTrackEvent(event, details);
 }
@@ -34,7 +71,7 @@ function describeSelection(c,p){
 
 function update(){const c=course(),p=path();describeSelection(c,p);$('community-fields').hidden=p!=='community';$('sponsor-fields').hidden=p!=='sponsor';$('course-detail').textContent=c?`${c.lessonCount||'Structured'} lessons · Online, self-paced${c.regularPrice?` · Regular price $${c.regularPrice}`:''}`:'';const price=c?.price??promotion.price??25;$('paid-label').textContent=`Enroll online · $${price}`;let ready=false,text='Choose a course to continue.',label='Continue';if(c){if(p==='paid'){ready=!!c.checkoutReady;label=`Secure checkout · $${price}`;text=ready?(token()?'Your enrollment opens after payment is verified.':'Create your learner account or sign in below to continue to secure checkout.'):'Paid enrollment for this course is temporarily unavailable.';}else if(p==='community'){ready=!!c.communityAccessReady;label='Request fee waiver and enroll';text=ready?'Confirm your community and need below. Eligible access opens without an owner appointment.':'Community enrollment for this course is temporarily unavailable.';}else{ready=!!c.checkoutReady;label='Sponsor community seats';text=ready?'Continue to secure checkout for your selected number of seats.':'Sponsorship checkout is temporarily unavailable.';}}$('action-detail').textContent=text;$('enroll-action').textContent=label;$('enroll-action').disabled=busy||!token()||!ready;}
 async function confirmSponsorReturn(){const query=new URLSearchParams(location.search);if(query.get('sponsored')!=='1'||!query.get('session_id'))return;if(!token()){status('Sign in to verify your sponsorship payment.');return;}status('Verifying your sponsorship payment…');try{const data=await request('/hub/confirm-checkout',{sessionId:query.get('session_id')});if(data.confirmed!==true||data.source!=='sponsorship')throw new Error('Sponsorship payment has not been confirmed. Please try again.');status(`Thank you. Payment is verified for ${Number(data.seats)||1} sponsored community seat${Number(data.seats)===1?'':'s'}.`);query.delete('sponsored');query.delete('session_id');history.replaceState(null,'',location.pathname+(query.size?'?'+query.toString():''));}catch(e){status(e.message,true);}}
-async function account(){const signed=!!token();$('account-form').hidden=signed;$('account-state').textContent=signed?'You are signed in. Your enrollment will be saved to this account.':'';if(signed){const b=document.createElement('button');b.type='button';b.textContent='Use a different account';b.onclick=()=>{localStorage.removeItem('dct_token');localStorage.removeItem('dct_user');account();update();};$('account-state').append(document.createElement('br'),b);try{const data=await request('/hub/enrollments');$('my-courses').textContent='';const list=data.courses||data.enrollments||[];if(!list.length)$('my-courses').textContent='No enrolled courses yet.';for(const c of list){const a=document.createElement('a');a.href='/hub/classroom.html?course='+encodeURIComponent(c.id||c.courseId);a.textContent=c.title||c.id||c.courseId;$('my-courses').append(a);}}catch(e){$('my-courses').textContent='Your enrollments could not be loaded. Sign in again if your session has expired.';}}else $('my-courses').textContent='Sign in to see your courses.';}
+async function account(){const signed=!!token();$('account-form').hidden=signed;$('account-state').textContent=signed?'You are signed in. Your enrollment will be saved to this account.':'';if(signed){const b=document.createElement('button');b.type='button';b.textContent='Use a different account';b.onclick=()=>{localStorage.removeItem('dct_token');localStorage.removeItem('dct_user');account();update();};$('account-state').append(document.createElement('br'),b);try{const data=await request('/hub/enrollments');$('my-courses').textContent='';const list=data.courses||data.enrollments||[];if(!list.length)$('my-courses').textContent='No enrolled courses yet.';for(const c of list){const a=document.createElement('a');a.href='/hub/classroom.html?course='+encodeURIComponent(c.id||c.courseId);a.textContent=c.title||c.id||c.courseId;$('my-courses').append(a);}}catch(e){if(!e.sessionExpired)$('my-courses').textContent='Your enrollments could not be loaded. Please retry or sign in again.';}}else $('my-courses').textContent='Sign in to see your courses.';}
 document.querySelectorAll('input[name="path"]').forEach(r=>r.addEventListener('change',update));$('course').addEventListener('change', () => {
  const query = new URLSearchParams(location.search);
  if ($('course').value) query.set('course', $('course').value);
