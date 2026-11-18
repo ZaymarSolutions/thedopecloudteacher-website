@@ -63,7 +63,7 @@ function setupLearningOffer(app,db,stripe,authenticateToken,verifyPaidAccess){
   try{
    if(!stripe||typeof req.body.sessionId!=='string'||!/^cs_(live|test)_[A-Za-z0-9]+$/.test(req.body.sessionId))return res.status(400).json({error:'A valid checkout reference is required.'});
    const session=await stripe.checkout.sessions.retrieve(req.body.sessionId);
-   if(session.livemode!==true||session.mode!=='payment'||session.payment_status!=='paid'||session.currency!=='usd'||String(session.metadata?.userId)!==String(req.user.userId))return res.status(409).json({error:'Your payment has not been confirmed yet. Please retry shortly.'});
+   if(session.livemode!==(process.env.DCT_PAYMENT_SANDBOX==='true'?false:true)||session.mode!=='payment'||session.payment_status!=='paid'||session.currency!=='usd'||String(session.metadata?.userId)!==String(req.user.userId))return res.status(409).json({error:'Your payment has not been confirmed yet. Please retry shortly.'});
    if(session.metadata.productType==='seat-sponsorship'){
     const seats=Number(session.metadata.seats);if(![1,5,10,20].includes(seats)||session.amount_total!==seats*2500)return res.status(400).json({error:'Sponsorship payment does not match the selected seats.'});
     if(!await verifySponsorPayment(stripe,session.payment_intent,session.amount_total))return res.status(409).json({error:'Sponsorship payment is pending or reversed.'});
