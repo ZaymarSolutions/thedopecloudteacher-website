@@ -75,7 +75,7 @@ function setupLearningOffer(app,db,stripe,authenticateToken,verifyPaidAccess){
    const purchase={user_id:req.user.userId,product_type:'course',product_id:slug,status:'active',stripe_payment_id:session.payment_intent,amount:session.amount_total/100};
    if(!course||!await verifyPaidAccess({purchase,course,stripe}))return res.status(409).json({error:'Payment verification is pending or the payment was reversed.'});
    db.transaction(()=>{const existing=db.prepare('SELECT id FROM purchases WHERE stripe_payment_id=? AND user_id=? AND product_id=?').get(session.payment_intent,req.user.userId,slug);if(!existing)db.prepare("INSERT INTO purchases (user_id,product_type,product_id,stripe_payment_id,amount,status) VALUES (?,'course',?,?,?,'active')").run(req.user.userId,slug,session.payment_intent,session.amount_total/100);})();
-   res.set('Cache-Control','no-store').json({confirmed:true,source:'paid'});
+   res.set('Cache-Control','no-store').json({confirmed:true,source:'paid',amountPaid:session.amount_total/100,currency:'USD',courseId:slug});
   }catch(_){res.status(503).json({error:'We could not verify checkout yet. Keep your receipt and retry shortly.'});}
  });
  app.post('/api/hub/community-enroll',authenticateToken,async(req,res)=>{
