@@ -950,7 +950,7 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
           currency: 'usd',
           product_data: {
             name: course.title,
-            description: course.description,
+            ...(course.description?.trim() ? { description: course.description.trim() } : {}),
           },
           unit_amount: Math.round(course.price * 100),
         },
