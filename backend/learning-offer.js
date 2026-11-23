@@ -4,7 +4,7 @@ const OFFER_START = Date.parse('2026-10-12T00:00:00-04:00');
 const REGULAR = {'cloud-fundamentals-101':97,'az-900-azure-fundamentals':297,'az-104-azure-administrator':597,'ai-901-azure-ai-fundamentals':297};
 const SLUGS = ['cloud-fundamentals-101','az-900-azure-fundamentals','az-104-azure-administrator','az-305-azure-solutions-architect','ai-901-azure-ai-fundamentals','ai-fundamentals-everyday-ai','cloud-security','ai-security-responsible-governance','cyber-basics-stay-safer-online'];
 function promotionActive(now=Date.now()){return now>=OFFER_START && now<OFFER_END;}
-function coursePrice(slug,now=Date.now()){return SLUGS.includes(slug)?(promotionActive(now)?25:REGULAR[slug]??null):null;}
+function coursePrice(slug,now=Date.now()){return SLUGS.includes(slug)?(promotionActive(now)?6:REGULAR[slug]??null):null;}
 function sections(html){return [...html.matchAll(/<h2\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/h2>/g)].filter(m=>!['course-overview','enrollment-full-course'].includes(m[1])).map(m=>({id:m[1],title:m[2].replace(/<[^>]+>/g,'').replace(/&amp;/g,'&')}));}
 const playlist=(title,id)=>({title,url:`https://www.youtube.com/playlist?list=${id}`,embed:`https://www.youtube-nocookie.com/embed/videoseries?list=${id}`});
 const gen=(title,ep)=>({title,url:`https://learn.microsoft.com/en-us/shows/generative-ai-for-beginners/${ep}`,embed:`https://learn-video.azurefd.net/vod/player?show=generative-ai-for-beginners&ep=${ep}`});

@@ -35,7 +35,7 @@ function setupHubAccess(app, db, stripe, authenticateToken, requireAdmin) {
   });
   app.get('/api/hub/catalog', (req, res) => {
     const courses = db.prepare('SELECT c.id,c.title,c.price,p.html FROM courses c JOIN private_course_content p ON p.course_id = c.id').all();
-    res.set('Cache-Control','no-store').json({promotion:{active:promotionActive(),price:25,endsAt:'2027-01-01T05:00:00Z'},courses:courses.filter(c=>COURSE_SLUGS.has(c.id)).map(c=>({id:c.id,title:c.title,price:coursePrice(c.id),regularPrice:c.price,lessonCount:sections(c.html).length,promotionEndsAt:'2027-01-01T05:00:00Z',checkoutReady:checkoutReady(stripe)&&coursePrice(c.id)>0&&sections(c.html).length>=2,communityAccessReady:promotionActive()&&sections(c.html).length>=2}))});
+    res.set('Cache-Control','no-store').json({promotion:{active:promotionActive(),price:6,endsAt:'2027-01-01T05:00:00Z'},courses:courses.filter(c=>COURSE_SLUGS.has(c.id)).map(c=>({id:c.id,title:c.title,price:coursePrice(c.id),regularPrice:c.price,lessonCount:sections(c.html).length,promotionEndsAt:'2027-01-01T05:00:00Z',checkoutReady:checkoutReady(stripe)&&coursePrice(c.id)>0&&sections(c.html).length>=2,communityAccessReady:promotionActive()&&sections(c.html).length>=2}))});
   });
   app.get('/api/hub/courses/:slug/content', authenticateToken, async (req, res) => {
     res.set('Cache-Control', 'private, no-store');
