@@ -2,7 +2,10 @@
   'use strict';
   const API = 'https://energetic-endurance-production.up.railway.app/api';
   const el = id => document.getElementById(id);
-  const courseId = new URLSearchParams(location.search).get('course') || '';
+  const params = new URLSearchParams(location.search);
+  const courseId = params.get('course') || '';
+  const sponsorMode = params.get('sponsor') === '1';
+  const sponsorSeats = Number(params.get('seats') || '1');
   const details = Object.freeze({
     'cloud-fundamentals-101': {
       type: 'Cloud Foundations',
@@ -59,7 +62,7 @@
       image: '/hub/visuals/cover-cyber-basics-3d.jpg'
     }
   });
-  const changeUrl = '/hub/enroll.html' + (courseId ? '?course=' + encodeURIComponent(courseId) : '');
+  const changeUrl = sponsorMode ? '/hub/enroll.html?sponsor=1' : '/hub/enroll.html' + (courseId ? '?course=' + encodeURIComponent(courseId) : '');
   el('change-course').href = changeUrl;
   el('change-course-top').href = changeUrl;
   function state(message, error) {
@@ -79,6 +82,8 @@
     el('course-identifier').textContent = 'The Dope Cloud TeacHer · ' + d.type;
     el('course-lead').textContent = d.lead;
     el('course-price').textContent = money(c.price);
+    el('price-context').textContent = 'one-time enrollment';
+    el('order-quantity').textContent = '1';
     el('order-title').textContent = c.title;
     el('order-price').textContent = money(c.price);
     el('course-duration').textContent = Number(c.lessonCount) > 0 ? c.lessonCount + ' learning sections · Online · At your own pace' : 'Online · At your own pace';
@@ -95,6 +100,39 @@
     ].map(li));
     document.title = 'Review ' + c.title + ' | DCT';
   }
+  function showSponsorship(seats) {
+    const amount = seats * 25;
+    el('course-category').textContent = 'Community sponsorship';
+    el('course-identifier').textContent = 'DCT · Learning access for the DMV';
+    el('course-title').textContent = 'Sponsor community learning seats';
+    el('course-lead').textContent = 'Help eligible learners in DC Wards 7 and 8 and Prince George’s County access self-paced tech education.';
+    el('course-price').textContent = money(amount);
+    el('price-context').textContent = 'one-time sponsorship';
+    el('order-title').textContent = 'DCT sponsored course seats';
+    el('order-price').textContent = money(amount);
+    el('order-quantity').textContent = String(seats);
+    el('course-duration').textContent = money(25) + ' per sponsored seat · ' + seats + (seats === 1 ? ' seat' : ' seats');
+    el('course-cover').src = '/hub/visuals/cover-cloud101-3d.jpg';
+    el('course-cover').alt = 'DCT cloud education artwork';
+    el('focus-list').replaceChildren(...[
+      'Help eligible residents learn cloud, AI or cybersecurity',
+      'Support a learner who needs help with enrollment fees',
+      'Give more people an opportunity to build practical tech skills'
+    ].map(li));
+    el('included-list').replaceChildren(...[
+      seats + (seats === 1 ? ' sponsored learner seat' : ' sponsored learner seats'),
+      'One eligible student can access one complete self-paced course per seat',
+      'DCT allocates sponsorships to eligible learners',
+      'Training includes written lessons, videos, activities and knowledge checks'
+    ].map(li));
+    [...document.querySelectorAll('.know-grid p')].forEach((p, i) => {
+      p.textContent = ['✓ One-time sponsorship', '✓ Not a recurring subscription', '✓ Eligible learners receive course access', '✓ Secure Stripe payment'][i] || '';
+    });
+    el('product-disclaimer').textContent = 'Sponsorship does not enroll you in a course. Seats are allocated to eligible students through DCT’s community program. This payment is not a charitable tax-deductible donation. Sponsorship does not include vendor certification exams, live instruction or guaranteed employment.';
+    el('after-payment').textContent = 'No card information is collected on this page. Once Stripe verifies payment, sponsored seats become available for DCT’s eligible learners.';
+    document.title = 'Review community learning sponsorship | DCT';
+    return {id:'community-sponsorship',title:'DCT sponsored course seats',price:amount};
+  }
   async function openCheckout(c) {
     const button = el('pay-action');
     button.disabled = true;
@@ -103,10 +141,10 @@
     try {
       const token = localStorage.getItem('dct_token');
       if (!token) throw new Error('Your learner session is missing. Sign in before continuing.');
-      const response = await fetch(API + '/create-checkout', {
+      const response = await fetch(API + (sponsorMode ? '/hub/sponsor-checkout' : '/create-checkout'), {
         method: 'POST', mode: 'cors', cache: 'no-store',
         headers: {'Content-Type':'application/json','Authorization':'Bearer ' + token},
-        body: JSON.stringify({courseId:c.id})
+        body: JSON.stringify(sponsorMode ? {seats:sponsorSeats} : {courseId:c.id})
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(payload.error || 'Checkout is temporarily unavailable. Please try again.');
@@ -122,11 +160,23 @@
   }
   (async () => {
     const d = details[courseId];
-    if (!d) {state('Please choose one of the current DCT self-paced courses to see purchase details.', true); return;}
+    if (sponsorMode && ![1,5,10,20].includes(sponsorSeats)) {state('Select 1, 5, 10 or 20 seats to review a sponsorship.', true);return;}
+    if (!sponsorMode && !d) {state('Please choose one of the current DCT self-paced courses to see purchase details.', true); return;}
     try {
       const response = await fetch(API + '/hub/catalog', {cache:'no-store'});
       if (!response.ok) throw new Error('Course details are temporarily unavailable. Please try again.');
       const payload = await response.json();
+      if (sponsorMode) {
+        const sponsor = showSponsorship(sponsorSeats);
+        if (!localStorage.getItem('dct_token')) {state('Sign in to your DCT learner account before making a sponsorship payment.', true);return;}
+        if (!payload.promotion?.active) {state('Community seat sponsorship is not available outside the current promotion.', true);return;}
+        state('Your sponsorship details are verified. Review them, then continue to Stripe to pay.');
+        const button = el('pay-action');
+        button.textContent = 'Continue to secure checkout · ' + money(sponsor.price);
+        button.disabled = false;
+        button.addEventListener('click', () => openCheckout(sponsor));
+        return;
+      }
       const course = (payload.courses || []).find(c => c.id === courseId);
       if (!course || typeof course.price !== 'number' || !Number.isFinite(course.price) || course.price <= 0) throw new Error('This course is not currently available for purchase.');
       showCourse(course);
