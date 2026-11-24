@@ -4,7 +4,9 @@
     {
       "route": "/api/*",
       "rewrite": "https://energetic-endurance-production.up.railway.app/api/*",
-      "allowedRoles": ["anonymous"],
+      "allowedRoles": [
+        "anonymous"
+      ],
       "headers": {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
@@ -19,7 +21,12 @@
   ],
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/css/*", "/js/*", "/logo.svg", "*.html"]
+    "exclude": [
+      "/css/*",
+      "/js/*",
+      "/logo.svg",
+      "*.html"
+    ]
   },
   "mimeTypes": {
     ".json": "application/json",
@@ -30,6 +37,6 @@
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
     "X-Frame-Options": "DENY",
-    "Content-Security-Policy": "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;"
+    "Content-Security-Policy": "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://tracker.metricool.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:;"
   }
 }
