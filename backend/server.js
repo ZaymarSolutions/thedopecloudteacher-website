@@ -16,6 +16,7 @@ const { sendEmail } = require('./email-service');
 const { setupMerch } = require('./merch-checkout');
 const { setupHubAccess, COURSE_SLUGS } = require('./hub-access');
 const {coursePrice,checkoutReady,sections,fulfillSponsorship,verifySponsorPayment} = require('./learning-offer');
+const {COURSE_CHECKOUT_COPY} = require('./course-checkout-copy');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -944,15 +945,21 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
 
     if(COURSE_SLUGS.has(courseId))course.price=coursePrice(courseId);
     if (!Number.isFinite(course.price) || course.price <= 0) return res.status(400).json({ error: 'Contact DCT for course pricing' });
+    // The selected course is authoritative: Stripe shows the exact product and
+    // price chosen on the branded DCT review page, never a client-supplied price.
+    const checkoutAmountCents = Math.round(course.price * 100);
+    const checkoutDescription = COURSE_SLUGS.has(courseId)
+      ? COURSE_CHECKOUT_COPY[courseId]
+      : course.description;
     const session = await stripe.checkout.sessions.create({
       line_items: [{
         price_data: {
           currency: 'usd',
           product_data: {
             name: course.title,
-            ...(course.description?.trim() ? { description: course.description.trim() } : {}),
+            ...(checkoutDescription?.trim() ? { description: checkoutDescription.trim() } : {}),
           },
-          unit_amount: Math.round(course.price * 100),
+          unit_amount: checkoutAmountCents,
         },
         quantity: 1,
       }],
@@ -962,9 +969,10 @@ app.post('/api/create-checkout', authenticateToken, async (req, res) => {
       client_reference_id: req.user.userId.toString(),
       metadata: {
         courseId,
-        userId: req.user.userId.toString()
+        userId: req.user.userId.toString(),
+        expectedAmountCents: String(checkoutAmountCents)
       },
-      payment_intent_data: { metadata: { courseId, userId: req.user.userId.toString() } }
+      payment_intent_data: { metadata: { courseId, userId: req.user.userId.toString(), expectedAmountCents: String(checkoutAmountCents) } }
     });
 
     res.json({ url: session.url, sessionId: session.id });
