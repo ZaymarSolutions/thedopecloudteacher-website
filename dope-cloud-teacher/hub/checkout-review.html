@@ -30,7 +30,7 @@
             <p class="section-label" id="course-identifier">Review your course</p>
             <h1 id="course-title">Loading your course…</h1>
             <p class="hero-subtitle" id="course-lead">We'll show exactly what you get before payment.</p>
-            <p class="price-line"><strong id="course-price">—</strong> <span>one-time enrollment</span></p>
+            <p class="price-line"><strong id="course-price">—</strong> <span id="price-context">one-time enrollment</span></p>
             <p id="course-duration" class="duration"></p>
           </div>
           <div class="art">
@@ -62,7 +62,7 @@
             <p>✓ Learn at your own pace</p>
             <p>✓ Access follows verified payment</p>
           </div>
-          <p class="fine-print">Certification exams and vouchers, optional cloud usage or software costs, personal coaching and live classes are separate. This course doesn't guarantee employment, a vendor certification or an exam pass. Your course access continues after the promotional purchase window closes.</p>
+          <p class="fine-print" id="product-disclaimer">Certification exams and vouchers, optional cloud usage or software costs, personal coaching and live classes are separate. This course doesn't guarantee employment, a vendor certification or an exam pass. Your course access continues after the promotional purchase window closes.</p>
         </section>
         <div class="trust-strip">
           <span>Secure payment powered by <strong>Stripe</strong></span>
@@ -75,13 +75,13 @@
         <div class="order-summary">
           <div><span>Selected course</span><strong id="order-title">Loading…</strong></div>
           <div><span>Format</span><strong>Self-paced online</strong></div>
-          <div><span>Quantity</span><strong>1</strong></div>
+          <div><span>Quantity</span><strong id="order-quantity">1</strong></div>
           <div class="order-total"><span>One-time price</span><strong id="order-price">—</strong></div>
         </div>
         <p class="note" id="checkout-status" role="status" aria-live="polite">Checking your course and enrollment…</p>
         <button type="button" id="pay-action" disabled>Continue to secure checkout</button>
         <a class="change-link" id="change-course" href="/hub/enroll.html">← Change my selection</a>
-        <p class="fine-print">No card information is collected on this page. After Stripe confirms payment, DCT opens the selected course in your learner account.</p>
+        <p class="fine-print" id="after-payment">No card information is collected on this page. After Stripe confirms payment, DCT opens the selected course in your learner account.</p>
       </aside>
     </div>
   </main>
