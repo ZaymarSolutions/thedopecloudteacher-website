@@ -1,6 +1,16 @@
 (function () {
   if (window.__dctGlobalUiLoaded) return;
   window.__dctGlobalUiLoaded = true;
+  // Load Metricool across pages that share the DCT navigation script.
+  // The homepage has the tag in <head>; the presence check prevents duplicates.
+  if (!window.__dctMetricoolStarted && !document.querySelector('script[src*="metricool-tracking.js"]')) {
+    var metricoolLoader = document.createElement('script');
+    metricoolLoader.src = '/js/metricool-tracking.js?v=20261124';
+    metricoolLoader.async = true;
+    metricoolLoader.setAttribute('data-dct-metricool', '');
+    (document.head || document.documentElement).appendChild(metricoolLoader);
+  }
+
 
   function sitePath(target) {
     var cleanTarget = String(target || '').replace(/^\/+/, '');
