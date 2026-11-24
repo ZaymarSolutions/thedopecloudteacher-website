@@ -1,0 +1,63 @@
+/* A course-specific value review before redirect to hosted Stripe Checkout. */
+:root{color-scheme:light;--navy:#081e3e;--navy2:#133960;--sky:#08b7df;--teal:#02a9a4;--muted:#425570;--border:#d8e6f1;--bg:#eef7fd}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 95% 0%,#07578a 0,transparent 38%),linear-gradient(180deg,#071d3e 0,#153e6c 260px,#f0f7fc 261px);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;color:#142943}
+a{color:#096897}
+button,a{touch-action:manipulation}
+a:focus-visible,button:focus-visible{outline:3px solid #06c6ef;outline-offset:4px}
+.site-top{max-width:1280px;margin:auto;min-height:112px;padding:22px clamp(20px,5vw,54px);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:white}
+.brand img{width:58px;height:58px;object-fit:contain}
+.brand strong{font-size:clamp(1.1rem,2.2vw,1.5rem);display:block;line-height:1.25}
+.brand small{font-size:.82rem;color:#c2ecfa;display:block}
+.top-back{color:#d4f4ff;text-decoration:none;border:1px solid #ffffff59;border-radius:100px;padding:8px 15px;white-space:nowrap}
+.review-shell{max-width:1280px;margin:0 auto;padding:0 clamp(16px,4vw,42px) 60px}
+.eyebrow{color:#c8f5ff;font-weight:800;text-transform:uppercase;letter-spacing:.13em;font-size:.77rem;margin:5px 6px 17px}
+.review-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(290px,350px);gap:25px;align-items:start}
+.course-panel{overflow:hidden;border:1px solid #c0e0ef;box-shadow:0 20px 55px #071d3e25;border-radius:24px;background:white}
+.panel-top{padding:18px 26px 0;display:flex;gap:10px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;padding:5px 13px;background:#e5fbfb;color:#075f66;font-weight:750;font-size:.8rem;border-radius:100px}
+.pill-price{background:#e8efff;color:#24528a}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(180px,.85fr);align-items:center;gap:10px;padding:10px 27px 24px;background:linear-gradient(145deg,#fff 45%,#e6f8ff)}
+.section-label{font-weight:800;text-transform:uppercase;font-size:.75rem;letter-spacing:.12em;color:#078ba5}
+h1{color:#0b2a55;line-height:1.12;font-size:clamp(1.75rem,3.1vw,2.8rem);letter-spacing:-.03em;margin:12px 0 16px;text-wrap:balance}
+.hero-subtitle{color:#29435e;font-size:1.02rem;margin:0 0 17px}
+.price-line{display:flex;gap:11px;align-items:baseline;flex-wrap:wrap;margin:0;color:#17355a}
+.price-line strong{font-size:2.5rem;color:#008cde;letter-spacing:-.04em;line-height:1}
+.price-line span{font-weight:700}
+.duration{font-size:.83rem;color:#455b71;margin:12px 0 0}
+.art{min-width:0}
+.art img{display:block;width:100%;max-height:250px;object-fit:contain;border-radius:15px;box-shadow:0 12px 32px #093b6b1e;background:#eaf5ff}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:20px 25px}
+.details-card{border:1px solid var(--border);border-radius:17px;padding:19px 18px;background:#fbfeff;min-width:0}
+.details-card h2,.know-card h2{font-size:1.1rem;margin:0 0 13px;line-height:1.3;color:#0e3c70}
+.details-card h2 span{color:#04a69e;font-weight:900;margin-right:7px}
+.checklist{padding-left:0;margin:0;list-style:none}
+.checklist li{padding-left:27px;position:relative;margin:0 0 12px;font-size:.92rem;line-height:1.45}
+.checklist li:before{content:'✓';position:absolute;left:0;top:1px;color:#fff;font-size:.72rem;text-align:center;line-height:17px;width:17px;height:17px;border-radius:50%;background:#00a997;font-weight:900}
+.know-card{border:1px solid #a7e2dc;background:#effcfa;padding:19px 20px;border-radius:17px;margin:0 25px 25px}
+.know-card h2{color:#075a68}
+.know-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.know-grid p{margin:3px 0;font-weight:700;font-size:.87rem;color:#075b68}
+.fine-print{font-size:.81rem;line-height:1.55;color:#536478;margin:14px 0 0}
+.trust-strip{border-top:1px solid #dce8f0;padding:16px 25px;background:#eaf5fc;display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;font-size:.86rem}
+.trust-strip span{font-weight:750;color:#164061}
+.payment-panel{background:white;border:1px solid #d6e4ef;border-radius:22px;padding:28px;box-shadow:0 15px 40px #071d3e26}
+.payment-panel h2{color:#0b315b;font-size:1.5rem;margin:0 0 8px}
+.payment-panel>p{font-size:.91rem;color:#506179;margin:0 0 23px}
+.order-summary{border:1px solid #dce8f0;border-radius:14px;overflow:hidden;margin-bottom:18px}
+.order-summary>div{display:flex;gap:14px;justify-content:space-between;padding:13px 15px;border-bottom:1px solid #edf2f8;font-size:.91rem}
+.order-summary>div:last-child{border:0}
+.order-summary span{color:#4f657c}
+.order-summary strong{text-align:right;color:#102d4f}
+.order-summary .order-total{background:#eff9ff}
+.order-total strong{font-size:1.45rem;color:#007fc5}
+.payment-panel .note{padding:11px 14px;border-radius:10px;background:#edf7ff;color:#124975;font-size:.87rem;font-weight:650;line-height:1.5;margin:0 0 16px}
+.payment-panel .note.error{background:#fff1eb;color:#9c321d}
+#pay-action{width:100%;background:linear-gradient(90deg,#027aa9,#04b3a6);color:white;font-size:1rem;border:0;border-radius:12px;font-weight:800;padding:15px 12px;cursor:pointer;transition:transform .16s}
+#pay-action:hover:not(:disabled){transform:translateY(-2px)}
+#pay-action:disabled{cursor:not-allowed;opacity:.55}
+.change-link{display:block;text-align:center;margin:16px 0 12px;font-size:.87rem}
+.payment-panel .fine-print{margin:12px 0 0}
+@media(max-width:980px){.review-grid{grid-template-columns:1fr}.payment-panel{max-width:unset}.hero{grid-template-columns:1.1fr .9fr}}
+@media(max-width:620px){.site-top{padding:18px}.brand img{width:46px;height:46px}.brand strong{font-size:1rem}.brand small{font-size:.72rem}.top-back{font-size:.78rem}.review-shell{padding-inline:12px}.eyebrow{margin-inline:10px}.panel-top{padding:16px 16px 0}.hero{grid-template-columns:1fr;padding:12px 17px 17px}.art img{max-height:190px}.info-grid{grid-template-columns:1fr;margin:15px 15px;gap:12px}.know-card{margin:0 15px 15px}.know-grid{grid-template-columns:1fr}.trust-strip{padding:15px}.payment-panel{padding:21px 17px}h1{font-size:1.95rem}}
