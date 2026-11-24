@@ -70,7 +70,8 @@ function setupLearningOffer(app,db,stripe,authenticateToken,verifyPaidAccess){
     fulfillSponsorship(db,session);return res.json({confirmed:true,source:'sponsorship',seats});
    }
    const slug=session.metadata.courseId;
-   if(!SLUGS.includes(slug)||slug!==req.body.courseId||!Number.isInteger(session.amount_total)||session.amount_total<2500||typeof session.payment_intent!=='string')return res.status(400).json({error:'This payment does not match the selected course.'});
+   const expectedCents = Number(session.metadata?.expectedAmountCents);
+   if(!SLUGS.includes(slug)||slug!==req.body.courseId||!Number.isInteger(session.amount_total)||session.amount_total<600||typeof session.payment_intent!=='string'||(session.metadata?.expectedAmountCents!==undefined&&(!Number.isInteger(expectedCents)||session.amount_subtotal!==expectedCents)))return res.status(400).json({error:'This payment does not match the selected course.'});
    const course=db.prepare('SELECT * FROM courses WHERE id=?').get(slug);
    const purchase={user_id:req.user.userId,product_type:'course',product_id:slug,status:'active',stripe_payment_id:session.payment_intent,amount:session.amount_total/100};
    if(!course||!await verifyPaidAccess({purchase,course,stripe}))return res.status(409).json({error:'Payment verification is pending or the payment was reversed.'});
