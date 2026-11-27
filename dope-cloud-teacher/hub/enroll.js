@@ -5,6 +5,7 @@ const queryOnArrival = new URLSearchParams(location.search);
 if(new URLSearchParams(location.search).get('sponsor')==='1')document.querySelector('input[name="path"][value="sponsor"]').checked=true;
 if(new URLSearchParams(location.search).get('access')==='community')document.querySelector('input[name="path"][value="community"]').checked=true;
 if(queryOnArrival.get('sponsor')==='1'||queryOnArrival.get('access')==='community')$('other-enrollment-options').open=true;
+if(queryOnArrival.get('sponsor')==='1'&&['1','5','10','20'].includes(queryOnArrival.get('seats')))$('seats').value=queryOnArrival.get('seats');
 function status(message,error=false){$('enrollment-status').textContent=message;$('enrollment-status').classList.toggle('error',error);}
 function expireLearnerSession(){
   let lastEmail='';
@@ -111,7 +112,17 @@ document.querySelectorAll('input[name="path"]').forEach(r=>r.addEventListener('c
  trackCourse('select_item');
 });
 document.querySelectorAll('input[name="auth-mode"]').forEach(r=>r.addEventListener('change',()=>{const register=document.querySelector('input[name="auth-mode"]:checked').value==='register';$('name-field').hidden=!register;$('name').required=register;$('password').autocomplete=register?'new-password':'current-password';$('password').minLength=register?8:1;$('account-button').textContent=register?'Create learner account':'Sign in';}));$('name').required=true;
-$('account-form').addEventListener('submit',async e=>{e.preventDefault();const mode=document.querySelector('input[name="auth-mode"]:checked').value;$('account-button').disabled=true;status('Connecting your learner account…');try{const data=await request('/auth/'+mode,{email:$('email').value.trim(),password:$('password').value,name:$('name').value.trim()});if(!data.token)throw new Error('Account access could not be confirmed. Please sign in again.');localStorage.setItem('dct_token',data.token);localStorage.setItem('dct_user',JSON.stringify(data.user));$('password').value='';track(mode === 'register' ? 'sign_up' : 'login', {method: 'email'});status('You are signed in. Continue with your enrollment.');await account();await confirmSponsorReturn();update();}catch(e){
+$('account-form').addEventListener('submit',async e=>{e.preventDefault();const mode=document.querySelector('input[name="auth-mode"]:checked').value;$('account-button').disabled=true;status('Connecting your learner account…');try{const data=await request('/auth/'+mode,{email:$('email').value.trim(),password:$('password').value,name:$('name').value.trim()});if(!data.token)throw new Error('Account access could not be confirmed. Please sign in again.');localStorage.setItem('dct_token',data.token);localStorage.setItem('dct_user',JSON.stringify(data.user));$('password').value='';track(mode === 'register' ? 'sign_up' : 'login', {method: 'email'});status('You are signed in. Continue with your enrollment.');
+ await account();await confirmSponsorReturn();update();
+ if(queryOnArrival.get('resume')==='review'){
+  const selectedCourse=course();
+  if(path()==='sponsor'){
+   const seats=$('seats').value;
+   if(['1','5','10','20'].includes(seats)){location.assign('/hub/checkout-review.html?sponsor=1&seats='+encodeURIComponent(seats));return;}
+  }else if(path()==='paid'&&selectedCourse?.checkoutReady){
+   location.assign('/hub/checkout-review.html?course='+encodeURIComponent(selectedCourse.id));return;
+  }
+ }}catch(e){
  if(mode==='register' && /User already exists/i.test(e.message||'')){
   const login=document.querySelector('input[name="auth-mode"][value="login"]');
   if(login){login.checked=true;login.dispatchEvent(new Event('change'));}
