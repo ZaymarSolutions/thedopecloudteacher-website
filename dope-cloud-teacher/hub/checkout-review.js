@@ -65,6 +65,25 @@
   const changeUrl = sponsorMode ? '/hub/enroll.html?sponsor=1' : '/hub/enroll.html' + (courseId ? '?course=' + encodeURIComponent(courseId) : '');
   el('change-course').href = changeUrl;
   el('change-course-top').href = changeUrl;
+  const recoveryUrl = sponsorMode
+    ? '/hub/enroll.html?sponsor=1&seats=' + encodeURIComponent(sponsorSeats) + '&resume=review'
+    : '/hub/enroll.html?course=' + encodeURIComponent(courseId) + '&resume=review';
+  el('recovery-link').href = recoveryUrl;
+  function track(event, details = {}) {
+    if (typeof window.DCTTrackEvent === 'function') window.DCTTrackEvent(event, details);
+  }
+  function recoverAccount(message, expired) {
+    if (expired) {
+      localStorage.removeItem('dct_token');
+      localStorage.removeItem('dct_user');
+    }
+    const a = el('recovery-link');
+    a.hidden = false;
+    a.textContent = expired ? 'Sign in again and continue this checkout →' : 'Sign in or create an account to continue →';
+    state(message, true);
+    el('pay-action').disabled = true;
+    track('checkout_auth_required', { checkout_type: sponsorMode ? 'sponsorship' : 'course', course_id: sponsorMode ? undefined : courseId });
+  }
   function state(message, error) {
     el('checkout-status').textContent = message;
     el('checkout-status').classList.toggle('error', Boolean(error));
@@ -99,6 +118,7 @@
       'DCT completion record after required steps are completed'
     ].map(li));
     document.title = 'Review ' + c.title + ' | DCT';
+    track('checkout_review_view', { course_id:c.id, currency:'USD', value:c.price, checkout_type:'course' });
   }
   function showSponsorship(seats) {
     const amount = seats * 25;
@@ -131,6 +151,7 @@
     el('product-disclaimer').textContent = 'Sponsorship does not enroll you in a course. Seats are allocated to eligible students through DCT’s community program. This payment is not a charitable tax-deductible donation. Sponsorship does not include vendor certification exams, live instruction or guaranteed employment.';
     el('after-payment').textContent = 'No card information is collected on this page. Once Stripe verifies payment, sponsored seats become available for DCT’s eligible learners.';
     document.title = 'Review community learning sponsorship | DCT';
+    track('checkout_review_view', { checkout_type:'sponsorship', currency:'USD', value:amount, seats:seats });
     return {id:'community-sponsorship',title:'DCT sponsored course seats',price:amount};
   }
   async function openCheckout(c) {
@@ -140,20 +161,33 @@
     state('Connecting securely to Stripe. No payment has been taken.');
     try {
       const token = localStorage.getItem('dct_token');
-      if (!token) throw new Error('Your learner session is missing. Sign in before continuing.');
+      if (!token) {
+        recoverAccount('Your learner sign-in is required. Continue with your selected course after signing in.',false);
+        return;
+      }
       const response = await fetch(API + (sponsorMode ? '/hub/sponsor-checkout' : '/create-checkout'), {
         method: 'POST', mode: 'cors', cache: 'no-store',
         headers: {'Content-Type':'application/json','Authorization':'Bearer ' + token},
         body: JSON.stringify(sponsorMode ? {seats:sponsorSeats} : {courseId:c.id})
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(payload.error || 'Checkout is temporarily unavailable. Please try again.');
+      if (!response.ok) {
+        if (response.status === 401 || response.status === 403) {
+          recoverAccount('Your login has expired. Sign in again to finish your selected purchase. No payment was taken.', true);
+          return;
+        }
+        throw new Error(payload.error || 'Checkout is temporarily unavailable. Please try again.');
+      }
       const destination = new URL(payload.url);
       if (destination.origin !== 'https://checkout.stripe.com') throw new Error('Unable to verify the secure payment destination.');
-      if (typeof window.DCTTrackEvent === 'function') window.DCTTrackEvent('begin_checkout', {currency:'USD',value:c.price,items:[{item_id:c.id,item_name:c.title,price:c.price,quantity:1}]});
+      track('begin_checkout', {
+        currency:'USD', value:c.price, checkout_type:sponsorMode?'sponsorship':'course',
+        items:[{item_id:c.id,item_name:c.title,price:c.price,quantity:1}]
+      });
       location.assign(destination.href);
     } catch (error) {
       state(error.message || 'Could not open secure checkout.', true);
+      track('checkout_error', {course_id:sponsorMode?undefined:c.id, checkout_type:sponsorMode?'sponsorship':'course', step:'stripe_redirect'});
       button.disabled = false;
       button.textContent = 'Continue to secure checkout';
     }
@@ -168,7 +202,9 @@
       const payload = await response.json();
       if (sponsorMode) {
         const sponsor = showSponsorship(sponsorSeats);
-        if (!localStorage.getItem('dct_token')) {state('Sign in to your DCT learner account before making a sponsorship payment.', true);return;}
+        if (!localStorage.getItem('dct_token')) {
+          recoverAccount('Sign in or create your learner account to sponsor community seats.',false);return;
+        }
         if (!payload.promotion?.active) {state('Community seat sponsorship is not available outside the current promotion.', true);return;}
         state('Your sponsorship details are verified. Review them, then continue to Stripe to pay.');
         const button = el('pay-action');
@@ -181,7 +217,10 @@
       if (!course || typeof course.price !== 'number' || !Number.isFinite(course.price) || course.price <= 0) throw new Error('This course is not currently available for purchase.');
       showCourse(course);
       const token = localStorage.getItem('dct_token');
-      if (!token) {state('Sign in to your DCT learner account before checking out.', true);return;}
+      if (!token) {
+        recoverAccount('Sign in or create your learner account to finish this course purchase.',false);
+        return;
+      }
       if (!course.checkoutReady) {state('Enrollment is currently unavailable for this course. Please try again later.', true);return;}
       state('Your course details are verified. Review them, then continue to Stripe to pay.');
       const button = el('pay-action');
@@ -190,6 +229,7 @@
       button.addEventListener('click', () => openCheckout(course));
     } catch (error) {
       state(error.message || 'Unable to load this course.', true);
+      track('checkout_error', { course_id:sponsorMode?undefined:courseId, checkout_type:sponsorMode?'sponsorship':'course', step:'load_catalog' });
     }
   })();
 })();
