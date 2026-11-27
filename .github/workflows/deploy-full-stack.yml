@@ -12,11 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check site files
+      - name: Check site files and checkout funnel scripts
         run: |
           test -f dope-cloud-teacher/index.html
-          find dope-cloud-teacher -name "*.html" -type f -print | head -30
-          echo "Frontend source files found."
+          test -f dope-cloud-teacher/hub/checkout-review.html
+          test -f dope-cloud-teacher/hub/enroll.html
+          node --check dope-cloud-teacher/js/analytics.js
+          node --check dope-cloud-teacher/hub/enroll.js
+          node --check dope-cloud-teacher/hub/checkout-review.js
+          grep -q 'id="recovery-link"' dope-cloud-teacher/hub/checkout-review.html
+          grep -q 'id="reset-help"' dope-cloud-teacher/hub/enroll.html
+          echo "Frontend and checkout recovery scripts are valid."
 
   test-backend:
     name: Validate Backend
@@ -34,6 +40,8 @@ jobs:
         run: npm install
       - name: Check server syntax
         run: node --check server.js
+      - name: Test course pricing, account-bound payments, and enrollment
+        run: node --test test/hub-access.test.js test/learning-offer.test.js
       - name: Initialize disposable CI database
         run: npm run init-db
       - name: Verify disposable CI database
