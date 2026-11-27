@@ -61,3 +61,7 @@ h1{color:#0b2a55;line-height:1.12;font-size:clamp(1.75rem,3.1vw,2.8rem);letter-s
 .payment-panel .fine-print{margin:12px 0 0}
 @media(max-width:980px){.review-grid{grid-template-columns:1fr}.payment-panel{max-width:unset}.hero{grid-template-columns:1.1fr .9fr}}
 @media(max-width:620px){.site-top{padding:18px}.brand img{width:46px;height:46px}.brand strong{font-size:1rem}.brand small{font-size:.72rem}.top-back{font-size:.78rem}.review-shell{padding-inline:12px}.eyebrow{margin-inline:10px}.panel-top{padding:16px 16px 0}.hero{grid-template-columns:1fr;padding:12px 17px 17px}.art img{max-height:190px}.info-grid{grid-template-columns:1fr;margin:15px 15px;gap:12px}.know-card{margin:0 15px 15px}.know-grid{grid-template-columns:1fr}.trust-strip{padding:15px}.payment-panel{padding:21px 17px}h1{font-size:1.95rem}}
+
+/* Account-recovery link stays hidden unless authentication is required. */
+#recovery-link[hidden]{display:none!important}
+#recovery-link:not([hidden]){display:block!important}
