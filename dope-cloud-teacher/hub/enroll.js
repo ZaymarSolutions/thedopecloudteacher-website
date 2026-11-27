@@ -97,6 +97,7 @@ function update(){
    text=ready?'Sponsor one or more community learning seats.':'Sponsorship checkout is temporarily unavailable.';
   }
  }
+ $('reset-help').href = '/login.html?redirect=' + encodeURIComponent('/hub/enroll.html' + location.search);
  $('action-detail').textContent=text;
  $('enroll-action').textContent=label;
  $('enroll-action').disabled=busy||!ready;
@@ -112,6 +113,10 @@ document.querySelectorAll('input[name="path"]').forEach(r=>r.addEventListener('c
  trackCourse('select_item');
 });
 document.querySelectorAll('input[name="auth-mode"]').forEach(r=>r.addEventListener('change',()=>{const register=document.querySelector('input[name="auth-mode"]:checked').value==='register';$('name-field').hidden=!register;$('name').required=register;$('password').autocomplete=register?'new-password':'current-password';$('password').minLength=register?8:1;$('account-button').textContent=register?'Create learner account':'Sign in';}));$('name').required=true;
+if(queryOnArrival.get('resume')==='review'){
+ const login=document.querySelector('input[name="auth-mode"][value="login"]');
+ if(login){login.checked=true;login.dispatchEvent(new Event('change'));}
+}
 $('account-form').addEventListener('submit',async e=>{e.preventDefault();const mode=document.querySelector('input[name="auth-mode"]:checked').value;$('account-button').disabled=true;status('Connecting your learner account…');try{const data=await request('/auth/'+mode,{email:$('email').value.trim(),password:$('password').value,name:$('name').value.trim()});if(!data.token)throw new Error('Account access could not be confirmed. Please sign in again.');localStorage.setItem('dct_token',data.token);localStorage.setItem('dct_user',JSON.stringify(data.user));$('password').value='';track(mode === 'register' ? 'sign_up' : 'login', {method: 'email'});status('You are signed in. Continue with your enrollment.');
  await account();await confirmSponsorReturn();update();
  if(queryOnArrival.get('resume')==='review'){
