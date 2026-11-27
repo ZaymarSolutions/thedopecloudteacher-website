@@ -82,7 +82,11 @@ function update(){
  const price=c?.price??promotion.price??6;
  $('paid-label').textContent=`Enroll online · $${price} one-time`;
  let ready=false,text='Choose a course to begin.',label='Choose your course';
- if(c){
+ if(p==='sponsor'){
+  ready=!!promotion.active&&courses.some(item=>item.checkoutReady);
+  label=token()?'Review sponsored learning seats':'Create account or sign in to sponsor seats';
+  text=ready?'Sponsor community learning seats without choosing a course for yourself.':'Sponsorship checkout is currently unavailable.';
+ }else if(c){
   if(p==='paid'){
    ready=!!c.checkoutReady;
    label=token()?`Review your $${price} course →`:`Create account or sign in · Then pay $${price}`;
@@ -91,10 +95,6 @@ function update(){
    ready=!!c.communityAccessReady;
    label=token()?'Request fee assistance':'Create account or sign in for fee assistance';
    text=ready?'Eligible local learners can request tuition assistance after signing in.':'Fee assistance is temporarily unavailable.';
-  }else{
-   ready=!!c.checkoutReady;
-   label=token()?'Review sponsorship':'Create account or sign in to sponsor seats';
-   text=ready?'Sponsor one or more community learning seats.':'Sponsorship checkout is temporarily unavailable.';
   }
  }
  $('reset-help').href = '/login.html?redirect=' + encodeURIComponent('/hub/enroll.html' + location.search);
@@ -142,13 +142,13 @@ $('account-form').addEventListener('submit',async e=>{e.preventDefault();const m
 }finally{$('account-button').disabled=false;}});
 $('enroll-action').addEventListener('click',async()=>{
  const c=course(),p=path();
- if(!c){status('Select a course first.');$('course').focus();return;}
+ if(!c&&p!=='sponsor'){status('Select a course first.');$('course').focus();return;}
  if(!token()){
   $('learner-account').scrollIntoView({behavior:'smooth',block:'start'});
   $('email').focus({preventScroll:true});
   status('Your course selection is saved. Create a learner account or sign in to continue.');
-  track('enrollment_account_needed',{course_id:c.id,enrollment_path:p});
+  track('enrollment_account_needed',{course_id:c?.id,enrollment_path:p});
   return;
- }if(p==='paid'){if(!c.checkoutReady){status('This course is not currently available for secure checkout.',true);return;}location.assign('/hub/checkout-review.html?course='+encodeURIComponent(c.id));return;}if(p==='sponsor'){if(!c.checkoutReady){status('Sponsorship checkout is not currently available.',true);return;}location.assign('/hub/checkout-review.html?sponsor=1&seats='+encodeURIComponent($('seats').value));return;}if(p==='community'&&(!/^[0-9]{5}$/.test($('zip').value)||!$('attestation').checked)){status('Enter a five-digit home ZIP code and confirm your residency and need for assistance.',true);return;}busy=true;update();status('Preparing your enrollment…');try{if(p==='community'){const data=await request('/hub/community-enroll',{courseId:c.id,community:$('community').value,zipCode:$('zip').value,needsAssistance:true,attestation:true});if(!data.enrolled)throw new Error('Enrollment was not confirmed. Please try again.');status(data.source==='sponsor'?'Your seat is sponsor-funded. Your classroom is ready.':'Your fee waiver is covered by DCT’s bridge program. Your classroom is ready.');const a=document.createElement('a');a.href='/hub/classroom.html?course='+encodeURIComponent(c.id);a.textContent=' Open your classroom →';$('enrollment-status').append(a);await account();}else{const data=await request(p==='sponsor'?'/hub/sponsor-checkout':'/create-checkout',p==='sponsor'?{seats:Number($('seats').value)}:{courseId:c.id});const url=new URL(data.url);if(url.origin!=='https://checkout.stripe.com')throw new Error('Secure checkout could not be verified. Please try again.');trackCourse('begin_checkout');location.assign(url.href);}}catch(e){track('checkout_error', {course_id: c.id, enrollment_path: p});status(e.message,true);}finally{busy=false;update();}});
+ }if(p==='paid'){if(!c.checkoutReady){status('This course is not currently available for secure checkout.',true);return;}location.assign('/hub/checkout-review.html?course='+encodeURIComponent(c.id));return;}if(p==='sponsor'){if(!promotion.active||!courses.some(item=>item.checkoutReady)){status('Sponsorship checkout is not currently available.',true);return;}location.assign('/hub/checkout-review.html?sponsor=1&seats='+encodeURIComponent($('seats').value));return;}if(p==='community'&&(!/^[0-9]{5}$/.test($('zip').value)||!$('attestation').checked)){status('Enter a five-digit home ZIP code and confirm your residency and need for assistance.',true);return;}busy=true;update();status('Preparing your enrollment…');try{if(p==='community'){const data=await request('/hub/community-enroll',{courseId:c.id,community:$('community').value,zipCode:$('zip').value,needsAssistance:true,attestation:true});if(!data.enrolled)throw new Error('Enrollment was not confirmed. Please try again.');status(data.source==='sponsor'?'Your seat is sponsor-funded. Your classroom is ready.':'Your fee waiver is covered by DCT’s bridge program. Your classroom is ready.');const a=document.createElement('a');a.href='/hub/classroom.html?course='+encodeURIComponent(c.id);a.textContent=' Open your classroom →';$('enrollment-status').append(a);await account();}else{const data=await request(p==='sponsor'?'/hub/sponsor-checkout':'/create-checkout',p==='sponsor'?{seats:Number($('seats').value)}:{courseId:c.id});const url=new URL(data.url);if(url.origin!=='https://checkout.stripe.com')throw new Error('Secure checkout could not be verified. Please try again.');trackCourse('begin_checkout');location.assign(url.href);}}catch(e){track('checkout_error', {course_id: c.id, enrollment_path: p});status(e.message,true);}finally{busy=false;update();}});
 (async()=>{await account();await confirmSponsorReturn();try{const data=await request('/hub/catalog');courses=data.courses||[];promotion=data.promotion||{};$('course').textContent='';if(!courses.length)throw new Error('Enrollment is temporarily unavailable. Please check back soon.');const placeholder = document.createElement('option');placeholder.value = '';placeholder.textContent = 'Choose your course';$('course').append(placeholder);for(const c of courses){const o=document.createElement('option');o.value=c.id;o.textContent=c.title;$('course').append(o);}const selected=new URLSearchParams(location.search).get('course');if(courses.some(c=>c.id===selected))$('course').value=selected;$('course').disabled=false;$('promotion-copy').textContent=promotion.active?'Year-end blowout: $6 per course through December 31, 2026, Eastern time.':'Current course prices are shown below.';update();track('enrollment_view');trackCourse('view_item');}catch(e){$('promotion-copy').textContent='Explore our online learning programs.';status(e.message,true);}})();
 })();
