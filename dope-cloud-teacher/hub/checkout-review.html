@@ -8,6 +8,8 @@
   <title>Review your course | The Dope Cloud TeacHer</title>
   <link rel="icon" href="/logo.svg">
   <script src="/js/metricool-tracking.js?v=20261124" defer></script>
+  <script src="/js/site-config.js" defer></script>
+  <script src="/js/analytics.js?v=20261127-funnel" defer></script>
   <link rel="stylesheet" href="/hub/checkout-review.css?v=20261124a">
 </head>
 <body>
@@ -80,12 +82,13 @@
           <div class="order-total"><span>One-time price</span><strong id="order-price">—</strong></div>
         </div>
         <p class="note" id="checkout-status" role="status" aria-live="polite">Checking your course and enrollment…</p>
+        <a id="recovery-link" href="/hub/enroll.html" hidden style="display:block;margin:12px 0 18px;padding:12px 14px;border-radius:11px;background:#edf8ff;color:#065c8d;font-weight:800;text-align:center">Sign in or create your account to continue →</a>
         <button type="button" id="pay-action" disabled>Continue to secure checkout</button>
         <a class="change-link" id="change-course" href="/hub/enroll.html">← Change my selection</a>
         <p class="fine-print" id="after-payment">No card information is collected on this page. After Stripe confirms payment, DCT opens the selected course in your learner account.</p>
       </aside>
     </div>
   </main>
-  <script src="/hub/checkout-review.js?v=20261124a" defer></script>
+  <script src="/hub/checkout-review.js?v=20261127-funnel" defer></script>
 </body>
 </html>
