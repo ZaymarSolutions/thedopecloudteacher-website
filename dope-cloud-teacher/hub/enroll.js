@@ -1,8 +1,10 @@
 (()=>{'use strict';
 const api='https://energetic-endurance-production.up.railway.app/api', $=id=>document.getElementById(id);let courses=[],promotion={},busy=false;
 const token=()=>localStorage.getItem('dct_token');
+const queryOnArrival = new URLSearchParams(location.search);
 if(new URLSearchParams(location.search).get('sponsor')==='1')document.querySelector('input[name="path"][value="sponsor"]').checked=true;
 if(new URLSearchParams(location.search).get('access')==='community')document.querySelector('input[name="path"][value="community"]').checked=true;
+if(queryOnArrival.get('sponsor')==='1'||queryOnArrival.get('access')==='community')$('other-enrollment-options').open=true;
 function status(message,error=false){$('enrollment-status').textContent=message;$('enrollment-status').classList.toggle('error',error);}
 function expireLearnerSession(){
   let lastEmail='';
@@ -69,7 +71,35 @@ function describeSelection(c,p){
  const a=add('a','Read the full course preview →');a.href='/hub/courses/'+c.id+'.html';
 }
 
-function update(){const c=course(),p=path();describeSelection(c,p);$('community-fields').hidden=p!=='community';$('sponsor-fields').hidden=p!=='sponsor';$('course-detail').textContent=c?`${c.lessonCount||'Structured'} lessons · Online, self-paced${c.regularPrice?` · Regular price $${c.regularPrice}`:''}`:'';const price=c?.price??promotion.price??6;$('paid-label').textContent=`Enroll online · $${price}`;let ready=false,text='Choose a course to continue.',label='Continue';if(c){if(p==='paid'){ready=!!c.checkoutReady;label=`Review course and price · ${price}`;text=ready?(token()?'Your enrollment opens after payment is verified.':'Create your learner account or sign in below to continue to secure checkout.'):'Paid enrollment for this course is temporarily unavailable.';}else if(p==='community'){ready=!!c.communityAccessReady;label='Request fee waiver and enroll';text=ready?'Confirm your community and need below. Eligible access opens without an owner appointment.':'Community enrollment for this course is temporarily unavailable.';}else{ready=!!c.checkoutReady;label='Sponsor community seats';text=ready?'Continue to secure checkout for your selected number of seats.':'Sponsorship checkout is temporarily unavailable.';}}$('action-detail').textContent=text;$('enroll-action').textContent=label;$('enroll-action').disabled=busy||!token()||!ready;}
+function update(){
+ const c=course(),p=path();
+ describeSelection(c,p);
+ if(p!=='paid')$('other-enrollment-options').open=true;
+ $('community-fields').hidden=p!=='community';
+ $('sponsor-fields').hidden=p!=='sponsor';
+ $('course-detail').textContent=c?`${c.lessonCount||'Structured'} learning sections · Online · Self-paced · One course per purchase`:'';
+ const price=c?.price??promotion.price??6;
+ $('paid-label').textContent=`Enroll online · $${price} one-time`;
+ let ready=false,text='Choose a course to begin.',label='Choose your course';
+ if(c){
+  if(p==='paid'){
+   ready=!!c.checkoutReady;
+   label=token()?`Review your $${price} course →`:`Create account or sign in · Then pay $${price}`;
+   text=ready?(token()?'Continue to your course-specific payment review.':'Your course is selected. Create an account or sign in below, then complete secure checkout.'):'This course is temporarily unavailable for purchase.';
+  }else if(p==='community'){
+   ready=!!c.communityAccessReady;
+   label=token()?'Request fee assistance':'Create account or sign in for fee assistance';
+   text=ready?'Eligible local learners can request tuition assistance after signing in.':'Fee assistance is temporarily unavailable.';
+  }else{
+   ready=!!c.checkoutReady;
+   label=token()?'Review sponsorship':'Create account or sign in to sponsor seats';
+   text=ready?'Sponsor one or more community learning seats.':'Sponsorship checkout is temporarily unavailable.';
+  }
+ }
+ $('action-detail').textContent=text;
+ $('enroll-action').textContent=label;
+ $('enroll-action').disabled=busy||!ready;
+}
 async function confirmSponsorReturn(){const query=new URLSearchParams(location.search);if(query.get('sponsored')!=='1'||!query.get('session_id'))return;if(!token()){status('Sign in to verify your sponsorship payment.');return;}status('Verifying your sponsorship payment…');try{const data=await request('/hub/confirm-checkout',{sessionId:query.get('session_id')});if(data.confirmed!==true||data.source!=='sponsorship')throw new Error('Sponsorship payment has not been confirmed. Please try again.');status(`Thank you. Payment is verified for ${Number(data.seats)||1} sponsored community seat${Number(data.seats)===1?'':'s'}.`);query.delete('sponsored');query.delete('session_id');history.replaceState(null,'',location.pathname+(query.size?'?'+query.toString():''));}catch(e){status(e.message,true);}}
 async function account(){const signed=!!token();$('account-form').hidden=signed;$('account-state').textContent=signed?'You are signed in. Your enrollment will be saved to this account.':'';if(signed){const b=document.createElement('button');b.type='button';b.textContent='Use a different account';b.onclick=()=>{localStorage.removeItem('dct_token');localStorage.removeItem('dct_user');account();update();};$('account-state').append(document.createElement('br'),b);try{const data=await request('/hub/enrollments');$('my-courses').textContent='';const list=data.courses||data.enrollments||[];if(!list.length)$('my-courses').textContent='No enrolled courses yet.';for(const c of list){const a=document.createElement('a');a.href='/hub/classroom.html?course='+encodeURIComponent(c.id||c.courseId);a.textContent=c.title||c.id||c.courseId;$('my-courses').append(a);}}catch(e){if(!e.sessionExpired)$('my-courses').textContent='Your enrollments could not be loaded. Please retry or sign in again.';}}else $('my-courses').textContent='Sign in to see your courses.';}
 document.querySelectorAll('input[name="path"]').forEach(r=>r.addEventListener('change',update));$('course').addEventListener('change', () => {
@@ -81,7 +111,28 @@ document.querySelectorAll('input[name="path"]').forEach(r=>r.addEventListener('c
  trackCourse('select_item');
 });
 document.querySelectorAll('input[name="auth-mode"]').forEach(r=>r.addEventListener('change',()=>{const register=document.querySelector('input[name="auth-mode"]:checked').value==='register';$('name-field').hidden=!register;$('name').required=register;$('password').autocomplete=register?'new-password':'current-password';$('password').minLength=register?8:1;$('account-button').textContent=register?'Create learner account':'Sign in';}));$('name').required=true;
-$('account-form').addEventListener('submit',async e=>{e.preventDefault();const mode=document.querySelector('input[name="auth-mode"]:checked').value;$('account-button').disabled=true;status('Connecting your learner account…');try{const data=await request('/auth/'+mode,{email:$('email').value.trim(),password:$('password').value,name:$('name').value.trim()});if(!data.token)throw new Error('Account access could not be confirmed. Please sign in again.');localStorage.setItem('dct_token',data.token);localStorage.setItem('dct_user',JSON.stringify(data.user));$('password').value='';track(mode === 'register' ? 'sign_up' : 'login', {method: 'email'});status('You are signed in. Continue with your enrollment.');await account();await confirmSponsorReturn();update();}catch(e){status(e.message,true);}finally{$('account-button').disabled=false;}});
-$('enroll-action').addEventListener('click',async()=>{const c=course(),p=path();if(!c||!token())return;if(p==='paid'){if(!c.checkoutReady){status('This course is not currently available for secure checkout.',true);return;}location.assign('/hub/checkout-review.html?course='+encodeURIComponent(c.id));return;}if(p==='sponsor'){if(!c.checkoutReady){status('Sponsorship checkout is not currently available.',true);return;}location.assign('/hub/checkout-review.html?sponsor=1&seats='+encodeURIComponent($('seats').value));return;}if(p==='community'&&(!/^[0-9]{5}$/.test($('zip').value)||!$('attestation').checked)){status('Enter a five-digit home ZIP code and confirm your residency and need for assistance.',true);return;}busy=true;update();status('Preparing your enrollment…');try{if(p==='community'){const data=await request('/hub/community-enroll',{courseId:c.id,community:$('community').value,zipCode:$('zip').value,needsAssistance:true,attestation:true});if(!data.enrolled)throw new Error('Enrollment was not confirmed. Please try again.');status(data.source==='sponsor'?'Your seat is sponsor-funded. Your classroom is ready.':'Your fee waiver is covered by DCT’s bridge program. Your classroom is ready.');const a=document.createElement('a');a.href='/hub/classroom.html?course='+encodeURIComponent(c.id);a.textContent=' Open your classroom →';$('enrollment-status').append(a);await account();}else{const data=await request(p==='sponsor'?'/hub/sponsor-checkout':'/create-checkout',p==='sponsor'?{seats:Number($('seats').value)}:{courseId:c.id});const url=new URL(data.url);if(url.origin!=='https://checkout.stripe.com')throw new Error('Secure checkout could not be verified. Please try again.');trackCourse('begin_checkout');location.assign(url.href);}}catch(e){track('checkout_error', {course_id: c.id, enrollment_path: p});status(e.message,true);}finally{busy=false;update();}});
+$('account-form').addEventListener('submit',async e=>{e.preventDefault();const mode=document.querySelector('input[name="auth-mode"]:checked').value;$('account-button').disabled=true;status('Connecting your learner account…');try{const data=await request('/auth/'+mode,{email:$('email').value.trim(),password:$('password').value,name:$('name').value.trim()});if(!data.token)throw new Error('Account access could not be confirmed. Please sign in again.');localStorage.setItem('dct_token',data.token);localStorage.setItem('dct_user',JSON.stringify(data.user));$('password').value='';track(mode === 'register' ? 'sign_up' : 'login', {method: 'email'});status('You are signed in. Continue with your enrollment.');await account();await confirmSponsorReturn();update();}catch(e){
+ if(mode==='register' && /User already exists/i.test(e.message||'')){
+  const login=document.querySelector('input[name="auth-mode"][value="login"]');
+  if(login){login.checked=true;login.dispatchEvent(new Event('change'));}
+  $('password').value='';
+  $('password').focus();
+  status('You already have a DCT learner account. Please sign in with your password. If you cannot remember it, contact DCT for account support.',true);
+  track('enrollment_account_exists',{step:'account'});
+ }else{
+  status(e.message,true);
+  track('enrollment_auth_error',{step:'account',mode:mode});
+ }
+}finally{$('account-button').disabled=false;}});
+$('enroll-action').addEventListener('click',async()=>{
+ const c=course(),p=path();
+ if(!c){status('Select a course first.');$('course').focus();return;}
+ if(!token()){
+  $('learner-account').scrollIntoView({behavior:'smooth',block:'start'});
+  $('email').focus({preventScroll:true});
+  status('Your course selection is saved. Create a learner account or sign in to continue.');
+  track('enrollment_account_needed',{course_id:c.id,enrollment_path:p});
+  return;
+ }if(p==='paid'){if(!c.checkoutReady){status('This course is not currently available for secure checkout.',true);return;}location.assign('/hub/checkout-review.html?course='+encodeURIComponent(c.id));return;}if(p==='sponsor'){if(!c.checkoutReady){status('Sponsorship checkout is not currently available.',true);return;}location.assign('/hub/checkout-review.html?sponsor=1&seats='+encodeURIComponent($('seats').value));return;}if(p==='community'&&(!/^[0-9]{5}$/.test($('zip').value)||!$('attestation').checked)){status('Enter a five-digit home ZIP code and confirm your residency and need for assistance.',true);return;}busy=true;update();status('Preparing your enrollment…');try{if(p==='community'){const data=await request('/hub/community-enroll',{courseId:c.id,community:$('community').value,zipCode:$('zip').value,needsAssistance:true,attestation:true});if(!data.enrolled)throw new Error('Enrollment was not confirmed. Please try again.');status(data.source==='sponsor'?'Your seat is sponsor-funded. Your classroom is ready.':'Your fee waiver is covered by DCT’s bridge program. Your classroom is ready.');const a=document.createElement('a');a.href='/hub/classroom.html?course='+encodeURIComponent(c.id);a.textContent=' Open your classroom →';$('enrollment-status').append(a);await account();}else{const data=await request(p==='sponsor'?'/hub/sponsor-checkout':'/create-checkout',p==='sponsor'?{seats:Number($('seats').value)}:{courseId:c.id});const url=new URL(data.url);if(url.origin!=='https://checkout.stripe.com')throw new Error('Secure checkout could not be verified. Please try again.');trackCourse('begin_checkout');location.assign(url.href);}}catch(e){track('checkout_error', {course_id: c.id, enrollment_path: p});status(e.message,true);}finally{busy=false;update();}});
 (async()=>{await account();await confirmSponsorReturn();try{const data=await request('/hub/catalog');courses=data.courses||[];promotion=data.promotion||{};$('course').textContent='';if(!courses.length)throw new Error('Enrollment is temporarily unavailable. Please check back soon.');const placeholder = document.createElement('option');placeholder.value = '';placeholder.textContent = 'Choose your course';$('course').append(placeholder);for(const c of courses){const o=document.createElement('option');o.value=c.id;o.textContent=c.title;$('course').append(o);}const selected=new URLSearchParams(location.search).get('course');if(courses.some(c=>c.id===selected))$('course').value=selected;$('course').disabled=false;$('promotion-copy').textContent=promotion.active?'Year-end blowout: $6 per course through December 31, 2026, Eastern time.':'Current course prices are shown below.';update();track('enrollment_view');trackCourse('view_item');}catch(e){$('promotion-copy').textContent='Explore our online learning programs.';status(e.message,true);}})();
 })();
